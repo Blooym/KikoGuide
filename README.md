@@ -30,7 +30,6 @@ If you still wish to install the plugin anyway (and this should only be for test
 
 ```
 https://raw.githubusercontent.com/BitsOfAByte/KikoGuide/main/repo.json
-
 ```
 
 ## Contributing
