@@ -1,0 +1,67 @@
+{
+    "Name": "The Bowl of Embers",
+    "Difficulty": 1,
+    "Type": 1,
+    "Expansion": 0,
+    "Level": 50,
+    "UnlockQuestID": 66584,
+    "Bosses": [
+        {
+            "Name": "Ifrit (Phase 1)",
+            "Strategy": "Non-tank players should not stand in front of Ifrit due to his cleave attacks.",
+            "KeyMechanics": [
+                {
+                    "Name": "Incinerate",
+                    "Description": "Frontal breath attack",
+                    "Type": 9
+                },
+                {
+                    "Name": "Eruption",
+                    "Description": "Targeted radial AoE.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Vulcan Burst",
+                    "Description": "Instant nearby attack with knockback",
+                    "Type": 2
+                },
+                {
+                    "Name": "Crimson Cyclone",
+                    "Description": "Stands in the corner of the boss room before dashing forward",
+                    "Type": 2
+                }
+            ]
+        },
+        {
+            "Name": "Ifrit (Phase 2)",
+            "Strategy": "During phase 2, Ifrit will gain two new abilities: Sear and Radiant Plume. Plumes in this phase are outer plumes then inner plumes. Followed by Eruption then Cyclone.",
+            "KeyMechanics": [
+                {
+                    "Name": "Sear",
+                    "Description": "Instance nearby attack",
+                    "Type": 2
+                },
+                {
+                    "Name": "Radiant Plume",
+                    "Description": "Places glowing red circles on ground, exploding within a few seconds.",
+                    "Type": 2
+                }
+            ]
+        },
+        {
+            "Name": "Ifrit (Phase 3)",
+            "Strategy": "At 50%% HP, ifrit will summon 4 nails. If any nails remain when Ifrit casts Hellfire, it will kill all players.",
+            "KeyMechanics": [
+                {
+                    "Name": "Hellfire",
+                    "Description": "Massive raid-wide attack, killing players if any Nails remain.",
+                    "Type": 4
+                }
+            ]
+        },
+        {
+            "Name": "Ifrit (Phase 4)",
+            "Strategy": "After Hellfire has been cast, Ifrit enters phase 4 where they have all the abilities from phase 2 excluding Hellfire.\n\nThe order of attacks in this phase:\n- Outer Radiant Plumes\n- Inner Radiant Plumes\n- Eruption\n- Zone-wide Radiant plumes\n- Dashes (Left always dashes first)"
+        }
+    ]
+}

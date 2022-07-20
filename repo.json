@@ -1,0 +1,22 @@
+[
+    {
+        "Author": "BitsOfAByte",
+        "Name": "KikoGuide",
+        "Punchline": "The ultimate guidebook to the Duty Finder",
+        "Description": "Provides in-depth information about duties",
+        "InternalName": "KikoGuide",
+        "AssemblyVersion": "0.0.0.2",
+        "RepoUrl": "https://github.com/BitsOfAByte/KikoGuide",
+        "ApplicableVersion": "any",
+        "DalamudApiLevel": 6,
+        "DownloadLinkInstall": "https://github.com/BitsOfAByte/KikoGuide/releases/latest/download/latest.zip",
+        "IsHide": false,
+        "IsTestingExclusive": false,
+        "DownloadLinkTesting": "https://github.com/BitsOfAByte/KikoGuide/releases/latest/download/latest.zip",
+        "DownloadLinkUpdate": "https://github.com/BitsOfAByte/KikoGuide/releases/latest/download/latest.zip",
+        "DownloadCount": 0,
+        "LastUpdated": "0",
+        "IconUrl": "https://githubusercontent.com/BitsOfAByte/KikoGuide/main/icon.png",
+        "Changelog": ""
+    }
+]
