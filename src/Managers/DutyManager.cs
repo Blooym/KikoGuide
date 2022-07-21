@@ -92,7 +92,7 @@ public static class DutyManager
 
         // Try and get the language from the settings, or use fallback to default if not found.
         var language = Service.PluginInterface.UiLanguage;
-        if (!Directory.Exists($"{PStrings.localizationPath}Localization\\Duty\\{language}")) language = PStrings.fallbackLanguage;
+        if (!Directory.Exists($"{PStrings.localizationPath}\\Duty\\{language}")) language = PStrings.fallbackLanguage;
 
         // Start loading duties, if this fails then the plugin will fallback to an empty duty list.
         List<Duty> duties = new List<Duty>();
