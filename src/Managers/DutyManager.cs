@@ -8,6 +8,7 @@ using KikoGuide.Base;
 using KikoGuide.Enums;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using Dalamud.Logging;
+using CheapLoc;
 
 
 /// <summary>
@@ -52,8 +53,8 @@ sealed public class Duty
 /// </summary>
 sealed public class Boss
 {
-    public string? Name { get; set; }
-    public string? Strategy { get; set; }
+    public string Name { get; set; } = Loc.Localize("Duty.Boss.Name.None", "Unnamed Boss");
+    public string Strategy { get; set; } = Loc.Localize("Duty.Boss.Strategy.None", "No strategy available yet.");
     public string? TLDR { get; set; }
     public List<KeyMechanics>? KeyMechanics { get; set; }
 }
@@ -64,8 +65,8 @@ sealed public class Boss
 /// </summary>
 sealed public class KeyMechanics
 {
-    public string? Name { get; set; }
-    public string? Description { get; set; }
+    public string Name { get; set; } = "???";
+    public string Description { get; set; } = "???";
     public int Type { get; set; } = 10;
 }
 

@@ -1,4 +1,5 @@
 {
+    "Version": 0,
     "Name": "Cutter's Cry",
     "Difficulty": 0,
     "Type": 0,
@@ -23,7 +24,8 @@
                 },
                 {
                     "Name": "Haste",
-                    "Description": "Increases the attack speed of adds"
+                    "Description": "Increases the attack speed of adds",
+                    "Type": 10
                 }
             ]
         },

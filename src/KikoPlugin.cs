@@ -33,7 +33,11 @@ internal class KikoPlugin : IDalamudPlugin
         FFXIVClientStructs.Resolver.Initialize(Service.Scanner.SearchBase);
         Service.Initialize(_configuration);
         OnLanguageChange(Service.PluginInterface.UiLanguage);
+
+        // Do not auto update if a debug build as it overwrites duty files.
+#if !DEBUG
         UpdateManager.UpdateResources();
+#endif
 
         // Create UI Instances
         this._kikoUIList = new List(this._configuration);
