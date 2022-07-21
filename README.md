@@ -28,7 +28,9 @@ Features
 ## Installing
 Kiko Guide will hopefully be available for download through the official DalamudPlugins repository in the near-feature.
 
-Until then, if you really wish to install a developer preview release of the plugin, you can add the following repository URL to your 3rd-party repositories `(Dalamud Plugins -> Settings -> Experimental -> Custom Plugin Repositories)`
+Until then, if you really wish to install a developer preview release of the plugin, you can add the following repository URL to your 3rd-party repositories 
+
+`(Dalamud Plugins -> Settings -> Experimental -> Custom Plugin Repositories)`
 
 ```
 https://raw.githubusercontent.com/BitsOfAByte/KikoGuide/main/repo.json
