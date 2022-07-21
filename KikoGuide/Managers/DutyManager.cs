@@ -4,19 +4,20 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using KikoGuide.Base;
+using KikoGuide.Enums;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using Dalamud.Logging;
 
-using KikoGuide.Base;
-using KikoGuide.Enums;
-using KikoGuide.Utils;
 
-// <summary>
-// Classto deserialize the duty data
-// </summary>
-public class Duty
+/// <summary>
+///     The Duty class represents an in-game duty.
+/// </summary>
+sealed public class Duty
 {
+    /// <summary> Duty JSON format version, incremented on breaking changes. </summary>
+    private readonly int _formatVersion = 0;
+
     public int Version { get; set; } = 0;
     public string Name { get; set; } = "Unnamed Duty";
     public int Difficulty { get; set; } = 0;
@@ -25,15 +26,31 @@ public class Duty
     public int Level { get; set; } = 0;
     public uint UnlockQuestID { get; set; } = 0;
     public uint TerritoryID { get; set; } = 0;
-    public bool UpdateRequired { get; set; } = false;
-    public List<Boss>? Bosses { get; set; }
+    public List<Boss>? Bosses { get; set; } = null;
+
+    /// <summary> Boolean value indicating if this duty is not supported on the current plugin version. </summary>
+    public bool IsSupported()
+    {
+        if (this.Version != _formatVersion) return false;
+        if (!Enum.IsDefined(typeof(Expansion), this.Expansion)) return false;
+        if (!Enum.IsDefined(typeof(DutyType), this.Type)) return false;
+        if (!Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)) return false;
+        if (this.Bosses?.Any(boss => boss.KeyMechanics != null &&
+            boss.KeyMechanics.Any(keyMechanic => !Enum.IsDefined(typeof(Mechanics), keyMechanic.Type))) ?? false) return false;
+
+        return true;
+    }
+
+
+    /// <summary> Boolean value indicating if the duty has been unlocked by the player. </summary>
+    public bool IsUnlocked() => DutyManager.GetPlayerDuty() == this || QuestManager.IsQuestComplete(this.UnlockQuestID);
 }
 
 
-// <summary>
-// Class to deserialize the boss data for a duty. 
-// </summary>
-public class Boss
+/// <summary>
+///     The base Boss type, typically found within a <see cref="Duty" />.
+/// </summary>
+sealed public class Boss
 {
     public string? Name { get; set; }
     public string? Strategy { get; set; }
@@ -42,10 +59,10 @@ public class Boss
 }
 
 
-// <summary>
-// Class to deserialize the key mechanic data for a boss
-// </summary>
-public class KeyMechanics
+/// <summary>
+///      The base KeyMechanic type, typically found within a <see cref="Boss" />.
+/// </summary>
+sealed public class KeyMechanics
 {
     public string? Name { get; set; }
     public string? Description { get; set; }
@@ -53,118 +70,68 @@ public class KeyMechanics
 }
 
 
-// <summary>
-// DutyManager handles the loading & controling of the duty data.
-// </summary>
+/// <summary> 
+///     DutyManager handles the fetching and controling of the duty related data.
+/// </summary>
 public static class DutyManager
 {
-    /* 
-    DutyJSONVersion should be incremented whenever keys are renamed, removed or the structure of the JSON file changes.
-    It does not need to be incremented when a new key is added to the duty, as it will just be ignored when deserializing.
-    */
-    private static int _dutyJSONVersion = 0;
-
-#if !DEBUG
-    private static bool _autoUpdateAttempted = false;
-#endif
-
-    private static CacheManager _dutyCacheMgr = new CacheManager(5000, new List<Duty>());
-    private static List<string> _disabledDutyLoadPaths = new List<string>();
+    /// <summary> All currently loaded duties </summary>
+    private static List<Duty>? _loadedDuties = null;
 
 
-    // <summary>
-    // Checks if the given duty supported by the current version of the plugin.
-    // </summary>
-    private static bool IsSupported(Duty duty)
+    /// <summary> Handles updating duty data when resources are updated. </summary>
+    public static void OnResourceUpdate() => _loadedDuties = null;
+
+
+    /// <summary>
+    ///     Desearializes duty data from the duty data folder, attempts to use client language.
+    ///  </summary>
+    public static List<Duty> LoadDutyData()
     {
-        if (duty.Version != _dutyJSONVersion) return false;
-        if (!Enum.IsDefined(typeof(Expansion), duty.Expansion)) return false;
-        if (!Enum.IsDefined(typeof(DutyType), duty.Type)) return false;
-        if (!Enum.IsDefined(typeof(DutyDifficulty), duty.Difficulty)) return false;
-        if (duty.Bosses?.Any(boss => boss.KeyMechanics != null && boss.KeyMechanics.Any(keyMechanic => !Enum.IsDefined(typeof(Mechanics), keyMechanic.Type))) ?? false) return false;
+        PluginLog.Debug($"DutyManager: Loading duty data");
 
-        return true;
-    }
-
-
-    // <summary>
-    // Returns a list of all duty data available for the current language, sorted by ascending level.
-    // </summary>
-    public static List<Duty> GetDuties()
-    {
-        // if the duties list is empty or the cache has expired, reload the data.
-        if (!_dutyCacheMgr.HasExpired() && _dutyCacheMgr.IsValid()) return (List<Duty>)_dutyCacheMgr.GetCacheItem();
-
-#if !DEBUG
-        // If an update of resource data has not been made yet, attempt to do once.
-        if (!_autoUpdateAttempted)
-        {
-            UpdateManager.UpdateResources();
-            _autoUpdateAttempted = true;
-        }
-#endif
-
-        PluginLog.Debug($"DutyManager: Refreshing loaded duties...");
+        // Try and get the language from the settings, or use fallback to default if not found.
         var language = Service.PluginInterface.UiLanguage;
+        if (!Directory.Exists($"{PStrings.localizationPath}Localization\\Duty\\{language}")) language = PStrings.fallbackLanguage;
 
-        // Fetch all duty data from the duty resources folder for the current language, or fallback on english
+        // Start loading duties, if this fails then the plugin will fallback to an empty duty list.
         List<Duty> duties = new List<Duty>();
-        if (!Directory.Exists($"{FS.resourcePath}Localization\\Duty\\{language}")) language = "en";
-
         try
         {
-
-            foreach (string file in Directory.GetFiles($"{FS.resourcePath}Localization\\Duty\\{language}", "*.json", SearchOption.AllDirectories))
+            foreach (string file in Directory.GetFiles($"{PStrings.localizationPath}\\Duty\\{language}", "*.json", SearchOption.AllDirectories))
             {
+                // Try and deserialize the duty data and add it to the list if its not null.
                 try
                 {
-                    if (_disabledDutyLoadPaths?.Contains(file) == true) continue;
                     Duty? duty = Newtonsoft.Json.JsonConvert.DeserializeObject<Duty>(System.IO.File.ReadAllText(file));
-
-                    if (duty == null) continue;
-                    if (!IsSupported(duty)) duty.UpdateRequired = true;
-
-                    duties.Add(duty);
+                    if (duty != null) duties.Add(duty);
                 }
-
-                catch (Exception e)
-                {
-                    _disabledDutyLoadPaths?.Add(file);
-                    PluginLog.Error($"DutyManager: Disabling duty - Could not deserialize duty {file}: {e.Message}");
-                }
+                catch { } // If this fails, just skip the file and move on.
             }
         }
-
-        catch (Exception)
-        {
-            _dutyCacheMgr.SetCacheItem(duties);
-            return duties;
-        }
+        catch { } // If this fails, we can continue on without duty files just fine .
 
         PluginLog.Debug($"DutyManager: Loaded {duties.Count} duties.");
-
-        // lower levels at the top of the list, higher levels at the bottom of the list.
         duties = duties.OrderBy(x => x.Level).ToList();
 
-        _dutyCacheMgr.SetCacheItem(duties);
+        _loadedDuties = duties;
         return duties;
     }
 
 
-    //<summary>
-    // Returns a boolean value indicating if the duty has got enough data.
-    //</summary>
-    public static bool HasData(Duty duty) => duty != null && duty.Bosses?.Count > 0;
+    /// <summary> 
+    ///     Returns all currently loaded valid duty data.
+    /// </summary>
+    public static List<Duty> GetDuties()
+    {
+        if (_loadedDuties != null) return _loadedDuties;
+        _loadedDuties = LoadDutyData();
+        return _loadedDuties;
+    }
 
 
-    // <summary>
-    // Returns a boolean value indicating if the duty has been unlocked by the player.
-    // </summary>
-    public static bool IsDutyUnlocked(Duty duty) => GetPlayerDuty() == duty || QuestManager.IsQuestComplete(duty.UnlockQuestID);
-
-
-    // <summary>
-    // Returns the duty the player is currently inside of. Returns null if the player is not inside of a known duty.
-    // </summary>
+    /// <summary>
+    ///     Returns the duty the player is currently inside of. Returns null if the player is not inside of a known duty.
+    /// </summary>
     public static Duty? GetPlayerDuty() => GetDuties().Find(x => Service.ClientState.TerritoryType == x.TerritoryID);
 }

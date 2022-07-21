@@ -6,9 +6,7 @@ using CheapLoc;
 
 static class Badges
 {
-    // <summary>
-    // Draws a badge labelling the item as "NEW"
-    // </summary>
+    /// <summary> Draws a badge labelling the item as "NEW" on the same line. </summary>
     public static void New()
     {
         ImGui.SameLine();
@@ -17,9 +15,7 @@ static class Badges
     }
 
 
-    // <summary>
-    // Draws a custom badge with the given colour, text and optional tooltip.
-    // </summary>
+    /// <summary> Draws a custom badge with the given colour, text and optional tooltip on the same line. </summary>
     public static void Custom(Vector4 colour, string tagText, string? tooltipText = null)
     {
         ImGui.SameLine();
@@ -28,9 +24,7 @@ static class Badges
     }
 
 
-    // <summary>
-    // Draws a ? that when hovering will show the given text as a tooltip.
-    // </summary>
+    /// <summary> Draws a ? that when hovering will show the given text as a tooltip on the same line. </summary>
     public static void Questionmark(string text)
     {
         ImGui.SameLine();

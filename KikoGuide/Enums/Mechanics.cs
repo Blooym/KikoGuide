@@ -1,8 +1,9 @@
 namespace KikoGuide.Enums;
 
-// <summary>
-// The Mechanics enum maps mechanics to their respective internal IDs.
-// </summary>
+/// <summary>
+///     Map Mechanics to IDs, which can then be implemented by duty files (bosses, etc) to determine the mechanic type.
+///     Any mechanic within this enum will be added to the configurable hidden mechanics list.
+/// </summary>
 enum Mechanics
 {
     Tankbuster = 0,

@@ -1,8 +1,9 @@
 namespace KikoGuide.Enums;
 
-// <summary>
-// The Expansion enum maps expansions to their respective internal IDs.
-// </summary>
+/// <summary>
+///     Map game expansions to IDs, which can then be implemented by 
+///     Duty files to determine what expansion they belong to.
+/// </summary>
 enum Expansion
 {
     ARealmReborn = 0,

@@ -1,8 +1,9 @@
 namespace KikoGuide.Enums;
 
-// <summary>
-// The DutyType enum maps duties to their respective internal IDs.
-// </summary>
+/// <summary>
+///     Map DutyTypes to IDs, which can then be implemented by Duty files to determine their type.
+///     Any DutyType added will be added to the UI as a new tab category.
+/// </summary>
 enum DutyType
 {
     Dungeon = 0,
@@ -10,9 +11,10 @@ enum DutyType
     AllianceRaid = 2,
 }
 
-// <summary>
-// The DutyDifficulty enum maps difficulties to their respective internal IDs.
-// </summary>
+
+/// <summary>
+///     Map DutyDifficulty to IDs, which can then be implemented by Duty files to determine their difficulty.
+/// </summary>
 enum DutyDifficulty
 {
     Normal = 0,

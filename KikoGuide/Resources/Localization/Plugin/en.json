@@ -8,124 +8,132 @@
     "description": "KikoPlugin..ctor"
   },
   "UI.DutyInfo.Title": {
-    "message": "Kiko Guide - Duty Information",
-    "description": "KikoUIDutyInfo.DrawFrameWindow"
+    "message": "{0} - Duty Information",
+    "description": "DutyInfo.DrawInfoWindow"
   },
   "UI.DutyInfo.DutyText": {
     "message": "Duty: {0}",
-    "description": "KikoUIDutyInfo.DrawFrameWindow"
+    "description": "DutyInfo.DrawInfoWindow"
   },
   "UI.DutyInfo.MechanicName": {
     "message": "Mechanic",
-    "description": "KikoUIDutyInfo.DrawFrameWindow"
+    "description": "DutyInfo.DrawInfoWindow"
   },
   "UI.DutyInfo.MechanicDescription": {
     "message": "Description",
-    "description": "KikoUIDutyInfo.DrawFrameWindow"
+    "description": "DutyInfo.DrawInfoWindow"
   },
   "UI.DutyInfo.MechanicType": {
     "message": "Type",
-    "description": "KikoUIDutyInfo.DrawFrameWindow"
+    "description": "DutyInfo.DrawInfoWindow"
   },
   "UI.DutyInfo.Error": {
     "message": "An error occurred while trying to display duty information.",
-    "description": "KikoUIDutyInfo.DrawFrameWindow"
+    "description": "DutyInfo.DrawInfoWindow"
   },
   "UI.List.Title": {
-    "message": "Kiko Guide - Duty Finder",
-    "description": "KikoUIList.DrawListWindow"
+    "message": "{0} - Duty Finder",
+    "description": "List.DrawListWindow"
+  },
+  "UI.List.NoDutyFiles": {
+    "message": "No duty files detected! Please try Settings -> Update Resources.",
+    "description": "List.DrawListWindow"
   },
   "UI.List.SupportButton": {
     "message": "Support (GitHub)",
-    "description": "KikoUIList.DrawListWindow"
+    "description": "List.DrawListWindow"
   },
   "UI.List.Search": {
     "message": "Search",
-    "description": "KikoUIList.DrawListWindow"
+    "description": "List.DrawListWindow"
   },
-  "UI.List.NoDuties": {
+  "UI.List.NoDutysForType": {
     "message": "No duties for this type detected.",
-    "description": "KikoUIList.DrawListWindow"
-  },
-  "UI.List.Duty": {
-    "message": "Duty",
-    "description": "KikoUIList.DrawListWindow"
+    "description": "List.DrawListWindow"
   },
   "UI.List.Level": {
     "message": "Level",
-    "description": "KikoUIList.DrawListWindow"
+    "description": "List.DrawListWindow"
+  },
+  "UI.List.Duty": {
+    "message": "Duty",
+    "description": "List.DrawListWindow"
   },
   "UI.List.NoBossData": {
     "message": "No guide available for {0}.",
-    "description": "KikoUIList.DrawListWindow"
+    "description": "List.DrawListWindow"
+  },
+  "UI.List.UpdateRequired": {
+    "message": "Cannot display duty as it is not supported on this version.",
+    "description": "List.DrawListWindow"
   },
   "UI.List.InDuty": {
     "message": "In Duty",
-    "description": "KikoUIList.DrawListWindow"
+    "description": "List.DrawListWindow"
   },
   "UI.Settings.Title": {
-    "message": "Kiko Guide - Settings",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "message": "{0} - Settings",
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.TabItem.General": {
     "message": "General",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.AutoOpenDuty": {
     "message": "Open in Duty",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.AutoOpenDuty.Tooltip": {
     "message": "Open the duty guide when entering a duty.",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.ShortenStrategies": {
     "message": "Shorten Strategies",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.ShortenStrategies.Tooltip": {
     "message": "Shorten duty guide strategies if possible.",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.ShowSupportButton": {
     "message": "Show Support Button",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.ShowSupportButton.Tooltip": {
     "message": "Show the support Kiko Guide button.",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources.Title": {
     "message": "Resources & Localization",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources.Text": {
     "message": "Downloads the latest resources, localizations & guides.",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources": {
     "message": "Update Resources",
-    "description": "KikoUISettings.DrawSettingsWindow"
-  },
-  "UI.Settings.UpdateLocalization.UpdatedAt": {
-    "message": "Last Update: {0}",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.UpdateLocalization.Failed": {
     "message": "Failed to update.",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
+  },
+  "UI.Settings.UpdateLocalization.UpdatedAt": {
+    "message": "Last Update: {0}",
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.TabItem.Mechanics": {
     "message": "Mechanics",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.HideMechanic": {
     "message": "Hide {0}",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.HideMechanicTooltip": {
     "message": "Hide {0} from the duty guide.",
-    "description": "KikoUISettings.DrawSettingsWindow"
+    "description": "Settings.DrawSettingsWindow"
   },
   "UI.Tags.New": {
     "message": "NEW",
