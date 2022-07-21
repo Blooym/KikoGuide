@@ -1,0 +1,8 @@
+changes | resources:
+  - "KikoGuides/Resources/**/*"
+
+changes | ci:
+  - ".github/workflows/**/*"
+
+changes | plugin:
+  - "KikoGuide/**/*.cs"

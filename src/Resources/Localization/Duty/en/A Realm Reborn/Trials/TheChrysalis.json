@@ -1,0 +1,41 @@
+{
+    "Name": "The Chrysalis",
+    "Difficulty": 0,
+    "Type": 1,
+    "Expansion": 0,
+    "Level": 50,
+    "TerritoryID": 426,
+    "UnlockQuestID": 65905,
+    "Bosses": [
+        {
+            "Name": "Nabriales (Phase 1)",
+            "Strategy": "At 80%% HP Nabriales will go invulnerable and spawn orbs that move towards him, each orb gives a debuff and players must alternate between purple and grey orbs to avoid taking massive amounts damage, while orbs are moving small adds will spawn and preform large cone AOEs, After all the orbs are gone Nabriales will preform a raid wide with damage increasing per orb that reached him. \n\nAt 40%% Nabriales will repeat the orbs mechanic. \n\nAt 20%% Nabriales 2nd phase will start.",
+            "KeyMechanics": [
+                {
+                    "Name": "Spark",
+                    "Description": "A high damage attack aimed at the main tank. Will be used twice after the boss casts double or three times after a triple cast",
+                    "Type": 6
+                },
+                {
+                    "Name": "End of days",
+                    "Description": "Nabriales will teleport to a random location in the arena and cast End of days a long straight line aoe in the direction he is facing.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Quake 3",
+                    "Description": "Unavoidable raid wide damage.",
+                    "Type": 4
+                }
+            ]
+        },
+        {
+            "Name": "Nabriales: Meteor (Phase 2)",
+            "Strategy": "The Floor will turn red and everyone will be given a Bleed debuff, once the bleed debuff hits 0 everyone will be sucked into a new room. \n\nMake sure to use any abilites with a timer before being dragged in as all buff durations will be multiplied by 10. \n\nTanks should stand under the meteors to mitigate party wide damage. while DPS take down the astral tear. \n\nIf you still have Limit Break the DPS should use it on the tear"
+        },
+        {
+            "Name": "Nabriales (Phase 3)",
+            "Strategy": "At 19%% HP Nabriales will start recycling moves from phase 1 with the execption of orbs."
+            
+        }   
+    ]
+}

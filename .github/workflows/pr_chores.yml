@@ -1,0 +1,17 @@
+# This workflow outlines all chores are ran when a pull request is opened, such as labeling changes and requesting reviewers.
+
+name: "PR: Chores"
+
+on:
+  pull_request:
+
+jobs:
+  # Label the pull request with its file changes
+  Label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label PR
+        uses: actions/labeler@v4
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          sync-labels: true
