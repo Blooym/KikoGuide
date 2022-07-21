@@ -37,7 +37,7 @@ body:
   - type: textarea
     attributes:
       label: Dalamud.log Output
-      description: You can normally find this at `%AppData%\Roaming\XIVLauncher\Dalamud.log`, either paste it or attach it here.
+      description: You can normally find this at `%AppData%\Roaming\XIVLauncher\Dalamud.log`, paste it here.
       render: Text
     validations:
       required: false
@@ -45,6 +45,7 @@ body:
   - type: dropdown
     attributes:
       label: Operating System
+      description: What operating system did this occur on?
       options:
         - Windows
         - Linux
