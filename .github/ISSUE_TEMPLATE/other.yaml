@@ -1,0 +1,25 @@
+name: ❓ Other
+description: For anything else that is not listed here
+title: "Other: "
+labels: "type | other"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for submitting an issue.
+
+        Please fill out the template below to make it easier to work on your issue.
+
+  - type: checkboxes
+    attributes:
+      label: Preflight Checklist
+      description: Please ensure you've completed all of the following.
+      options:
+        - label: I have searched for existing issues and cannot find mine, or existing issues do not fit.
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Issue
+    validations:
+      required: true

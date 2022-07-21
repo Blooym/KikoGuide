@@ -1,0 +1,31 @@
+name: 📃 Guide Amendment
+description: Report issues with or suggested changes for guides.
+title: "Documentation: "
+labels: "type | Amendment"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for submitting a guide Amendment request.
+
+        Please fill out the template below to make it easier to work on your issue.
+
+  - type: checkboxes
+    attributes:
+      label: Preflight Checklist
+      description: Please ensure you've completed all of the following.
+      options:
+        - label: I have searched for existing issues and cannot find mine, or existing issues do not fit.
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Summary of Amendment / Why should this be changed?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Suggested Changes
+    validations:
+      required: true

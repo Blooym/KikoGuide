@@ -1,0 +1,61 @@
+name: 🐛 Bug report
+title: "Bug: "
+description: Report unintentional behaviour or errors
+labels: "type | bug"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for submitting a bug report! Please fill out the fields below to make it easier to work on your problem.
+
+  - type: checkboxes
+    attributes:
+      label: Pre-report Checklist
+      description: Before making this report, I have done the following
+      options:
+        - label: I have searched for existing issues and cannot find mine, or existing issues do not fit.
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Bug Summary
+      description: Write a quick general summary about the bug
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps To Reproduce
+      description: Steps to reproduce the behaviour / error
+      placeholder: |
+        1. Do this thing '...'
+        2. Then do this '...'
+        3. Bug/Error occurs here '...'
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Dalamud.log Output
+      description: You can normally find this at `%AppData%\Roaming\XIVLauncher\Dalamud.log`, either paste it or attach it here.
+      render: Text
+    validations:
+      required: false
+
+  - type: dropdown
+    attributes:
+      label: Operating System
+      options:
+        - Windows
+        - Linux
+        - MacOS
+        - Not Listed (List Below)
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional Information
+      description: Anything that will give more context to the bug you are reporting.
+    validations:
+      required: false
