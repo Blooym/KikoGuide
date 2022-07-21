@@ -120,6 +120,9 @@ internal class KikoPlugin : IDalamudPlugin
         var uiLang = Service.PluginInterface.UiLanguage;
         PluginLog.Debug("Trying to set up Loc for culture {0}", uiLang);
 
+        // Tell the duty manager to refresh its resources for the new language
+        DutyManager.OnResourceUpdate();
+
         try { Loc.Setup(File.ReadAllText($"{PStrings.localizationPath}\\Plugin\\{uiLang}.json")); }
         catch { Loc.SetupWithFallbacks(); }
     }
