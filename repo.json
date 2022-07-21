@@ -5,7 +5,7 @@
         "Punchline": "The ultimate guidebook for in-game duties, great for daily roulettes!",
         "Description": "Roulettes keep placing you in duties with bosses you've forgotten how to fight? KikoGuide has you covered! Provides comprehensive guides for duty content such as Dungeons, Trials and Alliance Raids. Only shows duties that you've unlocked to prevent spoilers :)\n\nKey features:\n- Automatically open a guide when entering a duty\n- Neat boss mechanic tables\n- A strategy \"Short Guide\" mode\n- & more to come!",
         "InternalName": "KikoGuide",
-        "AssemblyVersion": "1.0.0",
+        "AssemblyVersion": "1.0.1",
         "RepoUrl": "https://github.com/BitsOfAByte/KikoGuide",
         "ApplicableVersion": "any",
         "DalamudApiLevel": 6,
