@@ -38,7 +38,7 @@ internal static class UpdateManager
                 // Create a new WebClient to download the data and some paths for installation.
                 var webClient = new WebClient();
                 var zipFile = Path.Combine(Path.GetTempPath(), "KikoGuide_Source.zip");
-                var sourcePath = Path.Combine(Path.GetTempPath(), "KikoGuide-main", "KikoGuide", "Resources");
+                var sourcePath = Path.Combine(Path.GetTempPath(), "KikoGuide-main", "src", "Resources");
                 var targetPath = Path.Combine(PStrings.resourcePath);
 
                 // Download the file into the system temp directory to make sure it can be cleaned up by the OS incase of a crash.
