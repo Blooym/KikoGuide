@@ -9,6 +9,7 @@ using System.Linq;
 using ImGuiNET;
 using CheapLoc;
 using Dalamud.Logging;
+using Dalamud.Game.Gui.Toast;
 using KikoGuide.Base;
 using KikoGuide.Enums;
 using KikoGuide.Managers;
@@ -214,7 +215,7 @@ internal class Settings : IDisposable
                         Loc.ExportLocalizable();
                         File.Copy(Path.Combine(localizableOutputDir, "KikoGuide_Localizable.json"), Path.Combine(localizableOutputDir, "en.json"), true);
                         Directory.SetCurrentDirectory(directory);
-                        Service.Toasts.ShowQuest("Localization exported successfully.");
+                        Service.Toasts.ShowQuest("Localization exported successfully", new QuestToastOptions { DisplayCheckmark = true, PlaySound = true });
                     }
                     catch (Exception e)
                     {
