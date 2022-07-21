@@ -64,9 +64,6 @@
       <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="FFXIVClientStructs">
-      <HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>
-    </Reference>
 		<Reference Include="CheapLoc">
 			<Private>false</Private>
 			<HintPath>$(DalamudLibPath)CheapLoc.dll</HintPath>

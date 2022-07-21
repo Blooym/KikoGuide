@@ -1,6 +1,6 @@
 namespace KikoGuide;
 
-using CheapLoc;
+using System;
 using System.IO;
 using Dalamud.Game.Command;
 using Dalamud.Logging;
@@ -9,6 +9,7 @@ using Dalamud.Plugin;
 using KikoGuide.UI;
 using KikoGuide.Base;
 using KikoGuide.Managers;
+using CheapLoc;
 
 internal class KikoPlugin : IDalamudPlugin
 {
@@ -30,7 +31,7 @@ internal class KikoPlugin : IDalamudPlugin
         this._configuration = Service.PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
 
         // Initialize everything & load trigger any events
-        FFXIVClientStructs.Resolver.Initialize(Service.Scanner.SearchBase);
+        //FFXIVClientStructs.Resolver.Initialize(Service.Scanner.SearchBase);
         Service.Initialize(_configuration);
         OnLanguageChange(Service.PluginInterface.UiLanguage);
 
@@ -49,6 +50,7 @@ internal class KikoPlugin : IDalamudPlugin
         Service.PluginInterface.UiBuilder.OpenConfigUi += DrawConfigUI;
         Service.PluginInterface.LanguageChanged += OnLanguageChange;
         Service.ClientState.TerritoryChanged += UIState.OnTerritoryChange;
+        Service.ClientState.Logout += OnLogout;
         UpdateManager.ResourcesUpdated += DutyManager.OnResourceUpdate;
 
         // Register all command handlers
@@ -76,6 +78,7 @@ internal class KikoPlugin : IDalamudPlugin
         Service.Commands.RemoveHandler(settingsCommand);
         Service.ClientState.TerritoryChanged -= UIState.OnTerritoryChange;
         UpdateManager.ResourcesUpdated -= DutyManager.OnResourceUpdate;
+        Service.ClientState.Logout -= OnLogout;
         Service.PluginInterface.LanguageChanged -= OnLanguageChange;
         Service.PluginInterface.UiBuilder.Draw -= DrawUI;
         Service.PluginInterface.UiBuilder.OpenConfigUi -= DrawConfigUI;
@@ -114,6 +117,18 @@ internal class KikoPlugin : IDalamudPlugin
     ///     Event handler for when the UI is told to draw the config UI (Dalamud settings button)
     /// </summary>
     private protected void DrawConfigUI() => UIState.settingsVisible = !UIState.settingsVisible;
+
+
+    /// <summary> 
+    ///     Event handler for the client is logging out.
+    /// </summary>
+    // consume the onLogout event and handle it
+    internal static void OnLogout(object? sender, EventArgs e)
+    {
+        UIState.SelectedDuty = null;
+        UIState.listVisible = false;
+        UIState.dutyInfoVisible = false;
+    }
 
 
     /// <summary>
