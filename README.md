@@ -1,10 +1,10 @@
 <!-- Repository Header Begin -->
 <div align="center">
 
-<img src="./.assets/icon.png" alt="Kiko Guide Logo" width="10%">
+<img src="./.assets/icon.png" alt="Kiko Guide Logo" width="15%">
   
 ### Kiko Guide
-A Dalamud framework plugin that provides players with hand-written guides to duty content. 
+A Dalamud plugin that provides players with hand-written guides to duty content. 
 
 **[Issues](https://github.com/BitsOfAByte/KikoGuide/issues) · [Contributing](https://github.com/BitsOfAByte/KikoGuide/blob/main/CONTRIBUTING.md) · [Changelog](https://github.com/BitsOfAByte/KikoGuide/blob/main/CHANGELOG.md)**
   
@@ -17,20 +17,24 @@ A Dalamud framework plugin that provides players with hand-written guides to dut
 Kiko Guide is a plugin written for the [Dalamud](https://github.com/goatcorp/Dalamud) framework which allows players to easily access guides to in-game duty content. 
 
 Features
-- Can automatically open when entering a supported duty
-- Tables of key mechanics each boss, with categories that can be easily hidden.
-- A "shortened strategy" mode, making all guides essentially a TL:DR of the fight.
-- Plugin & Guide localization support
-- Localizations & Guides update independantly of the core plugin.
+- Automatically open the duty guide upon entering it.
+- Lists of all key boss mechanics with configurable visability
+- Shortened strategy mode for at a glance viewing
+- Full localization support
+- Self updating guides independant of plugin feature updates¹
+
+¹ Some guides may require a plugin update to view if they have significant changes
 
 ## Installing
-Currently, it is not recommended you install Kiko Guide as it has not been merged into the DalamudPlugins official repository. 
+Kiko Guide will hopefully be available for download through the official DalamudPlugins repository in the near-feature.
 
-If you still wish to install the plugin anyway (and this should only be for testing purposes) then add the following link to your 3rd-party repositories in the Dalamud settings.
+Until then, if you really wish to install a developer preview release of the plugin, you can add the following repository URL to your 3rd-party repositories `(Dalamud Plugins -> Settings -> Experimental -> Custom Plugin Repositories)`
 
 ```
 https://raw.githubusercontent.com/BitsOfAByte/KikoGuide/main/repo.json
 ```
 
 ## Contributing
-If you want to learn more about contributing to Kiko Guide, please review the contributing file which can be found [here](CONTRIBUTING.md).
+There are many ways to help contribute to Kiko Guide, it is highly recommended if you wish to make localization, guide and/or code changes that you view the [contributing guide](CONTRIBUTING.md) first.
+
+If you wish to make feature requests, bug reports, guide ammendment requests then you can do so by using one of the templates when making a [New Issue](https://github.com/BitsOfAByte/KikoGuide/issues/new) .
