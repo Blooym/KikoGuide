@@ -142,5 +142,13 @@
   "Components.Tags.New.Tooltip": {
     "message": "New addition!",
     "description": "Badges.New"
+  },
+  "Duty.Boss.Name.None": {
+    "message": "Unnamed Boss",
+    "description": "Boss..ctor"
+  },
+  "Duty.Boss.Strategy.None": {
+    "message": "No strategy available yet.",
+    "description": "Boss..ctor"
   }
 }
