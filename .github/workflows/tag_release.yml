@@ -1,4 +1,4 @@
-# This workflow outlines tasks that are ran when a pull request that modifies source code is made, such as building a preview
+# This workflow outlines tasks that are ran when a new tag is made, typically releasing a new plugin version.
 
 name: "Tag: Release"
 
@@ -52,6 +52,6 @@ jobs:
         with:
           generate_release_notes: true
           prerelease: false
-          files:
-            - latest.zip
-            - latest.zip.sha512sum
+          files: |
+            latest.zip
+            latest.zip.sha512sum
