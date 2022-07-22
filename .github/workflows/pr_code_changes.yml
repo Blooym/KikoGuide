@@ -1,0 +1,35 @@
+# This workflow outlines tasks that are ran when a pull request that modifies source code is made, such as building a preview
+
+name: "PR: Code Changes"
+
+on:
+  pull_request:
+    branches: [main]
+    types: ["ready_for_review"]
+    paths:
+      - "**.cs"
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Download Dalamud Library
+        run: |
+          cd src
+          wget -O Lib.zip https://goatcorp.github.io/dalamud-distrib/latest.zip
+          unzip Lib.zip -d Lib
+
+      - name: Build Plugin
+        run: |
+          dotnet build

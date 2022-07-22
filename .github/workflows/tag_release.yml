@@ -1,0 +1,56 @@
+# This workflow outlines tasks that are ran when a pull request that modifies source code is made, such as building a preview
+
+name: "Tag: Release"
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  Release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Download Dalamud Library
+        run: |
+          cd src
+          wget -O Lib.zip https://goatcorp.github.io/dalamud-distrib/latest.zip
+          unzip Lib.zip -d Lib
+
+      - name: Get Version Tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+        with:
+          strip_v: true
+
+      - name: Get Tag Name
+        id: tag_name
+        shell: bash
+        run: |
+          echo ${{ github.event.release.tag_name }} | sed 's/v//'
+
+      - name: Build Plugin
+        shell: bash
+        run: |
+          dotnet build -p:AssemblyVersion=${{ steps.tag_name }} -p:AssemblyInformationalVersion=${{ steps.tag_name }}
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: |
+            src/bin/Release/KikoGuide
