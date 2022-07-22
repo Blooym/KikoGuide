@@ -43,9 +43,9 @@ jobs:
         shell: bash
         run: |
           dotnet build --configuration Release --nologo -p:AssemblyVersion=${{ steps.tag_name.outputs.TAG }} -p:AssemblyInformationalVersion=${{ steps.tag_name }}
-          zip -r latest.zip src/bin/x64/Release/KikoGuide
-          sha512sum latest.zip > latest.zip.sha512sum
-          cat latest.zip.sha512sum
+          sha512sum src/bin/x64/Release/KikoGuide/latest.zip  >> checksums.txt
+          sha512sum src/bin/x64/Release/KikoGuide/KikoGuide.json >> checksums.txt
+          cat checksums.txt
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -53,5 +53,6 @@ jobs:
           generate_release_notes: true
           prerelease: false
           files: |
-            latest.zip
-            latest.zip.sha512sum
+            src/bin/x64/Release/KikoGuide/latest.zip
+            src/bin/x64/Release/KikoGuide/KikoGuide.json
+            checksums.txt
