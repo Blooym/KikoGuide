@@ -36,13 +36,13 @@ jobs:
       - name: Get Tag Name
         id: tag_name
         shell: bash
-        run: |
-          echo ${{ github.ref }} | sed 's/refs\/tags\///' | sed 's/v//'
+        run: >-
+          echo "::set-output name=TAG::$(echo ${{ github.ref }} | sed 's/refs\/tags\///' | sed 's/v//')"
 
       - name: Build Plugin
         shell: bash
         run: |
-          dotnet build -p:AssemblyVersion=${{ steps.tag_name }} -p:AssemblyInformationalVersion=${{ steps.tag_name }}
+          dotnet build -p:AssemblyVersion=${{ steps.tag_name.outputs.TAG }} -p:AssemblyInformationalVersion=${{ steps.tag_name }}
           zip -r latest.zip src/bin/Release/KikoGuide
           sha512sum latest.zip > latest.zip.sha512sum
           cat latest.zip.sha512sum
