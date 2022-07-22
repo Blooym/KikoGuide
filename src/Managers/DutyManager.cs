@@ -77,11 +77,11 @@ sealed public class KeyMechanics
 public static class DutyManager
 {
     /// <summary> All currently loaded duties </summary>
-    private static List<Duty>? _loadedDuties = null;
+    private static List<Duty>? _loadedDuties = LoadDutyData();
 
 
     /// <summary> Handles updating duty data when resources are updated. </summary>
-    public static void OnResourceUpdate() => _loadedDuties = null;
+    public static void OnResourceUpdate() => _loadedDuties = LoadDutyData();
 
 
     /// <summary>
@@ -126,8 +126,7 @@ public static class DutyManager
     public static List<Duty> GetDuties()
     {
         if (_loadedDuties != null) return _loadedDuties;
-        _loadedDuties = LoadDutyData();
-        return _loadedDuties;
+        return LoadDutyData();
     }
 
 

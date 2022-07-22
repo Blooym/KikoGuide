@@ -13,7 +13,7 @@ using KikoGuide.UI.Components;
 internal class List : IDisposable
 {
     private protected Configuration _configuration;
-    private string searchText = "";
+    private string _searchText = "";
 
     /// <summary>
     ///   Instantiates a new List UI window.
@@ -45,21 +45,18 @@ internal class List : IDisposable
         ImGui.SetNextWindowSizeConstraints(new Vector2(390, 280), new Vector2(600, 600));
         if (ImGui.Begin(String.Format(Loc.Localize("UI.List.Title", "{0} - Duty Finder"), PStrings.pluginName), ref UIState.listVisible))
         {
-
             var duties = DutyManager.GetDuties();
 
-
             if (duties.Count == 0) ImGui.TextColored(Colours.Error, Loc.Localize("UI.List.NoDutyFiles", "No duty files detected! Please try Settings -> Update Resources."));
-
 
             var supportButtonText = Loc.Localize("UI.List.SupportButton", "Support (GitHub)");
             var supportButtonShown = _configuration.supportButtonShown;
 
-            // Create donate button 
+            // Create support button 
             if (supportButtonShown) ImGui.SetNextItemWidth(-(ImGui.CalcTextSize(supportButtonText).X + ImGui.GetStyle().FramePadding.X * 2 + ImGui.GetStyle().ItemSpacing.X));
             else ImGui.SetNextItemWidth(-1);
 
-            ImGui.InputTextWithHint("", Loc.Localize("UI.List.Search", "Search"), ref this.searchText, 60);
+            ImGui.InputTextWithHint("", Loc.Localize("UI.List.Search", "Search"), ref this._searchText, 60);
 
             if (supportButtonShown)
             {
@@ -78,8 +75,10 @@ internal class List : IDisposable
                 {
                     ImGui.BeginChild(dutyType.ToString(), new Vector2(0, 0), true);
 
+                    var dutyList = duties.Where(duty => duty.Type == dutyType).ToList();
+
                     // If there are no duties for this duty type, don't draw anything 
-                    if (duties.Where(x => x.Type == (int)dutyType).Count() == 0)
+                    if (dutyList.Count() == 0)
                     {
                         ImGui.TextDisabled(Loc.Localize("UI.List.NoDutysForType", "No duties for this type detected."));
                         ImGui.EndChild();
@@ -94,11 +93,11 @@ internal class List : IDisposable
                     ImGui.TableHeadersRow();
 
                     // Fetch all duties for this duty type and draw them.
-                    foreach (var duty in duties.Where(x => x.Type == dutyType).ToList())
+                    foreach (var duty in dutyList)
                     {
                         // If there is a search query, skip the duty if it doesn't match.
                         if (!duty.IsUnlocked()) continue;
-                        if (!duty.Name.ToLower().Contains(this.searchText.ToLower())) continue;
+                        if (!duty.Name.ToLower().Contains(this._searchText.ToLower())) continue;
 
                         ImGui.TableNextRow();
                         ImGui.TableNextColumn();
