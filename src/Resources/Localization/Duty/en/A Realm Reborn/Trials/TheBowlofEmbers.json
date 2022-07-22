@@ -1,12 +1,12 @@
 {
-    "Version": 0,
+    "Version": 1,
     "Name": "The Bowl of Embers",
     "Difficulty": 0,
     "Type": 1,
     "Expansion": 0,
     "Level": 20,
-    "TerritoryID": "123",
     "UnlockQuestID": 65879,
+    "TerritoryID": 1045,
     "Bosses": [
         {
             "Name": "Ifrit",

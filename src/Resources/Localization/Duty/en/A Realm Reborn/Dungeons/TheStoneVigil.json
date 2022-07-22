@@ -47,7 +47,7 @@
                 },
                 {
                     "Name": "Typhoon",
-                    "Description": "Typhoon will spawn a tornado in the area that will slowly follow a player arround, anyone hit by the tornado will take some damage and be inflicted with the Windburn debuff.",
+                    "Description": "Typhoon will spawn a tornado in the area that will slowly follow a player around, anyone hit by the tornado will take some damage and be inflicted with the Windburn debuff.",
                     "Type": 6
                 },
                 {
