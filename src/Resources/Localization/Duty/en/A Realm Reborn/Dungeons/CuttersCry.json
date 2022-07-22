@@ -73,12 +73,12 @@
             "KeyMechanics": [
                 {
                     "Name": "Ram's Breath",
-                    "Description": "Deals ice damage and afflicts the heavy debuff on the right side of its body.",
+                    "Description": "Deals ice damage and inflicts the heavy debuff on the right side of its body.",
                     "Type": 2
                 },
                 {
                     "Name": "Dragon's Breath",
-                    "Description": "Deals thunder damage and afflicts the paralysis debuff on the left side of its body.",
+                    "Description": "Deals thunder damage and inflicts the paralysis debuff on the left side of its body.",
                     "Type": 2
                 },
                 {
@@ -93,7 +93,7 @@
                 },
                 {
                     "Name": "Cacophony",
-                    "Description": "Purple ball that moves towards a target and explodes. Deals splash damage and afflicts Paralysis.",
+                    "Description": "Purple ball that moves towards a target and explodes. Deals splash damage and inflicts Paralysis.",
                     "Type": 6
                 },
                 {

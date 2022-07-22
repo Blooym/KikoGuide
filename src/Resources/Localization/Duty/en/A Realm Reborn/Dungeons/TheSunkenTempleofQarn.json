@@ -15,7 +15,7 @@
             "KeyMechanics": [
                 {
                     "Name": "Mortal Ray",
-                    "Description": "Raid-wide that afflicts the Doom debuff.",
+                    "Description": "Raid-wide that inflicts the Doom debuff.",
                     "Type": 4
                 },
                 {
