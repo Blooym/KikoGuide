@@ -3,8 +3,9 @@
 name: "Tag: Release"
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - "v*.*.*.*"
 
 permissions:
   contents: write
@@ -30,27 +31,27 @@ jobs:
         run: |
           cd src
           wget -O Lib.zip https://goatcorp.github.io/dalamud-distrib/latest.zip
-          unzip Lib.zip -d Lib
-
-      - name: Get Version Tag
-        id: tag
-        uses: dawidd6/action-get-tag@v1
-        with:
-          strip_v: true
+          unzip -o -d Lib Lib.zip
 
       - name: Get Tag Name
         id: tag_name
         shell: bash
         run: |
-          echo ${{ github.event.release.tag_name }} | sed 's/v//'
+          echo ${{ github.ref }} | sed 's/refs\/tags\///' | sed 's/v//'
 
       - name: Build Plugin
         shell: bash
         run: |
           dotnet build -p:AssemblyVersion=${{ steps.tag_name }} -p:AssemblyInformationalVersion=${{ steps.tag_name }}
+          zip -r latest.zip src/bin/Release/KikoGuide
+          sha512sum latest.zip > latest.zip.sha512sum
+          cat latest.zip.sha512sum
 
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
-          path: |
-            src/bin/Release/KikoGuide
+          generate_release_notes: true
+          prerelease: false
+          files:
+            - latest.zip
+            - latest.zip.sha512sum
