@@ -42,8 +42,8 @@ jobs:
       - name: Build Plugin
         shell: bash
         run: |
-          dotnet build --configuration Release -p:AssemblyVersion=${{ steps.tag_name.outputs.TAG }} -p:AssemblyInformationalVersion=${{ steps.tag_name }}
-          zip -r latest.zip src/bin/Release/KikoGuide
+          dotnet build --configuration Release --nologo -p:AssemblyVersion=${{ steps.tag_name.outputs.TAG }} -p:AssemblyInformationalVersion=${{ steps.tag_name }}
+          zip -r latest.zip src/bin/x64/Release/KikoGuide
           sha512sum latest.zip > latest.zip.sha512sum
           cat latest.zip.sha512sum
 
