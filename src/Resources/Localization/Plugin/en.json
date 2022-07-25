@@ -116,7 +116,7 @@
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.UpdateLocalization.Failed": {
-    "message": "Failed to update.",
+    "message": "Update Failed.",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.UpdateLocalization.UpdatedAt": {

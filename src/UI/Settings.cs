@@ -97,6 +97,7 @@ internal class Settings : IDisposable
 
 
                 // Update resources / localizable button.
+                ImGui.Dummy(new Vector2(0, 5));
                 Common.TextHeading(Loc.Localize("UI.Settings.UpdateResources.Title", "Resources & Localization"));
                 ImGui.TextWrapped(Loc.Localize("UI.Settings.UpdateResources.Text", "Downloads the latest resources, localizations & guides."));
                 ImGui.Dummy(new Vector2(0, 5));
@@ -107,7 +108,7 @@ internal class Settings : IDisposable
                 if (!UpdateManager.updateInProgress && UpdateManager.lastUpdateSuccess == false && lastUpdateTime != 0)
                 {
                     ImGui.SameLine();
-                    ImGui.TextWrapped(Loc.Localize("UI.Settings.UpdateLocalization.Failed", "Failed to update."));
+                    ImGui.TextWrapped(Loc.Localize("UI.Settings.UpdateLocalization.Failed", "Update Failed."));
                 }
                 else if (!UpdateManager.updateInProgress && lastUpdateTime != 0)
                 {

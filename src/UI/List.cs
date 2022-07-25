@@ -42,7 +42,7 @@ internal class List : IDisposable
 
         if (!UIState.listVisible) return;
 
-        ImGui.SetNextWindowSizeConstraints(new Vector2(390, 280), new Vector2(600, 600));
+        ImGui.SetNextWindowSizeConstraints(new Vector2(350, 280), new Vector2(1000, 1000));
         if (ImGui.Begin(String.Format(Loc.Localize("UI.List.Title", "{0} - Duty Finder"), PStrings.pluginName), ref UIState.listVisible))
         {
             var duties = DutyManager.GetDuties();
@@ -132,6 +132,8 @@ internal class List : IDisposable
                             UIState.SelectedDuty = duty;
                             UIState.dutyInfoVisible = true;
                         }
+
+                        if (duty.WIP) Badges.Custom(Colours.Green, "WIP");
 
                         if (duty == DutyManager.GetPlayerDuty()) Badges.Custom(Colours.Green, Loc.Localize("UI.List.InDuty", "In Duty"));
                     }

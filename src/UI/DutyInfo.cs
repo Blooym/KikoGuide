@@ -7,6 +7,7 @@ using ImGuiNET;
 using CheapLoc;
 using KikoGuide.Base;
 using KikoGuide.Enums;
+using KikoGuide.UI.Components;
 
 internal class DutyInfo : IDisposable
 {
@@ -43,7 +44,7 @@ internal class DutyInfo : IDisposable
         var disabledMechanics = this._configuration?.hiddenMechanics;
         var shortMode = this._configuration?.shortenStrategies;
 
-        ImGui.SetNextWindowSizeConstraints(new Vector2(400, 350), new Vector2(800, 800));
+        ImGui.SetNextWindowSizeConstraints(new Vector2(380, 420), new Vector2(1000, 1000));
         if (ImGui.Begin(String.Format(Loc.Localize("UI.DutyInfo.Title", "{0} - Duty Information"), PStrings.pluginName), ref UIState.dutyInfoVisible))
         {
             try
@@ -52,6 +53,7 @@ internal class DutyInfo : IDisposable
                 var dutyName = selectedDuty.Name;
                 if (selectedDuty.Difficulty != (int)DutyDifficulty.Normal) dutyName = $"{selectedDuty.Name} ({Enum.GetName(typeof(DutyDifficulty), selectedDuty.Difficulty)})";
                 ImGui.TextWrapped(String.Format(Loc.Localize("UI.DutyInfo.DutyText", "Duty: {0}"), dutyName));
+                if (selectedDuty.WIP) Badges.Custom(Colours.Green, "WIP");
                 ImGui.NewLine();
 
                 // For each boss within this duty, create a collapsible header for it.

@@ -20,6 +20,7 @@ sealed public class Duty
     private readonly int _formatVersion = 0;
 
     public int Version { get; set; } = 0;
+    public bool WIP { get; set; } = false;
     public string Name { get; set; } = "Unnamed Duty";
     public int Difficulty { get; set; } = 0;
     public int Expansion { get; set; } = 0;
@@ -38,7 +39,6 @@ sealed public class Duty
         if (!Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)) return false;
         if (this.Bosses?.Any(boss => boss.KeyMechanics != null &&
             boss.KeyMechanics.Any(keyMechanic => !Enum.IsDefined(typeof(Mechanics), keyMechanic.Type))) ?? false) return false;
-
         return true;
     }
 
