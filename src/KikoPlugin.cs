@@ -137,7 +137,7 @@ internal class KikoPlugin : IDalamudPlugin
     internal static void OnLanguageChange(string language)
     {
         var uiLang = Service.PluginInterface.UiLanguage;
-        PluginLog.Debug("Trying to set up Loc for culture {0}", uiLang);
+        PluginLog.Debug("Test edit for PR to set up Loc for culture {0}", uiLang);
 
         // Tell the duty manager to refresh its resources for the new language
         DutyManager.OnResourceUpdate();
