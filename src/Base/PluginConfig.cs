@@ -64,3 +64,5 @@ class Configuration : IPluginConfiguration
         Service.PluginInterface.SavePluginConfig(this);
     }
 }
+
+// test comment for CI 
