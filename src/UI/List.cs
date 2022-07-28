@@ -45,6 +45,12 @@ internal class List : IDisposable
         ImGui.SetNextWindowSizeConstraints(new Vector2(350, 280), new Vector2(1000, 1000));
         if (ImGui.Begin(String.Format(Loc.Localize("UI.List.Title", "{0} - Duty Finder"), PStrings.pluginName), ref UIState.listVisible))
         {
+
+            // Prevent the plugin from crashing (on table draw, due to fixed width) 
+            // when the user turns on Window docking and tries to size the window too small.
+            // If there a better solution, please implement it.
+            if (ImGui.GetWindowSize().X < 100 || ImGui.GetWindowSize().Y < 100) return;
+
             var duties = DutyManager.GetDuties();
 
             if (duties.Count == 0) ImGui.TextColored(Colours.Error, Loc.Localize("UI.List.NoDutyFiles", "No duty files detected! Please try Settings -> Update Resources."));
