@@ -26,9 +26,11 @@ Features
 ¹ Some guides may require a plugin update to view if they have significant changes
 
 ## Installing
-Kiko Guide will hopefully be available for download through the official DalamudPlugins repository in the near-feature.
+A test build of Kiko Guide is currently available on the Dalamud official repository. To install it currently, you will have to enable "Get Plugin Testing Builds" under `Settings -> Experimental`. A stable build for KikoGuide should be available soon.
 
-Until then, if you really wish to install a developer preview release of the plugin, you can add the following repository URL to your 3rd-party repositories 
+Bleeding edge builds will still be published on the custom repo below, however it is *highly unrecommended* to use this builds as they may be unstable and cause issues with your game.
+
+If you really wish to install a developer preview release of the plugin, you can add the following repository URL to your 3rd-party repositories 
 
 `(Dalamud Plugins -> Settings -> Experimental -> Custom Plugin Repositories)`
 
