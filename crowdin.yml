@@ -1,0 +1,3 @@
+files:
+  - source: /src/Resources/Localization/Plugin/*_Localizable.json
+    translation: /%original_path%/%two_letters_code%.json
