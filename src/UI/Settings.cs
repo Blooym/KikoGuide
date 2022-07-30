@@ -1,6 +1,5 @@
 namespace KikoGuide.UI;
 
-
 using System;
 using System.Numerics;
 using System.IO;
