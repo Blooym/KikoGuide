@@ -28,6 +28,7 @@ jobs:
           cd src
           wget -O Lib.zip https://goatcorp.github.io/dalamud-distrib/latest.zip
           unzip Lib.zip -d Lib
+          export IsCI=true
 
       - name: Build Plugin
         run: |

@@ -31,7 +31,7 @@ For now, if you wish to add a duty localization in a supported language, please 
 When making any code changes to the plugin, the most important thing to do is make sure that all your changes comply with the [Dalamud Rules](https://goatcorp.github.io/faq/development#q-what-am-i-allowed-to-do-in-my-plugin) for what is allowed in a plugin. Any changes that do not meet this requirement will not be merged as the plugin is listed in the official repository.
 
 #### Building
-A guide on Plugin creation overall can be found [here](https://goatcorp.github.io/faq/development). Once you have your local environment setup all you need to do is run `dotnet build` to build a development version of the plugin.
+A guide on Plugin creation overall can be found [here](https://goatcorp.github.io/faq/development). Once you have your local environment setup all you need to do is run `dotnet build` to build a development version of the plugin. If you are developing on Linux, you will need to make sure you set the environment variable `DALAMUD_HOME` to your dalamud dev folder.
 
 #### Code Standards 
 It is highly preferred that you are using a linter and formatting your code cleanly to ensure that it is easy to read and extend in the future. Most code editors should provide support for this out of the box or with an additional extension.
