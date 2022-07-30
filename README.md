@@ -6,7 +6,7 @@
 ### Kiko Guide
 A Dalamud plugin that provides players with hand-written guides to duty content. 
 
-**[Issues](https://github.com/BitsOfAByte/KikoGuide/issues) · [Contributing](https://github.com/BitsOfAByte/KikoGuide/blob/main/CONTRIBUTING.md) · [Changelog](https://github.com/BitsOfAByte/KikoGuide/blob/main/CHANGELOG.md)**
+**[Issues](https://github.com/BitsOfAByte/KikoGuide/issues) · [Contributing](https://github.com/BitsOfAByte/KikoGuide/blob/main/CONTRIBUTING.md)**
   
 </div>
 
@@ -28,17 +28,9 @@ Features
 ## Installing
 A test build of Kiko Guide is currently available on the Dalamud official repository. To install it currently, you will have to enable "Get Plugin Testing Builds" under `Settings -> Experimental`. A stable build for KikoGuide should be available soon.
 
-Bleeding edge builds will still be published on the custom repo below, however it is **highly unrecommended** to use these builds as they may be unstable and cause issues with your game.
-
-If you really wish to install a developer preview release of the plugin, you can add the following repository URL to your 3rd-party repositories 
-
-`(Dalamud Plugins -> Settings -> Experimental -> Custom Plugin Repositories)`
-
-```
-https://raw.githubusercontent.com/BitsOfAByte/KikoGuide/main/repo.json
-```
+If you previously used the custom repository for Kiko Guide, please uninstall your current version of the plugin and reinstall it from the official repository.
 
 ## Contributing
-There are many ways to help contribute to Kiko Guide, it is highly recommended if you wish to make localization, guide and/or code changes that you view the [contributing guide](CONTRIBUTING.md) first.
+There are many ways to help contribute to Kiko Guide, it is highly recommended you review the [contributing guide](CONTRIBUTING.md) before submitting pull requests.
 
-If you wish to make feature requests, bug reports, guide ammendment requests then you can do so by using one of the templates when making a [New Issue](https://github.com/BitsOfAByte/KikoGuide/issues/new) .
+If you wish to make feature requests, bug reports, guide amendment requests, or any other issues then you can do so by using one of the templates when making a [here](https://github.com/BitsOfAByte/KikoGuide/issues/new/choose).
