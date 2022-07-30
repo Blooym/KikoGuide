@@ -1,3 +1,6 @@
+commit_message: "Chore: Localization updates for %original_file_name% [no ci]"
+append_commit_message: false
+
 files:
   - source: /src/Resources/Localization/Plugin/*_Localizable.json
     translation: /%original_path%/%two_letters_code%.json
