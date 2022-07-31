@@ -18,16 +18,22 @@ internal class UIState
     /// </summary>
     internal static void OnTerritoryChange(object? sender, ushort e)
     {
+        // Skip if the config says to ignore this.
         if (!Service.Configuration.autoOpenDuty) return;
 
+        // Get the player duty and check if it has valid, if so then display it. (Typically on duty enter)
         var playerDuty = DutyManager.GetPlayerDuty();
-
         if (playerDuty != null || playerDuty?.Bosses != null)
         {
             UIState.dutyInfoVisible = true;
             UIState.SelectedDuty = DutyManager.GetPlayerDuty();
         }
 
-        else UIState.dutyInfoVisible = false;
+        // If the player duty does not have any valid data, hide the UI & clear it (typically on duty exit)
+        else
+        {
+            UIState.dutyInfoVisible = false;
+            UIState.SelectedDuty = null;
+        }
     }
 }
