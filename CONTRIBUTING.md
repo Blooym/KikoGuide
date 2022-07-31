@@ -79,6 +79,9 @@ An example duty to refer to for help when writing or editing a guide can be foun
 
 When writing descriptions of mechanics or bosses, please try and minimize the language used to keep it down to just key information. For example, you do not need to write something like "Deals a small amount of damage to all party members hit" for an AoE as that is self-explanatory.
 
+#### Formatting 
+When writing the guides, you can use `\n` to move to a new line as JSON does not support this. You can also use `\t` to indent the text by 1 tab space when needed. If you want to use a percentgae sign, you will have to do `%%` to display a single percent sign. 
+
 #### Internal IDs (DutyType, MechanicType, Difficulty, etc)
 You can find all internal IDs used for identifying duty data inside of the [enums folder](src/Enums/) of the repository.
 
