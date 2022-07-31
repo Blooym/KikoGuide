@@ -5,5 +5,119 @@
     "Type": 0,
     "Expansion": 0,
     "Level": 50,
-    "UnlockQuestID": 70058
+    "UnlockQuestID": 70058,
+    "TerritoryID": 1044,
+    "Bosses": [
+        {
+            "Name": "Mark II Magitek Colossus",
+            "KeyMechanics": [
+                {
+                    "Name": "Ceruleum Vent",
+                    "Description": "Unavoidable raidwide damage",
+                    "Type": 4
+                },
+                {
+                    "Name": "Prototype Laser Alpha",
+                    "Description": "Four circle AoEs will appear from the center and move toward the outside of the arena",
+                    "Type": 2
+                },
+                {
+                    "Name": "Prototype Laser Beta",
+                    "Description": "Circle AoEs will be placed on every player, requiring them to spread out",
+                    "Type": 2
+                },
+                {
+                    "Name": "Grand Sword",
+                    "Description": "A cone AoE targeting a random player",
+                    "Type": 2
+                }
+            ]
+        },
+        {
+            "Name": "Nero tol Scaeva",
+            "Strategy": "There is an electrical field on the outside of the arena, giving people the debuff Electrocution that deals damage over time",
+            "KeyMechanics": [
+                {
+                    "Name": "Spine Shatter",
+                    "Description": "Large damage on the primary target",
+                    "Type": 0
+                },
+                {
+                    "Name": "Iron Uprising",
+                    "Description": " A frontal cone AoE that knocks players back",
+                    "Type": 2
+                },
+                {
+                    "Name": "Activate",
+                    "Description": "Summons a Magitek Death Claw that tethers to one player and slowly moves towards them, knocking player back when it gets to them",
+                    "Type": 7
+                },
+                {
+                    "Name": "Augmented Shatter",
+                    "Description": "A stack on a random player, followed by Wheel of Suffering",
+                    "Type": 3
+                },
+                {
+                    "Name": "Wheel of Suffering",
+                    "Description": "A circle AoE that deals damage to all players near the boss",
+                    "Type": 2
+                },
+                {
+                    "Name": "Augmented Uprising",
+                    "Description": "Hops to one side of the arena and casts a cone AoE that"
+                },
+                {
+                    "Name": "Augmented Suffering",
+                    "Description": "Jumps to the center and cast a knockback attack",
+                    "Type": 2
+                }
+            ]
+        },
+        {
+            "Name": "Gaius van Baelsar",
+            "Strategy": "At 5%% HP, Gaius will summon 4 Phantom Gaius adds that must be taken out while he charges up Blade Energy for his ultimate attack \"Veni Vidi Vici\", which will instantly kill the party if energy reaches 100%",
+            "KeyMechanics": [
+                {
+                    "Name": "Innocence",
+                    "Description": "Large damage on the primary target",
+                    "Type": 0
+
+                },
+                {
+                    "Name": "Horrida Bella",
+                    "Description": "Unavoidable raidwide damage",
+                    "Type": 4
+                },
+                {
+                    "Name": "Terminus Est",
+                    "Description": "Fires flaming Xs, which will spawn a line AoE infront of them after a few seconds",
+                    "Type": 2
+                },
+                {
+                    "Name": "Phantasmata",
+                    "Description": "Clones of Gaius will appear on the long side of the arena and each will cast Terminus Est",
+                    "Type": 7
+                },
+                {
+                    "Name": "Festina Lente",
+                    "Description": "Stack marker on a random player",
+                    "Type": 3
+                },
+                {
+                    "Name": "Ductus",
+                    "Description": "Three circular AoEs appear on the short side of the arena and move along the length of the platform",
+                    "Type": 2
+                },
+                {
+                    "Name": "Hand of the Empire",
+                    "Description": "Each player will be marked by an unavoidable circle AoE",
+                    "Type": 2
+                },
+                {
+                    "Name": "Heirsbane (Phantom)", 
+                    "Description": "Targets a random player, dealing damage to them"
+                }
+            ]
+        }
+    ]
 }

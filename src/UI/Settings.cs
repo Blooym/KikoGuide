@@ -170,13 +170,13 @@ internal class Settings : IDisposable
                 Common.TextHeading("Client Information");
                 ImGui.TextWrapped($"Language: {Service.PluginInterface.UiLanguage}");
                 ImGui.NextColumn();
-                ImGui.TextWrapped($"Loaded Duties: {DutyManager.GetDuties().Count}");
+                ImGui.TextWrapped($"Current Territory: {Service.ClientState.TerritoryType}");
                 ImGui.NextColumn();
                 ImGui.NewLine();
 
                 // Current duty debug information.
                 Common.TextHeading("Duty Information");
-                ImGui.TextWrapped($"Current Territory: {Service.ClientState.TerritoryType}");
+                ImGui.TextWrapped($"Loaded Duties: {DutyManager.GetDuties().Count}");
                 ImGui.NextColumn();
                 ImGui.TextWrapped($"Current Duty: {DutyManager.GetPlayerDuty()?.Name ?? "None"}");
                 ImGui.NextColumn();

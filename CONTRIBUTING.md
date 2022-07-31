@@ -68,7 +68,7 @@ When changing these files, it is important to run it through a JSON validator be
 - `TerritoryID`: The territory ID in-game when inside of the duty
 - `Bosses`: The list of bosses in the duty
     - `Name`: The name of the boss
-    - `Strategy`: A longer-form guide on fighting the boss
+    - `Strategy` (preferred): A longer-form guide on fighting the boss
     - `TLDR` (optional): A short-form guide on fighting the boss
     - `KeyMechanics` (optional): A list of all boss mechanics
       - `Name`: The name of the mechanic
