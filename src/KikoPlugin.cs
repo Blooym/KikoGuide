@@ -3,7 +3,6 @@ namespace KikoGuide;
 using System;
 using System.IO;
 using Dalamud.Game.Command;
-using Dalamud.Logging;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using KikoGuide.UI.DutyList;
@@ -80,6 +79,32 @@ internal class KikoPlugin : IDalamudPlugin
         Service.PluginInterface.UiBuilder.OpenConfigUi -= DrawConfigUI;
     }
 
+    /// <summary> 
+    ///     Event handler for the client is logging out.
+    /// </summary>
+    // consume the onLogout event and handle it
+    public static void OnLogout(object? sender, EventArgs e)
+    {
+        dutyInfoScreen.presenter.selectedDuty = null;
+        listScreen.presenter.isVisible = false;
+        dutyInfoScreen.presenter.isVisible = false;
+        editorScreen.presenter.isVisible = false;
+    }
+
+
+    /// <summary>
+    ///    Event handler for when the language is changed, reloads the localization strings.
+    /// </summary>
+    public static void OnLanguageChange(string language)
+    {
+        var uiLang = Service.PluginInterface.UiLanguage;
+
+        DutyManager.OnResourceUpdate();
+
+        try { Loc.Setup(File.ReadAllText($"{PStrings.localizationPath}\\Plugin\\{uiLang}.json")); }
+        catch { Loc.SetupWithFallbacks(); }
+    }
+
 
     /// <summary>
     ///     Event handler for when a command is issued by the user.
@@ -118,31 +143,4 @@ internal class KikoPlugin : IDalamudPlugin
     /// </summary>
     private protected void DrawConfigUI() => settingsScreen.presenter.isVisible = !settingsScreen.presenter.isVisible;
 
-
-    /// <summary> 
-    ///     Event handler for the client is logging out.
-    /// </summary>
-    // consume the onLogout event and handle it
-    internal static void OnLogout(object? sender, EventArgs e)
-    {
-        dutyInfoScreen.presenter.selectedDuty = null;
-        listScreen.presenter.isVisible = false;
-        dutyInfoScreen.presenter.isVisible = false;
-    }
-
-
-    /// <summary>
-    ///    Event handler for when the language is changed, reloads the localization strings.
-    /// </summary>
-    internal static void OnLanguageChange(string language)
-    {
-        var uiLang = Service.PluginInterface.UiLanguage;
-        PluginLog.Debug("Trying to set up Loc for culture {0}", uiLang);
-
-        // Tell the duty manager to refresh its resources for the new language
-        DutyManager.OnResourceUpdate();
-
-        try { Loc.Setup(File.ReadAllText($"{PStrings.localizationPath}\\Plugin\\{uiLang}.json")); }
-        catch { Loc.SetupWithFallbacks(); }
-    }
 }
