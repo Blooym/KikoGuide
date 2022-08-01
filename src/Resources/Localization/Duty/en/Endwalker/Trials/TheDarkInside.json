@@ -5,5 +5,78 @@
     "Type": 1,
     "Expansion": 4,
     "Level": 83,
-    "UnlockQuestID": 69934
+    "UnlockQuestID": 69934,
+	"Bosses": [
+		{
+			"Name": "Zodiark (Phase 1)",
+			"Strategy": "Phase 1 introduces the base mechanics of the fight.",
+			"KeyMechanics": [
+				{
+					"Name": "Kokytos",
+					"Description": "Reduces the everyone's HP to 1",
+					"Type": 10
+				},
+				{
+					"Name": "Exoterikos",
+					"Description": "Boss fires a beam to one of the sides of the arena that turns into a rune.\n\nTrinagle shaped rune:\nCone AoE across the room from the rune.\nSquare shaped rune:\nHalf room AoE on the side of the rune.\n\n     Δ rune               □ rune\n                X   |        XX\n          XXX   |        XX\nΔ XXXXX   |   □ XX\n          XXX   |        XX\n                X   |        XX",
+					"Type": 2
+				},
+				{
+					"Name": "Styx",
+					"Description": "High damage multi-hit stack marker.",
+					"Type": 3
+				},
+				{
+					"Name": "Ania",
+					"Description": "Tankbuster.",
+					"Type": 0
+				},
+				{
+					"Name": "Paradeigma",
+					"Description": "Summons one of two possible mechanics:\n\nBehemoths: \nLarge circle AoEs around the Behemoths that each take up one quadrant of the arena\nSnakes: \nLine AoEs across the platform that take up two quarters of the arena.",
+					"Type": 2
+				},
+				{
+					"Name": "Adikia",
+					"Description": "Boss punches the platform twice, resulting in two massive circle AoEs.",
+					"Type": 2
+				},
+				{
+					"Name": "Phlegeton",
+					"Description": "Three sets of circle AoEs spawn under players.",
+					"Type": 2
+				},
+				{
+					"Name": "Complete Control",
+					"Description": "Boss transforms, transitioning to phase 2.",
+					"Type": 10
+				},
+				{
+					"Name": "Astral Flow",
+					"Description": "Used immediately after Paradeigma. \nBoss rotates the arena with the spawned adds, while players are held in place.",
+					"Type": 10
+				},
+				{
+					"Name": "Triple Esoteric Ray",
+					"Description": "Casts 3 beams that cover the entire arena. \nThe order in which magic circles appear indicates the order of the beams being fired.",
+					"Type": 2
+				},
+				{
+					"Name": "Algedon",
+					"Description": "Diagonal dive attack that knocks anyone hit off the platform.",
+					"Type": 2
+				},
+				{
+					"Name": "Astral Eclipse",
+					"Description": "Boss flies around the arena spawning patterns of stars in specific alignments. These alignments show which areas of the arena are hit by AoEs.\nThe stars are aligned on a 3x3 grid that is then projected onto the arena from the side where the stars are coming from.\n\nPatterns:\n      X   |   X   X   |      X\nXXX   |               |   XXX\nX         |   X   X   |      X ",
+					"Type": 2
+				},
+				{
+					"Name": "Trimorphos Exoterikos",
+					"Description": "Boss casts 3 Exoterikos runes at every other edge of the arena that go off one by one.",
+					"Type": 2
+				}
+			]
+		}
+	]
 }

@@ -14,22 +14,22 @@
             "KeyMechanics": [
                 {
                     "Name": "Water",
-                    "Description": "Targeted attack that deals a small amount of damage.",
+                    "Description":  "Targetted attack that deals small damage",
                     "Type": 6
                 },
                 {
                     "Name": "Void Thunder III",
-                    "Description": "Targeted attack that deals a large amount of damage.",
+                    "Description":  "Targetted attack that large damage",
                     "Type": 6
                 },
                 {
                     "Name": "Canker",
-                    "Description": "Targeted attack that will inflict the Disease debuff",
+                    "Description":  "Targetted attack that inflicts the Disease debuff",
                     "Type": 6
                 },
                 {
                     "Name": "Mind Melt",
-                    "Description": "Raid wide attack that deals moderate damage to the party.",
+                    "Description": "Raid wide that deals moderate damage to the party",
                     "Type": 4
                 }
             ]
@@ -40,28 +40,28 @@
             "KeyMechanics": [
                 {
                     "Name": "Muder Hole",
-                    "Description": "Targeted attack that deals a small amount of damage.",
+                    "Description": "Targeted attack that deals a small amount of damage",
                     "Type": 6
                 },
                 {
                     "Name": "Repel",
-                    "Description": "After the Demon Wall finishes casting repel all players will be knocked back away from the boss. Players must position themselves so they arent knocked back off the platform ",
+                    "Description": "After the Demon Wall finishes casting repel all players will be knocked back away from the boss. Players must position themselves so they arent knocked back off the platform",
                     "Type": 10
                 },
                 {
                     "Name": "Liquefy",
-                    "Description": "liquefy is a line AOE that can come from the two sides of the platform or the middle. It deals high damage and will inflict the Heavy debuff if youre hit by the middle AOE and the Slow debuff if youre hit by the side AOE.",
+                    "Description": "liquefy is a line AOE that can come from the two sides of the platform or the middle. It deals high damage and will inflict the Heavy debuff if youre hit by the middle AOE and the Slow debuff if youre hit by the side AOE",
                     "Type": 2
                 }
             ]
         },
         {
             "Name": "Anantaboga",
-            "Strategy": "Throughout the fight Anantaboga will use Imminent Catastrophe to spawn red orbs that deal damage to anyone in line of sight, to avoid this players must hide behind on of 4 statues around the arena. Additionally, the cast will awake one of the statues turning it into an add, players must kill the add and avoid its AOEs.",
+            "Strategy": "Throughout the fight Anantaboga will use Imminent Catastrophe to spawn red orbs that deal damage to anyone in line of sight, to avoid this players must hide behind on of 4 statues around the arena. Additionally, the cast will awake one of the statues turning it into an add, players must kill the add and avoid its AOEs",
             "KeyMechanics": [
                 {
                     "Name": "Tail Drive",
-                    "Description": "Tail Drive is a rear cone AOE that will deal high damage and inflict the Concussion debuff causing damage over time to anyone hit.",
+                    "Description": "Tail Drive is a rear cone AOE that will deal high damage and inflict the Concussion debuff causing damage over time to anyone hit",
                     "Type": 2
                 },
                 {
@@ -71,16 +71,15 @@
                 },
                 {
                     "Name": "Imminent Catastrophe",
-                    "Description": "After the cast a red orb will appear in the middle of the arena and deal high damage to anyone in line of sight.",
+                    "Description": "After the cast a red orb will appear in the middle of the arena and deal high damage to anyone in line of sight",
                     "Type": 7
                 },
                 {
                     "Name": "Plague Dance",
-                    "Description": "The boss will use a purple beam on a random player after aa while a red orb will appear at the location of the player hit and deal damage to anyone around it.",
+                    "Description": "The boss will use a purple beam on a random player after aa while a red orb will appear at the location of the player hit and deal damage to anyone around it",
                     "Type": 6
                 }
             ]
         }
     ]       
-
 }
