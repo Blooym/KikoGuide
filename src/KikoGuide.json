@@ -6,7 +6,7 @@
   "InternalName": "KikoGuide",
   "LoadPriority": 0,
   "DalamudApiLevel": 6,
-  "AssemblyVersion": "1.1.0.0",
+  "AssemblyVersion": "1.1.1.0",
   "RepoUrl": "https://github.com/BitsOfAByte/KikoGuide",
   "ApplicableVersion": "any",
   "Tags": ["Duty Finder", "Duties", "Guide"]
