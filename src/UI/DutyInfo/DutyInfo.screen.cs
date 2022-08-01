@@ -1,4 +1,4 @@
-namespace KikoGuide.UI;
+namespace KikoGuide.UI.DutyInfo;
 
 using System;
 using System.Numerics;
@@ -7,26 +7,29 @@ using ImGuiNET;
 using CheapLoc;
 using KikoGuide.Base;
 using KikoGuide.Enums;
-using KikoGuide.UI.Components;
 
-internal class DutyInfo : IDisposable
+internal class DutyInfoScreen : IDisposable
 {
-    private protected Configuration? _configuration;
+    public DutyInfoPresenter presenter = new DutyInfoPresenter();
+
 
     /// <summary>
-    ///     Instantiates a new DutyInfo UI window.
+    ///     The constructor for the DutyInfoScreen.
     /// </summary>
-    public DutyInfo(Configuration configuration) => this._configuration = configuration;
+    public DutyInfoScreen()
+    {
+        Service.ClientState.TerritoryChanged += this.presenter.OnTerritoryChange;
+    }
 
 
     /// <summary>
-    ///     Disposes of the DutyInfo UI window and any resources it uses.
+    ///     Disposes of the Duty info screen and any resources it uses.
     /// </summary>
     public void Dispose() { }
 
 
     /// <summary>
-    ///     Draws all UI elements associated with the DutyInfo UI.
+    ///     Draws all UI elements associated with the DutyInfo screen.
     /// </summary>
     public void Draw() => DrawInfoWindow();
 
@@ -36,16 +39,16 @@ internal class DutyInfo : IDisposable
     /// </summary>
     private void DrawInfoWindow()
     {
+        var selectedDuty = presenter.selectedDuty;
 
-        if (UIState.SelectedDuty == null || !UIState.dutyInfoVisible) return;
-        if (UIState.SelectedDuty.Bosses == null || !UIState.SelectedDuty.IsSupported()) return;
+        if (selectedDuty == null || !presenter.isVisible) return;
+        if (selectedDuty.Bosses == null || !selectedDuty.IsSupported()) return;
 
-        var selectedDuty = UIState.SelectedDuty;
-        var disabledMechanics = this._configuration?.hiddenMechanics;
-        var shortMode = this._configuration?.shortenStrategies;
+        var disabledMechanics = Service.Configuration?.hiddenMechanics;
+        var shortMode = Service.Configuration?.shortenStrategies;
 
-        ImGui.SetNextWindowSizeConstraints(new Vector2(380, 420), new Vector2(1000, 1000));
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.DutyInfo.Title", "{0} - Duty Information"), PStrings.pluginName), ref UIState.dutyInfoVisible))
+        ImGui.SetNextWindowSize(new Vector2(380, 420), ImGuiCond.FirstUseEver);
+        if (ImGui.Begin(String.Format(Loc.Localize("UI.DutyInfo.Title", "{0} - Duty Information"), PStrings.pluginName), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar))
         {
             try
             {
@@ -53,7 +56,6 @@ internal class DutyInfo : IDisposable
                 var dutyName = selectedDuty.Name;
                 if (selectedDuty.Difficulty != (int)DutyDifficulty.Normal) dutyName = $"{selectedDuty.Name} ({Enum.GetName(typeof(DutyDifficulty), selectedDuty.Difficulty)})";
                 ImGui.TextWrapped(String.Format(Loc.Localize("UI.DutyInfo.DutyText", "Duty: {0}"), dutyName));
-                if (selectedDuty.WIP) Badges.Custom(Colours.Green, "WIP");
                 ImGui.NewLine();
 
                 // For each boss within this duty, create a collapsible header for it.

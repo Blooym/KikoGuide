@@ -1,4 +1,4 @@
-namespace KikoGuide.UI;
+namespace KikoGuide.UI.Settings;
 
 using System;
 using System.Numerics;
@@ -14,16 +14,9 @@ using KikoGuide.Enums;
 using KikoGuide.Managers;
 using KikoGuide.UI.Components;
 
-internal class Settings : IDisposable
+internal class SettingsScreen : IDisposable
 {
-    private protected Configuration _configuration;
-
-    /// <summary>
-    //      Instantiates a new settings UI window.
-    /// </summary>
-    public Settings(Configuration configuration) => this._configuration = configuration;
-
-
+    public SettingsPresenter presenter = new SettingsPresenter();
 
     /// <summary>
     ///     Disposes of the settings UI window and any resources it uses.
@@ -43,20 +36,19 @@ internal class Settings : IDisposable
     private void DrawSettingsWindow()
     {
 
-        if (!UIState.settingsVisible) return;
+        if (!presenter.isVisible) return;
 
-        List<int> disabledMechanics = this._configuration.hiddenMechanics;
-        bool autoOpenDuty = this._configuration.autoOpenDuty;
-        bool shortenStrategies = this._configuration.shortenStrategies;
-        bool supportButtonShown = this._configuration.supportButtonShown;
-        long lastUpdateTime = this._configuration.lastResourceUpdate;
+        List<int> disabledMechanics = Service.Configuration.hiddenMechanics;
+        bool autoOpenDuty = Service.Configuration.autoOpenDuty;
+        bool shortenStrategies = Service.Configuration.shortenStrategies;
+        bool supportButtonShown = Service.Configuration.supportButtonShown;
+        long lastUpdateTime = Service.Configuration.lastResourceUpdate;
 
 #if DEBUG
-        string localizableOutputDir = this._configuration.localizableOutputDir;
+        string localizableOutputDir = Service.Configuration.localizableOutputDir;
 #endif
 
-        ImGui.SetNextWindowSizeConstraints(new Vector2(400, 240), new Vector2(400, 240));
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.Settings.Title", "{0} - Settings"), PStrings.pluginName), ref UIState.settingsVisible, ImGuiWindowFlags.NoResize))
+        if (ImGui.Begin(String.Format(Loc.Localize("UI.Settings.Title", "{0} - Settings"), PStrings.pluginName), ref presenter.isVisible))
         {
             // Create tab bar for each settings category
             ImGui.BeginTabBar("settings");
@@ -67,9 +59,8 @@ internal class Settings : IDisposable
                 // Auto-open duty setting.
                 Common.ToggleCheckbox(Loc.Localize("UI.Settings.AutoOpenDuty", "Open in Duty"), ref autoOpenDuty, () =>
                {
-                   autoOpenDuty = !autoOpenDuty;
-                   this._configuration.autoOpenDuty = autoOpenDuty;
-                   this._configuration.Save();
+                   Service.Configuration.autoOpenDuty = !autoOpenDuty;
+                   Service.Configuration.Save();
                });
                 Tooltips.AddTooltip(Loc.Localize("UI.Settings.AutoOpenDuty.Tooltip", "Open the duty guide when entering a duty."));
 
@@ -77,9 +68,8 @@ internal class Settings : IDisposable
                 // TLDR mode setting.
                 Common.ToggleCheckbox(Loc.Localize("UI.Settings.ShortenStrategies", "Shorten Strategies"), ref shortenStrategies, () =>
                 {
-                    shortenStrategies = !shortenStrategies;
-                    this._configuration.shortenStrategies = shortenStrategies;
-                    this._configuration.Save();
+                    Service.Configuration.shortenStrategies = !shortenStrategies;
+                    Service.Configuration.Save();
                 });
 
                 Tooltips.AddTooltip(Loc.Localize("UI.Settings.ShortenStrategies.Tooltip", "Shorten duty guide strategies if possible."));
@@ -88,9 +78,8 @@ internal class Settings : IDisposable
                 // Support button setting.
                 Common.ToggleCheckbox(Loc.Localize("UI.Settings.ShowSupportButton", "Show Support Button"), ref supportButtonShown, () =>
                 {
-                    supportButtonShown = !supportButtonShown;
-                    this._configuration.supportButtonShown = supportButtonShown;
-                    this._configuration.Save();
+                    Service.Configuration.supportButtonShown = !supportButtonShown;
+                    Service.Configuration.Save();
                 });
                 Tooltips.AddTooltip(Loc.Localize("UI.Settings.ShowSupportButton.Tooltip", "Show the support Kiko Guide button."));
 
@@ -139,13 +128,13 @@ internal class Settings : IDisposable
                         switch (isMechanicDisabled)
                         {
                             case false:
-                                this._configuration.hiddenMechanics.Add(mechanic);
+                                Service.Configuration.hiddenMechanics.Add(mechanic);
                                 break;
                             case true:
-                                this._configuration.hiddenMechanics.Remove(mechanic);
+                                Service.Configuration.hiddenMechanics.Remove(mechanic);
                                 break;
                         }
-                        this._configuration.Save();
+                        Service.Configuration.Save();
                     });
 
                     Tooltips.AddTooltip(String.Format(Loc.Localize("UI.Settings.HideMechanicTooltip", "Hide {0} from the duty guide."), Enum.GetName(typeof(Mechanics), mechanic)));
@@ -182,26 +171,11 @@ internal class Settings : IDisposable
                 ImGui.NextColumn();
                 ImGui.NewLine();
 
-                // Selected Duty debug information.
-                Common.TextHeading("Selected Duty");
-                ImGui.TextWrapped($"Name: {UIState.SelectedDuty?.Name ?? "None"}");
-                ImGui.NextColumn();
-                ImGui.TextWrapped($"Expansion: {Enum.GetName(typeof(Expansion), UIState.SelectedDuty?.Expansion ?? -1)}");
-                ImGui.NextColumn();
-                ImGui.TextWrapped($"Level: {UIState.SelectedDuty?.Level ?? 0}");
-                ImGui.NextColumn();
-                ImGui.TextWrapped($"Bosses: {UIState.SelectedDuty?.Bosses?.Count ?? 0}");
-                ImGui.NextColumn();
-                ImGui.TextWrapped($"QuestUnlockID: {UIState.SelectedDuty?.UnlockQuestID ?? 0}");
-                ImGui.NextColumn();
-                ImGui.TextWrapped($"TerritoryID: {UIState.SelectedDuty?.TerritoryID ?? 0}");
-                ImGui.EndChild();
-
                 Common.TextHeading("Localization");
                 if (ImGui.InputTextWithHint("", "Localizable Output Directory", ref localizableOutputDir, 1000))
                 {
-                    this._configuration.localizableOutputDir = localizableOutputDir;
-                    this._configuration.Save();
+                    Service.Configuration.localizableOutputDir = localizableOutputDir;
+                    Service.Configuration.Save();
                 }
 
                 ImGui.SameLine();

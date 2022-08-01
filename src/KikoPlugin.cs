@@ -6,7 +6,10 @@ using Dalamud.Game.Command;
 using Dalamud.Logging;
 using Dalamud.IoC;
 using Dalamud.Plugin;
-using KikoGuide.UI;
+using KikoGuide.UI.DutyList;
+using KikoGuide.UI.Editor;
+using KikoGuide.UI.Settings;
+using KikoGuide.UI.DutyInfo;
 using KikoGuide.Base;
 using KikoGuide.Managers;
 using CheapLoc;
@@ -14,42 +17,29 @@ using CheapLoc;
 internal class KikoPlugin : IDalamudPlugin
 {
     public string Name => PStrings.pluginName;
-    private protected const string listCommand = "/kikolist";
-    private protected const string settingsCommand = "/kikoconfig";
-    private protected Configuration _configuration { get; init; }
+    private const string listCommand = "/kikolist";
+    private const string settingsCommand = "/kikoconfig";
+    private const string editorCommand = "/kikoeditor";
 
-    private protected List _kikoUIList { get; init; }
-    private protected Settings _kikoUISettings { get; init; }
-    private protected DutyInfo _kikoUIFrame { get; init; }
+    public static ListScreen listScreen = new ListScreen();
+    public static SettingsScreen settingsScreen = new SettingsScreen();
+    public static DutyInfoScreen dutyInfoScreen = new DutyInfoScreen();
+    public static EditorScreen editorScreen = new EditorScreen();
 
     public KikoPlugin([RequiredVersion("1.0")] DalamudPluginInterface pluginInterface)
     {
         // Inject/Create all services
         pluginInterface.Create<Service>();
 
-        // Load the configuration file
-        this._configuration = Service.PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
-
         // Initialize everything & load trigger any events
-        //FFXIVClientStructs.Resolver.Initialize(Service.Scanner.SearchBase);
-        Service.Initialize(_configuration);
+        Service.Initialize(Service.PluginInterface.GetPluginConfig() as Configuration ?? new Configuration());
         OnLanguageChange(Service.PluginInterface.UiLanguage);
-
-        // Do not auto update if a debug build as it overwrites duty files.
-#if !DEBUG
         UpdateManager.UpdateResources();
-#endif
-
-        // Create UI Instances
-        this._kikoUIList = new List(this._configuration);
-        this._kikoUISettings = new Settings(this._configuration);
-        this._kikoUIFrame = new DutyInfo(this._configuration);
 
         // Register event handlers
         Service.PluginInterface.UiBuilder.Draw += DrawUI;
         Service.PluginInterface.UiBuilder.OpenConfigUi += DrawConfigUI;
         Service.PluginInterface.LanguageChanged += OnLanguageChange;
-        Service.ClientState.TerritoryChanged += UIState.OnTerritoryChange;
         Service.ClientState.Logout += OnLogout;
         UpdateManager.ResourcesUpdated += DutyManager.OnResourceUpdate;
 
@@ -63,6 +53,11 @@ internal class KikoPlugin : IDalamudPlugin
         {
             HelpMessage = Loc.Localize("Commands.Settings.Help", "Opens the settings menu"),
         });
+
+        Service.Commands.AddHandler(editorCommand, new CommandInfo(OnCommand)
+        {
+            HelpMessage = Loc.Localize("Commands.Editor.Help", "Opens the duty editor"),
+        });
     }
 
 
@@ -71,12 +66,13 @@ internal class KikoPlugin : IDalamudPlugin
     /// </summary>
     public void Dispose()
     {
-        this._kikoUIList.Dispose();
-        this._kikoUISettings.Dispose();
-        this._kikoUIFrame.Dispose();
+        listScreen.Dispose();
+        settingsScreen.Dispose();
+        dutyInfoScreen.Dispose();
+        editorScreen.Dispose();
         Service.Commands.RemoveHandler(listCommand);
         Service.Commands.RemoveHandler(settingsCommand);
-        Service.ClientState.TerritoryChanged -= UIState.OnTerritoryChange;
+        Service.Commands.RemoveHandler(editorCommand);
         UpdateManager.ResourcesUpdated -= DutyManager.OnResourceUpdate;
         Service.ClientState.Logout -= OnLogout;
         Service.PluginInterface.LanguageChanged -= OnLanguageChange;
@@ -93,10 +89,13 @@ internal class KikoPlugin : IDalamudPlugin
         switch (command)
         {
             case listCommand:
-                UIState.listVisible = !UIState.listVisible;
+                listScreen.presenter.isVisible = !listScreen.presenter.isVisible;
                 break;
             case settingsCommand:
-                UIState.settingsVisible = !UIState.settingsVisible;
+                settingsScreen.presenter.isVisible = !settingsScreen.presenter.isVisible;
+                break;
+            case editorCommand:
+                editorScreen.presenter.isVisible = !editorScreen.presenter.isVisible;
                 break;
         }
     }
@@ -107,16 +106,17 @@ internal class KikoPlugin : IDalamudPlugin
     /// </summary>
     private protected void DrawUI()
     {
-        this._kikoUIList.Draw();
-        this._kikoUISettings.Draw();
-        this._kikoUIFrame.Draw();
+        listScreen.Draw();
+        settingsScreen.Draw();
+        dutyInfoScreen.Draw();
+        editorScreen.Draw();
     }
 
 
     /// <summary>
     ///     Event handler for when the UI is told to draw the config UI (Dalamud settings button)
     /// </summary>
-    private protected void DrawConfigUI() => UIState.settingsVisible = !UIState.settingsVisible;
+    private protected void DrawConfigUI() => settingsScreen.presenter.isVisible = !settingsScreen.presenter.isVisible;
 
 
     /// <summary> 
@@ -125,9 +125,9 @@ internal class KikoPlugin : IDalamudPlugin
     // consume the onLogout event and handle it
     internal static void OnLogout(object? sender, EventArgs e)
     {
-        UIState.SelectedDuty = null;
-        UIState.listVisible = false;
-        UIState.dutyInfoVisible = false;
+        dutyInfoScreen.presenter.selectedDuty = null;
+        listScreen.presenter.isVisible = false;
+        dutyInfoScreen.presenter.isVisible = false;
     }
 
 

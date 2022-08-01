@@ -1,22 +1,17 @@
-namespace KikoGuide.UI;
+namespace KikoGuide.UI.DutyInfo;
 
 using KikoGuide.Managers;
 using KikoGuide.Base;
 
-/// <summary>
-///     The UIState class is used to manage the global state of the UI.
-/// </summary>
-internal class UIState
+class DutyInfoPresenter
 {
-    internal static bool settingsVisible = false;
-    internal static bool listVisible = false;
-    internal static bool dutyInfoVisible = false;
-    internal static Duty? SelectedDuty = DutyManager.GetPlayerDuty();
+    public bool isVisible = false;
+    public Duty? selectedDuty = null;
 
     /// <summary>
     ///     Handles territory change even and changes the UI state accordingly.
     /// </summary>
-    internal static void OnTerritoryChange(object? sender, ushort e)
+    public void OnTerritoryChange(object? sender, ushort e)
     {
         // Skip if the config says to ignore this.
         if (!Service.Configuration.autoOpenDuty) return;
@@ -25,15 +20,15 @@ internal class UIState
         var playerDuty = DutyManager.GetPlayerDuty();
         if (playerDuty != null || playerDuty?.Bosses != null)
         {
-            UIState.dutyInfoVisible = true;
-            UIState.SelectedDuty = DutyManager.GetPlayerDuty();
+            this.isVisible = true;
+            this.selectedDuty = DutyManager.GetPlayerDuty();
         }
 
         // If the player duty does not have any valid data, hide the UI & clear it (typically on duty exit)
         else
         {
-            UIState.dutyInfoVisible = false;
-            UIState.SelectedDuty = null;
+            this.isVisible = false;
+            this.selectedDuty = null;
         }
     }
 }

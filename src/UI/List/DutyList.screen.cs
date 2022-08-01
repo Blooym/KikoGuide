@@ -1,4 +1,4 @@
-namespace KikoGuide.UI;
+namespace KikoGuide.UI.DutyList;
 
 using System;
 using System.Numerics;
@@ -10,16 +10,10 @@ using KikoGuide.Enums;
 using KikoGuide.Managers;
 using KikoGuide.UI.Components;
 
-internal class List : IDisposable
+internal class ListScreen : IDisposable
 {
-    private protected Configuration _configuration;
     private string _searchText = "";
-
-    /// <summary>
-    ///   Instantiates a new List UI window.
-    /// </summary>
-    public List(Configuration configuration) => this._configuration = configuration;
-
+    public DutyListPresenter presenter = new DutyListPresenter();
 
 
     /// <summary>
@@ -40,10 +34,10 @@ internal class List : IDisposable
     private void DrawListWindow()
     {
 
-        if (!UIState.listVisible) return;
+        if (!presenter.isVisible) return;
 
         ImGui.SetNextWindowSizeConstraints(new Vector2(350, 280), new Vector2(1000, 1000));
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.List.Title", "{0} - Duty Finder"), PStrings.pluginName), ref UIState.listVisible))
+        if (ImGui.Begin(String.Format(Loc.Localize("UI.List.Title", "{0} - Duty Finder"), PStrings.pluginName), ref presenter.isVisible))
         {
 
             // Prevent the plugin from crashing (on table draw, due to fixed width) 
@@ -56,7 +50,7 @@ internal class List : IDisposable
             if (duties.Count == 0) ImGui.TextColored(Colours.Error, Loc.Localize("UI.List.NoDutyFiles", "No duty files detected! Please try Settings -> Update Resources."));
 
             var supportButtonText = Loc.Localize("UI.List.SupportButton", "Support (GitHub)");
-            var supportButtonShown = _configuration.supportButtonShown;
+            var supportButtonShown = Service.Configuration.supportButtonShown;
 
             // Create support button 
             if (supportButtonShown) ImGui.SetNextItemWidth(-(ImGui.CalcTextSize(supportButtonText).X + ImGui.GetStyle().FramePadding.X * 2 + ImGui.GetStyle().ItemSpacing.X));
@@ -135,11 +129,9 @@ internal class List : IDisposable
                         // Create a selectable text for the duty name that will open the duty info page.
                         if (ImGui.Selectable(name, false, ImGuiSelectableFlags.AllowDoubleClick))
                         {
-                            UIState.SelectedDuty = duty;
-                            UIState.dutyInfoVisible = true;
+                            KikoPlugin.dutyInfoScreen.presenter.selectedDuty = duty;
+                            KikoPlugin.dutyInfoScreen.presenter.isVisible = true;
                         }
-
-                        if (duty.WIP) Badges.Custom(Colours.Green, "WIP");
 
                         if (duty == DutyManager.GetPlayerDuty()) Badges.Custom(Colours.Green, Loc.Localize("UI.List.InDuty", "In Duty"));
                     }

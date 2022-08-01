@@ -20,8 +20,7 @@ sealed public class Duty
     private readonly int _formatVersion = 0;
 
     public int Version { get; set; } = 0;
-    public bool WIP { get; set; } = false;
-    public string Name { get; set; } = "Unnamed Duty";
+    public string Name { get; set; } = Loc.Localize("Duty.Name.None", "Unnamed Duty");
     public int Difficulty { get; set; } = 0;
     public int Expansion { get; set; } = 0;
     public int Type { get; set; } = 0;

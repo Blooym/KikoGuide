@@ -15,7 +15,6 @@ class Configuration : IPluginConfiguration
 
     /// <summary> 
     ///     Whether or not to automatically show duty information upon entering a new (supported) duty.
-    ///     Handled by the TerritoryChange event listener inside of <see cref="UI.UIState"/>. 
     /// </summary>
     public bool autoOpenDuty { get; set; } = false;
 
