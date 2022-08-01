@@ -1,22 +1,22 @@
 {
   "Commands.List.Help": {
-    "message": "Opens the duty list",
+    "message": "Ouvrir la liste de missions",
     "description": "KikoPlugin..ctor"
   },
   "Commands.Settings.Help": {
-    "message": "Opens the settings menu",
+    "message": "Ouvrir le menu des paramètres",
     "description": "KikoPlugin..ctor"
   },
   "UI.DutyInfo.Title": {
-    "message": "{0} - Duty Information",
+    "message": "{0} - Informations de Mission",
     "description": "DutyInfo.DrawInfoWindow"
   },
   "UI.DutyInfo.DutyText": {
-    "message": "Duty: {0}",
+    "message": "Mission : {0}",
     "description": "DutyInfo.DrawInfoWindow"
   },
   "UI.DutyInfo.MechanicName": {
-    "message": "Mechanic",
+    "message": "Mécanique",
     "description": "DutyInfo.DrawInfoWindow"
   },
   "UI.DutyInfo.MechanicDescription": {
@@ -28,15 +28,15 @@
     "description": "DutyInfo.DrawInfoWindow"
   },
   "UI.DutyInfo.Error": {
-    "message": "An error occurred while trying to display duty information.",
+    "message": "Une erreur s'est produite pendant l'affichage des informations de la mission.",
     "description": "DutyInfo.DrawInfoWindow"
   },
   "UI.List.Title": {
-    "message": "{0} - Duty Finder",
+    "message": "{0} - Outil de Mission",
     "description": "List.DrawListWindow"
   },
   "UI.List.NoDutyFiles": {
-    "message": "No duty files detected! Please try Settings -> Update Resources.",
+    "message": "Aucun fichier de mission n'a été détecté ! Veuillez ouvrir les Paramètres -> Mettre à jour les Ressources.",
     "description": "List.DrawListWindow"
   },
   "UI.List.SupportButton": {
@@ -44,111 +44,111 @@
     "description": "List.DrawListWindow"
   },
   "UI.List.Search": {
-    "message": "Search",
+    "message": "Rechercher",
     "description": "List.DrawListWindow"
   },
   "UI.List.NoDutysForType": {
-    "message": "No duties for this type detected.",
+    "message": "Aucune mission de ce type n'a été détectée.",
     "description": "List.DrawListWindow"
   },
   "UI.List.Level": {
-    "message": "Level",
+    "message": "Niveau",
     "description": "List.DrawListWindow"
   },
   "UI.List.Duty": {
-    "message": "Duty",
+    "message": "Mission",
     "description": "List.DrawListWindow"
   },
   "UI.List.NoBossData": {
-    "message": "No guide available for {0}.",
+    "message": "Aucun guide n'est disponible pour {0}.",
     "description": "List.DrawListWindow"
   },
   "UI.List.UpdateRequired": {
-    "message": "Cannot display duty as it is not supported on this version.",
+    "message": "Impossible d'afficher cette mission car elle n'est pas supportée par cette version.",
     "description": "List.DrawListWindow"
   },
   "UI.List.InDuty": {
-    "message": "In Duty",
+    "message": "En Mission",
     "description": "List.DrawListWindow"
   },
   "UI.Settings.Title": {
-    "message": "{0} - Settings",
+    "message": "{0} - Paramètres",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.TabItem.General": {
-    "message": "General",
+    "message": "Général",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.AutoOpenDuty": {
-    "message": "Open in Duty",
+    "message": "Ouvrir automatiquement en Mission",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.AutoOpenDuty.Tooltip": {
-    "message": "Open the duty guide when entering a duty.",
+    "message": "Ouvre le guide de missions automatiquement lorsque vous commencez une mission.",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.ShortenStrategies": {
-    "message": "Shorten Strategies",
+    "message": "Condenser les Stratégies",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.ShortenStrategies.Tooltip": {
-    "message": "Shorten duty guide strategies if possible.",
+    "message": "Condense les stratégies du Guide de Missions si cela est possible.",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.ShowSupportButton": {
-    "message": "Show Support Button",
+    "message": "Afficher le bouton de Soutien",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.ShowSupportButton.Tooltip": {
-    "message": "Show the support Kiko Guide button.",
+    "message": "Affiche le bouton pour Soutenir Kiko Guide.",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources.Title": {
-    "message": "Resources & Localization",
+    "message": "Ressources & Traductions",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources.Text": {
-    "message": "Downloads the latest resources, localizations & guides.",
+    "message": "Télécharger les dernières ressources, traductions & guides.",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources": {
-    "message": "Update Resources",
+    "message": "Mettre à jour les Ressources",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.UpdateLocalization.Failed": {
-    "message": "Update Failed.",
+    "message": "Échec de la mise à jour.",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.UpdateLocalization.UpdatedAt": {
-    "message": "Last Update: {0}",
+    "message": "Dernière mise à jour : {0}",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.TabItem.Mechanics": {
-    "message": "Mechanics",
+    "message": "Mécaniques",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.HideMechanic": {
-    "message": "Hide {0}",
+    "message": "Masquer : {0}",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.HideMechanicTooltip": {
-    "message": "Hide {0} from the duty guide.",
+    "message": "Masque \"{0}\" dans le guide de missions.",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Tags.New": {
-    "message": "NEW",
+    "message": "NOUV.",
     "description": "Badges.New"
   },
   "Components.Tags.New.Tooltip": {
-    "message": "New addition!",
+    "message": "Nouvel ajout !",
     "description": "Badges.New"
   },
   "Duty.Boss.Name.None": {
-    "message": "Unnamed Boss",
+    "message": "Boss sans nom",
     "description": "Boss..ctor"
   },
   "Duty.Boss.Strategy.None": {
-    "message": "No strategy available yet.",
+    "message": "Aucune stratégie disponible pour le moment.",
     "description": "Boss..ctor"
   }
 }
