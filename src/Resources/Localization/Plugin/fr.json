@@ -128,7 +128,7 @@
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.HideMechanic": {
-    "message": "Masquer : {0}",
+    "message": "Masquer: {0}",
     "description": "Settings.DrawSettingsWindow"
   },
   "UI.Settings.HideMechanicTooltip": {

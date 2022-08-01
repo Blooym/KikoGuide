@@ -48,6 +48,7 @@ internal class SettingsScreen : IDisposable
         string localizableOutputDir = Service.Configuration.localizableOutputDir;
 #endif
 
+        ImGui.SetNextWindowSizeConstraints(new Vector2(410, 250), new Vector2(1000, 1000));
         if (ImGui.Begin(String.Format(Loc.Localize("UI.Settings.Title", "{0} - Settings"), PStrings.pluginName), ref presenter.isVisible))
         {
             // Create tab bar for each settings category
@@ -102,7 +103,7 @@ internal class SettingsScreen : IDisposable
                 {
                     ImGui.SameLine();
                     ImGui.TextWrapped(String.Format(Loc.Localize("UI.Settings.UpdateLocalization.UpdatedAt", "Last Update: {0}"),
-                    DateTimeOffset.FromUnixTimeMilliseconds(lastUpdateTime).ToString("dd/MM/yy - hh:mm tt")));
+                    DateTimeOffset.FromUnixTimeMilliseconds(lastUpdateTime).ToString("hh:mm tt")));
                 }
 
                 ImGui.EndTabItem();
