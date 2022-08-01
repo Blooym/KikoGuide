@@ -19,6 +19,7 @@ internal class KikoPlugin : IDalamudPlugin
     private const string listCommand = "/kikolist";
     private const string settingsCommand = "/kikoconfig";
     private const string editorCommand = "/kikoeditor";
+    private const string dutyInfoCommand = "/kikoinfo";
 
     public static ListScreen listScreen = new ListScreen();
     public static SettingsScreen settingsScreen = new SettingsScreen();
@@ -45,17 +46,22 @@ internal class KikoPlugin : IDalamudPlugin
         // Register all command handlers
         Service.Commands.AddHandler(listCommand, new CommandInfo(OnCommand)
         {
-            HelpMessage = Loc.Localize("Commands.List.Help", "Opens the duty list"),
+            HelpMessage = Loc.Localize("Commands.List.Help", "Toggles the duty list"),
         });
 
         Service.Commands.AddHandler(settingsCommand, new CommandInfo(OnCommand)
         {
-            HelpMessage = Loc.Localize("Commands.Settings.Help", "Opens the settings menu"),
+            HelpMessage = Loc.Localize("Commands.Settings.Help", "Toggles the settings menu"),
         });
 
         Service.Commands.AddHandler(editorCommand, new CommandInfo(OnCommand)
         {
-            HelpMessage = Loc.Localize("Commands.Editor.Help", "Opens the duty editor"),
+            HelpMessage = Loc.Localize("Commands.Editor.Help", "Toggles the duty editor"),
+        });
+
+        Service.Commands.AddHandler(dutyInfoCommand, new CommandInfo(OnCommand)
+        {
+            HelpMessage = Loc.Localize("Commands.Info.Help", "Toggles the duty info window if a duty is loaded"),
         });
     }
 
@@ -72,6 +78,7 @@ internal class KikoPlugin : IDalamudPlugin
         Service.Commands.RemoveHandler(listCommand);
         Service.Commands.RemoveHandler(settingsCommand);
         Service.Commands.RemoveHandler(editorCommand);
+        Service.Commands.RemoveHandler(dutyInfoCommand);
         UpdateManager.ResourcesUpdated -= DutyManager.OnResourceUpdate;
         Service.ClientState.Logout -= OnLogout;
         Service.PluginInterface.LanguageChanged -= OnLanguageChange;
@@ -121,6 +128,9 @@ internal class KikoPlugin : IDalamudPlugin
                 break;
             case editorCommand:
                 editorScreen.presenter.isVisible = !editorScreen.presenter.isVisible;
+                break;
+            case dutyInfoCommand:
+                dutyInfoScreen.presenter.isVisible = !dutyInfoScreen.presenter.isVisible;
                 break;
         }
     }

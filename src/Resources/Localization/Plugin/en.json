@@ -1,14 +1,18 @@
 {
   "Commands.List.Help": {
-    "message": "Opens the duty list",
+    "message": "Toggles the duty list",
     "description": "KikoPlugin..ctor"
   },
   "Commands.Settings.Help": {
-    "message": "Opens the settings menu",
+    "message": "Toggles the settings menu",
     "description": "KikoPlugin..ctor"
   },
   "Commands.Editor.Help": {
-    "message": "Opens the duty editor",
+    "message": "Toggles the duty editor",
+    "description": "KikoPlugin..ctor"
+  },
+  "Commands.Info.Help": {
+    "message": "Toggles the duty info window if a duty is loaded",
     "description": "KikoPlugin..ctor"
   },
   "UI.Settings.Title": {
