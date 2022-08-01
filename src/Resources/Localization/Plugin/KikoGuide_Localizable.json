@@ -7,133 +7,165 @@
     "message": "Opens the settings menu",
     "description": "KikoPlugin..ctor"
   },
-  "UI.DutyInfo.Title": {
-    "message": "{0} - Duty Information",
-    "description": "DutyInfo.DrawInfoWindow"
-  },
-  "UI.DutyInfo.DutyText": {
-    "message": "Duty: {0}",
-    "description": "DutyInfo.DrawInfoWindow"
-  },
-  "UI.DutyInfo.MechanicName": {
-    "message": "Mechanic",
-    "description": "DutyInfo.DrawInfoWindow"
-  },
-  "UI.DutyInfo.MechanicDescription": {
-    "message": "Description",
-    "description": "DutyInfo.DrawInfoWindow"
-  },
-  "UI.DutyInfo.MechanicType": {
-    "message": "Type",
-    "description": "DutyInfo.DrawInfoWindow"
-  },
-  "UI.DutyInfo.Error": {
-    "message": "An error occurred while trying to display duty information.",
-    "description": "DutyInfo.DrawInfoWindow"
-  },
-  "UI.List.Title": {
-    "message": "{0} - Duty Finder",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.NoDutyFiles": {
-    "message": "No duty files detected! Please try Settings -> Update Resources.",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.SupportButton": {
-    "message": "Support (GitHub)",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.Search": {
-    "message": "Search",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.NoDutysForType": {
-    "message": "No duties for this type detected.",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.Level": {
-    "message": "Level",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.Duty": {
-    "message": "Duty",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.NoBossData": {
-    "message": "No guide available for {0}.",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.UpdateRequired": {
-    "message": "Cannot display duty as it is not supported on this version.",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.InDuty": {
-    "message": "In Duty",
-    "description": "List.DrawListWindow"
+  "Commands.Editor.Help": {
+    "message": "Opens the duty editor",
+    "description": "KikoPlugin..ctor"
   },
   "UI.Settings.Title": {
     "message": "{0} - Settings",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.TabItem.General": {
     "message": "General",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.AutoOpenDuty": {
     "message": "Open in Duty",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.AutoOpenDuty.Tooltip": {
     "message": "Open the duty guide when entering a duty.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.ShortenStrategies": {
     "message": "Shorten Strategies",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.ShortenStrategies.Tooltip": {
     "message": "Shorten duty guide strategies if possible.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.ShowSupportButton": {
     "message": "Show Support Button",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.ShowSupportButton.Tooltip": {
     "message": "Show the support Kiko Guide button.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources.Title": {
     "message": "Resources & Localization",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources.Text": {
     "message": "Downloads the latest resources, localizations & guides.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources": {
     "message": "Update Resources",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.UpdateLocalization.Failed": {
     "message": "Update Failed.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.UpdateLocalization.UpdatedAt": {
     "message": "Last Update: {0}",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.TabItem.Mechanics": {
     "message": "Mechanics",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.HideMechanic": {
     "message": "Hide {0}",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.HideMechanicTooltip": {
     "message": "Hide {0} from the duty guide.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
+  },
+  "UI.List.Title": {
+    "message": "{0} - Duty Finder",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.NoDutyFiles": {
+    "message": "No duty files detected! Please try Settings -> Update Resources.",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.SupportButton": {
+    "message": "Support (GitHub)",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.Search": {
+    "message": "Search",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.NoDutysForType": {
+    "message": "No duties for this type detected.",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.Level": {
+    "message": "Level",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.Duty": {
+    "message": "Duty",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.NoBossData": {
+    "message": "No guide available for {0}.",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.UpdateRequired": {
+    "message": "Cannot display duty as it is not supported on this version.",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.InDuty": {
+    "message": "In Duty",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.Editor.Title": {
+    "message": "{0} - Duty Editor",
+    "description": "EditorScreen.DrawEditorUI"
+  },
+  "Generics.SaveFile": {
+    "message": "Save File",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "Generics.OpenFile": {
+    "message": "Open File",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.DutyPreview": {
+    "message": "Duty Preview",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.DutyInfo.MechanicName": {
+    "message": "Mechanic",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.DutyInfo.MechanicDescription": {
+    "message": "Description",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.DutyInfo.MechanicType": {
+    "message": "Type",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.Editor.DutyMetadata": {
+    "message": "Duty Metadata",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.Editor.EnumValues": {
+    "message": "Enum Values",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.Editor.PlayerInfo": {
+    "message": "Player Info",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.DutyInfo.Title": {
+    "message": "{0} - Duty Information",
+    "description": "DutyInfoScreen.DrawInfoWindow"
+  },
+  "UI.DutyInfo.DutyText": {
+    "message": "Duty: {0}",
+    "description": "DutyInfoScreen.DrawInfoWindow"
+  },
+  "UI.DutyInfo.Error": {
+    "message": "An error occurred while trying to display duty information.",
+    "description": "DutyInfoScreen.DrawInfoWindow"
   },
   "UI.Tags.New": {
     "message": "NEW",
@@ -142,6 +174,10 @@
   "Components.Tags.New.Tooltip": {
     "message": "New addition!",
     "description": "Badges.New"
+  },
+  "Duty.Name.None": {
+    "message": "Unnamed Duty",
+    "description": "Duty..ctor"
   },
   "Duty.Boss.Name.None": {
     "message": "Unnamed Boss",
