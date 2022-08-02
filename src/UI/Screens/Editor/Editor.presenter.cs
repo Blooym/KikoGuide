@@ -1,48 +1,59 @@
-namespace KikoGuide.UI.Editor;
+namespace KikoGuide.UI.Screens.Editor;
 
-using System.IO;
 using System;
+using System.IO;
+using CheapLoc;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using Dalamud.Interface.ImGuiFileDialog;
 using Dalamud.Interface.Internal.Notifications;
-using KikoGuide.Managers;
 using KikoGuide.Base;
+using KikoGuide.Managers;
 
-class EditorPresenter : IDisposable
+sealed class EditorPresenter : IDisposable
 {
     public EditorPresenter() { }
     public void Dispose() { }
 
+    /// <summary> If the associated screen should be drawn. </summary>
     public bool isVisible = false;
+
+    /// <summary> An instance of the FileDialogManager for loading/saving duties. </summary>
     public FileDialogManager dialogManager = new FileDialogManager();
 
-    /// <summary>
-    ///     Handles the file select event
-    /// </summary>
+    /// <summary> The character limit for the input text fields, applies to the UI and file loading. </summary>
+    public uint characterLimit = 50000;
+
+    /// <summary> Handles the file select event </summary>
     public string OnFileSelect(bool success, string file, string text)
     {
         if (!success) return text;
         var fileText = File.ReadAllText(file);
+
+        // If the length was zero, it likely means they cancelled the dialog or the file was empty.
         if (fileText.Length == 0) return text;
-        Service.PluginInterface.UiBuilder.AddNotification("File loaded successfully.", PStrings.pluginName, NotificationType.Success);
+
+        // Reject loading if the file length is beyond the character limit.
+        if (fileText.Length > this.characterLimit)
+        {
+            Service.PluginInterface.UiBuilder.AddNotification(Loc.Localize("UI.Screens.Editor.FileTooLong", "Your file was too big to be loaded into the editor."), PStrings.pluginName, NotificationType.Error);
+            return text;
+        }
+
+        Service.PluginInterface.UiBuilder.AddNotification(Loc.Localize("UI.Screens.Editor.FileLoaded", "Your file was successfully loaded."), PStrings.pluginName, NotificationType.Success);
         return fileText;
     }
 
-
-    /// <summary>
-    ///     Handles the file save event.
-    /// </summary>
+    /// <summary> Handles the file save event. </summary>
     public void OnFileSave(bool success, string file, string text)
     {
         if (!success) return;
+        text = this.OnFormat(text);
         File.WriteAllText(file, text);
-        Service.PluginInterface.UiBuilder.AddNotification("File saved successfully.", PStrings.pluginName, NotificationType.Success);
+        Service.PluginInterface.UiBuilder.AddNotification(Loc.Localize("UI.Screens.Editor.FileSaved", "Your file was successfully saved."), PStrings.pluginName, NotificationType.Success);
     }
 
-
-    /// <summary>
-    ///     Formats the given text into an acceptable format for submission.
-    /// </summary>
+    /// <summary> Formats the given text into a better layout. </summary>
     public string OnFormat(string text)
     {
         try
@@ -56,11 +67,9 @@ class EditorPresenter : IDisposable
                 }
             }
             return string.Join("\n", newLines).Trim();
-
         }
         catch { return text; }
     }
-
 
     /// <summary> The last parse result from this.ParseDuty() </summary>
     private Tuple<Duty?, Exception?>? _lastParseResult;
@@ -68,9 +77,7 @@ class EditorPresenter : IDisposable
     /// <summary> THe last parsed dutyText for this.ParseDuty(), used to prevent consistently deserializing. </summary>
     private string _parsedDutyText = "";
 
-    /// <summary>
-    ///     Parses the given dutyText into a Duty object or returns an Exception.
-    /// </summary>
+    /// <summary> Parses the given dutyText into a Duty object or returns an Exception. </summary>
     public Tuple<Duty?, Exception?> ParseDuty(string dutyText)
     {
         if (dutyText == this._parsedDutyText && this._lastParseResult != null) return this._lastParseResult;
@@ -78,7 +85,7 @@ class EditorPresenter : IDisposable
 
         try
         {
-            this._lastParseResult = new Tuple<Duty?, Exception?>(Newtonsoft.Json.JsonConvert.DeserializeObject<Duty>(dutyText), null);
+            this._lastParseResult = new Tuple<Duty?, Exception?>(JsonConvert.DeserializeObject<Duty>(dutyText), null);
             return this._lastParseResult;
         }
 

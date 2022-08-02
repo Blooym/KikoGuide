@@ -1,4 +1,4 @@
-namespace KikoGuide.UI.Settings;
+namespace KikoGuide.UI.Screens.Settings;
 
 using System;
 using System.Numerics;
@@ -11,29 +11,17 @@ using KikoGuide.Enums;
 using KikoGuide.Managers;
 using KikoGuide.UI.Components;
 
-internal class SettingsScreen : IDisposable
+sealed class SettingsScreen : IDisposable
 {
     public SettingsPresenter presenter = new SettingsPresenter();
 
+    /// <summary> Disposes of the settings screen and any resources it uses. </summary>
+    public void Dispose() => this.presenter.Dispose();
 
-    /// <summary>
-    ///     Disposes of the settings UI window and any resources it uses.
-    /// </summary>
-    public void Dispose()
-    {
-        this.presenter.Dispose();
-    }
-
-
-    /// <summary>
-    ///     Draws all UI elements associated with the settings UI.
-    /// </summary>
+    /// <summary> Draws all UI elements associated with the settings screen. </summary>
     public void Draw() => DrawSettingsWindow();
 
-
-    /// <summary>
-    ///     Draws the settings window.
-    /// </summary>
+    /// <summary> Draws the settings window. </summary>
     private void DrawSettingsWindow()
     {
 

@@ -12,9 +12,7 @@ sealed internal class CommandManager : IDisposable
     private const string editorCommand = "/kikoeditor";
     private const string dutyInfoCommand = "/kikoinfo";
 
-    /// <summary>
-    ///     Initializes the plugin commands.
-    /// </summary>
+    /// <summary> Initializes the plugin commands and handlers </summary>
     public void Initialize()
     {
         Service.CommandManager.AddHandler(listCommand, new CommandInfo(OnCommand)
@@ -38,9 +36,7 @@ sealed internal class CommandManager : IDisposable
         });
     }
 
-    /// <summary>
-    ///     Dispose of all PluginCommand handlers.
-    /// </summary>
+    /// <summary> Dispose of all PluginCommand handlers. </summary>
     public void Dispose()
     {
         Service.CommandManager.RemoveHandler(listCommand);
@@ -49,9 +45,7 @@ sealed internal class CommandManager : IDisposable
         Service.CommandManager.RemoveHandler(dutyInfoCommand);
     }
 
-    /// <summary>
-    ///     Event handler for when a command is issued by the user.
-    /// </summary>
+    /// <summary> Event handler for when a command is issued by the user. </summary>
     private void OnCommand(string command, string args)
     {
         switch (command)

@@ -1,4 +1,4 @@
-namespace KikoGuide.UI.Settings;
+namespace KikoGuide.UI.Screens.Settings;
 
 using System;
 using System.IO;
@@ -7,7 +7,7 @@ using KikoGuide.Base;
 using Dalamud.Interface.ImGuiFileDialog;
 using Dalamud.Interface.Internal.Notifications;
 
-class SettingsPresenter : IDisposable
+sealed class SettingsPresenter : IDisposable
 {
     public SettingsPresenter() { }
     public void Dispose() { }

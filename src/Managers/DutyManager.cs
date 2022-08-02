@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using KikoGuide.Base;
 using KikoGuide.Enums;
 using CheapLoc;
+using Newtonsoft.Json;
 using Dalamud.Logging;
 using FFXIVClientStructs.FFXIV.Client.Game;
 
@@ -27,7 +28,6 @@ sealed public class Duty
     public uint TerritoryID { get; set; } = 0;
     public List<Boss>? Bosses { get; set; } = null;
 
-
     /// <summary> Boolean value indicating if this duty is not supported on the current plugin version. </summary>
     public bool IsSupported()
     {
@@ -40,7 +40,6 @@ sealed public class Duty
         return true;
     }
 
-
     /// <summary> Boolean value indicating if the duty has been unlocked by the player. </summary>
     public bool IsUnlocked() => DutyManager.GetPlayerDuty() == this || QuestManager.IsQuestComplete(this.UnlockQuestID);
 
@@ -51,7 +50,6 @@ sealed public class Duty
         public string Strategy { get; set; } = Loc.Localize("Duty.Boss.Strategy.None", "No strategy available yet.");
         public string? TLDR { get; set; }
         public List<KeyMechanic>? KeyMechanics { get; set; }
-
 
         sealed public class KeyMechanic
         {
@@ -72,8 +70,7 @@ public static class DutyManager
     private static List<Duty>? _loadedDuties = LoadDutyData();
 
     /// <summary> Handles updating duty data when resources are updated. </summary>
-    internal static void OnResourceUpdate() => _loadedDuties = LoadDutyData();
-
+    internal static void OnResourceUpdate() => _loadedDuties = null;
 
     /// <summary>
     ///     Desearializes duty data from the duty data folder, attempts to use client language.
@@ -95,7 +92,7 @@ public static class DutyManager
                 // Try and deserialize the duty data and add it to the list if its not null.
                 try
                 {
-                    Duty? duty = Newtonsoft.Json.JsonConvert.DeserializeObject<Duty>(System.IO.File.ReadAllText(file));
+                    Duty? duty = JsonConvert.DeserializeObject<Duty>(File.ReadAllText(file));
                     if (duty != null) duties.Add(duty);
                 }
                 catch { } // If this fails, just skip the file and move on.
@@ -119,7 +116,6 @@ public static class DutyManager
         if (_loadedDuties != null) return _loadedDuties;
         return LoadDutyData();
     }
-
 
     /// <summary>
     ///     Returns the duty the player is currently inside of. Returns null if the player is not inside of a known duty.

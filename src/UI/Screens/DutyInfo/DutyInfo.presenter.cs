@@ -1,10 +1,10 @@
-namespace KikoGuide.UI.DutyInfo;
+namespace KikoGuide.UI.Screens.DutyInfo;
 
 using System;
 using KikoGuide.Base;
 using KikoGuide.Managers;
 
-class DutyInfoPresenter : IDisposable
+sealed class DutyInfoPresenter : IDisposable
 {
     public DutyInfoPresenter()
     {
@@ -19,9 +19,7 @@ class DutyInfoPresenter : IDisposable
     public bool isVisible = false;
     public Duty? selectedDuty = null;
 
-    /// <summary>
-    ///     Handles territory change even and changes the UI state accordingly.
-    /// </summary>
+    /// <summary> Handles territory change even and changes the UI state accordingly. </summary>
     public void OnTerritoryChange(object? sender, ushort e)
     {
         // Skip if the config says to ignore this.

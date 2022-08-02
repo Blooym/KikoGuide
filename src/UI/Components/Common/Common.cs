@@ -12,7 +12,6 @@ static class Common
         ImGui.Separator();
     }
 
-
     /// <summary> Draws a checkbox with an onPress event when interacted with. </summary>
     public static void ToggleCheckbox(string label, ref bool value, Action? onPress = null)
     {

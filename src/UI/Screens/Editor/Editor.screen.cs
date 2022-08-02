@@ -1,4 +1,4 @@
-namespace KikoGuide.UI.Editor;
+namespace KikoGuide.UI.Screens.Editor;
 
 using System;
 using System.Numerics;
@@ -8,33 +8,23 @@ using Dalamud.Interface.Components;
 using Dalamud.Interface;
 using KikoGuide.Base;
 using KikoGuide.Enums;
+using KikoGuide.UI.Components.Duty;
 using KikoGuide.UI.Components;
 
-internal class EditorScreen : IDisposable
+sealed class EditorScreen : IDisposable
 {
     public EditorPresenter presenter = new EditorPresenter();
 
+    /// <summary> Disposes of the Editor screen and any resources it uses. </summary>
+    public void Dispose() => this.presenter.Dispose();
 
-    /// <summary>
-    ///     Disposes of the Editor screen and any resources it uses.
-    /// </summary>
-    public void Dispose()
-    {
-        this.presenter.Dispose();
-    }
-
-
-    /// <summary>
-    ///     Draws all UI elements associated with the Editor screen.
-    /// </summary>
+    /// <summary> Draws all UI elements associated with the Editor screen. </summary>
     public void Draw() => this.DrawEditorUI();
 
-
+    /// <summary> The current editor input text. </summary>
     private string _inputText = "";
 
-    /// <summary> 
-    ///     Draws the Editor window and sub-components.
-    /// </summary>
+    /// <summary> Draws the Editor window and sub-components. </summary>
     private void DrawEditorUI()
     {
         if (!presenter.isVisible) return;
@@ -56,19 +46,17 @@ internal class EditorScreen : IDisposable
             ImGui.BeginChild("##EditorInput");
             this.DrawEditorInput();
             ImGui.EndChild();
+
             ImGui.TableNextColumn();
             ImGui.BeginChild("##EditorPreview");
             this.DrawEditorPreview();
-            ImGui.TableNextColumn();
             ImGui.EndChild();
             ImGui.EndTable();
         }
     }
 
 
-    /// <summary>
-    ///     Draws the buttons at the top of the editor.
-    /// </summary>
+    /// <summary> Draws the buttons at the top of the editor. </summary>
     private void DrawEditorButtons()
     {
         if (ImGuiComponents.IconButton(FontAwesomeIcon.FileImport))
@@ -107,78 +95,47 @@ internal class EditorScreen : IDisposable
     }
 
 
-    /// <summary>
-    ///     Draws the input zone for the editor.
-    /// </summary>
+    /// <summary> Draws the input zone for the editor. </summary>
     private void DrawEditorInput()
     {
-        var txt = this._inputText;
         var parsedDuty = presenter.ParseDuty(this._inputText);
+        var inputText = this._inputText;
 
-        // The text input box for the editor.
-        if (ImGui.InputTextMultiline("##DutyInfoInput", ref txt, 10000, new Vector2(-1, -70), ImGuiInputTextFlags.AllowTabInput))
+        // Total lines & characters display
+        ImGui.TextWrapped($"Lines: {inputText.Split('\n').Length.ToString()} | Characters: {inputText.Length.ToString()}/{presenter.characterLimit}");
+
+        // Editor input
+        if (ImGui.InputTextMultiline("##DutyInfoInput", ref inputText, presenter.characterLimit, new Vector2(-1, -70), ImGuiInputTextFlags.AllowTabInput))
         {
-            this._inputText = txt;
+            this._inputText = inputText;
         }
 
-        ImGui.TextWrapped(Loc.Localize("UI.Editor.DetectedIssues", "Detected Issues:"));
-        if (parsedDuty.Item2?.Message != null) ImGui.TextWrapped(parsedDuty.Item2?.Message);
-        else if (parsedDuty?.Item1?.IsSupported() == false) ImGui.TextWrapped(Loc.Localize("UI.Editor.Unsupported", "Duty contains invalid enum values or is unsupported by this plugin version."));
-        else ImGui.TextWrapped(Loc.Localize("UI.Editor.NoIssues", "No issues detected."));
+        // Problems window.
+        ImGui.TextWrapped(Loc.Localize("UI.Editor.Problems", "Problems:"));
+        if (parsedDuty.Item2?.Message != null)
+            Colours.TextWrappedColoured(Colours.Error, parsedDuty.Item2.Message);
+        else if (parsedDuty?.Item1?.IsSupported() == false)
+            Colours.TextWrappedColoured(Colours.Warning, Loc.Localize("UI.Editor.Unsupported", "Duty contains invalid IDs and/or is unsupported by this plugin version."));
+        else
+            ImGui.TextWrapped(Loc.Localize("UI.Editor.Problems.None", "No problems have been detected for this file."));
     }
 
 
-    /// <summary>
-    ///     Draws the duty preview pane for the duty editor.
-    /// </summary>
+    /// <summary> Draws the duty preview pane for the duty editor. </summary>
     private void DrawEditorPreview()
     {
         var duty = presenter.ParseDuty(this._inputText).Item1;
 
-        // Create a tab bar for the preview pane.
+        // Create a tab for the parsed duty display.
         if (ImGui.BeginTabBar("##DutyInfoPreview", ImGuiTabBarFlags.Reorderable))
         {
-            // Create a tab for the formatted duty preview.
             if (ImGui.BeginTabItem(Loc.Localize("UI.Editor.Preview", "Preview")))
             {
-                if (duty != null && duty.Bosses != null)
+                if (duty != null)
                 {
-                    foreach (var boss in duty.Bosses)
-                    {
-                        if (ImGui.CollapsingHeader(boss.Name, ImGuiTreeNodeFlags.DefaultOpen))
-                        {
-                            ImGui.TextWrapped(boss.Strategy);
-                            ImGui.NewLine();
-
-                            if (boss.KeyMechanics != null && boss.KeyMechanics.Count != 0)
-                            {
-                                // Create a table for key mechanics of this boss that are enabled.
-                                ImGui.BeginTable("##Boss Mechanics", 3, ImGuiTableFlags.Hideable | ImGuiTableFlags.Reorderable | ImGuiTableFlags.Borders | ImGuiTableFlags.Resizable);
-                                ImGui.TableSetupColumn(Loc.Localize("UI.DutyInfo.MechanicName", "Mechanic"), ImGuiTableColumnFlags.WidthStretch, 0.3f);
-                                ImGui.TableSetupColumn(Loc.Localize("UI.DutyInfo.MechanicDescription", "Description"), ImGuiTableColumnFlags.WidthStretch, 0.6f);
-                                ImGui.TableSetupColumn(Loc.Localize("UI.DutyInfo.MechanicType", "Type"), ImGuiTableColumnFlags.WidthStretch, 0.2f);
-                                ImGui.TableHeadersRow();
-
-                                foreach (var mechanic in boss.KeyMechanics)
-                                {
-                                    ImGui.TableNextRow();
-                                    ImGui.TableNextColumn();
-                                    ImGui.Text(mechanic.Name);
-                                    ImGui.TableNextColumn();
-                                    ImGui.TextWrapped(mechanic.Description);
-                                    ImGui.TableNextColumn();
-                                    if (Enum.GetName(typeof(Mechanics), mechanic.Type) == null) ImGui.Text("Unknown");
-                                    else ImGui.Text(Enum.GetName(typeof(Mechanics), mechanic.Type));
-
-                                }
-                                ImGui.EndTable();
-                                ImGui.NewLine();
-                            }
-                        }
-                    }
+                    DutyHeadingComponent.Draw(duty);
+                    if (duty.Bosses != null) DutyBossListComponent.Draw(duty.Bosses);
                 }
-                else ImGui.TextWrapped(Loc.Localize("UI.Editor.NothingToPreview", "Nothing to preview, start editing or resolve issues to see something here."));
-
                 ImGui.EndTabItem();
             }
         }
@@ -244,4 +201,5 @@ internal class EditorScreen : IDisposable
 
         ImGui.EndTabBar();
     }
+
 }
