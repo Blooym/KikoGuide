@@ -2,7 +2,6 @@ namespace KikoGuide;
 
 using System;
 using System.IO;
-using Dalamud.Game.Command;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using KikoGuide.UI.DutyList;
@@ -16,25 +15,23 @@ using CheapLoc;
 internal class KikoPlugin : IDalamudPlugin
 {
     public string Name => PStrings.pluginName;
-    private const string listCommand = "/kikolist";
-    private const string settingsCommand = "/kikoconfig";
-    private const string editorCommand = "/kikoeditor";
-    private const string dutyInfoCommand = "/kikoinfo";
-
     public static ListScreen listScreen = new ListScreen();
     public static SettingsScreen settingsScreen = new SettingsScreen();
     public static DutyInfoScreen dutyInfoScreen = new DutyInfoScreen();
     public static EditorScreen editorScreen = new EditorScreen();
+    public static CommandManager commands = new CommandManager();
 
     public KikoPlugin([RequiredVersion("1.0")] DalamudPluginInterface pluginInterface)
     {
-        // Inject/Create all services
         pluginInterface.Create<Service>();
-
-        // Initialize everything & load trigger any events
         Service.Initialize(Service.PluginInterface.GetPluginConfig() as Configuration ?? new Configuration());
+        commands.Initialize();
         OnLanguageChange(Service.PluginInterface.UiLanguage);
+
+
+#if !DEBUG
         UpdateManager.UpdateResources();
+#endif
 
         // Register event handlers
         Service.PluginInterface.UiBuilder.Draw += DrawUI;
@@ -42,27 +39,6 @@ internal class KikoPlugin : IDalamudPlugin
         Service.PluginInterface.LanguageChanged += OnLanguageChange;
         Service.ClientState.Logout += OnLogout;
         UpdateManager.ResourcesUpdated += DutyManager.OnResourceUpdate;
-
-        // Register all command handlers
-        Service.Commands.AddHandler(listCommand, new CommandInfo(OnCommand)
-        {
-            HelpMessage = Loc.Localize("Commands.List.Help", "Toggles the duty list"),
-        });
-
-        Service.Commands.AddHandler(settingsCommand, new CommandInfo(OnCommand)
-        {
-            HelpMessage = Loc.Localize("Commands.Settings.Help", "Toggles the settings menu"),
-        });
-
-        Service.Commands.AddHandler(editorCommand, new CommandInfo(OnCommand)
-        {
-            HelpMessage = Loc.Localize("Commands.Editor.Help", "Toggles the duty editor"),
-        });
-
-        Service.Commands.AddHandler(dutyInfoCommand, new CommandInfo(OnCommand)
-        {
-            HelpMessage = Loc.Localize("Commands.Info.Help", "Toggles the duty info window if a duty is loaded"),
-        });
     }
 
 
@@ -75,10 +51,7 @@ internal class KikoPlugin : IDalamudPlugin
         settingsScreen.Dispose();
         dutyInfoScreen.Dispose();
         editorScreen.Dispose();
-        Service.Commands.RemoveHandler(listCommand);
-        Service.Commands.RemoveHandler(settingsCommand);
-        Service.Commands.RemoveHandler(editorCommand);
-        Service.Commands.RemoveHandler(dutyInfoCommand);
+        commands.Dispose();
         UpdateManager.ResourcesUpdated -= DutyManager.OnResourceUpdate;
         Service.ClientState.Logout -= OnLogout;
         Service.PluginInterface.LanguageChanged -= OnLanguageChange;
@@ -114,29 +87,6 @@ internal class KikoPlugin : IDalamudPlugin
 
 
     /// <summary>
-    ///     Event handler for when a command is issued by the user.
-    /// </summary>
-    private protected void OnCommand(string command, string args)
-    {
-        switch (command)
-        {
-            case listCommand:
-                listScreen.presenter.isVisible = !listScreen.presenter.isVisible;
-                break;
-            case settingsCommand:
-                settingsScreen.presenter.isVisible = !settingsScreen.presenter.isVisible;
-                break;
-            case editorCommand:
-                editorScreen.presenter.isVisible = !editorScreen.presenter.isVisible;
-                break;
-            case dutyInfoCommand:
-                dutyInfoScreen.presenter.isVisible = !dutyInfoScreen.presenter.isVisible;
-                break;
-        }
-    }
-
-
-    /// <summary>
     ///     Event handler for when the plugin is told to draw the UI.
     /// </summary>
     private protected void DrawUI()
@@ -152,5 +102,4 @@ internal class KikoPlugin : IDalamudPlugin
     ///     Event handler for when the UI is told to draw the config UI (Dalamud settings button)
     /// </summary>
     private protected void DrawConfigUI() => settingsScreen.presenter.isVisible = !settingsScreen.presenter.isVisible;
-
 }

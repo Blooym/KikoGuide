@@ -1,10 +1,21 @@
 namespace KikoGuide.UI.DutyInfo;
 
+using System;
 using KikoGuide.Managers;
 using KikoGuide.Base;
 
-class DutyInfoPresenter
+class DutyInfoPresenter : IDisposable
 {
+    public DutyInfoPresenter()
+    {
+        Service.ClientState.TerritoryChanged += this.OnTerritoryChange;
+    }
+
+    public void Dispose()
+    {
+        Service.ClientState.TerritoryChanged -= this.OnTerritoryChange;
+    }
+
     public bool isVisible = false;
     public Duty? selectedDuty = null;
 

@@ -12,20 +12,13 @@ internal class DutyInfoScreen : IDisposable
 {
     public DutyInfoPresenter presenter = new DutyInfoPresenter();
 
-
-    /// <summary>
-    ///     The constructor for the DutyInfoScreen.
-    /// </summary>
-    public DutyInfoScreen()
-    {
-        Service.ClientState.TerritoryChanged += this.presenter.OnTerritoryChange;
-    }
-
-
     /// <summary>
     ///     Disposes of the Duty info screen and any resources it uses.
     /// </summary>
-    public void Dispose() { }
+    public void Dispose()
+    {
+        this.presenter.Dispose();
+    }
 
 
     /// <summary>
@@ -41,8 +34,7 @@ internal class DutyInfoScreen : IDisposable
     {
         var selectedDuty = presenter.selectedDuty;
 
-        if (selectedDuty == null || !presenter.isVisible) return;
-        if (selectedDuty.Bosses == null || !selectedDuty.IsSupported()) return;
+        if (!presenter.isVisible) return;
 
         var disabledMechanics = Service.Configuration?.hiddenMechanics;
         var shortMode = Service.Configuration?.shortenStrategies;
@@ -52,6 +44,11 @@ internal class DutyInfoScreen : IDisposable
         {
             try
             {
+                if (selectedDuty == null || selectedDuty.Bosses == null)
+                {
+                    ImGui.Text(Loc.Localize("UI.DutyInfo.NoDuty", "No duty selected."));
+                    return;
+                }
                 // Set the duty name to be just the duty name, or the duty name and difficulty if its not normal difficulty.
                 var dutyName = selectedDuty.Name;
                 if (selectedDuty.Difficulty != (int)DutyDifficulty.Normal) dutyName = $"{selectedDuty.Name} ({Enum.GetName(typeof(DutyDifficulty), selectedDuty.Difficulty)})";

@@ -12,14 +12,13 @@ using KikoGuide.UI.Components;
 
 internal class ListScreen : IDisposable
 {
-    private string _searchText = "";
     public DutyListPresenter presenter = new DutyListPresenter();
 
 
     /// <summary>
     ///     Disposes of the List UI window and any resources it uses.
     /// </summary>
-    public void Dispose() { }
+    public void Dispose() { this.presenter.Dispose(); }
 
 
     /// <summary>
@@ -27,6 +26,8 @@ internal class ListScreen : IDisposable
     /// </summary>
     public void Draw() => DrawListWindow();
 
+
+    private string _searchText = "";
 
     /// <summary>
     ///      Draws the list window.

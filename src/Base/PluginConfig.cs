@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Dalamud.Configuration;
 
 [Serializable]
-class Configuration : IPluginConfiguration
+sealed internal class Configuration : IPluginConfiguration
 {
     /// <summary> 
     ///     The current configuration version. Incremented whenever breaking changes are made to the configuration.
@@ -44,15 +44,6 @@ class Configuration : IPluginConfiguration
     ///     Stores the last resource update timestamp, automatically updated by the plugin backend. Should NOT be set manually.
     /// </summary>
     public long lastResourceUpdate { get; set; } = 0;
-
-
-#if DEBUG
-    /// <summary> 
-    ///     The output location of localizable files to when using the export button. Available to debug builds only.
-    /// </summary>
-    public string localizableOutputDir { get; set; } = Service.PluginInterface.AssemblyLocation?.Directory?.FullName ?? "";
-    int IPluginConfiguration.Version { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-#endif
 
 
     /// <summary>

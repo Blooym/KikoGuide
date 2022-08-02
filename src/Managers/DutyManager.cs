@@ -10,7 +10,6 @@ using FFXIVClientStructs.FFXIV.Client.Game;
 using Dalamud.Logging;
 using CheapLoc;
 
-
 /// <summary>
 ///     The Duty class represents an in-game duty.
 /// </summary>
@@ -18,7 +17,6 @@ sealed public class Duty
 {
     /// <summary> Duty JSON format version, incremented on breaking changes. </summary>
     private readonly int _formatVersion = 0;
-
     public int Version { get; set; } = 0;
     public string Name { get; set; } = Loc.Localize("Duty.Name.None", "Unnamed Duty");
     public int Difficulty { get; set; } = 0;
@@ -28,6 +26,7 @@ sealed public class Duty
     public uint UnlockQuestID { get; set; } = 0;
     public uint TerritoryID { get; set; } = 0;
     public List<Boss>? Bosses { get; set; } = null;
+
 
     /// <summary> Boolean value indicating if this duty is not supported on the current plugin version. </summary>
     public bool IsSupported()
@@ -44,29 +43,23 @@ sealed public class Duty
 
     /// <summary> Boolean value indicating if the duty has been unlocked by the player. </summary>
     public bool IsUnlocked() => DutyManager.GetPlayerDuty() == this || QuestManager.IsQuestComplete(this.UnlockQuestID);
-}
 
 
-/// <summary>
-///     The base Boss type, typically found within a <see cref="Duty" />.
-/// </summary>
-sealed public class Boss
-{
-    public string Name { get; set; } = Loc.Localize("Duty.Boss.Name.None", "Unnamed Boss");
-    public string Strategy { get; set; } = Loc.Localize("Duty.Boss.Strategy.None", "No strategy available yet.");
-    public string? TLDR { get; set; }
-    public List<KeyMechanics>? KeyMechanics { get; set; }
-}
+    sealed public class Boss
+    {
+        public string Name { get; set; } = Loc.Localize("Duty.Boss.Name.None", "Unnamed Boss");
+        public string Strategy { get; set; } = Loc.Localize("Duty.Boss.Strategy.None", "No strategy available yet.");
+        public string? TLDR { get; set; }
+        public List<KeyMechanic>? KeyMechanics { get; set; }
 
 
-/// <summary>
-///      The base KeyMechanic type, typically found within a <see cref="Boss" />.
-/// </summary>
-sealed public class KeyMechanics
-{
-    public string Name { get; set; } = "???";
-    public string Description { get; set; } = "???";
-    public int Type { get; set; } = 10;
+        sealed public class KeyMechanic
+        {
+            public string Name { get; set; } = "???";
+            public string Description { get; set; } = "???";
+            public int Type { get; set; } = 10;
+        }
+    }
 }
 
 
@@ -78,15 +71,14 @@ public static class DutyManager
     /// <summary> All currently loaded duties </summary>
     private static List<Duty>? _loadedDuties = LoadDutyData();
 
-
     /// <summary> Handles updating duty data when resources are updated. </summary>
-    public static void OnResourceUpdate() => _loadedDuties = LoadDutyData();
+    internal static void OnResourceUpdate() => _loadedDuties = LoadDutyData();
 
 
     /// <summary>
     ///     Desearializes duty data from the duty data folder, attempts to use client language.
     ///  </summary>
-    public static List<Duty> LoadDutyData()
+    private static List<Duty> LoadDutyData()
     {
         PluginLog.Debug($"DutyManager: Loading duty data");
 
@@ -109,7 +101,7 @@ public static class DutyManager
                 catch { } // If this fails, just skip the file and move on.
             }
         }
-        catch { } // If this fails, we can continue on without duty files just fine .
+        catch { } // If this fails, we can continue on without duty files just fine.
 
         PluginLog.Debug($"DutyManager: Loaded {duties.Count} duties.");
         duties = duties.OrderBy(x => x.Level).ToList();

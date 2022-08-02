@@ -2,13 +2,10 @@ namespace KikoGuide.UI.Settings;
 
 using System;
 using System.Numerics;
-using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using ImGuiNET;
 using CheapLoc;
-using Dalamud.Logging;
-using Dalamud.Interface.Internal.Notifications;
 using KikoGuide.Base;
 using KikoGuide.Enums;
 using KikoGuide.Managers;
@@ -18,10 +15,14 @@ internal class SettingsScreen : IDisposable
 {
     public SettingsPresenter presenter = new SettingsPresenter();
 
+
     /// <summary>
     ///     Disposes of the settings UI window and any resources it uses.
     /// </summary>
-    public void Dispose() { }
+    public void Dispose()
+    {
+        this.presenter.Dispose();
+    }
 
 
     /// <summary>
@@ -43,10 +44,6 @@ internal class SettingsScreen : IDisposable
         bool shortenStrategies = Service.Configuration.shortenStrategies;
         bool supportButtonShown = Service.Configuration.supportButtonShown;
         long lastUpdateTime = Service.Configuration.lastResourceUpdate;
-
-#if DEBUG
-        string localizableOutputDir = Service.Configuration.localizableOutputDir;
-#endif
 
         ImGui.SetNextWindowSizeConstraints(new Vector2(410, 250), new Vector2(1000, 1000));
         if (ImGui.Begin(String.Format(Loc.Localize("UI.Settings.Title", "{0} - Settings"), PStrings.pluginName), ref presenter.isVisible))
@@ -106,6 +103,11 @@ internal class SettingsScreen : IDisposable
                     DateTimeOffset.FromUnixTimeMilliseconds(lastUpdateTime).ToString("hh:mm tt")));
                 }
 
+#if DEBUG
+                this.presenter.dialogManager.Draw();
+                if (ImGui.Button("Export Localizable")) this.presenter.dialogManager.OpenFolderDialog("Select Export Directory", this.presenter.OnDirectoryPicked);
+#endif
+
                 ImGui.EndTabItem();
             }
 
@@ -146,65 +148,6 @@ internal class SettingsScreen : IDisposable
                 ImGui.EndChild();
                 ImGui.EndTabItem();
             }
-
-
-#if DEBUG
-            // If this is a debug build, add a tab for some debug information.
-            if (ImGui.BeginTabItem("Debug"))
-            {
-                // only as big as the content inside the child
-                ImGui.BeginChild("debug", new Vector2(0, 240), false);
-                ImGui.Columns(2, "debug", false);
-
-                // Client debug information.
-                Common.TextHeading("Client Information");
-                ImGui.TextWrapped($"Language: {Service.PluginInterface.UiLanguage}");
-                ImGui.NextColumn();
-                ImGui.TextWrapped($"Current Territory: {Service.ClientState.TerritoryType}");
-                ImGui.NextColumn();
-                ImGui.NewLine();
-
-                // Current duty debug information.
-                Common.TextHeading("Duty Information");
-                ImGui.TextWrapped($"Loaded Duties: {DutyManager.GetDuties().Count}");
-                ImGui.NextColumn();
-                ImGui.TextWrapped($"Current Duty: {DutyManager.GetPlayerDuty()?.Name ?? "None"}");
-                ImGui.NextColumn();
-                ImGui.NewLine();
-
-                Common.TextHeading("Localization");
-                if (ImGui.InputTextWithHint("", "Localizable Output Directory", ref localizableOutputDir, 1000))
-                {
-                    Service.Configuration.localizableOutputDir = localizableOutputDir;
-                    Service.Configuration.Save();
-                }
-
-                ImGui.SameLine();
-
-                if (ImGui.Button("Export"))
-                {
-                    try
-                    {
-                        var directory = Directory.GetCurrentDirectory();
-                        Directory.SetCurrentDirectory(localizableOutputDir);
-                        Loc.ExportLocalizable();
-                        File.Copy(Path.Combine(localizableOutputDir, "KikoGuide_Localizable.json"), Path.Combine(localizableOutputDir, "en.json"), true);
-                        Directory.SetCurrentDirectory(directory);
-                        Service.PluginInterface.UiBuilder.AddNotification("Localization exported successfully.", "KikoGuide", NotificationType.Success);
-                    }
-                    catch (Exception e)
-                    {
-                        PluginLog.Error($"Failed to export localization {e.Message}");
-                        Service.PluginInterface.UiBuilder.AddNotification("Something went wrong exporting, see /xllog for details.", "KikoGuide", NotificationType.Error);
-                    }
-                }
-
-                ImGui.EndTabItem();
-            }
-#endif
-
-            ImGui.EndTabBar();
-            ImGui.End();
         }
     }
 }

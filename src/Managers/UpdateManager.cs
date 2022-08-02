@@ -26,10 +26,8 @@ internal static class UpdateManager
     /// <summary> Downloads the repository from GitHub and extracts the resource data. </summary>
     internal static void UpdateResources()
     {
-        // To prevent blocking the main thread, we'll use a background thread.
-        Thread downloadThread = new Thread(() =>
+        new Thread(() =>
         {
-
             try
             {
                 PluginLog.Debug($"UpdateManager: Opening new thread to handle duty data download.");
@@ -74,9 +72,6 @@ internal static class UpdateManager
                 updateInProgress = false;
                 PluginLog.Error($"UpdateManager: Error updating resource files: {e.Message}");
             }
-
-        });
-
-        downloadThread.Start();
+        }).Start();
     }
 }

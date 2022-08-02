@@ -2,51 +2,90 @@ namespace KikoGuide.UI.Editor;
 
 using Dalamud.Interface.ImGuiFileDialog;
 using System.IO;
+using System;
 using System.Collections.Generic;
+using Dalamud.Interface.Internal.Notifications;
+using KikoGuide.Managers;
+using KikoGuide.Base;
 
-class EditorPresenter
+class EditorPresenter : IDisposable
 {
+    public EditorPresenter() { }
+    public void Dispose() { }
+
     public bool isVisible = false;
     public FileDialogManager dialogManager = new FileDialogManager();
-    public string previewDutyText = "";
-
 
     /// <summary>
     ///     Handles the file select event
     /// </summary>
-    public void OnFileSelect(bool success, string file)
+    public string OnFileSelect(bool success, string file, string text)
     {
-        if (!success) return;
-
-        var loadedText = File.ReadAllText(file);
-        previewDutyText = loadedText;
+        if (!success) return text;
+        var fileText = File.ReadAllText(file);
+        if (fileText.Length == 0) return text;
+        Service.PluginInterface.UiBuilder.AddNotification("File loaded successfully.", PStrings.pluginName, NotificationType.Success);
+        return fileText;
     }
 
 
     /// <summary>
     ///     Handles the file save event.
     /// </summary>
-    public void OnFileSave(bool success, string file)
+    public void OnFileSave(bool success, string file, string text)
     {
         if (!success) return;
-        File.WriteAllText(file, previewDutyText);
+        File.WriteAllText(file, text);
+        Service.PluginInterface.UiBuilder.AddNotification("File saved successfully.", PStrings.pluginName, NotificationType.Success);
     }
 
 
     /// <summary>
-    ///     Formats the previewDutyText into an acceptable format for submission.
+    ///     Formats the given text into an acceptable format for submission.
     /// </summary>
-    public void OnFormat()
+    public string OnFormat(string text)
     {
-        // Remove all empty rows.
-        var newLines = new List<string>();
-        foreach (var line in previewDutyText.Split('\n'))
+        try
         {
-            if (line.Trim().Length > 0)
+            var newLines = new List<string>();
+            foreach (var line in text.Split('\n'))
             {
-                newLines.Add(line);
+                if (line.Trim().Length > 0)
+                {
+                    newLines.Add(line);
+                }
             }
+            return string.Join("\n", newLines).Trim();
+
         }
-        previewDutyText = string.Join("\n", newLines);
+        catch { return text; }
+    }
+
+
+    /// <summary> The last parse result from this.ParseDuty() </summary>
+    private Tuple<Duty?, Exception?>? _lastParseResult;
+
+    /// <summary> THe last parsed dutyText for this.ParseDuty(), used to prevent consistently deserializing. </summary>
+    private string _parsedDutyText = "";
+
+    /// <summary>
+    ///     Parses the given dutyText into a Duty object or returns an Exception.
+    /// </summary>
+    public Tuple<Duty?, Exception?> ParseDuty(string dutyText)
+    {
+        if (dutyText == this._parsedDutyText && this._lastParseResult != null) return this._lastParseResult;
+        this._parsedDutyText = dutyText;
+
+        try
+        {
+            this._lastParseResult = new Tuple<Duty?, Exception?>(Newtonsoft.Json.JsonConvert.DeserializeObject<Duty>(dutyText), null);
+            return this._lastParseResult;
+        }
+
+        catch (Exception e)
+        {
+            this._lastParseResult = new Tuple<Duty?, Exception?>(null, e);
+            return this._lastParseResult;
+        }
     }
 }

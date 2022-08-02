@@ -123,16 +123,48 @@
     "message": "{0} - Duty Editor",
     "description": "EditorScreen.DrawEditorUI"
   },
-  "Generics.SaveFile": {
-    "message": "Save File",
-    "description": "EditorScreen.DrawEditorButtons"
-  },
   "Generics.OpenFile": {
     "message": "Open File",
     "description": "EditorScreen.DrawEditorButtons"
   },
-  "UI.Editor.DutyPreview": {
-    "message": "Duty Preview",
+  "UI.Editor.OpenFile.Tooltip": {
+    "message": "Open a duty from a JSON file.",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "Generics.SaveFile": {
+    "message": "Save File",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.SaveFile.Tooltip": {
+    "message": "Save the current duty to a JSON file.",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.Format.Tooltip": {
+    "message": "Formats the current JSON text.",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.Clear.Tooltip": {
+    "message": "Clears the text input.",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.Contribute.Tooltip": {
+    "message": "Opens the contribution guidelines.",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.DetectedIssues": {
+    "message": "Detected Issues:",
+    "description": "EditorScreen.DrawEditorInput"
+  },
+  "UI.Editor.Unsupported": {
+    "message": "Duty contains invalid enum values or is unsupported by this plugin version.",
+    "description": "EditorScreen.DrawEditorInput"
+  },
+  "UI.Editor.NoIssues": {
+    "message": "No issues detected.",
+    "description": "EditorScreen.DrawEditorInput"
+  },
+  "UI.Editor.Preview": {
+    "message": "Preview",
     "description": "EditorScreen.DrawEditorPreview"
   },
   "UI.DutyInfo.MechanicName": {
@@ -147,20 +179,24 @@
     "message": "Type",
     "description": "EditorScreen.DrawEditorPreview"
   },
-  "UI.Editor.DutyMetadata": {
-    "message": "Duty Metadata",
+  "UI.Editor.StartEditing": {
+    "message": "Start editing to see something here.",
     "description": "EditorScreen.DrawEditorPreview"
   },
-  "UI.Editor.EnumValues": {
-    "message": "Enum Values",
+  "UI.Editor.Metadata": {
+    "message": "Metadata",
     "description": "EditorScreen.DrawEditorPreview"
   },
-  "UI.Editor.PlayerInfo": {
-    "message": "Player Info",
+  "UI.Editor.IDs": {
+    "message": "IDs",
     "description": "EditorScreen.DrawEditorPreview"
   },
   "UI.DutyInfo.Title": {
     "message": "{0} - Duty Information",
+    "description": "DutyInfoScreen.DrawInfoWindow"
+  },
+  "UI.DutyInfo.NoDuty": {
+    "message": "No duty selected.",
     "description": "DutyInfoScreen.DrawInfoWindow"
   },
   "UI.DutyInfo.DutyText": {
