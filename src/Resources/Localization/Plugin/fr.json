@@ -1,139 +1,211 @@
 {
   "Commands.List.Help": {
-    "message": "Ouvrir la liste de missions",
+    "message": "Activer/Désactiver la liste de missions",
     "description": "KikoPlugin..ctor"
   },
   "Commands.Settings.Help": {
-    "message": "Ouvrir le menu des paramètres",
+    "message": "Activer/Désactiver le menu de paramètres",
     "description": "KikoPlugin..ctor"
   },
-  "UI.DutyInfo.Title": {
-    "message": "{0} - Informations de Mission",
-    "description": "DutyInfo.DrawInfoWindow"
+  "Commands.Editor.Help": {
+    "message": "Activer/Désactiver l'éditeur de missions",
+    "description": "KikoPlugin..ctor"
   },
-  "UI.DutyInfo.DutyText": {
-    "message": "Mission : {0}",
-    "description": "DutyInfo.DrawInfoWindow"
-  },
-  "UI.DutyInfo.MechanicName": {
-    "message": "Mécanique",
-    "description": "DutyInfo.DrawInfoWindow"
-  },
-  "UI.DutyInfo.MechanicDescription": {
-    "message": "Description",
-    "description": "DutyInfo.DrawInfoWindow"
-  },
-  "UI.DutyInfo.MechanicType": {
-    "message": "Type",
-    "description": "DutyInfo.DrawInfoWindow"
-  },
-  "UI.DutyInfo.Error": {
-    "message": "Une erreur s'est produite pendant l'affichage des informations de la mission.",
-    "description": "DutyInfo.DrawInfoWindow"
-  },
-  "UI.List.Title": {
-    "message": "{0} - Outil de Mission",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.NoDutyFiles": {
-    "message": "Aucun fichier de mission n'a été détecté ! Veuillez ouvrir les Paramètres -> Mettre à jour les Ressources.",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.SupportButton": {
-    "message": "Support (GitHub)",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.Search": {
-    "message": "Rechercher",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.NoDutysForType": {
-    "message": "Aucune mission de ce type n'a été détectée.",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.Level": {
-    "message": "Niveau",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.Duty": {
-    "message": "Mission",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.NoBossData": {
-    "message": "Aucun guide n'est disponible pour {0}.",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.UpdateRequired": {
-    "message": "Impossible d'afficher cette mission car elle n'est pas supportée par cette version.",
-    "description": "List.DrawListWindow"
-  },
-  "UI.List.InDuty": {
-    "message": "En Mission",
-    "description": "List.DrawListWindow"
+  "Commands.Info.Help": {
+    "message": "Activer/Désactiver la fenêtre d'information si une mission est chargée",
+    "description": "KikoPlugin..ctor"
   },
   "UI.Settings.Title": {
     "message": "{0} - Paramètres",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.TabItem.General": {
     "message": "Général",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.AutoOpenDuty": {
     "message": "Ouvrir automatiquement en Mission",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.AutoOpenDuty.Tooltip": {
     "message": "Ouvre le guide de missions automatiquement lorsque vous commencez une mission.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.ShortenStrategies": {
     "message": "Condenser les Stratégies",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.ShortenStrategies.Tooltip": {
     "message": "Condense les stratégies du Guide de Missions si cela est possible.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.ShowSupportButton": {
     "message": "Afficher le bouton de Soutien",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.ShowSupportButton.Tooltip": {
     "message": "Affiche le bouton pour Soutenir Kiko Guide.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources.Title": {
     "message": "Ressources & Traductions",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources.Text": {
     "message": "Télécharger les dernières ressources, traductions & guides.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.UpdateResources": {
     "message": "Mettre à jour les Ressources",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.UpdateLocalization.Failed": {
     "message": "Échec de la mise à jour.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.UpdateLocalization.UpdatedAt": {
     "message": "Dernière mise à jour : {0}",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.TabItem.Mechanics": {
     "message": "Mécaniques",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.HideMechanic": {
-    "message": "Masquer: {0}",
-    "description": "Settings.DrawSettingsWindow"
+    "message": "Masquer : {0}",
+    "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Settings.HideMechanicTooltip": {
     "message": "Masque \"{0}\" dans le guide de missions.",
-    "description": "Settings.DrawSettingsWindow"
+    "description": "SettingsScreen.DrawSettingsWindow"
+  },
+  "UI.List.Title": {
+    "message": "{0} - Outil de Mission",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.NoDutyFiles": {
+    "message": "Aucun fichier de mission n'a été détecté ! Veuillez ouvrir les Paramètres -> Mettre à jour les Ressources.",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.SupportButton": {
+    "message": "Support (GitHub)",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.Search": {
+    "message": "Rechercher",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.NoDutysForType": {
+    "message": "Aucune mission de ce type n'a été détectée.",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.Level": {
+    "message": "Niveau",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.Duty": {
+    "message": "Mission",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.NoBossData": {
+    "message": "Aucun guide n'est disponible pour {0}.",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.UpdateRequired": {
+    "message": "Impossible d'afficher cette mission car elle n'est pas supportée par cette version.",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.List.InDuty": {
+    "message": "En Mission",
+    "description": "ListScreen.DrawListWindow"
+  },
+  "UI.Editor.Title": {
+    "message": "{0} - Éditeur de Mission",
+    "description": "EditorScreen.DrawEditorUI"
+  },
+  "Generics.OpenFile": {
+    "message": "Ouvrir un Fichier",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.OpenFile.Tooltip": {
+    "message": "Open a duty from a JSON file.",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "Generics.SaveFile": {
+    "message": "Sauvegarder le Fichier",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.SaveFile.Tooltip": {
+    "message": "Save the current duty to a JSON file.",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.Format.Tooltip": {
+    "message": "Formats the current JSON text.",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.Clear.Tooltip": {
+    "message": "Clears the text input.",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.Contribute.Tooltip": {
+    "message": "Opens the contribution guidelines.",
+    "description": "EditorScreen.DrawEditorButtons"
+  },
+  "UI.Editor.DetectedIssues": {
+    "message": "Detected Issues:",
+    "description": "EditorScreen.DrawEditorInput"
+  },
+  "UI.Editor.Unsupported": {
+    "message": "Duty contains invalid enum values or is unsupported by this plugin version.",
+    "description": "EditorScreen.DrawEditorInput"
+  },
+  "UI.Editor.NoIssues": {
+    "message": "No issues detected.",
+    "description": "EditorScreen.DrawEditorInput"
+  },
+  "UI.Editor.Preview": {
+    "message": "Preview",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.DutyInfo.MechanicName": {
+    "message": "Mécanique",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.DutyInfo.MechanicDescription": {
+    "message": "Description",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.DutyInfo.MechanicType": {
+    "message": "Type",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.Editor.StartEditing": {
+    "message": "Start editing to see something here.",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.Editor.Metadata": {
+    "message": "Metadata",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.Editor.IDs": {
+    "message": "IDs",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.DutyInfo.Title": {
+    "message": "{0} - Informations de Mission",
+    "description": "DutyInfoScreen.DrawInfoWindow"
+  },
+  "UI.DutyInfo.NoDuty": {
+    "message": "No duty selected.",
+    "description": "DutyInfoScreen.DrawInfoWindow"
+  },
+  "UI.DutyInfo.DutyText": {
+    "message": "Mission : {0}",
+    "description": "DutyInfoScreen.DrawInfoWindow"
+  },
+  "UI.DutyInfo.Error": {
+    "message": "Une erreur s'est produite pendant l'affichage des informations de la mission.",
+    "description": "DutyInfoScreen.DrawInfoWindow"
   },
   "UI.Tags.New": {
     "message": "NOUV.",
@@ -142,6 +214,10 @@
   "Components.Tags.New.Tooltip": {
     "message": "Nouvel ajout !",
     "description": "Badges.New"
+  },
+  "Duty.Name.None": {
+    "message": "Mission sans nom",
+    "description": "Duty..ctor"
   },
   "Duty.Boss.Name.None": {
     "message": "Boss sans nom",
