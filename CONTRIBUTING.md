@@ -50,12 +50,17 @@ Please avoid making changes to the UpdateManager class as it is critical to avoi
 ---
  
 ## Guide Contribution
-Guide contributions are highly appreciated due to the amount of duties that are in the game. All files for duty's have already been created so far, and new ones will be made when new duties release. 
+Guide contributions are highly appreciated due to the amount of duties that are in the game. All files for duty's have already been created so far, and new ones will be made when new duties release. Please note that this repository may not checked around major patches to avoid spoilers.
 
 #### Editing Guides
 Guides are stored as `.json` files inside of the `Resources/Localization/Duty/<lang>/` folder, and are named their exact English in-game name no matter the language. 
 
 When changing these files, it is important to run it through a JSON validator before committing back to the repository, otherwise it may be disabled on load due to being unparsable.
+
+It is highly recommended to use the in-game editor to edit guides, as it will provide a live preview of all your changes, as well as real-time validation and formatting, you can access the editor by using `/kikoeditor` with the plugin installed. 
+
+##### Editor Preview
+![Editor Preview](./.assets/editor.png)
 
 ##### Keys for JSON files
 - `Version`: The duty file version, do not change this manually.
@@ -80,10 +85,10 @@ An example duty to refer to for help when writing or editing a guide can be foun
 When writing descriptions of mechanics or bosses, please try and minimize the language used to keep it down to just key information. For example, you do not need to write something like "Deals a small amount of damage to all party members hit" for an AoE as that is self-explanatory.
 
 #### Formatting 
-When writing the guides, you can use `\n` to move to a new line as JSON does not support this. You can also use `\t` to indent the text by 1 tab space when needed. If you want to use a percentgae sign, you will have to do `%%` to display a single percent sign. 
+When writing the guides, you can use `\n` to move to a new line as JSON does not support this. You can also use `\t` to indent the text by 1 tab space when needed. If you want to use a percentage sign, you will have to do `%%` to display a single percent sign. 
 
 #### Internal IDs (DutyType, MechanicType, Difficulty, etc)
-You can find all internal IDs used for identifying duty data inside of the [enums folder](src/Enums/) of the repository.
+You can find all internal IDs used for identifying duty data inside of the [enums folder](src/Enums/) of the repository or inside of the in-game editor (`/kikoeditor`)
 
 #### Game IDs (Quest, Territory, etc)
 You can find all game IDs through the csv files available from the FFXIV-Datamining repository [here](https://github.com/xivapi/ffxiv-datamining)
