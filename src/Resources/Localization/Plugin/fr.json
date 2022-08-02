@@ -1,20 +1,4 @@
 {
-  "Commands.List.Help": {
-    "message": "Activer/Désactiver la liste de missions",
-    "description": "KikoPlugin..ctor"
-  },
-  "Commands.Settings.Help": {
-    "message": "Activer/Désactiver le menu de paramètres",
-    "description": "KikoPlugin..ctor"
-  },
-  "Commands.Editor.Help": {
-    "message": "Activer/Désactiver l'éditeur de missions",
-    "description": "KikoPlugin..ctor"
-  },
-  "Commands.Info.Help": {
-    "message": "Activer/Désactiver la fenêtre d'information si une mission est chargée",
-    "description": "KikoPlugin..ctor"
-  },
   "UI.Settings.Title": {
     "message": "{0} - Paramètres",
     "description": "SettingsScreen.DrawSettingsWindow"
@@ -83,41 +67,29 @@
     "message": "{0} - Outil de Mission",
     "description": "ListScreen.DrawListWindow"
   },
-  "UI.List.NoDutyFiles": {
-    "message": "Aucun fichier de mission n'a été détecté ! Veuillez ouvrir les Paramètres -> Mettre à jour les Ressources.",
+  "UI.Screens.DutyList.NoFiles": {
+    "message": "No duty files detected! Please try Settings -> Update Resources.",
     "description": "ListScreen.DrawListWindow"
   },
-  "UI.List.SupportButton": {
+  "Generics.Support": {
     "message": "Support (GitHub)",
     "description": "ListScreen.DrawListWindow"
   },
-  "UI.List.Search": {
-    "message": "Rechercher",
+  "Generics.Search": {
+    "message": "Search",
     "description": "ListScreen.DrawListWindow"
   },
-  "UI.List.NoDutysForType": {
-    "message": "Aucune mission de ce type n'a été détectée.",
-    "description": "ListScreen.DrawListWindow"
+  "UI.Screens.Editor.FileTooLong": {
+    "message": "Your file was too big to be loaded into the editor.",
+    "description": "EditorPresenter.OnFileSelect"
   },
-  "UI.List.Level": {
-    "message": "Niveau",
-    "description": "ListScreen.DrawListWindow"
+  "UI.Screens.Editor.FileLoaded": {
+    "message": "Your file was successfully loaded.",
+    "description": "EditorPresenter.OnFileSelect"
   },
-  "UI.List.Duty": {
-    "message": "Mission",
-    "description": "ListScreen.DrawListWindow"
-  },
-  "UI.List.NoBossData": {
-    "message": "Aucun guide n'est disponible pour {0}.",
-    "description": "ListScreen.DrawListWindow"
-  },
-  "UI.List.UpdateRequired": {
-    "message": "Impossible d'afficher cette mission car elle n'est pas supportée par cette version.",
-    "description": "ListScreen.DrawListWindow"
-  },
-  "UI.List.InDuty": {
-    "message": "En Mission",
-    "description": "ListScreen.DrawListWindow"
+  "UI.Screens.Editor.FileSaved": {
+    "message": "Your file was successfully saved.",
+    "description": "EditorPresenter.OnFileSave"
   },
   "UI.Editor.Title": {
     "message": "{0} - Éditeur de Mission",
@@ -151,40 +123,28 @@
     "message": "Opens the contribution guidelines.",
     "description": "EditorScreen.DrawEditorButtons"
   },
-  "UI.Editor.DetectedIssues": {
-    "message": "Detected Issues:",
+  "UI.Editor.Problems": {
+    "message": "Problems:",
     "description": "EditorScreen.DrawEditorInput"
   },
   "UI.Editor.Unsupported": {
-    "message": "Duty contains invalid enum values or is unsupported by this plugin version.",
+    "message": "Duty contains invalid IDs and/or is unsupported by this plugin version.",
     "description": "EditorScreen.DrawEditorInput"
   },
-  "UI.Editor.NoIssues": {
-    "message": "No issues detected.",
+  "UI.Editor.Problems.None": {
+    "message": "No problems have been detected for this file.",
     "description": "EditorScreen.DrawEditorInput"
   },
   "UI.Editor.Preview": {
     "message": "Preview",
     "description": "EditorScreen.DrawEditorPreview"
   },
-  "UI.DutyInfo.MechanicName": {
-    "message": "Mécanique",
-    "description": "EditorScreen.DrawEditorPreview"
-  },
-  "UI.DutyInfo.MechanicDescription": {
-    "message": "Description",
-    "description": "EditorScreen.DrawEditorPreview"
-  },
-  "UI.DutyInfo.MechanicType": {
-    "message": "Type",
-    "description": "EditorScreen.DrawEditorPreview"
-  },
-  "UI.Editor.StartEditing": {
-    "message": "Start editing to see something here.",
-    "description": "EditorScreen.DrawEditorPreview"
-  },
   "UI.Editor.Metadata": {
     "message": "Metadata",
+    "description": "EditorScreen.DrawEditorPreview"
+  },
+  "UI.Editor.NothingToPreview": {
+    "message": "Nothing to preview, start editing or resolve issues to see something here.",
     "description": "EditorScreen.DrawEditorPreview"
   },
   "UI.Editor.IDs": {
@@ -196,24 +156,64 @@
     "description": "DutyInfoScreen.DrawInfoWindow"
   },
   "UI.DutyInfo.NoDuty": {
-    "message": "No duty selected.",
+    "message": "No duty selected, use /kikolist to see all available duties.",
     "description": "DutyInfoScreen.DrawInfoWindow"
   },
-  "UI.DutyInfo.DutyText": {
-    "message": "Mission : {0}",
-    "description": "DutyInfoScreen.DrawInfoWindow"
+  "UI.Components.DutiesList.NoDutiesfound": {
+    "message": "No duties were found.",
+    "description": "DutyListComponent.Draw"
   },
-  "UI.DutyInfo.Error": {
-    "message": "Une erreur s'est produite pendant l'affichage des informations de la mission.",
-    "description": "DutyInfoScreen.DrawInfoWindow"
+  "Generics.Level": {
+    "message": "Level",
+    "description": "DutyListComponent.Draw"
   },
-  "UI.Tags.New": {
-    "message": "NOUV.",
-    "description": "Badges.New"
+  "Generics.Duty": {
+    "message": "Duty",
+    "description": "DutyListComponent.Draw"
   },
-  "Components.Tags.New.Tooltip": {
-    "message": "Nouvel ajout !",
-    "description": "Badges.New"
+  "Generics.InDuty": {
+    "message": "In Duty",
+    "description": "DutyListComponent.Draw"
+  },
+  "UI.Components.DutiesList.UpdateRequired": {
+    "message": "Cannot display duty as it is not supported on this version.",
+    "description": "DutyListComponent._unsupportedDuty"
+  },
+  "UI.Components.DutiesList.NoBossData": {
+    "message": "No guide available for {0}.",
+    "description": "DutyListComponent._noDataDuty"
+  },
+  "Generics.Mechanic": {
+    "message": "Mechanic",
+    "description": "DutyBossListComponent.Draw"
+  },
+  "Generics.Description": {
+    "message": "Description",
+    "description": "DutyBossListComponent.Draw"
+  },
+  "Generics.BossList.Type": {
+    "message": "Type",
+    "description": "DutyBossListComponent.Draw"
+  },
+  "UI.Components.DutyHeading.Title": {
+    "message": "Duty: {0}",
+    "description": "DutyHeadingComponent.Draw"
+  },
+  "Commands.List.Help": {
+    "message": "Activer/Désactiver la liste de missions",
+    "description": "CommandManager.Initialize"
+  },
+  "Commands.Settings.Help": {
+    "message": "Activer/Désactiver le menu de paramètres",
+    "description": "CommandManager.Initialize"
+  },
+  "Commands.Editor.Help": {
+    "message": "Activer/Désactiver l'éditeur de missions",
+    "description": "CommandManager.Initialize"
+  },
+  "Commands.Info.Help": {
+    "message": "Activer/Désactiver la fenêtre d'information si une mission est chargée",
+    "description": "CommandManager.Initialize"
   },
   "Duty.Name.None": {
     "message": "Mission sans nom",
