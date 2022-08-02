@@ -1,69 +1,69 @@
 {
-  "UI.Settings.Title": {
+  "UI.Screens.Settings.Title": {
     "message": "{0} - Settings",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.TabItem.General": {
+  "UI.Screens.Settings.TabItem.General": {
     "message": "General",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.AutoOpenDuty": {
+  "UI.Screens.Settings.AutoOpenDuty": {
     "message": "Open in Duty",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.AutoOpenDuty.Tooltip": {
+  "UI.Screens.Settings.AutoOpenDuty.Tooltip": {
     "message": "Open the duty guide when entering a duty.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.ShortenStrategies": {
+  "UI.Screens.Settings.ShortenStrategies": {
     "message": "Shorten Strategies",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.ShortenStrategies.Tooltip": {
+  "UI.Screens.Settings.ShortenStrategies.Tooltip": {
     "message": "Shorten duty guide strategies if possible.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.ShowSupportButton": {
+  "UI.Screens.Settings.ShowSupportButton": {
     "message": "Show Support Button",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.ShowSupportButton.Tooltip": {
+  "UI.Screens.Settings.ShowSupportButton.Tooltip": {
     "message": "Show the support Kiko Guide button.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.UpdateResources.Title": {
+  "UI.Screens.Settings.UpdateResources.Title": {
     "message": "Resources & Localization",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.UpdateResources.Text": {
+  "UI.Screens.Settings.UpdateResources.Text": {
     "message": "Downloads the latest resources, localizations & guides.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.UpdateResources": {
+  "UI.Screens.Settings.UpdateResources": {
     "message": "Update Resources",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.UpdateLocalization.Failed": {
+  "UI.Screens.Settings.UpdateLocalization.Failed": {
     "message": "Update Failed.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.UpdateLocalization.UpdatedAt": {
+  "UI.Screens.Settings.UpdateLocalization.UpdatedAt": {
     "message": "Last Update: {0}",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.TabItem.Mechanics": {
+  "UI.Screens.Settings.TabItem.Mechanics": {
     "message": "Mechanics",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.HideMechanic": {
+  "UI.Screens.Settings.HideMechanic": {
     "message": "Hide {0}",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Settings.HideMechanicTooltip": {
+  "UI.Screens.Settings.HideMechanicTooltip": {
     "message": "Hide {0} from the duty guide.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.List.Title": {
+  "UI.Screens.DutyList.Title": {
     "message": "{0} - Duty Finder",
     "description": "ListScreen.DrawListWindow"
   },
@@ -91,7 +91,7 @@
     "message": "Your file was successfully saved.",
     "description": "EditorPresenter.OnFileSave"
   },
-  "UI.Editor.Title": {
+  "UI.Screens.Editor.Title": {
     "message": "{0} - Duty Editor",
     "description": "EditorScreen.DrawEditorUI"
   },
@@ -99,7 +99,7 @@
     "message": "Open File",
     "description": "EditorScreen.DrawEditorButtons"
   },
-  "UI.Editor.OpenFile.Tooltip": {
+  "UI.Screens.Editor.OpenFile.Tooltip": {
     "message": "Open a duty from a JSON file.",
     "description": "EditorScreen.DrawEditorButtons"
   },
@@ -107,55 +107,55 @@
     "message": "Save File",
     "description": "EditorScreen.DrawEditorButtons"
   },
-  "UI.Editor.SaveFile.Tooltip": {
+  "UI.Screens.Editor.SaveFile.Tooltip": {
     "message": "Save the current duty to a JSON file.",
     "description": "EditorScreen.DrawEditorButtons"
   },
-  "UI.Editor.Format.Tooltip": {
+  "UI.Screens.Editor.Format.Tooltip": {
     "message": "Formats the current JSON text.",
     "description": "EditorScreen.DrawEditorButtons"
   },
-  "UI.Editor.Clear.Tooltip": {
+  "UI.Screens.Editor.Clear.Tooltip": {
     "message": "Clears the text input.",
     "description": "EditorScreen.DrawEditorButtons"
   },
-  "UI.Editor.Contribute.Tooltip": {
+  "UI.Screens.Editor.Contribute.Tooltip": {
     "message": "Opens the contribution guidelines.",
     "description": "EditorScreen.DrawEditorButtons"
   },
-  "UI.Editor.Problems": {
+  "UI.Screens.Editor.Problems": {
     "message": "Problems:",
     "description": "EditorScreen.DrawEditorInput"
   },
-  "UI.Editor.Unsupported": {
+  "UI.Screens.Editor.Unsupported": {
     "message": "Duty contains invalid IDs and/or is unsupported by this plugin version.",
     "description": "EditorScreen.DrawEditorInput"
   },
-  "UI.Editor.Problems.None": {
+  "UI.Screens.Editor.Problems.None": {
     "message": "No problems have been detected for this file.",
     "description": "EditorScreen.DrawEditorInput"
   },
-  "UI.Editor.Preview": {
+  "UI.Screens.Editor.Preview": {
     "message": "Preview",
     "description": "EditorScreen.DrawEditorPreview"
   },
-  "UI.Editor.Metadata": {
+  "UI.Screens.Editor.Metadata": {
     "message": "Metadata",
     "description": "EditorScreen.DrawEditorPreview"
   },
-  "UI.Editor.NothingToPreview": {
+  "UI.Screens.Editor.NothingToPreview": {
     "message": "Nothing to preview, start editing or resolve issues to see something here.",
     "description": "EditorScreen.DrawEditorPreview"
   },
-  "UI.Editor.IDs": {
+  "UI.Screens.Editor.IDs": {
     "message": "IDs",
     "description": "EditorScreen.DrawEditorPreview"
   },
-  "UI.DutyInfo.Title": {
+  "UI.Screens.SettingDutyInfo.Title": {
     "message": "{0} - Duty Information",
     "description": "DutyInfoScreen.DrawInfoWindow"
   },
-  "UI.DutyInfo.NoDuty": {
+  "UI.Screens.SettingDutyInfo.NoDuty": {
     "message": "No duty selected, use /kikolist to see all available duties.",
     "description": "DutyInfoScreen.DrawInfoWindow"
   },
