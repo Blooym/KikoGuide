@@ -8,8 +8,7 @@ enum DutyType
 {
     Dungeon = 0,
     Trial = 1,
-    AllianceRaid = 2,
-    Raids = 3,
+    AllianceRaid = 2
 }
 
 
@@ -23,7 +22,7 @@ enum DutyDifficulty
     Extreme = 2,
     Savage = 3,
     Ultimate = 4,
-    Unreal = 5,
+    Unreal = 5
 }
 
 

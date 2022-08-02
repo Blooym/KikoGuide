@@ -1,14 +1,14 @@
 namespace KikoGuide.Managers;
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 using KikoGuide.Base;
 using KikoGuide.Enums;
-using FFXIVClientStructs.FFXIV.Client.Game;
-using Dalamud.Logging;
 using CheapLoc;
+using Dalamud.Logging;
+using FFXIVClientStructs.FFXIV.Client.Game;
 
 /// <summary>
 ///     The Duty class represents an in-game duty.

@@ -2,10 +2,10 @@ namespace KikoGuide.UI.Settings;
 
 using System;
 using System.IO;
-using Dalamud.Interface.Internal.Notifications;
-using Dalamud.Interface.ImGuiFileDialog;
 using CheapLoc;
 using KikoGuide.Base;
+using Dalamud.Interface.ImGuiFileDialog;
+using Dalamud.Interface.Internal.Notifications;
 
 class SettingsPresenter : IDisposable
 {

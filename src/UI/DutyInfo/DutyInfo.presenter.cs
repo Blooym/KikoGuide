@@ -1,8 +1,8 @@
 namespace KikoGuide.UI.DutyInfo;
 
 using System;
-using KikoGuide.Managers;
 using KikoGuide.Base;
+using KikoGuide.Managers;
 
 class DutyInfoPresenter : IDisposable
 {

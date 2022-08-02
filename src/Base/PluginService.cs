@@ -1,9 +1,9 @@
 namespace KikoGuide.Base;
 
-using Dalamud.Game.ClientState;
-using Dalamud.Game.Command;
 using Dalamud.IoC;
 using Dalamud.Plugin;
+using Dalamud.Game.ClientState;
+using Dalamud.Game.Command;
 
 /// <summary>
 ///     Service is an internal class that provides internal access to necessary services.

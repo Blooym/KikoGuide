@@ -1,8 +1,8 @@
 namespace KikoGuide.Managers;
 
 using System;
-using KikoGuide.Base;
 using CheapLoc;
+using KikoGuide.Base;
 using Dalamud.Game.Command;
 
 sealed internal class CommandManager : IDisposable
