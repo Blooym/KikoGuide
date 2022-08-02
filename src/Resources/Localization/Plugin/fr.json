@@ -1,74 +1,74 @@
 {
   "UI.Screens.Settings.Title": {
-    "message": "{0} - Settings",
+    "message": "{0} - Paramètres",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.TabItem.General": {
-    "message": "General",
+    "message": "Général",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.AutoOpenDuty": {
-    "message": "Open in Duty",
+    "message": "Ouvrir automatiquement en Mission",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.AutoOpenDuty.Tooltip": {
-    "message": "Open the duty guide when entering a duty.",
+    "message": "Ouvre le guide de missions automatiquement lorsque vous commencez une mission.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.ShortenStrategies": {
-    "message": "Shorten Strategies",
+    "message": "Condenser les Stratégies",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.ShortenStrategies.Tooltip": {
-    "message": "Shorten duty guide strategies if possible.",
+    "message": "Condense les stratégies du Guide de Missions si cela est possible.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.ShowSupportButton": {
-    "message": "Show Support Button",
+    "message": "Afficher le bouton de Soutien",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.ShowSupportButton.Tooltip": {
-    "message": "Show the support Kiko Guide button.",
+    "message": "Affiche le bouton pour Soutenir Kiko Guide.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.UpdateResources.Title": {
-    "message": "Resources & Localization",
+    "message": "Ressources & Traductions",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.UpdateResources.Text": {
-    "message": "Downloads the latest resources, localizations & guides.",
+    "message": "Télécharger les dernières ressources, traductions & guides.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.UpdateResources": {
-    "message": "Update Resources",
+    "message": "Mettre à jour les Ressources",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.UpdateLocalization.Failed": {
-    "message": "Update Failed.",
+    "message": "Échec de la mise à jour.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.UpdateLocalization.UpdatedAt": {
-    "message": "Last Update: {0}",
+    "message": "Dernière mise à jour : {0}",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.TabItem.Mechanics": {
-    "message": "Mechanics",
+    "message": "Mécaniques",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.HideMechanic": {
-    "message": "Hide {0}",
+    "message": "Masquer : {0}",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.Settings.HideMechanicTooltip": {
-    "message": "Hide {0} from the duty guide.",
+    "message": "Masque \"{0}\" dans le guide de missions.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
   "UI.Screens.DutyList.Title": {
-    "message": "{0} - Duty Finder",
+    "message": "{0} - Outil de Mission",
     "description": "ListScreen.DrawListWindow"
   },
   "UI.Screens.DutyList.NoFiles": {
-    "message": "No duty files detected! Please try Settings -> Update Resources.",
+    "message": "Aucun fichier de mission n'a été détecté ! Veuillez ouvrir les Paramètres -> Mettre à jour les Ressources.",
     "description": "ListScreen.DrawListWindow"
   },
   "Generics.Support": {
@@ -76,7 +76,7 @@
     "description": "ListScreen.DrawListWindow"
   },
   "Generics.Search": {
-    "message": "Search",
+    "message": "Rechercher",
     "description": "ListScreen.DrawListWindow"
   },
   "UI.Screens.Editor.FileTooLong": {
@@ -92,7 +92,7 @@
     "description": "EditorPresenter.OnFileSave"
   },
   "UI.Screens.Editor.Title": {
-    "message": "{0} - Duty Editor",
+    "message": "{0} - Éditeur de Mission",
     "description": "EditorScreen.DrawEditorUI"
   },
   "Generics.OpenFile": {
@@ -152,7 +152,7 @@
     "description": "EditorScreen.DrawEditorPreview"
   },
   "UI.Screens.SettingDutyInfo.Title": {
-    "message": "{0} - Duty Information",
+    "message": "{0} - Informations de Mission",
     "description": "DutyInfoScreen.DrawInfoWindow"
   },
   "UI.Screens.SettingDutyInfo.NoDuty": {
@@ -164,27 +164,27 @@
     "description": "DutyListComponent.Draw"
   },
   "Generics.Level": {
-    "message": "Level",
+    "message": "Niveau",
     "description": "DutyListComponent.Draw"
   },
   "Generics.Duty": {
-    "message": "Duty",
+    "message": "Mission",
     "description": "DutyListComponent.Draw"
   },
   "Generics.InDuty": {
-    "message": "In Duty",
+    "message": "En Mission",
     "description": "DutyListComponent.Draw"
   },
   "UI.Components.DutiesList.UpdateRequired": {
-    "message": "Cannot display duty as it is not supported on this version.",
+    "message": "Impossible d'afficher cette mission car elle n'est pas supportée par cette version.",
     "description": "DutyListComponent._unsupportedDuty"
   },
   "UI.Components.DutiesList.NoBossData": {
-    "message": "No guide available for {0}.",
+    "message": "Aucun guide n'est disponible pour {0}.",
     "description": "DutyListComponent._noDataDuty"
   },
   "Generics.Mechanic": {
-    "message": "Mechanic",
+    "message": "Mécanique",
     "description": "DutyBossListComponent.Draw"
   },
   "Generics.Description": {
@@ -196,7 +196,7 @@
     "description": "DutyBossListComponent.Draw"
   },
   "UI.Components.DutyHeading.Title": {
-    "message": "Duty: {0}",
+    "message": "Mission : {0}",
     "description": "DutyHeadingComponent.Draw"
   },
   "Commands.List.Help": {
