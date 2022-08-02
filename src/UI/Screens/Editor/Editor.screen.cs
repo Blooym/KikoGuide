@@ -155,7 +155,6 @@ sealed class EditorScreen : IDisposable
                 ImGui.TextWrapped($"TerritoryID: {duty.TerritoryID} (Current: {Service.ClientState.TerritoryType})");
                 ImGui.TextWrapped($"UnlockQuestID: {duty.UnlockQuestID}");
             }
-            else ImGui.TextWrapped(Loc.Localize("UI.Screens.Editor.NothingToPreview", "Nothing to preview, start editing or resolve issues to see something here."));
 
             ImGui.EndTabItem();
         }
