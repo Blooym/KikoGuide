@@ -59,14 +59,8 @@ sealed class EditorPresenter : IDisposable
         try
         {
             var newLines = new List<string>();
-            foreach (var line in text.Split('\n'))
-            {
-                if (line.Trim().Length > 0)
-                {
-                    newLines.Add(line);
-                }
-            }
-            return string.Join("\n", newLines).Trim();
+            foreach (var line in text.Split('\n')) if (line.Trim().Length > 0) newLines.Add(line);
+            return string.Join("\n", newLines).Trim().Replace("\t", "    ");
         }
         catch { return text; }
     }
