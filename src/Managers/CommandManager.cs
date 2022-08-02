@@ -60,7 +60,7 @@ sealed internal class CommandManager : IDisposable
                 KikoPlugin.editorScreen.presenter.isVisible = !KikoPlugin.editorScreen.presenter.isVisible;
                 break;
             case dutyInfoCommand:
-                KikoPlugin.editorScreen.presenter.isVisible = !KikoPlugin.editorScreen.presenter.isVisible;
+                KikoPlugin.dutyInfoScreen.presenter.isVisible = !KikoPlugin.dutyInfoScreen.presenter.isVisible;
                 break;
         }
     }

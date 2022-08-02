@@ -30,7 +30,7 @@ sealed class DutyInfoScreen : IDisposable
 
             if (selectedDuty == null || selectedDuty.Bosses == null)
             {
-                ImGui.Text(Loc.Localize("UI.DutyInfo.NoDuty", "No duty selected."));
+                ImGui.Text(Loc.Localize("UI.DutyInfo.NoDuty", "No duty selected, use /kikolist to see all available duties."));
                 return;
             }
 

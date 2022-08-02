@@ -156,7 +156,7 @@
     "description": "DutyInfoScreen.DrawInfoWindow"
   },
   "UI.DutyInfo.NoDuty": {
-    "message": "No duty selected.",
+    "message": "No duty selected, use /kikolist to see all available duties.",
     "description": "DutyInfoScreen.DrawInfoWindow"
   },
   "UI.Components.DutiesList.NoDutiesfound": {
