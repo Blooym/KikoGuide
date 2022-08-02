@@ -34,7 +34,7 @@ sealed class EditorScreen : IDisposable
 
         // Begin the editor window.
         ImGui.SetWindowSize(new Vector2(600, 400), ImGuiCond.FirstUseEver);
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.Editor.Title", "{0} - Duty Editor"), PStrings.pluginName), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse))
+        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.Editor.Title", "{0} - Duty Editor"), PStrings.pluginName), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse))
         {
             // Draw some buttons at the top of the editor.
             this.DrawEditorButtons();
@@ -63,35 +63,35 @@ sealed class EditorScreen : IDisposable
         {
             presenter.dialogManager.OpenFileDialog(Loc.Localize("Generics.OpenFile", "Open File"), ".json", (success, file) => this._inputText = presenter.OnFileSelect(success, file, this._inputText));
         }
-        Tooltips.AddTooltip(Loc.Localize("UI.Editor.OpenFile.Tooltip", "Open a duty from a JSON file."));
+        Tooltips.AddTooltip(Loc.Localize("UI.Screens.Editor.OpenFile.Tooltip", "Open a duty from a JSON file."));
         ImGui.SameLine();
 
         if (ImGuiComponents.IconButton(FontAwesomeIcon.Save))
         {
             presenter.dialogManager.SaveFileDialog(Loc.Localize("Generics.SaveFile", "Save File"), ".json", "", ".json", (success, file) => presenter.OnFileSave(success, file, this._inputText));
         }
-        Tooltips.AddTooltip(Loc.Localize("UI.Editor.SaveFile.Tooltip", "Save the current duty to a JSON file."));
+        Tooltips.AddTooltip(Loc.Localize("UI.Screens.Editor.SaveFile.Tooltip", "Save the current duty to a JSON file."));
         ImGui.SameLine();
 
         if (ImGuiComponents.IconButton(FontAwesomeIcon.PaintBrush))
         {
             this._inputText = presenter.OnFormat(this._inputText);
         }
-        Tooltips.AddTooltip(Loc.Localize("UI.Editor.Format.Tooltip", "Formats the current JSON text."));
+        Tooltips.AddTooltip(Loc.Localize("UI.Screens.Editor.Format.Tooltip", "Formats the current JSON text."));
         ImGui.SameLine();
 
         if (ImGuiComponents.IconButton(FontAwesomeIcon.Trash))
         {
             this._inputText = "";
         }
-        Tooltips.AddTooltip(Loc.Localize("UI.Editor.Clear.Tooltip", "Clears the text input."));
+        Tooltips.AddTooltip(Loc.Localize("UI.Screens.Editor.Clear.Tooltip", "Clears the text input."));
         ImGui.SameLine();
 
         if (ImGuiComponents.IconButton(FontAwesomeIcon.ExternalLinkAlt))
         {
             Utils.Common.OpenBrowser($"{PStrings.pluginRepository}blob/main/CONTRIBUTING.md#guide-contribution");
         }
-        Tooltips.AddTooltip(Loc.Localize("UI.Editor.Contribute.Tooltip", "Opens the contribution guidelines."));
+        Tooltips.AddTooltip(Loc.Localize("UI.Screens.Editor.Contribute.Tooltip", "Opens the contribution guidelines."));
     }
 
 
@@ -111,13 +111,13 @@ sealed class EditorScreen : IDisposable
         }
 
         // Problems window.
-        ImGui.TextWrapped(Loc.Localize("UI.Editor.Problems", "Problems:"));
+        ImGui.TextWrapped(Loc.Localize("UI.Screens.Editor.Problems", "Problems:"));
         if (parsedDuty.Item2?.Message != null)
             Colours.TextWrappedColoured(Colours.Error, parsedDuty.Item2.Message);
         else if (parsedDuty?.Item1?.IsSupported() == false)
-            Colours.TextWrappedColoured(Colours.Warning, Loc.Localize("UI.Editor.Unsupported", "Duty contains invalid IDs and/or is unsupported by this plugin version."));
+            Colours.TextWrappedColoured(Colours.Warning, Loc.Localize("UI.Screens.Editor.Unsupported", "Duty contains invalid IDs and/or is unsupported by this plugin version."));
         else
-            ImGui.TextWrapped(Loc.Localize("UI.Editor.Problems.None", "No problems have been detected for this file."));
+            ImGui.TextWrapped(Loc.Localize("UI.Screens.Editor.Problems.None", "No problems have been detected for this file."));
     }
 
 
@@ -129,7 +129,7 @@ sealed class EditorScreen : IDisposable
         // Create a tab for the parsed duty display.
         if (ImGui.BeginTabBar("##DutyInfoPreview", ImGuiTabBarFlags.Reorderable))
         {
-            if (ImGui.BeginTabItem(Loc.Localize("UI.Editor.Preview", "Preview")))
+            if (ImGui.BeginTabItem(Loc.Localize("UI.Screens.Editor.Preview", "Preview")))
             {
                 if (duty != null)
                 {
@@ -142,7 +142,7 @@ sealed class EditorScreen : IDisposable
 
 
         // Create a tab for parsed duty metadata.
-        if (ImGui.BeginTabItem(Loc.Localize("UI.Editor.Metadata", "Metadata")))
+        if (ImGui.BeginTabItem(Loc.Localize("UI.Screens.Editor.Metadata", "Metadata")))
         {
             if (duty != null)
             {
@@ -155,14 +155,14 @@ sealed class EditorScreen : IDisposable
                 ImGui.TextWrapped($"TerritoryID: {duty.TerritoryID} (Current: {Service.ClientState.TerritoryType})");
                 ImGui.TextWrapped($"UnlockQuestID: {duty.UnlockQuestID}");
             }
-            else ImGui.TextWrapped(Loc.Localize("UI.Editor.NothingToPreview", "Nothing to preview, start editing or resolve issues to see something here."));
+            else ImGui.TextWrapped(Loc.Localize("UI.Screens.Editor.NothingToPreview", "Nothing to preview, start editing or resolve issues to see something here."));
 
             ImGui.EndTabItem();
         }
 
 
         // Create a tab for player information relating to duties.
-        if (ImGui.BeginTabItem(Loc.Localize("UI.Editor.IDs", "IDs")))
+        if (ImGui.BeginTabItem(Loc.Localize("UI.Screens.Editor.IDs", "IDs")))
         {
             if (ImGui.CollapsingHeader("Mechanic IDs"))
             {

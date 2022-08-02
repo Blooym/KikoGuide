@@ -29,7 +29,7 @@ sealed class ListScreen : IDisposable
         if (!presenter.isVisible) return;
 
         ImGui.SetNextWindowSizeConstraints(new Vector2(350, 280), new Vector2(1000, 1000));
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.List.Title", "{0} - Duty Finder"), PStrings.pluginName), ref presenter.isVisible))
+        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.DutyList.Title", "{0} - Duty Finder"), PStrings.pluginName), ref presenter.isVisible))
         {
 
             // Prevent the plugin from crashing when using Window docking.

@@ -25,12 +25,12 @@ sealed class DutyInfoScreen : IDisposable
         var selectedDuty = presenter.selectedDuty;
 
         ImGui.SetNextWindowSize(new Vector2(380, 420), ImGuiCond.FirstUseEver);
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.DutyInfo.Title", "{0} - Duty Information"), PStrings.pluginName), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar))
+        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.SettingDutyInfo.Title", "{0} - Duty Information"), PStrings.pluginName), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar))
         {
 
             if (selectedDuty == null || selectedDuty.Bosses == null)
             {
-                ImGui.Text(Loc.Localize("UI.DutyInfo.NoDuty", "No duty selected, use /kikolist to see all available duties."));
+                ImGui.Text(Loc.Localize("UI.Screens.SettingDutyInfo.NoDuty", "No duty selected, use /kikolist to see all available duties."));
                 return;
             }
 
