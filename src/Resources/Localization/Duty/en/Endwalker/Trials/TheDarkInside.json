@@ -13,8 +13,8 @@
 			"KeyMechanics": [
 				{
 					"Name": "Kokytos",
-					"Description": "Reduces the everyone's HP to 1",
-					"Type": 10
+					"Description": "Reduces the party's HP to 1",
+					"Type": 4
 				},
 				{
 					"Name": "Exoterikos",
@@ -73,7 +73,7 @@
 				},
 				{
 					"Name": "Trimorphos Exoterikos",
-					"Description": "Boss casts 3 Exoterikos runes at every other edge of the arena that go off one by one.",
+					"Description": "Casts 3 Exoterikos runes at every other edge of the arena that go off one by one.",
 					"Type": 2
 				}
 			]

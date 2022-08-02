@@ -10,7 +10,7 @@
     "Bosses": [
         {
             "Name": "Nabriales (Phase 1)",
-            "Strategy": "At 80%% HP Nabriales will go invulnerable and spawn orbs that move towards him, each orb gives a debuff and players must alternate between purple and grey orbs to avoid taking massive amounts damage, while orbs are moving small adds will spawn and preform large cone AOEs, After all the orbs are gone Nabriales will preform a raid wide with damage increasing per orb that reached him. \n\nAt 40%% Nabriales will repeat the orbs mechanic. \n\nAt 20%% Nabriales 2nd phase will start.",
+            "Strategy": "At 80%% HP Nabriales will go invulnerable and spawn orbs that move towards him, each orb gives a debuff and players must alternate between purple and grey orbs to avoid taking massive amounts damage, while orbs are moving small adds will spawn and preform large cone AOEs, After all the orbs are gone Nabriales will preform a raidwide with damage increasing per orb that reached him. \n\nAt 40%% Nabriales will repeat the orbs mechanic. \n\nAt 20%% Nabriales 2nd phase will start.",
             "KeyMechanics": [
                 {
                     "Name": "Spark",
@@ -24,7 +24,7 @@
                 },
                 {
                     "Name": "Quake 3",
-                    "Description": "Unavoidable raid wide damage.",
+                    "Description": "Unavoidable raidwide damage.",
                     "Type": 4
                 }
             ]

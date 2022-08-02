@@ -18,32 +18,32 @@
 				},
 				{
 					"Name": "Ordeal of Thunder",
-					"Description": "Unavoidable raid wide damage.",
+					"Description": "Unavoidable raidwide damage.",
 					"Type": 4
 				},
 				{
 					"Name": "Byregot's Strike",
 					"Description": "Knockback from a blue AoE.",
-					"Type": 10
+					"Type": 2
 				},
 				{
 					"Name": "Builder's Build",
 					"Description": "Like Byregot's Strike, but with 4 cone-shaped AoEs that will go off from the middle of the blue area like a cross.",
-					"Type": 10
+					"Type": 2
 				},
 				{
 					"Name": "Levinforge",
-					"Description": "A purple hammer will appear. This hammer will create a line AoE, and can be pushed around together with the floor, when it's knocked by a hammer. \nPlayers must predict the movement of the purple hammer while making sure not to have the ground fall beneath their feet.",
-					"Type": 10
+					"Description": "A purple hammer that creates a line AoE, and can be pushed around together with the floor, when it's knocked by a hammer.\nPlayers must predict the movement of the purple hammer while making sure not to have the ground fall beneath their feet.",
+					"Type": 2
 				},
 				{
 					"Name": "Byregot's Spire",
-					"Description": "The boss will jump to one side and start casting a wide line AoE in the center 3 columns. \nHammers will knock around the floor, just before the cast goes off. \nPlayers must predict where the blocks will be knocked, and run to a block that is knocked out of Byregot's AoE.",
+					"Description": "The boss will jump to one side and start casting a wide line AoE in the center 3 columns.\nHammers will knock around the floor just before the cast goes off.\nPlayers must predict where the blocks will be knocked, and run to a block that is knocked out of Byregot's AoE.",
 					"Type": 10
 				},
 				{
 					"Name": "Reproduce",
-					"Description": "5 clones of the boss appear at one side of the arena, casting Cloud to Ground, a circle AoE that will travel to the opposite side. \nThe AoEs from clones with lightning around them travel faster.",
+					"Description": "5 clones of the boss appear at one side of the arena, casting Cloud to Ground, a circle AoE that will travel to the opposite side.\nThe AoEs from clones with lightning around them travel faster.",
 					"Type": 2
 				}
 			]
@@ -54,12 +54,12 @@
 			"KeyMechanics": [
 				{
 					"Name": "Destructive Strike",
-					"Description": "Cleave + Tankbuster",
+					"Description": "Cleave & Tankbuster",
 					"Type": 0
 				},
 				{
 					"Name": "Bolts from the Blue",
-					"Description": "Unavoidable raid wide damage.",
+					"Description": "Moderate raidwide damage.",
 					"Type": 4
 				},
 				{
@@ -224,17 +224,17 @@
 				{
 					"Name": "Heat Above, Flames Below",
 					"Description": "Orange mechanic: a circle AoE around the boss.\nBlue mechanic: a large donut AoE around the boss.\nStand outside of the indicated colour.",
-					"Type": 10
+					"Type": 2
 				},
 				{
 					"Name": "Heavens' Trial",
 					"Description": "Three unavoidable conal AoEs on three random players and a stack marker on a fourth random player.",
-					"Type": 10
+					"Type": 2
 				},
 				{
 					"Name": "Far Above, Deep Below",
 					"Description": "Orange mechanic: a line stack AoE.\nBlue mechanic: three players get marked with a chaser AoE.\nOnly the mechanic indicated by the colour goes off.",
-					"Type": 10
+					"Type": 2
 				},
 				{
 					"Name": "Once Above, Ever Below",
@@ -253,8 +253,8 @@
 				},
 				{
 					"Name": "Fired Up",
-					"Description": "Boss will mark spots he will jump towards. An icon above those spots indicates wether it's a circle AoE or a knockback.",
-					"Type": 10
+					"Description": "Boss will mark spots he will jump towards. An icon above those spots indicates whether it's a circle AoE or a knockback.",
+					"Type": 2
 				},
 				{
 					"Name": "Soul's Measure",
@@ -263,7 +263,7 @@
 				},
 				{
 					"Name": "Tipped Scale",
-					"Description": "Arena is split in half and a pair of scales appears in the middle. Players must split up across both halves to balance out the scales. Each player counts as 1 weight and the dead adds weigh either 2 or 3. \nIf the scales are balanced, the entire alliance receives a permanent damage up buff and each alliance's Limit Break bar is fully charged. If not the raid will wipe.",
+					"Description": "Arena is split in half and a pair of scales appears in the middle. Players must split up across both halves to balance out the scales. Each player counts as 1 weight and the dead adds weigh either 2 or 3. \nIf the scales are balanced, the entire alliance receives a permanent damage up buff and each alliance's Limit Break bar is fully charged. If not, it will trigger a wipe.",
 					"Type": 10
 				}
 			]

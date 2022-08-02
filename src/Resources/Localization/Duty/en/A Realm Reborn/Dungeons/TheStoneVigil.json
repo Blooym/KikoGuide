@@ -63,7 +63,7 @@
             "KeyMechanics": [
                 {
                     "Name": "Rime Wreath",
-                    "Description": "A raid wide damage attack that will hit all players for moderate damage.",
+                    "Description": "A raidwide damage attack that will hit all players for moderate damage.",
                     "Type": 4
                 },
                 {

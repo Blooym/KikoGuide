@@ -14,7 +14,7 @@
 			"KeyMechanics": [
 				{
 					"Name": "Heroes's Radiance",
-					"Description": "Unavoidable raid wide damage.",
+					"Description": "Unavoidable raidwide damage.",
 					"Type": 4
 				},
 				{
@@ -29,7 +29,7 @@
 				},
 				{
 					"Name": "Magos's Radiance",
-					"Description": "Heavy raid wide damage.",
+					"Description": "Heavy raidwide damage.",
 					"Type": 4
 				}
 			]
@@ -45,7 +45,7 @@
 				},
 				{
 					"Name": "Crystalline Stone III",
-					"Description": "Heavy raid wide damage.",
+					"Description": "Heavy raidwide damage.",
 					"Type": 3
 				},
 				{
@@ -55,7 +55,7 @@
 				},
 				{
 					"Name": "Exodus",
-					"Description": "Massive raid wide damage.",
+					"Description": "Massive raidwide damage.",
 					"Type": 4
 				}
 			]
@@ -71,7 +71,7 @@
 				},
 				{
 					"Name": "Radiant Halo",
-					"Description": "Unavoidable raid wide damage.",
+					"Description": "Unavoidable raidwide damage.",
 					"Type": 4
 				},
 				{

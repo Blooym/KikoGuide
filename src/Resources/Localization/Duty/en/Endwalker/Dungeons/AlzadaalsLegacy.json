@@ -14,7 +14,7 @@
 			"KeyMechanics": [
 				{
 					"Name": "Big Wave",
-					"Description": "Unavoidable raid wide damage that inflicts Bleed.",
+					"Description": "Unavoidable raidwide damage that inflicts Bleed.",
 					"Type": 4
 				},
 				{
@@ -40,7 +40,7 @@
 				},
 				{
 					"Name": "Diffusion Ray",
-					"Description": "Unavoidable raid wide damage.",
+					"Description": "Unavoidable raidwide damage.",
 					"Type": 4
 				},
 				{
@@ -61,7 +61,7 @@
 			"KeyMechanics": [
 				{
 					"Name": "Billowing Bolts",
-					"Description": "Unavoidable raid wide damage.",
+					"Description": "Unavoidable raidwide damage.",
 					"Type": 4
 				},
 				{
