@@ -10,7 +10,6 @@
     "Bosses": [
         {
             "Name": "Lyssa",
-            "Strategy": "",
             "KeyMechanics": [
                 {
                     "Name": "Frigid Stomp",
@@ -41,7 +40,6 @@
         },
         {
             "Name": "Ladon Lord",
-            "Strategy": "",
             "KeyMechanics": [
                 {
                     "Name": "Scratch",
@@ -77,7 +75,6 @@
         },
         {
             "Name": "Hermes",
-            "Strategy": "",
             "KeyMechanics": [
                 {
                     "Name": "Trismegistos",
