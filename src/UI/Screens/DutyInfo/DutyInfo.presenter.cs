@@ -27,10 +27,11 @@ sealed class DutyInfoPresenter : IDisposable
 
         // Get the player duty and check if it has valid, if so then display it. (Typically on duty enter)
         var playerDuty = DutyManager.GetPlayerDuty();
-        if (playerDuty != null || playerDuty?.Bosses != null)
+        // if this duty is NOT null and contains BOSS data
+        if (playerDuty != null && playerDuty?.Bosses?.Count > 0)
         {
             this.isVisible = true;
-            this.selectedDuty = DutyManager.GetPlayerDuty();
+            this.selectedDuty = playerDuty;
         }
 
         // If the player duty does not have any valid data, hide the UI & clear it (typically on duty exit)
