@@ -22,6 +22,8 @@ static class DutyListComponent
             // If there are no duties found, display a message and return.
             if (dutyList.Count() == 0) { ImGui.TextDisabled(Loc.Localize("UI.Components.DutiesList.NoDutiesfound", "No duties were found.")); return; }
 
+            var playerDuty = DutyManager.GetPlayerDuty();
+
             // Create a table for each duty, containing its level and name.
             ImGui.BeginTable("DutyList", 2);
             ImGui.TableSetupColumn(Loc.Localize("Generics.Level", "Level"), ImGuiTableColumnFlags.WidthFixed, 45);
@@ -50,7 +52,7 @@ static class DutyListComponent
                 if (ImGui.Selectable(name, false, ImGuiSelectableFlags.AllowDoubleClick)) onDutySelected(duty);
 
                 // If the player is inside this duty, add some text next to it.
-                if (duty == DutyManager.GetPlayerDuty()) Badges.Custom(Colours.Green, Loc.Localize("Generics.InDuty", "In Duty"));
+                if (duty == playerDuty) Badges.Custom(Colours.Green, Loc.Localize("Generics.InDuty", "In Duty"));
             }
 
             ImGui.EndTable();
