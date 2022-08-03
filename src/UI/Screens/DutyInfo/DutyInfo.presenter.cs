@@ -22,23 +22,21 @@ sealed class DutyInfoPresenter : IDisposable
     /// <summary> Handles territory change even and changes the UI state accordingly. </summary>
     public void OnTerritoryChange(object? sender, ushort e)
     {
-        // Skip if the config says to ignore this.
-        if (!Service.Configuration.autoOpenDuty) return;
-
-        // Get the player duty and check if it has valid, if so then display it. (Typically on duty enter)
         var playerDuty = DutyManager.GetPlayerDuty();
-        // if this duty is NOT null and contains BOSS data
+
+        // If the player has entered a duty with data, set the UI to that duty and display it if the 
+        // Configuration setting is set to do so.
         if (playerDuty != null && playerDuty?.Bosses?.Count > 0)
         {
-            this.isVisible = true;
             this.selectedDuty = playerDuty;
+            if (Service.Configuration.autoOpenDuty) this.isVisible = true;
         }
 
-        // If the player duty does not have any valid data, hide the UI & clear it (typically on duty exit)
+        // If the player has entered a territory that does not have any data, deselect the duty & hide the UI
         else
         {
-            this.isVisible = false;
             this.selectedDuty = null;
+            this.isVisible = false;
         }
     }
 }
