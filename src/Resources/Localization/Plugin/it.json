@@ -143,10 +143,6 @@
     "message": "Metadata",
     "description": "EditorScreen.DrawEditorPreview"
   },
-  "UI.Screens.Editor.NothingToPreview": {
-    "message": "Nothing to preview, start editing or resolve issues to see something here.",
-    "description": "EditorScreen.DrawEditorPreview"
-  },
   "UI.Screens.Editor.IDs": {
     "message": "IDs",
     "description": "EditorScreen.DrawEditorPreview"
