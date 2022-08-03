@@ -69,10 +69,6 @@
       <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
 	  <Reference Include="CheapLoc">
 		  <Private>false</Private>
 		  <HintPath>$(DalamudLibPath)CheapLoc.dll</HintPath>
