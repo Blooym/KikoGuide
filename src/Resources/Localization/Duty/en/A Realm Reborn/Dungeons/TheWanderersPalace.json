@@ -39,7 +39,7 @@
                 }
             ]
         },
-		{
+	{
             "Name": "Giant Bavarois",
             "Strategy": "Everyone - Occasionally, the boss will target a random player, followed by using *Amorphic Flail if allowed to get close. Targetted player should run away from the boss.\n- Periodically adds spawn throughout the fight. *Blue Bavarois should be dealt with first, followed by the rest.\n\nTank - Keep the boss facing away from the party. Also be mindful of the party when adds spawn. When the boss casts *Fire either interrupt or move behind the boss.\n\nHealer - Make sure you *Esuna the debuffs off the party.  *Most detrimental are: Heavy & Paralysis\n\nDPS - Be prepared for add spawns. Priority is: Blue, Purple, White, Green.",
 			"KeyMechanics": [
