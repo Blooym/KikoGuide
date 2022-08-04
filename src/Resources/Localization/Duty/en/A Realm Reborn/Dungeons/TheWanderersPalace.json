@@ -32,7 +32,7 @@
                     "Description": "Instant AOE - Moderate amount of damage.\n\n*Also inflicts a Poison Debuff to all that are in melee range.",
                     "Type": 2
                 },
-				{
+		{
                     "Name": "Moldy Phlegm",
                     "Description": "Large AOE attack that targets a random player - Moderate amount of damage.\n\n*Also inflicts a Healing Debuff (Healing Recieved) to all players hit.",
                     "Type": 2,
