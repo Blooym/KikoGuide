@@ -3,12 +3,15 @@
 name: "PR: Chores"
 
 on:
-  pull_request:
+  pull_request:  
 
 jobs:
   # Label the pull request with its file changes
   Label:
     runs-on: ubuntu-latest
+    permissions: 
+      pull-requests: write
+      contents: read      
     steps:
       - name: Label PR
         uses: actions/labeler@v4
