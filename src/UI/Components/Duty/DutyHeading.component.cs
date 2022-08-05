@@ -4,8 +4,7 @@ using KikoGuide.UI.Components;
 using System;
 using ImGuiNET;
 using CheapLoc;
-using KikoGuide.Enums;
-using KikoGuide.Managers;
+using KikoGuide.Types;
 
 static class DutyHeadingComponent
 {

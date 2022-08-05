@@ -6,19 +6,20 @@ using System.Linq;
 using ImGuiNET;
 using CheapLoc;
 using KikoGuide.Base;
-using KikoGuide.Enums;
+using KikoGuide.Types;
 using KikoGuide.Managers;
+using KikoGuide.Interfaces;
+using Components.Duty;
 using KikoGuide.UI.Components;
 
-sealed class ListScreen : IDisposable
+sealed public class DutyListScreen : IScreen
 {
     public DutyListPresenter presenter = new DutyListPresenter();
 
-    /// <summary> Disposes of the DutyList UI window and any resources it uses. </summary>
-    public void Dispose() => this.presenter.Dispose();
-
-    /// <summary> Draws all UI elements associated with the List UI. </summary>
     public void Draw() => DrawListWindow();
+    public void Dispose() => this.presenter.Dispose();
+    public void Show() => this.presenter.isVisible = true;
+    public void Hide() => this.presenter.isVisible = false;
 
     /// <summary> The current input search text. </summary>
     private string _searchText = "";
@@ -29,7 +30,7 @@ sealed class ListScreen : IDisposable
         if (!presenter.isVisible) return;
 
         ImGui.SetNextWindowSizeConstraints(new Vector2(350, 280), new Vector2(1000, 1000));
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.DutyList.Title", "{0} - Duty Finder"), PStrings.pluginName), ref presenter.isVisible))
+        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.DutyList.Title", "{0} - Duty Finder"), PluginStrings.pluginName), ref presenter.isVisible))
         {
 
             // Prevent the plugin from crashing when using Window docking.
@@ -41,7 +42,7 @@ sealed class ListScreen : IDisposable
 
             // Support button
             var supportButtonText = Loc.Localize("Generics.Support", "Support (GitHub)");
-            var supportButtonShown = Service.Configuration.supportButtonShown;
+            var supportButtonShown = PluginService.Configuration.supportButtonShown;
             if (supportButtonShown) ImGui.SetNextItemWidth(-(ImGui.CalcTextSize(supportButtonText).X + ImGui.GetStyle().FramePadding.X * 2 + ImGui.GetStyle().ItemSpacing.X));
             else ImGui.SetNextItemWidth(-1);
             ImGui.InputTextWithHint("", Loc.Localize("Generics.Search", "Search"), ref this._searchText, 60);
@@ -62,10 +63,10 @@ sealed class ListScreen : IDisposable
                 {
                     ImGui.BeginChild(dutyType.ToString());
 
-                    Components.Duty.DutyListComponent.Draw(duties, ((duty) =>
+                    DutyListComponent.Draw(duties, ((duty) =>
                     {
-                        KikoPlugin.dutyInfoScreen.presenter.selectedDuty = duty;
-                        KikoPlugin.dutyInfoScreen.presenter.isVisible = true;
+                        PluginWindowManager.DutyInfo.presenter.selectedDuty = duty;
+                        PluginWindowManager.DutyInfo.Show();
                     }), this._searchText, dutyType);
 
                     ImGui.EndChild();

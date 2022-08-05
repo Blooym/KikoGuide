@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using Dalamud.Interface.ImGuiFileDialog;
 using Dalamud.Interface.Internal.Notifications;
 using KikoGuide.Base;
-using KikoGuide.Managers;
+using KikoGuide.Types;
 
-sealed class EditorPresenter : IDisposable
+sealed public class EditorPresenter : IDisposable
 {
     public EditorPresenter() { }
     public void Dispose() { }
@@ -36,11 +36,11 @@ sealed class EditorPresenter : IDisposable
         // Reject loading if the file length is beyond the character limit.
         if (fileText.Length > this.characterLimit)
         {
-            Service.PluginInterface.UiBuilder.AddNotification(Loc.Localize("UI.Screens.Editor.FileTooLong", "Your file was too big to be loaded into the editor."), PStrings.pluginName, NotificationType.Error);
+            PluginService.PluginInterface.UiBuilder.AddNotification(Loc.Localize("UI.Screens.Editor.FileTooLong", "Your file was too big to be loaded into the editor."), PluginStrings.pluginName, NotificationType.Error);
             return text;
         }
 
-        Service.PluginInterface.UiBuilder.AddNotification(Loc.Localize("UI.Screens.Editor.FileLoaded", "Your file was successfully loaded."), PStrings.pluginName, NotificationType.Success);
+        PluginService.PluginInterface.UiBuilder.AddNotification(Loc.Localize("UI.Screens.Editor.FileLoaded", "Your file was successfully loaded."), PluginStrings.pluginName, NotificationType.Success);
         return fileText;
     }
 
@@ -50,7 +50,7 @@ sealed class EditorPresenter : IDisposable
         if (!success) return;
         text = this.OnFormat(text);
         File.WriteAllText(file, text);
-        Service.PluginInterface.UiBuilder.AddNotification(Loc.Localize("UI.Screens.Editor.FileSaved", "Your file was successfully saved."), PStrings.pluginName, NotificationType.Success);
+        PluginService.PluginInterface.UiBuilder.AddNotification(Loc.Localize("UI.Screens.Editor.FileSaved", "Your file was successfully saved."), PluginStrings.pluginName, NotificationType.Success);
     }
 
     /// <summary> Formats the given text into a better layout. </summary>

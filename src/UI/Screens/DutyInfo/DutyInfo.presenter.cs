@@ -2,18 +2,19 @@ namespace KikoGuide.UI.Screens.DutyInfo;
 
 using System;
 using KikoGuide.Base;
+using KikoGuide.Types;
 using KikoGuide.Managers;
 
-sealed class DutyInfoPresenter : IDisposable
+sealed public class DutyInfoPresenter : IDisposable
 {
     public DutyInfoPresenter()
     {
-        Service.ClientState.TerritoryChanged += this.OnTerritoryChange;
+        PluginService.ClientState.TerritoryChanged += this.OnTerritoryChange;
     }
 
     public void Dispose()
     {
-        Service.ClientState.TerritoryChanged -= this.OnTerritoryChange;
+        PluginService.ClientState.TerritoryChanged -= this.OnTerritoryChange;
     }
 
     public bool isVisible = false;
@@ -29,7 +30,7 @@ sealed class DutyInfoPresenter : IDisposable
         if (playerDuty != null && playerDuty?.Bosses?.Count > 0)
         {
             this.selectedDuty = playerDuty;
-            if (Service.Configuration.autoOpenDuty) this.isVisible = true;
+            if (PluginService.Configuration.autoOpenDuty) this.isVisible = true;
         }
 
         // If the player has entered a territory that does not have any data, deselect the duty & hide the UI

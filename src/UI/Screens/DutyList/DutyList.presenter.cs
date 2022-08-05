@@ -2,7 +2,7 @@ namespace KikoGuide.UI.Screens.DutyList;
 
 using System;
 
-sealed class DutyListPresenter : IDisposable
+sealed public class DutyListPresenter : IDisposable
 {
     public DutyListPresenter() { }
     public void Dispose() { }

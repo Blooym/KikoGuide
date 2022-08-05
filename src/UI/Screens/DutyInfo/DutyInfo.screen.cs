@@ -5,17 +5,17 @@ using System.Numerics;
 using CheapLoc;
 using ImGuiNET;
 using KikoGuide.Base;
+using KikoGuide.Interfaces;
 using KikoGuide.UI.Components.Duty;
 
-sealed class DutyInfoScreen : IDisposable
+sealed public class DutyInfoScreen : IScreen
 {
     public DutyInfoPresenter presenter = new DutyInfoPresenter();
 
-    /// <summary> Disposes of the Duty info screen and any resources it uses. </summary>
-    public void Dispose() => this.presenter.Dispose();
-
-    /// <summary> Draws all UI elements associated with the DutyInfo screen. </summary>
     public void Draw() => DrawInfoWindow();
+    public void Dispose() => this.presenter.Dispose();
+    public void Show() => this.presenter.isVisible = true;
+    public void Hide() => this.presenter.isVisible = false;
 
     /// <summary> Draws the duty info window. </summary>
     private void DrawInfoWindow()
@@ -25,7 +25,7 @@ sealed class DutyInfoScreen : IDisposable
         var selectedDuty = presenter.selectedDuty;
 
         ImGui.SetNextWindowSize(new Vector2(380, 420), ImGuiCond.FirstUseEver);
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.SettingDutyInfo.Title", "{0} - Duty Information"), PStrings.pluginName), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar))
+        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.SettingDutyInfo.Title", "{0} - Duty Information"), PluginStrings.pluginName), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar))
         {
 
             if (selectedDuty == null || selectedDuty.Bosses == null)

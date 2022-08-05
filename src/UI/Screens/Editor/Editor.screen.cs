@@ -7,19 +7,19 @@ using CheapLoc;
 using Dalamud.Interface.Components;
 using Dalamud.Interface;
 using KikoGuide.Base;
-using KikoGuide.Enums;
+using KikoGuide.Types;
 using KikoGuide.UI.Components.Duty;
 using KikoGuide.UI.Components;
+using KikoGuide.Interfaces;
 
-sealed class EditorScreen : IDisposable
+sealed public class EditorScreen : IScreen
 {
     public EditorPresenter presenter = new EditorPresenter();
 
-    /// <summary> Disposes of the Editor screen and any resources it uses. </summary>
-    public void Dispose() => this.presenter.Dispose();
-
-    /// <summary> Draws all UI elements associated with the Editor screen. </summary>
     public void Draw() => this.DrawEditorUI();
+    public void Dispose() => this.presenter.Dispose();
+    public void Show() => this.presenter.isVisible = true;
+    public void Hide() => this.presenter.isVisible = false;
 
     /// <summary> The current editor input text. </summary>
     private string _inputText = "";
@@ -34,7 +34,7 @@ sealed class EditorScreen : IDisposable
 
         // Begin the editor window.
         ImGui.SetWindowSize(new Vector2(600, 400), ImGuiCond.FirstUseEver);
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.Editor.Title", "{0} - Duty Editor"), PStrings.pluginName), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse))
+        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.Editor.Title", "{0} - Duty Editor"), PluginStrings.pluginName), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse))
         {
             // Draw some buttons at the top of the editor.
             this.DrawEditorButtons();
@@ -89,7 +89,7 @@ sealed class EditorScreen : IDisposable
 
         if (ImGuiComponents.IconButton(FontAwesomeIcon.ExternalLinkAlt))
         {
-            Utils.Common.OpenBrowser($"{PStrings.pluginRepository}blob/main/CONTRIBUTING.md#guide-contribution");
+            Utils.Common.OpenBrowser($"{PluginStrings.pluginRepository}blob/main/CONTRIBUTING.md#guide-contribution");
         }
         Tooltips.AddTooltip(Loc.Localize("UI.Screens.Editor.Contribute.Tooltip", "Opens the contribution guidelines."));
     }
@@ -151,8 +151,8 @@ sealed class EditorScreen : IDisposable
                 ImGui.TextWrapped($"Type: {Enum.GetName(typeof(DutyType), duty.Type)}");
                 ImGui.TextWrapped($"Difficulty: {Enum.GetName(typeof(DutyDifficulty), duty.Difficulty)}");
                 ImGui.TextWrapped($"Level: {duty.Level}");
-                ImGui.TextWrapped($"Expansion: {Enum.GetName(typeof(Expansion), duty.Expansion)}");
-                ImGui.TextWrapped($"TerritoryID: {duty.TerritoryID} (Current: {Service.ClientState.TerritoryType})");
+                ImGui.TextWrapped($"Expansion: {Enum.GetName(typeof(DutyExpansion), duty.Expansion)}");
+                ImGui.TextWrapped($"TerritoryID: {duty.TerritoryID} (Current: {PluginService.ClientState.TerritoryType})");
                 ImGui.TextWrapped($"UnlockQuestID: {duty.UnlockQuestID}");
             }
 
@@ -165,9 +165,9 @@ sealed class EditorScreen : IDisposable
         {
             if (ImGui.CollapsingHeader("Mechanic IDs"))
             {
-                foreach (var mechanic in Enum.GetNames(typeof(Mechanics)))
+                foreach (var mechanic in Enum.GetNames(typeof(DutyMechanics)))
                 {
-                    ImGui.TextWrapped($"{mechanic}: {(int)Enum.Parse(typeof(Mechanics), mechanic)}");
+                    ImGui.TextWrapped($"{mechanic}: {(int)Enum.Parse(typeof(DutyMechanics), mechanic)}");
                 }
             }
 
@@ -189,9 +189,9 @@ sealed class EditorScreen : IDisposable
 
             if (ImGui.CollapsingHeader("Expansion IDs"))
             {
-                foreach (var expansion in Enum.GetNames(typeof(Expansion)))
+                foreach (var expansion in Enum.GetNames(typeof(DutyExpansion)))
                 {
-                    ImGui.TextWrapped($"{expansion}: {(int)Enum.Parse(typeof(Expansion), expansion)}");
+                    ImGui.TextWrapped($"{expansion}: {(int)Enum.Parse(typeof(DutyExpansion), expansion)}");
                 }
             }
 

@@ -1,15 +1,14 @@
 namespace KikoGuide.UI.Components.Duty;
 
 using ImGuiNET;
-using KikoGuide.Enums;
+using KikoGuide.Types;
 using KikoGuide.Managers;
 using System;
 using CheapLoc;
 using System.Linq;
-
 using System.Collections.Generic;
 
-static class DutyListComponent
+public static class DutyListComponent
 {
     public static void Draw(List<Duty> dutyPool, Action<Duty> onDutySelected, string filter = "", int? dutyType = null)
     {
@@ -34,7 +33,7 @@ static class DutyListComponent
             foreach (var duty in dutyList)
             {
                 // Do not show the duty if it isn't unlocked or isn't part of the filter.
-                if (!duty.IsUnlocked()) continue;
+                if (!DutyManager.IsUnlocked(duty)) continue;
                 if (!duty.Name.ToLower().Contains(filter.ToLower())) continue;
 
                 // Ad the level and duty name to the list.

@@ -35,7 +35,7 @@
 		{
                     "Name": "Moldy Phlegm",
                     "Description": "Large AOE attack that targets a random player - Moderate amount of damage.\n\n*Also inflicts a Healing Debuff (Healing Recieved) to all players hit.",
-                    "Type": 2,
+                    "Type": 2
                 }
             ]
         },

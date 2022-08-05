@@ -7,19 +7,18 @@ using System.Collections.Generic;
 using ImGuiNET;
 using CheapLoc;
 using KikoGuide.Base;
-using KikoGuide.Enums;
-using KikoGuide.Managers;
+using KikoGuide.Types;
 using KikoGuide.UI.Components;
+using KikoGuide.Interfaces;
 
-sealed class SettingsScreen : IDisposable
+sealed public class SettingsScreen : IScreen
 {
     public SettingsPresenter presenter = new SettingsPresenter();
 
-    /// <summary> Disposes of the settings screen and any resources it uses. </summary>
-    public void Dispose() => this.presenter.Dispose();
-
-    /// <summary> Draws all UI elements associated with the settings screen. </summary>
     public void Draw() => DrawSettingsWindow();
+    public void Dispose() => this.presenter.Dispose();
+    public void Show() => this.presenter.isVisible = true;
+    public void Hide() => this.presenter.isVisible = false;
 
     /// <summary> Draws the settings window. </summary>
     private void DrawSettingsWindow()
@@ -27,14 +26,14 @@ sealed class SettingsScreen : IDisposable
 
         if (!presenter.isVisible) return;
 
-        List<int> disabledMechanics = Service.Configuration.hiddenMechanics;
-        bool autoOpenDuty = Service.Configuration.autoOpenDuty;
-        bool shortenStrategies = Service.Configuration.shortenStrategies;
-        bool supportButtonShown = Service.Configuration.supportButtonShown;
-        long lastUpdateTime = Service.Configuration.lastResourceUpdate;
+        List<int> disabledMechanics = PluginService.Configuration.hiddenMechanics;
+        bool autoOpenDuty = PluginService.Configuration.autoOpenDuty;
+        bool shortenStrategies = PluginService.Configuration.shortenStrategies;
+        bool supportButtonShown = PluginService.Configuration.supportButtonShown;
+        long lastUpdateTime = PluginService.Configuration.lastResourceUpdate;
 
         ImGui.SetNextWindowSizeConstraints(new Vector2(410, 250), new Vector2(1000, 1000));
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.Settings.Title", "{0} - Settings"), PStrings.pluginName), ref presenter.isVisible))
+        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.Settings.Title", "{0} - Settings"), PluginStrings.pluginName), ref presenter.isVisible))
         {
             // Create tab bar for each settings category
             ImGui.BeginTabBar("settings");
@@ -45,8 +44,8 @@ sealed class SettingsScreen : IDisposable
                 // Auto-open duty setting.
                 Common.ToggleCheckbox(Loc.Localize("UI.Screens.Settings.AutoOpenDuty", "Open in Duty"), ref autoOpenDuty, () =>
                {
-                   Service.Configuration.autoOpenDuty = !autoOpenDuty;
-                   Service.Configuration.Save();
+                   PluginService.Configuration.autoOpenDuty = !autoOpenDuty;
+                   PluginService.Configuration.Save();
                });
                 Tooltips.AddTooltip(Loc.Localize("UI.Screens.Settings.AutoOpenDuty.Tooltip", "Open the duty guide when entering a duty."));
 
@@ -54,8 +53,8 @@ sealed class SettingsScreen : IDisposable
                 // TLDR mode setting.
                 Common.ToggleCheckbox(Loc.Localize("UI.Screens.Settings.ShortenStrategies", "Shorten Strategies"), ref shortenStrategies, () =>
                 {
-                    Service.Configuration.shortenStrategies = !shortenStrategies;
-                    Service.Configuration.Save();
+                    PluginService.Configuration.shortenStrategies = !shortenStrategies;
+                    PluginService.Configuration.Save();
                 });
 
                 Tooltips.AddTooltip(Loc.Localize("UI.Screens.Settings.ShortenStrategies.Tooltip", "Shorten duty guide strategies if possible."));
@@ -64,8 +63,8 @@ sealed class SettingsScreen : IDisposable
                 // Support button setting.
                 Common.ToggleCheckbox(Loc.Localize("UI.Screens.Settings.ShowSupportButton", "Show Support Button"), ref supportButtonShown, () =>
                 {
-                    Service.Configuration.supportButtonShown = !supportButtonShown;
-                    Service.Configuration.Save();
+                    PluginService.Configuration.supportButtonShown = !supportButtonShown;
+                    PluginService.Configuration.Save();
                 });
                 Tooltips.AddTooltip(Loc.Localize("UI.Screens.Settings.ShowSupportButton.Tooltip", "Show the support Kiko Guide button."));
 
@@ -75,16 +74,16 @@ sealed class SettingsScreen : IDisposable
                 Common.TextHeading(Loc.Localize("UI.Screens.Settings.UpdateResources.Title", "Resources & Localization"));
                 ImGui.TextWrapped(Loc.Localize("UI.Screens.Settings.UpdateResources.Text", "Downloads the latest resources, localizations & guides."));
                 ImGui.Dummy(new Vector2(0, 5));
-                ImGui.BeginDisabled(UpdateManager.updateInProgress);
-                if (ImGui.Button(Loc.Localize("UI.Screens.Settings.UpdateResources", "Update Resources"))) UpdateManager.UpdateResources();
+                ImGui.BeginDisabled(PluginResourceManager.updateInProgress);
+                if (ImGui.Button(Loc.Localize("UI.Screens.Settings.UpdateResources", "Update Resources"))) PluginResourceManager.Update();
                 ImGui.EndDisabled();
 
-                if (!UpdateManager.updateInProgress && UpdateManager.lastUpdateSuccess == false && lastUpdateTime != 0)
+                if (!PluginResourceManager.updateInProgress && PluginResourceManager.lastUpdateSuccess == false && lastUpdateTime != 0)
                 {
                     ImGui.SameLine();
                     ImGui.TextWrapped(Loc.Localize("UI.Screens.Settings.UpdateLocalization.Failed", "Update Failed."));
                 }
-                else if (!UpdateManager.updateInProgress && lastUpdateTime != 0)
+                else if (!PluginResourceManager.updateInProgress && lastUpdateTime != 0)
                 {
                     ImGui.SameLine();
                     ImGui.TextWrapped(String.Format(Loc.Localize("UI.Screens.Settings.UpdateLocalization.UpdatedAt", "Last Update: {0}"),
@@ -108,27 +107,27 @@ sealed class SettingsScreen : IDisposable
                 ImGui.Columns(2, "mechanics", false);
 
                 // For each mechanic enum, creating a checkbox for it.
-                foreach (var mechanic in Enum.GetValues(typeof(Mechanics)).Cast<int>().ToList())
+                foreach (var mechanic in Enum.GetValues(typeof(DutyMechanics)).Cast<int>().ToList())
                 {
                     // See if the mechanic is enabled by looking at the list for the enum value.
                     var isMechanicDisabled = disabledMechanics.Contains(mechanic);
 
                     // Create a checkbox for the mechanic.
-                    Common.ToggleCheckbox(String.Format(Loc.Localize("UI.Screens.Settings.HideMechanic", "Hide {0}"), Enum.GetName(typeof(Mechanics), mechanic)), ref isMechanicDisabled, () =>
+                    Common.ToggleCheckbox(String.Format(Loc.Localize("UI.Screens.Settings.HideMechanic", "Hide {0}"), Enum.GetName(typeof(DutyMechanics), mechanic)), ref isMechanicDisabled, () =>
                     {
                         switch (isMechanicDisabled)
                         {
                             case false:
-                                Service.Configuration.hiddenMechanics.Add(mechanic);
+                                PluginService.Configuration.hiddenMechanics.Add(mechanic);
                                 break;
                             case true:
-                                Service.Configuration.hiddenMechanics.Remove(mechanic);
+                                PluginService.Configuration.hiddenMechanics.Remove(mechanic);
                                 break;
                         }
-                        Service.Configuration.Save();
+                        PluginService.Configuration.Save();
                     });
 
-                    Tooltips.AddTooltip(String.Format(Loc.Localize("UI.Screens.Settings.HideMechanicTooltip", "Hide {0} from the duty guide."), Enum.GetName(typeof(Mechanics), mechanic)));
+                    Tooltips.AddTooltip(String.Format(Loc.Localize("UI.Screens.Settings.HideMechanicTooltip", "Hide {0} from the duty guide."), Enum.GetName(typeof(DutyMechanics), mechanic)));
 
                     ImGui.NextColumn();
                 }

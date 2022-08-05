@@ -7,7 +7,7 @@ using KikoGuide.Base;
 using Dalamud.Interface.ImGuiFileDialog;
 using Dalamud.Interface.Internal.Notifications;
 
-sealed class SettingsPresenter : IDisposable
+sealed public class SettingsPresenter : IDisposable
 {
     public SettingsPresenter() { }
     public void Dispose() { }
@@ -24,7 +24,7 @@ sealed class SettingsPresenter : IDisposable
         Loc.ExportLocalizable();
         File.Copy(Path.Combine(path, "KikoGuide_Localizable.json"), Path.Combine(path, "en.json"), true);
         Directory.SetCurrentDirectory(directory);
-        Service.PluginInterface.UiBuilder.AddNotification("Localization exported successfully.", "KikoGuide", NotificationType.Success);
+        PluginService.PluginInterface.UiBuilder.AddNotification("Localization exported successfully.", "KikoGuide", NotificationType.Success);
     }
 #endif
 }

@@ -3,20 +3,20 @@ namespace KikoGuide.UI.Components.Duty;
 using ImGuiNET;
 using CheapLoc;
 using System.Linq;
-using KikoGuide.Managers;
 using KikoGuide.Base;
-using KikoGuide.Enums;
+using KikoGuide.Types;
 using System.Collections.Generic;
 using System;
 
-static class DutyBossListComponent
+
+public static class DutyBossListComponent
 {
     public static void Draw(List<Duty.Boss> bosses)
     {
         try
         {
-            var disabledMechanics = Service.Configuration?.hiddenMechanics;
-            var shortMode = Service.Configuration?.shortenStrategies;
+            var disabledMechanics = PluginService.Configuration?.hiddenMechanics;
+            var shortMode = PluginService.Configuration?.shortenStrategies;
 
             foreach (var boss in bosses)
             {
@@ -44,7 +44,7 @@ static class DutyBossListComponent
                         ImGui.TableNextColumn();
                         ImGui.TextWrapped(mechanic.Description);
                         ImGui.TableNextColumn();
-                        ImGui.Text(Enum.GetName(typeof(Mechanics), mechanic.Type));
+                        ImGui.Text(Enum.GetName(typeof(DutyMechanics), mechanic.Type));
                     }
 
                     ImGui.EndTable();
