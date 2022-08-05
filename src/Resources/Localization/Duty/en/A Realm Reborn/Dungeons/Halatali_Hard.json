@@ -5,5 +5,74 @@
     "Type": 0,
     "Expansion": 0,
     "Level": 50,
-    "UnlockQuestID": 66946
+    "UnlockQuestID": 66946,
+    "TerritoryID": 360,
+    "Bosses": [
+        {
+            "Name": "Pyracmon",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        },
+        {
+            "Name": "Catoblepas",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        },
+        {
+            "Name": "Mumuepo the Beholden",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        }
+    ]
 }

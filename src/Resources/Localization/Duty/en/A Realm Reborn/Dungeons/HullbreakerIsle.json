@@ -5,5 +5,74 @@
     "Type": 0,
     "Expansion": 0,
     "Level": 50,
-    "UnlockQuestID": 67062
+    "UnlockQuestID": 67062,
+    "TerritoryID": 361,
+    "Bosses": [
+        {
+            "Name": "Sasquatch",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        },
+        {
+            "Name": "Sjoorm",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        },
+        {
+            "Name": "Kraken",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        }
+    ]
 }

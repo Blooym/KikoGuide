@@ -5,5 +5,74 @@
     "Type": 0,
     "Expansion": 0,
     "Level": 50,
-    "UnlockQuestID": 65630
+    "UnlockQuestID": 65630,
+    "TerritoryID": 387,
+    "Bosses": [
+        {
+            "Name": "Karlabos",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        },
+        {
+            "Name": "Captain Madison",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        },
+        {
+            "Name": "Kraken",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        }
+    ]
 }

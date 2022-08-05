@@ -1,9 +1,78 @@
 {
     "Version": 0,
-    "Name": "The Tam-Tara Deepcroft",
+    "Name": "Tam-Tara Deepcroft",
     "Difficulty": 1,
     "Type": 0,
     "Expansion": 0,
     "Level": 50,
-    "UnlockQuestID": 66315
+    "UnlockQuestID": 67060,
+    "TerritoryID": 373,
+    "Bosses": [
+        {
+            "Name": "Liavinne",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        },
+        {
+            "Name": "Spare Body",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        },
+        {
+            "Name": "Avere Bravearm",
+            "Strategy": "*STRATEGY DESC.*",
+            "TLDR": "*TLDR STRATEGY DESC.*",
+            "KeyMechanics": [
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                },
+                {
+                    "Name": "*MECHANIC NAME*",
+                    "Description": "*MECHANIC DESC.*",
+                    "Type": 11
+                }
+            ]
+        }
+    ]
 }
