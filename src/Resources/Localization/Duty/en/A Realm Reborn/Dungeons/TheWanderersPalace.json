@@ -9,39 +9,39 @@
     "TerritoryID": 159,
     "Bosses": [
         {
-        "Name": "Keeper of Halidom",
-        "Strategy": "Everyone - Be prepared to move out of *Inhale. If caught you will take unavoidable damage from the following attack.\n- Also be vigilant of the targetted AOE *Moldy Phlegm, prepare to run away.\n\nTank - Bring the boss to the back wall and make him face away from the party.\n\nHealer - Make sure you *Esuna the *Reduced Immunity & Poison Debuff from the party.\n\nDPS - Do damage & try not to get hit.",
-		"KeyMechanics": [
-            {
-                "Name": "Beatdown",
-                "Description": "Instant frontal melee attack - Small amount of damage.",
-                "Type": 6
-            },
-            {
-                "Name": "Moldy Sneeze",
-                "Description": "Instant frontal attack - Moderate amount of damage.\n\n*Also inflicts a Healing Debuff (Healing Recieved) to all players hit.",
-                "Type": 9
-            },
-            {
-                "Name": "Inhale",
-                "Description": "Large frontal AOE cone that will pull you into their melee range. Immediately followed up by *Goobbue's Grief. ",
-                "Type": 2
-            },
-            {
-                "Name": "Goobbue's Grief",
-                "Description": "Instant AOE - Moderate amount of damage.\n\n*Also inflicts a Poison Debuff to all that are in melee range.",
-                "Type": 2
-            },
-			{
-                "Name": "Moldy Phlegm",
-                "Description": "Large AOE attack that targets a random player - Moderate amount of damage.\n\n*Also inflicts a Healing Debuff (Healing Recieved) to all players hit.",
-                "Type": 2
-            }
-        ]
-        },
+            "Name": "Keeper of Halidom",
+            "Strategy": "Everyone - Be prepared to move out of *Inhale. If caught you will take unavoidable damage from the following attack.\n- Also be vigilant of the targetted AOE *Moldy Phlegm, prepare to run away.\n\nTank - Bring the boss to the back wall and make him face away from the party.\n\nHealer - Make sure you *Esuna the *Reduced Immunity & Poison Debuff from the party.\n\nDPS - Do damage & try not to get hit.",
+			"KeyMechanics": [
+                {
+                    "Name": "Beatdown",
+                    "Description": "Instant frontal melee attack - Small amount of damage.",
+                    "Type": 6
+                },
+                {
+                    "Name": "Moldy Sneeze",
+                    "Description": "Instant frontal attack - Moderate amount of damage.\n\n*Also inflicts a Healing Debuff (Healing Recieved) to all players hit.",
+                    "Type": 9
+                },
+                {
+                    "Name": "Inhale",
+                    "Description": "Large frontal AOE cone that will pull you into their melee range. Immediately followed up by *Goobbue's Grief. ",
+                    "Type": 2
+                },
+                {
+                    "Name": "Goobbue's Grief",
+                    "Description": "Instant AOE - Moderate amount of damage.\n\n*Also inflicts a Poison Debuff to all that are in melee range.",
+                    "Type": 2
+                },
 		{
+                    "Name": "Moldy Phlegm",
+                    "Description": "Large AOE attack that targets a random player - Moderate amount of damage.\n\n*Also inflicts a Healing Debuff (Healing Recieved) to all players hit.",
+                    "Type": 2,
+                }
+            ]
+        },
+	{
             "Name": "Giant Bavarois",
-            "Strategy": "Everyone - Occasionally, the boss will target a random player, followed by using *Amorphic Flail if allowed to get close. Targetted player should run away from the boss.\n- Periodic add spawns throughout the fight. Should be dealt with immediately.\n\nTank - Keep the boss facing away from the party. Also be mindful of the party when adds spawn. When the boss casts *Fire either interrupt or move behind the boss.\n\nHealer - Make sure you *Esuna the debuffs off the party.  *Most detrimental are: Heavy & Paralysis\n\nDPS - Be prepared for add spawns. Priority is: Purple, White, Green, Blue.",
+            "Strategy": "Everyone - Occasionally, the boss will target a random player, followed by using *Amorphic Flail if allowed to get close. Targetted player should run away from the boss.\n- Periodically adds spawn throughout the fight. *Blue Bavarois should be dealt with first, followed by the rest.\n\nTank - Keep the boss facing away from the party. Also be mindful of the party when adds spawn. When the boss casts *Fire either interrupt or move behind the boss.\n\nHealer - Make sure you *Esuna the debuffs off the party.  *Most detrimental are: Heavy & Paralysis\n\nDPS - Be prepared for add spawns. Priority is: Blue, Purple, White, Green.",
 			"KeyMechanics": [
                 {
                     "Name": "Fire",
