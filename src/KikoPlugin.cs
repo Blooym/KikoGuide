@@ -13,9 +13,9 @@ internal class KikoPlugin : IDalamudPlugin
         // Initialize plugin services & managers.
         pluginInterface.Create<PluginService>();
         PluginService.Initialize();
+        PluginResourceManager.Initialize();
         PluginWindowManager.Initialize();
         PluginCommandManager.Initialize();
-        PluginResourceManager.Initialize();
 #if !DEBUG
         PluginResourceManager.Update();
 #endif
