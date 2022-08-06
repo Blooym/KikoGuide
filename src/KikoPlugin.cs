@@ -17,7 +17,7 @@ internal class KikoPlugin : IDalamudPlugin
         PluginCommandManager.Initialize();
         PluginResourceManager.Initialize();
 #if !DEBUG
-        UpdateManager.UpdateResources();
+        PluginResourceManager.Update();
 #endif
     }
 
