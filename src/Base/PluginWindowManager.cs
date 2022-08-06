@@ -61,7 +61,7 @@ public static class PluginWindowManager
         Editor.Dispose();
         Settings.Dispose();
 
-        PluginLog.Debug("PluginCommandManager: Successfully disposed.");
+        PluginLog.Debug("PluginWindowManager: Successfully disposed.");
     }
 
 
