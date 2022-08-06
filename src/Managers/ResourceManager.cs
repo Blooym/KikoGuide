@@ -10,7 +10,7 @@ using Dalamud.Logging;
 using KikoGuide.Managers;
 
 /// <summary> Sets up and manages the plugin's resources and localization. </summary>
-sealed public class ResourceManager
+sealed public class ResourceManager : IDisposable
 {
     public bool? lastUpdateSuccess;
     public bool updateInProgress;

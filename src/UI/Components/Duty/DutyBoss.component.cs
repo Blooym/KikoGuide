@@ -8,7 +8,7 @@ using KikoGuide.Types;
 using System;
 
 
-public static class DutyBossListComponent
+public static class DutyBossComponent
 {
     public static void Draw(Duty.Boss boss)
     {
@@ -39,7 +39,8 @@ public static class DutyBossListComponent
                     ImGui.TableNextColumn();
                     ImGui.Text(mechanic.Name);
                     ImGui.TableNextColumn();
-                    ImGui.TextWrapped(mechanic.Description);
+                    if (shortMode == true && mechanic.TLDR != null) ImGui.TextWrapped(mechanic.TLDR);
+                    else ImGui.TextWrapped(mechanic.Description);
                     ImGui.TableNextColumn();
                     ImGui.Text(Enum.GetName(typeof(DutyMechanics), mechanic.Type));
                 }

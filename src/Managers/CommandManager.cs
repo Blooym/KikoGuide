@@ -1,11 +1,12 @@
 namespace KikoGuide.Base;
 
+using System;
 using CheapLoc;
 using Dalamud.Logging;
 using Dalamud.Game.Command;
 
 /// <summary> Initializes and manages all commands and command-events for the plugin. </summary>
-sealed public class CommandManager
+sealed public class CommandManager : IDisposable
 {
     private const string listCommand = "/kikolist";
     private const string settingsCommand = "/kikoconfig";

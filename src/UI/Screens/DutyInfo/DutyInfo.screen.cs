@@ -35,7 +35,7 @@ sealed public class DutyInfoScreen : IScreen
             }
 
             DutyHeadingComponent.Draw(selectedDuty);
-            foreach (var boss in selectedDuty.Bosses) DutyBossListComponent.Draw(boss);
+            foreach (var boss in selectedDuty.Bosses) DutyBossComponent.Draw(boss);
             ImGui.End();
         }
     }

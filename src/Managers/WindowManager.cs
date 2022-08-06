@@ -8,7 +8,7 @@ using KikoGuide.UI.Screens.Editor;
 using KikoGuide.UI.Screens.Settings;
 
 /// <summary> Initializes and manages all windows and window-events for the plugin. </summary>
-sealed public class WindowManager
+sealed public class WindowManager : IDisposable
 {
     public readonly DutyInfoScreen DutyInfo = new DutyInfoScreen();
     public readonly DutyListScreen DutyList = new DutyListScreen();

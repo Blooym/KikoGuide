@@ -78,6 +78,7 @@ public class Duty
         {
             public string Name { get; set; } = "???";
             public string Description { get; set; } = "???";
+            public string? TLDR { get; set; }
             public int Type { get; set; } = (int)DutyMechanics.Other;
         }
     }
