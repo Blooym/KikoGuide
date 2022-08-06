@@ -5,7 +5,7 @@ using Dalamud.Logging;
 using Dalamud.Game.Command;
 
 /// <summary> Initializes and manages all commands and command-events for the plugin. </summary>
-public static class PluginCommandManager
+sealed public class CommandManager
 {
     private const string listCommand = "/kikolist";
     private const string settingsCommand = "/kikoconfig";
@@ -13,10 +13,10 @@ public static class PluginCommandManager
     private const string dutyInfoCommand = "/kikoinfo";
 
 
-    /// <summary> Initializes the PluginCommandManager and its resources. </summary>
-    public static void Initialize()
+    /// <summary> Initializes the CommandManager and its resources. </summary>
+    public CommandManager()
     {
-        PluginLog.Debug("PluginCommandManager: Initializing...");
+        PluginLog.Debug("CommandManager: Initializing...");
 
         PluginService.Commands.AddHandler(listCommand, new CommandInfo(OnCommand)
         {
@@ -38,40 +38,40 @@ public static class PluginCommandManager
             HelpMessage = Loc.Localize("Commands.Info.Help", "Toggles the duty info window if a duty is loaded"),
         });
 
-        PluginLog.Debug("PluginCommandManager: Successfully initialized.");
+        PluginLog.Debug("CommandManager: Successfully initialized.");
     }
 
 
     /// <summary> Dispose of the PluginCommandManager and its resources. </summary>
-    public static void Dispose()
+    public void Dispose()
     {
-        PluginLog.Debug("PluginCommandManager: Disposing...");
+        PluginLog.Debug("CommandManager: Disposing...");
 
         PluginService.Commands.RemoveHandler(listCommand);
         PluginService.Commands.RemoveHandler(settingsCommand);
         PluginService.Commands.RemoveHandler(editorCommand);
         PluginService.Commands.RemoveHandler(dutyInfoCommand);
 
-        PluginLog.Debug("PluginCommandManager: Successfully disposed.");
+        PluginLog.Debug("CommandManager: Successfully disposed.");
     }
 
 
     /// <summary> Event handler for when a command is issued by the user. </summary>
-    private static void OnCommand(string command, string args)
+    private void OnCommand(string command, string args)
     {
         switch (command)
         {
             case listCommand:
-                PluginWindowManager.DutyList.presenter.isVisible = !PluginWindowManager.DutyList.presenter.isVisible;
+                PluginService.WindowManager.DutyList.presenter.isVisible = !PluginService.WindowManager.DutyList.presenter.isVisible;
                 break;
             case settingsCommand:
-                PluginWindowManager.Settings.presenter.isVisible = !PluginWindowManager.Settings.presenter.isVisible;
+                PluginService.WindowManager.Settings.presenter.isVisible = !PluginService.WindowManager.Settings.presenter.isVisible;
                 break;
             case editorCommand:
-                PluginWindowManager.Editor.presenter.isVisible = !PluginWindowManager.Editor.presenter.isVisible;
+                PluginService.WindowManager.Editor.presenter.isVisible = !PluginService.WindowManager.Editor.presenter.isVisible;
                 break;
             case dutyInfoCommand:
-                PluginWindowManager.DutyInfo.presenter.isVisible = !PluginWindowManager.DutyInfo.presenter.isVisible;
+                PluginService.WindowManager.DutyInfo.presenter.isVisible = !PluginService.WindowManager.DutyInfo.presenter.isVisible;
                 break;
         }
     }

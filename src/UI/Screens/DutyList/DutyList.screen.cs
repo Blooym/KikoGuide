@@ -65,8 +65,8 @@ sealed public class DutyListScreen : IScreen
 
                     DutyListComponent.Draw(duties, ((duty) =>
                     {
-                        PluginWindowManager.DutyInfo.presenter.selectedDuty = duty;
-                        PluginWindowManager.DutyInfo.Show();
+                        PluginService.WindowManager.DutyInfo.presenter.selectedDuty = duty;
+                        PluginService.WindowManager.DutyInfo.Show();
                     }), this._searchText, dutyType);
 
                     ImGui.EndChild();

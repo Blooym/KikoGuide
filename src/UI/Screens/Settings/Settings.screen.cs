@@ -74,16 +74,16 @@ sealed public class SettingsScreen : IScreen
                 Common.TextHeading(Loc.Localize("UI.Screens.Settings.UpdateResources.Title", "Resources & Localization"));
                 ImGui.TextWrapped(Loc.Localize("UI.Screens.Settings.UpdateResources.Text", "Downloads the latest resources, localizations & guides."));
                 ImGui.Dummy(new Vector2(0, 5));
-                ImGui.BeginDisabled(PluginResourceManager.updateInProgress);
-                if (ImGui.Button(Loc.Localize("UI.Screens.Settings.UpdateResources", "Update Resources"))) PluginResourceManager.Update();
+                ImGui.BeginDisabled(PluginService.ResourceManager.updateInProgress);
+                if (ImGui.Button(Loc.Localize("UI.Screens.Settings.UpdateResources", "Update Resources"))) PluginService.ResourceManager.Update();
                 ImGui.EndDisabled();
 
-                if (!PluginResourceManager.updateInProgress && PluginResourceManager.lastUpdateSuccess == false && lastUpdateTime != 0)
+                if (!PluginService.ResourceManager.updateInProgress && PluginService.ResourceManager.lastUpdateSuccess == false && lastUpdateTime != 0)
                 {
                     ImGui.SameLine();
                     ImGui.TextWrapped(Loc.Localize("UI.Screens.Settings.UpdateLocalization.Failed", "Update Failed."));
                 }
-                else if (!PluginResourceManager.updateInProgress && lastUpdateTime != 0)
+                else if (!PluginService.ResourceManager.updateInProgress && lastUpdateTime != 0)
                 {
                     ImGui.SameLine();
                     ImGui.TextWrapped(String.Format(Loc.Localize("UI.Screens.Settings.UpdateLocalization.UpdatedAt", "Last Update: {0}"),

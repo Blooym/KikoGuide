@@ -10,47 +10,47 @@ using Dalamud.Logging;
 using KikoGuide.Managers;
 
 /// <summary> Sets up and manages the plugin's resources and localization. </summary>
-public static class PluginResourceManager
+sealed public class ResourceManager
 {
-    public static bool? lastUpdateSuccess;
-    public static bool updateInProgress;
-    public static event ResourceUpdateDelegate? ResourcesUpdated;
+    public bool? lastUpdateSuccess;
+    public bool updateInProgress;
+    public event ResourceUpdateDelegate? ResourcesUpdated;
     public delegate void ResourceUpdateDelegate();
 
 
-    /// <summary> Initializes the PluginResourceManager and associated resources. </summary>
-    public static void Initialize()
+    /// <summary> Initializes the ResourceManager and associated resources. </summary>
+    public ResourceManager()
     {
-        PluginLog.Debug("PluginResourceManager: Initializing...");
+        PluginLog.Debug("ResourceManager: Initializing...");
 
         Setup(PluginService.PluginInterface.UiLanguage);
         PluginService.PluginInterface.LanguageChanged += Setup;
         ResourcesUpdated += OnResourceUpdate;
 
-        PluginLog.Debug("PluginResourceManager: Initialization complete.");
+        PluginLog.Debug("ResourceManager: Initialization complete.");
     }
 
 
-    /// <summary> Disposes of the PluginResourceManager and associated resources. </summary>
-    public static void Dispose()
+    /// <summary> Disposes of the ResourceManager and associated resources. </summary>
+    public void Dispose()
     {
-        PluginLog.Debug("PluginResourceManager: Disposing...");
+        PluginLog.Debug("ResourceManager: Disposing...");
 
         PluginService.PluginInterface.LanguageChanged -= Setup;
         ResourcesUpdated -= OnResourceUpdate;
 
-        PluginLog.Debug("PluginResourceManager: Successfully disposed.");
+        PluginLog.Debug("ResourceManager: Successfully disposed.");
     }
 
 
     /// <summary> Downloads the repository from GitHub and extracts the resource data. </summary>
-    public static void Update()
+    public void Update()
     {
         new Thread(() =>
         {
             try
             {
-                PluginLog.Debug($"PluginResourceManager: Opening new thread to handle resource download.");
+                PluginLog.Debug($"ResourceManager: Opening new thread to handle resource download.");
                 updateInProgress = true;
 
                 // Create a new WebClient to download the data and some paths for installation.
@@ -90,7 +90,7 @@ public static class PluginResourceManager
                 // Set update statuses to their values & log the error.
                 lastUpdateSuccess = false;
                 updateInProgress = false;
-                PluginLog.Error($"UpdateManager: Error updating resource files: {e.Message}");
+                PluginLog.Error($"ResourceManager: Error updating resource files: {e.Message}");
             }
 
         }).Start();
@@ -98,23 +98,23 @@ public static class PluginResourceManager
 
 
     /// <summary> Handles the OnResourceUpdate event. </summary>
-    private static void OnResourceUpdate()
+    private void OnResourceUpdate()
     {
-        PluginLog.Debug($"PluginResourceManager: Resources updated.");
+        PluginLog.Debug($"ResourceManager: Resources updated.");
 
         Setup(PluginService.PluginInterface.UiLanguage);
     }
 
 
     /// <summary> Sets up the plugin's resources. </summary>
-    private static void Setup(string language)
+    private void Setup(string language)
     {
-        PluginLog.Debug($"PluginResourceManager: Setting up resources for language {language}...");
+        PluginLog.Debug($"ResourceManager: Setting up resources for language {language}...");
 
         DutyManager.ClearCache();
         try { Loc.Setup(File.ReadAllText($"{PluginStrings.localizationPath}\\Plugin\\{language}.json")); }
         catch { Loc.SetupWithFallbacks(); }
 
-        PluginLog.Debug("PluginResourceManager: Resources setup.");
+        PluginLog.Debug("ResourceManager: Resources setup.");
     }
 }

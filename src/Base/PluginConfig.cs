@@ -1,6 +1,7 @@
 namespace KikoGuide.Base;
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using Dalamud.Configuration;
 
@@ -51,5 +52,16 @@ sealed internal class Configuration : IPluginConfiguration
     internal void Save()
     {
         PluginService.PluginInterface.SavePluginConfig(this);
+    }
+
+
+    /// <summary>
+    ///  Writes the given file and text to the plugin configuration directory
+    /// </summary>
+    /// <param name="fileName">The file to write to</param>
+    /// <param name="text">The text to write to the file</param>
+    internal void WriteFile(string fileName, string text)
+    {
+        File.WriteAllText(Path.Combine(PluginService.PluginInterface.GetPluginConfigDirectory(), fileName), text);
     }
 }

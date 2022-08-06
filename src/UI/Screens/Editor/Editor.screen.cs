@@ -134,7 +134,7 @@ sealed public class EditorScreen : IScreen
                 if (duty != null)
                 {
                     DutyHeadingComponent.Draw(duty);
-                    if (duty.Bosses != null) DutyBossListComponent.Draw(duty.Bosses);
+                    if (duty.Bosses != null) foreach (var boss in duty.Bosses) DutyBossListComponent.Draw(boss);
                 }
                 ImGui.EndTabItem();
             }
