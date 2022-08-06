@@ -3,10 +3,10 @@ namespace KikoGuide.Managers;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using Dalamud.Logging;
 using KikoGuide.Base;
 using KikoGuide.Types;
 using Newtonsoft.Json;
-using Dalamud.Logging;
 using FFXIVClientStructs.FFXIV.Client.Game;
 
 

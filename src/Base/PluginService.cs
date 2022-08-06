@@ -3,8 +3,8 @@ namespace KikoGuide.Base;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using Dalamud.Logging;
-using Dalamud.Game.ClientState;
 using Dalamud.Game.Command;
+using Dalamud.Game.ClientState;
 
 #pragma warning disable CS8618 // Injection is handled by the Dalamud Plugin Framework here.
 
