@@ -63,22 +63,6 @@
     "message": "Hide {0} from the duty guide.",
     "description": "SettingsScreen.DrawSettingsWindow"
   },
-  "UI.Screens.DutyList.Title": {
-    "message": "{0} - Duty Finder",
-    "description": "ListScreen.DrawListWindow"
-  },
-  "UI.Screens.DutyList.NoFiles": {
-    "message": "No duty files detected! Please try Settings -> Update Resources.",
-    "description": "ListScreen.DrawListWindow"
-  },
-  "Generics.Support": {
-    "message": "Support (GitHub)",
-    "description": "ListScreen.DrawListWindow"
-  },
-  "Generics.Search": {
-    "message": "Search",
-    "description": "ListScreen.DrawListWindow"
-  },
   "UI.Screens.Editor.FileTooLong": {
     "message": "Your file was too big to be loaded into the editor.",
     "description": "EditorPresenter.OnFileSelect"
@@ -147,6 +131,22 @@
     "message": "IDs",
     "description": "EditorScreen.DrawEditorPreview"
   },
+  "UI.Screens.DutyList.Title": {
+    "message": "{0} - Duty Finder",
+    "description": "DutyListScreen.DrawListWindow"
+  },
+  "UI.Screens.DutyList.NoFiles": {
+    "message": "No duty files detected! Please try Settings -> Update Resources.",
+    "description": "DutyListScreen.DrawListWindow"
+  },
+  "Generics.Support": {
+    "message": "Support (GitHub)",
+    "description": "DutyListScreen.DrawListWindow"
+  },
+  "Generics.Search": {
+    "message": "Search",
+    "description": "DutyListScreen.DrawListWindow"
+  },
   "UI.Screens.SettingDutyInfo.Title": {
     "message": "{0} - Duty Information",
     "description": "DutyInfoScreen.DrawInfoWindow"
@@ -195,32 +195,32 @@
     "message": "Duty: {0}",
     "description": "DutyHeadingComponent.Draw"
   },
-  "Commands.List.Help": {
-    "message": "Toggles the duty list",
-    "description": "CommandManager.Initialize"
-  },
-  "Commands.Settings.Help": {
-    "message": "Toggles the settings menu",
-    "description": "CommandManager.Initialize"
-  },
-  "Commands.Editor.Help": {
-    "message": "Toggles the duty editor",
-    "description": "CommandManager.Initialize"
-  },
-  "Commands.Info.Help": {
-    "message": "Toggles the duty info window if a duty is loaded",
-    "description": "CommandManager.Initialize"
-  },
-  "Duty.Name.None": {
+  "Types.Duty.Name.None": {
     "message": "Unnamed Duty",
     "description": "Duty..ctor"
   },
-  "Duty.Boss.Name.None": {
+  "Types.Duty.Boss.Name.None": {
     "message": "Unnamed Boss",
     "description": "Boss..ctor"
   },
-  "Duty.Boss.Strategy.None": {
-    "message": "No strategy available yet.",
+  "Types.Duty.Boss.Strategy.None": {
+    "message": "No strategy available for this boss.",
     "description": "Boss..ctor"
+  },
+  "Commands.List.Help": {
+    "message": "Toggles the duty list",
+    "description": "PluginCommandManager.Initialize"
+  },
+  "Commands.Settings.Help": {
+    "message": "Toggles the settings menu",
+    "description": "PluginCommandManager.Initialize"
+  },
+  "Commands.Editor.Help": {
+    "message": "Toggles the duty editor",
+    "description": "PluginCommandManager.Initialize"
+  },
+  "Commands.Info.Help": {
+    "message": "Toggles the duty info window if a duty is loaded",
+    "description": "PluginCommandManager.Initialize"
   }
 }
