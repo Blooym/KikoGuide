@@ -91,6 +91,16 @@ sealed public class EditorScreen : IScreen
             Utils.Common.OpenBrowser($"{PStrings.pluginRepository}blob/main/CONTRIBUTING.md#guide-contribution");
         }
         Tooltips.AddTooltip(TStrings.EditorContributingGuide());
+
+        if (PluginService.Configuration.supportButtonShown)
+        {
+            ImGui.SameLine();
+            if (ImGuiComponents.IconButton(FontAwesomeIcon.Heart))
+            {
+                Utils.Common.OpenBrowser(PStrings.supportButtonUrl);
+            }
+            Tooltips.AddTooltip(TStrings.Support());
+        }
     }
 
 
