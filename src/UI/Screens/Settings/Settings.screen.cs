@@ -144,19 +144,19 @@ sealed public class SettingsScreen : IScreen
                 Common.TextHeading(TStrings.SettingsAvailableIntegrations);
 
                 // For each mechanic enum, creating a checkbox for it.
-                foreach (var integration in Enum.GetValues(typeof(Managers.IPC.IPCIntegrations)))
+                foreach (var integration in Enum.GetValues(typeof(Managers.IPC.IPCProviders)))
                 {
-                    var isIntegrationDisabled = PluginService.Configuration.enabledIntegrations.Contains((Managers.IPC.IPCIntegrations)integration);
+                    var isIntegrationDisabled = PluginService.Configuration.enabledIntegrations.Contains((Managers.IPC.IPCProviders)integration);
 
                     Common.ToggleCheckbox(integration.ToString() ?? "Integration", ref isIntegrationDisabled, () =>
                     {
                         switch (isIntegrationDisabled)
                         {
                             case false:
-                                PluginService.Configuration.enabledIntegrations.Add((Managers.IPC.IPCIntegrations)integration);
+                                PluginService.Configuration.enabledIntegrations.Add((Managers.IPC.IPCProviders)integration);
                                 break;
                             case true:
-                                PluginService.Configuration.enabledIntegrations.Remove((Managers.IPC.IPCIntegrations)integration);
+                                PluginService.Configuration.enabledIntegrations.Remove((Managers.IPC.IPCProviders)integration);
                                 break;
                         }
                         PluginService.Configuration.Save();

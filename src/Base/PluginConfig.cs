@@ -50,7 +50,7 @@ sealed internal class Configuration : IPluginConfiguration
     /// <summary>
     /// A list of enabled integrations.
     /// </summary>
-    public List<IPCIntegrations> enabledIntegrations { get; set; } = new List<IPCIntegrations>();
+    public List<IPCProviders> enabledIntegrations { get; set; } = new List<IPCProviders>();
 
 
     /// <summary>

@@ -14,7 +14,7 @@ sealed public class WotsitIPC : IDisposable
 {
     /// <summary> Enable this to force this IPC to be disabled. </summary>
     private const bool forceDisabled = false;
-    private const IPCIntegrations ID = IPCIntegrations.Wotsit;
+    private const IPCProviders ID = IPCProviders.Wotsit;
 
     private ICallGateSubscriber<string, string, uint, string>? _wotsitRegister;
     private ICallGateSubscriber<string, bool>? _wotsitUnregister;
