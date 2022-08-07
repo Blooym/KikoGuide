@@ -4,11 +4,11 @@
     "description": "DutyListScreen.DrawListWindow"
   },
   "Types.Duty.Name.None": {
-    "message": "Unnamed Duty",
+    "message": "Mission sans nom",
     "description": "Duty..ctor"
   },
   "Types.Duty.Boss.Name.None": {
-    "message": "Unnamed Boss",
+    "message": "Boss sans nom",
     "description": "Boss..ctor"
   },
   "Types.Duty.Boss.Strategy.None": {
@@ -24,23 +24,23 @@
     "description": "WotsitIPC.RegisterAll"
   },
   "Settings.LastUpdate": {
-    "message": "Last Update: {0}",
+    "message": "Dernière mise à jour : {0}",
     "description": "TStrings.SettingsLastUpdate"
   },
   "Settings.HideMechanic": {
-    "message": "Hide: {0}",
+    "message": "Masquer : {0}",
     "description": "TStrings.SettingsHideMechanic"
   },
   "Settings.HideMechanicTooltip": {
-    "message": "Hide {0} from duty guides.",
+    "message": "Masque \"{0}\" dans le guide de missions.",
     "description": "TStrings.SettingsHideMechanicTooltip"
   },
   "DutyList.NoGuide": {
-    "message": "No guide available for {0}.",
+    "message": "Aucun guide n'est disponible pour {0}.",
     "description": "TStrings.DutyListNoGuide"
   },
   "DutyHeading.Title": {
-    "message": "Duty: {0}",
+    "message": "Mission : {0}",
     "description": "TStrings.DutyHeadingTitle"
   },
   "Generics.Error": {
@@ -88,7 +88,7 @@
     "description": "TStrings..cctor"
   },
   "DutyEditor.Title": {
-    "message": "{0} - Duty Editor",
+    "message": "{0} - Éditeur de Mission",
     "description": "TStrings..cctor"
   },
   "Editor.Format": {
@@ -140,7 +140,7 @@
     "description": "TStrings..cctor"
   },
   "Settings.General": {
-    "message": "General",
+    "message": "Général",
     "description": "TStrings..cctor"
   },
   "Settings.AutoOpenInDuty": {
@@ -148,7 +148,7 @@
     "description": "TStrings..cctor"
   },
   "Settings.AutoOpenDuty.Tooltip": {
-    "message": "Open the duty guide when entering a duty.",
+    "message": "Ouvre le guide de missions automatiquement lorsque vous commencez une mission.",
     "description": "TStrings..cctor"
   },
   "Settings.ShortMode": {
@@ -160,7 +160,7 @@
     "description": "TStrings..cctor"
   },
   "Settings.ShowSupportButton": {
-    "message": "Show Support Button",
+    "message": "Afficher le bouton de Soutien",
     "description": "TStrings..cctor"
   },
   "UI.Screens.Settings.ShowSupportButton.Tooltip": {
@@ -168,23 +168,23 @@
     "description": "TStrings..cctor"
   },
   "Settings.ResourcesAndLocalization": {
-    "message": "Resources & Localization",
+    "message": "Ressources & Traductions",
     "description": "TStrings..cctor"
   },
   "Settings.ResourcesAndLocalization.Tooltip": {
-    "message": "Downloads the latest resources, localizations & guides.",
+    "message": "Télécharger les dernières ressources, traductions & guides.",
     "description": "TStrings..cctor"
   },
   "Settings.UpdateResources": {
-    "message": "Update Resources",
+    "message": "Mettre à jour les Ressources",
     "description": "TStrings..cctor"
   },
   "Settings.UpdateFailed": {
-    "message": "Update Failed",
+    "message": "Échec de la mise à jour",
     "description": "TStrings..cctor"
   },
   "Settings.Mechanics": {
-    "message": "Mechanics",
+    "message": "Mécaniques",
     "description": "TStrings..cctor"
   },
   "Settings.Integrations": {
@@ -200,7 +200,7 @@
     "description": "TStrings..cctor"
   },
   "DutyFinder.Title": {
-    "message": "{0} - Duty Finder",
+    "message": "{0} - Outil de Mission",
     "description": "TStrings..cctor"
   },
   "DutyFinder.NoFiles": {
@@ -220,11 +220,11 @@
     "description": "TStrings..cctor"
   },
   "DutyList.NeedsUpdate": {
-    "message": "Cannot display duty as it was not made for this plugin version.",
+    "message": "Impossible d'afficher cette mission car elle n'est pas supportée par cette version.",
     "description": "TStrings..cctor"
   },
   "Commands.DutyList.Help": {
-    "message": "Toggles the duty list",
+    "message": "Activer/Désactiver la liste de missions",
     "description": "TStrings..cctor"
   },
   "Commands.Settings.Help": {
