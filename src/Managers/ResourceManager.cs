@@ -14,6 +14,7 @@ sealed public class ResourceManager : IDisposable
 {
     public bool? lastUpdateSuccess;
     public bool updateInProgress;
+
     public event ResourceUpdateDelegate? ResourcesUpdated;
     public delegate void ResourceUpdateDelegate();
 
@@ -57,10 +58,10 @@ sealed public class ResourceManager : IDisposable
                 var webClient = new WebClient();
                 var zipFile = Path.Combine(Path.GetTempPath(), "KikoGuide_Source.zip");
                 var sourcePath = Path.Combine(Path.GetTempPath(), "KikoGuide-main", "src", "Resources");
-                var targetPath = Path.Combine(PluginStrings.resourcePath);
+                var targetPath = Path.Combine(PStrings.resourcePath);
 
                 // Download the file into the system temp directory to make sure it can be cleaned up by the OS incase of a crash.
-                webClient.DownloadFile($"{PluginStrings.pluginRepository}archive/refs/heads/main.zip", zipFile);
+                webClient.DownloadFile($"{PStrings.pluginRepository}archive/refs/heads/main.zip", zipFile);
 
                 // Extract the zip file into the system temp directory and delete the zip file.
                 ZipFile.ExtractToDirectory(zipFile, Path.GetTempPath(), true);
@@ -112,7 +113,8 @@ sealed public class ResourceManager : IDisposable
         PluginLog.Debug($"ResourceManager: Setting up resources for language {language}...");
 
         DutyManager.ClearCache();
-        try { Loc.Setup(File.ReadAllText($"{PluginStrings.localizationPath}\\Plugin\\{language}.json")); }
+
+        try { Loc.Setup(File.ReadAllText($"{PStrings.localizationPath}\\Plugin\\{language}.json")); }
         catch { Loc.SetupWithFallbacks(); }
 
         PluginLog.Debug("ResourceManager: Resources setup.");

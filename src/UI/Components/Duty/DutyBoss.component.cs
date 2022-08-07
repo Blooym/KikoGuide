@@ -1,7 +1,6 @@
 namespace KikoGuide.UI.Components.Duty;
 
 using ImGuiNET;
-using CheapLoc;
 using System.Linq;
 using KikoGuide.Base;
 using KikoGuide.Types;
@@ -27,9 +26,9 @@ public static class DutyBossComponent
                 if (keyMechanics == null || keyMechanics.All(x => disabledMechanics?.Contains(x.Type) == true)) return;
 
                 ImGui.BeginTable("Boss Mechanics", 3, ImGuiTableFlags.Hideable | ImGuiTableFlags.Reorderable | ImGuiTableFlags.Borders | ImGuiTableFlags.Resizable);
-                ImGui.TableSetupColumn(Loc.Localize("Generics.Mechanic", "Mechanic"), ImGuiTableColumnFlags.WidthStretch, 0.3f);
-                ImGui.TableSetupColumn(Loc.Localize("Generics.Description", "Description"), ImGuiTableColumnFlags.WidthStretch, 0.6f);
-                ImGui.TableSetupColumn(Loc.Localize("Generics.BossList.Type", "Type"), ImGuiTableColumnFlags.WidthStretch, 0.2f);
+                ImGui.TableSetupColumn(TStrings.Mechanic, ImGuiTableColumnFlags.WidthStretch, 0.3f);
+                ImGui.TableSetupColumn(TStrings.Description, ImGuiTableColumnFlags.WidthStretch, 0.6f);
+                ImGui.TableSetupColumn(TStrings.Type, ImGuiTableColumnFlags.WidthStretch, 0.2f);
                 ImGui.TableHeadersRow();
 
                 foreach (var mechanic in keyMechanics)

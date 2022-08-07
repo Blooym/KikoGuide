@@ -6,7 +6,7 @@ using KikoGuide.Base;
 
 internal class KikoPlugin : IDalamudPlugin
 {
-    public string Name => PluginStrings.pluginName;
+    public string Name => PStrings.pluginName;
 
     public KikoPlugin([RequiredVersion("1.0")] DalamudPluginInterface pluginInterface)
     {
@@ -14,7 +14,7 @@ internal class KikoPlugin : IDalamudPlugin
         PluginService.Initialize();
 
 #if !DEBUG
-        PluginService.RM.Update();
+        PluginService.ResourceManager.Update();
 #endif
 
     }

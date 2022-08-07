@@ -5,7 +5,6 @@ using System.Numerics;
 using System.Linq;
 using System.Collections.Generic;
 using ImGuiNET;
-using CheapLoc;
 using KikoGuide.Base;
 using KikoGuide.Types;
 using KikoGuide.UI.Components;
@@ -33,61 +32,59 @@ sealed public class SettingsScreen : IScreen
         long lastUpdateTime = PluginService.Configuration.lastResourceUpdate;
 
         ImGui.SetNextWindowSizeConstraints(new Vector2(410, 250), new Vector2(1000, 1000));
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.Settings.Title", "{0} - Settings"), PluginStrings.pluginName), ref presenter.isVisible))
+        if (ImGui.Begin(TStrings.SettingsTitle, ref presenter.isVisible))
         {
             // Create tab bar for each settings category
-            ImGui.BeginTabBar("settings");
+            ImGui.BeginTabBar("##Settings");
 
             // General settings go in here.
-            if (ImGui.BeginTabItem(Loc.Localize("UI.Screens.Settings.TabItem.General", "General")))
+            if (ImGui.BeginTabItem(TStrings.SettingsGeneral))
             {
                 // Auto-open duty setting.
-                Common.ToggleCheckbox(Loc.Localize("UI.Screens.Settings.AutoOpenDuty", "Open in Duty"), ref autoOpenDuty, () =>
+                Common.ToggleCheckbox(TStrings.SettingsAutoOpenInDuty, ref autoOpenDuty, () =>
                {
                    PluginService.Configuration.autoOpenDuty = !autoOpenDuty;
                    PluginService.Configuration.Save();
                });
-                Tooltips.AddTooltip(Loc.Localize("UI.Screens.Settings.AutoOpenDuty.Tooltip", "Open the duty guide when entering a duty."));
+                Tooltips.AddTooltip(TStrings.SettingsAutoOpenInDutyTooltip);
 
 
                 // TLDR mode setting.
-                Common.ToggleCheckbox(Loc.Localize("UI.Screens.Settings.ShortenStrategies", "Shorten Strategies"), ref shortenStrategies, () =>
+                Common.ToggleCheckbox(TStrings.SettingsShortMode, ref shortenStrategies, () =>
                 {
                     PluginService.Configuration.shortenStrategies = !shortenStrategies;
                     PluginService.Configuration.Save();
                 });
-
-                Tooltips.AddTooltip(Loc.Localize("UI.Screens.Settings.ShortenStrategies.Tooltip", "Shorten duty guide strategies if possible."));
+                Tooltips.AddTooltip(TStrings.SettingsShortModeTooltip);
 
 
                 // Support button setting.
-                Common.ToggleCheckbox(Loc.Localize("UI.Screens.Settings.ShowSupportButton", "Show Support Button"), ref supportButtonShown, () =>
+                Common.ToggleCheckbox(TStrings.SettingsShowSupportButton, ref supportButtonShown, () =>
                 {
                     PluginService.Configuration.supportButtonShown = !supportButtonShown;
                     PluginService.Configuration.Save();
                 });
-                Tooltips.AddTooltip(Loc.Localize("UI.Screens.Settings.ShowSupportButton.Tooltip", "Show the support Kiko Guide button."));
+                Tooltips.AddTooltip(TStrings.SettingsShowSupportButtonTooltip);
 
 
                 // Update resources / localizable button.
                 ImGui.Dummy(new Vector2(0, 5));
-                Common.TextHeading(Loc.Localize("UI.Screens.Settings.UpdateResources.Title", "Resources & Localization"));
-                ImGui.TextWrapped(Loc.Localize("UI.Screens.Settings.UpdateResources.Text", "Downloads the latest resources, localizations & guides."));
+                Common.TextHeading(TStrings.SettingsResourcesAndLocalization);
+                ImGui.TextWrapped(TStrings.SettingsResourcesAndLocalizationDesc);
                 ImGui.Dummy(new Vector2(0, 5));
                 ImGui.BeginDisabled(PluginService.ResourceManager.updateInProgress);
-                if (ImGui.Button(Loc.Localize("UI.Screens.Settings.UpdateResources", "Update Resources"))) PluginService.ResourceManager.Update();
+                if (ImGui.Button(TStrings.SettingsUpdateResources)) PluginService.ResourceManager.Update();
                 ImGui.EndDisabled();
 
                 if (!PluginService.ResourceManager.updateInProgress && PluginService.ResourceManager.lastUpdateSuccess == false && lastUpdateTime != 0)
                 {
                     ImGui.SameLine();
-                    ImGui.TextWrapped(Loc.Localize("UI.Screens.Settings.UpdateLocalization.Failed", "Update Failed."));
+                    ImGui.TextWrapped(TStrings.SettingsUpdateFailed);
                 }
                 else if (!PluginService.ResourceManager.updateInProgress && lastUpdateTime != 0)
                 {
                     ImGui.SameLine();
-                    ImGui.TextWrapped(String.Format(Loc.Localize("UI.Screens.Settings.UpdateLocalization.UpdatedAt", "Last Update: {0}"),
-                    DateTimeOffset.FromUnixTimeMilliseconds(lastUpdateTime).ToString("hh:mm tt")));
+                    ImGui.TextWrapped(TStrings.SettingsLastUpdate(DateTimeOffset.FromUnixTimeMilliseconds(lastUpdateTime).ToLocalTime().ToString()));
                 }
 
 #if DEBUG
@@ -100,11 +97,11 @@ sealed public class SettingsScreen : IScreen
 
 
             // Mechanics settings go in here. 
-            if (ImGui.BeginTabItem(Loc.Localize("UI.Screens.Settings.TabItem.Mechanics", "Mechanics")))
+            if (ImGui.BeginTabItem(TStrings.SettingsMechanics))
             {
                 // Create a child since we're using columns.
-                ImGui.BeginChild("mechanics", new Vector2(0, 0), false);
-                ImGui.Columns(2, "mechanics", false);
+                ImGui.BeginChild("##Mechanics", new Vector2(0, 0), false);
+                ImGui.Columns(2, "##Mechanics", false);
 
                 // For each mechanic enum, creating a checkbox for it.
                 foreach (var mechanic in Enum.GetValues(typeof(DutyMechanics)).Cast<int>().ToList())
@@ -113,7 +110,7 @@ sealed public class SettingsScreen : IScreen
                     var isMechanicDisabled = disabledMechanics.Contains(mechanic);
 
                     // Create a checkbox for the mechanic.
-                    Common.ToggleCheckbox(String.Format(Loc.Localize("UI.Screens.Settings.HideMechanic", "Hide {0}"), Enum.GetName(typeof(DutyMechanics), mechanic)), ref isMechanicDisabled, () =>
+                    Common.ToggleCheckbox(TStrings.SettingsHideMechanic(Enum.GetName(typeof(DutyMechanics), mechanic)), ref isMechanicDisabled, () =>
                     {
                         switch (isMechanicDisabled)
                         {
@@ -127,9 +124,43 @@ sealed public class SettingsScreen : IScreen
                         PluginService.Configuration.Save();
                     });
 
-                    Tooltips.AddTooltip(String.Format(Loc.Localize("UI.Screens.Settings.HideMechanicTooltip", "Hide {0} from the duty guide."), Enum.GetName(typeof(DutyMechanics), mechanic)));
+                    Tooltips.AddTooltip(TStrings.SettingsHideMechanicTooltip(Enum.GetName(typeof(DutyMechanics), mechanic)));
 
                     ImGui.NextColumn();
+                }
+
+                ImGui.EndChild();
+                ImGui.EndTabItem();
+            }
+
+            // Mechanics settings go in here. 
+            if (ImGui.BeginTabItem(TStrings.SettingsIntegrations))
+            {
+                // Create a child since we're using columns.
+                ImGui.BeginChild("##Integrations", new Vector2(0, 0), false);
+
+                ImGui.TextWrapped(TStrings.SettingsIntegrationsDesc);
+                ImGui.Dummy(new Vector2(0, 10));
+                Common.TextHeading(TStrings.SettingsAvailableIntegrations);
+
+                // For each mechanic enum, creating a checkbox for it.
+                foreach (var integration in Enum.GetValues(typeof(Managers.IPC.IPCProviders)))
+                {
+                    var isIntegrationDisabled = PluginService.Configuration.enabledIntegrations.Contains((Managers.IPC.IPCProviders)integration);
+
+                    Common.ToggleCheckbox(integration.ToString() ?? "Integration", ref isIntegrationDisabled, () =>
+                    {
+                        switch (isIntegrationDisabled)
+                        {
+                            case false:
+                                PluginService.Configuration.enabledIntegrations.Add((Managers.IPC.IPCProviders)integration);
+                                break;
+                            case true:
+                                PluginService.Configuration.enabledIntegrations.Remove((Managers.IPC.IPCProviders)integration);
+                                break;
+                        }
+                        PluginService.Configuration.Save();
+                    });
                 }
 
                 ImGui.EndChild();
