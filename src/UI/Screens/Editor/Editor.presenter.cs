@@ -35,11 +35,11 @@ sealed public class EditorPresenter : IDisposable
         // Reject loading if the file length is beyond the character limit.
         if (fileText.Length > this.characterLimit)
         {
-            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileTooLarge, PStrings.pluginName, NotificationType.Error);
+            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileTooLarge(), PStrings.pluginName, NotificationType.Error);
             return text;
         }
 
-        PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullyLoaded, PStrings.pluginName, NotificationType.Success);
+        PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullyLoaded(), PStrings.pluginName, NotificationType.Success);
         return fileText;
     }
 
@@ -49,7 +49,7 @@ sealed public class EditorPresenter : IDisposable
         if (!success) return;
         text = this.OnFormat(text);
         File.WriteAllText(file, text);
-        PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullySaved, PStrings.pluginName, NotificationType.Success);
+        PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullySaved(), PStrings.pluginName, NotificationType.Success);
     }
 
     /// <summary> Formats the given text into a better layout. </summary>

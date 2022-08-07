@@ -19,14 +19,14 @@ public static class DutyListComponent
             else dutyList = dutyPool;
 
             // If there are no duties found, display a message and return.
-            if (dutyList.Count() == 0) { ImGui.TextDisabled(TStrings.DutyListNoneFound); return; }
+            if (dutyList.Count() == 0) { ImGui.TextDisabled(TStrings.DutyListNoneFound()); return; }
 
             var playerDuty = DutyManager.GetPlayerDuty();
 
             // Create a table for each duty, containing its level and name.
             ImGui.BeginTable("DutyList", 2);
-            ImGui.TableSetupColumn(TStrings.Level, ImGuiTableColumnFlags.WidthFixed, 45);
-            ImGui.TableSetupColumn(TStrings.Duty);
+            ImGui.TableSetupColumn(TStrings.Level(), ImGuiTableColumnFlags.WidthFixed, 45);
+            ImGui.TableSetupColumn(TStrings.Duty());
             ImGui.TableHeadersRow();
 
             // Fetch all duties for this duty type and draw them.
@@ -50,7 +50,7 @@ public static class DutyListComponent
                 if (ImGui.Selectable(duty.GetCanonicalName(), false, ImGuiSelectableFlags.AllowDoubleClick)) onDutySelected(duty);
 
                 // If the player is inside this duty, add some text next to it.
-                if (duty == playerDuty) Badges.Custom(Colours.Green, TStrings.InDuty);
+                if (duty == playerDuty) Badges.Custom(Colours.Green, TStrings.InDuty());
             }
 
             ImGui.EndTable();
@@ -63,7 +63,7 @@ public static class DutyListComponent
     private static void _unsupportedDuty(string name)
     {
         ImGui.TextDisabled(name);
-        Badges.Questionmark(TStrings.DutyListNeedsUpdate);
+        Badges.Questionmark(TStrings.DutyListNeedsUpdate());
     }
 
     /// <summary> Draws a duty with no data. </summary>

@@ -33,7 +33,7 @@ sealed public class EditorScreen : IScreen
 
         // Begin the editor window.
         ImGui.SetWindowSize(new Vector2(600, 400), ImGuiCond.FirstUseEver);
-        if (ImGui.Begin(TStrings.EditorTitle, ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse))
+        if (ImGui.Begin(TStrings.EditorTitle(), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse))
         {
             // Draw some buttons at the top of the editor.
             this.DrawEditorButtons();
@@ -60,37 +60,37 @@ sealed public class EditorScreen : IScreen
     {
         if (ImGuiComponents.IconButton(FontAwesomeIcon.FileImport))
         {
-            presenter.dialogManager.OpenFileDialog(TStrings.OpenFile, ".json", (success, file) => this._inputText = presenter.OnFileSelect(success, file, this._inputText));
+            presenter.dialogManager.OpenFileDialog(TStrings.OpenFile(), ".json", (success, file) => this._inputText = presenter.OnFileSelect(success, file, this._inputText));
         }
-        Tooltips.AddTooltip(TStrings.OpenFile);
+        Tooltips.AddTooltip(TStrings.OpenFile());
         ImGui.SameLine();
 
         if (ImGuiComponents.IconButton(FontAwesomeIcon.Save))
         {
-            presenter.dialogManager.SaveFileDialog(TStrings.SaveFile, ".json", "", ".json", (success, file) => presenter.OnFileSave(success, file, this._inputText));
+            presenter.dialogManager.SaveFileDialog(TStrings.SaveFile(), ".json", "", ".json", (success, file) => presenter.OnFileSave(success, file, this._inputText));
         }
-        Tooltips.AddTooltip(TStrings.SaveFile);
+        Tooltips.AddTooltip(TStrings.SaveFile());
         ImGui.SameLine();
 
         if (ImGuiComponents.IconButton(FontAwesomeIcon.PaintBrush))
         {
             this._inputText = presenter.OnFormat(this._inputText);
         }
-        Tooltips.AddTooltip(TStrings.EditorFormat);
+        Tooltips.AddTooltip(TStrings.EditorFormat());
         ImGui.SameLine();
 
         if (ImGuiComponents.IconButton(FontAwesomeIcon.Trash))
         {
             this._inputText = "";
         }
-        Tooltips.AddTooltip(TStrings.EditorClear);
+        Tooltips.AddTooltip(TStrings.EditorClear());
         ImGui.SameLine();
 
         if (ImGuiComponents.IconButton(FontAwesomeIcon.ExternalLinkAlt))
         {
             Utils.Common.OpenBrowser($"{PStrings.pluginRepository}blob/main/CONTRIBUTING.md#guide-contribution");
         }
-        Tooltips.AddTooltip(TStrings.EditorContributingGuide);
+        Tooltips.AddTooltip(TStrings.EditorContributingGuide());
     }
 
 
@@ -110,13 +110,13 @@ sealed public class EditorScreen : IScreen
         }
 
         // Problems window.
-        ImGui.TextWrapped(TStrings.EditorProblems);
+        ImGui.TextWrapped(TStrings.EditorProblems());
         if (parsedDuty.Item2?.Message != null)
             Colours.TextWrappedColoured(Colours.Error, parsedDuty.Item2.Message);
         else if (parsedDuty?.Item1?.IsSupported() == false)
-            Colours.TextWrappedColoured(Colours.Warning, TStrings.EditorProblemUnsupported);
+            Colours.TextWrappedColoured(Colours.Warning, TStrings.EditorProblemUnsupported());
         else
-            ImGui.TextWrapped(TStrings.EditorNoProblems);
+            ImGui.TextWrapped(TStrings.EditorNoProblems());
     }
 
 
@@ -128,7 +128,7 @@ sealed public class EditorScreen : IScreen
         // Create a tab for the parsed duty display.
         if (ImGui.BeginTabBar("##DutyInfoPreview", ImGuiTabBarFlags.Reorderable))
         {
-            if (ImGui.BeginTabItem(TStrings.EditorPreview))
+            if (ImGui.BeginTabItem(TStrings.EditorPreview()))
             {
                 if (duty != null)
                 {
@@ -141,7 +141,7 @@ sealed public class EditorScreen : IScreen
 
 
         // Create a tab for parsed duty metadata.
-        if (ImGui.BeginTabItem(TStrings.EditorMetadata))
+        if (ImGui.BeginTabItem(TStrings.EditorMetadata()))
         {
             if (duty != null)
             {
