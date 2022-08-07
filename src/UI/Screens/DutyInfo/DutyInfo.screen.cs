@@ -29,7 +29,7 @@ sealed public class DutyInfoScreen : IScreen
 
             if (selectedDuty == null) { ImGui.TextWrapped(TStrings.DutyInfoNoneSelected()); return; }
             if (selectedDuty.Bosses == null || selectedDuty.Bosses.Count == 0) { ImGui.TextWrapped(TStrings.DutyListNoGuide(selectedDuty.Name)); return; }
-            if (DutyManager.IsUnlocked(selectedDuty)) { ImGui.TextWrapped(TStrings.DutyInfoNotUnlocked()); return; }
+            if (!DutyManager.IsUnlocked(selectedDuty)) { ImGui.TextWrapped(TStrings.DutyInfoNotUnlocked()); return; }
 
             DutyHeadingComponent.Draw(selectedDuty);
             foreach (var boss in selectedDuty.Bosses) DutyBossComponent.Draw(boss);
