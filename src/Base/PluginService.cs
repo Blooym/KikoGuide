@@ -29,11 +29,11 @@ sealed internal class PluginService
         PluginLog.Debug("PluginService: Initializing...");
 
         // Create services and instances
-        CommandManager = new CommandManager();
-        WindowManager = new WindowManager();
         ResourceManager = new ResourceManager();
-        IPCManager = new IPCManager();
         Configuration = PluginInterface?.GetPluginConfig() as Configuration ?? new Configuration();
+        IPCManager = new IPCManager();
+        WindowManager = new WindowManager();
+        CommandManager = new CommandManager();
 
         PluginLog.Debug("PluginService: Successfully initialized.");
     }
@@ -43,10 +43,10 @@ sealed internal class PluginService
     {
         PluginLog.Debug("PluginService: Disposing...");
 
-        CommandManager.Dispose();
-        WindowManager.Dispose();
-        ResourceManager.Dispose();
         IPCManager.Dispose();
+        ResourceManager.Dispose();
+        WindowManager.Dispose();
+        CommandManager.Dispose();
 
         PluginLog.Debug("PluginService: Successfully disposed.");
     }

@@ -1,10 +1,9 @@
 namespace KikoGuide.UI.Screens.DutyInfo;
 
-using System;
 using System.Numerics;
-using CheapLoc;
 using ImGuiNET;
 using KikoGuide.Base;
+using KikoGuide.Managers;
 using KikoGuide.Interfaces;
 using KikoGuide.UI.Components.Duty;
 
@@ -25,14 +24,12 @@ sealed public class DutyInfoScreen : IScreen
         var selectedDuty = presenter.selectedDuty;
 
         ImGui.SetNextWindowSize(new Vector2(380, 420), ImGuiCond.FirstUseEver);
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.SettingDutyInfo.Title", "{0} - Duty Information"), PluginStrings.pluginName), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar))
+        if (ImGui.Begin(TStrings.DutyInfoTitle, ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar))
         {
 
-            if (selectedDuty == null || selectedDuty.Bosses == null)
-            {
-                ImGui.Text(Loc.Localize("UI.Screens.SettingDutyInfo.NoDuty", "No duty selected, use /kikolist to see all available duties."));
-                return;
-            }
+            if (selectedDuty == null) { ImGui.TextWrapped(TStrings.DutyInfoNoneSelected); return; }
+            if (selectedDuty.Bosses == null || selectedDuty.Bosses.Count == 0) { ImGui.TextWrapped(TStrings.DutyListNoGuide(selectedDuty.Name)); return; }
+            if (DutyManager.IsUnlocked(selectedDuty)) { ImGui.TextWrapped(TStrings.DutyInfoNotUnlocked); return; }
 
             DutyHeadingComponent.Draw(selectedDuty);
             foreach (var boss in selectedDuty.Bosses) DutyBossComponent.Draw(boss);

@@ -44,13 +44,13 @@ public static class DutyManager
 
         // Try and get the language from the settings, or use fallback to default if not found.
         var language = PluginService.PluginInterface.UiLanguage;
-        if (!Directory.Exists($"{PluginStrings.localizationPath}\\Duty\\{language}")) language = PluginStrings.fallbackLanguage;
+        if (!Directory.Exists($"{PStrings.localizationPath}\\Duty\\{language}")) language = PStrings.fallbackLanguage;
 
         // Start loading duties, if this fails then the plugin will fallback to an empty duty list.
         List<Duty> duties = new List<Duty>();
         try
         {
-            foreach (string file in Directory.GetFiles($"{PluginStrings.localizationPath}\\Duty\\{language}", "*.json", SearchOption.AllDirectories))
+            foreach (string file in Directory.GetFiles($"{PStrings.localizationPath}\\Duty\\{language}", "*.json", SearchOption.AllDirectories))
             {
                 // Try and deserialize the duty data and add it to the list if its not null.
                 try
@@ -67,6 +67,7 @@ public static class DutyManager
         duties = duties.OrderBy(x => x.Level).ToList();
 
         _loadedDuties = duties;
+
         return duties;
     }
 }

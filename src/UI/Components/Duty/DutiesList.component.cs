@@ -1,10 +1,10 @@
 namespace KikoGuide.UI.Components.Duty;
 
 using ImGuiNET;
+using KikoGuide.Base;
 using KikoGuide.Types;
 using KikoGuide.Managers;
 using System;
-using CheapLoc;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -19,14 +19,14 @@ public static class DutyListComponent
             else dutyList = dutyPool;
 
             // If there are no duties found, display a message and return.
-            if (dutyList.Count() == 0) { ImGui.TextDisabled(Loc.Localize("UI.Components.DutiesList.NoDutiesfound", "No duties were found.")); return; }
+            if (dutyList.Count() == 0) { ImGui.TextDisabled(TStrings.DutyListNoneFound); return; }
 
             var playerDuty = DutyManager.GetPlayerDuty();
 
             // Create a table for each duty, containing its level and name.
             ImGui.BeginTable("DutyList", 2);
-            ImGui.TableSetupColumn(Loc.Localize("Generics.Level", "Level"), ImGuiTableColumnFlags.WidthFixed, 45);
-            ImGui.TableSetupColumn(Loc.Localize("Generics.Duty", "Duty"));
+            ImGui.TableSetupColumn(TStrings.Level, ImGuiTableColumnFlags.WidthFixed, 45);
+            ImGui.TableSetupColumn(TStrings.Duty);
             ImGui.TableHeadersRow();
 
             // Fetch all duties for this duty type and draw them.
@@ -43,15 +43,14 @@ public static class DutyListComponent
                 ImGui.TableNextColumn();
 
                 // If this duty does not have any data or is unsupported, draw it as such and move on.
-                var name = _generateDutyName(duty);
-                if (!_hasDutyData(duty)) { _noDataDuty(name); continue; }
-                if (!duty.IsSupported()) { _unsupportedDuty(name); continue; }
+                if (!_hasDutyData(duty)) { _noDataDuty(duty.GetCanonicalName()); continue; }
+                if (!duty.IsSupported()) { _unsupportedDuty(duty.GetCanonicalName()); continue; }
 
                 // Draw a selectable text for this duty and trigger the onDutySelected event when clicked.
-                if (ImGui.Selectable(name, false, ImGuiSelectableFlags.AllowDoubleClick)) onDutySelected(duty);
+                if (ImGui.Selectable(duty.GetCanonicalName(), false, ImGuiSelectableFlags.AllowDoubleClick)) onDutySelected(duty);
 
                 // If the player is inside this duty, add some text next to it.
-                if (duty == playerDuty) Badges.Custom(Colours.Green, Loc.Localize("Generics.InDuty", "In Duty"));
+                if (duty == playerDuty) Badges.Custom(Colours.Green, TStrings.InDuty);
             }
 
             ImGui.EndTable();
@@ -64,23 +63,16 @@ public static class DutyListComponent
     private static void _unsupportedDuty(string name)
     {
         ImGui.TextDisabled(name);
-        Badges.Questionmark(Loc.Localize("UI.Components.DutiesList.UpdateRequired", "Cannot display duty as it is not supported on this version."));
+        Badges.Questionmark(TStrings.DutyListNeedsUpdate);
     }
 
     /// <summary> Draws a duty with no data. </summary>
     private static void _noDataDuty(string name)
     {
         ImGui.TextColored(Colours.Red, name);
-        Badges.Questionmark(String.Format(Loc.Localize("UI.Components.DutiesList.NoBossData", "No guide available for {0}."), name));
+        Badges.Questionmark(TStrings.DutyListNoGuide(name));
     }
 
     /// <summary>  Checks to see if the duty has data that can be displayed. </summary>
     private static bool _hasDutyData(Duty duty) => duty.Bosses != null && duty.Bosses.Count != 0;
-
-    /// <summary> Generates a name for the duty, including the difficulty if its not normal </summary>
-    private static string _generateDutyName(Duty duty)
-    {
-        if (duty.Difficulty != (int)DutyDifficulty.Normal) return $"{duty.Name} ({Enum.GetName(typeof(DutyDifficulty), duty.Difficulty)})";
-        else return duty.Name;
-    }
 }

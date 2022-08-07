@@ -30,7 +30,7 @@ sealed public class DutyListScreen : IScreen
         if (!presenter.isVisible) return;
 
         ImGui.SetNextWindowSizeConstraints(new Vector2(350, 280), new Vector2(1000, 1000));
-        if (ImGui.Begin(String.Format(Loc.Localize("UI.Screens.DutyList.Title", "{0} - Duty Finder"), PluginStrings.pluginName), ref presenter.isVisible))
+        if (ImGui.Begin(TStrings.DutyFinderTitle, ref presenter.isVisible))
         {
 
             // Prevent the plugin from crashing when using Window docking.
@@ -40,18 +40,18 @@ sealed public class DutyListScreen : IScreen
             var duties = DutyManager.GetDuties();
             if (duties.Count == 0) Colours.TextWrappedColoured(Colours.Error, Loc.Localize("UI.Screens.DutyList.NoFiles", "No duty files detected! Please try Settings -> Update Resources."));
 
-            // Support button
-            var supportButtonText = Loc.Localize("Generics.Support", "Support (GitHub)");
-            var supportButtonShown = PluginService.Configuration.supportButtonShown;
-            if (supportButtonShown) ImGui.SetNextItemWidth(-(ImGui.CalcTextSize(supportButtonText).X + ImGui.GetStyle().FramePadding.X * 2 + ImGui.GetStyle().ItemSpacing.X));
+            // If the support button is shown, make the search bar accommodate it, otherwise make it full width.
+            if (PluginService.Configuration.supportButtonShown) ImGui.SetNextItemWidth(-(ImGui.CalcTextSize(TStrings.Support).X + ImGui.GetStyle().FramePadding.X * 2 + ImGui.GetStyle().ItemSpacing.X));
             else ImGui.SetNextItemWidth(-1);
-            ImGui.InputTextWithHint("", Loc.Localize("Generics.Search", "Search"), ref this._searchText, 60);
-            if (supportButtonShown)
+            ImGui.InputTextWithHint("", TStrings.Search, ref this._searchText, 60);
+
+            // If support button shown, add the button next to the search bar.
+            if (PluginService.Configuration.supportButtonShown)
             {
                 ImGui.SameLine();
                 ImGui.PushStyleColor(ImGuiCol.Button, 0xFF000000 | 0xfa9898);
                 ImGui.PushStyleColor(ImGuiCol.ButtonHovered, 0xAA000000 | 0xe76262);
-                if (ImGui.Button(supportButtonText)) Utils.Common.OpenBrowser("https://github.com/sponsors/BitsOfAByte");
+                if (ImGui.Button(TStrings.Support)) Utils.Common.OpenBrowser(PStrings.supportButtonUrl);
                 ImGui.PopStyleColor(2);
             }
 

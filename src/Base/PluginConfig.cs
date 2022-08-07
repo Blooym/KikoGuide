@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Dalamud.Configuration;
+using KikoGuide.Managers.IPC;
 
 [Serializable]
 
@@ -44,6 +45,12 @@ sealed internal class Configuration : IPluginConfiguration
     /// Stores the last resource update timestamp, automatically updated by the plugin backend. Should NOT be set manually.
     /// </summary>
     public long lastResourceUpdate { get; set; } = 0;
+
+
+    /// <summary>
+    /// A list of enabled integrations.
+    /// </summary>
+    public List<IPCIntegrations> enabledIntegrations { get; set; } = new List<IPCIntegrations>();
 
 
     /// <summary>

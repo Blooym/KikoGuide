@@ -1,7 +1,6 @@
 namespace KikoGuide.Base;
 
 using System;
-using CheapLoc;
 using Dalamud.Logging;
 using Dalamud.Game.Command;
 
@@ -19,25 +18,10 @@ sealed public class CommandManager : IDisposable
     {
         PluginLog.Debug("CommandManager: Initializing...");
 
-        PluginService.Commands.AddHandler(listCommand, new CommandInfo(OnCommand)
-        {
-            HelpMessage = Loc.Localize("Commands.List.Help", "Toggles the duty list"),
-        });
-
-        PluginService.Commands.AddHandler(settingsCommand, new CommandInfo(OnCommand)
-        {
-            HelpMessage = Loc.Localize("Commands.Settings.Help", "Toggles the settings menu"),
-        });
-
-        PluginService.Commands.AddHandler(editorCommand, new CommandInfo(OnCommand)
-        {
-            HelpMessage = Loc.Localize("Commands.Editor.Help", "Toggles the duty editor"),
-        });
-
-        PluginService.Commands.AddHandler(dutyInfoCommand, new CommandInfo(OnCommand)
-        {
-            HelpMessage = Loc.Localize("Commands.Info.Help", "Toggles the duty info window if a duty is loaded"),
-        });
+        PluginService.Commands.AddHandler(listCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.DutyListHelp });
+        PluginService.Commands.AddHandler(settingsCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.SettingsHelp });
+        PluginService.Commands.AddHandler(editorCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.EditorHelp });
+        PluginService.Commands.AddHandler(dutyInfoCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.InfoHelp });
 
         PluginLog.Debug("CommandManager: Successfully initialized.");
     }

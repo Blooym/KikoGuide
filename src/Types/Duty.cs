@@ -97,4 +97,12 @@ public class Duty
         // If nothing else returns false, then the duty is supported.
         return true;
     }
+
+
+    /// <summary> Method to get the duties canonical name. </summary>
+    public string GetCanonicalName()
+    {
+        if (this.Difficulty != (int)DutyDifficulty.Normal) return $"{this.Name} ({Enum.GetName(typeof(DutyDifficulty), this.Difficulty)})";
+        else return this.Name;
+    }
 }
