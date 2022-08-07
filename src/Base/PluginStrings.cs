@@ -81,7 +81,7 @@ sealed internal class TStrings
 
     // Duty Finder
     internal static string DutyFinderTitle = String.Format(Loc.Localize("DutyFinder.Title", "{0} - Duty Finder"), PStrings.pluginName);
-    internal static string DutyFinderContentNotFound = Loc.Localize("DutyFinder", "No duty files detected! Please try Settings -> Update Resources.");
+    internal static string DutyFinderContentNotFound = Loc.Localize("DutyFinder.NoFiles", "No duty files detected! Please try Settings -> Update Resources.");
 
 
     // Duty Info
