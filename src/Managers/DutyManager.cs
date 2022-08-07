@@ -34,7 +34,7 @@ public static class DutyManager
 
 
     /// <summary> Get if the player has unlocked the given duty or not. </summary>
-    public static bool IsUnlocked(Duty duty) => GetPlayerDuty() == duty || QuestManager.IsQuestComplete(duty.UnlockQuestID);
+    public static bool IsUnlocked(Duty duty) => QuestManager.IsQuestCurrent(duty.UnlockQuestID) || QuestManager.IsQuestComplete(duty.UnlockQuestID);
 
 
     /// <summary> Desearializes duties from the duty data folder into the Duty type. </summary>
