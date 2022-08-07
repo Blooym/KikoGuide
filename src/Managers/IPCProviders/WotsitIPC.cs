@@ -2,9 +2,9 @@ namespace KikoGuide.Managers.IPC;
 
 using System;
 using System.Collections.Generic;
+using CheapLoc;
 using Dalamud.Plugin.Ipc;
 using Dalamud.Logging;
-using CheapLoc;
 using KikoGuide.Base;
 using KikoGuide.Types;
 using KikoGuide.Managers;

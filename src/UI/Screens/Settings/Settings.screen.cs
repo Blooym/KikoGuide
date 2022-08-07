@@ -133,12 +133,9 @@ sealed public class SettingsScreen : IScreen
                 ImGui.EndTabItem();
             }
 
-            // Mechanics settings go in here. 
+            // Integrations settings go in here. 
             if (ImGui.BeginTabItem(TStrings.SettingsIntegrations()))
             {
-                // Create a child since we're using columns.
-                ImGui.BeginChild("##Integrations", new Vector2(0, 0), false);
-
                 ImGui.TextWrapped(TStrings.SettingsIntegrationsDesc());
                 ImGui.Dummy(new Vector2(0, 10));
                 Common.TextHeading(TStrings.SettingsAvailableIntegrations());
@@ -163,7 +160,6 @@ sealed public class SettingsScreen : IScreen
                     });
                 }
 
-                ImGui.EndChild();
                 ImGui.EndTabItem();
             }
         }
