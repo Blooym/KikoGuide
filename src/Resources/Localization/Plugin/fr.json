@@ -1,226 +1,242 @@
 {
-  "UI.Screens.Settings.Title": {
-    "message": "{0} - Paramètres",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.TabItem.General": {
-    "message": "Général",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.AutoOpenDuty": {
-    "message": "Ouvrir automatiquement en Mission",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.AutoOpenDuty.Tooltip": {
-    "message": "Ouvre le guide de missions automatiquement lorsque vous commencez une mission.",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.ShortenStrategies": {
-    "message": "Condenser les Stratégies",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.ShortenStrategies.Tooltip": {
-    "message": "Condense les stratégies du Guide de Missions si cela est possible.",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.ShowSupportButton": {
-    "message": "Afficher le bouton de Soutien",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.ShowSupportButton.Tooltip": {
-    "message": "Affiche le bouton pour Soutenir Kiko Guide.",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.UpdateResources.Title": {
-    "message": "Ressources & Traductions",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.UpdateResources.Text": {
-    "message": "Télécharger les dernières ressources, traductions & guides.",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.UpdateResources": {
-    "message": "Mettre à jour les Ressources",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.UpdateLocalization.Failed": {
-    "message": "Échec de la mise à jour.",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.UpdateLocalization.UpdatedAt": {
-    "message": "Dernière mise à jour : {0}",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.TabItem.Mechanics": {
-    "message": "Mécaniques",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.HideMechanic": {
-    "message": "Masquer : {0}",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.Settings.HideMechanicTooltip": {
-    "message": "Masque \"{0}\" dans le guide de missions.",
-    "description": "SettingsScreen.DrawSettingsWindow"
-  },
-  "UI.Screens.DutyList.Title": {
-    "message": "{0} - Outil de Mission",
-    "description": "ListScreen.DrawListWindow"
-  },
   "UI.Screens.DutyList.NoFiles": {
     "message": "Aucun fichier de mission n'a été détecté ! Veuillez ouvrir les Paramètres -> Mettre à jour les Ressources.",
-    "description": "ListScreen.DrawListWindow"
+    "description": "DutyListScreen.DrawListWindow"
+  },
+  "Types.Duty.Name.None": {
+    "message": "Unnamed Duty",
+    "description": "Duty..ctor"
+  },
+  "Types.Duty.Boss.Name.None": {
+    "message": "Unnamed Boss",
+    "description": "Boss..ctor"
+  },
+  "Types.Duty.Boss.Strategy.None": {
+    "message": "No strategy available for this boss.",
+    "description": "Boss..ctor"
+  },
+  "WotsitIPC.OpenDutyFinder": {
+    "message": "Open Duty Finder",
+    "description": "WotsitIPC.RegisterAll"
+  },
+  "WotsitIPC.OpenDutyEditor": {
+    "message": "Open Duty Editor",
+    "description": "WotsitIPC.RegisterAll"
+  },
+  "Settings.LastUpdate": {
+    "message": "Last Update: {0}",
+    "description": "TStrings.SettingsLastUpdate"
+  },
+  "Settings.HideMechanic": {
+    "message": "Hide: {0}",
+    "description": "TStrings.SettingsHideMechanic"
+  },
+  "Settings.HideMechanicTooltip": {
+    "message": "Hide {0} from duty guides.",
+    "description": "TStrings.SettingsHideMechanicTooltip"
+  },
+  "DutyList.NoGuide": {
+    "message": "No guide available for {0}.",
+    "description": "TStrings.DutyListNoGuide"
+  },
+  "DutyHeading.Title": {
+    "message": "Duty: {0}",
+    "description": "TStrings.DutyHeadingTitle"
+  },
+  "Generics.Error": {
+    "message": "An error occured.",
+    "description": "TStrings..cctor"
   },
   "Generics.Support": {
-    "message": "Support (GitHub)",
-    "description": "ListScreen.DrawListWindow"
-  },
-  "Generics.Search": {
-    "message": "Rechercher",
-    "description": "ListScreen.DrawListWindow"
-  },
-  "UI.Screens.Editor.FileTooLong": {
-    "message": "Your file was too big to be loaded into the editor.",
-    "description": "EditorPresenter.OnFileSelect"
-  },
-  "UI.Screens.Editor.FileLoaded": {
-    "message": "Your file was successfully loaded.",
-    "description": "EditorPresenter.OnFileSelect"
-  },
-  "UI.Screens.Editor.FileSaved": {
-    "message": "Your file was successfully saved.",
-    "description": "EditorPresenter.OnFileSave"
-  },
-  "UI.Screens.Editor.Title": {
-    "message": "{0} - Éditeur de Mission",
-    "description": "EditorScreen.DrawEditorUI"
+    "message": "Support",
+    "description": "TStrings..cctor"
   },
   "Generics.OpenFile": {
     "message": "Ouvrir un Fichier",
-    "description": "EditorScreen.DrawEditorButtons"
-  },
-  "UI.Screens.Editor.OpenFile.Tooltip": {
-    "message": "Open a duty from a JSON file.",
-    "description": "EditorScreen.DrawEditorButtons"
+    "description": "TStrings..cctor"
   },
   "Generics.SaveFile": {
     "message": "Sauvegarder le Fichier",
-    "description": "EditorScreen.DrawEditorButtons"
+    "description": "TStrings..cctor"
   },
-  "UI.Screens.Editor.SaveFile.Tooltip": {
-    "message": "Save the current duty to a JSON file.",
-    "description": "EditorScreen.DrawEditorButtons"
-  },
-  "UI.Screens.Editor.Format.Tooltip": {
-    "message": "Formats the current JSON text.",
-    "description": "EditorScreen.DrawEditorButtons"
-  },
-  "UI.Screens.Editor.Clear.Tooltip": {
-    "message": "Clears the text input.",
-    "description": "EditorScreen.DrawEditorButtons"
-  },
-  "UI.Screens.Editor.Contribute.Tooltip": {
-    "message": "Opens the contribution guidelines.",
-    "description": "EditorScreen.DrawEditorButtons"
-  },
-  "UI.Screens.Editor.Problems": {
-    "message": "Problems:",
-    "description": "EditorScreen.DrawEditorInput"
-  },
-  "UI.Screens.Editor.Unsupported": {
-    "message": "Duty contains invalid IDs and/or is unsupported by this plugin version.",
-    "description": "EditorScreen.DrawEditorInput"
-  },
-  "UI.Screens.Editor.Problems.None": {
-    "message": "No problems have been detected for this file.",
-    "description": "EditorScreen.DrawEditorInput"
-  },
-  "UI.Screens.Editor.Preview": {
-    "message": "Preview",
-    "description": "EditorScreen.DrawEditorPreview"
-  },
-  "UI.Screens.Editor.Metadata": {
-    "message": "Metadata",
-    "description": "EditorScreen.DrawEditorPreview"
-  },
-  "UI.Screens.Editor.IDs": {
-    "message": "IDs",
-    "description": "EditorScreen.DrawEditorPreview"
-  },
-  "UI.Screens.SettingDutyInfo.Title": {
-    "message": "{0} - Informations de Mission",
-    "description": "DutyInfoScreen.DrawInfoWindow"
-  },
-  "UI.Screens.SettingDutyInfo.NoDuty": {
-    "message": "No duty selected, use /kikolist to see all available duties.",
-    "description": "DutyInfoScreen.DrawInfoWindow"
-  },
-  "UI.Components.DutiesList.NoDutiesfound": {
-    "message": "No duties were found.",
-    "description": "DutyListComponent.Draw"
-  },
-  "Generics.Level": {
-    "message": "Niveau",
-    "description": "DutyListComponent.Draw"
+  "Generics.Search": {
+    "message": "Rechercher",
+    "description": "TStrings..cctor"
   },
   "Generics.Duty": {
     "message": "Mission",
-    "description": "DutyListComponent.Draw"
+    "description": "TStrings..cctor"
   },
   "Generics.InDuty": {
     "message": "En Mission",
-    "description": "DutyListComponent.Draw"
-  },
-  "UI.Components.DutiesList.UpdateRequired": {
-    "message": "Impossible d'afficher cette mission car elle n'est pas supportée par cette version.",
-    "description": "DutyListComponent._unsupportedDuty"
-  },
-  "UI.Components.DutiesList.NoBossData": {
-    "message": "Aucun guide n'est disponible pour {0}.",
-    "description": "DutyListComponent._noDataDuty"
+    "description": "TStrings..cctor"
   },
   "Generics.Mechanic": {
     "message": "Mécanique",
-    "description": "DutyBossListComponent.Draw"
+    "description": "TStrings..cctor"
   },
   "Generics.Description": {
     "message": "Description",
-    "description": "DutyBossListComponent.Draw"
+    "description": "TStrings..cctor"
   },
-  "Generics.BossList.Type": {
+  "Generics.Level": {
+    "message": "Niveau",
+    "description": "TStrings..cctor"
+  },
+  "Generics.Type": {
     "message": "Type",
-    "description": "DutyBossListComponent.Draw"
+    "description": "TStrings..cctor"
   },
-  "UI.Components.DutyHeading.Title": {
-    "message": "Mission : {0}",
-    "description": "DutyHeadingComponent.Draw"
+  "DutyEditor.Title": {
+    "message": "{0} - Duty Editor",
+    "description": "TStrings..cctor"
   },
-  "Commands.List.Help": {
-    "message": "Activer/Désactiver la liste de missions",
-    "description": "CommandManager.Initialize"
+  "Editor.Format": {
+    "message": "Format",
+    "description": "TStrings..cctor"
+  },
+  "Editor.Clear": {
+    "message": "Clear",
+    "description": "TStrings..cctor"
+  },
+  "Editor.Preview": {
+    "message": "Preview",
+    "description": "TStrings..cctor"
+  },
+  "Editor.Metadata": {
+    "message": "Metadata",
+    "description": "TStrings..cctor"
+  },
+  "Editor.ContributingGuide": {
+    "message": "Contributing Guide",
+    "description": "TStrings..cctor"
+  },
+  "Editor.Problems": {
+    "message": "Problems",
+    "description": "TStrings..cctor"
+  },
+  "Editor.Unsupported": {
+    "message": "Duty contains invalid IDs and/or is unsupported by this plugin version.",
+    "description": "TStrings..cctor"
+  },
+  "Editor.NoProblemsDetected": {
+    "message": "No problems detected.",
+    "description": "TStrings..cctor"
+  },
+  "Editor.FileTooBig": {
+    "message": "Your file is too big to be loaded into the editor.",
+    "description": "TStrings..cctor"
+  },
+  "Editor.FileLoaded": {
+    "message": "Your file was successfully loaded.",
+    "description": "TStrings..cctor"
+  },
+  "Editor.FileSaved": {
+    "message": "Your file was successfully saved.",
+    "description": "TStrings..cctor"
+  },
+  "Settings.Title": {
+    "message": "{0} - Settings",
+    "description": "TStrings..cctor"
+  },
+  "Settings.General": {
+    "message": "General",
+    "description": "TStrings..cctor"
+  },
+  "Settings.AutoOpenInDuty": {
+    "message": "Auto Open In Duty",
+    "description": "TStrings..cctor"
+  },
+  "Settings.AutoOpenDuty.Tooltip": {
+    "message": "Open the duty guide when entering a duty.",
+    "description": "TStrings..cctor"
+  },
+  "Settings.ShortMode": {
+    "message": "Short Mode",
+    "description": "TStrings..cctor"
+  },
+  "Settings.ShortMode.Tooltip": {
+    "message": "Shorten strategies & descriptions if possible.",
+    "description": "TStrings..cctor"
+  },
+  "Settings.ShowSupportButton": {
+    "message": "Show Support Button",
+    "description": "TStrings..cctor"
+  },
+  "UI.Screens.Settings.ShowSupportButton.Tooltip": {
+    "message": "Affiche le bouton pour Soutenir Kiko Guide.",
+    "description": "TStrings..cctor"
+  },
+  "Settings.ResourcesAndLocalization": {
+    "message": "Resources & Localization",
+    "description": "TStrings..cctor"
+  },
+  "Settings.ResourcesAndLocalization.Tooltip": {
+    "message": "Downloads the latest resources, localizations & guides.",
+    "description": "TStrings..cctor"
+  },
+  "Settings.UpdateResources": {
+    "message": "Update Resources",
+    "description": "TStrings..cctor"
+  },
+  "Settings.UpdateFailed": {
+    "message": "Update Failed",
+    "description": "TStrings..cctor"
+  },
+  "Settings.Mechanics": {
+    "message": "Mechanics",
+    "description": "TStrings..cctor"
+  },
+  "Settings.Integrations": {
+    "message": "Integrations",
+    "description": "TStrings..cctor"
+  },
+  "Settings.Integrations.Available": {
+    "message": "Available Integrations",
+    "description": "TStrings..cctor"
+  },
+  "Settings.Integrations.Tooltip": {
+    "message": "You can enable or disable integrations below, changes will take effect next plugin load if the integration plugin is present.",
+    "description": "TStrings..cctor"
+  },
+  "DutyFinder.Title": {
+    "message": "{0} - Duty Finder",
+    "description": "TStrings..cctor"
+  },
+  "DutyFinder": {
+    "message": "Aucun fichier de mission n'a été détecté ! Veuillez ouvrir les Paramètres -> Mettre à jour les Ressources.",
+    "description": "TStrings..cctor"
+  },
+  "DutyInfo.Title": {
+    "message": "{0} - Duty Info",
+    "description": "TStrings..cctor"
+  },
+  "DutyInfo.NoDuty": {
+    "message": "No duty selected, use /kikolist to see all available duties.",
+    "description": "TStrings..cctor"
+  },
+  "DutyList.NoneFound": {
+    "message": "No duties found.",
+    "description": "TStrings..cctor"
+  },
+  "DutyList.NeedsUpdate": {
+    "message": "Cannot display duty as it was not made for this plugin version.",
+    "description": "TStrings..cctor"
+  },
+  "Commands.DutyList.Help": {
+    "message": "Toggles the duty list",
+    "description": "TStrings..cctor"
   },
   "Commands.Settings.Help": {
     "message": "Activer/Désactiver le menu de paramètres",
-    "description": "CommandManager.Initialize"
+    "description": "TStrings..cctor"
   },
   "Commands.Editor.Help": {
     "message": "Activer/Désactiver l'éditeur de missions",
-    "description": "CommandManager.Initialize"
+    "description": "TStrings..cctor"
   },
   "Commands.Info.Help": {
     "message": "Activer/Désactiver la fenêtre d'information si une mission est chargée",
-    "description": "CommandManager.Initialize"
-  },
-  "Duty.Name.None": {
-    "message": "Mission sans nom",
-    "description": "Duty..ctor"
-  },
-  "Duty.Boss.Name.None": {
-    "message": "Boss sans nom",
-    "description": "Boss..ctor"
-  },
-  "Duty.Boss.Strategy.None": {
-    "message": "Aucune stratégie disponible pour le moment.",
-    "description": "Boss..ctor"
+    "description": "TStrings..cctor"
   }
 }
