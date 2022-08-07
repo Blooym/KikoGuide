@@ -203,7 +203,7 @@
     "message": "{0} - Duty Finder",
     "description": "TStrings..cctor"
   },
-  "DutyFinder": {
+  "DutyFinder.NoFiles": {
     "message": "No duty files detected! Please try Settings -> Update Resources.",
     "description": "TStrings..cctor"
   },
