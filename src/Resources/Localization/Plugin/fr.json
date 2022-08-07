@@ -203,7 +203,7 @@
     "message": "{0} - Duty Finder",
     "description": "TStrings..cctor"
   },
-  "DutyFinder": {
+  "DutyFinder.NoFiles": {
     "message": "Aucun fichier de mission n'a été détecté ! Veuillez ouvrir les Paramètres -> Mettre à jour les Ressources.",
     "description": "TStrings..cctor"
   },
