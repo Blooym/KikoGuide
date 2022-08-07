@@ -33,3 +33,4 @@ jobs:
       - name: Build Plugin
         run: |
           dotnet build
+          dotnet build --configuration Release
