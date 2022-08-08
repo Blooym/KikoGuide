@@ -9,12 +9,12 @@
 	"Bosses": [
 		{
 			"Name": "Zodiark (Phase 1)",
-			"Strategy": "Phase 1 introduces the base mechanics of the fight.",
+			"Strategy": "Watch out for the shape of the runes the boss summons at the edges of the arena. Triangle shape is a cone shaped AoE across the room. Square shape is a half room AoE on the side of the rune. Summoned Behemoths cast a circle AoE around themselves, while snakes cast a line AoE in the direction they're facing.",
 			"KeyMechanics": [
 				{
 					"Name": "Kokytos",
-					"Description": "Reduces the party's HP to 1",
-					"Type": 4
+					"Description": "Reduces the everyone's HP to 1",
+					"Type": 10
 				},
 				{
 					"Name": "Exoterikos",
@@ -50,7 +50,13 @@
 					"Name": "Complete Control",
 					"Description": "Boss transforms, transitioning to phase 2.",
 					"Type": 10
-				},
+				}
+			]
+		},
+		{
+			"Name": "Zodiark (Phase 2)",
+			"Strategy": "After the transition the boss starts rotating the arena below the players. Players must anticipate where AoEs are relocated to. During Astral Eclipse the boss will mark constellations outside of the arena which indicate what sections of the platform will be hit by meteors. Players have to look outside to anticipate this.",
+			"KeyMechanics": [
 				{
 					"Name": "Astral Flow",
 					"Description": "Used immediately after Paradeigma. \nBoss rotates the arena with the spawned adds, while players are held in place.",
@@ -73,7 +79,7 @@
 				},
 				{
 					"Name": "Trimorphos Exoterikos",
-					"Description": "Casts 3 Exoterikos runes at every other edge of the arena that go off one by one.",
+					"Description": "Boss casts 3 Exoterikos runes at every other edge of the arena that go off one by one.",
 					"Type": 2
 				}
 			]

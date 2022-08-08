@@ -60,7 +60,7 @@
                 },
                 {
                     "Name": "Northerlies",
-                    "Description": "Raid wide attack - High damage. When the boss is casting this, hit him with a *Snowball to interrupt",
+                    "Description": "Raidwide attack - High damage. When the boss is casting this, hit him with a *Snowball to interrupt",
                     "Type": 4
                 },
                 {
@@ -91,12 +91,12 @@
                 },
                 {
                     "Name": "Lunar Cry",
-                    "Description": "Raid wide damage - Instant kill if hit by it. This can be dodged by hiding behind the pillar that didn't have a line AOE.",
+                    "Description": "Raidwide damage - Instant kill if hit by it. This can be dodged by hiding behind the pillar that didn't have a line AOE.",
                     "Type": 4
                 },
                 {
                     "Name": "Thousand-year Storm",
-                    "Description": "Raid wide damage - Moderate damage. Unavoidable",
+                    "Description": "Raidwide damage - Moderate damage. Unavoidable",
                     "Type": 4
                 }
             ]

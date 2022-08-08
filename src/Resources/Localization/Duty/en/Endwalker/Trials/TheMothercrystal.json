@@ -5,12 +5,12 @@
     "Type": 1,
     "Expansion": 4,
     "Level": 89,
-    "UnlockQuestID": 69985,
 	"TerritoryID": 995,
+    "UnlockQuestID": 69985,
 	"Bosses": [
 		{
 			"Name": "Hydaelyn (Phase 1)",
-			"Strategy": "Phase 1 introduces the base mechanics of the fight.",
+			"Strategy": "Watch out for her Dawn Mantle. Red icon means stack inside her hitbox, green means stay away from her, blue means that she'll cast large line AoEs in a cross shape from her position.",
 			"KeyMechanics": [
 				{
 					"Name": "Heroes's Radiance",
@@ -36,7 +36,7 @@
 		},
 		{
 			"Name": "Crystals of Light (Add Phase)",
-			"Strategy": "The goal of this phase is to destroy all of the crystals before Hydaelyn's Conviction bar reaches 100",
+			"Strategy": "Destroy all of the crystals before Hydaelyn's Conviction bar reaches 100.",
 			"KeyMechanics": [
 				{
 					"Name": "Hydaelyn's Ray",
@@ -62,7 +62,7 @@
 		},
 		{
 			"Name": "Hydaelyn (Phase 2)",
-			"Strategy": "The final phase will repeat mechanics from phase 1 and add additional mechanics on top of it.",
+			"Strategy": "React to mechanics from phase 1, while she also casts Crystallize, which is either a party stack or circle AoEs around each player. Memorize in which order the Chakrams from Parhelion go out to avoid upcoming AoEs. Stand in the safe quadrant when she casts Lightwave. Stay with your party when she casts Echoes.",
 			"KeyMechanics": [
 				{
 					"Name": "Heroes's Sundering",

@@ -9,7 +9,7 @@
 	"Bosses": [
 		{
 			"Name": "The Endsinger (Phase 1)",
-			"Strategy": "The main part of the fight.",
+			"Strategy": "Players must pay attention to the animations of the boss, as these indicate which areas of the arena are hit by mechanics. \nAlso, players must pay attention to the summoned planets that move around the edge of the arena, as they result in massive AoEs when they crash into each other. Furthermore the boss frequently rewinds time to reconstruct planets and let them crash again.",
 			"KeyMechanics": [
 				{
 					"Name": "Elegeia",
@@ -75,7 +75,7 @@
 		},
 		{
 			"Name": "Kakodaimon",
-			"Strategy": "This phase is a dps check. Feel free to use melee Limit Break, as the Limit Gauge will fully charge when the add dies. \nThe add must die before the Despair bar reaches 100.",
+			"Strategy": "This phase is a DPS check. Feel free to use melee Limit Break, as the Limit Gauge will fully charges when the add dies. \nThe add must die before the Despair gauge reaches 100.",
 			"KeyMechanics": [
 				{
 					"Name": "Meteor Radiant",
@@ -91,7 +91,7 @@
 		},
 		{
 			"Name": "The Endsinger (Phase 2)",
-			"Strategy": "This phase is just a cinematic finishing struggle sequence. Mechanics are a light healing check.",
+			"Strategy": "This phase is just a cinematic finishing struggle sequence. Mechanics are a light healing check and a couple AoEs to avoid.",
 			"KeyMechanics": [
 				{
 					"Name": "Telos",
