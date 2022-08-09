@@ -17,11 +17,12 @@ sealed public class EditorPresenter : IDisposable
     /// <summary> If the associated screen should be drawn. </summary>
     public bool isVisible = false;
 
+
     /// <summary> An instance of the FileDialogManager for loading/saving duties. </summary>
     public FileDialogManager dialogManager = new FileDialogManager();
 
     /// <summary> The character limit for the input text fields, applies to the UI and file loading. </summary>
-    public uint characterLimit = 50000;
+    public uint characterLimit = 35000;
 
     /// <summary> Handles the file select event </summary>
     public string OnFileSelect(bool success, string file, string text)
@@ -63,6 +64,7 @@ sealed public class EditorPresenter : IDisposable
         }
         catch { return text; }
     }
+
 
     /// <summary> The last parse result from this.ParseDuty() </summary>
     private Tuple<Duty?, Exception?>? _lastParseResult;

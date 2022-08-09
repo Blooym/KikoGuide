@@ -1,7 +1,8 @@
-namespace KikoGuide.Base;
+namespace KikoGuide.Managers;
 
 using System;
 using Dalamud.Logging;
+using KikoGuide.Base;
 using KikoGuide.UI.Screens.DutyInfo;
 using KikoGuide.UI.Screens.DutyList;
 using KikoGuide.UI.Screens.Editor;
@@ -43,7 +44,7 @@ sealed public class WindowManager : IDisposable
         PluginService.PluginInterface.UiBuilder.OpenConfigUi += OnOpenConfigUI;
         PluginService.ClientState.Logout += OnLogout;
 
-        PluginLog.Debug("WindowManager: Successfully initialized.");
+        PluginLog.Debug("WindowManager: Initialization complete.");
     }
 
 

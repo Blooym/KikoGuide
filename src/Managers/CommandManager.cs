@@ -1,8 +1,9 @@
-namespace KikoGuide.Base;
+namespace KikoGuide.Managers;
 
 using System;
 using Dalamud.Logging;
 using Dalamud.Game.Command;
+using KikoGuide.Base;
 
 /// <summary> Initializes and manages all commands and command-events for the plugin. </summary>
 sealed public class CommandManager : IDisposable
@@ -23,7 +24,7 @@ sealed public class CommandManager : IDisposable
         PluginService.Commands.AddHandler(editorCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.EditorHelp() });
         PluginService.Commands.AddHandler(dutyInfoCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.InfoHelp() });
 
-        PluginLog.Debug("CommandManager: Successfully initialized.");
+        PluginLog.Debug("CommandManager: Initialization complete.");
     }
 
 

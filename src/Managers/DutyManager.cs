@@ -14,11 +14,11 @@ using FFXIVClientStructs.FFXIV.Client.Game;
 public static class DutyManager
 {
     /// <summary> All currently loaded duties </summary>
-    private static List<Duty>? _loadedDuties = LoadDutyData();
+    private static List<Duty>? _loadedDuties;
 
 
     /// <summary> Handles updating duty data when resources are updated. </summary>
-    internal static void ClearCache() => _loadedDuties = null;
+    public static void ClearCache() => _loadedDuties = Enumerable.Empty<Duty>().ToList();
 
 
     /// <summary> All loaded duties from the DutyManager (Cached). </summary>

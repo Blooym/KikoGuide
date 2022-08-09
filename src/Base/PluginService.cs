@@ -6,9 +6,8 @@ using Dalamud.Logging;
 using Dalamud.Game.ClientState;
 using KikoGuide.Managers;
 
-#pragma warning disable CS8618 // Injection is handled by the Dalamud Plugin Framework here.
-
 /// <summary> Provides access to necessary instances and services. </summary>
+#pragma warning disable CS8618 // Injection is handled by the Dalamud Plugin Framework here.
 sealed internal class PluginService
 {
     // Dalamud Services & Instances

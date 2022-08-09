@@ -1,4 +1,4 @@
-namespace KikoGuide.Base;
+namespace KikoGuide.Managers;
 
 using System;
 using System.Threading;
@@ -7,11 +7,12 @@ using System.Net;
 using System.IO.Compression;
 using CheapLoc;
 using Dalamud.Logging;
-using KikoGuide.Managers;
+using KikoGuide.Base;
 
 /// <summary> Sets up and manages the plugin's resources and localization. </summary>
 sealed public class ResourceManager : IDisposable
 {
+    private bool initialized = false;
     public bool? lastUpdateSuccess;
     public bool updateInProgress;
 
@@ -112,11 +113,12 @@ sealed public class ResourceManager : IDisposable
     {
         PluginLog.Debug($"ResourceManager: Setting up resources for language {language}...");
 
-        DutyManager.ClearCache();
+        if (initialized) DutyManager.ClearCache();
 
         try { Loc.Setup(File.ReadAllText($"{PStrings.localizationPath}\\Plugin\\{language}.json")); }
         catch { Loc.SetupWithFallbacks(); }
 
+        initialized = true;
         PluginLog.Debug("ResourceManager: Resources setup.");
     }
 }

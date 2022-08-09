@@ -1,20 +1,19 @@
 namespace KikoGuide.Managers.IPC;
 
-using System;
 using System.Collections.Generic;
 using CheapLoc;
-using Dalamud.Plugin.Ipc;
 using Dalamud.Logging;
+using Dalamud.Plugin.Ipc;
 using KikoGuide.Base;
 using KikoGuide.Types;
 using KikoGuide.Managers;
+using KikoGuide.Interfaces;
 
-/// <summary> Controller for WotsitIPC </summary>
-sealed public class WotsitIPC : IDisposable
+/// <summary> Provider for WotsitIPC </summary>
+sealed public class WotsitIPCProvider : IIPCProvider
 {
-    /// <summary> Enable this to force this IPC to be disabled. </summary>
-    private const bool forceDisabled = false;
-    private const IPCProviders ID = IPCProviders.Wotsit;
+    /// <summary> The IPC provider's ID, must be unique and present. </summary>
+    public IPCProviders ID { get; } = IPCProviders.Wotsit;
 
     private ICallGateSubscriber<string, string, uint, string>? _wotsitRegister;
     private ICallGateSubscriber<string, bool>? _wotsitUnregister;
@@ -27,15 +26,13 @@ sealed public class WotsitIPC : IDisposable
 
 
     /// <summary> Initializes the WotsitIPC. </summary>
-    public WotsitIPC()
+    public WotsitIPCProvider()
     {
-        if (!PluginService.Configuration.enabledIntegrations.Contains(ID) || forceDisabled) return;
+        // You must handle if this integration loads here using enabledIntegrations and any other custom logic.
+        if (!PluginService.Configuration.enabledIntegrations.Contains(ID)) { PluginLog.Debug($"WotsitIPCProvider: Not enabled, skipping."); return; }
 
-        try
-        {
-            Initialize();
-        }
-
+        // Attempt to initialize the plugin, if it fails then do nothing & subscribe to FA.Available.
+        try { Initialize(); }
         catch { /* Do nothing */ }
 
         _wotsitAvailable = PluginService.PluginInterface.GetIpcSubscriber<bool>("FA.Available");
@@ -46,20 +43,20 @@ sealed public class WotsitIPC : IDisposable
     /// <summary> Disposes of the IPC for Wotsit. </summary>
     public void Dispose()
     {
+        // Wrap dispose logic inside of a try {} catch {} if it relates to the integration
+        // As we're not sure if it is present or not.
         try
         {
             _wotsitUnregister?.InvokeFunc(PStrings.pluginName);
             _wotsitAvailable?.Unsubscribe(Initialize);
         }
-        catch { }
+        catch { /* Do nothing */ }
     }
 
 
     /// <summary> Initializes IPC for Wotsit. </summary>
     private void Initialize()
     {
-        PluginLog.Debug("WotsitIPC: Initializing...");
-
         _wotsitRegister = PluginService.PluginInterface.GetIpcSubscriber<string, string, uint, string>("FA.Register");
         _wotsitUnregister = PluginService.PluginInterface.GetIpcSubscriber<string, bool>("FA.UnregisterAll");
 
@@ -67,8 +64,6 @@ sealed public class WotsitIPC : IDisposable
         subscribe.Subscribe(HandleInvoke);
 
         this.RegisterAll();
-
-        PluginLog.Log($"WotsitIPC: Registered {_wotsitDutyIpcs.Count} duties with Wotsit.");
     }
 
 

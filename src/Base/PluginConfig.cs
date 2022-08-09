@@ -12,13 +12,13 @@ using KikoGuide.Managers.IPC;
 sealed internal class Configuration : IPluginConfiguration
 {
     /// <summary> 
-    ///     The current configuration version. Incremented whenever breaking changes are made to the configuration.
+    ///  The current configuration version. Incremented whenever breaking changes are made to the configuration.
     /// </summary>
     public int Version { get; set; } = 0;
 
 
     /// <summary> 
-    ///    Whether or not to automatically show duty information upon entering a new (supported) duty.
+    /// Whether or not to automatically show duty information upon entering a new (supported) duty.
     /// </summary>
     public bool autoOpenDuty { get; set; } = false;
 
@@ -44,7 +44,7 @@ sealed internal class Configuration : IPluginConfiguration
     /// <summary> 
     /// Stores the last resource update timestamp, automatically updated by the plugin backend. Should NOT be set manually.
     /// </summary>
-    public long lastResourceUpdate { get; set; } = 0;
+    public long lastResourceUpdate { get; set; } = long.MinValue;
 
 
     /// <summary>
