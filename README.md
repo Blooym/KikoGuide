@@ -10,7 +10,7 @@ A Dalamud plugin that provides players with hand-written guides to duty content.
 [![Latest Release](https://img.shields.io/github/v/release/BitsOfAByte/KikoGuide?color=blue&label=Release)](https://github.com/BitsOfAByte/KikoGuide/releases/latest)
 [![Latest Preview](https://img.shields.io/github/v/release/BitsOfAByte/KikoGuide?color=orange&include_prereleases&label=Testing)](https://github.com/BitsOfAByte/KikoGuide/releases/latest)
 
-**[Issues](https://github.com/BitsOfAByte/KikoGuide/issues) · [Contributing](https://github.com/BitsOfAByte/KikoGuide/blob/main/CONTRIBUTING.md) · [Releases](https://BitsOfAByte/KikoGuide/releases/latest)**
+**[Issues](https://github.com/BitsOfAByte/KikoGuide/issues) · [Contributing](https://github.com/BitsOfAByte/KikoGuide/blob/main/CONTRIBUTING.md) · [Releases](https://github.com/BitsOfAByte/KikoGuide/releases/latest)**
   
 </div>
 
