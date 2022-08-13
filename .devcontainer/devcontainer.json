@@ -1,0 +1,16 @@
+{
+    "dockerFile": "Dockerfile",
+    "updateRemoteUserUID": true,
+    "containerUser": "dev",
+    "remoteUser": "dev",
+    "postAttachCommand": "dotnet restore",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.csharp",
+                "wayou.vscode-todo-highlight",
+                "vivaxy.vscode-conventional-commits"
+            ]
+        }
+    }
+}
