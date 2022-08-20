@@ -75,7 +75,7 @@ sealed public class WotsitIPCProvider : IIPCProvider
         foreach (var duty in DutyManager.GetDuties())
         {
             // if (!DutyManager.IsUnlocked(duty) || !duty.HasData()) continue;
-            var guid = _wotsitRegister.InvokeFunc(PStrings.pluginName, $"{duty.GetCanonicalName()}", WotsitIconID);
+            var guid = _wotsitRegister.InvokeFunc(PStrings.pluginName, $"{duty.CanconicalName}", WotsitIconID);
             _wotsitDutyIpcs.Add(guid, duty);
         }
 

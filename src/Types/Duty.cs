@@ -64,6 +64,7 @@ public class Duty
     public uint UnlockQuestID = 0;
     public uint TerritoryID = 0;
     public List<Boss>? Bosses = null;
+    public string CanconicalName => GetCanonicalName();
 
     /// <summary> The Boss class represents a boss in a duty. </summary>
     public class Boss
@@ -99,7 +100,7 @@ public class Duty
     }
 
 
-    /// <summary> Method to get the duties canonical name. </summary>
+    /// <summary> Get the canonical name for the duty </summary>
     public string GetCanonicalName()
     {
         if (this.Difficulty != (int)DutyDifficulty.Normal) return $"{this.Name} ({Enum.GetName(typeof(DutyDifficulty), this.Difficulty)})";
