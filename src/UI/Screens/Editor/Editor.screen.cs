@@ -142,11 +142,9 @@ sealed public class EditorScreen : IScreen
                 if (duty != null)
                 {
                     DutyInfoComponent.Draw(duty);
+                    ImGui.EndTabItem();
                 }
-                ImGui.EndTabItem();
             }
-
-            ImGui.EndTabBar();
         }
 
 

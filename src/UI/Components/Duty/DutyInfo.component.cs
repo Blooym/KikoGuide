@@ -16,27 +16,18 @@ static class DutyInfoComponent
         {
             DutyHeadingComponent.Draw(duty);
 
-            if (ImGui.GetWindowSize().X > 380)
-            {
-                if (ImGui.BeginTabBar("#Bosses"))
-                {
-                    foreach (var boss in duty.Bosses ?? Enumerable.Empty<Duty.Boss>())
-                    {
-                        if (ImGui.BeginTabItem(boss.Name))
-                        {
-                            DutyBossComponent.Draw(boss);
-                            ImGui.EndTabItem();
-                        }
-                    }
-                }
-
-            }
-            else
+            if (ImGui.BeginTabBar("#Bosses", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton | ImGuiTabBarFlags.NoTabListScrollingButtons))
             {
                 foreach (var boss in duty.Bosses ?? Enumerable.Empty<Duty.Boss>())
-                    if (ImGui.CollapsingHeader(boss.Name)) DutyBossComponent.Draw(boss);
+                {
+                    if (ImGui.BeginTabItem(boss.Name))
+                    {
+                        DutyBossComponent.Draw(boss);
+                        ImGui.EndTabItem();
+                    }
+                }
+                ImGui.EndTabBar();
             }
-
         }
         catch (Exception e) { ImGui.TextColored(Colours.Error, $"Component Exception: {e.Message}"); }
     }
