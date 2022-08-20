@@ -8,6 +8,8 @@ using KikoGuide.Types;
 
 static class DutyHeadingComponent
 {
+    /// <summary> Draws the duty heading. </summary>
+    /// <param name="duty"> The duty to draw information for. </param>
     public static void Draw(Duty duty)
     {
         try

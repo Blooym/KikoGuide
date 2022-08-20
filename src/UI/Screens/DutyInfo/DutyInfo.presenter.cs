@@ -19,7 +19,7 @@ sealed public class DutyInfoPresenter : IDisposable
 
     public bool isVisible = false;
 
-
+    /// <summary> The currently selected duty to show in the info window. </summary>
     public Duty? selectedDuty = null;
 
     /// <summary> Handles territory change even and changes the UI state accordingly. </summary>

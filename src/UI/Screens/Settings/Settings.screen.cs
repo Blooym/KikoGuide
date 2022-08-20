@@ -32,54 +32,54 @@ sealed public class SettingsScreen : IScreen
         long lastUpdateTime = PluginService.Configuration.lastResourceUpdate;
 
         ImGui.SetNextWindowSizeConstraints(new Vector2(410, 250), new Vector2(1000, 1000));
-        if (ImGui.Begin(TStrings.SettingsTitle(), ref presenter.isVisible))
+        if (ImGui.Begin(TStrings.SettingsTitle, ref presenter.isVisible))
         {
             // Create tab bar for each settings category
             ImGui.BeginTabBar("##Settings");
 
             // General settings go in here.
-            if (ImGui.BeginTabItem(TStrings.SettingsGeneral()))
+            if (ImGui.BeginTabItem(TStrings.SettingsGeneral))
             {
                 // Auto-open duty setting.
-                Common.ToggleCheckbox(TStrings.SettingsAutoOpenInDuty(), ref autoOpenDuty, () =>
+                Common.ToggleCheckbox(TStrings.SettingsAutoOpenInDuty, ref autoOpenDuty, () =>
                {
                    PluginService.Configuration.autoOpenDuty = !autoOpenDuty;
                    PluginService.Configuration.Save();
                });
-                Tooltips.AddTooltip(TStrings.SettingsAutoOpenInDutyTooltip());
+                Tooltips.AddTooltip(TStrings.SettingsAutoOpenInDutyTooltip);
 
 
                 // TLDR mode setting.
-                Common.ToggleCheckbox(TStrings.SettingsShortMode(), ref shortenStrategies, () =>
+                Common.ToggleCheckbox(TStrings.SettingsShortMode, ref shortenStrategies, () =>
                 {
                     PluginService.Configuration.shortenStrategies = !shortenStrategies;
                     PluginService.Configuration.Save();
                 });
-                Tooltips.AddTooltip(TStrings.SettingsShortModeTooltip());
+                Tooltips.AddTooltip(TStrings.SettingsShortModeTooltip);
 
 
                 // Support button setting.
-                Common.ToggleCheckbox(TStrings.SettingsShowSupportButton(), ref supportButtonShown, () =>
+                Common.ToggleCheckbox(TStrings.SettingsShowSupportButton, ref supportButtonShown, () =>
                 {
                     PluginService.Configuration.supportButtonShown = !supportButtonShown;
                     PluginService.Configuration.Save();
                 });
-                Tooltips.AddTooltip(TStrings.SettingsShowSupportButtonTooltip());
+                Tooltips.AddTooltip(TStrings.SettingsShowSupportButtonTooltip);
 
 
                 // Update resources / localizable button.
                 ImGui.Dummy(new Vector2(0, 5));
-                Common.TextHeading(TStrings.SettingsResourcesAndLocalization());
-                ImGui.TextWrapped(TStrings.SettingsResourcesAndLocalizationDesc());
+                Common.TextHeading(TStrings.SettingsResourcesAndLocalization);
+                ImGui.TextWrapped(TStrings.SettingsResourcesAndLocalizationDesc);
                 ImGui.Dummy(new Vector2(0, 5));
                 ImGui.BeginDisabled(PluginService.ResourceManager.updateInProgress);
-                if (ImGui.Button(TStrings.SettingsUpdateResources())) PluginService.ResourceManager.Update();
+                if (ImGui.Button(TStrings.SettingsUpdateResources)) PluginService.ResourceManager.Update();
                 ImGui.EndDisabled();
 
                 if (!PluginService.ResourceManager.updateInProgress && PluginService.ResourceManager.lastUpdateSuccess == false && lastUpdateTime != 0)
                 {
                     ImGui.SameLine();
-                    ImGui.TextWrapped(TStrings.SettingsUpdateFailed());
+                    ImGui.TextWrapped(TStrings.SettingsUpdateFailed);
                 }
                 else if (!PluginService.ResourceManager.updateInProgress && lastUpdateTime != 0)
                 {
@@ -97,7 +97,7 @@ sealed public class SettingsScreen : IScreen
 
 
             // Mechanics settings go in here. 
-            if (ImGui.BeginTabItem(TStrings.SettingsMechanics()))
+            if (ImGui.BeginTabItem(TStrings.SettingsMechanics))
             {
                 // Create a child since we're using columns.
                 ImGui.BeginChild("##Mechanics", new Vector2(0, 0), false);
@@ -134,11 +134,11 @@ sealed public class SettingsScreen : IScreen
             }
 
             // Integrations settings go in here. 
-            if (ImGui.BeginTabItem(TStrings.SettingsIntegrations()))
+            if (ImGui.BeginTabItem(TStrings.SettingsIntegrations))
             {
-                ImGui.TextWrapped(TStrings.SettingsIntegrationsDesc());
+                ImGui.TextWrapped(TStrings.SettingsIntegrationsDesc);
                 ImGui.Dummy(new Vector2(0, 10));
-                Common.TextHeading(TStrings.SettingsAvailableIntegrations());
+                Common.TextHeading(TStrings.SettingsAvailableIntegrations);
 
                 // For each mechanic enum, creating a checkbox for it.
                 foreach (var integration in Enum.GetValues(typeof(Managers.IPC.IPCProviders)))

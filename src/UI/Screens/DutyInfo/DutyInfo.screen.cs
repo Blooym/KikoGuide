@@ -24,15 +24,15 @@ sealed public class DutyInfoScreen : IScreen
         var selectedDuty = presenter.selectedDuty;
 
         ImGui.SetNextWindowSize(new Vector2(380, 420), ImGuiCond.FirstUseEver);
-        if (ImGui.Begin(TStrings.DutyInfoTitle(), ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar))
+        if (ImGui.Begin(TStrings.DutyInfoTitle, ref presenter.isVisible, ImGuiWindowFlags.NoScrollbar))
         {
 
-            if (selectedDuty == null) { ImGui.TextWrapped(TStrings.DutyInfoNoneSelected()); return; }
+            if (selectedDuty == null) { ImGui.TextWrapped(TStrings.DutyInfoNoneSelected); return; }
             if (selectedDuty.Bosses == null || selectedDuty.Bosses.Count == 0) { ImGui.TextWrapped(TStrings.DutyListNoGuide(selectedDuty.Name)); return; }
-            if (!DutyManager.IsUnlocked(selectedDuty)) { ImGui.TextWrapped(TStrings.DutyInfoNotUnlocked()); return; }
+            if (!DutyManager.IsUnlocked(selectedDuty)) { ImGui.TextWrapped(TStrings.DutyInfoNotUnlocked); return; }
 
-            DutyHeadingComponent.Draw(selectedDuty);
-            foreach (var boss in selectedDuty.Bosses) DutyBossComponent.Draw(boss);
+            DutyInfoComponent.Draw(selectedDuty);
+
             ImGui.End();
         }
     }
