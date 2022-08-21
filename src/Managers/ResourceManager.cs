@@ -3,7 +3,7 @@ namespace KikoGuide.Managers;
 using System;
 using System.Threading;
 using System.IO;
-using System.Net;
+using System.Net.Http;
 using System.IO.Compression;
 using CheapLoc;
 using Dalamud.Logging;
@@ -45,56 +45,42 @@ sealed public class ResourceManager : IDisposable
     }
 
 
+
     /// <summary> Downloads the repository from GitHub and extracts the resource data. </summary>
     public void Update()
     {
+        var zipFile = Path.Combine(Path.GetTempPath(), "KikoGuide_Source.zip");
+        var sourcePath = Path.Combine(Path.GetTempPath(), "kikoGuide-main", "src", "Resources");
+        var targetPath = Path.Combine(PStrings.resourcePath);
+
         new Thread(() =>
         {
             try
             {
                 PluginLog.Debug($"ResourceManager: Opening new thread to handle resource download.");
-                updateInProgress = true;
 
-                // Create a new WebClient to download the data and some paths for installation.
-                var webClient = new WebClient();
-                var zipFile = Path.Combine(Path.GetTempPath(), "KikoGuide_Source.zip");
-                var sourcePath = Path.Combine(Path.GetTempPath(), "KikoGuide-main", "src", "Resources");
-                var targetPath = Path.Combine(PStrings.resourcePath);
+                // Download the file from GitHub and extract it to the temporary location.
+                using var client = new HttpClient();
+                client.GetAsync($"{PStrings.pluginRepository}archive/refs/heads/main.zip").ContinueWith((task) =>
+                {
+                    using var stream = task.Result.Content.ReadAsStreamAsync().Result;
+                    using var fileStream = File.Create(zipFile);
+                    stream.CopyTo(fileStream);
+                }).Wait();
 
-                // Download the file into the system temp directory to make sure it can be cleaned up by the OS incase of a crash.
-                webClient.DownloadFile($"{PStrings.pluginRepository}archive/refs/heads/main.zip", zipFile);
-
-                // Extract the zip file into the system temp directory and delete the zip file.
+                // Extract the zip file and copy the resources.
                 ZipFile.ExtractToDirectory(zipFile, Path.GetTempPath(), true);
-
-                // Create directories & copy files.
                 foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories)) Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
                 foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories)) File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
 
-                // Delete the temporary files.
+                // Cleanup temporary files.
                 File.Delete(zipFile);
                 Directory.Delete($"{Path.GetTempPath()}KikoGuide-main", true);
 
-                // Set update statuses to their values.
-                lastUpdateSuccess = true;
-                updateInProgress = false;
-
-                // Set the last manual update time to now.
-                PluginService.Configuration.lastResourceUpdate = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                PluginService.Configuration.Save();
-
-                // Broadcast an event indicating that the resources have been updated & refresh the UI.
+                // Broadcast an event indicating that the resources have been updated.
                 ResourcesUpdated?.Invoke();
             }
-
-            catch (Exception e)
-            {
-                // Set update statuses to their values & log the error.
-                lastUpdateSuccess = false;
-                updateInProgress = false;
-                PluginLog.Error($"ResourceManager: Error updating resource files: {e.Message}");
-            }
-
+            catch (Exception e) { PluginLog.Error($"ResourceManager: Error updating resource files: {e.Message}"); }
         }).Start();
     }
 
