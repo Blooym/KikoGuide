@@ -3,7 +3,7 @@ namespace KikoGuide.Managers;
 using System;
 using System.Threading;
 using System.IO;
-using System.Net;
+using System.Net.Http;
 using System.IO.Compression;
 using CheapLoc;
 using Dalamud.Logging;
@@ -58,7 +58,7 @@ sealed public class ResourceManager : IDisposable
     {
         var repoName = PStrings.pluginName.Replace(" ", "");
         var zipFilePath = Path.Combine(Path.GetTempPath(), $"{repoName}.zip");
-        var zipExtractPat = Path.Combine(Path.GetTempPath(), $"{repoName}-{PStrings.repoBranch}", $"{PStrings.repoResourcesDir}");
+        var zipExtractPath = Path.Combine(Path.GetTempPath(), $"{repoName}-{PStrings.repoBranch}", $"{PStrings.repoResourcesDir}");
         var pluginExtractPath = Path.Combine(PStrings.pluginResourcesDir);
 
         new Thread(() =>
@@ -66,40 +66,29 @@ sealed public class ResourceManager : IDisposable
             try
             {
                 PluginLog.Debug($"ResourceManager: Opening new thread to handle resource download.");
-                updateInProgress = true;
 
                 // Download the files from the repository and extract them into the temp directory.
-                using var webClient = new WebClient();
-                webClient.DownloadFile($"{PStrings.repoUrl}archive/refs/heads/{PStrings.repoBranch}.zip", zipFilePath);
+                using var client = new HttpClient();
+                client.GetAsync($"{PStrings.repoUrl}archive/refs/heads/{PStrings.repoBranch}.zip").ContinueWith((task) =>
+                {
+                    using var stream = task.Result.Content.ReadAsStreamAsync().Result;
+                    using var fileStream = File.Create(zipFilePath);
+                    stream.CopyTo(fileStream);
+                }).Wait();
+
+                // Extract the zip file and copy the resources.
                 ZipFile.ExtractToDirectory(zipFilePath, Path.GetTempPath(), true);
+                foreach (string dirPath in Directory.GetDirectories(zipExtractPath, "*", SearchOption.AllDirectories)) Directory.CreateDirectory(dirPath.Replace(zipExtractPath, pluginExtractPath));
+                foreach (string newPath in Directory.GetFiles(zipExtractPath, "*.*", SearchOption.AllDirectories)) File.Copy(newPath, newPath.Replace(zipExtractPath, pluginExtractPath), true);
 
-                // Move the relevant files into the plugin's resources directory.
-                foreach (string dirPath in Directory.GetDirectories(zipExtractPat, "*", SearchOption.AllDirectories)) Directory.CreateDirectory(dirPath.Replace(zipExtractPat, pluginExtractPath));
-                foreach (string newPath in Directory.GetFiles(zipExtractPat, "*.*", SearchOption.AllDirectories)) File.Copy(newPath, newPath.Replace(zipExtractPat, pluginExtractPath), true);
-
-                // Delete the temporary files.
+                // Cleanup temporary files.
                 File.Delete(zipFilePath);
                 Directory.Delete($"{Path.GetTempPath()}{repoName}-{PStrings.repoBranch}", true);
-
-                // Set update statuses to their values.
-                lastUpdateSuccess = true;
-                updateInProgress = false;
-
-                // Set the last manual update time to now.
-                PluginService.Configuration.lastResourceUpdate = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                PluginService.Configuration.Save();
 
                 // Broadcast an event indicating that the resources have been updated.
                 ResourcesUpdated?.Invoke();
             }
-
-            catch (Exception e)
-            {
-                // Set update statuses to their values & log the error.
-                lastUpdateSuccess = false;
-                updateInProgress = false;
-                PluginLog.Error($"ResourceManager: Error updating resource files: {e.Message}");
-            }
+            catch (Exception e) { PluginLog.Error($"ResourceManager: Error updating resource files: {e.Message}"); }
         }).Start();
     }
 
