@@ -1,8 +1,4 @@
 {
-  "UI.Screens.DutyList.NoFiles": {
-    "message": "Aucun fichier de mission n'a été détecté ! Veuillez ouvrir les Paramètres -> Mettre à jour les Ressources.",
-    "description": "DutyListScreen.DrawListWindow"
-  },
   "Types.Duty.Name.None": {
     "message": "Mission sans nom",
     "description": "Duty..ctor"
@@ -17,15 +13,159 @@
   },
   "WotsitIPC.OpenDutyFinder": {
     "message": "Open Duty Finder",
-    "description": "WotsitIPC.RegisterAll"
+    "description": "WotsitIPCProvider.RegisterAll"
   },
   "WotsitIPC.OpenDutyEditor": {
     "message": "Open Duty Editor",
-    "description": "WotsitIPC.RegisterAll"
+    "description": "WotsitIPCProvider.RegisterAll"
+  },
+  "Generics.Error": {
+    "message": "An error occured.",
+    "description": "TStrings.get_Error"
+  },
+  "Generics.Support": {
+    "message": "Support",
+    "description": "TStrings.get_Support"
+  },
+  "Generics.OpenFile": {
+    "message": "Ouvrir un Fichier",
+    "description": "TStrings.get_OpenFile"
+  },
+  "Generics.SaveFile": {
+    "message": "Sauvegarder le Fichier",
+    "description": "TStrings.get_SaveFile"
+  },
+  "Generics.Search": {
+    "message": "Rechercher",
+    "description": "TStrings.get_Search"
+  },
+  "Generics.Duty": {
+    "message": "Mission",
+    "description": "TStrings.get_Duty"
+  },
+  "Generics.InDuty": {
+    "message": "En Mission",
+    "description": "TStrings.get_InDuty"
+  },
+  "Generics.Mechanic": {
+    "message": "Mécanique",
+    "description": "TStrings.get_Mechanic"
+  },
+  "Generics.Description": {
+    "message": "Description",
+    "description": "TStrings.get_Description"
+  },
+  "Generics.Level": {
+    "message": "Niveau",
+    "description": "TStrings.get_Level"
+  },
+  "Generics.Type": {
+    "message": "Type",
+    "description": "TStrings.get_Type"
+  },
+  "DutyEditor.Title": {
+    "message": "{0} - Éditeur de Mission",
+    "description": "TStrings.get_EditorTitle"
+  },
+  "Editor.Format": {
+    "message": "Format",
+    "description": "TStrings.get_EditorFormat"
+  },
+  "Editor.Clear": {
+    "message": "Clear",
+    "description": "TStrings.get_EditorClear"
+  },
+  "Editor.Preview": {
+    "message": "Preview",
+    "description": "TStrings.get_EditorPreview"
+  },
+  "Editor.Metadata": {
+    "message": "Metadata",
+    "description": "TStrings.get_EditorMetadata"
+  },
+  "Editor.ContributingGuide": {
+    "message": "Contributing Guide",
+    "description": "TStrings.get_EditorContributingGuide"
+  },
+  "Editor.Problems": {
+    "message": "Problems",
+    "description": "TStrings.get_EditorProblems"
+  },
+  "Editor.Unsupported": {
+    "message": "Duty contains invalid IDs and/or is unsupported by this plugin version.",
+    "description": "TStrings.get_EditorProblemUnsupported"
+  },
+  "Editor.NoProblemsDetected": {
+    "message": "No problems detected.",
+    "description": "TStrings.get_EditorNoProblems"
+  },
+  "Editor.FileTooBig": {
+    "message": "Your file is too big to be loaded into the editor.",
+    "description": "TStrings.get_EditorFileTooLarge"
+  },
+  "Editor.FileLoaded": {
+    "message": "Your file was successfully loaded.",
+    "description": "TStrings.get_EditorFileSuccessfullyLoaded"
+  },
+  "Editor.FileSaved": {
+    "message": "Your file was successfully saved.",
+    "description": "TStrings.get_EditorFileSuccessfullySaved"
+  },
+  "Settings.Title": {
+    "message": "{0} - Settings",
+    "description": "TStrings.get_SettingsTitle"
+  },
+  "Settings.General": {
+    "message": "Général",
+    "description": "TStrings.get_SettingsGeneral"
+  },
+  "Settings.AutoOpenInDuty": {
+    "message": "Auto Open In Duty",
+    "description": "TStrings.get_SettingsAutoOpenInDuty"
+  },
+  "Settings.AutoOpenDuty.Tooltip": {
+    "message": "Ouvre le guide de missions automatiquement lorsque vous commencez une mission.",
+    "description": "TStrings.get_SettingsAutoOpenInDutyTooltip"
+  },
+  "Settings.ShortMode": {
+    "message": "Short Mode",
+    "description": "TStrings.get_SettingsShortMode"
+  },
+  "Settings.ShortMode.Tooltip": {
+    "message": "Shorten strategies & descriptions if possible.",
+    "description": "TStrings.get_SettingsShortModeTooltip"
+  },
+  "Settings.ShowSupportButton": {
+    "message": "Afficher le bouton de Soutien",
+    "description": "TStrings.get_SettingsShowSupportButton"
+  },
+  "Settings.ShowSupportButton.Tooltip": {
+    "message": "Show the support Kiko Guide button",
+    "description": "TStrings.get_SettingsShowSupportButtonTooltip"
+  },
+  "Settings.ResourcesAndLocalization": {
+    "message": "Ressources & Traductions",
+    "description": "TStrings.get_SettingsResourcesAndLocalization"
+  },
+  "Settings.ResourcesAndLocalization.Tooltip": {
+    "message": "Télécharger les dernières ressources, traductions & guides.",
+    "description": "TStrings.get_SettingsResourcesAndLocalizationDesc"
+  },
+  "Settings.UpdateResources": {
+    "message": "Mettre à jour les Ressources",
+    "description": "TStrings.get_SettingsUpdateResources"
+  },
+  "Settings.UpdateFailed": {
+    "message": "Échec de la mise à jour",
+    "description": "TStrings.get_SettingsUpdateFailed"
   },
   "Settings.LastUpdate": {
     "message": "Dernière mise à jour : {0}",
     "description": "TStrings.SettingsLastUpdate"
+  },
+  "Settings.Mechanics": {
+    "message": "Mécaniques",
+    "description": "TStrings.get_SettingsMechanics"
   },
   "Settings.HideMechanic": {
     "message": "Masquer : {0}",
@@ -35,208 +175,68 @@
     "message": "Masque \"{0}\" dans le guide de missions.",
     "description": "TStrings.SettingsHideMechanicTooltip"
   },
+  "Settings.Integrations": {
+    "message": "Integrations",
+    "description": "TStrings.get_SettingsIntegrations"
+  },
+  "Settings.Integrations.Available": {
+    "message": "Available Integrations",
+    "description": "TStrings.get_SettingsAvailableIntegrations"
+  },
+  "Settings.Integrations.Tooltip": {
+    "message": "You can enable or disable integrations below, changes will take effect next plugin load if the integration plugin is present.",
+    "description": "TStrings.get_SettingsIntegrationsDesc"
+  },
+  "DutyFinder.Title": {
+    "message": "{0} - Outil de Mission",
+    "description": "TStrings.get_DutyFinderTitle"
+  },
+  "DutyFinder.NoFiles": {
+    "message": "Aucun fichier de mission n'a été détecté ! Veuillez ouvrir les Paramètres -> Mettre à jour les Ressources.",
+    "description": "TStrings.get_DutyFinderContentNotFound"
+  },
+  "DutyInfo.Title": {
+    "message": "{0} - Duty Info",
+    "description": "TStrings.get_DutyInfoTitle"
+  },
+  "DutyInfo.NoDuty": {
+    "message": "No duty selected, use /kikolist to see all available duties.",
+    "description": "TStrings.get_DutyInfoNoneSelected"
+  },
+  "DutyInfo.NotUnlocked": {
+    "message": "You cannot view the guide for this duty as you have not unlocked it yet.",
+    "description": "TStrings.get_DutyInfoNotUnlocked"
+  },
+  "DutyList.NoneFound": {
+    "message": "No duties found.",
+    "description": "TStrings.get_DutyListNoneFound"
+  },
   "DutyList.NoGuide": {
     "message": "Aucun guide n'est disponible pour {0}.",
     "description": "TStrings.DutyListNoGuide"
+  },
+  "DutyList.NeedsUpdate": {
+    "message": "Impossible d'afficher cette mission car elle n'est pas supportée par cette version.",
+    "description": "TStrings.get_DutyListNeedsUpdate"
   },
   "DutyHeading.Title": {
     "message": "Mission : {0}",
     "description": "TStrings.DutyHeadingTitle"
   },
-  "Generics.Error": {
-    "message": "An error occured.",
-    "description": "TStrings..cctor"
-  },
-  "Generics.Support": {
-    "message": "Support",
-    "description": "TStrings..cctor"
-  },
-  "Generics.OpenFile": {
-    "message": "Ouvrir un Fichier",
-    "description": "TStrings..cctor"
-  },
-  "Generics.SaveFile": {
-    "message": "Sauvegarder le Fichier",
-    "description": "TStrings..cctor"
-  },
-  "Generics.Search": {
-    "message": "Rechercher",
-    "description": "TStrings..cctor"
-  },
-  "Generics.Duty": {
-    "message": "Mission",
-    "description": "TStrings..cctor"
-  },
-  "Generics.InDuty": {
-    "message": "En Mission",
-    "description": "TStrings..cctor"
-  },
-  "Generics.Mechanic": {
-    "message": "Mécanique",
-    "description": "TStrings..cctor"
-  },
-  "Generics.Description": {
-    "message": "Description",
-    "description": "TStrings..cctor"
-  },
-  "Generics.Level": {
-    "message": "Niveau",
-    "description": "TStrings..cctor"
-  },
-  "Generics.Type": {
-    "message": "Type",
-    "description": "TStrings..cctor"
-  },
-  "DutyEditor.Title": {
-    "message": "{0} - Éditeur de Mission",
-    "description": "TStrings..cctor"
-  },
-  "Editor.Format": {
-    "message": "Format",
-    "description": "TStrings..cctor"
-  },
-  "Editor.Clear": {
-    "message": "Clear",
-    "description": "TStrings..cctor"
-  },
-  "Editor.Preview": {
-    "message": "Preview",
-    "description": "TStrings..cctor"
-  },
-  "Editor.Metadata": {
-    "message": "Metadata",
-    "description": "TStrings..cctor"
-  },
-  "Editor.ContributingGuide": {
-    "message": "Contributing Guide",
-    "description": "TStrings..cctor"
-  },
-  "Editor.Problems": {
-    "message": "Problems",
-    "description": "TStrings..cctor"
-  },
-  "Editor.Unsupported": {
-    "message": "Duty contains invalid IDs and/or is unsupported by this plugin version.",
-    "description": "TStrings..cctor"
-  },
-  "Editor.NoProblemsDetected": {
-    "message": "No problems detected.",
-    "description": "TStrings..cctor"
-  },
-  "Editor.FileTooBig": {
-    "message": "Your file is too big to be loaded into the editor.",
-    "description": "TStrings..cctor"
-  },
-  "Editor.FileLoaded": {
-    "message": "Your file was successfully loaded.",
-    "description": "TStrings..cctor"
-  },
-  "Editor.FileSaved": {
-    "message": "Your file was successfully saved.",
-    "description": "TStrings..cctor"
-  },
-  "Settings.Title": {
-    "message": "{0} - Settings",
-    "description": "TStrings..cctor"
-  },
-  "Settings.General": {
-    "message": "Général",
-    "description": "TStrings..cctor"
-  },
-  "Settings.AutoOpenInDuty": {
-    "message": "Auto Open In Duty",
-    "description": "TStrings..cctor"
-  },
-  "Settings.AutoOpenDuty.Tooltip": {
-    "message": "Ouvre le guide de missions automatiquement lorsque vous commencez une mission.",
-    "description": "TStrings..cctor"
-  },
-  "Settings.ShortMode": {
-    "message": "Short Mode",
-    "description": "TStrings..cctor"
-  },
-  "Settings.ShortMode.Tooltip": {
-    "message": "Shorten strategies & descriptions if possible.",
-    "description": "TStrings..cctor"
-  },
-  "Settings.ShowSupportButton": {
-    "message": "Afficher le bouton de Soutien",
-    "description": "TStrings..cctor"
-  },
-  "UI.Screens.Settings.ShowSupportButton.Tooltip": {
-    "message": "Affiche le bouton pour Soutenir Kiko Guide.",
-    "description": "TStrings..cctor"
-  },
-  "Settings.ResourcesAndLocalization": {
-    "message": "Ressources & Traductions",
-    "description": "TStrings..cctor"
-  },
-  "Settings.ResourcesAndLocalization.Tooltip": {
-    "message": "Télécharger les dernières ressources, traductions & guides.",
-    "description": "TStrings..cctor"
-  },
-  "Settings.UpdateResources": {
-    "message": "Mettre à jour les Ressources",
-    "description": "TStrings..cctor"
-  },
-  "Settings.UpdateFailed": {
-    "message": "Échec de la mise à jour",
-    "description": "TStrings..cctor"
-  },
-  "Settings.Mechanics": {
-    "message": "Mécaniques",
-    "description": "TStrings..cctor"
-  },
-  "Settings.Integrations": {
-    "message": "Integrations",
-    "description": "TStrings..cctor"
-  },
-  "Settings.Integrations.Available": {
-    "message": "Available Integrations",
-    "description": "TStrings..cctor"
-  },
-  "Settings.Integrations.Tooltip": {
-    "message": "You can enable or disable integrations below, changes will take effect next plugin load if the integration plugin is present.",
-    "description": "TStrings..cctor"
-  },
-  "DutyFinder.Title": {
-    "message": "{0} - Outil de Mission",
-    "description": "TStrings..cctor"
-  },
-  "DutyFinder.NoFiles": {
-    "message": "Aucun fichier de mission n'a été détecté ! Veuillez ouvrir les Paramètres -> Mettre à jour les Ressources.",
-    "description": "TStrings..cctor"
-  },
-  "DutyInfo.Title": {
-    "message": "{0} - Duty Info",
-    "description": "TStrings..cctor"
-  },
-  "DutyInfo.NoDuty": {
-    "message": "No duty selected, use /kikolist to see all available duties.",
-    "description": "TStrings..cctor"
-  },
-  "DutyList.NoneFound": {
-    "message": "No duties found.",
-    "description": "TStrings..cctor"
-  },
-  "DutyList.NeedsUpdate": {
-    "message": "Impossible d'afficher cette mission car elle n'est pas supportée par cette version.",
-    "description": "TStrings..cctor"
-  },
   "Commands.DutyList.Help": {
     "message": "Activer/Désactiver la liste de missions",
-    "description": "TStrings..cctor"
+    "description": "TStrings.get_DutyListHelp"
   },
   "Commands.Settings.Help": {
     "message": "Activer/Désactiver le menu de paramètres",
-    "description": "TStrings..cctor"
+    "description": "TStrings.get_SettingsHelp"
   },
   "Commands.Editor.Help": {
     "message": "Activer/Désactiver l'éditeur de missions",
-    "description": "TStrings..cctor"
+    "description": "TStrings.get_EditorHelp"
   },
   "Commands.Info.Help": {
     "message": "Activer/Désactiver la fenêtre d'information si une mission est chargée",
-    "description": "TStrings..cctor"
+    "description": "TStrings.get_InfoHelp"
   }
 }
