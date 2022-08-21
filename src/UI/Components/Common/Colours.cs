@@ -3,6 +3,9 @@ namespace KikoGuide.UI.Components;
 using System.Numerics;
 using ImGuiNET;
 
+/// <summary>
+///     A collection of colours and colour related components.
+/// </summary>
 static class Colours
 {
     public static Vector4 Error = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);

@@ -3,6 +3,9 @@ namespace KikoGuide.UI.Components;
 using System;
 using ImGuiNET;
 
+/// <summary>
+///     A collection of common reusable components.
+/// </summary>
 static class Common
 {
     /// <summary> Draws a standard title heading </summary>

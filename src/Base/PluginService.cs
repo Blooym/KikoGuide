@@ -6,23 +6,39 @@ using Dalamud.Logging;
 using Dalamud.Game.ClientState;
 using KikoGuide.Managers;
 
-/// <summary> Provides access to necessary instances and services. </summary>
-#pragma warning disable CS8618 // Injection is handled by the Dalamud Plugin Framework here.
+/// <summary>
+///     Provides access to necessary instances and services.
+/// </summary>
+#pragma warning disable CS8618 // [PluginService] injections handled by Dalamud.
 sealed internal class PluginService
 {
-    // Dalamud Services & Instances
+    ////////////////////////
+    /// Dalamud Services ///
+    ////////////////////////
+
     [PluginService] internal static DalamudPluginInterface PluginInterface { get; private set; }
     [PluginService] internal static Dalamud.Game.Command.CommandManager Commands { get; private set; }
     [PluginService] internal static ClientState ClientState { get; private set; }
 
-    // Internal Services & Instances
+
+    ////////////////////////
+    /// Plugin  Services ///
+    ////////////////////////
+
     internal static CommandManager CommandManager { get; private set; }
     internal static WindowManager WindowManager { get; private set; }
     internal static ResourceManager ResourceManager { get; private set; }
     internal static IPCManager IPCManager { get; private set; }
     internal static Configuration Configuration { get; private set; }
 
-    /// <summary> Initializes the service class. </summary>
+
+    ////////////////////////
+    /// Init and Dispose ///
+    ////////////////////////
+
+    /// <summary> 
+    ///     Initializes the service class and creates plugin instances.
+    /// </summary>
     internal static void Initialize()
     {
         PluginLog.Debug("PluginService: Initializing...");
@@ -37,7 +53,9 @@ sealed internal class PluginService
         PluginLog.Debug("PluginService: Successfully initialized.");
     }
 
-    /// <summary> Disposes of the service class. </summary>
+    /// <summary> 
+    ///    Disposes of the service class and its instances.
+    /// </summary>
     internal static void Dispose()
     {
         PluginLog.Debug("PluginService: Disposing...");

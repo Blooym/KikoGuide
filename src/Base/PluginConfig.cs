@@ -6,55 +6,57 @@ using System.Collections.Generic;
 using Dalamud.Configuration;
 using KikoGuide.Managers.IPC;
 
-[Serializable]
 
-/// <summary> Provides access to and determines the Plugin configuration. </summary>
+/// <summary>
+///     Provides access to and determines the Plugin configuration.
+/// </summary>
+[Serializable]
 sealed internal class Configuration : IPluginConfiguration
 {
     /// <summary> 
-    ///  The current configuration version. Incremented whenever breaking changes are made to the configuration.
+    ///     The current configuration version. Incremented whenever breaking changes are made to the configuration.
     /// </summary>
     public int Version { get; set; } = 0;
 
 
     /// <summary> 
-    /// Whether or not to automatically show duty information upon entering a new (supported) duty.
+    ///     Whether or not to automatically show duty information upon entering a new (supported) duty.
     /// </summary>
     public bool autoOpenDuty { get; set; } = false;
 
 
     /// <summary> 
-    ///  Whether or not to show the support button in the UI. 
+    ///     Whether or not to show the support button in the UI. 
     /// </summary>
     public bool supportButtonShown { get; set; } = true;
 
 
     /// <summary> 
-    ///  Whether or not to show shortened strategies when available.
+    ///     Whether or not to show shortened strategies when available.
     /// </summary>
     public bool shortenStrategies { get; set; } = false;
 
 
     /// <summary> 
-    /// Determines which mechanics are hidden when drawing mechanics within the UI. 
+    ///     Determines which mechanics are hidden when drawing mechanics within the UI. 
     /// </summary>
     public List<int> hiddenMechanics { get; set; } = new List<int>();
 
 
     /// <summary> 
-    /// Stores the last resource update timestamp, automatically updated by the plugin backend. Should NOT be set manually.
+    ///     Stores the last resource update timestamp, automatically updated by the plugin backend. Should NOT be set manually.
     /// </summary>
     public long lastResourceUpdate { get; set; } = long.MinValue;
 
 
     /// <summary>
-    /// A list of enabled integrations.
+    ///     A list of enabled integrations.
     /// </summary>
     public List<IPCProviders> enabledIntegrations { get; set; } = new List<IPCProviders>();
 
 
     /// <summary>
-    ///  Saves the current configuration (and any modifications) to the config file.
+    ///     Saves the current configuration (and any modifications) to the config file.
     /// </summary>
     internal void Save()
     {
@@ -63,7 +65,7 @@ sealed internal class Configuration : IPluginConfiguration
 
 
     /// <summary>
-    ///  Writes the given file and text to the plugin configuration directory
+    ///     Writes the given file and text to the plugin configuration directory
     /// </summary>
     /// <param name="fileName">The file to write to</param>
     /// <param name="text">The text to write to the file</param>

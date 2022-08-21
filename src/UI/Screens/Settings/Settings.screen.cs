@@ -19,7 +19,9 @@ sealed public class SettingsScreen : IScreen
     public void Show() => this.presenter.isVisible = true;
     public void Hide() => this.presenter.isVisible = false;
 
-    /// <summary> Draws the settings window. </summary>
+    /// <summary>
+    ///     Draws the settings window.
+    /// </summary>
     private void DrawSettingsWindow()
     {
 
@@ -34,7 +36,6 @@ sealed public class SettingsScreen : IScreen
         ImGui.SetNextWindowSizeConstraints(new Vector2(410, 250), new Vector2(1000, 1000));
         if (ImGui.Begin(TStrings.SettingsTitle, ref presenter.isVisible))
         {
-            // Create tab bar for each settings category
             ImGui.BeginTabBar("##Settings");
 
             // General settings go in here.
@@ -49,7 +50,7 @@ sealed public class SettingsScreen : IScreen
                 Tooltips.AddTooltip(TStrings.SettingsAutoOpenInDutyTooltip);
 
 
-                // TLDR mode setting.
+                // Short mode setting.
                 Common.ToggleCheckbox(TStrings.SettingsShortMode, ref shortenStrategies, () =>
                 {
                     PluginService.Configuration.shortenStrategies = !shortenStrategies;

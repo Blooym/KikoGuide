@@ -16,6 +16,10 @@ sealed public class SettingsPresenter : IDisposable
 
 #if DEBUG
     public FileDialogManager dialogManager = new FileDialogManager();
+
+    /// <summary>
+    ///     Handles the directory select event and saves the location to that directory.
+    /// </summary>
     public void OnDirectoryPicked(bool success, string path)
     {
         if (!success) return;

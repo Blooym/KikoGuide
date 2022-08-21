@@ -16,13 +16,19 @@ sealed public class EditorPresenter : IDisposable
 
     public bool isVisible = false;
 
-    /// <summary> An instance of the FileDialogManager for loading/saving duties. </summary>
+    /// <summary>
+    ///     An instance of the FileDialogManager for loading/saving duties.
+    /// </summary>
     public FileDialogManager dialogManager = new FileDialogManager();
 
-    /// <summary> The character limit for the input text fields, applies to the UI and file loading. </summary>
+    /// <summary> 
+    ///     The character limit for the input text fields, applies to the UI and file loading.
+    /// </summary>
     public uint characterLimit = 35000;
 
-    /// <summary> Handles the file select event </summary>
+    /// <summary> 
+    ///     Handles the file select event
+    /// </summary>
     public string OnFileSelect(bool success, string file, string text)
     {
         if (!success) return text;
@@ -42,7 +48,9 @@ sealed public class EditorPresenter : IDisposable
         return fileText;
     }
 
-    /// <summary> Handles the file save event. </summary>
+    /// <summary>
+    ///     Handles the file save event.
+    /// </summary>
     public void OnFileSave(bool success, string file, string text)
     {
         if (!success) return;
@@ -51,7 +59,9 @@ sealed public class EditorPresenter : IDisposable
         PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullySaved, PStrings.pluginName, NotificationType.Success);
     }
 
-    /// <summary> Formats the given text into a better layout. </summary>
+    /// <summary>
+    ///     Formats the given text into a better layout.
+    /// </summary>
     public string OnFormat(string text)
     {
         try
@@ -64,13 +74,19 @@ sealed public class EditorPresenter : IDisposable
     }
 
 
-    /// <summary> The last parse result from this.ParseDuty() </summary>
+    /// <summary>
+    ///     The last parse result from this.ParseDuty()
+    /// </summary>
     private Tuple<Duty?, Exception?>? _lastParseResult;
 
-    /// <summary> THe last parsed dutyText for this.ParseDuty(), used to prevent consistently deserializing. </summary>
+    /// <summary> 
+    ///     The last parsed dutyText for this.ParseDuty(), used to prevent consistently deserializing. 
+    /// </summary>
     private string _parsedDutyText = "";
 
-    /// <summary> Parses the given dutyText into a Duty object or returns an Exception. </summary>
+    /// <summary> 
+    ///     Parses the given dutyText into a Duty object or returns an Exception.
+    /// </summary>
     public Tuple<Duty?, Exception?> ParseDuty(string dutyText)
     {
         if (dutyText == this._parsedDutyText && this._lastParseResult != null) return this._lastParseResult;

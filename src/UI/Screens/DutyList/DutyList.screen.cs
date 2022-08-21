@@ -20,10 +20,14 @@ sealed public class DutyListScreen : IScreen
     public void Show() => this.presenter.isVisible = true;
     public void Hide() => this.presenter.isVisible = false;
 
-    /// <summary> The current input search text. </summary>
+    /// <summary>
+    ///     The current input search text.
+    /// </summary>
     private string _searchText = "";
 
-    /// <summary> Draws the list window. </summary>
+    /// <summary>
+    ///     Draws the list window.
+    /// </summary>
     private void DrawListWindow()
     {
         if (!presenter.isVisible) return;

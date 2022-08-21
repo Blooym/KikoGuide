@@ -6,9 +6,14 @@ using System.Linq;
 using ImGuiNET;
 using KikoGuide.Types;
 
+/// <summary>
+///     A component for displaying duty information.
+/// </summary>
 static class DutyInfoComponent
 {
-    /// <summary> Draws the duty info window. </summary>
+    /// <summary> 
+    ///     Draws the duty info window.
+    /// </summary>
     /// <param name="duty"> The duty to draw information for. </param>
     public static void Draw(Duty duty)
     {

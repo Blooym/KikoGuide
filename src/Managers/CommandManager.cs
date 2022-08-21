@@ -5,7 +5,9 @@ using Dalamud.Logging;
 using Dalamud.Game.Command;
 using KikoGuide.Base;
 
-/// <summary> Initializes and manages all commands and command-events for the plugin. </summary>
+/// <summary> 
+///     Initializes and manages all commands and command-events for the plugin.
+/// </summary>
 sealed public class CommandManager : IDisposable
 {
     private const string listCommand = "/kikolist";
@@ -14,7 +16,9 @@ sealed public class CommandManager : IDisposable
     private const string dutyInfoCommand = "/kikoinfo";
 
 
-    /// <summary> Initializes the CommandManager and its resources. </summary>
+    /// <summary>
+    ///     Initializes the CommandManager and its resources.
+    /// </summary>
     public CommandManager()
     {
         PluginLog.Debug("CommandManager: Initializing...");
@@ -28,7 +32,9 @@ sealed public class CommandManager : IDisposable
     }
 
 
-    /// <summary> Dispose of the PluginCommandManager and its resources. </summary>
+    /// <summary>
+    ///     Dispose of the PluginCommandManager and its resources.
+    /// </summary>
     public void Dispose()
     {
         PluginLog.Debug("CommandManager: Disposing...");
@@ -42,7 +48,9 @@ sealed public class CommandManager : IDisposable
     }
 
 
-    /// <summary> Event handler for when a command is issued by the user. </summary>
+    /// <summary>
+    ///     Event handler for when a command is issued by the user.
+    /// </summary>
     private void OnCommand(string command, string args)
     {
         switch (command)

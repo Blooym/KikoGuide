@@ -19,16 +19,19 @@ sealed public class DutyInfoPresenter : IDisposable
 
     public bool isVisible = false;
 
-    /// <summary> The currently selected duty to show in the info window. </summary>
+    /// <summary> 
+    ///     The currently selected duty to show in the info window.
+    /// </summary>
     public Duty? selectedDuty = null;
 
-    /// <summary> Handles territory change even and changes the UI state accordingly. </summary>
+    /// <summary>
+    ///     Handles territory change even and changes the UI state accordingly.
+    /// </summary>
     public void OnTerritoryChange(object? sender, ushort e)
     {
         var playerDuty = DutyManager.GetPlayerDuty();
 
-        // If the player has entered a duty with data, set the UI to that duty and display it if the 
-        // Configuration setting is set to do so.
+        // If the player has entered a duty with data and has the setting enabled, show the duty info window.
         if (playerDuty != null && playerDuty?.Bosses?.Count > 0)
         {
             this.selectedDuty = playerDuty;
@@ -36,7 +39,7 @@ sealed public class DutyInfoPresenter : IDisposable
         }
 
         // If the player has entered a territory that does not have any data, deselect the duty & hide the UI
-        else
+        else if (playerDuty == null)
         {
             this.selectedDuty = null;
             this.isVisible = false;

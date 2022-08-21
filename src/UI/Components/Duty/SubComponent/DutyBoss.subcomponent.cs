@@ -7,9 +7,14 @@ using KikoGuide.Types;
 using System;
 
 
+/// <summary>
+///     A subcomponent for displaying a duty's boss.
+/// </summary>
 public static class DutyBossComponent
 {
-    /// <summary> Draws information about a duty boss. </summary>
+    /// <summary> 
+    ///     Draws information about a duty boss.
+    /// </summary>
     /// <param name="boss"> The boss to draw information for. </param>
     public static void Draw(Duty.Boss boss)
     {

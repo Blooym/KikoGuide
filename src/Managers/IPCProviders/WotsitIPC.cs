@@ -9,10 +9,11 @@ using KikoGuide.Types;
 using KikoGuide.Managers;
 using KikoGuide.Interfaces;
 
-/// <summary> Provider for WotsitIPC </summary>
+/// <summary> 
+///     Provider for WotsitIPC
+/// </summary>
 sealed public class WotsitIPCProvider : IIPCProvider
 {
-    /// <summary> The IPC provider's ID, must be unique and present. </summary>
     public IPCProviders ID { get; } = IPCProviders.Wotsit;
 
     private ICallGateSubscriber<string, string, uint, string>? _wotsitRegister;
@@ -25,7 +26,9 @@ sealed public class WotsitIPCProvider : IIPCProvider
     private Dictionary<string, Duty> _wotsitDutyIpcs = new Dictionary<string, Duty>();
 
 
-    /// <summary> Initializes the WotsitIPC. </summary>
+    /// <summary> 
+    /// Initializes the WotsitIPC if it's available and enabled.
+    /// </summary>
     public WotsitIPCProvider()
     {
         // You must handle if this integration loads here using enabledIntegrations and any other custom logic.
@@ -40,11 +43,12 @@ sealed public class WotsitIPCProvider : IIPCProvider
     }
 
 
-    /// <summary> Disposes of the IPC for Wotsit. </summary>
+    /// <summary>
+    ///     Disposes of the IPC for Wotsit.
+    /// </summary>
     public void Dispose()
     {
-        // Wrap dispose logic inside of a try {} catch {} if it relates to the integration
-        // As we're not sure if it is present or not.
+        // Wrap dispose logic inside of a try catch so if it fails it doesn't crash the plugin.
         try
         {
             _wotsitUnregister?.InvokeFunc(PStrings.pluginName);
@@ -54,7 +58,9 @@ sealed public class WotsitIPCProvider : IIPCProvider
     }
 
 
-    /// <summary> Initializes IPC for Wotsit. </summary>
+    /// <summary>
+    ///     Initializes IPC for Wotsit.
+    /// </summary>
     private void Initialize()
     {
         _wotsitRegister = PluginService.PluginInterface.GetIpcSubscriber<string, string, uint, string>("FA.Register");
@@ -67,7 +73,9 @@ sealed public class WotsitIPCProvider : IIPCProvider
     }
 
 
-    /// <summary> Registers / Reloads the listings for this plugin. </summary>
+    /// <summary>
+    ///     Registers / Reloads the listings for this plugin.
+    /// </summary>
     private void RegisterAll()
     {
         if (_wotsitRegister == null) return;
@@ -84,7 +92,9 @@ sealed public class WotsitIPCProvider : IIPCProvider
     }
 
 
-    /// <summary> Handles IPC invocations for Wotsit. </summary>
+    /// <summary> 
+    ///     Handles IPC invocations for Wotsit.
+    /// </summary>
     private void HandleInvoke(string guid)
     {
         if (_wotsitDutyIpcs.TryGetValue(guid, out var duty))

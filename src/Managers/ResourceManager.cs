@@ -9,7 +9,9 @@ using CheapLoc;
 using Dalamud.Logging;
 using KikoGuide.Base;
 
-/// <summary> Sets up and manages the plugin's resources and localization. </summary>
+/// <summary> 
+///     Sets up and manages the plugin's resources and localization.
+/// </summary>
 sealed public class ResourceManager : IDisposable
 {
     private bool initialized = false;
@@ -20,7 +22,9 @@ sealed public class ResourceManager : IDisposable
     public delegate void ResourceUpdateDelegate();
 
 
-    /// <summary> Initializes the ResourceManager and associated resources. </summary>
+    /// <summary> 
+    ///     Initializes the ResourceManager and associated resources. 
+    /// </summary>
     public ResourceManager()
     {
         PluginLog.Debug("ResourceManager: Initializing...");
@@ -33,7 +37,9 @@ sealed public class ResourceManager : IDisposable
     }
 
 
-    /// <summary> Disposes of the ResourceManager and associated resources. </summary>
+    /// <summary> 
+    ///     Disposes of the ResourceManager and associated resources.
+    /// </summary>
     public void Dispose()
     {
         PluginLog.Debug("ResourceManager: Disposing...");
@@ -45,9 +51,16 @@ sealed public class ResourceManager : IDisposable
     }
 
 
-    /// <summary> Downloads the repository from GitHub and extracts the resource data. </summary>
+    /// <summary> 
+    ///     Downloads the repository from GitHub and extracts the resource data into the plugin's directory.
+    /// </summary>
     public void Update()
     {
+        var repoName = PStrings.pluginName.Replace(" ", "");
+        var zipFilePath = Path.Combine(Path.GetTempPath(), $"{repoName}.zip");
+        var zipExtractPat = Path.Combine(Path.GetTempPath(), $"{repoName}-{PStrings.repoBranch}", $"{PStrings.repoResourcesDir}");
+        var pluginExtractPath = Path.Combine(PStrings.pluginResourcesDir);
+
         new Thread(() =>
         {
             try
@@ -55,25 +68,18 @@ sealed public class ResourceManager : IDisposable
                 PluginLog.Debug($"ResourceManager: Opening new thread to handle resource download.");
                 updateInProgress = true;
 
-                // Create a new WebClient to download the data and some paths for installation.
-                var webClient = new WebClient();
-                var zipFile = Path.Combine(Path.GetTempPath(), "KikoGuide_Source.zip");
-                var sourcePath = Path.Combine(Path.GetTempPath(), "KikoGuide-main", "src", "Resources");
-                var targetPath = Path.Combine(PStrings.resourcePath);
+                // Download the files from the repository and extract them into the temp directory.
+                using var webClient = new WebClient();
+                webClient.DownloadFile($"{PStrings.repoUrl}archive/refs/heads/{PStrings.repoBranch}.zip", zipFilePath);
+                ZipFile.ExtractToDirectory(zipFilePath, Path.GetTempPath(), true);
 
-                // Download the file into the system temp directory to make sure it can be cleaned up by the OS incase of a crash.
-                webClient.DownloadFile($"{PStrings.pluginRepository}archive/refs/heads/main.zip", zipFile);
-
-                // Extract the zip file into the system temp directory and delete the zip file.
-                ZipFile.ExtractToDirectory(zipFile, Path.GetTempPath(), true);
-
-                // Create directories & copy files.
-                foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories)) Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
-                foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories)) File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
+                // Move the relevant files into the plugin's resources directory.
+                foreach (string dirPath in Directory.GetDirectories(zipExtractPat, "*", SearchOption.AllDirectories)) Directory.CreateDirectory(dirPath.Replace(zipExtractPat, pluginExtractPath));
+                foreach (string newPath in Directory.GetFiles(zipExtractPat, "*.*", SearchOption.AllDirectories)) File.Copy(newPath, newPath.Replace(zipExtractPat, pluginExtractPath), true);
 
                 // Delete the temporary files.
-                File.Delete(zipFile);
-                Directory.Delete($"{Path.GetTempPath()}KikoGuide-main", true);
+                File.Delete(zipFilePath);
+                Directory.Delete($"{Path.GetTempPath()}{repoName}-{PStrings.repoBranch}", true);
 
                 // Set update statuses to their values.
                 lastUpdateSuccess = true;
@@ -83,7 +89,7 @@ sealed public class ResourceManager : IDisposable
                 PluginService.Configuration.lastResourceUpdate = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                 PluginService.Configuration.Save();
 
-                // Broadcast an event indicating that the resources have been updated & refresh the UI.
+                // Broadcast an event indicating that the resources have been updated.
                 ResourcesUpdated?.Invoke();
             }
 
@@ -94,12 +100,13 @@ sealed public class ResourceManager : IDisposable
                 updateInProgress = false;
                 PluginLog.Error($"ResourceManager: Error updating resource files: {e.Message}");
             }
-
         }).Start();
     }
 
 
-    /// <summary> Handles the OnResourceUpdate event. </summary>
+    /// <summary>
+    ///     Handles the OnResourceUpdate event.
+    /// </summary>
     private void OnResourceUpdate()
     {
         PluginLog.Debug($"ResourceManager: Resources updated.");
@@ -108,7 +115,9 @@ sealed public class ResourceManager : IDisposable
     }
 
 
-    /// <summary> Sets up the plugin's resources. </summary>
+    /// <summary>
+    ///     Sets up the plugin's resources.
+    /// </summary>
     private void Setup(string language)
     {
         PluginLog.Debug($"ResourceManager: Setting up resources for language {language}...");
