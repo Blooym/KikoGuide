@@ -10,18 +10,26 @@ using KikoGuide.Types;
 using FFXIVClientStructs.FFXIV.Client.Game;
 
 
-/// <summary> The DutyManager works ontop of the Duty type to abstract critical tasks. </summary>
+/// <summary>
+///     The DutyManager works ontop of the Duty type to abstract critical tasks.
+/// </summary>
 public static class DutyManager
 {
-    /// <summary> All currently loaded duties </summary>
+    /// <summary>
+    ///     The loaded duties cache, prevents re-reading the files every lookup.
+    /// </summary>
     private static List<Duty>? _loadedDuties;
 
 
-    /// <summary> Handles updating duty data when resources are updated. </summary>
+    /// <summary> 
+    ///    Clears the loaded duties cache and forces a re-read of the files.
+    /// </summary>
     public static void ClearCache() => _loadedDuties = Enumerable.Empty<Duty>().ToList();
 
 
-    /// <summary> All loaded duties from the DutyManager (Cached). </summary>
+    /// <summary>
+    ///     Fetches all duties from the cache or from the files if the cache is empty.
+    /// </summary>
     public static List<Duty> GetDuties()
     {
         if (_loadedDuties != null) return _loadedDuties;
@@ -29,15 +37,22 @@ public static class DutyManager
     }
 
 
-    /// <summary> Getthe duty the player is currently inside of, if any. </summary>
+    /// <summary>
+    ///     Get the duty the player is currently inside of, if any.
+    /// </summary>
     public static Duty? GetPlayerDuty() => GetDuties().Find(x => PluginService.ClientState.TerritoryType == x.TerritoryID);
 
 
-    /// <summary> Get if the player has unlocked the given duty or not. </summary>
+    /// <summary>
+    ///     Get if the player has unlocked the given duty or not.
+    /// </summary>
+    /// <param name="duty">The duty to check </param>
     public static bool IsUnlocked(Duty duty) => duty.UnlockQuestID != 0 && QuestManager.IsQuestCurrent(duty.UnlockQuestID) || QuestManager.IsQuestComplete(duty.UnlockQuestID);
 
 
-    /// <summary> Desearializes duties from the duty data folder into the Duty type. </summary>
+    /// <summary> 
+    ///     Desearializes duties from the duty data folder into the Duty type.
+    /// </summary>
     private static List<Duty> LoadDutyData()
     {
         PluginLog.Debug($"DutyManager: Loading duty data");
@@ -46,28 +61,26 @@ public static class DutyManager
         var language = PluginService.PluginInterface.UiLanguage;
         if (!Directory.Exists($"{PStrings.localizationPath}\\Duty\\{language}")) language = PStrings.fallbackLanguage;
 
-        // Start loading duties, if this fails then the plugin will fallback to an empty duty list.
-        List<Duty> duties = new List<Duty>();
+        // Start loading every duty file for the language and deserialize it into the Duty type.
+        List<Duty> duties = Enumerable.Empty<Duty>().ToList();
         try
         {
             foreach (string file in Directory.GetFiles($"{PStrings.localizationPath}\\Duty\\{language}", "*.json", SearchOption.AllDirectories))
             {
-                // Try and deserialize the duty data and add it to the list if its not null.
                 try
                 {
                     Duty? duty = JsonConvert.DeserializeObject<Duty>(File.ReadAllText(file));
                     if (duty != null) duties.Add(duty);
                 }
-                catch { } // If this fails, just skip the file and move on.
+                catch { /* File is invalid, skip it */ }
             }
         }
-        catch { } // If this fails, we can continue on without duty files just fine.
+        catch { /* No duties files found for the language, just return an empty enumerable */ }
 
         PluginLog.Debug($"DutyManager: Loaded {duties.Count} duties for {language}");
+
         duties = duties.OrderBy(x => x.Level).ToList();
-
         _loadedDuties = duties;
-
         return duties;
     }
 }

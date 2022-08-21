@@ -20,10 +20,14 @@ sealed public class EditorScreen : IScreen
     public void Show() => this.presenter.isVisible = true;
     public void Hide() => this.presenter.isVisible = false;
 
-    /// <summary> The current editor input text. </summary>
+    /// <summary> 
+    ///     The current editor input text.
+    /// </summary>
     private string _inputText = "";
 
-    /// <summary> Draws the Editor window and sub-components. </summary>
+    /// <summary> 
+    ///     Draws the Editor window and sub-components.
+    /// </summary>
     private void DrawEditorUI()
     {
         if (!presenter.isVisible) return;
@@ -55,7 +59,9 @@ sealed public class EditorScreen : IScreen
     }
 
 
-    /// <summary> Draws the buttons at the top of the editor. </summary>
+    /// <summary> 
+    ///     Draws the buttons at the top of the editor.
+    /// </summary>
     private void DrawEditorButtons()
     {
         if (ImGuiComponents.IconButton(FontAwesomeIcon.FileImport))
@@ -88,7 +94,7 @@ sealed public class EditorScreen : IScreen
 
         if (ImGuiComponents.IconButton(FontAwesomeIcon.ExternalLinkAlt))
         {
-            Utils.Common.OpenBrowser($"{PStrings.pluginRepository}blob/main/CONTRIBUTING.md#guide-contribution");
+            Utils.Common.OpenBrowser($"{PStrings.repoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
         }
         Tooltips.AddTooltip(TStrings.EditorContributingGuide);
 
@@ -104,7 +110,9 @@ sealed public class EditorScreen : IScreen
     }
 
 
-    /// <summary> Draws the input zone for the editor. </summary>
+    /// <summary> 
+    ///     Draws the input zone for the editor.
+    ///  </summary>
     private void DrawEditorInput()
     {
         var parsedDuty = presenter.ParseDuty(this._inputText);
@@ -130,7 +138,9 @@ sealed public class EditorScreen : IScreen
     }
 
 
-    /// <summary> Draws the duty preview pane for the duty editor. </summary>
+    /// <summary>
+    ///     Draws the duty preview pane for the duty editor.
+    /// </summary>
     private void DrawEditorPreview()
     {
         var duty = presenter.ParseDuty(this._inputText).Item1;

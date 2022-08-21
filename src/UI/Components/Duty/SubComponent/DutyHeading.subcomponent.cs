@@ -6,9 +6,14 @@ using ImGuiNET;
 using KikoGuide.Base;
 using KikoGuide.Types;
 
+/// <summary>
+///     A subcomponent for displaying a duty heading.
+/// </summary>
 static class DutyHeadingComponent
 {
-    /// <summary> Draws the duty heading. </summary>
+    /// <summary> 
+    ///     Draws the duty heading.
+    /// </summary>
     /// <param name="duty"> The duty to draw information for. </param>
     public static void Draw(Duty duty)
     {

@@ -8,9 +8,14 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
+/// <summary>
+///     A component for displaying a list of duties.
+/// </summary>
 public static class DutyListComponent
 {
-    /// <summary> Draws the duty list. </summary>
+    /// <summary>
+    ///     Draws the duty list.
+    /// </summary>
     /// <param name="dutyPool"> The duty pool to draw information for. </param>
     /// <param name="onDutySelect"> The action to call when a duty is selected. </param>
     /// <param name="filter"> The filter to use when drawing the duty list, empty to show all. </param>
@@ -64,20 +69,26 @@ public static class DutyListComponent
     }
 
 
-    /// <summary> Draws an unsupported duty </summary>
+    /// <summary>
+    ///     Draws an unsupported duty in the list.
+    /// </summary>
     private static void _unsupportedDuty(string name)
     {
         ImGui.TextDisabled(name);
         Badges.Questionmark(TStrings.DutyListNeedsUpdate);
     }
 
-    /// <summary> Draws a duty with no data. </summary>
+    /// <summary>
+    ///     Draws a duty with no data.
+    /// </summary>
     private static void _noDataDuty(string name)
     {
         ImGui.TextColored(Colours.Red, name);
         Badges.Questionmark(TStrings.DutyListNoGuide(name));
     }
 
-    /// <summary>  Checks to see if the duty has data that can be displayed. </summary>
+    /// <summary>
+    ///     Checks to see if the duty has data that can be displayed.
+    /// </summary>
     private static bool _hasDutyData(Duty duty) => duty.Bosses != null && duty.Bosses.Count != 0;
 }

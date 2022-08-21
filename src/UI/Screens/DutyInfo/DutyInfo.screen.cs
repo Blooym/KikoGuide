@@ -16,7 +16,9 @@ sealed public class DutyInfoScreen : IScreen
     public void Show() => this.presenter.isVisible = true;
     public void Hide() => this.presenter.isVisible = false;
 
-    /// <summary> Draws the duty info window. </summary>
+    /// <summary>
+    ///     Draws the duty info window.
+    /// </summary>
     private void DrawInfoWindow()
     {
         if (!presenter.isVisible) return;
