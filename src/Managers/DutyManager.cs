@@ -24,7 +24,7 @@ public static class DutyManager
     /// <summary> 
     ///    Clears the loaded duties cache and forces a re-read of the files.
     /// </summary>
-    public static void ClearCache() => _loadedDuties = Enumerable.Empty<Duty>().ToList();
+    public static void ClearCache() => _loadedDuties = null;
 
 
     /// <summary>
