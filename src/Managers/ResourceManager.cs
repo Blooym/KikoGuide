@@ -58,7 +58,7 @@ sealed public class ResourceManager : IDisposable
     {
         var repoName = PStrings.pluginName.Replace(" ", "");
         var zipFilePath = Path.Combine(Path.GetTempPath(), $"{repoName}.zip");
-        var zipExtractPat = Path.Combine(Path.GetTempPath(), $"{repoName}-{PStrings.repoBranch}", $"{PStrings.repoResourcesDir}");
+        var zipExtractPath = Path.Combine(Path.GetTempPath(), $"{repoName}-{PStrings.repoBranch}", $"{PStrings.repoResourcesDir}");
         var pluginExtractPath = Path.Combine(PStrings.pluginResourcesDir);
 
         new Thread(() =>
@@ -69,20 +69,20 @@ sealed public class ResourceManager : IDisposable
 
                 // Download the files from the repository and extract them into the temp directory.
                 using var client = new HttpClient();
-                client.GetAsync($"{PStrings.pluginRepository}archive/refs/heads/main.zip").ContinueWith((task) =>
+                client.GetAsync($"{PStrings.repoUrl}archive/refs/heads/{PStrings.repoBranch}.zip").ContinueWith((task) =>
                 {
                     using var stream = task.Result.Content.ReadAsStreamAsync().Result;
-                    using var fileStream = File.Create(zipFile);
+                    using var fileStream = File.Create(zipFilePath);
                     stream.CopyTo(fileStream);
                 }).Wait();
 
                 // Extract the zip file and copy the resources.
-                ZipFile.ExtractToDirectory(zipFile, Path.GetTempPath(), true);
-                foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories)) Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
-                foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories)) File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
+                ZipFile.ExtractToDirectory(zipFilePath, Path.GetTempPath(), true);
+                foreach (string dirPath in Directory.GetDirectories(zipExtractPath, "*", SearchOption.AllDirectories)) Directory.CreateDirectory(dirPath.Replace(zipExtractPath, pluginExtractPath));
+                foreach (string newPath in Directory.GetFiles(zipExtractPath, "*.*", SearchOption.AllDirectories)) File.Copy(newPath, newPath.Replace(zipExtractPath, pluginExtractPath), true);
 
                 // Cleanup temporary files.
-                File.Delete(zipFile);
+                File.Delete(zipFilePath);
                 Directory.Delete($"{Path.GetTempPath()}{repoName}-{PStrings.repoBranch}", true);
 
                 // Broadcast an event indicating that the resources have been updated.
