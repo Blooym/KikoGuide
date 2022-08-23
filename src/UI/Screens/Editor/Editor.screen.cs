@@ -149,66 +149,64 @@ sealed public class EditorScreen : IScreen
         {
             if (ImGui.BeginTabItem(TStrings.EditorPreview))
             {
+                if (duty != null) DutyInfoComponent.Draw(duty);
+                ImGui.EndTabItem();
+            }
+
+
+
+            // Create a tab for parsed duty metadata.
+            if (ImGui.BeginTabItem(TStrings.EditorMetadata))
+            {
                 if (duty != null)
                 {
-                    DutyInfoComponent.Draw(duty);
-                    ImGui.EndTabItem();
+                    ImGui.TextWrapped($"Version: {duty.Version}");
+                    ImGui.TextWrapped($"Name: {duty.Name}");
+                    ImGui.TextWrapped($"Type: {Enum.GetName(typeof(DutyType), duty.Type)}");
+                    ImGui.TextWrapped($"Difficulty: {Enum.GetName(typeof(DutyDifficulty), duty.Difficulty)}");
+                    ImGui.TextWrapped($"Level: {duty.Level}");
+                    ImGui.TextWrapped($"Expansion: {Enum.GetName(typeof(DutyExpansion), duty.Expansion)}");
+                    ImGui.TextWrapped($"TerritoryID: {duty.TerritoryID} (Current: {PluginService.ClientState.TerritoryType})");
+                    ImGui.TextWrapped($"UnlockQuestID: {duty.UnlockQuestID}");
                 }
-            }
-        }
 
-
-        // Create a tab for parsed duty metadata.
-        if (ImGui.BeginTabItem(TStrings.EditorMetadata))
-        {
-            if (duty != null)
-            {
-                ImGui.TextWrapped($"Version: {duty.Version}");
-                ImGui.TextWrapped($"Name: {duty.Name}");
-                ImGui.TextWrapped($"Type: {Enum.GetName(typeof(DutyType), duty.Type)}");
-                ImGui.TextWrapped($"Difficulty: {Enum.GetName(typeof(DutyDifficulty), duty.Difficulty)}");
-                ImGui.TextWrapped($"Level: {duty.Level}");
-                ImGui.TextWrapped($"Expansion: {Enum.GetName(typeof(DutyExpansion), duty.Expansion)}");
-                ImGui.TextWrapped($"TerritoryID: {duty.TerritoryID} (Current: {PluginService.ClientState.TerritoryType})");
-                ImGui.TextWrapped($"UnlockQuestID: {duty.UnlockQuestID}");
+                ImGui.EndTabItem();
             }
 
-            ImGui.EndTabItem();
-        }
 
-
-        // Create a tab for player information relating to duties.
-        if (ImGui.BeginTabItem("IDs"))
-        {
-            if (ImGui.CollapsingHeader("Mechanic IDs"))
+            // Create a tab for player information relating to duties.
+            if (ImGui.BeginTabItem("IDs"))
             {
-                foreach (var mechanic in Enum.GetNames(typeof(DutyMechanics)))
+                if (ImGui.CollapsingHeader("Mechanic IDs"))
                 {
-                    ImGui.TextWrapped($"{mechanic}: {(int)Enum.Parse(typeof(DutyMechanics), mechanic)}");
+                    foreach (var mechanic in Enum.GetNames(typeof(DutyMechanics)))
+                    {
+                        ImGui.TextWrapped($"{mechanic}: {(int)Enum.Parse(typeof(DutyMechanics), mechanic)}");
+                    }
                 }
-            }
 
-            if (ImGui.CollapsingHeader("Duty Type IDs"))
-            {
-                foreach (var dutyType in Enum.GetNames(typeof(DutyType)))
+                if (ImGui.CollapsingHeader("Duty Type IDs"))
                 {
-                    ImGui.TextWrapped($"{dutyType}: {(int)Enum.Parse(typeof(DutyType), dutyType)}");
+                    foreach (var dutyType in Enum.GetNames(typeof(DutyType)))
+                    {
+                        ImGui.TextWrapped($"{dutyType}: {(int)Enum.Parse(typeof(DutyType), dutyType)}");
+                    }
                 }
-            }
 
-            if (ImGui.CollapsingHeader("Difficulty IDs"))
-            {
-                foreach (var dutyDifficulty in Enum.GetNames(typeof(DutyDifficulty)))
+                if (ImGui.CollapsingHeader("Difficulty IDs"))
                 {
-                    ImGui.TextWrapped($"{dutyDifficulty}: {(int)Enum.Parse(typeof(DutyDifficulty), dutyDifficulty)}");
+                    foreach (var dutyDifficulty in Enum.GetNames(typeof(DutyDifficulty)))
+                    {
+                        ImGui.TextWrapped($"{dutyDifficulty}: {(int)Enum.Parse(typeof(DutyDifficulty), dutyDifficulty)}");
+                    }
                 }
-            }
 
-            if (ImGui.CollapsingHeader("Expansion IDs"))
-            {
-                foreach (var expansion in Enum.GetNames(typeof(DutyExpansion)))
+                if (ImGui.CollapsingHeader("Expansion IDs"))
                 {
-                    ImGui.TextWrapped($"{expansion}: {(int)Enum.Parse(typeof(DutyExpansion), expansion)}");
+                    foreach (var expansion in Enum.GetNames(typeof(DutyExpansion)))
+                    {
+                        ImGui.TextWrapped($"{expansion}: {(int)Enum.Parse(typeof(DutyExpansion), expansion)}");
+                    }
                 }
             }
             ImGui.EndTabItem();
