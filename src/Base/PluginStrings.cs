@@ -41,7 +41,7 @@ sealed internal class PStrings
     /// <summary>
     ///     The path to the plugin's localization folder with trailing slashes.
     /// </summary>
-    internal static readonly string localizationPath = pluginResourcesDir + "Localization\\";
+    internal static readonly string pluginlocalizationDir = pluginResourcesDir + "Localization\\";
 
     /// <summary>
     ///    The fallback language to use if the user's language is not supported for localization (ISO 639-1 code).

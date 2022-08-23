@@ -113,7 +113,7 @@ sealed public class ResourceManager : IDisposable
 
         if (initialized) DutyManager.ClearCache();
 
-        try { Loc.Setup(File.ReadAllText($"{PStrings.localizationPath}\\Plugin\\{language}.json")); }
+        try { Loc.Setup(File.ReadAllText($"{PStrings.pluginlocalizationDir}\\Plugin\\{language}.json")); }
         catch { Loc.SetupWithFallbacks(); }
 
         initialized = true;
