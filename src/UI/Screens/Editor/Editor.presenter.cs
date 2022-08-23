@@ -14,7 +14,7 @@ sealed public class EditorPresenter : IDisposable
     public EditorPresenter() { }
     public void Dispose() { }
 
-    public bool isVisible = true;
+    public bool isVisible = false;
 
     /// <summary>
     ///     An instance of the FileDialogManager for loading/saving duties.
