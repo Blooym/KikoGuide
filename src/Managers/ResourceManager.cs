@@ -29,9 +29,9 @@ sealed public class ResourceManager : IDisposable
     {
         PluginLog.Debug("ResourceManager: Initializing...");
 
-        Setup(PluginService.PluginInterface.UiLanguage);
-        PluginService.PluginInterface.LanguageChanged += Setup;
-        ResourcesUpdated += OnResourceUpdate;
+        this.Setup(PluginService.PluginInterface.UiLanguage);
+        PluginService.PluginInterface.LanguageChanged += this.Setup;
+        this.ResourcesUpdated += this.OnResourceUpdate;
 
         PluginLog.Debug("ResourceManager: Initialization complete.");
     }
@@ -66,6 +66,7 @@ sealed public class ResourceManager : IDisposable
             try
             {
                 PluginLog.Debug($"ResourceManager: Opening new thread to handle resource download.");
+                this.updateInProgress = true;
 
                 // Download the files from the repository and extract them into the temp directory.
                 using var client = new HttpClient();
@@ -88,7 +89,13 @@ sealed public class ResourceManager : IDisposable
                 // Broadcast an event indicating that the resources have been updated.
                 ResourcesUpdated?.Invoke();
             }
-            catch (Exception e) { PluginLog.Error($"ResourceManager: Error updating resource files: {e.Message}"); }
+            catch (Exception e)
+            {
+                PluginLog.Error($"ResourceManager: Error updating resource files: {e.Message}");
+
+                this.lastUpdateSuccess = false;
+                this.updateInProgress = false;
+            }
         }).Start();
     }
 
@@ -99,6 +106,10 @@ sealed public class ResourceManager : IDisposable
     private void OnResourceUpdate()
     {
         PluginLog.Debug($"ResourceManager: Resources updated.");
+
+        PluginService.Configuration.lastResourceUpdate = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+        this.lastUpdateSuccess = true;
+        this.updateInProgress = false;
 
         Setup(PluginService.PluginInterface.UiLanguage);
     }
