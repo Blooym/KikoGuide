@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.4.0.0</Version>
+    <Version>1.4.1.0</Version>
     <PackageProjectUrl>https://github.com/BitsOfAByte/Dalamud-KikoNotes</PackageProjectUrl>
   </PropertyGroup>
 
