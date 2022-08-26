@@ -46,7 +46,7 @@ sealed internal class Configuration : IPluginConfiguration
     /// <summary> 
     ///     Stores the last resource update timestamp, automatically updated by the plugin backend. Should NOT be set manually.
     /// </summary>
-    public long lastResourceUpdate { get; set; } = long.MinValue;
+    public DateTimeOffset lastResourceUpdate { get; set; } = DateTimeOffset.MinValue;
 
 
     /// <summary>
