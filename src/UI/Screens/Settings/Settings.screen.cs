@@ -31,7 +31,7 @@ sealed public class SettingsScreen : IScreen
         bool autoOpenDuty = PluginService.Configuration.autoOpenDuty;
         bool shortenStrategies = PluginService.Configuration.shortenStrategies;
         bool supportButtonShown = PluginService.Configuration.supportButtonShown;
-        DateTimeOffset lastUpdateTime = PluginService.Configuration.lastResourceUpdate;
+        long lastUpdateTime = PluginService.Configuration.lastResourceUpdate;
 
         ImGui.SetNextWindowSizeConstraints(new Vector2(410, 250), new Vector2(1000, 1000));
         if (ImGui.Begin(TStrings.SettingsTitle, ref presenter.isVisible))
@@ -77,16 +77,15 @@ sealed public class SettingsScreen : IScreen
                 if (ImGui.Button(TStrings.SettingsUpdateResources)) PluginService.ResourceManager.Update();
                 ImGui.EndDisabled();
 
-                // if time isnt 0, show last update time
-                if (!PluginService.ResourceManager.updateInProgress && PluginService.ResourceManager.lastUpdateSuccess == false && lastUpdateTime != DateTimeOffset.MinValue)
+                if (!PluginService.ResourceManager.updateInProgress && PluginService.ResourceManager.lastUpdateSuccess == false && lastUpdateTime != 0)
                 {
                     ImGui.SameLine();
                     ImGui.TextWrapped(TStrings.SettingsUpdateFailed);
                 }
-                else if (!PluginService.ResourceManager.updateInProgress && lastUpdateTime != DateTimeOffset.MinValue)
+                else if (!PluginService.ResourceManager.updateInProgress && lastUpdateTime != 0)
                 {
                     ImGui.SameLine();
-                    ImGui.TextWrapped(TStrings.SettingsLastUpdate(lastUpdateTime.ToLocalTime().ToString()));
+                    ImGui.TextWrapped(TStrings.SettingsLastUpdate(DateTimeOffset.FromUnixTimeMilliseconds(lastUpdateTime).ToLocalTime().ToString()));
                 }
 
 #if DEBUG

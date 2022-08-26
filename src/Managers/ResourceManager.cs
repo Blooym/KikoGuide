@@ -107,7 +107,7 @@ sealed public class ResourceManager : IDisposable
     {
         PluginLog.Debug($"ResourceManager: Resources updated.");
 
-        PluginService.Configuration.lastResourceUpdate = DateTimeOffset.Now;
+        PluginService.Configuration.lastResourceUpdate = DateTimeOffset.Now.ToUnixTimeMilliseconds();
         PluginService.Configuration.Save();
         this.lastUpdateSuccess = true;
         this.updateInProgress = false;
