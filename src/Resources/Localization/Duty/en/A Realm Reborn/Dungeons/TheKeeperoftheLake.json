@@ -10,7 +10,7 @@
     "Bosses": [
         {
             "Name": "Einhander",
-            "TLDR": "Attack small ceruleum tanks to move them away from the boss.\n\nIf the boss pulls the group in to its location, move out as fast as possible.\n\nCeruleum Tanks\n\tAuxiliary (small) and Main (big) ceruleum tanks will drop around the arena.\n\tSmall tanks can be attacked to knock them across the arena - do this to move all tanks away from the boss.\n\tTanks will eventually begin to glow, indicating that they are about to explode - at this point they can no longer be moved and players should avoid them.",
+            "TLDR": "Make sure to tank the boss pointing away from the party and avoid bombs AOE by standing in the gaps",
             "KeyMechanics": [
                 {
                     "Name": "Resounding Screech",
@@ -36,7 +36,7 @@
         },
         {
             "Name": "Magitek Gunship",
-            "TLDR": "Tanks should keep the boss facing away at all times and be sure to not run back into the Flamethrower too early.\n\nIf targeted by an orange marker, bait the boss along the edge of the arena so that it drops its fire AoEs out of the way of others.",
+            "TLDR": "Tanks should keep the boss facing away at all times and be sure to not run back into the Flamethrower too early.\nAvoid straight-line AOE down arena centre.",
             "KeyMechanics": [
                 {
                     "Name": "Flamethrower",
@@ -62,7 +62,7 @@
         },
         {
             "Name": "Midgardsormr",
-            "TLDR": "Tanks should tank the orange Mirage Dragon far away from the boss, while tanking the blue Mirage Dragon as close to the boss as possible.\n\nPlayers need to activate the magitek shield generator to avoid being hit for heavy damage during Animadversion - tanks be sure to keep dragon adds facing away so that they do not interrupt the activation.",
+            "TLDR": "Watch and act quickly to avoid the various types of AOE's\nMake sure to watch the position of the Phantom Kin\nEnsure the Mirage Dragons are killed ASAP to avoid wiping with the following Animadversion\nStay on the stack marker for 4 hits",
             "KeyMechanics": [
                 {
                     "Name": "Admonishment",
