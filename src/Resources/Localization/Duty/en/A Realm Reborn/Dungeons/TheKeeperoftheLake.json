@@ -6,5 +6,85 @@
     "Expansion": 0,
     "Level": 50,
     "UnlockQuestID": 65902,
-    "TerritoryID": 150
+    "TerritoryID": 150,
+    "Bosses": [
+        {
+            "Name": "Einhander",
+            "TLDR": "Attack small ceruleum tanks to move them away from the boss.\n\nIf the boss pulls the group in to its location, move out as fast as possible.\n\nCeruleum Tanks\n\tAuxiliary (small) and Main (big) ceruleum tanks will drop around the arena.\n\tSmall tanks can be attacked to knock them across the arena - do this to move all tanks away from the boss.\n\tTanks will eventually begin to glow, indicating that they are about to explode - at this point they can no longer be moved and players should avoid them.",
+            "KeyMechanics": [
+                {
+                    "Name": "Weapons",
+                    "Description": "If the boss has a gun it will fire a column, if it has a staff, it will pull all players and small ceruleum tanks to its location.\n\nGun\n\tWhen the boss is carrying a gun it will attack random players with a column AoE that should be avoided.\n\nStaff\n\tIf the boss is carrying a staff, it will pull all players AND small ceruleum tanks to its location - all players should move out as quickly as possible to avoid exploding tanks.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Mark XLIII Mini Cannon",
+                    "Description": "This attack targets random players with circular AoEs - dodge as necessary.",
+                    "Type": 7
+                },
+                {
+                    "Name": "Heavy Swing",
+                    "Description": "This attack hits directly in front of the boss - tanks should keep the boss facing away from players at all time.",
+                    "Type": 9
+                }
+            ]
+        },
+        {
+            "Name": "Magitek Gunship",
+            "TLDR": "Tanks should keep the boss facing away at all times and be sure to not run back into the Flamethrower too early.\n\nIf targeted by an orange marker, bait the boss along the edge of the arena so that it drops its fire AoEs out of the way of others.",
+            "KeyMechanics": [
+                {
+                    "Name": "Flamethrower",
+                    "Description": "This attack hits directly in front of the boss in a large cone - tanks should keep the boss facing away from the group AND be sure not to run back into the attack too soon.",
+                    "Type": 9
+                },
+                {
+                    "Name": "Garlean Fire",
+                    "Description": "The boss will mark a single player with an orange marker and then follow them around while dropping large fire puddle AoEs - bait the boss around the edge to avoid the puddles from consuming too much space.",
+                    "Type": 6
+                },
+                {
+                    "Name": "Cohort Vanguard",
+                    "Description": "These enemies will spawn during the fight and should be picked up and killed as quickly as possible.",
+                    "Type": 7
+                }
+            ]
+        },
+        {
+            "Name": "Midgardsormr",
+            "TLDR": "Tanks should tank the orange Mirage Dragon far away from the boss, while tanking the blue Mirage Dragon as close to the boss as possible.\n\nPlayers need to activate the magitek shield generator to avoid being hit for heavy damage during Animadversion - tanks be sure to keep dragon adds facing away so that they do not interrupt the activation.",
+            "KeyMechanics": [
+                {
+                    "Name": "Disdain",
+                    "Description": "This attack targets a random player and hits their location with a cirular AoE - move out of the telegraph to avoid damage.\n\nDuring the second half of this fight, the attack will leave a puddle in its place - avoiding running into these.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Admonishment",
+                    "Description": "This attack begins with a large column down the center of the arena, followed by multiple smaller column AoEs - dodge as necessary.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Turmoil",
+                    "Description": "Observe the name of the cast to determine where to stand.\n\nInner Turmoil\n\tThis attack hits the inner half (closest to the boss) with an AoE - avoid as necessary.\n\nOuter Turmoil\n\tThis attack hits the outer area of the arena in a large half donut - stand within melee range to avoid damage.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Mirage Dragons",
+                    "Description": "The boss will always revive the orange dragon first, and the blue dragon second.\nThese adds receive buffs if they are standing too close or too far away from the boss, respectively.\nDuring Animadversion, tanks should be sure to keep the boss facing away from the shield generator or they will interrupt other players trying to activate it.\n\nMirage Dragon (Orange)\n\tThe boss will go invulnerable and revive the orange mirage dragon first.\n\tThis dragon will tether to the boss if it is standing too close to Midgardsormr - tans should keep it facing away from the group and closer to the outer edge of the arena.\n\nMirage Dragon (Blue)\n\tThe boss will revive the blue Mirage Dragon second - this dragon will tether to the boss if it is too far away - tanks should keep it confined to melee range of the boss to avoid this.",
+                    "Type": 7
+                },
+                {
+                    "Name": "Animadversion",
+                    "Description": "This attack is signaled by an Astraea add flying into the arena - killing this add will drop a magitek field generator.\n\nPlayers can interact with this generator to trigger a bubble that will render them immune to Animadversion's damage - all players should stand inside this bubble.\n\nTanks be sure to keep adds facing away from the player who is trying to interact with the generator - adds' attacks can interrupt the action, preventing the shield from being activated in time.",
+                    "Type": 4
+                },
+                {
+                    "Name": "Antipathy",
+                    "Description": "This attack places a circular AoE under a random player which then grows over time before detonating - the targeted player needs to move out of this the moment they notice it or they will be hit.",
+                    "Type": 2
+                }
+            ]
+        }
+    ]
 }
