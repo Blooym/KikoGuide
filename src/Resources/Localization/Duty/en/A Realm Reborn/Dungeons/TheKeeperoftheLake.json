@@ -6,5 +6,110 @@
     "Expansion": 0,
     "Level": 50,
     "UnlockQuestID": 65902,
-    "TerritoryID": 150
+    "TerritoryID": 150,
+    "Bosses": [
+        {
+            "Name": "Einhander",
+            "TLDR": "Make sure to tank the boss pointing away from the party and avoid bombs AOE by standing in the gaps",
+            "KeyMechanics": [
+                {
+                    "Name": "Resounding Screech",
+                    "Description": "Summons a group of kin carrying bombs for large scale AOE damage\n\nThe first time, the bombs will be dropped and Mark XLI Quick-Firing Cannon will ignite the first two, stand to one side of the arena away from the two bombs while these two explode, the remaining will then be ignited at which point move to the very edge where one of the first two bombs was.\n\nThe following times the bombs will be dropped with some missing and ignited with Mark XLI Quick-Firing Cannon which will be a raidwide AOE originating in the centre igniting all bombs at once, move to the edge where the missing bombs are to avoid the AOE",
+                    "Type": 2
+                },
+                {
+                    "Name": "Mark XLI Quick-Firing Cannon",
+                    "Description": "This attack is a straight line AOE through the centre of the arena the first time.\nFollowing this it is a raidwide AOE causing more damage closer to the centre of the arena.\nUsed to ignite Bombs from Resounding Screech.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Heavy Swing",
+                    "Description": "This attack is a tank targetted cleave - tanks should keep the boss facing away from players at all time.",
+                    "Type": 9
+                },
+                {
+                    "Name": "Aero Blast",
+                    "Description": "Raidwide AOE for medium damage",
+                    "Type": 4
+                }
+            ]
+        },
+        {
+            "Name": "Magitek Gunship",
+            "TLDR": "Tanks should keep the boss facing away at all times and be sure to not run back into the Flamethrower too early.\nAvoid straight-line AOE down arena centre.",
+            "KeyMechanics": [
+                {
+                    "Name": "Flamethrower",
+                    "Description": "This attack hits directly in front of the boss in a large cone and is continuous for a few seconds - tanks should keep the boss facing away from the group AND be sure not to run back into the attack too soon.",
+                    "Type": 9
+                },
+                {
+                    "Name": "Garlean Fire",
+                    "Description": "The boss will fly down the centre of the arena the first time while dropping large fire puddle AoEs which disappear after a couple of seconds.\nSubsequent uses he can also turn do another run along the edge after going down the centre.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Cohort Vanguard",
+                    "Description": "These enemies will spawn during the fight and should be picked up and killed as quickly as possible.",
+                    "Type": 7
+                },
+                {
+                    "Name": "Carpet Bomb",
+                    "Description": "Targetted AOE on a random player",
+                    "Type": 2
+                }
+            ]
+        },
+        {
+            "Name": "Midgardsomr",
+            "TLDR": "Watch and act quickly to avoid the various types of AOE's\nMake sure to watch the position of the Phantom Kin\nEnsure the Mirage Dragons are killed ASAP to avoid wiping with the following Animadversion\nStay on the stack marker for 4 hits",
+            "KeyMechanics": [
+                {
+                    "Name": "Admonishment",
+                    "Description": "This is a large column AOE down the center of the arena which can be avoided",
+                    "Type": 2
+                },
+                {
+                    "Name": "Turmoil",
+                    "Description": "Observe the name of the cast to determine where to stand.\n\nInner Turmoil\n\tThis attack hits the inner half (closest to the boss) with an AoE - avoid as necessary.\n\nOuter Turmoil\n\tThis attack hits the outer area of the arena in a large half donut - stand within melee range to avoid damage.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Phantom Kin",
+                    "Description": "One dragons gets summoned to each side of the arena, pay attention to which direction they are facing and pick a location where there is a gap in their gaze, the boss will then do one of his other abilities with \"Phantom\" in front (ie. Phantom Admonishment), when this ability casts the two dragons will do a straight line AOE across the arena each that takes up about 1/3 of the arena each. It is an AOE with a short period between marking and attack so make sure to pay attention to their gaze and the follow-up cast used to pre-position safely.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Disgust",
+                    "Description": "Raidwide AOE with minor damage",
+                    "Type": 2
+                },
+                {
+                    "Name": "Mirage Dragons",
+                    "Description": "The boss will summon two Mirage Dragons in the middle of the arena which both need to be killed quickly, the higher Midgardsormr's Aether the more damage the following Animadversion will do, reaching 100 is instant wipe.",
+                    "Type": 8
+                },
+                {
+                    "Name": "Animadversion",
+                    "Description": "Moderate damage raidwide AOE.",
+                    "Type": 4
+                },
+                {
+                    "Name": "Akh Morn",
+                    "Description": "Targets a random player indicated by a Stack Marker which all players should stack on to distribute the damage, will hit once, followed by a short pause, this then hits 3 more times in quick succession and players should not move from the stack until all have hit.",
+                    "Type": 3
+                },
+                {
+                    "Name": "Antipathy",
+                    "Description": "This attack places a circular AoE in the centre of the arena which then grows in rings over time before detonating in the same order they were placed.\nPlayers should stand in the second ring just at the edge of the first and move into the position of the first as soon as it detonates to avoid being hit by the second ring.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Condescension",
+                    "Description": "Targetted AOE on the tank with no area marker hitting for minor damage if only a single target is hit. Tank should move away from players",
+                    "Type": 0
+                }
+            ]
+        }
+    ]
 }
