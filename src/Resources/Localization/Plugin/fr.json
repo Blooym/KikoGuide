@@ -8,23 +8,23 @@
     "description": "Boss..ctor"
   },
   "Types.Duty.Boss.Strategy.None": {
-    "message": "No strategy available for this boss.",
+    "message": "Aucune stratégie disponible pour ce boss.",
     "description": "Boss..ctor"
   },
   "WotsitIPC.OpenDutyFinder": {
-    "message": "Open Duty Finder",
+    "message": "Ouvrir outil de mission",
     "description": "WotsitIPCProvider.RegisterAll"
   },
   "WotsitIPC.OpenDutyEditor": {
-    "message": "Open Duty Editor",
+    "message": "Ouvrir éditeur de mission",
     "description": "WotsitIPCProvider.RegisterAll"
   },
   "Generics.Error": {
-    "message": "An error occured.",
+    "message": "Une erreur est survenue.",
     "description": "TStrings.get_Error"
   },
   "Generics.Support": {
-    "message": "Support",
+    "message": "Assistance",
     "description": "TStrings.get_Support"
   },
   "Generics.OpenFile": {
@@ -72,47 +72,47 @@
     "description": "TStrings.get_EditorFormat"
   },
   "Editor.Clear": {
-    "message": "Clear",
+    "message": "Effacer",
     "description": "TStrings.get_EditorClear"
   },
   "Editor.Preview": {
-    "message": "Preview",
+    "message": "Aperçu",
     "description": "TStrings.get_EditorPreview"
   },
   "Editor.Metadata": {
-    "message": "Metadata",
+    "message": "Métadonnées",
     "description": "TStrings.get_EditorMetadata"
   },
   "Editor.ContributingGuide": {
-    "message": "Contributing Guide",
+    "message": "Guide de contribution",
     "description": "TStrings.get_EditorContributingGuide"
   },
   "Editor.Problems": {
-    "message": "Problems",
+    "message": "Problèmes",
     "description": "TStrings.get_EditorProblems"
   },
   "Editor.Unsupported": {
-    "message": "Duty contains invalid IDs and/or is unsupported by this plugin version.",
+    "message": "La mission contient des identifiants invalides et/ou n'est pas pris en charge par cette version du plugin.",
     "description": "TStrings.get_EditorProblemUnsupported"
   },
   "Editor.NoProblemsDetected": {
-    "message": "No problems detected.",
+    "message": "Aucun problème détecté.",
     "description": "TStrings.get_EditorNoProblems"
   },
   "Editor.FileTooBig": {
-    "message": "Your file is too big to be loaded into the editor.",
+    "message": "Votre fichier est trop gros pour être chargé dans l'éditeur.",
     "description": "TStrings.get_EditorFileTooLarge"
   },
   "Editor.FileLoaded": {
-    "message": "Your file was successfully loaded.",
+    "message": "Votre fichier a bien été chargé.",
     "description": "TStrings.get_EditorFileSuccessfullyLoaded"
   },
   "Editor.FileSaved": {
-    "message": "Your file was successfully saved.",
+    "message": "Votre fichier a été enregistré avec succès.",
     "description": "TStrings.get_EditorFileSuccessfullySaved"
   },
   "Settings.Title": {
-    "message": "{0} - Settings",
+    "message": "{0} - Paramètres",
     "description": "TStrings.get_SettingsTitle"
   },
   "Settings.General": {
@@ -120,7 +120,7 @@
     "description": "TStrings.get_SettingsGeneral"
   },
   "Settings.AutoOpenInDuty": {
-    "message": "Auto Open In Duty",
+    "message": "Ouverture automatique en mission",
     "description": "TStrings.get_SettingsAutoOpenInDuty"
   },
   "Settings.AutoOpenDuty.Tooltip": {
@@ -128,11 +128,11 @@
     "description": "TStrings.get_SettingsAutoOpenInDutyTooltip"
   },
   "Settings.ShortMode": {
-    "message": "Short Mode",
+    "message": "Mode court",
     "description": "TStrings.get_SettingsShortMode"
   },
   "Settings.ShortMode.Tooltip": {
-    "message": "Shorten strategies & descriptions if possible.",
+    "message": "Raccourcir les stratégies et descriptions si possible.",
     "description": "TStrings.get_SettingsShortModeTooltip"
   },
   "Settings.ShowSupportButton": {
@@ -140,7 +140,7 @@
     "description": "TStrings.get_SettingsShowSupportButton"
   },
   "Settings.ShowSupportButton.Tooltip": {
-    "message": "Show the support Kiko Guide button",
+    "message": "Affiche le bouton pour Soutenir Kiko Guide",
     "description": "TStrings.get_SettingsShowSupportButtonTooltip"
   },
   "Settings.ResourcesAndLocalization": {
@@ -176,15 +176,15 @@
     "description": "TStrings.SettingsHideMechanicTooltip"
   },
   "Settings.Integrations": {
-    "message": "Integrations",
+    "message": "Intégrations",
     "description": "TStrings.get_SettingsIntegrations"
   },
   "Settings.Integrations.Available": {
-    "message": "Available Integrations",
+    "message": "Intégrations disponibles",
     "description": "TStrings.get_SettingsAvailableIntegrations"
   },
   "Settings.Integrations.Tooltip": {
-    "message": "You can enable or disable integrations below, changes will take effect next plugin load if the integration plugin is present.",
+    "message": "Vous pouvez activer ou désactiver les intégrations ci-dessous, les modifications prendront effet si le plugin d'intégration est présent.",
     "description": "TStrings.get_SettingsIntegrationsDesc"
   },
   "DutyFinder.Title": {
@@ -196,19 +196,19 @@
     "description": "TStrings.get_DutyFinderContentNotFound"
   },
   "DutyInfo.Title": {
-    "message": "{0} - Duty Info",
+    "message": "{0} - Infos de mission",
     "description": "TStrings.get_DutyInfoTitle"
   },
   "DutyInfo.NoDuty": {
-    "message": "No duty selected, use /kikolist to see all available duties.",
+    "message": "Aucune mission sélectionnée, utilisez /kikolist pour voir toutes les missions disponibles.",
     "description": "TStrings.get_DutyInfoNoneSelected"
   },
   "DutyInfo.NotUnlocked": {
-    "message": "You cannot view the guide for this duty as you have not unlocked it yet.",
+    "message": "Vous ne pouvez pas voir le guide pour cette mission car vous ne l'avez pas encore débloquée.",
     "description": "TStrings.get_DutyInfoNotUnlocked"
   },
   "DutyList.NoneFound": {
-    "message": "No duties found.",
+    "message": "Aucune mission trouvée.",
     "description": "TStrings.get_DutyListNoneFound"
   },
   "DutyList.NoGuide": {
