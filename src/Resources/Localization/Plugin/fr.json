@@ -48,7 +48,7 @@
     "description": "TStrings.get_InDuty"
   },
   "Generics.Mechanic": {
-    "message": "Mécanique",
+    "message": "Technique",
     "description": "TStrings.get_Mechanic"
   },
   "Generics.Description": {
