@@ -164,7 +164,7 @@
     "description": "TStrings.SettingsLastUpdate"
   },
   "Settings.Mechanics": {
-    "message": "Mécaniques",
+    "message": "Techniques",
     "description": "TStrings.get_SettingsMechanics"
   },
   "Settings.HideMechanic": {
