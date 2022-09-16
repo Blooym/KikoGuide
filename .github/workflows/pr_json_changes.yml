@@ -1,0 +1,19 @@
+name: JSON
+
+on:
+  pull_request:
+      branches: [main]
+      paths:
+       - '**.json'
+
+jobs:
+  Validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        
+      - name: Validate JSON Syntax
+        uses: limitusus/json-syntax-check@v1
+        with:
+          pattern: "\\.json$"
