@@ -9,6 +9,6 @@ changes | plugin:
 
 changes | assets:
   - ".assets/**"
-  
- changes | docs:
+
+changes | docs:
   - "**.md"
