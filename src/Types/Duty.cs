@@ -3,7 +3,7 @@ namespace KikoGuide.Types;
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using CheapLoc;
+using KikoGuide.Base;
 
 
 /// <summary>
@@ -14,38 +14,36 @@ public class Duty
     /// <summary>
     ///      Internal value representing the version of the duty class, incremented on breaking format changes.
     /// </summary>
-    private static readonly int _formatVersion = 0;
+    private static readonly int _formatVersion = 1;
 
-    public int Version = 0;
-    public string Name = Loc.Localize("Types.Duty.Name.None", "Unnamed Duty");
+    public int Version;
+    public string Name = TStrings.TypeDutyUnnamed;
+    public string CanconicalName => GetCanonicalName();
     public int Difficulty = (int)DutyDifficulty.Normal;
     public int Expansion = (int)DutyExpansion.ARealmReborn;
     public int Type = (int)DutyType.Dungeon;
     public int Level = 0;
     public uint UnlockQuestID = 0;
     public uint TerritoryID = 0;
-    public List<Boss>? Bosses = null;
-    public string CanconicalName => GetCanonicalName();
-
-    /// <summary>
-    ///     The Boss class represents a boss in a duty.
-    /// </summary>
-    public class Boss
+    public List<Section>? Sections;
+    public class Section
     {
-        public string? Name = Loc.Localize("Types.Duty.Boss.Name.None", "Unnamed Boss");
-        public string? Strategy = Loc.Localize("Types.Duty.Boss.Strategy.None", "No strategy available for this boss.");
-        public string? TLDR;
-        public List<KeyMechanic>? KeyMechanics;
-
-        /// <summary>
-        ///     The KeyMechanic class represents a key mechanic in a boss.
-        /// </summary>
-        public class KeyMechanic
+        public int Type = (int)DutySectionType.Boss;
+        public string Name = "???";
+        public List<Phase>? Phases;
+        public class Phase
         {
-            public string Name { get; set; } = "???";
-            public string Description { get; set; } = "???";
-            public string? TLDR { get; set; }
-            public int Type { get; set; } = (int)DutyMechanics.Other;
+            public string Strategy = TStrings.TypeDutySectionStrategyNone;
+            public string? TLDR;
+            public List<KeyMechanic>? Mechanics;
+            public class KeyMechanic
+            {
+                public string Name { get; set; } = "???";
+                public string LongDesc { get; set; } = "???";
+                public string ShortDesc { get; set; } = "???";
+                public string? Images { get; set; }
+                public int Type { get; set; } = (int)DutyMechanics.Other;
+            }
         }
     }
 
@@ -59,8 +57,8 @@ public class Duty
         if (!Enum.IsDefined(typeof(DutyExpansion), this.Expansion)) return false;
         if (!Enum.IsDefined(typeof(DutyType), this.Type)) return false;
         if (!Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)) return false;
-        if (this.Bosses?.Any(boss => boss.KeyMechanics != null &&
-            boss.KeyMechanics.Any(keyMechanic => !Enum.IsDefined(typeof(DutyMechanics), keyMechanic.Type))) ?? false) return false;
+        if (this.Sections?.Any(sect => sect.Phases != null &&
+            sect.Phases.Mechanics.Any(keyMechanic => !Enum.IsDefined(typeof(DutyMechanics), keyMechanic.Type))) ?? false) return false;
 
         // If nothing else returns false, then the duty is supported.
         return true;
@@ -101,6 +99,13 @@ enum DutyExpansion
     Stormblood = 2,
     Shadowbringers = 3,
     Endwalker = 4
+}
+
+enum DutySectionType
+{
+    Boss = 0,
+    Trashpack = 1,
+    Other = 2
 }
 
 enum DutyMechanics

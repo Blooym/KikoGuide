@@ -10,21 +10,21 @@ using System;
 /// <summary>
 ///     A subcomponent for displaying a duty's boss.
 /// </summary>
-public static class DutyBossComponent
+public static class DutySectionComponents
 {
     /// <summary> 
     ///     Draws information about a duty boss.
     /// </summary>
     /// <param name="boss"> The boss to draw information for. </param>
-    public static void Draw(Duty.Boss boss)
+    public static void Draw(Duty.Section sect)
     {
         try
         {
             var disabledMechanics = PluginService.Configuration?.hiddenMechanics;
             var shortMode = PluginService.Configuration?.shortenStrategies;
 
-            if (shortMode == true && boss.TLDR != null) ImGui.TextWrapped(boss.TLDR);
-            else ImGui.TextWrapped(boss.Strategy);
+            if (shortMode == true && sect.TLDR != null) ImGui.TextWrapped(sect.TLDR);
+            else ImGui.TextWrapped(sect.Strategy);
             ImGui.NewLine();
 
             var keyMechanics = boss.KeyMechanics;

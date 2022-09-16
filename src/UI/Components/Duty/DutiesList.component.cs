@@ -90,5 +90,5 @@ public static class DutyListComponent
     /// <summary>
     ///     Checks to see if the duty has data that can be displayed.
     /// </summary>
-    private static bool _hasDutyData(Duty duty) => duty.Bosses != null && duty.Bosses.Count != 0;
+    private static bool _hasDutyData(Duty duty) => duty.Sections != null && duty.Sections.Count != 0;
 }

@@ -32,7 +32,7 @@ sealed public class DutyInfoPresenter : IDisposable
         var playerDuty = DutyManager.GetPlayerDuty();
 
         // If the player has entered a duty with data and has the setting enabled, show the duty info window.
-        if (playerDuty != null && playerDuty?.Bosses?.Count > 0)
+        if (playerDuty != null && playerDuty?.Sections?.Count > 0)
         {
             this.selectedDuty = playerDuty;
             if (PluginService.Configuration.autoOpenDuty) this.isVisible = true;

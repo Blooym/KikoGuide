@@ -23,11 +23,11 @@ static class DutyInfoComponent
 
             if (ImGui.BeginTabBar("#Bosses", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton | ImGuiTabBarFlags.NoTabListScrollingButtons))
             {
-                foreach (var boss in duty.Bosses ?? Enumerable.Empty<Duty.Boss>())
+                foreach (var sect in duty.Sections ?? Enumerable.Empty<Duty.Section>())
                 {
-                    if (ImGui.BeginTabItem(boss.Name))
+                    if (ImGui.BeginTabItem(sect.Name))
                     {
-                        DutyBossComponent.Draw(boss);
+                        DutyBossComponent.Draw(sect);
                         ImGui.EndTabItem();
                     }
                 }

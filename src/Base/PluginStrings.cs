@@ -131,4 +131,8 @@ sealed internal class TStrings
     internal static string SettingsHelp => Loc.Localize("Commands.Settings.Help", "Toggles the settings menu");
     internal static string EditorHelp => Loc.Localize("Commands.Editor.Help", "Toggles the duty editor");
     internal static string InfoHelp => Loc.Localize("Commands.Info.Help", "Toggles the duty info window if a duty is loaded");
+
+    // Types
+    internal static string TypeDutyUnnamed = Loc.Localize("Types.Duty.Name.None", "Unnamed Duty");
+    internal static string TypeDutySectionStrategyNone = Loc.Localize("Types.Duty.Section.Strategy.None", "No description available.");
 }
