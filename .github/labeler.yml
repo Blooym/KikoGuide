@@ -6,3 +6,9 @@ changes | ci:
 
 changes | plugin:
   - "src/**/*.cs"
+
+changes | assets:
+  - ".assets/**"
+  
+ changes | docs:
+  - "**.md"
