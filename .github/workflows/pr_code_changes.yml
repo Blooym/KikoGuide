@@ -40,19 +40,23 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Restore Dependencies
+        working-directory: src/
         run: dotnet restore
 
       - name: Download Dalamud Library
+        working-directory: src/
         run: |
-          cd src
           wget -O Lib.zip https://goatcorp.github.io/dalamud-distrib/latest.zip
           unzip Lib.zip -d Lib
           export IsCI=true
 
-      - name: Build Plugin
-        run: |
-          dotnet build
-          dotnet build --configuration Release
+      - name: Build Plugin (Dev)
+        working-directory: src/
+        run: dotnet build
+        
+      - name: Build Plugin (Release)
+        working-directory: src/
+        run: dotnet build --configuration Release
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
@@ -77,7 +81,7 @@ jobs:
             | **Triggered By**							  | [${{ github.actor }}](https://github.com/${{ github.actor }})                      |
             
             identifier: preview-build
-          comment_includes: "preview build"
+          comment_includes: "preview-build"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Edit Comment (Failure)
