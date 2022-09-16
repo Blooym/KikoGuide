@@ -1,4 +1,4 @@
-name: JSON
+name: "PR: JSON Changes"
 
 on:
   pull_request:
