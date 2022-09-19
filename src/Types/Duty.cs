@@ -57,8 +57,7 @@ public class Duty
         if (!Enum.IsDefined(typeof(DutyExpansion), this.Expansion)) return false;
         if (!Enum.IsDefined(typeof(DutyType), this.Type)) return false;
         if (!Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)) return false;
-        if (this.Sections?.Any(sect => sect.Phases != null &&
-            sect.Phases.Mechanics.Any(keyMechanic => !Enum.IsDefined(typeof(DutyMechanics), keyMechanic.Type))) ?? false) return false;
+        if (this.Sections?.Any(s => s.Phases?.Any(p => p.Mechanics?.Any(m => !Enum.IsDefined(typeof(DutyMechanics), m.Type)) == true) == true) == true) return false;
 
         // If nothing else returns false, then the duty is supported.
         return true;
@@ -106,6 +105,13 @@ enum DutySectionType
     Boss = 0,
     Trashpack = 1,
     Other = 2
+}
+
+enum DutyDisplayType
+{
+    Display = 0,
+    Hide = 1,
+    Unavailable = 2
 }
 
 enum DutyMechanics

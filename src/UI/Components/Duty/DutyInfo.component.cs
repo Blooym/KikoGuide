@@ -27,7 +27,10 @@ static class DutyInfoComponent
                 {
                     if (ImGui.BeginTabItem(sect.Name))
                     {
-                        DutyBossComponent.Draw(sect);
+                        foreach (var phase in sect.Phases ?? Enumerable.Empty<Duty.Section.Phase>())
+                        {
+                            DutyPhaseComponent.Draw(phase);
+                        }
                         ImGui.EndTabItem();
                     }
                 }
