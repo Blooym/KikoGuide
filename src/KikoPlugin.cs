@@ -20,7 +20,7 @@ sealed internal class KikoPlugin : IDalamudPlugin
         PluginService.Initialize();
 
 #if !DEBUG
-        PluginService.ResourceManager.Update();
+        PluginService.ResourceManager.UpdateResources();
 #endif
     }
 

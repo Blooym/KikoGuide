@@ -70,7 +70,7 @@ public static class DutyManager
                 try
                 {
                     Duty? duty = JsonConvert.DeserializeObject<Duty>(File.ReadAllText(file));
-                    if (duty != null) { duties.Add(duty); PluginLog.Debug($"DutyManager(LoadDutyData): Loaded {duty.Name}"); }
+                    if (duty != null) { duties.Add(duty); PluginLog.Verbose($"DutyManager(LoadDutyData): Loaded {duty.Name}"); }
                 }
                 catch { /* File is invalid, skip it */ }
             }

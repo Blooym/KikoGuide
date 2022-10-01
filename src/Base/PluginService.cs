@@ -3,7 +3,6 @@ namespace KikoGuide.Base;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using Dalamud.Logging;
-using Dalamud.Game;
 using Dalamud.Game.ClientState;
 using KikoGuide.Managers;
 
@@ -20,7 +19,6 @@ sealed internal class PluginService
     [PluginService] internal static DalamudPluginInterface PluginInterface { get; private set; }
     [PluginService] internal static Dalamud.Game.Command.CommandManager Commands { get; private set; }
     [PluginService] internal static ClientState ClientState { get; private set; }
-    [PluginService] internal static Framework Framework { get; private set; }
 
 
     ////////////////////////
