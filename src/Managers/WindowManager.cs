@@ -48,13 +48,13 @@ sealed public class WindowManager : IDisposable
     /// </summary>
     public WindowManager()
     {
-        PluginLog.Debug("WindowManager: Initializing...");
+        PluginLog.Debug("WindowManager(WindowManager): Initializing...");
 
         PluginService.PluginInterface.UiBuilder.Draw += OnDraw;
         PluginService.PluginInterface.UiBuilder.OpenConfigUi += OnOpenConfigUI;
         PluginService.ClientState.Logout += OnLogout;
 
-        PluginLog.Debug("WindowManager: Initialization complete.");
+        PluginLog.Debug("WindowManager(WindowManager): Initialization complete.");
     }
 
 
@@ -63,7 +63,7 @@ sealed public class WindowManager : IDisposable
     /// </summary>
     public void Dispose()
     {
-        PluginLog.Debug("WindowManager: Disposing...");
+        PluginLog.Debug("WindowManager(Dispose): Disposing...");
 
         PluginService.PluginInterface.UiBuilder.Draw -= OnDraw;
         PluginService.PluginInterface.UiBuilder.OpenConfigUi -= OnOpenConfigUI;
@@ -74,7 +74,7 @@ sealed public class WindowManager : IDisposable
         Editor.Dispose();
         Settings.Dispose();
 
-        PluginLog.Debug("WindowManager: Successfully disposed.");
+        PluginLog.Debug("WindowManager(Dispose): Successfully disposed.");
     }
 
 

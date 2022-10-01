@@ -3,6 +3,7 @@ namespace KikoGuide.Base;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using Dalamud.Logging;
+using Dalamud.Game;
 using Dalamud.Game.ClientState;
 using KikoGuide.Managers;
 
@@ -19,6 +20,7 @@ sealed internal class PluginService
     [PluginService] internal static DalamudPluginInterface PluginInterface { get; private set; }
     [PluginService] internal static Dalamud.Game.Command.CommandManager Commands { get; private set; }
     [PluginService] internal static ClientState ClientState { get; private set; }
+    [PluginService] internal static Framework Framework { get; private set; }
 
 
     ////////////////////////
@@ -41,7 +43,7 @@ sealed internal class PluginService
     /// </summary>
     internal static void Initialize()
     {
-        PluginLog.Debug("PluginService: Initializing...");
+        PluginLog.Debug("PluginService(Initialize): Initializing...");
 
         // Create services and instances
         ResourceManager = new ResourceManager();
@@ -50,7 +52,7 @@ sealed internal class PluginService
         WindowManager = new WindowManager();
         CommandManager = new CommandManager();
 
-        PluginLog.Debug("PluginService: Successfully initialized.");
+        PluginLog.Debug("PluginService(Initialize): Successfully initialized.");
     }
 
     /// <summary> 
@@ -58,13 +60,13 @@ sealed internal class PluginService
     /// </summary>
     internal static void Dispose()
     {
-        PluginLog.Debug("PluginService: Disposing...");
+        PluginLog.Debug("PluginService(Initialize): Disposing...");
 
         IPCManager.Dispose();
         ResourceManager.Dispose();
         WindowManager.Dispose();
         CommandManager.Dispose();
 
-        PluginLog.Debug("PluginService: Successfully disposed.");
+        PluginLog.Debug("PluginService(Initialize): Successfully disposed.");
     }
 }

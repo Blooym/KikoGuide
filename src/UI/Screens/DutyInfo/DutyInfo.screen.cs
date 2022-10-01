@@ -30,7 +30,7 @@ sealed public class DutyInfoScreen : IScreen
         {
 
             if (selectedDuty == null) { ImGui.TextWrapped(TStrings.DutyInfoNoneSelected); return; }
-            if (selectedDuty.Sections == null || selectedDuty.Sections.Count == 0) { ImGui.TextWrapped(TStrings.DutyListNoGuide(selectedDuty.CanconicalName)); return; }
+            if (selectedDuty.Sections == null || selectedDuty.Sections.Count == 0) { ImGui.TextWrapped(TStrings.DutyListNoGuide(selectedDuty.GetCanonicalName())); return; }
             if (!DutyManager.IsUnlocked(selectedDuty)) { ImGui.TextWrapped(TStrings.DutyInfoNotUnlocked); return; }
 
             DutyInfoComponent.Draw(selectedDuty);

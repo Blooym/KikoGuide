@@ -74,7 +74,7 @@ sealed public class SettingsScreen : IScreen
                 ImGui.TextWrapped(TStrings.SettingsResourcesAndLocalizationDesc);
                 ImGui.Dummy(new Vector2(0, 5));
                 ImGui.BeginDisabled(PluginService.ResourceManager.updateInProgress);
-                if (ImGui.Button(TStrings.SettingsUpdateResources)) PluginService.ResourceManager.Update();
+                if (ImGui.Button(TStrings.SettingsUpdateResources)) PluginService.ResourceManager.UpdateResources();
                 ImGui.EndDisabled();
 
                 if (!PluginService.ResourceManager.updateInProgress && PluginService.ResourceManager.lastUpdateSuccess == false && lastUpdateTime != 0)

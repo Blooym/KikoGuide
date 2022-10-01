@@ -4,7 +4,7 @@ using Dalamud.IoC;
 using Dalamud.Plugin;
 using KikoGuide.Base;
 
-internal class KikoPlugin : IDalamudPlugin
+sealed internal class KikoPlugin : IDalamudPlugin
 {
     /// <summary> 
     ///     The plugin name, fetched from PStrings.
@@ -19,10 +19,9 @@ internal class KikoPlugin : IDalamudPlugin
         pluginInterface.Create<PluginService>();
         PluginService.Initialize();
 
-        // #if !DEBUG
+#if !DEBUG
         PluginService.ResourceManager.Update();
-        // #endif
-
+#endif
     }
 
     /// <summary>

@@ -1,5 +1,5 @@
 {
-    "Version": 0,
+    "Version": 1,
     "Name": "Amdapor Keep",
     "Difficulty": 1,
     "Type": 0,
@@ -7,21 +7,39 @@
     "Level": 50,
     "UnlockQuestID": 65966,
     "TerritoryID": 189,
-    "Bosses": [
+    "Sections": [
         {
+            "Type": 1,
             "Name": "Anchag",
-            "TLDR": "Stand near towers when targetted with single attack, avoid them otherwise.",
-            "Strategy": "The key components of this fight are the four statues in the room. When a red marker appears above your head, run behind a statue immediately. If you do not, he will spawn a tether that deals massive DoT and applies a debuff.\n\nAnchag should be tanked in the middle of the room as he will do several AoEs that can destroy the statues prematurely.\n\nRanged DPS and healers should also be careful as he will target players at random for an AoE, which can destroy statues. If he targets you for a rush attack, stay away from the statues, as this attack will immediately destroy them. Instead, move closer to the boss, which reduces the damage dealt."
+            "Phases": [
+                {
+                    "Title": "Phase 1",
+                    "TLDR": "Stand near towers when targetted with single attack, avoid them otherwise.",
+                    "Strategy": "The key components of this fight are the four statues in the room. When a red marker appears above your head, run behind a statue immediately. If you do not, he will spawn a tether that deals massive DoT and applies a debuff.\n\nAnchag should be tanked in the middle of the room as he will do several AoEs that can destroy the statues prematurely.\n\nRanged DPS and healers should also be careful as he will target players at random for an AoE, which can destroy statues. If he targets you for a rush attack, stay away from the statues, as this attack will immediately destroy them. Instead, move closer to the boss, which reduces the damage dealt."       
+                }
+            ]
         },
         {
+            "Type": 1,
             "Name": "Boogyman",
-            "TLDR": "Kill the luminescence orb and stand inside of it to gain the irradiance buff, then run ontop of the Boogyman to reveal him.",
-            "Strategy": "During the fight Boogyman will become partially invisible and untargetable. Kill the Luminescence orb and grab the Irradiance buff by standing in the area around it. Run to the invisible Boogyman to reveal him when the buff wears off with an illuminating AOE explosion that knocks him back. Adds will appear as the dead bodies on the ground are reanimated. The first set will spawn at around 55%%. The next set will spawn at around 30%% when Boogyman splits into two. When his HP is low, Boogyman will split into two and both forms will become invisible. Players need to split up with the Irradiance buff to reveal both of them."
+            "Phases": [
+                {
+                    "Title": "Phase 1",
+                    "TLDR": "Kill the luminescence orb and stand inside of it to gain the irradiance buff, then run ontop of the Boogyman to reveal him.",
+                    "Strategy": "During the fight Boogyman will become partially invisible and untargetable. Kill the Luminescence orb and grab the Irradiance buff by standing in the area around it. Run to the invisible Boogyman to reveal him when the buff wears off with an illuminating AOE explosion that knocks him back. Adds will appear as the dead bodies on the ground are reanimated. The first set will spawn at around 55%%. The next set will spawn at around 30%% when Boogyman splits into two. When his HP is low, Boogyman will split into two and both forms will become invisible. Players need to split up with the Irradiance buff to reveal both of them."
+                }
+            ]
         },
         {
+            "Type": 1,
             "Name": "Ferdiad",
-            "TLDR": "Kill the tethered adds to prevent the channeled AoE from growing. Free trapped players to prevent them from being hit by the telegraphed AoE",
-            "Strategy": "Ferdiad will ocassionaly channel a circular AoE that gradually becomes larger. You need to kill the tethered adds so that the circle will stop growing and not consume the whole arena. Ferdiad will also entrap players in slime adds (Suppuration), which will prevent them from moving, and channel a cleave attack that deals heavy damage. Those not trapped should free this player immediately. In the latter half of the fight, there will be blue, spinning scythes that spawn on top of a player. Avoid this once it appears, as there will be no telegraph for it. As the fight goes on, he will summon more, as well as do criss-crossing lines of AoEs that will stretch across the stage. In the last leg of the fight, he will combine his two possible adds, entrapping two players with slime adds while tethering itself to another single, stronger add. Depending on who was entrapped, you will need to make a decision quickly. In most cases, you will want to down the tethered add immediately, as a casted AoE at full peak will cause a wipe anyway. However, if the two DPS are caught in the Suppurations, you may not have enough DPS to down the tethered add in time, in which case you should free them first."
+            "Phases": [
+                {
+                    "Title": "Phase 1",
+                    "TLDR": "Kill the tethered adds to prevent the channeled AoE from growing. Free trapped players to prevent them from being hit by the telegraphed AoE",
+                    "Strategy": "Ferdiad will ocassionaly channel a circular AoE that gradually becomes larger. You need to kill the tethered adds so that the circle will stop growing and not consume the whole arena. Ferdiad will also entrap players in slime adds (Suppuration), which will prevent them from moving, and channel a cleave attack that deals heavy damage. Those not trapped should free this player immediately. In the latter half of the fight, there will be blue, spinning scythes that spawn on top of a player. Avoid this once it appears, as there will be no telegraph for it. As the fight goes on, he will summon more, as well as do criss-crossing lines of AoEs that will stretch across the stage. In the last leg of the fight, he will combine his two possible adds, entrapping two players with slime adds while tethering itself to another single, stronger add. Depending on who was entrapped, you will need to make a decision quickly. In most cases, you will want to down the tethered add immediately, as a casted AoE at full peak will cause a wipe anyway. However, if the two DPS are caught in the Suppurations, you may not have enough DPS to down the tethered add in time, in which case you should free them first."
+                }
+            ]
         }
     ]
 }

@@ -18,7 +18,6 @@ public class Duty
 
     public int Version;
     public string Name = TStrings.TypeDutyUnnamed;
-    public string CanconicalName => GetCanonicalName();
     public int Difficulty = (int)DutyDifficulty.Normal;
     public int Expansion = (int)DutyExpansion.ARealmReborn;
     public int Type = (int)DutyType.Dungeon;
@@ -33,10 +32,11 @@ public class Duty
         public List<Phase>? Phases;
         public class Phase
         {
+            public string? Title;
             public string Strategy = TStrings.TypeDutySectionStrategyNone;
             public string? TLDR;
-            public List<KeyMechanic>? Mechanics;
-            public class KeyMechanic
+            public List<Mechanic>? Mechanics;
+            public class Mechanic
             {
                 public string Name { get; set; } = "???";
                 public string LongDesc { get; set; } = "???";
@@ -46,6 +46,7 @@ public class Duty
             }
         }
     }
+
 
     /// <summary>
     ///     Boolean value indicating if this duty is not supported on the current plugin version.
@@ -65,6 +66,12 @@ public class Duty
 
 
     /// <summary>
+    ///     Gets all the given sections for this duty.
+    /// </summary>
+    public IEnumerable<Section> GetFilteredSections(DutySectionType filter) => this.Sections?.Where(s => s.Type == (int)filter) ?? Enumerable.Empty<Section>();
+
+
+    /// <summary>
     ///     Get the canonical name for the duty
     /// </summary>
     public string GetCanonicalName()
@@ -74,14 +81,15 @@ public class Duty
     }
 }
 
-enum DutyType
+
+public enum DutyType
 {
     Dungeon = 0,
     Trial = 1,
     AllianceRaid = 2
 }
 
-enum DutyDifficulty
+public enum DutyDifficulty
 {
     Normal = 0,
     Hard = 1,
@@ -91,7 +99,7 @@ enum DutyDifficulty
     Unreal = 5
 }
 
-enum DutyExpansion
+public enum DutyExpansion
 {
     ARealmReborn = 0,
     Heavensward = 1,
@@ -100,21 +108,21 @@ enum DutyExpansion
     Endwalker = 4
 }
 
-enum DutySectionType
+public enum DutySectionType
 {
     Boss = 0,
     Trashpack = 1,
     Other = 2
 }
 
-enum DutyDisplayType
+public enum DutyDisplayType
 {
     Display = 0,
     Hide = 1,
     Unavailable = 2
 }
 
-enum DutyMechanics
+public enum DutyMechanics
 {
     Tankbuster = 0,
     Enrage = 1,

@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using System.IO;
 using System.Net.Http;
+using System.Reflection;
 using System.IO.Compression;
 using CheapLoc;
 using Dalamud.Logging;
@@ -12,28 +13,32 @@ using KikoGuide.Base;
 /// <summary> 
 ///     Sets up and manages the plugin's resources and localization.
 /// </summary>
-sealed public class ResourceManager : IDisposable
+sealed internal class ResourceManager : IDisposable
 {
-    private bool initialized = false;
-    public bool? lastUpdateSuccess;
-    public bool updateInProgress;
+    private readonly string _cachePath = Path.Combine(Path.GetTempPath(), PStrings.pluginName);
+    private readonly DateTime _cacheExpiration = DateTime.Now.AddDays(1);
+    private bool _initialized = false;
+    internal bool? lastUpdateSuccess;
+    internal bool updateInProgress;
 
-    public event ResourceUpdateDelegate? ResourcesUpdated;
-    public delegate void ResourceUpdateDelegate();
+
+    internal event ResourceUpdateDelegate? ResourcesUpdated;
+    internal delegate void ResourceUpdateDelegate();
 
 
     /// <summary> 
     ///     Initializes the ResourceManager and associated resources. 
     /// </summary>
-    public ResourceManager()
+    internal ResourceManager()
     {
-        PluginLog.Debug("ResourceManager: Initializing...");
+        PluginLog.Debug("ResourceManager(ResourceManager): Initializing...");
 
         this.Setup(PluginService.PluginInterface.UiLanguage);
+        this.ReadyCache();
         PluginService.PluginInterface.LanguageChanged += this.Setup;
         this.ResourcesUpdated += this.OnResourceUpdate;
 
-        PluginLog.Debug("ResourceManager: Initialization complete.");
+        PluginLog.Debug("ResourceManager(ResourceManager): Initialization complete.");
     }
 
 
@@ -42,19 +47,19 @@ sealed public class ResourceManager : IDisposable
     /// </summary>
     public void Dispose()
     {
-        PluginLog.Debug("ResourceManager: Disposing...");
+        PluginLog.Debug("ResourceManager(Dispose): Disposing...");
 
         PluginService.PluginInterface.LanguageChanged -= Setup;
         ResourcesUpdated -= OnResourceUpdate;
 
-        PluginLog.Debug("ResourceManager: Successfully disposed.");
+        PluginLog.Debug("ResourceManager(Dispose): Successfully disposed.");
     }
 
 
     /// <summary> 
     ///     Downloads the repository from GitHub and extracts the resource data into the plugin's directory.
     /// </summary>
-    public void Update()
+    internal void UpdateResources()
     {
         var repoName = PStrings.pluginName.Replace(" ", "");
         var zipFilePath = Path.Combine(Path.GetTempPath(), $"{repoName}.zip");
@@ -65,7 +70,7 @@ sealed public class ResourceManager : IDisposable
         {
             try
             {
-                PluginLog.Debug($"ResourceManager: Opening new thread to handle resource download.");
+                PluginLog.Debug($"ResourceManager(UpdateResources): Opening new thread to handle resource download.");
                 this.updateInProgress = true;
 
                 // Download the files from the repository and extract them into the temp directory.
@@ -91,7 +96,7 @@ sealed public class ResourceManager : IDisposable
             }
             catch (Exception e)
             {
-                PluginLog.Error($"ResourceManager: Error updating resource files: {e.Message}");
+                PluginLog.Error($"ResourceManager(UpdateResources): Error updating resource files: {e.Message}");
 
                 this.lastUpdateSuccess = false;
                 this.updateInProgress = false;
@@ -105,7 +110,7 @@ sealed public class ResourceManager : IDisposable
     /// </summary>
     private void OnResourceUpdate()
     {
-        PluginLog.Debug($"ResourceManager: Resources updated.");
+        PluginLog.Debug($"ResourceManager(OnResourceUpdate): Resources updated.");
 
         PluginService.Configuration.lastResourceUpdate = DateTimeOffset.Now.ToUnixTimeMilliseconds();
         PluginService.Configuration.Save();
@@ -121,14 +126,91 @@ sealed public class ResourceManager : IDisposable
     /// </summary>
     private void Setup(string language)
     {
-        PluginLog.Debug($"ResourceManager: Setting up resources for language {language}...");
+        PluginLog.Debug($"ResourceManager(Setup): Setting up resources for language {language}...");
 
-        if (initialized) DutyManager.ClearCache();
+        if (_initialized) DutyManager.ClearCache();
 
         try { Loc.Setup(File.ReadAllText($"{PStrings.pluginlocalizationDir}\\Plugin\\{language}.json")); }
         catch { Loc.SetupWithFallbacks(); }
 
-        initialized = true;
-        PluginLog.Debug("ResourceManager: Resources setup.");
+        _initialized = true;
+        PluginLog.Debug("ResourceManager(Setup): Resources setup.");
+    }
+
+
+    /// <summary>
+    ///    Downloads and caches the given file from URL, will block the calling thread until the download is complete.
+    /// </summary>
+    /// <returns>The path to the downloaded cache file. </returns>
+    internal string GetFileFromURLCache(string url)
+    {
+        PluginLog.Debug($"ResourceManager(GetFileFromURLCache): Fetching: {url}");
+        var resourcePath = url.Replace("/", "\\").Remove(0, url.IndexOf("://", StringComparison.Ordinal) + 3);
+
+        if (File.Exists(Path.Combine(this._cachePath, resourcePath)))
+        {
+            var fileInfo = new FileInfo(Path.Combine(this._cachePath, resourcePath));
+            if (fileInfo.LastWriteTimeUtc > this._cacheExpiration) File.Delete(Path.Combine(this._cachePath, resourcePath));
+            else
+            {
+                PluginLog.Debug($"ResourceManager(GetFileFromURLCache): Cached file found for {url} at {resourcePath}.");
+                return Path.Combine(this._cachePath, resourcePath);
+            }
+        }
+
+
+        using var client = new HttpClient();
+        client.GetAsync(url).ContinueWith((task) =>
+        {
+            if (task.IsCompletedSuccessfully)
+            {
+                using var stream = task.Result.Content.ReadAsStreamAsync().Result;
+                Directory.CreateDirectory(Path.Combine(this._cachePath, Path.GetDirectoryName(resourcePath) ?? string.Empty));
+                using var fileStream = File.Create(Path.Combine(this._cachePath, resourcePath));
+                stream.CopyTo(fileStream);
+                File.SetLastWriteTimeUtc(Path.Combine(this._cachePath, resourcePath), DateTime.Now.ToUniversalTime());
+
+                PluginLog.Debug($"ResourceManager(GetFileFromURLCache): Cached {url} to {Path.Combine(this._cachePath, resourcePath)}.");
+            }
+            else throw new Exception($"ResourceManager(GetFileFromURLCache): Failed to download file from {url}.");
+        }).Wait();
+
+        return Path.Combine(this._cachePath, resourcePath);
+    }
+
+
+    /// <summary>
+    ///    Sets up the cache and clears out any expired files.
+    /// </summary>
+    private void ReadyCache()
+    {
+        if (!Directory.Exists(this._cachePath)) Directory.CreateDirectory(this._cachePath);
+
+        // If this cache is for a different version of the plugin, clear it out.
+        var assemblyGuid = Assembly.GetExecutingAssembly().ManifestModule.ModuleVersionId.ToString();
+        if (File.Exists(Path.Combine(this._cachePath, ".cache")))
+        {
+            var cacheId = File.ReadAllText(Path.Combine(this._cachePath, ".cache"));
+            if (cacheId != assemblyGuid)
+            {
+                Directory.Delete(this._cachePath, true);
+                Directory.CreateDirectory(this._cachePath);
+                PluginLog.Debug($"ResourceManager(ReadyCache): Cache cleared due to version change ({cacheId} -> {assemblyGuid}).");
+            }
+        }
+        File.WriteAllText(Path.Combine(this._cachePath, ".cache"), assemblyGuid);
+
+        // Clear out any expired files.
+        foreach (var file in Directory.GetFiles(this._cachePath, "*.*", SearchOption.AllDirectories))
+        {
+            var fileInfo = new FileInfo(file);
+            if (fileInfo.LastWriteTimeUtc > this._cacheExpiration)
+            {
+                File.Delete(file);
+                PluginLog.Debug($"ResourceManager(ReadyCache): Cache file expired and deleted: {file}.");
+            }
+        }
+
+        PluginLog.Debug($"ResourceManager(ReadyCache): Cache ready at {this._cachePath}.");
     }
 }

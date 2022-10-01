@@ -53,11 +53,11 @@ public static class DutyListComponent
                 ImGui.TableNextColumn();
 
                 // If this duty does not have any data or is unsupported, draw it as such and move on.
-                if (!_hasDutyData(duty)) { _noDataDuty(duty.CanconicalName); continue; }
-                if (!duty.IsSupported()) { _unsupportedDuty(duty.CanconicalName); continue; }
+                if (!_hasDutyData(duty)) { _noDataDuty(duty.GetCanonicalName()); continue; }
+                if (!duty.IsSupported()) { _unsupportedDuty(duty.GetCanonicalName()); continue; }
 
                 // Draw a selectable text for this duty and trigger the onDutySelected event when clicked.
-                if (ImGui.Selectable(duty.CanconicalName, false, ImGuiSelectableFlags.AllowDoubleClick)) onDutySelected(duty);
+                if (ImGui.Selectable(duty.GetCanonicalName(), false, ImGuiSelectableFlags.AllowDoubleClick)) onDutySelected(duty);
 
                 // If the player is inside this duty, add some text next to it.
                 if (duty == playerDuty) Badges.Custom(Colours.Green, TStrings.InDuty);

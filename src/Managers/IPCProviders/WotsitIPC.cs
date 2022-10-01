@@ -32,7 +32,7 @@ sealed public class WotsitIPCProvider : IIPCProvider
     public WotsitIPCProvider()
     {
         // You must handle if this integration loads here using enabledIntegrations and any other custom logic.
-        if (!PluginService.Configuration.enabledIntegrations.Contains(ID)) { PluginLog.Debug($"WotsitIPCProvider: Not enabled, skipping."); return; }
+        if (!PluginService.Configuration.enabledIntegrations.Contains(ID)) { PluginLog.Debug($"WotsitIPCProvider(WotsitIPCProvider): Not enabled, skipping."); return; }
 
         // Attempt to initialize the plugin, if it fails then do nothing & subscribe to FA.Available.
         try { Initialize(); }
@@ -83,7 +83,7 @@ sealed public class WotsitIPCProvider : IIPCProvider
         foreach (var duty in DutyManager.GetDuties())
         {
             // if (!DutyManager.IsUnlocked(duty) || !duty.HasData()) continue;
-            var guid = _wotsitRegister.InvokeFunc(PStrings.pluginName, $"{duty.CanconicalName}", WotsitIconID);
+            var guid = _wotsitRegister.InvokeFunc(PStrings.pluginName, $"{duty.GetCanonicalName()}", WotsitIconID);
             _wotsitDutyIpcs.Add(guid, duty);
         }
 

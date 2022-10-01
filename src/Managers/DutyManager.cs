@@ -55,7 +55,7 @@ public static class DutyManager
     /// </summary>
     private static List<Duty> LoadDutyData()
     {
-        PluginLog.Debug($"DutyManager: Loading duty data");
+        PluginLog.Debug($"DutyManager(LoadDutyData): Loading duty data");
 
         // Try and get the language from the settings, or use fallback to default if not found.
         var language = PluginService.PluginInterface.UiLanguage;
@@ -70,14 +70,14 @@ public static class DutyManager
                 try
                 {
                     Duty? duty = JsonConvert.DeserializeObject<Duty>(File.ReadAllText(file));
-                    if (duty != null) duties.Add(duty);
+                    if (duty != null) { duties.Add(duty); PluginLog.Debug($"DutyManager(LoadDutyData): Loaded {duty.Name}"); }
                 }
                 catch { /* File is invalid, skip it */ }
             }
         }
         catch { /* No duties files found for the language, just return an empty enumerable */ }
 
-        PluginLog.Debug($"DutyManager: Loaded {duties.Count} duties for {language}");
+        PluginLog.Debug($"DutyManager(LoadDutyData): Loaded {duties.Count} duties for {language}");
 
         duties = duties.OrderBy(x => x.Level).ToList();
         _loadedDuties = duties;
