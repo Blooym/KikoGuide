@@ -48,7 +48,7 @@
     "description": "TStrings.get_InDuty"
   },
   "Generics.Mechanic": {
-    "message": "Mécanique",
+    "message": "Technique",
     "description": "TStrings.get_Mechanic"
   },
   "Generics.Description": {
@@ -164,7 +164,7 @@
     "description": "TStrings.SettingsLastUpdate"
   },
   "Settings.Mechanics": {
-    "message": "Mécaniques",
+    "message": "Techniques",
     "description": "TStrings.get_SettingsMechanics"
   },
   "Settings.HideMechanic": {
