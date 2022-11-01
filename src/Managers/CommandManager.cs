@@ -1,72 +1,82 @@
-namespace KikoGuide.Managers;
-
-using System;
-using Dalamud.Logging;
-using Dalamud.Game.Command;
-using KikoGuide.Base;
-
-/// <summary> 
-///     Initializes and manages all commands and command-events for the plugin.
-/// </summary>
-sealed public class CommandManager : IDisposable
+namespace KikoGuide.Managers
 {
-    private const string listCommand = "/kikolist";
-    private const string settingsCommand = "/kikoconfig";
-    private const string editorCommand = "/kikoeditor";
-    private const string dutyInfoCommand = "/kikoinfo";
+    using System;
+    using Dalamud.Logging;
+    using Dalamud.Game.Command;
+    using KikoGuide.Base;
+    using KikoGuide.UI.Windows.DutyList;
+    using KikoGuide.UI.Windows.DutyInfo;
+    using KikoGuide.UI.Windows.Editor;
+    using KikoGuide.UI.Windows.Settings;
 
-
-    /// <summary>
-    ///     Initializes the CommandManager and its resources.
+    /// <summary> 
+    ///     Initializes and manages all commands and command-events for the plugin.
     /// </summary>
-    public CommandManager()
+    sealed public class CommandManager : IDisposable
     {
-        PluginLog.Debug("CommandManager(CommandManager): Initializing...");
-
-        PluginService.Commands.AddHandler(listCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.DutyListHelp });
-        PluginService.Commands.AddHandler(settingsCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.SettingsHelp });
-        PluginService.Commands.AddHandler(editorCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.EditorHelp });
-        PluginService.Commands.AddHandler(dutyInfoCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.InfoHelp });
-
-        PluginLog.Debug("CommandManager(CommandManager): Initialization complete.");
-    }
+        private const string listCommand = "/kikolist";
+        private const string settingsCommand = "/kikoconfig";
+        private const string editorCommand = "/kikoeditor";
+        private const string dutyInfoCommand = "/kikoinfo";
 
 
-    /// <summary>
-    ///     Dispose of the PluginCommandManager and its resources.
-    /// </summary>
-    public void Dispose()
-    {
-        PluginLog.Debug("CommandManager(Dispose): Disposing...");
-
-        PluginService.Commands.RemoveHandler(listCommand);
-        PluginService.Commands.RemoveHandler(settingsCommand);
-        PluginService.Commands.RemoveHandler(editorCommand);
-        PluginService.Commands.RemoveHandler(dutyInfoCommand);
-
-        PluginLog.Debug("CommandManager(Dispose): Successfully disposed.");
-    }
-
-
-    /// <summary>
-    ///     Event handler for when a command is issued by the user.
-    /// </summary>
-    private void OnCommand(string command, string args)
-    {
-        switch (command)
+        /// <summary>
+        ///     Initializes the CommandManager and its resources.
+        /// </summary>
+        public CommandManager()
         {
-            case listCommand:
-                PluginService.WindowManager.DutyList.presenter.isVisible = !PluginService.WindowManager.DutyList.presenter.isVisible;
-                break;
-            case settingsCommand:
-                PluginService.WindowManager.Settings.presenter.isVisible = !PluginService.WindowManager.Settings.presenter.isVisible;
-                break;
-            case editorCommand:
-                PluginService.WindowManager.Editor.presenter.isVisible = !PluginService.WindowManager.Editor.presenter.isVisible;
-                break;
-            case dutyInfoCommand:
-                PluginService.WindowManager.DutyInfo.presenter.isVisible = !PluginService.WindowManager.DutyInfo.presenter.isVisible;
-                break;
+            PluginLog.Debug("CommandManager(CommandManager): Initializing...");
+
+            PluginService.Commands.AddHandler(listCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.DutyListHelp });
+            PluginService.Commands.AddHandler(settingsCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.SettingsHelp });
+            PluginService.Commands.AddHandler(editorCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.EditorHelp });
+            PluginService.Commands.AddHandler(dutyInfoCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.InfoHelp });
+
+            PluginLog.Debug("CommandManager(CommandManager): Initialization complete.");
+        }
+
+
+        /// <summary>
+        ///     Dispose of the PluginCommandManager and its resources.
+        /// </summary>
+        public void Dispose()
+        {
+            PluginLog.Debug("CommandManager(Dispose): Disposing...");
+
+            PluginService.Commands.RemoveHandler(listCommand);
+            PluginService.Commands.RemoveHandler(settingsCommand);
+            PluginService.Commands.RemoveHandler(editorCommand);
+            PluginService.Commands.RemoveHandler(dutyInfoCommand);
+
+            PluginLog.Debug("CommandManager(Dispose): Successfully disposed.");
+        }
+
+
+        /// <summary>
+        ///     Event handler for when a command is issued by the user.
+        /// </summary>
+        private void OnCommand(string command, string args)
+        {
+            var windowSystem = PluginService.WindowManager.windowSystem;
+            switch (command)
+            {
+                case listCommand:
+                    if (windowSystem.GetWindow("List") is DutyListWindow dutyListWindow)
+                        dutyListWindow.IsOpen = !dutyListWindow.IsOpen;
+                    break;
+                case settingsCommand:
+                    if (windowSystem.GetWindow("Settings") is SettingsWindow settingsWindow)
+                        settingsWindow.IsOpen = !settingsWindow.IsOpen;
+                    break;
+                case editorCommand:
+                    if (windowSystem.GetWindow("Editor") is EditorWindow editorWindow)
+                        editorWindow.IsOpen = !editorWindow.IsOpen;
+                    break;
+                case dutyInfoCommand:
+                    if (windowSystem.GetWindow("Info") is DutyInfoWindow dutyInfoScreen)
+                        dutyInfoScreen.IsOpen = !dutyInfoScreen.IsOpen;
+                    break;
+            }
         }
     }
 }

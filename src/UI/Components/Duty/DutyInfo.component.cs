@@ -1,42 +1,43 @@
-namespace KikoGuide.UI.Components.Duty;
-
-using KikoGuide.UI.Components;
-using System;
-using System.Linq;
-using ImGuiNET;
-using KikoGuide.Types;
-
-/// <summary>
-///     A component for displaying duty information.
-/// </summary>
-static class DutyInfoComponent
+namespace KikoGuide.UI.Components.Duty
 {
-    /// <summary> 
-    ///     Draws the duty info window.
-    /// </summary>
-    /// <param name="duty"> The duty to draw information for. </param>
-    public static void Draw(Duty duty)
-    {
-        try
-        {
-            DutyHeadingComponent.Draw(duty);
+    using KikoGuide.UI.Components;
+    using System;
+    using System.Linq;
+    using ImGuiNET;
+    using KikoGuide.Types;
 
-            if (ImGui.BeginTabBar("#Bosses", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton | ImGuiTabBarFlags.NoTabListScrollingButtons))
+    /// <summary>
+    ///     A component for displaying duty information.
+    /// </summary>
+    static class DutyInfoComponent
+    {
+        /// <summary> 
+        ///     Draws the duty info window.
+        /// </summary>
+        /// <param name="duty"> The duty to draw information for. </param>
+        public static void Draw(Duty duty)
+        {
+            try
             {
-                foreach (var sect in duty.Sections ?? Enumerable.Empty<Duty.Section>())
+                DutyHeadingComponent.Draw(duty);
+
+                if (ImGui.BeginTabBar("#Bosses", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton | ImGuiTabBarFlags.NoTabListScrollingButtons))
                 {
-                    if (ImGui.BeginTabItem(sect.Name))
+                    foreach (var sect in duty.Sections ?? Enumerable.Empty<Duty.Section>())
                     {
-                        foreach (var phase in sect.Phases ?? Enumerable.Empty<Duty.Section.Phase>())
+                        if (ImGui.BeginTabItem(sect.Name))
                         {
-                            DutyPhaseComponent.Draw(phase);
+                            foreach (var phase in sect.Phases ?? Enumerable.Empty<Duty.Section.Phase>())
+                            {
+                                DutyPhaseComponent.Draw(phase);
+                            }
+                            ImGui.EndTabItem();
                         }
-                        ImGui.EndTabItem();
                     }
+                    ImGui.EndTabBar();
                 }
-                ImGui.EndTabBar();
             }
+            catch (Exception e) { ImGui.TextColored(Colours.Error, $"Component Exception: {e.Message}"); }
         }
-        catch (Exception e) { ImGui.TextColored(Colours.Error, $"Component Exception: {e.Message}"); }
     }
 }

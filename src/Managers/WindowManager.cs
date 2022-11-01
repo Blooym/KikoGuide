@@ -1,91 +1,88 @@
-namespace KikoGuide.Managers;
-
-using System;
-using Dalamud.Logging;
-using KikoGuide.Base;
-using KikoGuide.UI.Screens.DutyInfo;
-using KikoGuide.UI.Screens.DutyList;
-using KikoGuide.UI.Screens.Editor;
-using KikoGuide.UI.Screens.Settings;
-
-/// <summary>
-///     Initializes and manages all windows and window-events for the plugin.
-/// </summary>
-sealed public class WindowManager : IDisposable
+namespace KikoGuide.Managers
 {
-    public readonly DutyInfoScreen DutyInfo = new DutyInfoScreen();
-    public readonly DutyListScreen DutyList = new DutyListScreen();
-    public readonly EditorScreen Editor = new EditorScreen();
-    public readonly SettingsScreen Settings = new SettingsScreen();
-
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using KikoGuide.Base;
+    using KikoGuide.UI.Windows.Settings;
+    using KikoGuide.UI.Windows.DutyList;
+    using KikoGuide.UI.Windows.Editor;
+    using KikoGuide.UI.Windows.DutyInfo;
+    using Dalamud.Logging;
+    using Dalamud.Interface.Windowing;
 
     /// <summary>
-    ///     Handles the ClientState.Logout event by hiding all screens
+    ///     Initializes and manages all windows and window-events for the plugin.
     /// </summary>
-    private void OnLogout(object? sender, EventArgs e) => HideAll();
-
-
-    /// <summary>
-    ///     Draws all windows for the draw event.
-    /// </summary>
-    private void OnDraw()
+    internal sealed class WindowManager : IDisposable
     {
-        DutyInfo.Draw();
-        DutyList.Draw();
-        Editor.Draw();
-        Settings.Draw();
-    }
+        /// <summary>
+        ///     The windowing system service provided by Dalamud.
+        /// </summary>
+        public readonly WindowSystem windowSystem = new WindowSystem(PStrings.pluginName);
+
+        /// <summary>
+        ///     All windows managed by the WindowManager.
+        /// </summary>
+        private readonly List<Window> windows = new()
+        {
+            new SettingsWindow(),
+            new DutyListWindow(),
+            new EditorWindow(),
+            new DutyInfoWindow()
+        };
+
+        /// <summary>
+        ///     Initializes the WindowManager and associated resources.
+        /// </summary>
+        internal WindowManager()
+        {
+            PluginLog.Debug("WindowManager(WindowManager): Initializing...");
 
 
-    /// <summary>
-    ///     Opens/Closes the plugin configuration screen.
-    /// </summary> 
-    private void OnOpenConfigUI() => Settings.presenter.isVisible = !Settings.presenter.isVisible;
+            foreach (var window in this.windows)
+            {
+                PluginLog.Debug($"WindowManager(WindowManager): Registering window: {window.GetType().Name}");
+                this.windowSystem.AddWindow(window);
+            }
 
+            PluginService.PluginInterface.UiBuilder.Draw += OnDrawUI;
+            PluginService.PluginInterface.UiBuilder.OpenConfigUi += OnOpenConfigUI;
 
-    /// <summary>
-    ///     Initializes the WindowManager and associated resources.
-    /// </summary>
-    public WindowManager()
-    {
-        PluginLog.Debug("WindowManager(WindowManager): Initializing...");
+            PluginLog.Debug("WindowManager(WindowManager): Successfully initialized.");
+        }
 
-        PluginService.PluginInterface.UiBuilder.Draw += OnDraw;
-        PluginService.PluginInterface.UiBuilder.OpenConfigUi += OnOpenConfigUI;
-        PluginService.ClientState.Logout += OnLogout;
+        /// <summary>
+        ///     Draws all windows for the draw event.
+        /// </summary>
+        private void OnDrawUI() => windowSystem.Draw();
 
-        PluginLog.Debug("WindowManager(WindowManager): Initialization complete.");
-    }
+        /// <summary>
+        ///     Opens/Closes the plugin configuration window. 
+        /// </summary> 
+        private void OnOpenConfigUI()
+        {
+            if (this.windowSystem.GetWindow("Settings") is SettingsWindow window)
+                window.IsOpen = !window.IsOpen;
+        }
 
+        /// <summary>
+        ///     Disposes of the WindowManager and associated resources.
+        /// </summary>
+        public void Dispose()
+        {
+            PluginService.PluginInterface.UiBuilder.Draw -= OnDrawUI;
+            PluginService.PluginInterface.UiBuilder.OpenConfigUi -= OnOpenConfigUI;
 
-    /// <summary>
-    ///     Disposes of the WindowManager and associated resources.
-    /// </summary>
-    public void Dispose()
-    {
-        PluginLog.Debug("WindowManager(Dispose): Disposing...");
+            foreach (var window in this.windows.OfType<IDisposable>())
+            {
+                PluginLog.Debug($"WindowManager(Dispose): Disposing of {window.GetType().Name}...");
+                window.Dispose();
+            }
 
-        PluginService.PluginInterface.UiBuilder.Draw -= OnDraw;
-        PluginService.PluginInterface.UiBuilder.OpenConfigUi -= OnOpenConfigUI;
-        PluginService.ClientState.Logout -= OnLogout;
+            this.windowSystem.RemoveAllWindows();
 
-        DutyInfo.Dispose();
-        DutyList.Dispose();
-        Editor.Dispose();
-        Settings.Dispose();
-
-        PluginLog.Debug("WindowManager(Dispose): Successfully disposed.");
-    }
-
-
-    /// <summary>
-    ///     Hides all screens controlled by the WindowManager.
-    /// </summary>
-    public void HideAll()
-    {
-        DutyInfo.Hide();
-        DutyList.Hide();
-        Editor.Hide();
-        Settings.Hide();
+            PluginLog.Debug("WindowManager(Dispose): Successfully disposed.");
+        }
     }
 }

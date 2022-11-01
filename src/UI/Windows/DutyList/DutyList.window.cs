@@ -1,39 +1,45 @@
-namespace KikoGuide.UI.Screens.DutyList;
-
-using System;
-using System.Numerics;
-using System.Linq;
-using ImGuiNET;
-using KikoGuide.Base;
-using KikoGuide.Types;
-using KikoGuide.Managers;
-using KikoGuide.Interfaces;
-using Components.Duty;
-using KikoGuide.UI.Components;
-
-sealed public class DutyListScreen : IScreen
+namespace KikoGuide.UI.Windows.DutyList
 {
-    public DutyListPresenter presenter = new DutyListPresenter();
+    using System;
+    using System.Numerics;
+    using System.Linq;
+    using ImGuiNET;
+    using KikoGuide.Base;
+    using KikoGuide.Types;
+    using KikoGuide.Managers;
+    using Dalamud.Interface.Windowing;
+    using Components.Duty;
+    using KikoGuide.UI.Components;
 
-    public void Draw() => DrawListWindow();
-    public void Dispose() => this.presenter.Dispose();
-    public void Show() => this.presenter.isVisible = true;
-    public void Hide() => this.presenter.isVisible = false;
-
-    /// <summary>
-    ///     The current input search text.
-    /// </summary>
-    private string _searchText = "";
-
-    /// <summary>
-    ///     Draws the list window.
-    /// </summary>
-    private void DrawListWindow()
+    sealed public class DutyListWindow : Window, IDisposable
     {
-        if (!presenter.isVisible) return;
+        public DutyListPresenter presenter = new DutyListPresenter();
 
-        ImGui.SetNextWindowSizeConstraints(new Vector2(350, 280), new Vector2(1000, 1000));
-        if (ImGui.Begin(TStrings.DutyFinderTitle, ref presenter.isVisible))
+        public DutyListWindow() : base("List")
+        {
+            Flags |= ImGuiWindowFlags.NoScrollbar;
+            Flags |= ImGuiWindowFlags.NoScrollWithMouse;
+
+            SizeConstraints = new WindowSizeConstraints
+            {
+                MinimumSize = new Vector2(350, 280),
+                MaximumSize = new Vector2(1000, 1000)
+            };
+
+            SizeCondition = ImGuiCond.FirstUseEver;
+        }
+
+        public void Dispose() => this.presenter.Dispose();
+
+        /// <summary>
+        ///     The current input search text.
+        /// </summary>
+        private string _searchText = "";
+
+        /// <summary>
+        ///     Draws the list window.
+        /// </summary>
+        public override void Draw()
         {
             // Prevent the plugin from crashing when using Window docking.
             if (ImGui.GetWindowSize().X < 100 || ImGui.GetWindowSize().Y < 100) return;
@@ -67,15 +73,14 @@ sealed public class DutyListScreen : IScreen
 
                     DutyListComponent.Draw(duties, ((duty) =>
                     {
-                        PluginService.WindowManager.DutyInfo.presenter.selectedDuty = duty;
-                        PluginService.WindowManager.DutyInfo.Show();
+                        // PluginService.WindowManager.DutyInfo.presenter.selectedDuty = duty;
+                        // PluginService.WindowManager.DutyInfo.Show();
                     }), this._searchText, dutyType);
 
                     ImGui.EndChild();
                     ImGui.EndTabItem();
                 }
             }
-            ImGui.End();
         }
     }
 }
