@@ -17,6 +17,10 @@ A Dalamud plugin that provides players with hand-written guides to duty content.
 ---
 <!-- Repository Header End -->
 
+> **Note**  
+> This plugin is in an unfinished and unstable state; work is being done to improve this and support additional content but as this is just a side project, this may take some time. Patience is appreciated.
+
+
 ## About
 
 Kiko Guide is a plugin written for the [Dalamud](https://github.com/goatcorp/Dalamud) plugin framework which allows players to easily access written guides to duty content in an accessible way in the hopes of making the game a little bit easier for everyone.
