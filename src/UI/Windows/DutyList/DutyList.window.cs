@@ -9,8 +9,8 @@ namespace KikoGuide.UI.Windows.DutyList
     using KikoGuide.Managers;
     using Dalamud.Interface.Windowing;
     using Dalamud.Utility;
-    using Components.Duty;
-    using KikoGuide.UI.Components;
+    using KikoGuide.UI.ImGuiBasicComponents;
+    using KikoGuide.UI.ImGuiFullComponents.DutyList;
 
     sealed public class DutyListWindow : Window, IDisposable
     {

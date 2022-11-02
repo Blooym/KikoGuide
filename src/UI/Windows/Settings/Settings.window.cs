@@ -9,7 +9,7 @@ namespace KikoGuide.UI.Windows.Settings
     using KikoGuide.Types;
     using KikoGuide.IPC;
     using KikoGuide.Managers;
-    using KikoGuide.UI.Components;
+    using KikoGuide.UI.ImGuiBasicComponents;
 
     sealed public class SettingsWindow : Window, IDisposable
     {

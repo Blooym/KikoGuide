@@ -1,4 +1,4 @@
-namespace KikoGuide.UI.Components
+namespace KikoGuide.UI.ImGuiBasicComponents
 {
     using System.Numerics;
     using ImGuiNET;
@@ -15,7 +15,7 @@ namespace KikoGuide.UI.Components
         {
             ImGui.SameLine();
             ImGui.TextColored(colour, tagText);
-            if (tooltipText != null) Components.Tooltips.AddTooltip(tooltipText);
+            if (tooltipText != null) Tooltips.AddTooltip(tooltipText);
         }
 
         /// <summary> Draws a ? that when hovering will show the given text as a tooltip on the same line. </summary>
@@ -23,7 +23,7 @@ namespace KikoGuide.UI.Components
         {
             ImGui.SameLine();
             ImGui.TextColored(Colours.Grey, "[?]");
-            Components.Tooltips.AddTooltip(text);
+            Tooltips.AddTooltip(text);
         }
     }
 }

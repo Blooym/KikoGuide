@@ -1,10 +1,10 @@
-namespace KikoGuide.UI.Components.Duty
+namespace KikoGuide.UI.ImGuiFullComponents.DutyInfo
 {
-    using KikoGuide.UI.Components;
     using System;
     using ImGuiNET;
     using KikoGuide.Base;
     using KikoGuide.Types;
+    using KikoGuide.UI.ImGuiBasicComponents;
 
     /// <summary>
     ///     A subcomponent for displaying a duty heading.

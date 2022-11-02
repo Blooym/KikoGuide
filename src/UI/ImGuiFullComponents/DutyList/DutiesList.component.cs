@@ -1,9 +1,10 @@
-namespace KikoGuide.UI.Components.Duty
+namespace KikoGuide.UI.ImGuiFullComponents.DutyList
 {
     using ImGuiNET;
     using KikoGuide.Base;
     using KikoGuide.Types;
     using KikoGuide.Managers;
+    using KikoGuide.UI.ImGuiBasicComponents;
     using System;
     using System.Linq;
     using System.Collections.Generic;

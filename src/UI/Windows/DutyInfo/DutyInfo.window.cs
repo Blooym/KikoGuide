@@ -5,7 +5,7 @@ namespace KikoGuide.UI.Windows.DutyInfo
     using KikoGuide.Base;
     using KikoGuide.Managers;
     using System;
-    using KikoGuide.UI.Components.Duty;
+    using KikoGuide.UI.ImGuiFullComponents.DutyInfo;
     using Dalamud.Interface.Windowing;
 
 

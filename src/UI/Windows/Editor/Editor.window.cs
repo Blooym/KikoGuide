@@ -9,9 +9,9 @@ namespace KikoGuide.UI.Windows.Editor
     using Dalamud.Interface.Components;
     using KikoGuide.Base;
     using KikoGuide.Types;
-    using KikoGuide.UI.Components.Duty;
     using KikoGuide.Managers;
-    using KikoGuide.UI.Components;
+    using KikoGuide.UI.ImGuiBasicComponents;
+    using KikoGuide.UI.ImGuiFullComponents.DutyInfo;
 
     sealed public class EditorWindow : Window, IDisposable
     {

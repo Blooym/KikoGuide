@@ -1,10 +1,11 @@
-namespace KikoGuide.UI.Components.Duty
+namespace KikoGuide.UI.ImGuiFullComponents.DutyInfo
 {
-    using ImGuiNET;
+    using System;
     using System.Linq;
+    using ImGuiNET;
     using KikoGuide.Base;
     using KikoGuide.Types;
-    using System;
+    using KikoGuide.UI.ImGuiBasicComponents;
 
 
     /// <summary>

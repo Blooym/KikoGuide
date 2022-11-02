@@ -1,4 +1,4 @@
-namespace KikoGuide.UI.Components
+namespace KikoGuide.UI.ImGuiBasicComponents
 {
     using ImGuiNET;
 
