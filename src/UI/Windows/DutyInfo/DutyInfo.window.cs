@@ -13,7 +13,7 @@ namespace KikoGuide.UI.Windows.DutyInfo
     {
         public DutyInfoPresenter presenter = new DutyInfoPresenter();
 
-        public DutyInfoWindow() : base("Info")
+        public DutyInfoWindow() : base(WindowManager.DutyInfoWindowName)
         {
             Flags |= ImGuiWindowFlags.NoScrollbar;
 

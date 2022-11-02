@@ -3,19 +3,21 @@ namespace KikoGuide.UI.Windows.Editor
     using System;
     using System.Numerics;
     using ImGuiNET;
-    using Dalamud.Interface.Components;
+    using Dalamud.Utility;
     using Dalamud.Interface;
     using Dalamud.Interface.Windowing;
+    using Dalamud.Interface.Components;
     using KikoGuide.Base;
     using KikoGuide.Types;
     using KikoGuide.UI.Components.Duty;
+    using KikoGuide.Managers;
     using KikoGuide.UI.Components;
 
     sealed public class EditorWindow : Window, IDisposable
     {
         public EditorPresenter presenter = new EditorPresenter();
 
-        public EditorWindow() : base("Editor")
+        public EditorWindow() : base(WindowManager.EditorWindowName)
         {
             Flags |= ImGuiWindowFlags.NoScrollbar;
             Flags |= ImGuiWindowFlags.NoScrollWithMouse;
@@ -93,7 +95,7 @@ namespace KikoGuide.UI.Windows.Editor
 
             if (ImGuiComponents.IconButton(FontAwesomeIcon.ExternalLinkAlt))
             {
-                Utils.Common.OpenBrowser($"{PStrings.repoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
+                Util.OpenLink($"{PStrings.repoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
             }
             Tooltips.AddTooltip(TStrings.EditorContributingGuide);
 
@@ -102,7 +104,7 @@ namespace KikoGuide.UI.Windows.Editor
                 ImGui.SameLine();
                 if (ImGuiComponents.IconButton(FontAwesomeIcon.Heart))
                 {
-                    Utils.Common.OpenBrowser(PStrings.supportButtonUrl);
+                    Util.OpenLink(PStrings.supportButtonUrl);
                 }
                 Tooltips.AddTooltip(TStrings.Support);
             }

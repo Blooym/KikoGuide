@@ -43,9 +43,9 @@ namespace KikoGuide.Base
             public bool SupportButtonShown { get; set; } = true;
 
             /// <summary>
-            ///     Whether or not to automatically show a duty guide when entering a duty.
+            ///     Whether or not to automatically show/hide a guide when entering/leaving a duty.
             /// </summary>
-            public bool AutoOpenInDuty { get; set; } = false;
+            public bool AutoToggleGuideForDuty { get; set; } = false;
 
             /// <summary>
             ///     Whether or not to lock the position of the Duty Guide window.
@@ -56,6 +56,11 @@ namespace KikoGuide.Base
             ///     Whether or not to prevnet resizing of the Duty Guide window.
             /// </summary>
             public bool PreventDutyInfoWindowResize { get; set; } = false;
+
+            /// <summary>
+            ///     Whether or not to put phases into tabs or show them all at once.
+            /// </summary>
+            public bool UseTabsForPhases { get; set; } = true;
 
             /// <summary>
             ///     Mechanics that are hidden when drawing mechanics within the UI.

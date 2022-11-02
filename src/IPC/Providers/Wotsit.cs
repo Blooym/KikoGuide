@@ -84,7 +84,7 @@ namespace KikoGuide.IPC.Providers
         {
             if (_wotsitDutyIpcs.TryGetValue(guid, out var duty))
             {
-                if (PluginService.WindowManager.windowSystem.GetWindow("Info") is DutyInfoWindow dutyInfoWindow)
+                if (PluginService.WindowManager.windowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow dutyInfoWindow)
                 {
                     dutyInfoWindow.presenter.selectedDuty = duty;
                     dutyInfoWindow.IsOpen = true;
@@ -93,12 +93,12 @@ namespace KikoGuide.IPC.Providers
 
             else if (guid == _wotsitOpenListIpc)
             {
-                if (PluginService.WindowManager.windowSystem.GetWindow("List") is DutyListWindow dutyListWindow) dutyListWindow.IsOpen = true;
+                if (PluginService.WindowManager.windowSystem.GetWindow(WindowManager.DutyListWindowName) is DutyListWindow dutyListWindow) dutyListWindow.IsOpen = true;
             }
 
             else if (guid == _wotsitOpenEditorIpc)
             {
-                if (PluginService.WindowManager.windowSystem.GetWindow("Editor") is EditorWindow dutyEditorWindow) dutyEditorWindow.IsOpen = true;
+                if (PluginService.WindowManager.windowSystem.GetWindow(WindowManager.EditorWindowName) is EditorWindow dutyEditorWindow) dutyEditorWindow.IsOpen = true;
             }
         }
     }

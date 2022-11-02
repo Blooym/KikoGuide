@@ -19,7 +19,6 @@ namespace KikoGuide.Managers
         private const string editorCommand = "/kikoeditor";
         private const string dutyInfoCommand = "/kikoinfo";
 
-
         /// <summary>
         ///     Initializes the CommandManager and its resources.
         /// </summary>
@@ -34,7 +33,6 @@ namespace KikoGuide.Managers
 
             PluginLog.Debug("CommandManager(CommandManager): Initialization complete.");
         }
-
 
         /// <summary>
         ///     Dispose of the PluginCommandManager and its resources.
@@ -51,7 +49,6 @@ namespace KikoGuide.Managers
             PluginLog.Debug("CommandManager(Dispose): Successfully disposed.");
         }
 
-
         /// <summary>
         ///     Event handler for when a command is issued by the user.
         /// </summary>
@@ -61,19 +58,19 @@ namespace KikoGuide.Managers
             switch (command)
             {
                 case listCommand:
-                    if (windowSystem.GetWindow("List") is DutyListWindow dutyListWindow)
+                    if (windowSystem.GetWindow(WindowManager.DutyListWindowName) is DutyListWindow dutyListWindow)
                         dutyListWindow.IsOpen = !dutyListWindow.IsOpen;
                     break;
                 case settingsCommand:
-                    if (windowSystem.GetWindow("Settings") is SettingsWindow settingsWindow)
+                    if (windowSystem.GetWindow(WindowManager.SettingsWindowName) is SettingsWindow settingsWindow)
                         settingsWindow.IsOpen = !settingsWindow.IsOpen;
                     break;
                 case editorCommand:
-                    if (windowSystem.GetWindow("Editor") is EditorWindow editorWindow)
+                    if (windowSystem.GetWindow(WindowManager.EditorWindowName) is EditorWindow editorWindow)
                         editorWindow.IsOpen = !editorWindow.IsOpen;
                     break;
                 case dutyInfoCommand:
-                    if (windowSystem.GetWindow("Info") is DutyInfoWindow dutyInfoScreen)
+                    if (windowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow dutyInfoScreen)
                         dutyInfoScreen.IsOpen = !dutyInfoScreen.IsOpen;
                     break;
             }

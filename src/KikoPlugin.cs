@@ -20,10 +20,6 @@ namespace KikoGuide
             PluginService.Initialize();
         }
 
-        public void Dispose()
-        {
-            PluginService.Dispose();
-        }
-
+        public void Dispose() => PluginService.Dispose();
     }
 }

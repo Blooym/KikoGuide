@@ -8,6 +8,7 @@ namespace KikoGuide.UI.Windows.Settings
     using KikoGuide.Base;
     using KikoGuide.Types;
     using KikoGuide.IPC;
+    using KikoGuide.Managers;
     using KikoGuide.UI.Components;
 
     sealed public class SettingsWindow : Window, IDisposable
@@ -20,7 +21,7 @@ namespace KikoGuide.UI.Windows.Settings
         /// <summary>
         ///     Instantiate a new settings window.
         /// </summary>
-        public SettingsWindow() : base("Settings")
+        public SettingsWindow() : base(WindowManager.SettingsWindowName)
         {
             Size = new Vector2(400, 400);
             SizeCondition = ImGuiCond.FirstUseEver;
@@ -38,7 +39,7 @@ namespace KikoGuide.UI.Windows.Settings
         {
 
             var disabledMechanics = PluginService.Configuration.Display.DisabledMechanics;
-            var autoOpenDuty = PluginService.Configuration.Display.AutoOpenInDuty;
+            var autoOpenDuty = PluginService.Configuration.Display.AutoToggleGuideForDuty;
             var shortenStrategies = PluginService.Configuration.Accessiblity.ShortenGuideText;
             var supportButtonShown = PluginService.Configuration.Display.SupportButtonShown;
 
@@ -51,7 +52,7 @@ namespace KikoGuide.UI.Windows.Settings
                     // Auto-open duty setting.
                     Common.ToggleCheckbox(TStrings.SettingsAutoOpenInDuty, ref autoOpenDuty, () =>
                    {
-                       PluginService.Configuration.Display.AutoOpenInDuty = !autoOpenDuty;
+                       PluginService.Configuration.Display.AutoToggleGuideForDuty = !autoOpenDuty;
                        PluginService.Configuration.Save();
                    });
                     Tooltips.AddTooltip(TStrings.SettingsAutoOpenInDutyTooltip);

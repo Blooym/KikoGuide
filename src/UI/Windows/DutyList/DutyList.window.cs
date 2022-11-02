@@ -8,6 +8,7 @@ namespace KikoGuide.UI.Windows.DutyList
     using KikoGuide.Types;
     using KikoGuide.Managers;
     using Dalamud.Interface.Windowing;
+    using Dalamud.Utility;
     using Components.Duty;
     using KikoGuide.UI.Components;
 
@@ -15,7 +16,7 @@ namespace KikoGuide.UI.Windows.DutyList
     {
         public DutyListPresenter presenter = new DutyListPresenter();
 
-        public DutyListWindow() : base("List")
+        public DutyListWindow() : base(WindowManager.DutyListWindowName)
         {
             Flags |= ImGuiWindowFlags.NoScrollbar;
             Flags |= ImGuiWindowFlags.NoScrollWithMouse;
@@ -59,7 +60,7 @@ namespace KikoGuide.UI.Windows.DutyList
                 ImGui.SameLine();
                 ImGui.PushStyleColor(ImGuiCol.Button, 0xFF000000 | 0xfa9898);
                 ImGui.PushStyleColor(ImGuiCol.ButtonHovered, 0xAA000000 | 0xe76262);
-                if (ImGui.Button(TStrings.Support)) Utils.Common.OpenBrowser(PStrings.supportButtonUrl);
+                if (ImGui.Button(TStrings.Support)) Util.OpenLink(PStrings.supportButtonUrl);
                 ImGui.PopStyleColor(2);
             }
 

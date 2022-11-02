@@ -16,6 +16,11 @@ namespace KikoGuide.Managers
     /// </summary>
     internal sealed class WindowManager : IDisposable
     {
+        public static readonly string SettingsWindowName = $"{PStrings.pluginName} Settings";
+        public static readonly string DutyListWindowName = $"{PStrings.pluginName} Duty Finder";
+        public static readonly string DutyInfoWindowName = $"{PStrings.pluginName} Duty Info";
+        public static readonly string EditorWindowName = $"{PStrings.pluginName} Duty Editor";
+
         /// <summary>
         ///     The windowing system service provided by Dalamud.
         /// </summary>
@@ -62,7 +67,7 @@ namespace KikoGuide.Managers
         /// </summary> 
         private void OnOpenConfigUI()
         {
-            if (this.windowSystem.GetWindow("Settings") is SettingsWindow window)
+            if (this.windowSystem.GetWindow(SettingsWindowName) is SettingsWindow window)
                 window.IsOpen = !window.IsOpen;
         }
 
