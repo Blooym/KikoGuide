@@ -2,6 +2,8 @@ name: "PR: Chores"
 
 on:
   pull_request_target:
+    branches: [main]
+    types: [ready_for_review, opened, synchronize, reopened]
 
 jobs:
   # Label the pull request with its file changes
