@@ -49,12 +49,12 @@ namespace KikoGuide.UI.Windows.DutyList
             if (duties.Count == 0) Colours.TextWrappedColoured(Colours.Error, TStrings.DutyFinderContentNotFound);
 
             // If the support button is shown, make the search bar accommodate it, otherwise make it full width.
-            if (PluginService.Configuration.supportButtonShown) ImGui.SetNextItemWidth(-(ImGui.CalcTextSize(TStrings.Support).X + ImGui.GetStyle().FramePadding.X * 2 + ImGui.GetStyle().ItemSpacing.X));
+            if (PluginService.Configuration.Display.SupportButtonShown) ImGui.SetNextItemWidth(-(ImGui.CalcTextSize(TStrings.Support).X + ImGui.GetStyle().FramePadding.X * 2 + ImGui.GetStyle().ItemSpacing.X));
             else ImGui.SetNextItemWidth(-1);
             ImGui.InputTextWithHint("", TStrings.Search, ref this._searchText, 60);
 
             // If support button shown, add the button next to the search bar.
-            if (PluginService.Configuration.supportButtonShown)
+            if (PluginService.Configuration.Display.SupportButtonShown)
             {
                 ImGui.SameLine();
                 ImGui.PushStyleColor(ImGuiCol.Button, 0xFF000000 | 0xfa9898);

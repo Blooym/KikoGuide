@@ -20,15 +20,15 @@ namespace KikoGuide.UI.Components.Duty
         {
             try
             {
-                var disabledMechanics = PluginService.Configuration?.hiddenMechanics;
-                var shortMode = PluginService.Configuration?.shortenStrategies;
+                var disabledMechanics = PluginService.Configuration?.Display?.DisabledMechanics;
+                var shortMode = PluginService.Configuration?.Accessiblity.ShortenGuideText ?? false;
 
                 if (shortMode == true && phase.TLDR != null) ImGui.TextWrapped(phase.TLDR);
                 else ImGui.TextWrapped(phase.Strategy);
                 ImGui.NewLine();
 
                 var keyMechanics = phase.Mechanics;
-                if (keyMechanics == null || keyMechanics.All(x => disabledMechanics?.Contains(x.Type) == true)) return;
+                if (keyMechanics == null || keyMechanics.All(x => disabledMechanics?.Contains((DutyMechanics)x.Type) ?? false)) return;
 
                 ImGui.BeginTable("Boss Mechanics", 3, ImGuiTableFlags.Hideable | ImGuiTableFlags.Reorderable | ImGuiTableFlags.Borders | ImGuiTableFlags.Resizable);
                 ImGui.TableSetupColumn(TStrings.Mechanic, ImGuiTableColumnFlags.WidthStretch, 0.3f);
@@ -38,7 +38,7 @@ namespace KikoGuide.UI.Components.Duty
 
                 foreach (var mechanic in keyMechanics)
                 {
-                    if (disabledMechanics?.Contains(mechanic.Type) == true) continue;
+                    if (disabledMechanics?.Contains((DutyMechanics)mechanic.Type) == true) continue;
                     ImGui.TableNextRow();
                     ImGui.TableNextColumn();
                     ImGui.Text(mechanic.Name);

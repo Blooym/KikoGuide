@@ -4,7 +4,8 @@ namespace KikoGuide.Base
     using System.IO;
     using System.Collections.Generic;
     using Dalamud.Configuration;
-    using KikoGuide.Managers.IPC;
+    using KikoGuide.IPC;
+    using KikoGuide.Types;
 
     /// <summary>
     ///     Provides access to and determines the Plugin configuration.
@@ -12,35 +13,67 @@ namespace KikoGuide.Base
     [Serializable]
     sealed internal class Configuration : IPluginConfiguration
     {
-        /// <summary> 
-        ///     The current configuration version. Incremented whenever breaking changes are made to the configuration.
+        /// <summary>
+        ///     The current configuration version, incremented on breaking changes.
         /// </summary>
         public int Version { get; set; } = 0;
 
-        /// <summary> 
-        ///     Whether or not to automatically show duty information upon entering a new (supported) duty.
-        /// </summary>
-        public bool autoOpenDuty { get; set; } = false;
-
-        /// <summary> 
-        ///     Whether or not to show the support button in the UI. 
-        /// </summary>
-        public bool supportButtonShown { get; set; } = true;
-
-        /// <summary> 
-        ///     Whether or not to show shortened strategies when available.
-        /// </summary>
-        public bool shortenStrategies { get; set; } = false;
-
-        /// <summary> 
-        ///     Determines which mechanics are hidden when drawing mechanics within the UI. 
-        /// </summary>
-        public List<int> hiddenMechanics { get; set; } = new List<int>();
+        public AccessiblityConfiguration Accessiblity { get; set; } = new AccessiblityConfiguration();
+        public DisplayConfiguration Display { get; set; } = new DisplayConfiguration();
+        public IPCConfiguration IPC { get; set; } = new IPCConfiguration();
 
         /// <summary>
-        ///     A list of enabled integrations.
+        ///     Accessibility configuration options.
         /// </summary>
-        public List<IPCProviders> enabledIntegrations { get; set; } = new List<IPCProviders>();
+        public class AccessiblityConfiguration
+        {
+            /// <summary> 
+            ///     Whether or not to show shortened strategies when available.
+            /// </summary>
+            public bool ShortenGuideText { get; set; } = false;
+        }
+
+        /// <summary>
+        ///     Display configuration options.
+        /// </summary>
+        public class DisplayConfiguration
+        {
+            /// <summary>
+            ///     Whether or not to show the support button in the UI.
+            /// </summary>
+            public bool SupportButtonShown { get; set; } = true;
+
+            /// <summary>
+            ///     Whether or not to automatically show a duty guide when entering a duty.
+            /// </summary>
+            public bool AutoOpenInDuty { get; set; } = false;
+
+            /// <summary>
+            ///     Whether or not to lock the position of the Duty Guide window.
+            /// </summary>
+            public bool LockDutyInfoWindowPosition { get; set; } = false;
+
+            /// <summary>
+            ///     Whether or not to prevnet resizing of the Duty Guide window.
+            /// </summary>
+            public bool PreventDutyInfoWindowResize { get; set; } = false;
+
+            /// <summary>
+            ///     Mechanics that are hidden when drawing mechanics within the UI.
+            /// </summary>
+            public List<DutyMechanics> DisabledMechanics { get; set; } = new List<DutyMechanics>();
+        }
+
+        /// <summary>
+        ///     IPC configuration options.
+        /// </summary>
+        public class IPCConfiguration
+        {
+            /// <summary>
+            ///     Whether or not to show the IPC button in the UI.
+            /// </summary>
+            public List<IPCProviders> EnabledIntegrations { get; set; } = new List<IPCProviders>();
+        }
 
         /// <summary>
         ///     Saves the current configuration (and any modifications) to the config file.
@@ -51,16 +84,6 @@ namespace KikoGuide.Base
         }
 
         /// <summary>
-        ///     Writes the given file and text to the plugin configuration directory
-        /// </summary>
-        /// <param name="fileName">The file to write to</param>
-        /// <param name="text">The text to write to the file, relative to the plugin configuration directory</param>
-        internal void WriteFile(string fileName, string text)
-        {
-            File.WriteAllText(Path.Combine(PluginService.PluginInterface.GetPluginConfigDirectory(), fileName), text);
-        }
-
-        /// <summary>
         ///     Reads the given file from the plugin configuration directory
         /// </summary>
         /// <param name="fileName">The file to read from, relative to the plugin configuration directory</param>
@@ -68,6 +91,16 @@ namespace KikoGuide.Base
         internal string ReadFile(string fileName)
         {
             return File.ReadAllText(Path.Combine(PluginService.PluginInterface.GetPluginConfigDirectory(), fileName));
+        }
+
+        /// <summary>
+        ///     Writes the given file and text to the plugin configuration directory
+        /// </summary>
+        /// <param name="fileName">The file to write to</param>
+        /// <param name="text">The text to write to the file, relative to the plugin configuration directory</param>
+        internal void WriteFile(string fileName, string text)
+        {
+            File.WriteAllText(Path.Combine(PluginService.PluginInterface.GetPluginConfigDirectory(), fileName), text);
         }
     }
 }

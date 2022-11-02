@@ -97,7 +97,7 @@ namespace KikoGuide.UI.Windows.Editor
             }
             Tooltips.AddTooltip(TStrings.EditorContributingGuide);
 
-            if (PluginService.Configuration.supportButtonShown)
+            if (PluginService.Configuration.Display.SupportButtonShown)
             {
                 ImGui.SameLine();
                 if (ImGuiComponents.IconButton(FontAwesomeIcon.Heart))

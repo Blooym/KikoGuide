@@ -18,15 +18,9 @@ namespace KikoGuide
         {
             pluginInterface.Create<PluginService>();
             PluginService.Initialize();
-
-#if !DEBUG
-        PluginService.ResourceManager.UpdateResources();
-#endif
         }
 
-        /// <summary>
-        ///     Handles disposing of all resources used by the plugin.
-        /// </summary>
         public void Dispose() => PluginService.Dispose();
+
     }
 }

@@ -3,11 +3,11 @@ namespace KikoGuide.UI.Windows.Settings
     using System;
     using System.Numerics;
     using System.Linq;
-    using System.Collections.Generic;
     using Dalamud.Interface.Windowing;
     using ImGuiNET;
     using KikoGuide.Base;
     using KikoGuide.Types;
+    using KikoGuide.IPC;
     using KikoGuide.UI.Components;
 
     sealed public class SettingsWindow : Window, IDisposable
@@ -37,10 +37,10 @@ namespace KikoGuide.UI.Windows.Settings
         public override void Draw()
         {
 
-            List<int> disabledMechanics = PluginService.Configuration.hiddenMechanics;
-            bool autoOpenDuty = PluginService.Configuration.autoOpenDuty;
-            bool shortenStrategies = PluginService.Configuration.shortenStrategies;
-            bool supportButtonShown = PluginService.Configuration.supportButtonShown;
+            var disabledMechanics = PluginService.Configuration.Display.DisabledMechanics;
+            var autoOpenDuty = PluginService.Configuration.Display.AutoOpenInDuty;
+            var shortenStrategies = PluginService.Configuration.Accessiblity.ShortenGuideText;
+            var supportButtonShown = PluginService.Configuration.Display.SupportButtonShown;
 
             if (ImGui.BeginTabBar("##Settings"))
             {
@@ -51,7 +51,7 @@ namespace KikoGuide.UI.Windows.Settings
                     // Auto-open duty setting.
                     Common.ToggleCheckbox(TStrings.SettingsAutoOpenInDuty, ref autoOpenDuty, () =>
                    {
-                       PluginService.Configuration.autoOpenDuty = !autoOpenDuty;
+                       PluginService.Configuration.Display.AutoOpenInDuty = !autoOpenDuty;
                        PluginService.Configuration.Save();
                    });
                     Tooltips.AddTooltip(TStrings.SettingsAutoOpenInDutyTooltip);
@@ -60,7 +60,7 @@ namespace KikoGuide.UI.Windows.Settings
                     // Short mode setting.
                     Common.ToggleCheckbox(TStrings.SettingsShortMode, ref shortenStrategies, () =>
                     {
-                        PluginService.Configuration.shortenStrategies = !shortenStrategies;
+                        PluginService.Configuration.Accessiblity.ShortenGuideText = !shortenStrategies;
                         PluginService.Configuration.Save();
                     });
                     Tooltips.AddTooltip(TStrings.SettingsShortModeTooltip);
@@ -69,7 +69,7 @@ namespace KikoGuide.UI.Windows.Settings
                     // Support button setting.
                     Common.ToggleCheckbox(TStrings.SettingsShowSupportButton, ref supportButtonShown, () =>
                     {
-                        PluginService.Configuration.supportButtonShown = !supportButtonShown;
+                        PluginService.Configuration.Display.SupportButtonShown = !supportButtonShown;
                         PluginService.Configuration.Save();
                     });
                     Tooltips.AddTooltip(TStrings.SettingsShowSupportButtonTooltip);
@@ -99,7 +99,7 @@ namespace KikoGuide.UI.Windows.Settings
                     foreach (var mechanic in Enum.GetValues(typeof(DutyMechanics)).Cast<int>().ToList())
                     {
                         // See if the mechanic is enabled by looking at the list for the enum value.
-                        var isMechanicDisabled = disabledMechanics.Contains(mechanic);
+                        var isMechanicDisabled = disabledMechanics.Contains((DutyMechanics)mechanic);
 
                         // Create a checkbox for the mechanic.
                         Common.ToggleCheckbox(TStrings.SettingsHideMechanic(Enum.GetName(typeof(DutyMechanics), mechanic)), ref isMechanicDisabled, () =>
@@ -107,10 +107,10 @@ namespace KikoGuide.UI.Windows.Settings
                             switch (isMechanicDisabled)
                             {
                                 case false:
-                                    PluginService.Configuration.hiddenMechanics.Add(mechanic);
+                                    PluginService.Configuration.Display.DisabledMechanics.Add((DutyMechanics)mechanic);
                                     break;
                                 case true:
-                                    PluginService.Configuration.hiddenMechanics.Remove(mechanic);
+                                    PluginService.Configuration.Display.DisabledMechanics.Remove((DutyMechanics)mechanic);
                                     break;
                             }
                             PluginService.Configuration.Save();
@@ -133,23 +133,26 @@ namespace KikoGuide.UI.Windows.Settings
                     Common.TextHeading(TStrings.SettingsAvailableIntegrations);
 
                     // For each mechanic enum, creating a checkbox for it.
-                    foreach (var integration in Enum.GetValues(typeof(Managers.IPC.IPCProviders)))
+                    foreach (var integration in Enum.GetValues(typeof(IPCProviders)))
                     {
-                        var isIntegrationDisabled = PluginService.Configuration.enabledIntegrations.Contains((Managers.IPC.IPCProviders)integration);
+                        var isIntegrationDisabled = PluginService.Configuration.IPC.EnabledIntegrations.Contains((IPCProviders)integration);
+                        var name = IPCProvider.GetName((IPCProviders)integration);
+                        var tooltip = IPCProvider.GetDescription((IPCProviders)integration);
 
-                        Common.ToggleCheckbox(integration.ToString() ?? "Integration", ref isIntegrationDisabled, () =>
+                        Common.ToggleCheckbox(name, ref isIntegrationDisabled, () =>
                         {
                             switch (isIntegrationDisabled)
                             {
                                 case false:
-                                    PluginService.Configuration.enabledIntegrations.Add((Managers.IPC.IPCProviders)integration);
+                                    PluginService.Configuration.IPC.EnabledIntegrations.Add((IPCProviders)integration);
                                     break;
                                 case true:
-                                    PluginService.Configuration.enabledIntegrations.Remove((Managers.IPC.IPCProviders)integration);
+                                    PluginService.Configuration.IPC.EnabledIntegrations.Remove((IPCProviders)integration);
                                     break;
                             }
                             PluginService.Configuration.Save();
                         });
+                        Tooltips.AddTooltip(tooltip);
                     }
 
                     ImGui.EndTabItem();

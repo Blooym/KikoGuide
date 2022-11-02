@@ -33,7 +33,7 @@ namespace KikoGuide.UI.Windows.DutyInfo
             if (playerDuty != null && playerDuty?.Sections?.Count > 0)
             {
                 this.selectedDuty = playerDuty;
-                if (PluginService.Configuration.autoOpenDuty)
+                if (PluginService.Configuration.Display.AutoOpenInDuty)
                 {
                     if (PluginService.WindowManager.windowSystem.GetWindow("Info") is DutyInfoWindow window)
                     {
