@@ -17,7 +17,6 @@ namespace KikoGuide.IPC
         /// </summary>
         private Dictionary<IPCProviders, IIPCProvider> _ipcProviders = new Dictionary<IPCProviders, IIPCProvider>();
 
-
         /// <summary>
         ///     Initializes the IPCLoader and loads all IPC providers.
         /// </summary>
@@ -53,7 +52,6 @@ namespace KikoGuide.IPC
             PluginLog.Debug("IPCLoader(Constructor): Finished detecting IPC providers & initializing.");
         }
 
-
         /// <summary>
         ///      Disposes of the IPCLoader and all integrations.
         /// </summary>
@@ -73,6 +71,55 @@ namespace KikoGuide.IPC
             }
 
             PluginLog.Debug("IPCLoader(Dispose): Successfully disposed.");
+        }
+
+        /// <summary>
+        ///     Gets the status of an IPC provider.
+        /// </summary>
+        /// <param name="provider">The provider to check.</param>
+        /// <returns>True if the provider is enabled, false otherwise.</returns>
+        public bool GetStatus(IPCProviders provider) => _ipcProviders.ContainsKey(provider);
+
+        /// <summary>
+        ///     Enables an IPC provider.
+        /// </summary>
+        /// <param name="provider">The provider to enable.</param>
+        public void EnableProvider(IPCProviders provider)
+        {
+            if (_ipcProviders.ContainsKey(provider)) return;
+
+            try
+            {
+                var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.GetInterfaces().Contains(typeof(IIPCProvider)));
+                if (type == null) return;
+
+                var ipc = Activator.CreateInstance(type);
+                if (ipc is IIPCProvider ipcProvider)
+                {
+                    ipcProvider.Enable();
+                    _ipcProviders.Add(ipcProvider.ID, ipcProvider);
+                    PluginLog.Debug($"IPCLoader(EnableProvider): Finished initializing {type.FullName}");
+                }
+            }
+            catch (Exception e) { PluginLog.Error($"IPCLoader(EnableProvider): Failed to initialize {provider} - {e.Message}"); }
+        }
+
+        /// <summary>
+        ///     Disables an IPC provider.
+        /// </summary>
+        /// <param name="provider">The provider to disable.</param>
+        public void DisableProvider(IPCProviders provider)
+        {
+            if (!_ipcProviders.ContainsKey(provider)) return;
+
+            try
+            {
+                var ipc = _ipcProviders[provider];
+                ipc.Dispose();
+                _ipcProviders.Remove(provider);
+                PluginLog.Debug($"IPCLoader(DisableProvider): Disabled and disposed of {provider}.");
+            }
+            catch (Exception e) { PluginLog.Error($"IPCLoader(DisableProvider): Failed to disable and dispose of {provider} - {e.Message}"); }
         }
     }
 }

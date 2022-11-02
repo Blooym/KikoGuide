@@ -14,7 +14,7 @@ namespace KikoGuide.IPC.Providers
     /// <summary> 
     ///     Provider for WotsitIPC
     /// </summary>
-    sealed public class WotsitIPCProvider : IIPCProvider
+    sealed public class WotsitIPC : IIPCProvider
     {
         public IPCProviders ID { get; } = IPCProviders.Wotsit;
 
@@ -40,8 +40,8 @@ namespace KikoGuide.IPC.Providers
         {
             try
             {
-                _wotsitUnregister?.InvokeFunc(PStrings.pluginName);
                 _wotsitAvailable?.Unsubscribe(Initialize);
+                _wotsitUnregister?.InvokeFunc(PStrings.pluginName);
             }
             catch { /* Ignore */ }
         }
@@ -51,8 +51,8 @@ namespace KikoGuide.IPC.Providers
         /// </summary>
         private void Initialize()
         {
-            _wotsitRegister = PluginService.PluginInterface.GetIpcSubscriber<string, string, uint, string>("FA.Register");
-            _wotsitUnregister = PluginService.PluginInterface.GetIpcSubscriber<string, bool>("FA.UnregisterAll");
+            this._wotsitRegister = PluginService.PluginInterface.GetIpcSubscriber<string, string, uint, string>("FA.Register");
+            this._wotsitUnregister = PluginService.PluginInterface.GetIpcSubscriber<string, bool>("FA.UnregisterAll");
 
             var subscribe = PluginService.PluginInterface.GetIpcSubscriber<string, bool>("FA.Invoke");
             subscribe.Subscribe(HandleInvoke);
@@ -69,13 +69,12 @@ namespace KikoGuide.IPC.Providers
 
             foreach (var duty in DutyManager.GetDuties())
             {
-                // if (!DutyManager.IsUnlocked(duty) || !duty.HasData()) continue;
                 var guid = _wotsitRegister.InvokeFunc(PStrings.pluginName, $"{duty.GetCanonicalName()}", WotsitIconID);
-                _wotsitDutyIpcs.Add(guid, duty);
+                this._wotsitDutyIpcs.Add(guid, duty);
             }
 
-            _wotsitOpenListIpc = _wotsitRegister.InvokeFunc(PStrings.pluginName, Loc.Localize("WotsitIPC.OpenDutyFinder", "Open Duty Finder"), WotsitIconID);
-            _wotsitOpenEditorIpc = _wotsitRegister.InvokeFunc(PStrings.pluginName, Loc.Localize("WotsitIPC.OpenDutyEditor", "Open Duty Editor"), WotsitIconID);
+            this._wotsitOpenListIpc = _wotsitRegister.InvokeFunc(PStrings.pluginName, Loc.Localize("WotsitIPC.OpenDutyFinder", "Open Duty Finder"), WotsitIconID);
+            this._wotsitOpenEditorIpc = _wotsitRegister.InvokeFunc(PStrings.pluginName, Loc.Localize("WotsitIPC.OpenDutyEditor", "Open Duty Editor"), WotsitIconID);
         }
 
         /// <summary> 

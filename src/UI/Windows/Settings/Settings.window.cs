@@ -145,9 +145,11 @@ namespace KikoGuide.UI.Windows.Settings
                             {
                                 case false:
                                     PluginService.Configuration.IPC.EnabledIntegrations.Add((IPCProviders)integration);
+                                    PluginService.IPC.EnableProvider((IPCProviders)integration);
                                     break;
                                 case true:
                                     PluginService.Configuration.IPC.EnabledIntegrations.Remove((IPCProviders)integration);
+                                    PluginService.IPC.DisableProvider((IPCProviders)integration);
                                     break;
                             }
                             PluginService.Configuration.Save();

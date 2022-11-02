@@ -17,7 +17,6 @@ namespace KikoGuide.Base
         ///     The current configuration version, incremented on breaking changes.
         /// </summary>
         public int Version { get; set; } = 0;
-
         public AccessiblityConfiguration Accessiblity { get; set; } = new AccessiblityConfiguration();
         public DisplayConfiguration Display { get; set; } = new DisplayConfiguration();
         public IPCConfiguration IPC { get; set; } = new IPCConfiguration();
