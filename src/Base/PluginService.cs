@@ -6,7 +6,6 @@ namespace KikoGuide.Base
     using Dalamud.Game.ClientState;
     using Dalamud.Game.ClientState.Conditions;
     using KikoGuide.Managers;
-    using KikoGuide.IPC;
 
     /// <summary>
     ///     Provides access to necessary instances and services.
@@ -22,7 +21,6 @@ namespace KikoGuide.Base
         internal static CommandManager CommandManager { get; private set; }
         internal static WindowManager WindowManager { get; private set; }
         internal static ResourceManager ResourceManager { get; private set; }
-        internal static IPCLoader IPCManager { get; private set; }
         internal static Configuration Configuration { get; private set; }
 
         /// <summary>
@@ -32,7 +30,6 @@ namespace KikoGuide.Base
         {
             ResourceManager = new ResourceManager();
             Configuration = PluginInterface?.GetPluginConfig() as Configuration ?? new Configuration();
-            IPCManager = new IPCLoader();
             WindowManager = new WindowManager();
             CommandManager = new CommandManager();
 #if !DEBUG
@@ -46,7 +43,6 @@ namespace KikoGuide.Base
         /// </summary>
         internal static void Dispose()
         {
-            IPCManager.Dispose();
             ResourceManager.Dispose();
             WindowManager.Dispose();
             CommandManager.Dispose();

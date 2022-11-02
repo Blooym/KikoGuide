@@ -1,4 +1,4 @@
-namespace KikoGuide.Managers.IPC.Providers
+namespace KikoGuide.IPC.Providers
 {
     using System.Collections.Generic;
     using CheapLoc;

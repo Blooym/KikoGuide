@@ -19,62 +19,60 @@ namespace KikoGuide.IPC
 
 
         /// <summary>
-        ///     Initializes the IPCManager and loads all IPC providers.
+        ///     Initializes the IPCLoader and loads all IPC providers.
         /// </summary>
         public IPCLoader()
         {
-            PluginLog.Debug("IPCManager(IPCManager): Beginning detection of IPC providers...");
+            PluginLog.Debug("IPCLoader(Constructor): Beginning detection of IPC providers...");
 
             // Get every IPC provider in the assembly and attempt to initialize it.
             foreach (var type in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IIPCProvider))))
             {
                 try
                 {
+                    if (type == null) continue;
 
-                    if (type != null)
+                    PluginLog.Debug($"IPCLoader(Constructor): Found  {type.FullName} - Attempting to Initialize");
+                    var ipc = Activator.CreateInstance(type);
+
+                    if (ipc is IIPCProvider provider)
                     {
-                        PluginLog.Debug($"IPCManager(IPCManager): Found  {type.FullName} - Attempting to Initialize");
-                        var ipc = Activator.CreateInstance(type);
-
-                        if (ipc is IIPCProvider provider)
+                        if (!PluginService.Configuration.IPC.EnabledIntegrations.Contains(provider.ID))
                         {
-                            if (!PluginService.Configuration.IPC.EnabledIntegrations.Contains(provider.ID))
-                            {
-                                PluginLog.Debug($"IPCManager(IPCManager): {type.FullName} is disabled in the configuration. Skipping...");
-                                continue;
-                            }
-
-                            provider.Enable();
-                            _ipcProviders.Add(provider.ID, provider);
-                            PluginLog.Debug($"IPCManager(IPCManager): Finished initializing {type.FullName}");
+                            PluginLog.Debug($"IPCLoader(Constructor): {type.FullName} is disabled in the configuration. Skipping...");
+                            continue;
                         }
+
+                        provider.Enable();
+                        _ipcProviders.Add(provider.ID, provider);
+                        PluginLog.Debug($"IPCLoader(Constructor): Finished initializing {type.FullName}");
                     }
                 }
-                catch (Exception e) { PluginLog.Error($"IPCManager(IPCManager): Failed to initialize {type.FullName} - {e.Message}"); }
+                catch (Exception e) { PluginLog.Error($"IPCManager(Constructor): Failed to initialize {type.FullName} - {e.Message}"); }
             }
-            PluginLog.Debug("IPCManager(IPCManager): Finished detecting IPC providers & initializing.");
+            PluginLog.Debug("IPCLoader(Constructor): Finished detecting IPC providers & initializing.");
         }
 
 
         /// <summary>
-        ///      Disposes of the IPCManager and all integrations.
+        ///      Disposes of the IPCLoader and all integrations.
         /// </summary>
         public void Dispose()
         {
-            PluginLog.Debug("IPCManager(Dispose): Disposing of all IPC providers...");
+            PluginLog.Debug("IPCLoader(Dispose): Disposing of all IPC providers...");
 
             foreach (var ipc in _ipcProviders.Values)
             {
                 try
                 {
-                    PluginLog.Debug($"IPCManager(Dispose): Disposing of IPC provider {ipc.ID}...");
+                    PluginLog.Debug($"IPCLoader(Dispose): Disposing of IPC provider {ipc.ID}...");
                     ipc.Dispose();
-                    PluginLog.Debug($"IPCManager(Dispose): Disposed of IPC provider {ipc.ID}.");
+                    PluginLog.Debug($"IPCLoader(Dispose): Disposed of IPC provider {ipc.ID}.");
                 }
-                catch (Exception e) { PluginLog.Error($"IPCManager(Dispose): Failed to dispose of IPC provider {ipc.ID} - {e.Message}"); }
+                catch (Exception e) { PluginLog.Error($"IPCLoader(Dispose): Failed to dispose of IPC provider {ipc.ID} - {e.Message}"); }
             }
 
-            PluginLog.Debug("IPCManager(Dispose): Successfully disposed.");
+            PluginLog.Debug("IPCLoader(Dispose): Successfully disposed.");
         }
     }
 }
