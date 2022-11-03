@@ -11,7 +11,7 @@
 		{
 			"Name": "Caustic Grebuloff",
 			"Strategy": "Watch out in which direction the wind blows. This will indicate in which direction the upcoming AoEs travel. If someone gets hit by Miasmata they need to be dispelled with Esuna or else they die once the debuff runs out.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Miasmata",
 					"Description": "Unavoidable raidwide damage, followed by toxic orbs. These orbs will explode in circle AoEs, which travel into the direction previously indicated by the wind. If a player gets hit by one of these they'll receive a Necrosis debuff that will kill them instantly if not dispelled with Esuna before it runs out.",
@@ -47,7 +47,7 @@
 		{
 			"Name": "Peacekeeper",
 			"Strategy": "This fight consists of a massive amount of AoEs that leave little room to evade. Players need to pay close attention to where AoEs hit and where safe spots are.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Decimation",
 					"Description": "Unavoidable raidwide damage, followed by the outer ring of the arena being covered in fire.",
@@ -88,7 +88,7 @@
 		{
 			"Name": "Ra-la",
 			"Strategy": "This boss uses several very delayed AoE attacks that need to be anticipated. If players get hit by the butterflies's laser beams they receive a lethal Doom debuff that can only be dispelled by fully healing their HP.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Warm Glow",
 					"Description": "Unavoidable raidwide damage.",

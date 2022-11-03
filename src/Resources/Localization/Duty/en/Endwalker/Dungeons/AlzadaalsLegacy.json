@@ -11,7 +11,7 @@
 		{
 			"Name": "Ambujam",
 			"Strategy": "Watch out for AoEs during trash pulls before the first boss.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Big Wave",
 					"Description": "Unavoidable raidwide damage that inflicts Bleed.",
@@ -32,7 +32,7 @@
 		{
 			"Name": "Armored Chariot",
 			"Strategy": "During trash pulls before the second boss prioritize Alzdaal's Rampart mobs so they stop summoning additional adds.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Articulated Bits",
 					"Description": "Small damage over time puddle in the hitbox of the boss. Additionally 4 adds spawn in each corner. These will be marked with dots, indicating the order in which they fire a laser beam towards the boss. The boss will hold his shields up to reflect and spread the laser beams across the entire quadrant of the adds firing towards him.\nAll adds may fire at the same time. In that case the safe zones are where no beams are firing and outside the quadrants the shields are facing.",
@@ -58,7 +58,7 @@
 		{
 			"Name": "Kapikulu",
 			"Strategy": "The last waves of adds before the final boss have no specifics, aside from the usual AoEs that should be avoided.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Billowing Bolts",
 					"Description": "Unavoidable raidwide damage.",

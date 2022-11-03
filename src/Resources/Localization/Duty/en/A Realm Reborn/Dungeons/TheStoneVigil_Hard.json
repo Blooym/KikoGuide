@@ -10,8 +10,8 @@
     "Bosses": [
         {
             "Name": "Gorynich",
-            "TLDR": "Try to keep the boss away from the dying Vigil Heirs so they don't buff him.\n\nMove with the boss when he trundles away from the tank; usually he's going to use Swinge and you want to be avoiding that.",
-            "KeyMechanics": [
+            "StrategyShort": "Try to keep the boss away from the dying Vigil Heirs so they don't buff him.\n\nMove with the boss when he trundles away from the tank; usually he's going to use Swinge and you want to be avoiding that.",
+            "Mechanics": [
                 {
                     "Name": "Swinge",
                     "Description": "Massive frontal cone AoE. Majority of the time, the boss will move to an edge of the room and turn to face the room before using this. Make sure to move with the boss and stand on his sides or behind him to avoid being hit.",
@@ -41,8 +41,8 @@
         },
         {
             "Name": "Cuca Fera",
-            "TLDR": "This boss can't be attacked the traditional way; instead, players will need to use the 4 Bertha cannons to DPS him down.",
-            "KeyMechanics": [
+            "StrategyShort": "This boss can't be attacked the traditional way; instead, players will need to use the 4 Bertha cannons to DPS him down.",
+            "Mechanics": [
                 {
                     "Name": "Bertha",
                     "Description": "Your immobile cannon companion. Grants you 2 abilities on your pet hotbar\n\nIron Kiss\n\tThe only way you can damage the boss. Has a short cast time and shares GCD with all of your skills.\n\nSpindly Finger\n\tStuns targets in the area of the AoE. Has a 30-second cooldown. Used to stop Hard Stomp.",
@@ -72,8 +72,8 @@
         },
         {
             "Name": "Giruveganaus",
-            "TLDR": "Important to note that you cannot hold aggro on this fight.\n\nIt may be easier to burn down one of the bosses before starting the other so there is less stuff to dodge.\n\nBoth bosses use the same abilities.",
-            "KeyMechanics": [
+            "StrategyShort": "Important to note that you cannot hold aggro on this fight.\n\nIt may be easier to burn down one of the bosses before starting the other so there is less stuff to dodge.\n\nBoth bosses use the same abilities.",
+            "Mechanics": [
                 {
                     "Name": "Wild Charge",
                     "Description": "The boss takes a runner's stance and drops his right shoulder before dashing forwards, dealing damage and knocking back players in its path and applying an Infirmity debuff.",

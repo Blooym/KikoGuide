@@ -11,7 +11,7 @@
 		{
 			"Name": "Lyssa",
 			"Strategy": "When the boss hides during the snowstorm look towards which crater the footprints lead. That's where the boss will reapper. Stand behind it to avoid the upcoming half room AoE.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Frigid Stomp",
 					"Description": "Unavoidable raidwide damage.",
@@ -42,7 +42,7 @@
 		{
 			"Name": "Ladon Lord",
 			"Strategy": "The three heads of the boss indicate which third of the arena will get hit by his breath mechanics. His left head breathes at the left third behind the boss, his right head at the right third behind him, and his middle head at the third in front of him.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Scratch",
 					"Description": "Tankbuster.",
@@ -78,7 +78,7 @@
 		{
 			"Name": "Hermes",
 			"Strategy": "The boss may augment his next mechanic with Double or his next two mechanics with Quadruple. \nThe main mechanic 'Hermetica' consists of large, green rectangles spawned at the edge of the arena. The order in which they appear indicates the order they fire. When the boss spawns these rectangles after meteors stand behind the uncracked meteors to break line of sight with the Hermetica AoEs to avoid damage.\nAlso interrupt the boss when he casts True Bravery, so he doesn't get a buff.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Trismegistos",
 					"Description": "Unavoidable raidwide damage.",

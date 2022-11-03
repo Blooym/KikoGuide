@@ -11,8 +11,8 @@
         {
             "Name": "All-seeing Eye",
             "Strategy": "Fight the All-seeing Eye near the glowing crystal clusters to gain the Crystal Veil buff. When \"The power of the crystal begins to dim\" appears on screen, move to a new crystal cluster immediately. The All-seeing Eye is invulnerable to attack except when it is near a cluster of crystals.",
-            "TLDR": "Fight near the glowing crystal clusters to do damage to the All-seeing Eye.",
-            "KeyMechanics": [
+            "StrategyShort": "Fight near the glowing crystal clusters to do damage to the All-seeing Eye.",
+            "Mechanics": [
                 {
                     "Name": "Dread Gaze",
                     "Description": "Frontal AoE attack that inflicts the Paralysis debuff",
@@ -33,7 +33,7 @@
         {
             "Name": "Taulurd",
             "Strategy": "He has some powerful AoE cone attacks that should be avoided by all players. Throughout the fight he will summon adds named Deepvoid Slaves. These monsters are on top of an elevated platform. They will perform ranged attacks at the players. Be sure to spread out and avoid their Firewater attacks.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Straight Punch",
                     "Description": "Instant melee attack that deals a small amount of damage.",
@@ -54,8 +54,8 @@
         {
             "Name": "Batraal",
             "Strategy": "Batraal is the final boss of Dzemael Darkhold. This demon has an instant frontal AoE cone attack that deals heavy damage to all targets hit. Be sure to have only the tank face the boss. He has has a long ranged AoE column attack named Desolation that does extremely high damage and will instantly kill most players. Throughout the fight, a purple beam will appear between Batraal and a crystal. Batraal will mark a player with a crosshair and fires Desolation at the target. While Batraal is connected to the crystal, he is invulnerable. Be sure to kill the crystal as soon as possible while dodging Desolations. The player who was targeted should avoid aiming the Desolations at the rest of the party. At around 30%% HP and after the 3rd crystal is destroyed, Batraal will use Hellssend and become enraged. He will start using Desolation at will. Batraal will also spawn black pools under 3 players. Players within the pool will take damage over time. Move out of them immediately. The puddles will occasionally explode and deal high damage to anyone standing in them.",
-            "TLDR": "Destroy the crystals that are linked with the purple beam immediately to do damage to Batraal. Avoid standing with the party if you are targeted by Desolation.",
-            "KeyMechanics": [
+            "StrategyShort": "Destroy the crystals that are linked with the purple beam immediately to do damage to Batraal. Avoid standing with the party if you are targeted by Desolation.",
+            "Mechanics": [
                 {
                     "Name": "Grim Fate",
                     "Description": "Instant attack that deals heavy damage to a single player.",

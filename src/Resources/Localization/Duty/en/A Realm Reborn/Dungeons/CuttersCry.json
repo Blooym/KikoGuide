@@ -11,7 +11,7 @@
         {
             "Name": "Myrmidon Princess",
             "Strategy": "At around 50%% HP Myrmidon Princess will summon 3 types of adds. The recommended add-kill priority is: Myrmidon Marshal first (can cast an ability that heals Myrmidon Princess), Myrmidon Guard second, and Myrmidon Soldiers last.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Mandible Bite",
                     "Description": "Frontal cone AoE attack",
@@ -32,8 +32,8 @@
         {
             "Name": "Giant Tunnel Worm",
             "Strategy": "Throughout the fight, Giant Tunnel Worm will submerge underneath the sandy grounds of the boss room. The Worm is the most dangerous when it is submerged. Spreading out when the worm submerges reduces the chance that multiple party members will be hit when it emerges from the sand. It is important that after it does the Bottomless desert that adventurers move out of the center to not get hit when the worm emerges.",
-            "TLDR": "Spread out when the worm submerges to avoid reduces chance that multiple party members will be hit when it emerges. It is important to not stand in the center when the worm does Bottomless desert.",
-            "KeyMechanics": [
+            "StrategyShort": "Spread out when the worm submerges to avoid reduces chance that multiple party members will be hit when it emerges. It is important to not stand in the center when the worm does Bottomless desert.",
+            "Mechanics": [
                 {
                     "Name": "Sandstorm",
                     "Description": "Instant frontal attack that deals a small amount of damage.",
@@ -69,8 +69,8 @@
         {
             "Name": "Chimera",
             "Strategy": "Occasionally Chimera will use the abilities Ram's Breath and Dragon's Breath. Ram's Breath causes Ice damage and the heavy debuff on the right side of its body and Dragon's Breath causes Thunder damage and the paralysis debuff on the left side of its body. DPS & Healers can stand directly behind Chimera to avoid these cones. Most of Chimera's attacks will paralyze its target, which can be cleansed with Esuna.\n\nAt 75%% HP, the Chimera will begin to use two attacks called Dragon's Voice and Ram's Voice. When Chimera casts Dragon's Voice all players should move close to the boss to avoid damage. When Chimera casts Ram's Voice all players should move away from Chimera to avoid damage.",
-            "TLDR": "Ram's Breath (right side) and Dragon's Breath (left side) cause Ice and Thunder damage respectively.\n\nAt 75%% HP, the Chimera will begin to use two attacks called Dragon's Voice and Ram's Voice. When Chimera casts Dragon's Voice all players should move close to the boss to avoid damage. When Chimera casts Ram's Voice all players should move away from Chimera to avoid damage.",
-            "KeyMechanics": [
+            "StrategyShort": "Ram's Breath (right side) and Dragon's Breath (left side) cause Ice and Thunder damage respectively.\n\nAt 75%% HP, the Chimera will begin to use two attacks called Dragon's Voice and Ram's Voice. When Chimera casts Dragon's Voice all players should move close to the boss to avoid damage. When Chimera casts Ram's Voice all players should move away from Chimera to avoid damage.",
+            "Mechanics": [
                 {
                     "Name": "Ram's Breath",
                     "Description": "Deals ice damage and inflicts the heavy debuff on the right side of its body.",

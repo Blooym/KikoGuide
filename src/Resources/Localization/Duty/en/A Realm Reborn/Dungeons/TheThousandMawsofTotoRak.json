@@ -11,7 +11,7 @@
         {
             "Name": "Coeurl O' Nine Tails",
             "Strategy": "Coeurl O'Nine Tails are encountered twice in the instance. The second Coeurl also spawns two adds.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Acid Mist",
                     "Description": "Inflicts paralysis to all players hit.",
@@ -22,7 +22,7 @@
         {
             "Name": "Graffias",
             "Strategy": "There are puddles of green goo surrounding the arena that inflict the Leaden debuff, slowing movement.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Realm Shaker",
                     "Description": "Instant circle AoE around the boss.",

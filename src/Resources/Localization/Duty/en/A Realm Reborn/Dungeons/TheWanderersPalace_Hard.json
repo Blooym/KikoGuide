@@ -10,8 +10,8 @@
     "Bosses": [
         {
             "Name": "Frumious Koheel Ja",
-            "TLDR": "DPS must destroy the Sacred Spears when they appear. At around 33% he will use this twice in a row, leaving two spears to destroy.\n\nFairly simple tank and spank boss aside from the spears.",
-            "KeyMechanics": [
+            "StrategyShort": "DPS must destroy the Sacred Spears when they appear. At around 33% he will use this twice in a row, leaving two spears to destroy.\n\nFairly simple tank and spank boss aside from the spears.",
+            "Mechanics": [
                 {
                     "Name": "Batterhorn",
                     "Description": "Inflicts damage and knockback.",
@@ -36,8 +36,8 @@
         },
         {
             "Name": "Slithy Zolool Ja",
-            "TLDR": "The colors of the standards and their buffs/debuffs vary each time. The first time it is used, only the Heavy, Fire Resistance Down, and Damage Up totems will spawn. Figure out which one is the Damage Up totem, and the missing color will always be the Toad totem.\n\nIt's beneficial for the DPS to figure out which is the Damage Up standard as it grants them a buff. Later in the fight, there are multiple Damage Up standards so multiple members can receive the buff.",
-            "KeyMechanics": [
+            "StrategyShort": "The colors of the standards and their buffs/debuffs vary each time. The first time it is used, only the Heavy, Fire Resistance Down, and Damage Up totems will spawn. Figure out which one is the Damage Up totem, and the missing color will always be the Toad totem.\n\nIt's beneficial for the DPS to figure out which is the Damage Up standard as it grants them a buff. Later in the fight, there are multiple Damage Up standards so multiple members can receive the buff.",
+            "Mechanics": [
                 {
                     "Name": "Fire",
                     "Description": "Fire damage to the tank",
@@ -72,8 +72,8 @@
         },
         {
             "Name": "Manxome Molaa Ja Ja",
-            "TLDR": "The boss should be tanked as close to the wall as possible. Whenever he drops a Sacred Standard, follow the wall until he is just barely not standing in it (you can see it on his buffs). When he drops a Sacred Idol, just keep him still and DPS down the Idol.\n\nIt's best to stand close to the boss so you can more easily dodge Tyrannic Blare.\n\nThe healer needs to keep an eye on the debuffs of party members so they know who ends up marked with Soul Douse to prevent unwanted deaths.",
-            "KeyMechanics": [
+            "StrategyShort": "The boss should be tanked as close to the wall as possible. Whenever he drops a Sacred Standard, follow the wall until he is just barely not standing in it (you can see it on his buffs). When he drops a Sacred Idol, just keep him still and DPS down the Idol.\n\nIt's best to stand close to the boss so you can more easily dodge Tyrannic Blare.\n\nThe healer needs to keep an eye on the debuffs of party members so they know who ends up marked with Soul Douse to prevent unwanted deaths.",
+            "Mechanics": [
                 {
                     "Name": "Rushing Slash",
                     "Description": "Physical damage to the tank.",

@@ -11,7 +11,7 @@
         {
             "Name": "Chopper",
             "Strategy": "Avoid being hit by \"Charged Whisker\" which is an AoE that inflicts paralysis.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Charged Whisker",
                     "Description": "Inflicts paralysis to all players hit.",

@@ -14,7 +14,7 @@
         {
             "Name": "Thunderclap Guivre",
             "Strategy": "During this boss fight, Guivre will become invulnerable twice. They spawn lightning elementals while invulnerable. Kill the elementals and the drake will become vulnerable again. Occasionally the water will glow purple; any players standing in the water will take Electrocution damage over time. It is in a shallow pool of water. Those in the water will take significantly more damage from the lightning attacks, so it is advised to fight on either of the slopes. During both add phases, it will run back into the pool to spawn the elementals which will approach the party.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Levinshower",
                     "Description": "Frontal AoE cone",

@@ -11,7 +11,7 @@
 		{
 			"Name": "Face",
 			"Strategy": "Players need to stand in the lanes and look out for which coloured faces hit them with line AoEs. Do not get hit by the same colour twice and watch out for the knockback Off My Lawn.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Lines of Fire",
 					"Description": "Divides the room into four lanes, divided by thin, deadly line AoEs. The boss tethers to the faces outside of the arena which fire unavoidable line AoEs over each lane, that apply a debuff of the same colour of the face to players hit. Players must not get hit by the same colour twice.",
@@ -42,7 +42,7 @@
 		{
 			"Name": "Frameworker",
 			"Strategy": "The boss creates copies of himself that mimick his massive AoE attacks.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Circular Saw",
 					"Description": "Unavoidable raidwide damage.",
@@ -73,7 +73,7 @@
 		{
 			"Name": "The Big Cheese",
 			"Strategy": " ",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Explosives Distribution",
 					"Description": "Explosives appear on the conveyor belts. The amount of arrows indicates if the explosive travels to the front or the back of the arena before it goes off in a large circle AoE.",

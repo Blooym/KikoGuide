@@ -11,7 +11,7 @@
 		{
 			"Name": "Livia the Undeterred",
 			"Strategy": "Simply evade AoEs and watch out for which of her tentacles start glowing to evade more AoEs.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Aglaea Bite",
 					"Description": "Tankbuster.",
@@ -47,7 +47,7 @@
 		{
 			"Name": "Rhitahtyn the Unshakable",
 			"Strategy": "Stay far away from his ground targeting markers and run into the gaps in the walls he summons once he breaks the crystals inside the walls.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Anvil of Tartarus",
 					"Description": "Tankbuster.",
@@ -83,7 +83,7 @@
 		{
 			"Name": "Amon the Undying",
 			"Strategy": "When he casts Thundaga Forte look at the ground and stand in the sections where the lightning reaches the edge later, then move to the safe zone. Don't stand in front or behind the large purple magic circles. Look out which side of his Firaga Forte he will cast.\nWhen he casts Curtain Call, stand behind the huge ice crystal to break line of sight.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Dark Forte",
 					"Description": "Tankbuster.",

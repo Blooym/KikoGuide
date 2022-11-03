@@ -11,7 +11,7 @@
         {
             "Name": "Chudo-Yudo",
             "Strategy": "At some point during the fight Chudo-yudo will move to a random point in the arena and start casting Swinge, all players must get behind the boss to avoid being hit with several debuffs.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Rake",
                     "Description": "Rake is an instant attack that will deal a small ammount of damage to the tank.",
@@ -32,7 +32,7 @@
         {
             "Name": "Koshchei",
             "Strategy": "Avoid attacks while fighting the boss",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Collapse",
                     "Description": "Instant cast ability that will hit all players infront of the boss",
@@ -59,8 +59,8 @@
         {
             "Name": "Isgebind",
             "Strategy": "Throughout the fight Isgebind will fly up and half the arena will be taken up by a ice blue AOE indicator dealing high damage and inflicting the Frostbite debuff to anyone caught in it after a few seconds after this the boss will use Touchdown and land on the tank dealing damage to the tank and anyone arround them",
-            "TLDR": "Isgebind will periodically fly into the air and cast line AOEs across the arena dealing damage and inflicting debuffs, after this he will then land on the tank.",
-            "KeyMechanics": [
+            "StrategyShort": "Isgebind will periodically fly into the air and cast line AOEs across the arena dealing damage and inflicting debuffs, after this he will then land on the tank.",
+            "Mechanics": [
                 {
                     "Name": "Rime Wreath",
                     "Description": "A raidwide damage attack that will hit all players for moderate damage.",

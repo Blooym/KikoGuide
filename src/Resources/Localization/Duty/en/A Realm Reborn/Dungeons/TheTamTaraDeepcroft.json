@@ -15,7 +15,7 @@
         {
             "Name": "Denn the Orcatoothed",
             "Strategy": "Summons 3 waves of adds during the fight. The imps make Galvanth immune to damage, so prioritize killing them before killing the other adds. Attacks from the imps will interrupt spell casting.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Shielded",
                     "Description": "Cannot be damaged whilst imps are alive.",

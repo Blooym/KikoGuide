@@ -76,8 +76,8 @@ It is highly recommended to use the in-game editor to edit guides, as it will pr
 - `Bosses`: The list of bosses in the duty
     - `Name`: The name of the boss
     - `Strategy` (preferred): A longer-form guide on fighting the boss
-    - `TLDR` (optional): A short-form guide on fighting the boss
-    - `KeyMechanics` (optional): A list of all boss mechanics
+    - `StrategyShort` (optional): A short-form guide on fighting the boss
+    - `Mechanics` (optional): A list of all boss mechanics
       - `Name`: The name of the mechanic
       - `Description`: The description of the mechanic
       - `Type`: The type ID of the mechanic

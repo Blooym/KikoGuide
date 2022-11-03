@@ -11,7 +11,7 @@
 		{
 			"Name": "Proto-Omega",
 			"Strategy": "This fight consists mainly of several large AoEs that need to be anticipated.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Side Cannons",
 					"Description": "Half room AoE indicated by the arrows on the side of the boss.",
@@ -47,7 +47,7 @@
 		{
 			"Name": "Arch-Lambda",
 			"Strategy": "This boss dashes a lot through the arena. Players also have to watch out for dot markers above their heads and position themselves in order.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Wheel",
 					"Description": "Tankbuster.",
@@ -78,7 +78,7 @@
 		{
 			"Name": "Stigma-4",
 			"Strategy": "Players need to pay attention to the adds the boss spawns as well as the shapes the boss transforms into, especially when they're about to be forced to run into a specific direction after Mindhack.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "AI Takeover",
 					"Description": "The boss spawns one of three possible adds:\n\nOmega Frame:\nUses Proto-wave Cannon, a half room cleave, as well as Self-Destruct which deals unavoidable raidwide damage if not killed before the cast finishes.\n\nHybrid Dragon:\nUses Firebreath, a wide cone AoE, as well as Self-Destruct, just like the Omega Frame.\n\nProto-Rocket Punch:\nSpawns six fist shaped adds on the edge of the arena that will cast Rush and dash through the arena in line AoEs.",

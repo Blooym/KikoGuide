@@ -11,7 +11,7 @@
         {
             "Name": "Ifrit (Phase 1)",
             "Strategy": "Non-tank players should not stand in front of Ifrit due to his cleave attacks.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Incinerate",
                     "Description": "Frontal breath attack",
@@ -37,7 +37,7 @@
         {
             "Name": "Ifrit (Phase 2)",
             "Strategy": "During phase 2, Ifrit will gain two new abilities: Sear and Radiant Plume. Plumes in this phase are outer plumes then inner plumes. Followed by Eruption then Cyclone.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Sear",
                     "Description": "Instance nearby attack",
@@ -53,7 +53,7 @@
         {
             "Name": "Ifrit (Phase 3)",
             "Strategy": "At 50%% HP, ifrit will summon 4 nails. If any nails remain when Ifrit casts Hellfire, it will kill all players.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Hellfire",
                     "Description": "Massive raid-wide attack, killing players if any Nails remain.",

@@ -10,8 +10,8 @@
     "Bosses": [
         {
             "Name": "Pyracmon",
-            "TLDR": "Make sure to stand inside the Mammet Bubble after using the Mammet Activator so you can avoid the damage from 1000-tonze Swing. Only activating the bubble won't save you.",
-            "KeyMechanics": [
+            "StrategyShort": "Make sure to stand inside the Mammet Bubble after using the Mammet Activator so you can avoid the damage from 1000-tonze Swing. Only activating the bubble won't save you.",
+            "Mechanics": [
                 {
                     "Name": "Eye of the Beholder",
                     "Description": "Unmarked 270° cone AoE in the direction the boss is facing. Move behind to avoid.",
@@ -51,8 +51,8 @@
         },
         {
             "Name": "Catoblepas",
-            "TLDR": "Leave the Shadowy Orbs nearest the boss for the melee classes and have the ranged classes take the further ones.\n\nMake sure to kill the Tainted Eye ASAP so you don't need to deal with the Bestial Roar AoEs longer than necessary.",
-            "KeyMechanics": [
+            "StrategyShort": "Leave the Shadowy Orbs nearest the boss for the melee classes and have the ranged classes take the further ones.\n\nMake sure to kill the Tainted Eye ASAP so you don't need to deal with the Bestial Roar AoEs longer than necessary.",
+            "Mechanics": [
                 {
                     "Name": "Eye Phases",
                     "Description": "Various messages will display detailing the color of the boss' eye. The color affects what abilities it will use.\n\tBlue: Uses Cold Stare.\n\tYellow: Uses Demon Eye.\n\tRed: Uses Bestial Roar and spawns a Tainted Eye.",
@@ -92,8 +92,8 @@
         },
         {
             "Name": "Mumuepo the Beholden",
-            "TLDR": "Make sure to interact with the Thal's Scepter to free any trapped players.\n\nIgnore Narasimha until Mumuepo is killed.",
-            "KeyMechanics": [
+            "StrategyShort": "Make sure to interact with the Thal's Scepter to free any trapped players.\n\nIgnore Narasimha until Mumuepo is killed.",
+            "Mechanics": [
                 {
                     "Name": "Phase 1",
                     "Description": "Starts with four mobs that must be killed, listed in kill order below.\n\nSilent Moss the Solemn\n\tThe Conjurer of the group. Should be killed first as he will heal the others.\n\nLangloisiert the Lionheart\n\tThe Lancer of the group. Should be killed second as he can't be aggroed and deals high damage.\n\nU'linbho the Sand Devil\n\tThe Archer of the gorup. Should be killed third as he deals high damage but can be aggroed.\n\nFranz the Fair\n\tThe Gladiator of the group. Should be killed last as he does little damage.",

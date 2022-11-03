@@ -11,7 +11,7 @@
         {
             "Name": "Karlabos",
             "Strategy": "Healers should be ready to dispel the Slime debuff as soon as it is applied to party members or anyone hit by Tail Screw will die.\n\nTail Screw will bring the targeted player down to 1HP - be ready to heal them immediately after.\n\nTethered players are about to be stunned - run into a different teammate if you need to avoid being stunned and the tether will attach to them instead.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Impale",
                     "Description": "This attack hits the primary threat target for moderate damage - shield and heal as necessary.",
@@ -32,7 +32,7 @@
         {
             "Name": "Captain Madison",
             "Strategy": "Captain's Slave adds will latch onto players and stun them, preventing them from DPSing the boss during In the Line of Fire - kill these adds first.\n\nThe only way to stop the boss when he's attacking with In the Line of Fire is to damage him by a certain amount.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Captain's Crew",
                     "Description": "These adds should be picked up and removed as quick as possible - prioritize Slaves and Leechs as they stun players and heal the boss respectively.\n\nCaptain's Boy & Captain's Guard\n\tThese are generic adds that can be burned down as quick as possible.\n\nCaptain's Leech\n\tThis add will heal the boss - kill it as soon as possible.\n\nCaptain's Slave\n\tThis add will latch onto a player and stun them until it is killed - prioritize these to avoid lowering group DPS.",
@@ -58,7 +58,7 @@
         {
             "Name": "Kraken",
             "Strategy": "Focus on killing Kraken's Arm adds to stun the boss for free time to damage him - ignore Arm adds with the Determination buff.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Limbs",
                     "Description": "Ignore Tentacles and focus on killing Kraken's Arms to eventually stun the boss.\n\nIgnore Arm adds with the Determination buff, as it's a waste of time to kill them.\n\nTentacle\n\t1 of 2 types of adds during this fight, these adds will grab and stun players if they get too close - stand far away and ignore these otherwise.\n\nKraken's Arm\n\tKilling all of these adds will stun the boss, providing free time to damage him.\n\tWhen these adds spawn with a Determination buff, ignore them, as they soak time and take forever to kill - damage the boss instead.",

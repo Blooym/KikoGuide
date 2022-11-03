@@ -11,7 +11,7 @@
         {
             "Name": "Ifrit",
             "Strategy": "Most of this fights mechanics are usually skipped due to the high amount of damage dealt from the party.\n\nBelow 75%% HP: Ifrit will periodically use Eruption.\n\nBelow 50%% HP: Ifrit will spawn an infernal nail that should be destroyed.\n\nBelow 25%% HP: Eruption will create non-targeted AoEs.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Eruption",
                     "Description": "Targeted radial AoE.",

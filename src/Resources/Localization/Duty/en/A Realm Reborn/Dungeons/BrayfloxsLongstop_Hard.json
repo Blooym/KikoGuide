@@ -16,7 +16,7 @@
                     "Title": "Phase 1",
                     "Strategy": "Tanks can pick up the Illuminati Snipers by walking through the tethers.\n\nKeep an eye on where you're standing so you aren't boxed in by Bombs.",
                     "StrategyShort": "FILL LATER",
-                    "KeyMechanics": [
+                    "Mechanics": [
                         {
                             "Name": "Goblin Rush",
                             "Description": "Tankbuster",
@@ -44,7 +44,7 @@
                     "Title": "Phase 1",
                     "Strategy": "Any Ceruleum Puddles that overlap will be affected by Oversurge, so avoid standing in them.\n\nKill the Gliders quickly to lower the damage done by Needle Burst.",
                     "StrategyShort": "FILL LATER",
-                    "KeyMechanics": [
+                    "Mechanics": [
                         {
                             "Name": "Drill Cannons",
                             "Description": "Frontal line AoE.",
@@ -72,7 +72,7 @@
                     "Title": "Phase 1",
                     "Strategy": "Use various AoE abilities to knockback the Bombs during Laps.\n\nKeep an eye on the boss during Giant Bomb so that you know when he is about to charge across the arena.\n\nDPS may opt to LB the Giant Bomb if damage is low or they just want to finish it off quickly.",
                     "StrategyShort": "FILL LATER",
-                    "KeyMechanics": [
+                    "Mechanics": [
                         {
                             "Name": "Laps",
                             "Description": "The boss will become untargetable and begin making laps around the edge of the arena. Standing in its path will cause the player to take moderate damage and be knocked away.",

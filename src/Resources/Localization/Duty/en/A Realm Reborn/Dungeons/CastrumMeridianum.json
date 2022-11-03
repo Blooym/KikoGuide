@@ -16,7 +16,7 @@
                     "Title": "Phase 1",
                     "Strategy": "",
                     "StrategyShort": "",
-                    "KeyMechanics": [
+                    "Mechanics": [
                         {
                             "Name": "Incendiary Support",
                             "Description": "Deals 3 hits of raidwide damage",
@@ -49,7 +49,7 @@
                     "Title": "Phase 1",
                     "Strategy": "",
                     "StrategyShort": "",
-                    "KeyMechanics": [
+                    "Mechanics": [
                         {
                             "Name": "Cermet Dril",
                             "Description": "Large amount of single-target damage",
@@ -87,7 +87,7 @@
                     "Title": "Phase 1",
                     "Strategy": "",
                     "StrategyShort": "",
-                    "KeyMechanics": [
+                    "Mechanics": [
                         {
                             "Name": "Aglaia Climb",
                             "Description": "Large amount of single-target damage",

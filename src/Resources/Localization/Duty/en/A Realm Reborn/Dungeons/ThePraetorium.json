@@ -10,7 +10,7 @@
     "Bosses": [
         {
             "Name": "Mark II Magitek Colossus",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Ceruleum Vent",
                     "Description": "Unavoidable raidwide damage",
@@ -36,7 +36,7 @@
         {
             "Name": "Nero tol Scaeva",
             "Strategy": "There is an electrical field on the outside of the arena, giving people the debuff Electrocution that deals damage over time",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Spine Shatter",
                     "Description": "Large damage on the primary target",
@@ -76,7 +76,7 @@
         {
             "Name": "Gaius van Baelsar",
             "Strategy": "At 5%% HP, Gaius will summon 4 Phantom Gaius adds that must be taken out while he charges up Blade Energy for his ultimate attack \"Veni Vidi Vici\", which will instantly kill the party if energy reaches 100%",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Innocence",
                     "Description": "Large damage on the primary target",

@@ -10,8 +10,8 @@
     "Bosses": [
         {
             "Name": "Liavinne",
-            "TLDR": "It's easiest to just have the entire group stack on the boss so no one needs to chase after the adds to kill them with Rotting Arrow.\n\nNever kill the adds yourself; let Rotting Arrow do the work for you.",
-            "KeyMechanics": [
+            "StrategyShort": "It's easiest to just have the entire group stack on the boss so no one needs to chase after the adds to kill them with Rotting Arrow.\n\nNever kill the adds yourself; let Rotting Arrow do the work for you.",
+            "Mechanics": [
                 {
                     "Name": "Instability",
                     "Description": "Throws three red orbs at a random player, marking them as the target of the Best Men.",
@@ -31,8 +31,8 @@
         },
         {
             "Name": "Spare Body",
-            "TLDR": "Two extra large Orbs will spawn near the end of the fight that deal heavy damage.\n\nThe tank should keep the boss against the edge of the arena, avoiding Orbs and moving out of Cloudcover as necessary.",
-            "KeyMechanics": [
+            "StrategyShort": "Two extra large Orbs will spawn near the end of the fight that deal heavy damage.\n\nThe tank should keep the boss against the edge of the arena, avoiding Orbs and moving out of Cloudcover as necessary.",
+            "Mechanics": [
                 {
                     "Name": "Paiyo Reiyo",
                     "Description": "Appears in the center of the arena and is locked in place. Must be kept alive. If he dies, the group will wipe and have to restart. He can be healed if necessary.",
@@ -62,8 +62,8 @@
         },
         {
             "Name": "Avere Bravearm & Edda Pureheart",
-            "TLDR": "Kill the Grooms-to-be ASAP so you don't need to worry about the Runes.\n\nThe portal adds will appear in larger numbers, using increasing amounts of AoE as the fight goes on. Be ready to squeeze into tiny safe spots between the overlapping AoEs.",
-            "KeyMechanics": [
+            "StrategyShort": "Kill the Grooms-to-be ASAP so you don't need to worry about the Runes.\n\nThe portal adds will appear in larger numbers, using increasing amounts of AoE as the fight goes on. Be ready to squeeze into tiny safe spots between the overlapping AoEs.",
+            "Mechanics": [
                 {
                     "Name": "Runes",
                     "Description": "Numerous large, dark red runes appear around the puddle in the center of the room. One will light up for each Groom-to-be that reaches the center of the room. Increases the damage dealt by Red Wedding.",

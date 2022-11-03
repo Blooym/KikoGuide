@@ -10,8 +10,8 @@
     "Bosses": [
         {
             "Name": "Hecatoncheir Mastermind",
-            "TLDR": "Pulling the boss to the end of the Flaming Track is the easiest way to deal with this fight with a decent group. Be aware that doing so will spawn all of the upcoming mechanics in sequence instead of over the course of the fight, as they are tied to when the Flaming Track is activated.\n\nThe closer you are to the end of the track, the faster the Flambeau's will use Self-destruct.",
-            "KeyMechanics": [
+            "StrategyShort": "Pulling the boss to the end of the Flaming Track is the easiest way to deal with this fight with a decent group. Be aware that doing so will spawn all of the upcoming mechanics in sequence instead of over the course of the fight, as they are tied to when the Flaming Track is activated.\n\nThe closer you are to the end of the track, the faster the Flambeau's will use Self-destruct.",
+            "Mechanics": [
                 {
                     "Name": "Mining Dross",
                     "Description": "There are three packs of three slimes each on the wooden track. Group up and AoE down.",
@@ -36,8 +36,8 @@
         },
         {
             "Name": "Biggy",
-            "TLDR": "Tanks should stand apart from the group as the boss will use various AoEs on them while running around the room.\n\nWhen placing the bomb, try to place it a few seconds in front of the boss to ensure that it will hit him. Adjust for when he uses AoEs. Try to wait until there's only a few seconds left on the timer for best chances of hitting him.\n\nIf you have a left over Waymaker Bomb you can use it on Biggy when he emerges from the Rock Suit, instantly finishing him off.",
-            "KeyMechanics": [
+            "StrategyShort": "Tanks should stand apart from the group as the boss will use various AoEs on them while running around the room.\n\nWhen placing the bomb, try to place it a few seconds in front of the boss to ensure that it will hit him. Adjust for when he uses AoEs. Try to wait until there's only a few seconds left on the timer for best chances of hitting him.\n\nIf you have a left over Waymaker Bomb you can use it on Biggy when he emerges from the Rock Suit, instantly finishing him off.",
+            "Mechanics": [
                 {
                     "Name": "Rock Suit",
                     "Description": "The boss spawns wearing a giant rock golem suit to defend himself from damage. Boss takes extremely low damage from player attacks; instead, use Waymaker Bombs to bring him down. After being hit by the first Waymaker Bomb, the boss will run around the room, ignoring aggro. Tanks should continue to hold aggro and stand on the west side of the room, near the exit, to encourage the boss to use its various attacks in their direction so they don't hit the other players.",
@@ -87,8 +87,8 @@
         },
         {
             "Name": "Ouranos",
-            "TLDR": "Keep an eye on the chat log to see when to feed a Crystalized Rock to the Abyss Worm.\n\nAvoid standing in Mercurial Strike.\n\nHealers should be ready to dispel any Slow debuffs from players caught in Power Attack.",
-            "KeyMechanics": [
+            "StrategyShort": "Keep an eye on the chat log to see when to feed a Crystalized Rock to the Abyss Worm.\n\nAvoid standing in Mercurial Strike.\n\nHealers should be ready to dispel any Slow debuffs from players caught in Power Attack.",
+            "Mechanics": [
                 {
                     "Name": "Crystalized Rock",
                     "Description": "Spawns around the outside of the arena. Limited resource. Used to pacify the Abyss Worm.",

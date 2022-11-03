@@ -11,7 +11,7 @@
         {
             "Name": "Keeper of Halidom",
             "Strategy": "Everyone - Be prepared to move out of *Inhale. If caught you will take unavoidable damage from the following attack.\n- Also be vigilant of the targetted AOE *Moldy Phlegm, prepare to run away.\n\nTank - Bring the boss to the back wall and make him face away from the party.\n\nHealer - Make sure you *Esuna the *Reduced Immunity & Poison Debuff from the party.\n\nDPS - Do damage & try not to get hit.",
-			"KeyMechanics": [
+			"Mechanics": [
                 {
                     "Name": "Beatdown",
                     "Description": "Instant frontal melee attack - Small amount of damage.",
@@ -42,7 +42,7 @@
 	{
             "Name": "Giant Bavarois",
             "Strategy": "Everyone - Occasionally, the boss will target a random player, followed by using *Amorphic Flail if allowed to get close. Targetted player should run away from the boss.\n- Periodically adds spawn throughout the fight. *Blue Bavarois should be dealt with first, followed by the rest.\n\nTank - Keep the boss facing away from the party. Also be mindful of the party when adds spawn. When the boss casts *Fire either interrupt or move behind the boss.\n\nHealer - Make sure you *Esuna the debuffs off the party.  *Most detrimental are: Heavy & Paralysis\n\nDPS - Be prepared for add spawns. Priority is: Blue, Purple, White, Green.",
-			"KeyMechanics": [
+			"Mechanics": [
                 {
                     "Name": "Fire",
                     "Description": "Spell - Moderate amount of damage.",
@@ -63,7 +63,7 @@
         {
             "Name": "Tonberry King",
             "Strategy": "Everyone - When a Tonberry add dies it gives the boss a stack of *Rancid increasing the damage of *Everybody's Grudge. We want to minimise this. So only kill the small Tonberrys if necessary. Dont attack the larger Tonberry Slashers. Instead, focus on putting the boss down ASAP.\n\nTank - Keep the boss in the center of the room, facing away from the party. *Always stay in melee range of the boss.\n\nHealer - Make sure you *Esuna the *Heavy debuff from the party. Potential high damage output on the tank/party. Prepare.\n\nDPS - Kill the small Tonberrys when necessary, but dont attack the larger Tonberry Slashers. Instead focus on putting down the boss ASAP.",
-			"KeyMechanics": [
+			"Mechanics": [
                 {
                     "Name": "Lateral Slash",
                     "Description": "Instant melee attack - Small amount of damage.",

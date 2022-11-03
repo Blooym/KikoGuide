@@ -10,8 +10,8 @@
     "Bosses": [
         {
             "Name": "Damaged Adjudicator",
-            "TLDR": "There will be 3 Glowing Core phases before you can finish off the boss' body.\n\nThe phase won't push if you kill the wrong Body Part. Make sure you're targeting the Glowing Core one.",
-            "KeyMechanics": [
+            "StrategyShort": "There will be 3 Glowing Core phases before you can finish off the boss' body.\n\nThe phase won't push if you kill the wrong Body Part. Make sure you're targeting the Glowing Core one.",
+            "Mechanics": [
                 {
                     "Name": "Body Parts",
                     "Description": "The Head, Tail, and Arm of the Adjudicator will be vulnerable to attack. However, only one of the parts will temporarily down him: the one with the Glowing Core.",
@@ -46,8 +46,8 @@
         },
         {
             "Name": "Sabotender Emperatriz",
-            "TLDR": "Make sure to kill the Sabotender Guardia right away so you can attack the boss to cancel 100,000 Needles.",
-            "KeyMechanics": [
+            "StrategyShort": "Make sure to kill the Sabotender Guardia right away so you can attack the boss to cancel 100,000 Needles.",
+            "Mechanics": [
                 {
                     "Name": "100,000 Needles",
                     "Description": "Long cast time that is only interupted through damage. If not interupted, instant wipe. Burn the boss ASAP to prevent this. Be sure to kill the tethered Sabotender Guardia so you can cancel this skill.",
@@ -67,8 +67,8 @@
         },
         {
             "Name": "Vicegerent To The Warden",
-            "TLDR": "If the tank gets Mummified, the boss will pick a new target until they are unmummified.\n\nAnyone who gets mummified will have to wait until the next round of Mummy Walls, which can take quite a while.\n\nThink of the room as a 3x3 rectangle to figure out where to move for the Mummy Walls.",
-            "KeyMechanics": [
+            "StrategyShort": "If the tank gets Mummified, the boss will pick a new target until they are unmummified.\n\nAnyone who gets mummified will have to wait until the next round of Mummy Walls, which can take quite a while.\n\nThink of the room as a 3x3 rectangle to figure out where to move for the Mummy Walls.",
+            "Mechanics": [
                 {
                     "Name": "Curse of the Mummy",
                     "Description": "A stacking debuff applied through most of the abilities used by the boss. Reaching a stack of 4 will Mummify you.",

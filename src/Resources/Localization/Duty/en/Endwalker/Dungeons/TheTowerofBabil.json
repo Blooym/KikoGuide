@@ -11,7 +11,7 @@
         {
             "Name": "Minduruva",
             "Strategy": "After displaying her mechanics this boss will mark areas in the arena from which her further mechanics will go off.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Manusya Bio",
                     "Description": "Tankbuster and damage over time. Can be dispelled with Esuna.",
@@ -47,7 +47,7 @@
         {
             "Name": "Sanduruva",
             "Strategy": "Avoid AoEs as possible. When the boss casts Manusya Stop, spread out around her because each player will be unable to move while she casts her AoE. When she summons her mirror images run to the one that isn't moving at all.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Isitva Siddhi",
                     "Description": "Tankbuster.",
@@ -83,7 +83,7 @@
         {
             "Name": "The Magus Sisters",
             "Strategy": "Kill Cinduruva first, as she can revive her sisters. The boss alternates between Delta Attack, which makes Minduruva's mechanics going off from all 3 sisters in a slightly altered version and the 3 sisters casting some of her base mechanics individually.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Samsara",
                     "Description": "Unavoidable raidwide damage.",

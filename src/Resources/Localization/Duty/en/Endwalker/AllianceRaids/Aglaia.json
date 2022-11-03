@@ -10,7 +10,7 @@
 		{
 			"Name": "Byregot",
 			"Strategy": "This fight consists of two separate, alternating phases. \n\nIn the first phase the arena has a square shape, and the boss will mostly do AoE type attacks. You cannot fall off during this phase. \n\nIn the second phase the arena transforms into a 3x5 grid of blocks without a fence, so players can fall off. Byregot will summon hammers at the sides of the arena in regular intervals which knock away the floor blocks by 1 tile after 15 seconds. This will always happen shortly before other mechanics go off. \nMake sure not to stand on a tile that will be knocked away, or else you will lose your footing and fall to your death.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Byregot's Ward",
 					"Description": "Tankbuster.",
@@ -51,7 +51,7 @@
 		{
 			"Name": "Rhalgr's Emissary",
 			"Strategy": "Rhalgr's Emissary is a simple miniboss with a small amount of AoE type mechanics.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Destructive Strike",
 					"Description": "Cleave & Tankbuster",
@@ -82,7 +82,7 @@
 		{
 			"Name": "Rhalgr",
 			"Strategy": "The main themes of this fight are paying attention to the rings floating around the boss, which are portals for his punches, as well as avoiding to get knocked off the platform.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Lightning Reign",
 					"Description": "Unavoidable raidwide damage.",
@@ -118,7 +118,7 @@
 		{
 			"Name": "Lion & Lioness of Aglaia",
 			"Strategy": "The main strategy for these minibosses is to kill one of them as fast as possible to massively simplify the mechanics. Typically the lion is killed first, to allow for full melee uptime.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Double Immolation",
 					"Description": "Unavoidable raidwide damage.",
@@ -154,7 +154,7 @@
 		{
 			"Name": "Azeyma",
 			"Strategy": "In this fight you will have to react to lots of visual cues like mirror images of Azeyma to predict very briefly announced AoEs.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Warden's Warmth",
 					"Description": "Tankbuster on all 3 tanks.",
@@ -200,7 +200,7 @@
 		{
 			"Name": "Nald'thal",
 			"Strategy": "The main gimmick of this fight is that the boss will switch between his Nald and Thal faces to alternate his mechanics.\nOrange mechanics will go off when Nald's face is active, the floating chandelier-shaped objects and the skybox are glowing orange. Blue mechanics will go off when Thal's face is active, the floating chandelier-shaped objects and the skybox are glowing blue.",
-			"KeyMechanics": [
+			"Mechanics": [
 				{
 					"Name": "Golden Tenet",
 					"Description": "Stack tankbuster.",

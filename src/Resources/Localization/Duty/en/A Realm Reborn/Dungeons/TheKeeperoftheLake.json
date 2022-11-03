@@ -10,8 +10,8 @@
     "Bosses": [
         {
             "Name": "Einhander",
-            "TLDR": "Make sure to tank the boss pointing away from the party and avoid bombs AOE by standing in the gaps",
-            "KeyMechanics": [
+            "StrategyShort": "Make sure to tank the boss pointing away from the party and avoid bombs AOE by standing in the gaps",
+            "Mechanics": [
                 {
                     "Name": "Resounding Screech",
                     "Description": "Summons a group of kin carrying bombs for large scale AOE damage\n\nThe first time, the bombs will be dropped and Mark XLI Quick-Firing Cannon will ignite the first two, stand to one side of the arena away from the two bombs while these two explode, the remaining will then be ignited at which point move to the very edge where one of the first two bombs was.\n\nThe following times the bombs will be dropped with some missing and ignited with Mark XLI Quick-Firing Cannon which will be a raidwide AOE originating in the centre igniting all bombs at once, move to the edge where the missing bombs are to avoid the AOE",
@@ -36,8 +36,8 @@
         },
         {
             "Name": "Magitek Gunship",
-            "TLDR": "Tanks should keep the boss facing away at all times and be sure to not run back into the Flamethrower too early.\nAvoid straight-line AOE down arena centre.",
-            "KeyMechanics": [
+            "StrategyShort": "Tanks should keep the boss facing away at all times and be sure to not run back into the Flamethrower too early.\nAvoid straight-line AOE down arena centre.",
+            "Mechanics": [
                 {
                     "Name": "Flamethrower",
                     "Description": "This attack hits directly in front of the boss in a large cone and is continuous for a few seconds - tanks should keep the boss facing away from the group AND be sure not to run back into the attack too soon.",
@@ -62,8 +62,8 @@
         },
         {
             "Name": "Midgardsomr",
-            "TLDR": "Watch and act quickly to avoid the various types of AOE's\nMake sure to watch the position of the Phantom Kin\nEnsure the Mirage Dragons are killed ASAP to avoid wiping with the following Animadversion\nStay on the stack marker for 4 hits",
-            "KeyMechanics": [
+            "StrategyShort": "Watch and act quickly to avoid the various types of AOE's\nMake sure to watch the position of the Phantom Kin\nEnsure the Mirage Dragons are killed ASAP to avoid wiping with the following Animadversion\nStay on the stack marker for 4 hits",
+            "Mechanics": [
                 {
                     "Name": "Admonishment",
                     "Description": "This is a large column AOE down the center of the arena which can be avoided",

@@ -11,7 +11,7 @@
         {
             "Name": "Barnabas",
             "Strategy": "This fight revolves around reacting to several magnetism mechanics. As always with these: Same polarities push each other away, opposite polarities attract each other. Move accordingly to not get pushed or pulled into mechanics.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Ground and Pound",
                     "Description": "Line AoE at a random player.",
@@ -42,7 +42,7 @@
         {
             "Name": "Lugae",
             "Strategy": "Lugar's mechanics are mostly different AoEs, as well as two mechanics that revolve around the coloured panels on the floor close to the middle of the arena. \nThe green field turns players into toads, while the purple field shrinks players. Turn into a toad when the room gets flooded and shrink yourself when he summons chakrams on the edge of the arena.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Thermal Suppression",
                     "Description": "Unavoidable raidwide damage.",
@@ -78,7 +78,7 @@
         {
             "Name": "Anima",
             "Strategy": "The fight consists of a couple AoE focused mechanics, an intermission phase that is also a DPS check, and the final phase that simply loops the first phase indefinitely.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Lunar Nail",
                     "Description": "Nails will drop in the middle and around the edges of the arena, dividing it into 4 quadrants.",

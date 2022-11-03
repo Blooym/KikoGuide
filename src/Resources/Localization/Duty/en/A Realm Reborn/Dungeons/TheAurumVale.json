@@ -11,8 +11,8 @@
         {
             "Name": "Locksmith",
             "Strategy": "Morbol Fruit will grow along the sides of the arena. Locksmith will cast a Gold Lung debuff on the party that can't be cleansed by Esuna. To remove the debuff, players will need to click on the Morbol Fruit to interact with the item and remove the debuff. Players should never have more than 2 stacks of Gold Lung. After interacting with a fruit, it will disappear. The Morbol Fruits will respawn over time. Tanks may have to stun Locksmith when before interacting with Morbol Fruit to avoid being interrupted.",
-            "TLDR": "Eat Morbol Fruit to remove the Gold Lung debuff at 2 stacks. Tanks should stun Locksmith before interacting with Morbol Fruit",
-            "KeyMechanics": [
+            "StrategyShort": "Eat Morbol Fruit to remove the Gold Lung debuff at 2 stacks. Tanks should stun Locksmith before interacting with Morbol Fruit",
+            "Mechanics": [
                 {
                     "Name": "Hundred Lashings",
                     "Description": "Melee attack that deals a high amount of damage",
@@ -33,8 +33,8 @@
         {
             "Name": "Coincounter",
             "Strategy": "Coincounter is a giant cyclops that has powerful front AoE attacks, swipe cleave abilities, and a room-wide lightningg mechanic. All non-tank players should stay away from the front of the boss at all times- Coincounter has 2 types of 100-Tonze Swipe cleaves: The first type can be identified when he holds his mace with only 1 of his hands. This is a frontal cone AoE attack.\n\nThe second type can be identified when he holds his mace with 2 of his hands. This is a circular AoE attack that does an enormous amount of damage to all targets around him. 100-Tonze swipe attack can be stunned or interrupted.\n\nAt about half HP, Coincounter will start using Eye of the Beholder, a long range, frontal cone, AoE spell. Ranged damage dealers and healers should spread apart and avoid his Glower and Eye of the Beholder abilities if possible.",
-            "TLDR": "Avoid the front of Coincounter and ranged DPS and healers should spread apart to avoid his Glower and Eye of the Beholder abilities",
-            "KeyMechanics": [
+            "StrategyShort": "Avoid the front of Coincounter and ranged DPS and healers should spread apart to avoid his Glower and Eye of the Beholder abilities",
+            "Mechanics": [
                 {
                     "Name": "10-Tonze Swipe",
                     "Description": "Instant front cleave",
@@ -64,7 +64,7 @@
         {
             "Name": "Miser's Mistress",
             "Strategy": "Miser's Mistress has powerful frontal AoE attacks and should faced away from all non-tank players. Similar to Locksmith, there are objects named Morbol Fruit around the boss room. Players can consume the fruit to remove all the stacks of the debuff \"Burrs\" on them. Players should consume the fruit at 2-3 Burrs stacks.\n\nAdds:\nAt 50%% HP, Miser's Mistress will spawn 5 strange Morbol Fruits that must be destroyed immediately. Use a physical ranged or caster limit break if needed. Any fruits that hatch will turn into Morbol Seedlings that will add Burr debuff stacks with every attack.\n\nPlayers can also use Morbol fruit to remove the debuffs given when hit with \"Bad Breath\"",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Bad Breath",
                     "Description": "Frontal cone AoE spell that inflicts the debuffs Paralysis, Silence, Poison, Blind, Slow, Heavy, HP Penalty, and Determination Down to all targets hit",

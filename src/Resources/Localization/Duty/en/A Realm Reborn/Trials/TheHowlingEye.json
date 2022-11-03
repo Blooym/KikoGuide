@@ -11,7 +11,7 @@
         {
             "Name": "Garuda",
             "Strategy": "In the first phase, tank should pull Garuda to 1 edge of the boss room, away from the stone pillars. Ranged damage dealers and healers should spread out a bit to minimize the damage taken from Friction. While Slipstream does not have an indicator, it can still be dodged. Players should not let Garuda damage the stone pillars with her Friction and Wicked Wheel abilities.\n\nAt about 75%% HP, Garuda will disappear for a few seconds. After re-appearing she will begin to cast Mistral Song. Get behind stone pillars and get out of her line of sight immediately. Anyone in her line of sight will be killed by the Mistral Song.\n\nAfter using Mistral Song, Garuda will spawn a group of adds named Razor Plumes. These adds will attempt to destroy the stone pillars. Pull DPS off of Garuda immediately to kill the adds. Use AoE abilities if possible.\n\nAt around half HP, Garuda will disappear again and re-appear on the other side of the map to use Mistral Song again. After using Mistral Song, Garuda will spawn another group of Razor Plume adds. This time the adds are scattered at the sides of the boss room. Focus fire them down one by one.\n\nAfter a bit, Garuda will vanish again and re-appear in the center of the room. She will then use her signature ability Aerial Blast. The amount of damage depends on the number of rocks that are still alive.",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Slipstream",
                     "Description": "Untelegraphed line AOE that inflicts the Stun debuff on anyone hit.",
@@ -47,7 +47,7 @@
         {
             "Name": "Garuda Phase 2",
             "Strategy": "Garuda Phase 2 begins after Garuda casts Aerial blast, she will then cast Eye of the storm, players must avoid touching the walls. Apart from this garuda will repeat all moves in phase 1 with the exception of Aerial Blast and Mistral Song. ",
-            "KeyMechanics": [
+            "Mechanics": [
                 {
                     "Name": "Eye of the Storm",
                     "Description": "Garuda will move to the centre of the arena and cast this creating a tornado that will surround the arena making it much smaller.",
