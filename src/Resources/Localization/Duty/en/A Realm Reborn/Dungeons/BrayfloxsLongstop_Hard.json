@@ -1,78 +1,99 @@
 {
-    "Version": 0,
+    "Version": 1,
     "Name": "Brayflox's Longstop",
     "Difficulty": 1,
     "Type": 0,
     "Expansion": 0,
     "Level": 50,
     "UnlockQuestID": 66947,
-    "TerritoryID": 362,
-    "Bosses": [
+    "TerritoryID": [362],
+    "Sections": [
         {
+            "Type": 0,
             "Name": "Illuminati Commander",
-            "TLDR": "Tanks can pick up the Illuminati Snipers by walking through the tethers.\n\nKeep an eye on where you're standing so you aren't boxed in by Bombs.",
-            "KeyMechanics": [
+            "Phases": [
                 {
-                    "Name": "Goblin Rush",
-                    "Description": "Tankbuster",
-                    "Type": 0
-                },
-                {
-                    "Name": "Illuminati Sniper",
-                    "Description": "Tethers to a random player and shoots them until it dies. If the player dies, will pick a new target. Walking through the tether will cause it to change targets, allowing the tank to pick up the adds. Spawns additional adds as the fight progresses.",
-                    "Type": 7
-                },
-                {
-                    "Name": "Bombs",
-                    "Description": "Spawns a bomb on the ground somewhere in the arena. Makes a cross shape with 2 long thin line AoEs. Spawns multiple of these at once, with more the longer the fight goes on.",
-                    "Type": 2
+                    "Title": "Phase 1",
+                    "Strategy": "Tanks can pick up the Illuminati Snipers by walking through the tethers.\n\nKeep an eye on where you're standing so you aren't boxed in by Bombs.",
+                    "StrategyShort": "FILL LATER",
+                    "KeyMechanics": [
+                        {
+                            "Name": "Goblin Rush",
+                            "Description": "Tankbuster",
+                            "Type": 0
+                        },
+                        {
+                            "Name": "Illuminati Sniper",
+                            "Description": "Tethers to a random player and shoots them until it dies. If the player dies, will pick a new target. Walking through the tether will cause it to change targets, allowing the tank to pick up the adds. Spawns additional adds as the fight progresses.",
+                            "Type": 7
+                        },
+                        {
+                            "Name": "Bombs",
+                            "Description": "Spawns a bomb on the ground somewhere in the arena. Makes a cross shape with 2 long thin line AoEs. Spawns multiple of these at once, with more the longer the fight goes on.",
+                            "Type": 2
+                        }
+                    ]    
                 }
             ]
         },
         {
+            "Type": 0,
             "Name": "Magitek Vangob G-III",
-            "TLDR": "Any Ceruleum Puddles that overlap will be affected by Oversurge, so avoid standing in them.\n\nKill the Gliders quickly to lower the damage done by Needle Burst.",
-            "KeyMechanics": [
+            "Phases": [
                 {
-                    "Name": "Drill Cannons",
-                    "Description": "Frontal line AoE.",
-                    "Type": 2
-                },
-                {
-                    "Name": "Illuminati Glider",
-                    "Description": "Spawns throughout the fight. Has low health, very easy to burn down. Remaining HP affects the damage of Needle Burst.",
-                    "Type": 7
-                },
-                {
-                    "Name": "Ceruleum Puddles / Oversurge",
-                    "Description": "Ceruleum Puddles dropped periodically throughout the fight. Will explode when the boss uses Oversurge while standing in them, and the puddles will chain together.",
-                    "Type": 2
+                    "Title": "Phase 1",
+                    "Strategy": "Any Ceruleum Puddles that overlap will be affected by Oversurge, so avoid standing in them.\n\nKill the Gliders quickly to lower the damage done by Needle Burst.",
+                    "StrategyShort": "FILL LATER",
+                    "KeyMechanics": [
+                        {
+                            "Name": "Drill Cannons",
+                            "Description": "Frontal line AoE.",
+                            "Type": 2
+                        },
+                        {
+                            "Name": "Illuminati Glider",
+                            "Description": "Spawns throughout the fight. Has low health, very easy to burn down. Remaining HP affects the damage of Needle Burst.",
+                            "Type": 7
+                        },
+                        {
+                            "Name": "Ceruleum Puddles / Oversurge",
+                            "Description": "Ceruleum Puddles dropped periodically throughout the fight. Will explode when the boss uses Oversurge while standing in them, and the puddles will chain together.",
+                            "Type": 2
+                        }
+                    ]    
                 }
             ]
         },
         {
+            "Type": 0,
             "Name": "Gobmachine G-VI",
-            "TLDR": "Use various AoE abilities to knockback the Bombs during Laps.\n\nKeep an eye on the boss during Giant Bomb so that you know when he is about to charge across the arena.\n\nDPS may opt to LB the Giant Bomb if damage is low or they just want to finish it off quickly.",
-            "KeyMechanics": [
+            "Phases": [
                 {
-                    "Name": "Laps",
-                    "Description": "The boss will become untargetable and begin making laps around the edge of the arena. Standing in its path will cause the player to take moderate damage and be knocked away.",
-                    "Type": 2
-                },
-                {
-                    "Name": "Adds",
-                    "Description": "Spawn during Laps.\n\nIlluminati Sniper\n\tTethers to a random player, same as the first boss.\nIlluminati Soldier\n\tAttacks players and can be aggroed.",
-                    "Type": 7
-                },
-                {
-                    "Name": "Bombs",
-                    "Description": "Spawn during Laps. Numerous targetable bombs are dropped all around the room. Any damage dealt to them will knock them away from the player. Players should stack in the middle and use various AoEs (both oGCD and GCD) to knock them to the edges of the arena.",
-                    "Type": 2
-                },
-                {
-                    "Name": "Giant Bomb",
-                    "Description": "Spawns towards the end of the fight, after players have dealt with Bombs. During this time, the boss will stop and charge across the center of the arena, dealing damage and knocking players back. Players need to kill the bomb before it explodes; if they fail to do so, the group will wipe.",
-                    "Type": 8
+                    "Title": "Phase 1",
+                    "Strategy": "Use various AoE abilities to knockback the Bombs during Laps.\n\nKeep an eye on the boss during Giant Bomb so that you know when he is about to charge across the arena.\n\nDPS may opt to LB the Giant Bomb if damage is low or they just want to finish it off quickly.",
+                    "StrategyShort": "FILL LATER",
+                    "KeyMechanics": [
+                        {
+                            "Name": "Laps",
+                            "Description": "The boss will become untargetable and begin making laps around the edge of the arena. Standing in its path will cause the player to take moderate damage and be knocked away.",
+                            "Type": 2
+                        },
+                        {
+                            "Name": "Adds",
+                            "Description": "Spawn during Laps.\n\nIlluminati Sniper\n\tTethers to a random player, same as the first boss.\nIlluminati Soldier\n\tAttacks players and can be aggroed.",
+                            "Type": 7
+                        },
+                        {
+                            "Name": "Bombs",
+                            "Description": "Spawn during Laps. Numerous targetable bombs are dropped all around the room. Any damage dealt to them will knock them away from the player. Players should stack in the middle and use various AoEs (both oGCD and GCD) to knock them to the edges of the arena.",
+                            "Type": 2
+                        },
+                        {
+                            "Name": "Giant Bomb",
+                            "Description": "Spawns towards the end of the fight, after players have dealt with Bombs. During this time, the boss will stop and charge across the center of the arena, dealing damage and knocking players back. Players need to kill the bomb before it explodes; if they fail to do so, the group will wipe.",
+                            "Type": 8
+                        }
+                    ]    
                 }
             ]
         }

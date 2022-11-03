@@ -32,9 +32,11 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
                 else dutyList = dutyPool;
 
                 // If there are no duties found, display a message and return.
-                if (dutyList.Count() == 0) { ImGui.TextDisabled(TStrings.DutyListNoneFound); return; }
-
-                var playerDuty = DutyManager.GetPlayerDuty();
+                if (dutyList.Count() == 0)
+                {
+                    ImGui.TextDisabled(TStrings.DutyListNoneFound);
+                    return;
+                }
 
                 // Create a table for each duty, containing its level and name.
                 if (ImGui.BeginTable("DutyList", 2, ImGuiTableFlags.ScrollY))
@@ -58,14 +60,14 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
                         ImGui.TableNextColumn();
 
                         // If this duty does not have any data or is unsupported, draw it as such and move on.
-                        if (!_hasDutyData(duty)) { NoDataDuty(duty.GetCanonicalName()); continue; }
+                        if (!_presenter.HasDutyData(duty)) { NoDataDuty(duty.GetCanonicalName()); continue; }
                         if (!duty.IsSupported()) { UnsupportedDuty(duty.GetCanonicalName()); continue; }
 
                         // Draw a selectable text for this duty and trigger the onDutySelected event when clicked.
                         if (ImGui.Selectable(duty.GetCanonicalName(), false, ImGuiSelectableFlags.AllowDoubleClick)) onDutySelected(duty);
 
                         // If the player is inside this duty, add some text next to it.
-                        if (duty == playerDuty) Badges.Custom(Colours.Green, TStrings.InDuty);
+                        if (duty == _presenter.GetPlayerDuty()) Badges.Custom(Colours.Green, TStrings.InDuty);
                     }
 
                     ImGui.EndTable();
@@ -92,10 +94,5 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
             ImGui.TextColored(Colours.Red, name);
             Badges.Questionmark(TStrings.DutyListNoGuide(name));
         }
-
-        /// <summary>
-        ///     Checks to see if the duty has data that can be displayed.
-        /// </summary>
-        private static bool _hasDutyData(Duty duty) => duty.Sections != null && duty.Sections.Count != 0;
     }
 }

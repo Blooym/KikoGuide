@@ -4,7 +4,6 @@ namespace KikoGuide.UI.Windows.DutyList
 
     sealed public class DutyListPresenter : IDisposable
     {
-        public DutyListPresenter() { }
         public void Dispose() { }
     }
 }
