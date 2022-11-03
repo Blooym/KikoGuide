@@ -12,63 +12,148 @@ using KikoGuide.Base;
 public class Duty
 {
     /// <summary>
-    ///      Internal value representing the version of the duty class, incremented on breaking format changes.
+    ///     The current format version, incremented on breaking changes.
+    ///     When this version does not match a duty, it cannot be loaded.
     /// </summary>
-    private static readonly int _formatVersion = 1;
+    private const int _formatVersion = 1;
 
+    /// <summary>
+    ///     The current duty version.
+    /// </summary>
     public int Version;
+
+    /// <summary>
+    ///     The duty name.
+    /// </summary>
     public string Name = TStrings.TypeDutyUnnamed;
+
+    /// <summary>
+    ///     The duty difficulty level.
+    /// </summary>
     public int Difficulty = (int)DutyDifficulty.Normal;
+
+    /// <summary>
+    ///     The expansion the duty is from.
+    /// </summary>
     public int Expansion = (int)DutyExpansion.ARealmReborn;
+
+    /// <summary>
+    ///     The duty type.
+    /// </summary>
     public int Type = (int)DutyType.Dungeon;
+
+    /// <summary>
+    ///     The duty level.
+    /// </summary>
     public int Level = 0;
+
+    /// <summary>
+    ///     The duty's unlock quest ID.
+    /// </summary>
     public uint UnlockQuestID = 0;
-    public uint TerritoryID = 0;
+
+    /// <summary>
+    ///     The duty's TerritoryID(s).
+    /// </summary>
+    public List<uint> TerritoryIDs = new List<uint>();
+
+    /// <summary>
+    ///     The duty's section data.
+    /// </summary>
     public List<Section>? Sections;
+
+    /// <summary>
+    ///     Represents a section of a duty.
+    /// </summary>
     public class Section
     {
+        /// <summary>
+        ///     The type of section.
+        /// </summary>
         public int Type = (int)DutySectionType.Boss;
+
+        /// <summary>
+        ///     The section's name.
+        /// </summary>
         public string Name = "???";
+
+        /// <summary>
+        ///     The phases that belong to this section.
+        /// </summary>
         public List<Phase>? Phases;
+
+        /// <summary>
+        ///     Represents a phase of a duty.
+        /// </summary>
         public class Phase
         {
+            /// <summary>
+            ///     The title of the phase.
+            /// </summary>
             public string? Title;
+
+            /// <summary>
+            ///     The strategy for the phase.
+            /// </summary>
             public string Strategy = TStrings.TypeDutySectionStrategyNone;
-            public string? TLDR;
+
+            /// <summary>
+            ///     The short strategy for the phase.
+            /// </summary>
+            public string? StrategyShort;
+
+            /// <summary>
+            ///     The phase's associated mechanics.
+            /// </summary>
             public List<Mechanic>? Mechanics;
+
+            /// <summary>
+            ///     Represents a mechanic of a duty.
+            /// </summary>
             public class Mechanic
             {
+                /// <summary>
+                ///     The mechanic's name.
+                /// </summary>
                 public string Name { get; set; } = "???";
-                public string LongDesc { get; set; } = "???";
-                public string ShortDesc { get; set; } = "???";
+
+                /// <summary>
+                ///     The mechanic's description.
+                /// </summary>
+                public string Description { get; set; } = "???";
+
+                /// <summary>
+                ///     The mechanic's short description.
+                /// </summary>
+                public string? ShortDesc { get; set; }
+
+                /// <summary>
+                ///     The type of mechanic.
+                /// </summary>
                 public int Type { get; set; } = (int)DutyMechanics.Other;
             }
         }
     }
 
-
     /// <summary>
     ///     Boolean value indicating if this duty is not supported on the current plugin version.
+    ///     Checks multiple things, such as the format version, invalid enums, etc.
     /// </summary>
     public bool IsSupported()
     {
-        // Check a bunch of things to make sure the duty is supported, like enum values & format version.
         if (this.Version != _formatVersion) return false;
         if (!Enum.IsDefined(typeof(DutyExpansion), this.Expansion)) return false;
         if (!Enum.IsDefined(typeof(DutyType), this.Type)) return false;
         if (!Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)) return false;
         if (this.Sections?.Any(s => s.Phases?.Any(p => p.Mechanics?.Any(m => !Enum.IsDefined(typeof(DutyMechanics), m.Type)) == true) == true) == true) return false;
 
-        // If nothing else returns false, then the duty is supported.
         return true;
     }
-
 
     /// <summary>
     ///     Gets all the given sections for this duty.
     /// </summary>
     public IEnumerable<Section> GetFilteredSections(DutySectionType filter) => this.Sections?.Where(s => s.Type == (int)filter) ?? Enumerable.Empty<Section>();
-
 
     /// <summary>
     ///     Get the canonical name for the duty
@@ -79,7 +164,6 @@ public class Duty
         else return this.Name;
     }
 }
-
 
 public enum DutyType
 {

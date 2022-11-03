@@ -69,35 +69,35 @@ namespace KikoGuide.UI.Windows.Editor
             {
                 presenter.dialogManager.OpenFileDialog(TStrings.OpenFile, ".json", (success, file) => this._inputText = presenter.OnFileSelect(success, file, this._inputText));
             }
-            Tooltips.AddTooltip(TStrings.OpenFile);
+            Common.AddTooltip(TStrings.OpenFile);
             ImGui.SameLine();
 
             if (ImGuiComponents.IconButton(FontAwesomeIcon.Save))
             {
                 presenter.dialogManager.SaveFileDialog(TStrings.SaveFile, ".json", "", ".json", (success, file) => presenter.OnFileSave(success, file, this._inputText));
             }
-            Tooltips.AddTooltip(TStrings.SaveFile);
+            Common.AddTooltip(TStrings.SaveFile);
             ImGui.SameLine();
 
             if (ImGuiComponents.IconButton(FontAwesomeIcon.PaintBrush))
             {
                 this._inputText = presenter.OnFormat(this._inputText);
             }
-            Tooltips.AddTooltip(TStrings.EditorFormat);
+            Common.AddTooltip(TStrings.EditorFormat);
             ImGui.SameLine();
 
             if (ImGuiComponents.IconButton(FontAwesomeIcon.Trash))
             {
                 this._inputText = "";
             }
-            Tooltips.AddTooltip(TStrings.EditorClear);
+            Common.AddTooltip(TStrings.EditorClear);
             ImGui.SameLine();
 
             if (ImGuiComponents.IconButton(FontAwesomeIcon.ExternalLinkAlt))
             {
                 Util.OpenLink($"{PStrings.repoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
             }
-            Tooltips.AddTooltip(TStrings.EditorContributingGuide);
+            Common.AddTooltip(TStrings.EditorContributingGuide);
 
             if (PluginService.Configuration.Display.SupportButtonShown)
             {
@@ -106,7 +106,7 @@ namespace KikoGuide.UI.Windows.Editor
                 {
                     Util.OpenLink(PStrings.supportButtonUrl);
                 }
-                Tooltips.AddTooltip(TStrings.Support);
+                Common.AddTooltip(TStrings.Support);
             }
         }
 
@@ -167,7 +167,7 @@ namespace KikoGuide.UI.Windows.Editor
                         ImGui.TextWrapped($"Difficulty: {Enum.GetName(typeof(DutyDifficulty), duty.Difficulty)}");
                         ImGui.TextWrapped($"Level: {duty.Level}");
                         ImGui.TextWrapped($"Expansion: {Enum.GetName(typeof(DutyExpansion), duty.Expansion)}");
-                        ImGui.TextWrapped($"TerritoryID: {duty.TerritoryID} (Current: {PluginService.ClientState.TerritoryType})");
+                        ImGui.TextWrapped($"TerritoryID: {duty.TerritoryIDs} (Current: {PluginService.ClientState.TerritoryType})");
                         ImGui.TextWrapped($"UnlockQuestID: {duty.UnlockQuestID}");
                     }
 

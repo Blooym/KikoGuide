@@ -20,12 +20,10 @@ namespace KikoGuide.Managers
         /// </summary>
         private static List<Duty>? _loadedDuties;
 
-
         /// <summary> 
         ///    Clears the loaded duties cache and forces a re-read of the files.
         /// </summary>
         public static void ClearCache() => _loadedDuties = null;
-
 
         /// <summary>
         ///     Fetches all duties from the cache or from the files if the cache is empty.
@@ -36,19 +34,16 @@ namespace KikoGuide.Managers
             return LoadDutyData();
         }
 
-
         /// <summary>
         ///     Get the duty the player is currently inside of, if any.
         /// </summary>
-        public static Duty? GetPlayerDuty() => GetDuties().Find(x => PluginService.ClientState.TerritoryType == x.TerritoryID);
-
+        public static Duty? GetPlayerDuty() => GetDuties().Find(duty => duty.TerritoryIDs.Contains(PluginService.ClientState.TerritoryType));
 
         /// <summary>
         ///     Get if the player has unlocked the given duty or not.
         /// </summary>
         /// <param name="duty">The duty to check </param>
         public static bool IsUnlocked(Duty duty) => duty.UnlockQuestID != 0 && QuestManager.IsQuestCurrent(duty.UnlockQuestID) || QuestManager.IsQuestComplete(duty.UnlockQuestID);
-
 
         /// <summary> 
         ///     Desearializes duties from the duty data folder into the Duty type.

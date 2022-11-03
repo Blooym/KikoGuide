@@ -20,11 +20,8 @@ namespace KikoGuide.Managers
         private bool _initialized = false;
         internal bool? lastUpdateSuccess;
         internal bool updateInProgress;
-
-
         internal event ResourceUpdateDelegate? ResourcesUpdated;
         internal delegate void ResourceUpdateDelegate();
-
 
         /// <summary> 
         ///     Initializes the ResourceManager and associated resources. 
@@ -40,7 +37,6 @@ namespace KikoGuide.Managers
             PluginLog.Debug("ResourceManager(ResourceManager): Initialization complete.");
         }
 
-
         /// <summary> 
         ///     Disposes of the ResourceManager and associated resources.
         /// </summary>
@@ -53,7 +49,6 @@ namespace KikoGuide.Managers
 
             PluginLog.Debug("ResourceManager(Dispose): Successfully disposed.");
         }
-
 
         /// <summary> 
         ///     Downloads the repository from GitHub and extracts the resource data into the plugin's directory.
@@ -103,7 +98,6 @@ namespace KikoGuide.Managers
             }).Start();
         }
 
-
         /// <summary>
         ///     Handles the OnResourceUpdate event.
         /// </summary>
@@ -117,7 +111,6 @@ namespace KikoGuide.Managers
 
             Setup(PluginService.PluginInterface.UiLanguage);
         }
-
 
         /// <summary>
         ///     Sets up the plugin's resources.

@@ -24,7 +24,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyInfo
                 var disabledMechanics = PluginService.Configuration?.Display?.DisabledMechanics;
                 var shortMode = PluginService.Configuration?.Accessiblity.ShortenGuideText ?? false;
 
-                if (shortMode == true && phase.TLDR != null) ImGui.TextWrapped(phase.TLDR);
+                if (shortMode == true && phase.StrategyShort != null) ImGui.TextWrapped(phase.StrategyShort);
                 else ImGui.TextWrapped(phase.Strategy);
                 ImGui.NewLine();
 
@@ -45,7 +45,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyInfo
                     ImGui.Text(mechanic.Name);
                     ImGui.TableNextColumn();
                     if (shortMode == true && mechanic.ShortDesc != null) ImGui.TextWrapped(mechanic.ShortDesc);
-                    else ImGui.TextWrapped(mechanic.LongDesc);
+                    else ImGui.TextWrapped(mechanic.Description);
                     ImGui.TableNextColumn();
                     ImGui.Text(Enum.GetName(typeof(DutyMechanics), mechanic.Type));
                 }

@@ -55,7 +55,7 @@ namespace KikoGuide.UI.Windows.Settings
                        PluginService.Configuration.Display.AutoToggleGuideForDuty = !autoOpenDuty;
                        PluginService.Configuration.Save();
                    });
-                    Tooltips.AddTooltip(TStrings.SettingsAutoOpenInDutyTooltip);
+                    Common.AddTooltip(TStrings.SettingsAutoOpenInDutyTooltip);
 
 
                     // Short mode setting.
@@ -64,7 +64,7 @@ namespace KikoGuide.UI.Windows.Settings
                         PluginService.Configuration.Accessiblity.ShortenGuideText = !shortenStrategies;
                         PluginService.Configuration.Save();
                     });
-                    Tooltips.AddTooltip(TStrings.SettingsShortModeTooltip);
+                    Common.AddTooltip(TStrings.SettingsShortModeTooltip);
 
 
                     // Support button setting.
@@ -73,7 +73,7 @@ namespace KikoGuide.UI.Windows.Settings
                         PluginService.Configuration.Display.SupportButtonShown = !supportButtonShown;
                         PluginService.Configuration.Save();
                     });
-                    Tooltips.AddTooltip(TStrings.SettingsShowSupportButtonTooltip);
+                    Common.AddTooltip(TStrings.SettingsShowSupportButtonTooltip);
 
 
                     // Update resources / localizable button.
@@ -117,7 +117,7 @@ namespace KikoGuide.UI.Windows.Settings
                             PluginService.Configuration.Save();
                         });
 
-                        Tooltips.AddTooltip(TStrings.SettingsHideMechanicTooltip(Enum.GetName(typeof(DutyMechanics), mechanic)));
+                        Common.AddTooltip(TStrings.SettingsHideMechanicTooltip(Enum.GetName(typeof(DutyMechanics), mechanic)));
 
                         ImGui.NextColumn();
                     }
@@ -155,7 +155,7 @@ namespace KikoGuide.UI.Windows.Settings
                             }
                             PluginService.Configuration.Save();
                         });
-                        Tooltips.AddTooltip(tooltip);
+                        Common.AddTooltip(tooltip);
                     }
 
                     ImGui.EndTabItem();

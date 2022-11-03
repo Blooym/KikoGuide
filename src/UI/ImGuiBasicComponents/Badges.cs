@@ -11,19 +11,25 @@ namespace KikoGuide.UI.ImGuiBasicComponents
         /// <summary>
         ///     Draws a custom badge with the given colour, text and optional tooltip on the same line.
         /// </summary>
-        public static void Custom(Vector4 colour, string tagText, string? tooltipText = null)
+        /// <param name="colour"> The colour of the badge. </param>
+        /// <param name="tag"> The text to show on the badge. </param>
+        /// <param name="tooltip"> The tooltip to show on hover if set. </param>
+        public static void Custom(Vector4 colour, string tag, string? tooltip = null)
         {
             ImGui.SameLine();
-            ImGui.TextColored(colour, tagText);
-            if (tooltipText != null) Tooltips.AddTooltip(tooltipText);
+            ImGui.TextColored(colour, tag);
+            if (tooltip != null) Common.AddTooltip(tooltip);
         }
 
-        /// <summary> Draws a ? that when hovering will show the given text as a tooltip on the same line. </summary>
-        public static void Questionmark(string text)
+        /// <summary> 
+        ///     Draws a [?] box, hovering will show a tooltip with the given text.
+        /// </summary>
+        /// <param name="tooltip"> The tooltip to show on hover. </param>
+        public static void Questionmark(string tooltip)
         {
             ImGui.SameLine();
             ImGui.TextColored(Colours.Grey, "[?]");
-            Tooltips.AddTooltip(text);
+            Common.AddTooltip(tooltip);
         }
     }
 }

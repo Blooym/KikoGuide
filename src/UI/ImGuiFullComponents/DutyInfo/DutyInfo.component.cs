@@ -3,6 +3,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyInfo
     using System;
     using System.Linq;
     using ImGuiNET;
+    using KikoGuide.Base;
     using KikoGuide.Types;
     using KikoGuide.UI.ImGuiBasicComponents;
 
@@ -11,6 +12,8 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyInfo
     /// </summary>
     static class DutyInfoComponent
     {
+        private static DutyInfoPresenter _presenter = new DutyInfoPresenter();
+
         /// <summary> 
         ///     Draws the duty info window.
         /// </summary>
@@ -19,7 +22,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyInfo
         {
             try
             {
-                DutyHeadingComponent.Draw(duty);
+                Common.TextHeading(TStrings.DutyHeadingTitle(duty.GetCanonicalName()));
 
                 if (ImGui.BeginTabBar("#Bosses", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton | ImGuiTabBarFlags.NoTabListScrollingButtons))
                 {

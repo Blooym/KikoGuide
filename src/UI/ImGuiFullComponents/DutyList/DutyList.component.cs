@@ -14,6 +14,8 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
     /// </summary>
     public static class DutyListComponent
     {
+        private static DutyListPresenter _presenter = new DutyListPresenter();
+
         /// <summary>
         ///     Draws the duty list.
         /// </summary>
@@ -56,8 +58,8 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
                         ImGui.TableNextColumn();
 
                         // If this duty does not have any data or is unsupported, draw it as such and move on.
-                        if (!_hasDutyData(duty)) { _noDataDuty(duty.GetCanonicalName()); continue; }
-                        if (!duty.IsSupported()) { _unsupportedDuty(duty.GetCanonicalName()); continue; }
+                        if (!_hasDutyData(duty)) { NoDataDuty(duty.GetCanonicalName()); continue; }
+                        if (!duty.IsSupported()) { UnsupportedDuty(duty.GetCanonicalName()); continue; }
 
                         // Draw a selectable text for this duty and trigger the onDutySelected event when clicked.
                         if (ImGui.Selectable(duty.GetCanonicalName(), false, ImGuiSelectableFlags.AllowDoubleClick)) onDutySelected(duty);
@@ -76,7 +78,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
         /// <summary>
         ///     Draws an unsupported duty in the list.
         /// </summary>
-        private static void _unsupportedDuty(string name)
+        private static void UnsupportedDuty(string name)
         {
             ImGui.TextDisabled(name);
             Badges.Questionmark(TStrings.DutyListNeedsUpdate);
@@ -85,7 +87,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
         /// <summary>
         ///     Draws a duty with no data.
         /// </summary>
-        private static void _noDataDuty(string name)
+        private static void NoDataDuty(string name)
         {
             ImGui.TextColored(Colours.Red, name);
             Badges.Questionmark(TStrings.DutyListNoGuide(name));
