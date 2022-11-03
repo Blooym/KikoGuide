@@ -25,7 +25,7 @@ namespace KikoGuide.UI.Windows.Settings
             Loc.ExportLocalizable();
             File.Copy(Path.Combine(path, "KikoGuide_Localizable.json"), Path.Combine(path, "en.json"), true);
             Directory.SetCurrentDirectory(directory);
-            PluginService.PluginInterface.UiBuilder.AddNotification("Localization exported successfully.", PStrings.pluginName, NotificationType.Success);
+            PluginService.PluginInterface.UiBuilder.AddNotification("Localization exported successfully.", PluginConstants.pluginName, NotificationType.Success);
         }
 #endif
     }

@@ -41,7 +41,7 @@ namespace KikoGuide.IPC.Providers
             try
             {
                 _wotsitAvailable?.Unsubscribe(Initialize);
-                _wotsitUnregister?.InvokeFunc(PStrings.pluginName);
+                _wotsitUnregister?.InvokeFunc(PluginConstants.pluginName);
             }
             catch { /* Ignore */ }
         }
@@ -69,12 +69,12 @@ namespace KikoGuide.IPC.Providers
 
             foreach (var duty in DutyManager.GetDuties())
             {
-                var guid = _wotsitRegister.InvokeFunc(PStrings.pluginName, $"{duty.GetCanonicalName()}", WotsitIconID);
+                var guid = _wotsitRegister.InvokeFunc(PluginConstants.pluginName, $"{duty.GetCanonicalName()}", WotsitIconID);
                 this._wotsitDutyIpcs.Add(guid, duty);
             }
 
-            this._wotsitOpenListIpc = _wotsitRegister.InvokeFunc(PStrings.pluginName, Loc.Localize("WotsitIPC.OpenDutyFinder", "Open Duty Finder"), WotsitIconID);
-            this._wotsitOpenEditorIpc = _wotsitRegister.InvokeFunc(PStrings.pluginName, Loc.Localize("WotsitIPC.OpenDutyEditor", "Open Duty Editor"), WotsitIconID);
+            this._wotsitOpenListIpc = _wotsitRegister.InvokeFunc(PluginConstants.pluginName, Loc.Localize("WotsitIPC.OpenDutyFinder", "Open Duty Finder"), WotsitIconID);
+            this._wotsitOpenEditorIpc = _wotsitRegister.InvokeFunc(PluginConstants.pluginName, Loc.Localize("WotsitIPC.OpenDutyEditor", "Open Duty Editor"), WotsitIconID);
         }
 
         /// <summary> 

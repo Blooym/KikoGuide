@@ -2,10 +2,10 @@ namespace KikoGuide.UI.Windows.DutyInfo
 {
     using System.Numerics;
     using ImGuiNET;
-    using KikoGuide.Base;
+    using KikoGuide.Localization;
     using KikoGuide.Managers;
-    using System;
     using KikoGuide.UI.ImGuiFullComponents.DutyInfo;
+    using System;
     using Dalamud.Interface.Windowing;
 
 
@@ -30,14 +30,19 @@ namespace KikoGuide.UI.Windows.DutyInfo
         {
             var selectedDuty = presenter.selectedDuty;
 
+            if (selectedDuty == null)
+            {
+                ImGui.TextWrapped(TStrings.DutyInfoNoneSelected);
+                return;
+            }
 
-            if (selectedDuty == null) { ImGui.TextWrapped(TStrings.DutyInfoNoneSelected); return; }
-            if (selectedDuty.Sections == null || selectedDuty.Sections.Count == 0) { ImGui.TextWrapped(TStrings.DutyListNoGuide(selectedDuty.GetCanonicalName())); return; }
-            if (!DutyManager.IsUnlocked(selectedDuty)) { ImGui.TextWrapped(TStrings.DutyInfoNotUnlocked); return; }
+            if (!DutyManager.IsUnlocked(selectedDuty))
+            {
+                ImGui.TextWrapped(TStrings.DutyInfoNotUnlocked);
+                return;
+            }
 
             DutyInfoComponent.Draw(selectedDuty);
-
-            ImGui.End();
         }
     }
 }

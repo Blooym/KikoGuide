@@ -1,9 +1,7 @@
 namespace KikoGuide.UI.ImGuiFullComponents.DutyInfo
 {
     using System;
-    using System.Linq;
     using ImGuiNET;
-    using KikoGuide.Base;
     using KikoGuide.Types;
     using KikoGuide.UI.ImGuiBasicComponents;
 
@@ -22,23 +20,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyInfo
         {
             try
             {
-                Common.TextHeading(TStrings.DutyHeadingTitle(duty.GetCanonicalName()));
-
-                if (ImGui.BeginTabBar("#Bosses", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton | ImGuiTabBarFlags.NoTabListScrollingButtons))
-                {
-                    foreach (var sect in duty.Sections ?? Enumerable.Empty<Duty.Section>())
-                    {
-                        if (ImGui.BeginTabItem(sect.Name))
-                        {
-                            foreach (var phase in sect.Phases ?? Enumerable.Empty<Duty.Section.Phase>())
-                            {
-                                DutyPhaseComponent.Draw(phase);
-                            }
-                            ImGui.EndTabItem();
-                        }
-                    }
-                    ImGui.EndTabBar();
-                }
+                ImGui.TextWrapped("To be implemented :)");
             }
             catch (Exception e) { ImGui.TextColored(Colours.Error, $"Component Exception: {e.Message}"); }
         }

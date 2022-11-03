@@ -4,7 +4,6 @@ namespace KikoGuide.Base
     using Dalamud.Plugin;
     using Dalamud.Logging;
     using Dalamud.Game.ClientState;
-    using Dalamud.Game.ClientState.Conditions;
     using KikoGuide.Managers;
     using KikoGuide.IPC;
 
@@ -17,7 +16,6 @@ namespace KikoGuide.Base
         [PluginService] internal static DalamudPluginInterface PluginInterface { get; private set; }
         [PluginService] internal static Dalamud.Game.Command.CommandManager Commands { get; private set; }
         [PluginService] internal static ClientState ClientState { get; private set; }
-        [PluginService] internal static Condition Condition { get; private set; }
 
         internal static CommandManager CommandManager { get; private set; }
         internal static WindowManager WindowManager { get; private set; }

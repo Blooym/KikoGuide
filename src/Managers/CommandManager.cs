@@ -4,9 +4,10 @@ namespace KikoGuide.Managers
     using Dalamud.Logging;
     using Dalamud.Game.Command;
     using KikoGuide.Base;
+    using KikoGuide.Localization;
+    using KikoGuide.UI.Windows.Editor;
     using KikoGuide.UI.Windows.DutyList;
     using KikoGuide.UI.Windows.DutyInfo;
-    using KikoGuide.UI.Windows.Editor;
     using KikoGuide.UI.Windows.Settings;
 
     /// <summary> 
@@ -24,14 +25,14 @@ namespace KikoGuide.Managers
         /// </summary>
         public CommandManager()
         {
-            PluginLog.Debug("CommandManager(CommandManager): Initializing...");
+            PluginLog.Debug("CommandManager(Constructor): Initializing...");
 
             PluginService.Commands.AddHandler(listCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.DutyListHelp });
             PluginService.Commands.AddHandler(settingsCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.SettingsHelp });
             PluginService.Commands.AddHandler(editorCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.EditorHelp });
             PluginService.Commands.AddHandler(dutyInfoCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.InfoHelp });
 
-            PluginLog.Debug("CommandManager(CommandManager): Initialization complete.");
+            PluginLog.Debug("CommandManager(Constructor): Initialization complete.");
         }
 
         /// <summary>

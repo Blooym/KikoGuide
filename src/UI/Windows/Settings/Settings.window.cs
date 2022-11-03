@@ -6,9 +6,10 @@ namespace KikoGuide.UI.Windows.Settings
     using Dalamud.Interface.Windowing;
     using ImGuiNET;
     using KikoGuide.Base;
-    using KikoGuide.Types;
     using KikoGuide.IPC;
+    using KikoGuide.Types;
     using KikoGuide.Managers;
+    using KikoGuide.Localization;
     using KikoGuide.UI.ImGuiBasicComponents;
 
     sealed public class SettingsWindow : Window, IDisposable
@@ -37,7 +38,6 @@ namespace KikoGuide.UI.Windows.Settings
         /// </summary>
         public override void Draw()
         {
-
             var disabledMechanics = PluginService.Configuration.Display.DisabledMechanics;
             var autoOpenDuty = PluginService.Configuration.Display.AutoToggleGuideForDuty;
             var shortenStrategies = PluginService.Configuration.Accessiblity.ShortenGuideText;
@@ -137,8 +137,8 @@ namespace KikoGuide.UI.Windows.Settings
                     foreach (var integration in Enum.GetValues(typeof(IPCProviders)))
                     {
                         var isIntegrationDisabled = PluginService.Configuration.IPC.EnabledIntegrations.Contains((IPCProviders)integration);
-                        var name = IPCProvider.GetName((IPCProviders)integration);
-                        var tooltip = IPCProvider.GetDescription((IPCProviders)integration);
+                        var name = LoCExtensions.GetLocalizedName((IPCProviders)integration);
+                        var tooltip = LoCExtensions.GetLocalizedDescription((IPCProviders)integration);
 
                         Common.ToggleCheckbox(name, ref isIntegrationDisabled, () =>
                         {

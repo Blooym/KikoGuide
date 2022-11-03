@@ -9,7 +9,7 @@ namespace KikoGuide
         /// <summary> 
         ///     The plugin name, fetched from PStrings.
         /// </summary>
-        public string Name => PStrings.pluginName;
+        public string Name => PluginConstants.pluginName;
 
         /// <summary>
         ///     The plugin's main entry point.

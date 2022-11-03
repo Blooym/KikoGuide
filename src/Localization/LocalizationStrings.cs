@@ -1,53 +1,8 @@
-namespace KikoGuide.Base
+namespace KikoGuide.Localization
 {
     using System;
     using CheapLoc;
-
-    /// <summary> 
-    ///     A collection of read-only strings used by the plugin.
-    /// </summary>
-    sealed internal class PStrings
-    {
-        /// <summary> 
-        ///    This is the name that will be shown in all UI elements, does not change InternalName.
-        /// </summary>
-        internal static readonly string pluginName = "Kiko Guide";
-
-        /// <summary>
-        ///     The repository to linked to this plugin.
-        /// </summary>
-        internal static readonly string repoUrl = "https://github.com/BitsOfAByte/KikoGuide/";
-
-        /// <summary>
-        ///     The production branch of the repository.
-        /// </summary>
-        internal static readonly string repoBranch = "main";
-
-        /// <summary>
-        ///     The resources directory relative to the base of the repository.
-        /// </summary>
-        internal static readonly string repoResourcesDir = "src/Resources/";
-
-        /// <summary>
-        ///     The support button URL.
-        /// </summary>
-        internal static readonly string supportButtonUrl = "https://github.com/sponsors/BitsOfAByte";
-
-        /// <summary>
-        ///     The path to the plugin's resources folder with trailing slashes, relative to the plugin assembly location with trailing slashes.
-        /// </summary>
-        internal static readonly string pluginResourcesDir = $"{PluginService.PluginInterface.AssemblyLocation.DirectoryName}\\Resources\\";
-
-        /// <summary>
-        ///     The path to the plugin's localization folder with trailing slashes.
-        /// </summary>
-        internal static readonly string pluginlocalizationDir = pluginResourcesDir + "Localization\\";
-
-        /// <summary>
-        ///    The fallback language to use if the user's language is not supported for localization (ISO 639-1 code).
-        /// </summary>
-        internal static readonly string fallbackLanguage = "en";
-    }
+    using KikoGuide.Base;
 
     /// <summary> 
     ///     A collection translatable strings.
@@ -69,7 +24,7 @@ namespace KikoGuide.Base
 
 
         // Editor Strings
-        internal static string EditorTitle => String.Format(Loc.Localize("DutyEditor.Title", "{0} - Duty Editor"), PStrings.pluginName);
+        internal static string EditorTitle => String.Format(Loc.Localize("DutyEditor.Title", "{0} - Duty Editor"), PluginConstants.pluginName);
         internal static string EditorFormat => Loc.Localize("Editor.Format", "Format");
         internal static string EditorClear => Loc.Localize("Editor.Clear", "Clear");
         internal static string EditorPreview => Loc.Localize("Editor.Preview", "Preview");
@@ -84,7 +39,7 @@ namespace KikoGuide.Base
 
 
         // Settings Strings
-        internal static string SettingsTitle => String.Format(Loc.Localize("Settings.Title", "{0} - Settings"), PStrings.pluginName);
+        internal static string SettingsTitle => String.Format(Loc.Localize("Settings.Title", "{0} - Settings"), PluginConstants.pluginName);
         internal static string SettingsGeneral => Loc.Localize("Settings.General", "General");
         internal static string SettingsAutoOpenInDuty => Loc.Localize("Settings.AutoOpenInDuty", "Auto Open In Duty");
         internal static string SettingsAutoOpenInDutyTooltip => Loc.Localize("Settings.AutoOpenDuty.Tooltip", "Open the duty guide when entering a duty.");
@@ -106,12 +61,12 @@ namespace KikoGuide.Base
 
 
         // Duty Finder
-        internal static string DutyFinderTitle => String.Format(Loc.Localize("DutyFinder.Title", "{0} - Duty Finder"), PStrings.pluginName);
+        internal static string DutyFinderTitle => String.Format(Loc.Localize("DutyFinder.Title", "{0} - Duty Finder"), PluginConstants.pluginName);
         internal static string DutyFinderContentNotFound => Loc.Localize("DutyFinder.NoFiles", "No duty files detected! Please try Settings -> Update Resources.");
 
 
         // Duty Info
-        internal static string DutyInfoTitle => String.Format(Loc.Localize("DutyInfo.Title", "{0} - Duty Info"), PStrings.pluginName);
+        internal static string DutyInfoTitle => String.Format(Loc.Localize("DutyInfo.Title", "{0} - Duty Info"), PluginConstants.pluginName);
         internal static string DutyInfoNoneSelected => Loc.Localize("DutyInfo.NoDuty", "No duty selected, use /kikolist to see all available duties.");
         internal static string DutyInfoNotUnlocked => Loc.Localize("DutyInfo.NotUnlocked", "You cannot view the guide for this duty as you have not unlocked it yet.");
 

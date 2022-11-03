@@ -1,221 +1,269 @@
-namespace KikoGuide.Types;
-
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using KikoGuide.Base;
-
-
-/// <summary>
-///     Represents an in-game duty.
-/// </summary>
-public class Duty
+namespace KikoGuide.Types
 {
-    /// <summary>
-    ///     The current format version, incremented on breaking changes.
-    ///     When this version does not match a duty, it cannot be loaded.
-    /// </summary>
-    private const int _formatVersion = 1;
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+    using KikoGuide.Localization;
 
     /// <summary>
-    ///     The current duty version.
+    ///     Represents an in-game duty.
     /// </summary>
-    public int Version;
-
-    /// <summary>
-    ///     The duty name.
-    /// </summary>
-    public string Name = TStrings.TypeDutyUnnamed;
-
-    /// <summary>
-    ///     The duty difficulty level.
-    /// </summary>
-    public int Difficulty = (int)DutyDifficulty.Normal;
-
-    /// <summary>
-    ///     The expansion the duty is from.
-    /// </summary>
-    public int Expansion = (int)DutyExpansion.ARealmReborn;
-
-    /// <summary>
-    ///     The duty type.
-    /// </summary>
-    public int Type = (int)DutyType.Dungeon;
-
-    /// <summary>
-    ///     The duty level.
-    /// </summary>
-    public int Level = 0;
-
-    /// <summary>
-    ///     The duty's unlock quest ID.
-    /// </summary>
-    public uint UnlockQuestID = 0;
-
-    /// <summary>
-    ///     The duty's TerritoryID(s).
-    /// </summary>
-    public List<uint> TerritoryIDs = new List<uint>();
-
-    /// <summary>
-    ///     The duty's section data.
-    /// </summary>
-    public List<Section>? Sections;
-
-    /// <summary>
-    ///     Represents a section of a duty.
-    /// </summary>
-    public class Section
+    public class Duty
     {
         /// <summary>
-        ///     The type of section.
+        ///     The current format version, incremented on breaking changes.
+        ///     When this version does not match a duty, it cannot be loaded.
         /// </summary>
-        public int Type = (int)DutySectionType.Boss;
+        private const int _formatVersion = 1;
 
         /// <summary>
-        ///     The section's name.
+        ///     The current duty version.
         /// </summary>
-        public string Name = "???";
+        public int Version;
 
         /// <summary>
-        ///     The phases that belong to this section.
+        ///     The duty name.
         /// </summary>
-        public List<Phase>? Phases;
+        public string Name = TStrings.TypeDutyUnnamed;
 
         /// <summary>
-        ///     Represents a phase of a duty.
+        ///     The duty difficulty level.
         /// </summary>
-        public class Phase
+        public int Difficulty = (int)DutyDifficulty.Normal;
+
+        /// <summary>
+        ///     The expansion the duty is from.
+        /// </summary>
+        public int Expansion = (int)DutyExpansion.ARealmReborn;
+
+        /// <summary>
+        ///     The duty type.
+        /// </summary>
+        public int Type = (int)DutyType.Dungeon;
+
+        /// <summary>
+        ///     The duty level.
+        /// </summary>
+        public int Level = 0;
+
+        /// <summary>
+        ///     The duty's unlock quest ID.
+        /// </summary>
+        public uint UnlockQuestID = 0;
+
+        /// <summary>
+        ///     The duty's TerritoryID(s).
+        /// </summary>
+        public List<uint> TerritoryIDs = new List<uint>();
+
+        /// <summary>
+        ///     The duty's section data.
+        /// </summary>
+        public List<Section>? Sections;
+
+        /// <summary>
+        ///     Represents a section of a duty.
+        /// </summary>
+        public class Section
         {
             /// <summary>
-            ///     The title of the phase.
+            ///     The type of section.
             /// </summary>
-            public string? Title;
+            public int Type = (int)DutySectionType.Boss;
 
             /// <summary>
-            ///     The strategy for the phase.
+            ///     The section's name.
             /// </summary>
-            public string Strategy = TStrings.TypeDutySectionStrategyNone;
+            public string Name = "???";
 
             /// <summary>
-            ///     The short strategy for the phase.
+            ///     The phases that belong to this section.
             /// </summary>
-            public string? StrategyShort;
+            public List<Phase>? Phases;
 
             /// <summary>
-            ///     The phase's associated mechanics.
+            ///     Represents a phase of a duty.
             /// </summary>
-            public List<Mechanic>? Mechanics;
-
-            /// <summary>
-            ///     Represents a mechanic of a duty.
-            /// </summary>
-            public class Mechanic
+            public class Phase
             {
                 /// <summary>
-                ///     The mechanic's name.
+                ///     The title of the phase.
                 /// </summary>
-                public string Name { get; set; } = "???";
+                public string Title = "???";
 
                 /// <summary>
-                ///     The mechanic's description.
+                ///     The strategy for the phase.
                 /// </summary>
-                public string Description { get; set; } = "???";
+                public string Strategy = TStrings.TypeDutySectionStrategyNone;
 
                 /// <summary>
-                ///     The mechanic's short description.
+                ///     The short strategy for the phase.
                 /// </summary>
-                public string? ShortDesc { get; set; }
+                public string? StrategyShort;
 
                 /// <summary>
-                ///     The type of mechanic.
+                ///     The phase's associated mechanics.
                 /// </summary>
-                public int Type { get; set; } = (int)DutyMechanics.Other;
+                public List<Mechanic>? Mechanics;
+
+                /// <summary>
+                ///     Represents a mechanic of a duty.
+                /// </summary>
+                public class Mechanic
+                {
+                    /// <summary>
+                    ///     The mechanic's name.
+                    /// </summary>
+                    public string Name { get; set; } = "???";
+
+                    /// <summary>
+                    ///     The mechanic's description.
+                    /// </summary>
+                    public string Description { get; set; } = "???";
+
+                    /// <summary>
+                    ///     The mechanic's short description.
+                    /// </summary>
+                    public string? ShortDesc { get; set; }
+
+                    /// <summary>
+                    ///     The type of mechanic.
+                    /// </summary>
+                    public int Type { get; set; } = (int)DutyMechanics.Other;
+                }
             }
+        }
+
+        /// <summary>
+        ///     Boolean value indicating if this duty is not supported on the current plugin version.
+        ///     Checks multiple things, such as the format version, invalid enums, etc.
+        /// </summary>
+        public bool IsSupported()
+        {
+            if (this.Version != _formatVersion) return false;
+            if (!Enum.IsDefined(typeof(DutyExpansion), this.Expansion)) return false;
+            if (!Enum.IsDefined(typeof(DutyType), this.Type)) return false;
+            if (!Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)) return false;
+            if (this.Sections?.Any(s => s.Phases?.Any(p => p.Mechanics?.Any(m => !Enum.IsDefined(typeof(DutyMechanics), m.Type)) == true) == true) == true) return false;
+
+            return true;
+        }
+
+        /// <summary>
+        ///     Get the canonical name for the duty
+        /// </summary>
+        public string GetCanonicalName()
+        {
+            if (this.Difficulty != (int)DutyDifficulty.Normal) return $"{this.Name} ({Enum.GetName(typeof(DutyDifficulty), this.Difficulty)})";
+            else return this.Name;
         }
     }
 
-    /// <summary>
-    ///     Boolean value indicating if this duty is not supported on the current plugin version.
-    ///     Checks multiple things, such as the format version, invalid enums, etc.
-    /// </summary>
-    public bool IsSupported()
-    {
-        if (this.Version != _formatVersion) return false;
-        if (!Enum.IsDefined(typeof(DutyExpansion), this.Expansion)) return false;
-        if (!Enum.IsDefined(typeof(DutyType), this.Type)) return false;
-        if (!Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)) return false;
-        if (this.Sections?.Any(s => s.Phases?.Any(p => p.Mechanics?.Any(m => !Enum.IsDefined(typeof(DutyMechanics), m.Type)) == true) == true) == true) return false;
 
-        return true;
+    public enum DutyType
+    {
+        [LocalizableName("TypeDutyTypeDungeon", "Dungeons")]
+        Dungeon = 0,
+
+        [LocalizableName("TypeDutyTypeTrial", "Trials")]
+        Trial = 1,
+
+        [LocalizableName("TypeDutyTypeAllianceRaid", "Alliance Raids")]
+        AllianceRaid = 2,
+
+        [LocalizableName("TypeDutyTypeRaid", "Raids")]
+        Raid = 3,
     }
 
-    /// <summary>
-    ///     Gets all the given sections for this duty.
-    /// </summary>
-    public IEnumerable<Section> GetFilteredSections(DutySectionType filter) => this.Sections?.Where(s => s.Type == (int)filter) ?? Enumerable.Empty<Section>();
-
-    /// <summary>
-    ///     Get the canonical name for the duty
-    /// </summary>
-    public string GetCanonicalName()
+    public enum DutyDifficulty
     {
-        if (this.Difficulty != (int)DutyDifficulty.Normal) return $"{this.Name} ({Enum.GetName(typeof(DutyDifficulty), this.Difficulty)})";
-        else return this.Name;
+        [LocalizableName("TypeDutyDifficultyNormal", "Normal")]
+        Normal = 0,
+
+        [LocalizableName("TypeDutyDifficultyHard", "Hard")]
+        Hard = 1,
+
+        [LocalizableName("TypeDutyDifficultyExtreme", "Extreme")]
+        Extreme = 2,
+
+        [LocalizableName("TypeDutyDifficultySavage", "Savage")]
+        Savage = 3,
+
+        [LocalizableName("TypeDutyDifficultyUltimate", "Ultimate")]
+        Ultimate = 4,
+
+        [LocalizableName("TypeDutyDifficultyUnreal", "Unreal")]
+        Unreal = 5
     }
-}
 
-public enum DutyType
-{
-    Dungeon = 0,
-    Trial = 1,
-    AllianceRaid = 2
-}
+    public enum DutyExpansion
+    {
+        ARealmReborn = 0,
+        Heavensward = 1,
+        Stormblood = 2,
+        Shadowbringers = 3,
+        Endwalker = 4
+    }
 
-public enum DutyDifficulty
-{
-    Normal = 0,
-    Hard = 1,
-    Extreme = 2,
-    Savage = 3,
-    Ultimate = 4,
-    Unreal = 5
-}
+    public enum DutySectionType
+    {
+        [LocalizableName("TypeDutySectionTypeBoss", "Boss")]
+        [LocalizableDescription("TypeDutySectionTypeBossDesc", "A boss fight.")]
+        Boss = 0,
 
-public enum DutyExpansion
-{
-    ARealmReborn = 0,
-    Heavensward = 1,
-    Stormblood = 2,
-    Shadowbringers = 3,
-    Endwalker = 4
-}
+        [LocalizableName("TypeDutySectionTypeTrashpack", "Trashpack")]
+        [LocalizableDescription("TypeDutySectionTypeTrashpackDesc", "A group of enemies that are not a boss.")]
+        Trashpack = 1,
 
-public enum DutySectionType
-{
-    Boss = 0,
-    Trashpack = 1,
-    Other = 2
-}
+        [LocalizableName("TypeDutySectionTypeOther", "Other")]
+        [LocalizableDescription("TypeDutySectionTypeOtherDesc", "A section that does not fit into the other categories.")]
+        Other = 2
+    }
 
-public enum DutyDisplayType
-{
-    Display = 0,
-    Hide = 1,
-    Unavailable = 2
-}
+    public enum DutyMechanics
+    {
+        [LocalizableName("TypeDutyMechanicsTankBuster", "Tank Buster")]
+        [LocalizableDescription("TypeDutyMechanicsTankBusterDesc", "A mechanic that requires a tank to take the hit.")]
+        Tankbuster = 0,
 
-public enum DutyMechanics
-{
-    Tankbuster = 0,
-    Enrage = 1,
-    AOE = 2,
-    Stackmarker = 3,
-    Raidwide = 4,
-    Invulnerablity = 5,
-    Targetted = 6,
-    AddSpawn = 7,
-    DPSCheck = 8,
-    Cleave = 9,
-    Other = 10,
+        [LocalizableName("TypeDutyMechanicsEnrage", "Enrage")]
+        [LocalizableDescription("TypeDutyMechanicsEnrageDesc", "A mechanic that causes the boss to go into an enraged state, dealing more damage.")]
+        Enrage = 1,
+
+        [LocalizableName("TypeDutyMechanicsAOE", "AoE")]
+        [LocalizableDescription("TypeDutyMechanicsAOEDesc", "A mechanic that requires the party to spread out.")]
+        AOE = 2,
+
+        [LocalizableName("TypeDutyMechanicsStackmarker", "Stackmarker")]
+        [LocalizableDescription("TypeDutyMechanicsStackmarkerDesc", "A mechanic that requires the party to stack up.")]
+        Stackmarker = 3,
+
+        [LocalizableName("TypeDutyMechanicsRaidwide", "Raidwide")]
+        [LocalizableDescription("TypeDutyMechanicsRaidwideDesc", "A mechanic that affects the entire raid.")]
+        Raidwide = 4,
+
+        [LocalizableName("TypeDutyMechanicsInvulnerability", "Invulnerability")]
+        [LocalizableDescription("TypeDutyMechanicsInvulnerabilityDesc", "A mechanic that makes the boss invulnerable.")]
+        Invulnerablity = 5,
+
+        [LocalizableName("TypeDutyMechanicsTargetted", "Targetted")]
+        [LocalizableDescription("TypeDutyMechanicsTargettedDesc", "A mechanic that targets a specific player.")]
+        Targetted = 6,
+
+        [LocalizableName("TypeDutyMechanicsAddspawn", "Addspawn")]
+        [LocalizableDescription("TypeDutyMechanicsAddspawnDesc", "A mechanic that spawns additional enemies.")]
+        AddSpawn = 7,
+
+        [LocalizableName("TypeDutyMechanicsDPSCheck", "DPS Check")]
+        [LocalizableDescription("TypeDutyMechanicsDPSCheckDesc", "A mechanic that requires the party to deal a certain amount of damage.")]
+        DPSCheck = 8,
+
+        [LocalizableName("TypeDutyMechanicsCleave", "Cleave")]
+        [LocalizableDescription("TypeDutyMechanicsCleaveDesc", "A mechanic that deals damage in a non-telegraphed cone.")]
+        Cleave = 9,
+
+        [LocalizableName("TypeDutyMechanicsOther", "Other")]
+        [LocalizableDescription("TypeDutyMechanicsOtherDesc", "A mechanic that does not fit into any other category.")]
+        Other = 10,
+    }
 }

@@ -16,15 +16,15 @@ namespace KikoGuide.Managers
     /// </summary>
     internal sealed class WindowManager : IDisposable
     {
-        public static readonly string SettingsWindowName = $"{PStrings.pluginName} Settings";
-        public static readonly string DutyListWindowName = $"{PStrings.pluginName} Duty Finder";
-        public static readonly string DutyInfoWindowName = $"{PStrings.pluginName} Duty Info";
-        public static readonly string EditorWindowName = $"{PStrings.pluginName} Duty Editor";
+        public static readonly string SettingsWindowName = $"{PluginConstants.pluginName} - Settings";
+        public static readonly string DutyListWindowName = $"{PluginConstants.pluginName} - Duty Finder";
+        public static readonly string DutyInfoWindowName = $"{PluginConstants.pluginName} - Duty Info";
+        public static readonly string EditorWindowName = $"{PluginConstants.pluginName} - Editor";
 
         /// <summary>
         ///     The windowing system service provided by Dalamud.
         /// </summary>
-        public readonly WindowSystem windowSystem = new WindowSystem(PStrings.pluginName);
+        public readonly WindowSystem windowSystem = new WindowSystem(PluginConstants.pluginName);
 
         /// <summary>
         ///     All windows managed by the WindowManager.

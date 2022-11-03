@@ -1,7 +1,7 @@
 namespace KikoGuide.UI.ImGuiFullComponents.DutyList
 {
     using ImGuiNET;
-    using KikoGuide.Base;
+    using KikoGuide.Localization;
     using KikoGuide.Types;
     using KikoGuide.Managers;
     using KikoGuide.UI.ImGuiBasicComponents;

@@ -8,6 +8,7 @@ namespace KikoGuide.UI.Windows.Editor
     using Dalamud.Interface.Windowing;
     using Dalamud.Interface.Components;
     using KikoGuide.Base;
+    using KikoGuide.Localization;
     using KikoGuide.Types;
     using KikoGuide.Managers;
     using KikoGuide.UI.ImGuiBasicComponents;
@@ -95,7 +96,7 @@ namespace KikoGuide.UI.Windows.Editor
 
             if (ImGuiComponents.IconButton(FontAwesomeIcon.ExternalLinkAlt))
             {
-                Util.OpenLink($"{PStrings.repoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
+                Util.OpenLink($"{PluginConstants.repoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
             }
             Common.AddTooltip(TStrings.EditorContributingGuide);
 
@@ -104,7 +105,7 @@ namespace KikoGuide.UI.Windows.Editor
                 ImGui.SameLine();
                 if (ImGuiComponents.IconButton(FontAwesomeIcon.Heart))
                 {
-                    Util.OpenLink(PStrings.supportButtonUrl);
+                    Util.OpenLink(PluginConstants.supportButtonUrl);
                 }
                 Common.AddTooltip(TStrings.Support);
             }

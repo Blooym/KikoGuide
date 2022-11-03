@@ -63,7 +63,6 @@ namespace KikoGuide.IPC
             {
                 try
                 {
-                    PluginLog.Debug($"IPCLoader(Dispose): Disposing of IPC provider {ipc.ID}...");
                     ipc.Dispose();
                     PluginLog.Debug($"IPCLoader(Dispose): Disposed of IPC provider {ipc.ID}.");
                 }

@@ -5,8 +5,10 @@ namespace KikoGuide.UI.Windows.DutyList
     using System.Linq;
     using ImGuiNET;
     using KikoGuide.Base;
+    using KikoGuide.Localization;
     using KikoGuide.Types;
     using KikoGuide.Managers;
+    using KikoGuide.UI.Windows.DutyInfo;
     using Dalamud.Interface.Windowing;
     using Dalamud.Utility;
     using KikoGuide.UI.ImGuiBasicComponents;
@@ -23,7 +25,7 @@ namespace KikoGuide.UI.Windows.DutyList
 
             SizeConstraints = new WindowSizeConstraints
             {
-                MinimumSize = new Vector2(350, 280),
+                MinimumSize = new Vector2(360, 300),
                 MaximumSize = new Vector2(1000, 1000)
             };
 
@@ -60,22 +62,25 @@ namespace KikoGuide.UI.Windows.DutyList
                 ImGui.SameLine();
                 ImGui.PushStyleColor(ImGuiCol.Button, 0xFF000000 | 0xfa9898);
                 ImGui.PushStyleColor(ImGuiCol.ButtonHovered, 0xAA000000 | 0xe76262);
-                if (ImGui.Button(TStrings.Support)) Util.OpenLink(PStrings.supportButtonUrl);
+                if (ImGui.Button(TStrings.Support)) Util.OpenLink(PluginConstants.supportButtonUrl);
                 ImGui.PopStyleColor(2);
             }
 
             // For each duty type enum, create a tab for it.
-            ImGui.BeginTabBar("DutyTypes", ImGuiTabBarFlags.Reorderable);
+            ImGui.BeginTabBar("DutyTypes");
             foreach (var dutyType in Enum.GetValues(typeof(DutyType)).Cast<int>().ToList())
             {
-                if (ImGui.BeginTabItem(Enum.GetName(typeof(DutyType), dutyType)))
+                if (ImGui.BeginTabItem(LoCExtensions.GetLocalizedName((DutyType)dutyType)))
                 {
                     ImGui.BeginChild(dutyType.ToString());
 
                     DutyListComponent.Draw(duties, ((duty) =>
                     {
-                        // PluginService.WindowManager.DutyInfo.presenter.selectedDuty = duty;
-                        // PluginService.WindowManager.DutyInfo.Show();
+                        if (PluginService.WindowManager.windowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow dutyInfoWindow)
+                        {
+                            dutyInfoWindow.IsOpen = true;
+                            dutyInfoWindow.presenter.selectedDuty = duty;
+                        }
                     }), this._searchText, dutyType);
 
                     ImGui.EndChild();

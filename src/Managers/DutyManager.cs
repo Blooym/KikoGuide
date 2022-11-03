@@ -9,7 +9,6 @@ namespace KikoGuide.Managers
     using KikoGuide.Types;
     using FFXIVClientStructs.FFXIV.Client.Game;
 
-
     /// <summary>
     ///     The DutyManager works ontop of the Duty type to abstract critical tasks.
     /// </summary>
@@ -54,18 +53,18 @@ namespace KikoGuide.Managers
 
             // Try and get the language from the settings, or use fallback to default if not found.
             var language = PluginService.PluginInterface.UiLanguage;
-            if (!Directory.Exists($"{PStrings.pluginlocalizationDir}\\Duty\\{language}")) language = PStrings.fallbackLanguage;
+            if (!Directory.Exists($"{PluginConstants.pluginlocalizationDir}\\Duty\\{language}")) language = PluginConstants.fallbackLanguage;
 
             // Start loading every duty file for the language and deserialize it into the Duty type.
             List<Duty> duties = Enumerable.Empty<Duty>().ToList();
             try
             {
-                foreach (string file in Directory.GetFiles($"{PStrings.pluginlocalizationDir}\\Duty\\{language}", "*.json", SearchOption.AllDirectories))
+                foreach (string file in Directory.GetFiles($"{PluginConstants.pluginlocalizationDir}\\Duty\\{language}", "*.json", SearchOption.AllDirectories))
                 {
                     try
                     {
                         Duty? duty = JsonConvert.DeserializeObject<Duty>(File.ReadAllText(file));
-                        if (duty != null) { duties.Add(duty); PluginLog.Verbose($"DutyManager(LoadDutyData): Loaded {duty.Name}"); }
+                        if (duty != null) { duties.Add(duty); PluginLog.Verbose($"DutyManager(LoadDutyData): Loaded {duty.GetCanonicalName()}"); }
                     }
                     catch { /* File is invalid, skip it */ }
                 }

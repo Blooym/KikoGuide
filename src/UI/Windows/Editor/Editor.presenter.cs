@@ -8,10 +8,10 @@ namespace KikoGuide.UI.Windows.Editor
     using Dalamud.Interface.Internal.Notifications;
     using KikoGuide.Base;
     using KikoGuide.Types;
+    using KikoGuide.Localization;
 
     sealed public class EditorPresenter : IDisposable
     {
-        public EditorPresenter() { }
         public void Dispose() { }
 
         /// <summary>
@@ -38,11 +38,11 @@ namespace KikoGuide.UI.Windows.Editor
             // Reject loading if the file length is beyond the character limit.
             if (fileText.Length > this.characterLimit)
             {
-                PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileTooLarge, PStrings.pluginName, NotificationType.Error);
+                PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileTooLarge, PluginConstants.pluginName, NotificationType.Error);
                 return text;
             }
 
-            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullyLoaded, PStrings.pluginName, NotificationType.Success);
+            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullyLoaded, PluginConstants.pluginName, NotificationType.Success);
             return fileText;
         }
 
@@ -54,7 +54,7 @@ namespace KikoGuide.UI.Windows.Editor
             if (!success) return;
             text = this.OnFormat(text);
             File.WriteAllText(file, text);
-            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullySaved, PStrings.pluginName, NotificationType.Success);
+            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullySaved, PluginConstants.pluginName, NotificationType.Success);
         }
 
         /// <summary>
