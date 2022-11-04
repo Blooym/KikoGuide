@@ -4,6 +4,8 @@ namespace KikoGuide.Types
     using System.Linq;
     using System.Collections.Generic;
     using KikoGuide.Localization;
+    using Newtonsoft.Json;
+    using FFXIVClientStructs.FFXIV.Client.Game;
 
     /// <summary>
     ///     Represents an in-game duty.
@@ -14,6 +16,7 @@ namespace KikoGuide.Types
         ///     The current format version, incremented on breaking changes.
         ///     When this version does not match a duty, it cannot be loaded.
         /// </summary>
+        [JsonIgnore]
         private const int _formatVersion = 1;
 
         /// <summary>
@@ -29,17 +32,17 @@ namespace KikoGuide.Types
         /// <summary>
         ///     The duty difficulty level.
         /// </summary>
-        public int Difficulty = (int)DutyDifficulty.Normal;
+        public DutyDifficulty Difficulty = (int)DutyDifficulty.Normal;
 
         /// <summary>
         ///     The expansion the duty is from.
         /// </summary>
-        public int Expansion = (int)DutyExpansion.ARealmReborn;
+        public DutyExpansion Expansion = (int)DutyExpansion.ARealmReborn;
 
         /// <summary>
         ///     The duty type.
         /// </summary>
-        public int Type = (int)DutyType.Dungeon;
+        public DutyType Type = (int)DutyType.Dungeon;
 
         /// <summary>
         ///     The duty level.
@@ -69,7 +72,7 @@ namespace KikoGuide.Types
             /// <summary>
             ///     The type of section.
             /// </summary>
-            public int Type = (int)DutySectionType.Boss;
+            public DutySectionType Type = (int)DutySectionType.Boss;
 
             /// <summary>
             ///     The section's name.
@@ -87,9 +90,9 @@ namespace KikoGuide.Types
             public class Phase
             {
                 /// <summary>
-                ///     The title of the phase.
+                ///     The overriden title of the phase, usually left blank.
                 /// </summary>
-                public string Title = "???";
+                public string TitleOverride = "???";
 
                 /// <summary>
                 ///     The strategy for the phase.
@@ -144,6 +147,7 @@ namespace KikoGuide.Types
             if (!Enum.IsDefined(typeof(DutyExpansion), this.Expansion)) return false;
             if (!Enum.IsDefined(typeof(DutyType), this.Type)) return false;
             if (!Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)) return false;
+            if (this.Sections?.Any(s => !Enum.IsDefined(typeof(DutySectionType), s.Type)) ?? false) return false;
             if (this.Sections?.Any(s => s.Phases?.Any(p => p.Mechanics?.Any(m => !Enum.IsDefined(typeof(DutyMechanics), m.Type)) == true) == true) == true) return false;
 
             return true;
@@ -154,9 +158,15 @@ namespace KikoGuide.Types
         /// </summary>
         public string GetCanonicalName()
         {
-            if (this.Difficulty != (int)DutyDifficulty.Normal) return $"{this.Name} ({Enum.GetName(typeof(DutyDifficulty), this.Difficulty)})";
+            if (!Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)) return this.Name;
+            else if (this.Difficulty != (int)DutyDifficulty.Normal) return $"{this.Name} ({(LoCExtensions.GetLocalizedName(this.Difficulty))})";
             else return this.Name;
         }
+
+        /// <summary>
+        ///     Get if the player has unlocked this duty.
+        /// </summary>
+        public bool IsUnlocked() => this.UnlockQuestID != 0 && QuestManager.IsQuestCurrent(this.UnlockQuestID) || QuestManager.IsQuestComplete(this.UnlockQuestID);
     }
 
 

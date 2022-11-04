@@ -21,6 +21,7 @@ namespace KikoGuide.Base
         internal static WindowManager WindowManager { get; private set; }
         internal static ResourceManager ResourceManager { get; private set; }
         internal static Configuration Configuration { get; private set; }
+        internal static DutyManager DutyManager { get; private set; }
         internal static IPCLoader IPC { get; private set; }
 
         /// <summary>
@@ -32,6 +33,7 @@ namespace KikoGuide.Base
             Configuration = PluginInterface?.GetPluginConfig() as Configuration ?? new Configuration();
             WindowManager = new WindowManager();
             CommandManager = new CommandManager();
+            DutyManager = new DutyManager();
             IPC = new IPCLoader();
 
 #if !DEBUG
@@ -49,6 +51,7 @@ namespace KikoGuide.Base
             ResourceManager.Dispose();
             WindowManager.Dispose();
             CommandManager.Dispose();
+            DutyManager.Dispose();
 
             PluginLog.Debug("PluginService(Initialize): Successfully disposed of plugin services.");
         }

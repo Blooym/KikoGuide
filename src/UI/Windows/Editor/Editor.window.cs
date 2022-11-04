@@ -2,6 +2,7 @@ namespace KikoGuide.UI.Windows.Editor
 {
     using System;
     using System.Numerics;
+    using System.Collections.Generic;
     using ImGuiNET;
     using Dalamud.Utility;
     using Dalamud.Interface;
@@ -13,11 +14,11 @@ namespace KikoGuide.UI.Windows.Editor
     using KikoGuide.Managers;
     using KikoGuide.UI.ImGuiBasicComponents;
     using KikoGuide.UI.ImGuiFullComponents.DutyInfo;
+    using KikoGuide.UI.ImGuiFullComponents.DutyList;
 
     sealed public class EditorWindow : Window, IDisposable
     {
-        public EditorPresenter presenter = new EditorPresenter();
-
+        public EditorPresenter _presenter = new EditorPresenter();
         public EditorWindow() : base(WindowManager.EditorWindowName)
         {
             Flags |= ImGuiWindowFlags.NoScrollbar;
@@ -26,8 +27,7 @@ namespace KikoGuide.UI.Windows.Editor
             Size = new Vector2(600, 400);
             SizeCondition = ImGuiCond.FirstUseEver;
         }
-
-        public void Dispose() => this.presenter.Dispose();
+        public void Dispose() => this._presenter.Dispose();
 
         /// <summary> 
         ///     The current editor input text.
@@ -40,7 +40,7 @@ namespace KikoGuide.UI.Windows.Editor
         public override void Draw()
         {
             // Draw the dialog manager as a sub-menu of the editor.
-            presenter.dialogManager.Draw();
+            this._presenter.dialogManager.Draw();
 
             // Draw some buttons at the top of the editor.
             this.DrawEditorButtons();
@@ -66,27 +66,31 @@ namespace KikoGuide.UI.Windows.Editor
         /// </summary>
         private void DrawEditorButtons()
         {
+            // Open a file.
             if (ImGuiComponents.IconButton(FontAwesomeIcon.FileImport))
             {
-                presenter.dialogManager.OpenFileDialog(TStrings.OpenFile, ".json", (success, file) => this._inputText = presenter.OnFileSelect(success, file, this._inputText));
+                this._presenter.dialogManager.OpenFileDialog(TStrings.OpenFile, ".json", (success, file) => this._inputText = this._presenter.OnFileSelect(success, file, this._inputText));
             }
             Common.AddTooltip(TStrings.OpenFile);
             ImGui.SameLine();
 
+            // Save a file.
             if (ImGuiComponents.IconButton(FontAwesomeIcon.Save))
             {
-                presenter.dialogManager.SaveFileDialog(TStrings.SaveFile, ".json", "", ".json", (success, file) => presenter.OnFileSave(success, file, this._inputText));
+                this._presenter.dialogManager.SaveFileDialog(TStrings.SaveFile, ".json", "", ".json", (success, file) => this._presenter.OnFileSave(success, file, this._inputText));
             }
             Common.AddTooltip(TStrings.SaveFile);
             ImGui.SameLine();
 
+            // Format the file.
             if (ImGuiComponents.IconButton(FontAwesomeIcon.PaintBrush))
             {
-                this._inputText = presenter.OnFormat(this._inputText);
+                this._inputText = this._presenter.OnFormat(this._inputText);
             }
             Common.AddTooltip(TStrings.EditorFormat);
             ImGui.SameLine();
 
+            // Clear the file.
             if (ImGuiComponents.IconButton(FontAwesomeIcon.Trash))
             {
                 this._inputText = "";
@@ -94,20 +98,22 @@ namespace KikoGuide.UI.Windows.Editor
             Common.AddTooltip(TStrings.EditorClear);
             ImGui.SameLine();
 
+            // Open the contributing guide.
             if (ImGuiComponents.IconButton(FontAwesomeIcon.ExternalLinkAlt))
             {
-                Util.OpenLink($"{PluginConstants.repoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
+                this._presenter.OpenContributingGuide();
             }
             Common.AddTooltip(TStrings.EditorContributingGuide);
 
-            if (PluginService.Configuration.Display.SupportButtonShown)
+            // Open the donation link.
+            if (this._presenter.Configuration.Display.DonateButtonShown)
             {
                 ImGui.SameLine();
                 if (ImGuiComponents.IconButton(FontAwesomeIcon.Heart))
                 {
-                    Util.OpenLink(PluginConstants.supportButtonUrl);
+                    Util.OpenLink(PluginConstants.donateButtonUrl);
                 }
-                Common.AddTooltip(TStrings.Support);
+                Common.AddTooltip(TStrings.Donate);
             }
         }
 
@@ -117,14 +123,14 @@ namespace KikoGuide.UI.Windows.Editor
         ///  </summary>
         private void DrawEditorInput()
         {
-            var parsedDuty = presenter.ParseDuty(this._inputText);
+            var parsedDuty = this._presenter.ParseDuty(this._inputText);
             var inputText = this._inputText;
 
             // Total lines & characters display
-            ImGui.TextWrapped($"Lines: {inputText.Split('\n').Length.ToString()} | Characters: {inputText.Length.ToString()}/{presenter.characterLimit}");
+            ImGui.TextWrapped($"Lines: {inputText.Split('\n').Length.ToString()} | Characters: {inputText.Length.ToString()}/{this._presenter.characterLimit}");
 
             // Editor input
-            if (ImGui.InputTextMultiline("##DutyInfoInput", ref inputText, presenter.characterLimit, new Vector2(-1, -70), ImGuiInputTextFlags.AllowTabInput))
+            if (ImGui.InputTextMultiline("##DutyInfoInput", ref inputText, this._presenter.characterLimit, new Vector2(-1, -70), ImGuiInputTextFlags.AllowTabInput))
             {
                 this._inputText = inputText;
             }
@@ -145,19 +151,25 @@ namespace KikoGuide.UI.Windows.Editor
         /// </summary>
         private void DrawEditorPreview()
         {
-            var duty = presenter.ParseDuty(this._inputText).Item1;
+            var duty = this._presenter.ParseDuty(this._inputText).Item1;
 
-            if (ImGui.BeginTabBar("##DutyInfoPreview", ImGuiTabBarFlags.Reorderable))
+            if (ImGui.BeginTabBar("##DutyEditorTooling"))
             {
-                if (ImGui.BeginTabItem(TStrings.EditorPreview))
+                // DutyInfo preview pane.
+                if (ImGui.BeginTabItem("DutyInfo Preview"))
                 {
                     if (duty != null) DutyInfoComponent.Draw(duty);
                     ImGui.EndTabItem();
                 }
 
+                // DutyList preview pane.
+                if (ImGui.BeginTabItem("DutyList Preview"))
+                {
+                    if (duty != null) DutyListComponent.Draw(new List<Duty>() { duty }, (Duty duty) => { });
+                    ImGui.EndTabItem();
+                }
 
-
-                // Create a tab for parsed duty metadata.
+                // Metadata pane.
                 if (ImGui.BeginTabItem(TStrings.EditorMetadata))
                 {
                     if (duty != null)
@@ -168,52 +180,111 @@ namespace KikoGuide.UI.Windows.Editor
                         ImGui.TextWrapped($"Difficulty: {Enum.GetName(typeof(DutyDifficulty), duty.Difficulty)}");
                         ImGui.TextWrapped($"Level: {duty.Level}");
                         ImGui.TextWrapped($"Expansion: {Enum.GetName(typeof(DutyExpansion), duty.Expansion)}");
-                        ImGui.TextWrapped($"TerritoryID: {duty.TerritoryIDs} (Current: {PluginService.ClientState.TerritoryType})");
+                        ImGui.TextWrapped($"TerritoryIDs: {string.Join(", ", duty.TerritoryIDs)} (Current: {this._presenter.GetPlayerTerritory})");
                         ImGui.TextWrapped($"UnlockQuestID: {duty.UnlockQuestID}");
                     }
 
                     ImGui.EndTabItem();
                 }
 
-
-                // Create a tab for player information relating to duties.
-                if (ImGui.BeginTabItem("IDs"))
+                // Enum IDs pane.
+                if (ImGui.BeginTabItem("Enum IDs"))
                 {
+                    ImGui.BeginChild("##EnumIDs");
                     if (ImGui.CollapsingHeader("Mechanic IDs"))
                     {
-                        foreach (var mechanic in Enum.GetNames(typeof(DutyMechanics)))
+                        if (ImGui.BeginTable("##MechanicIDs", 2, ImGuiTableFlags.Borders))
                         {
-                            ImGui.TextWrapped($"{mechanic}: {(int)Enum.Parse(typeof(DutyMechanics), mechanic)}");
+                            ImGui.TableSetupColumn("Name");
+                            ImGui.TableSetupColumn("ID");
+                            ImGui.TableHeadersRow();
+                            foreach (var mechanic in Enum.GetValues(typeof(DutyMechanics)))
+                            {
+                                ImGui.TableNextColumn();
+                                ImGui.TextWrapped($"{LoCExtensions.GetLocalizedName((DutyMechanics)mechanic)}");
+                                ImGui.TableNextColumn();
+                                ImGui.TextWrapped($"{(int)mechanic}");
+                            }
+                            ImGui.EndTable();
                         }
                     }
 
                     if (ImGui.CollapsingHeader("Duty Type IDs"))
                     {
-                        foreach (var dutyType in Enum.GetNames(typeof(DutyType)))
+                        if (ImGui.BeginTable("##DutyTypeIDs", 2, ImGuiTableFlags.Borders))
                         {
-                            ImGui.TextWrapped($"{dutyType}: {(int)Enum.Parse(typeof(DutyType), dutyType)}");
+                            ImGui.TableSetupColumn("Name");
+                            ImGui.TableSetupColumn("ID");
+                            ImGui.TableHeadersRow();
+                            foreach (var type in Enum.GetValues(typeof(DutyType)))
+                            {
+                                ImGui.TableNextColumn();
+                                ImGui.TextWrapped($"{LoCExtensions.GetLocalizedName((DutyType)type)}");
+                                ImGui.TableNextColumn();
+                                ImGui.TextWrapped($"{(int)type}");
+                            }
+                            ImGui.EndTable();
                         }
                     }
 
                     if (ImGui.CollapsingHeader("Difficulty IDs"))
                     {
-                        foreach (var dutyDifficulty in Enum.GetNames(typeof(DutyDifficulty)))
+                        if (ImGui.BeginTable("##DifficultyIDs", 2, ImGuiTableFlags.Borders))
                         {
-                            ImGui.TextWrapped($"{dutyDifficulty}: {(int)Enum.Parse(typeof(DutyDifficulty), dutyDifficulty)}");
+                            ImGui.TableSetupColumn("Name");
+                            ImGui.TableSetupColumn("ID");
+                            ImGui.TableHeadersRow();
+                            foreach (var difficulty in Enum.GetValues(typeof(DutyDifficulty)))
+                            {
+                                ImGui.TableNextColumn();
+                                ImGui.TextWrapped($"{LoCExtensions.GetLocalizedName((DutyDifficulty)difficulty)}");
+                                ImGui.TableNextColumn();
+                                ImGui.TextWrapped($"{(int)difficulty}");
+                            }
+                            ImGui.EndTable();
+                        }
+                    }
+
+                    if (ImGui.CollapsingHeader("Duty Section IDs"))
+                    {
+                        if (ImGui.BeginTable("##DutySectionIDs", 2, ImGuiTableFlags.Borders))
+                        {
+                            ImGui.TableSetupColumn("Name");
+                            ImGui.TableSetupColumn("ID");
+                            ImGui.TableHeadersRow();
+                            foreach (var section in Enum.GetValues(typeof(DutySectionType)))
+                            {
+                                ImGui.TableNextColumn();
+                                ImGui.TextWrapped($"{LoCExtensions.GetLocalizedName((DutySectionType)section)}");
+                                ImGui.TableNextColumn();
+                                ImGui.TextWrapped($"{(int)section}");
+                            }
+                            ImGui.EndTable();
                         }
                     }
 
                     if (ImGui.CollapsingHeader("Expansion IDs"))
                     {
-                        foreach (var expansion in Enum.GetNames(typeof(DutyExpansion)))
+                        if (ImGui.BeginTable("##ExpansionIDs", 2, ImGuiTableFlags.Borders))
                         {
-                            ImGui.TextWrapped($"{expansion}: {(int)Enum.Parse(typeof(DutyExpansion), expansion)}");
+                            ImGui.TableSetupColumn("Name");
+                            ImGui.TableSetupColumn("ID");
+                            ImGui.TableHeadersRow();
+                            foreach (var expansion in Enum.GetValues(typeof(DutyExpansion)))
+                            {
+                                ImGui.TableNextColumn();
+                                ImGui.TextWrapped($"{LoCExtensions.GetLocalizedName((DutyExpansion)expansion)}");
+                                ImGui.TableNextColumn();
+                                ImGui.TextWrapped($"{(int)expansion}");
+                            }
+                            ImGui.EndTable();
                         }
                     }
+                    ImGui.EndChild();
+                    ImGui.EndTabItem();
                 }
-                ImGui.EndTabItem();
+                ImGui.EndTabBar();
             }
-            ImGui.EndTabBar();
         }
 
     }

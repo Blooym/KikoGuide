@@ -8,7 +8,6 @@ namespace KikoGuide.UI.Windows.DutyInfo
     using System;
     using Dalamud.Interface.Windowing;
 
-
     sealed public class DutyInfoWindow : Window, IDisposable
     {
         public DutyInfoPresenter presenter = new DutyInfoPresenter();
@@ -36,7 +35,7 @@ namespace KikoGuide.UI.Windows.DutyInfo
                 return;
             }
 
-            if (!DutyManager.IsUnlocked(selectedDuty))
+            if (!selectedDuty.IsUnlocked())
             {
                 ImGui.TextWrapped(TStrings.DutyInfoNotUnlocked);
                 return;

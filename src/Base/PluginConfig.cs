@@ -40,7 +40,7 @@ namespace KikoGuide.Base
             /// <summary>
             ///     Whether or not to show the support button in the UI.
             /// </summary>
-            public bool SupportButtonShown { get; set; } = true;
+            public bool DonateButtonShown { get; set; } = true;
 
             /// <summary>
             ///     Whether or not to automatically show/hide a guide when entering/leaving a duty.

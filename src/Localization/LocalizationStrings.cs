@@ -11,7 +11,7 @@ namespace KikoGuide.Localization
     {
         // Generics
         internal static string Error => Loc.Localize("Generics.Error", "An error occured.");
-        internal static string Support => Loc.Localize("Generics.Support", "Support");
+        internal static string Donate => Loc.Localize("Generics.Support", "Support");
         internal static string OpenFile => Loc.Localize("Generics.OpenFile", "Open File");
         internal static string SaveFile => Loc.Localize("Generics.SaveFile", "Save File");
         internal static string Search => Loc.Localize("Generics.Search", "Search");

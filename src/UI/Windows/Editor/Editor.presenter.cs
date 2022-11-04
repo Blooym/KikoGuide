@@ -4,6 +4,7 @@ namespace KikoGuide.UI.Windows.Editor
     using System.IO;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Dalamud.Utility;
     using Dalamud.Interface.ImGuiFileDialog;
     using Dalamud.Interface.Internal.Notifications;
     using KikoGuide.Base;
@@ -13,6 +14,21 @@ namespace KikoGuide.UI.Windows.Editor
     sealed public class EditorPresenter : IDisposable
     {
         public void Dispose() { }
+
+        /// <summary>
+        ///     Pulls the configuration from the plugin service.
+        /// </summary>
+        internal Configuration Configuration => PluginService.Configuration;
+
+        /// <summary>
+        ///     Opens the contributing guide.
+        /// </summary>
+        public void OpenContributingGuide() => Util.OpenLink($"{PluginConstants.repoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
+
+        /// <summary>
+        ///     Gets the players current territory.
+        /// </summary>
+        public uint GetPlayerTerritory => PluginService.ClientState.TerritoryType;
 
         /// <summary>
         ///     An instance of the FileDialogManager for loading/saving duties.
@@ -70,7 +86,6 @@ namespace KikoGuide.UI.Windows.Editor
             }
             catch { return text; }
         }
-
 
         /// <summary>
         ///     The last parse result from this.ParseDuty()

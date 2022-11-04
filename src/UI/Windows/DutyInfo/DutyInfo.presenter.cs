@@ -3,7 +3,6 @@ namespace KikoGuide.UI.Windows.DutyInfo
     using System;
     using KikoGuide.Base;
     using KikoGuide.Types;
-    using KikoGuide.Managers;
 
     sealed public class DutyInfoPresenter : IDisposable
     {
@@ -27,7 +26,7 @@ namespace KikoGuide.UI.Windows.DutyInfo
         /// </summary>
         public void OnTerritoryChange(object? sender, ushort e)
         {
-            var playerDuty = DutyManager.GetPlayerDuty();
+            var playerDuty = PluginService.DutyManager.GetPlayerDuty();
 
             // If the player has entered a duty with data and has the setting enabled, show the duty info window.
             if (playerDuty != null && playerDuty?.Sections?.Count > 0)

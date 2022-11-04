@@ -13,7 +13,6 @@
             "Name": "Psycheflayer",
             "Phases": [
                 {
-                    "Title": "Phase 1",
                     "Strategy": "When you first walk into the boss arena an only an enemy called the Lunatic Priest will be here once this enemy reaches 50%% HP he will summon the Pyscheflayer. Players should focus on killing the Lunatic Priest before dealing with the Psycheflayer as the Lunatic Priest will throw out high damage AOEs. \n\nThroughout the fight Psycheflayer will spawn adds that cast AOEs players should make sure to kill them as soon as they spawn.",
                     "StrategyShort": "FILL LATER",
                     "Mechanics": [
@@ -46,7 +45,6 @@
             "Name": "Demon Wall",
             "Phases": [
                 {
-                    "Title": "Phase 1",
                     "Strategy": "The Demon Wall will always follow a pattern, it will always use Liquefy four times before using repel. \n\nAfter two uses of Repel the demon wall will summon two Adds called Bloodlapper that can inflict the Paralysis debuff, make sure to kill them as soon as they spawn.",
                     "StrategyShort": "FILL LATER",
                     "Mechanics": [
@@ -74,7 +72,6 @@
             "Name": "Anantaboga",
             "Phases": [
                 {
-                    "Title": "Phase 1",
                     "Strategy": "Throughout the fight Anantaboga will use Imminent Catastrophe to spawn red orbs that deal damage to anyone in line of sight, to avoid this players must hide behind on of 4 statues around the arena. Additionally, the cast will awake one of the statues turning it into an add, players must kill the add and avoid its AOEs",
                     "StrategyShort": "FILL LATER",
                     "Mechanics": [

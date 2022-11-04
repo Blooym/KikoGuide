@@ -13,7 +13,6 @@
             "Name": "Kottos the Gigas",
             "Phases": [
                 {
-                    "Title": "Phase 1",
                     "Strategy": "Every so often Kottos will jump to 3 areas with a massive circle AoE, move to a safe spot to avoid this.",
                     "StrategyShort": "FILL LATER",
                     "Mechanics": [
@@ -46,7 +45,6 @@
             "Name": "Ichorous Ire",
             "Phases": [
                 {
-                    "Title": "Phase 1",
                     "Strategy": "Will occasionally split off into multiple Ichorous Drips below 50%% HP, which will each explode after a short time.",
                     "StrategyShort": "FILL LATER",
                     "Mechanics": [
@@ -74,7 +72,6 @@
             "Name": "Gyges the Great",
             "Phases": [
                 {
-                    "Title": "Phase 1",
                     "Strategy": "Will occasionally split off into multiple Ichorous Drips below 50%% HP, which will each explode after a short time.",
                     "StrategyShort": "FILL LATER",
                     "Mechanics": [

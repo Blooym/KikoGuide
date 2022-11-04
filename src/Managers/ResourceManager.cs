@@ -111,7 +111,7 @@ namespace KikoGuide.Managers
         {
             PluginLog.Information($"ResourceManager(Setup): Setting up resources for language {language}...");
 
-            try { Loc.Setup(File.ReadAllText($"{PluginConstants.pluginlocalizationDir}{language}.json")); }
+            try { Loc.Setup(File.ReadAllText($"{PluginConstants.pluginlocalizationDir}{language}.json")); PluginService.DutyManager.ClearCache(); }
             catch { Loc.SetupWithFallbacks(); }
 
             PluginLog.Information("ResourceManager(Setup): Resources setup.");

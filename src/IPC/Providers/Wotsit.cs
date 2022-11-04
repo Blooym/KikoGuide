@@ -67,7 +67,7 @@ namespace KikoGuide.IPC.Providers
         {
             if (_wotsitRegister == null) return;
 
-            foreach (var duty in DutyManager.GetDuties())
+            foreach (var duty in PluginService.DutyManager.GetDuties())
             {
                 var guid = _wotsitRegister.InvokeFunc(PluginConstants.pluginName, $"{duty.GetCanonicalName()}", WotsitIconID);
                 this._wotsitDutyIpcs.Add(guid, duty);

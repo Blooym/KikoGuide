@@ -31,7 +31,7 @@ namespace KikoGuide.Base
         /// <summary>
         ///     The support button URL.
         /// </summary>
-        internal static readonly string supportButtonUrl = "https://github.com/sponsors/BitsOfAByte";
+        internal static readonly string donateButtonUrl = "https://github.com/sponsors/BitsOfAByte";
 
         /// <summary>
         ///     The path to the plugin's resources folder with trailing slashes, relative to the plugin assembly location with trailing slashes.

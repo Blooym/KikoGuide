@@ -3,7 +3,6 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
     using ImGuiNET;
     using KikoGuide.Localization;
     using KikoGuide.Types;
-    using KikoGuide.Managers;
     using KikoGuide.UI.ImGuiBasicComponents;
     using System;
     using System.Linq;
@@ -23,7 +22,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
         /// <param name="onDutySelect"> The action to call when a duty is selected. </param>
         /// <param name="filter"> The filter to use when drawing the duty list, empty to show all. </param>
         /// <param name="dutyType"> The duty type to show listings for, or null to show all. </param>
-        public static void Draw(List<Duty> dutyPool, Action<Duty> onDutySelected, string filter = "", int? dutyType = null)
+        public static void Draw(List<Duty> dutyPool, Action<Duty> onDutySelected, string filter = "", DutyType? dutyType = null)
         {
             try
             {
@@ -50,7 +49,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
                     foreach (var duty in dutyList)
                     {
                         // Do not show the duty if it isn't unlocked or isn't part of the filter.
-                        if (!DutyManager.IsUnlocked(duty)) continue;
+                        if (!duty.IsUnlocked()) continue;
                         if (!duty.Name.ToLower().Contains(filter.ToLower())) continue;
 
                         // Ad the level and duty name to the list.
