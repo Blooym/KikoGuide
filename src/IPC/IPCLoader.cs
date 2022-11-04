@@ -10,7 +10,7 @@ namespace KikoGuide.IPC
     /// <summary>
     ///     Controls all IPC providers and handles loading and unloading them.
     /// </summary>
-    sealed public class IPCLoader : IDisposable
+    public sealed class IPCLoader : IDisposable
     {
         /// <summary> 
         ///     All of the currently registered IPC providers alongside their ID.

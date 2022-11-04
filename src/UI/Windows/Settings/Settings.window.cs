@@ -11,7 +11,7 @@ namespace KikoGuide.UI.Windows.Settings
     using KikoGuide.Localization;
     using KikoGuide.UI.ImGuiBasicComponents;
 
-    sealed public class SettingsWindow : Window, IDisposable
+    public sealed class SettingsWindow : Window, IDisposable
     {
         public SettingsPresenter _presenter;
         public SettingsWindow() : base(WindowManager.SettingsWindowName)

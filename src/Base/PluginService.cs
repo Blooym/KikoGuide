@@ -11,7 +11,7 @@ namespace KikoGuide.Base
     ///     Provides access to necessary instances and services.
     /// </summary>
 #pragma warning disable CS8618 // Injection is handled by the Dalamud Plugin Framework here.
-    sealed internal class PluginService
+    internal sealed class PluginService
     {
         [PluginService] internal static DalamudPluginInterface PluginInterface { get; private set; }
         [PluginService] internal static Dalamud.Game.Command.CommandManager Commands { get; private set; }

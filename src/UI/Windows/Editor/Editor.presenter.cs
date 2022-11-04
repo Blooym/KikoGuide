@@ -11,7 +11,7 @@ namespace KikoGuide.UI.Windows.Editor
     using KikoGuide.Types;
     using KikoGuide.Localization;
 
-    sealed public class EditorPresenter : IDisposable
+    public sealed class EditorPresenter : IDisposable
     {
         public void Dispose() { }
 

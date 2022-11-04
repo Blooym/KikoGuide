@@ -13,7 +13,7 @@ namespace KikoGuide.UI.Windows.DutyList
     using KikoGuide.UI.ImGuiBasicComponents;
     using KikoGuide.UI.ImGuiFullComponents.DutyList;
 
-    sealed public class DutyListWindow : Window, IDisposable
+    public sealed class DutyListWindow : Window, IDisposable
     {
         public DutyListPresenter _presenter;
         public DutyListWindow() : base(WindowManager.DutyListWindowName)

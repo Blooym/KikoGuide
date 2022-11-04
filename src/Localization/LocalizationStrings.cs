@@ -7,7 +7,7 @@ namespace KikoGuide.Localization
     /// <summary> 
     ///     A collection translatable strings.
     /// </summary>
-    sealed internal class TStrings
+    internal sealed class TStrings
     {
         // Generics
         internal static string Error => Loc.Localize("Generics.Error", "An error occured.");

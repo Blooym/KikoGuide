@@ -4,7 +4,7 @@ namespace KikoGuide.UI.Windows.DutyInfo
     using KikoGuide.Base;
     using KikoGuide.Types;
 
-    sealed public class DutyInfoPresenter : IDisposable
+    public sealed class DutyInfoPresenter : IDisposable
     {
         public DutyInfoPresenter()
         {

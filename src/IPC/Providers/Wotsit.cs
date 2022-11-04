@@ -14,7 +14,7 @@ namespace KikoGuide.IPC.Providers
     /// <summary> 
     ///     Provider for WotsitIPC
     /// </summary>
-    sealed public class WotsitIPC : IIPCProvider
+    public sealed class WotsitIPC : IIPCProvider
     {
         public IPCProviders ID { get; } = IPCProviders.Wotsit;
 

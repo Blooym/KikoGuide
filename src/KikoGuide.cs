@@ -4,7 +4,7 @@ namespace KikoGuide
     using Dalamud.Plugin;
     using KikoGuide.Base;
 
-    sealed internal class KikoPlugin : IDalamudPlugin
+    internal sealed class KikoPlugin : IDalamudPlugin
     {
         /// <summary> 
         ///     The plugin name, fetched from PStrings.

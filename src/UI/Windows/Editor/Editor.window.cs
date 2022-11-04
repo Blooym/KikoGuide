@@ -16,7 +16,7 @@ namespace KikoGuide.UI.Windows.Editor
     using KikoGuide.UI.ImGuiFullComponents.DutyInfo;
     using KikoGuide.UI.ImGuiFullComponents.DutyList;
 
-    sealed public class EditorWindow : Window, IDisposable
+    public sealed class EditorWindow : Window, IDisposable
     {
         public EditorPresenter _presenter = new EditorPresenter();
         public EditorWindow() : base(WindowManager.EditorWindowName)

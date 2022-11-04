@@ -8,7 +8,7 @@ namespace KikoGuide.UI.Windows.Settings
     using KikoGuide.Base;
     using KikoGuide.IPC;
 
-    sealed public class SettingsPresenter : IDisposable
+    public sealed class SettingsPresenter : IDisposable
     {
         public void Dispose() { }
 

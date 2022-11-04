@@ -8,7 +8,7 @@ namespace KikoGuide.UI.Windows.DutyInfo
     using System;
     using Dalamud.Interface.Windowing;
 
-    sealed public class DutyInfoWindow : Window, IDisposable
+    public sealed class DutyInfoWindow : Window, IDisposable
     {
         public DutyInfoPresenter presenter = new DutyInfoPresenter();
 

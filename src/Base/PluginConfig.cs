@@ -11,7 +11,7 @@ namespace KikoGuide.Base
     ///     Provides access to and determines the Plugin configuration.
     /// </summary>
     [Serializable]
-    sealed internal class Configuration : IPluginConfiguration
+    internal sealed class Configuration : IPluginConfiguration
     {
         /// <summary>
         ///     The current configuration version, incremented on breaking changes.

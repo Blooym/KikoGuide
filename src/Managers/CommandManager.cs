@@ -13,7 +13,7 @@ namespace KikoGuide.Managers
     /// <summary> 
     ///     Initializes and manages all commands and command-events for the plugin.
     /// </summary>
-    sealed public class CommandManager : IDisposable
+    public sealed class CommandManager : IDisposable
     {
         private const string listCommand = "/kikolist";
         private const string settingsCommand = "/kikoconfig";
