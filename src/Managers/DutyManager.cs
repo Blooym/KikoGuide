@@ -1,14 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Dalamud.Logging;
+using KikoGuide.Base;
+using KikoGuide.Types;
+using Newtonsoft.Json;
+
 namespace KikoGuide.Managers
 {
-    using System;
-    using System.IO;
-    using System.Linq;
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
-    using Dalamud.Logging;
-    using KikoGuide.Base;
-    using KikoGuide.Types;
-
     /// <summary>
     ///     The DutyManager works ontop of the Duty type to abstract critical tasks.
     /// </summary>
@@ -22,31 +22,43 @@ namespace KikoGuide.Managers
         /// <summary>
         ///     Clears the loaded duty cache and forces a re-read of the files.
         /// </summary>
-        public void ClearCache() => _loadedDutyCache = null;
+        public void ClearCache()
+        {
+            _loadedDutyCache = null;
+        }
 
         /// <summary>
         ///     Get the duty the player is currently inside of, if any.
         /// </summary>
-        public Duty? GetPlayerDuty() => GetDuties().Find(duty => duty.TerritoryIDs.Contains(PluginService.ClientState.TerritoryType));
+        public Duty? GetPlayerDuty()
+        {
+            return GetDuties().Find(duty => duty.TerritoryIDs.Contains(PluginService.ClientState.TerritoryType));
+        }
 
         public List<Duty> GetDuties()
         {
-            if (this._loadedDutyCache != null) return this._loadedDutyCache;
+            if (_loadedDutyCache != null)
+            {
+                return _loadedDutyCache;
+            }
 
-            this._loadedDutyCache = this.LoadDutyData();
-            return this._loadedDutyCache;
+            _loadedDutyCache = LoadDutyData();
+            return _loadedDutyCache;
         }
 
         /// <summary>
         ///     Loads the duty data from the local files, this should be cached after usage.
         /// </summary>
-        private List<Duty> LoadDutyData()
+        private static List<Duty> LoadDutyData()
         {
             PluginLog.Information($"DutyManager(LoadDutyData): Loading duty data from files, this could cause a lag spike if your storage is slow.");
 
             // Try and get the language from the settings, or use fallback to default if not found.
-            var language = PluginService.PluginInterface.UiLanguage;
-            if (!Directory.Exists($"{PluginConstants.pluginlocalizationDir}\\Duty\\{language}")) language = PluginConstants.fallbackLanguage;
+            string language = PluginService.PluginInterface.UiLanguage;
+            if (!Directory.Exists($"{PluginConstants.pluginlocalizationDir}\\Duty\\{language}"))
+            {
+                language = PluginConstants.fallbackLanguage;
+            }
 
             // Start loading every duty file for the language and deserialize it into the Duty type.
             List<Duty> duties = Enumerable.Empty<Duty>().ToList();

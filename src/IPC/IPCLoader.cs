@@ -1,12 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Dalamud.Logging;
+using KikoGuide.Base;
+using KikoGuide.IPC.Interfaces;
+
 namespace KikoGuide.IPC
 {
-    using System;
-    using System.Reflection;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Dalamud.Logging;
-    using KikoGuide.Base;
-
     /// <summary>
     ///     Controls all IPC providers and handles loading and unloading them.
     /// </summary>
@@ -15,7 +16,7 @@ namespace KikoGuide.IPC
         /// <summary> 
         ///     All of the currently registered IPC providers alongside their ID.
         /// </summary>
-        private Dictionary<IPCProviders, IIPCProvider> _ipcProviders = new Dictionary<IPCProviders, IIPCProvider>();
+        private readonly Dictionary<IPCProviders, IIPCProvider> _ipcProviders = new();
 
         /// <summary>
         ///     Initializes the IPCLoader and loads all IPC providers.
@@ -25,14 +26,17 @@ namespace KikoGuide.IPC
             PluginLog.Debug("IPCLoader(Constructor): Beginning detection of IPC providers...");
 
             // Get every IPC provider in the assembly and attempt to initialize it.
-            foreach (var type in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IIPCProvider))))
+            foreach (Type? type in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IIPCProvider))))
             {
                 try
                 {
-                    if (type == null) continue;
+                    if (type == null)
+                    {
+                        continue;
+                    }
 
                     PluginLog.Debug($"IPCLoader(Constructor): Found  {type.FullName} - Attempting to Initialize");
-                    var ipc = Activator.CreateInstance(type);
+                    object? ipc = Activator.CreateInstance(type);
 
                     if (ipc is IIPCProvider provider)
                     {
@@ -59,7 +63,7 @@ namespace KikoGuide.IPC
         {
             PluginLog.Debug("IPCLoader(Dispose): Disposing of all IPC providers...");
 
-            foreach (var ipc in _ipcProviders.Values)
+            foreach (IIPCProvider ipc in _ipcProviders.Values)
             {
                 try
                 {
@@ -77,7 +81,10 @@ namespace KikoGuide.IPC
         /// </summary>
         /// <param name="provider">The provider to check.</param>
         /// <returns>True if the provider is enabled, false otherwise.</returns>
-        public bool GetStatus(IPCProviders provider) => _ipcProviders.ContainsKey(provider);
+        public bool GetStatus(IPCProviders provider)
+        {
+            return _ipcProviders.ContainsKey(provider);
+        }
 
         /// <summary>
         ///     Enables an IPC provider.
@@ -85,14 +92,20 @@ namespace KikoGuide.IPC
         /// <param name="provider">The provider to enable.</param>
         public void EnableProvider(IPCProviders provider)
         {
-            if (_ipcProviders.ContainsKey(provider)) return;
+            if (_ipcProviders.ContainsKey(provider))
+            {
+                return;
+            }
 
             try
             {
-                var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.GetInterfaces().Contains(typeof(IIPCProvider)));
-                if (type == null) return;
+                Type? type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.GetInterfaces().Contains(typeof(IIPCProvider)));
+                if (type == null)
+                {
+                    return;
+                }
 
-                var ipc = Activator.CreateInstance(type);
+                object? ipc = Activator.CreateInstance(type);
                 if (ipc is IIPCProvider ipcProvider)
                 {
                     ipcProvider.Enable();
@@ -109,13 +122,16 @@ namespace KikoGuide.IPC
         /// <param name="provider">The provider to disable.</param>
         public void DisableProvider(IPCProviders provider)
         {
-            if (!_ipcProviders.ContainsKey(provider)) return;
+            if (!_ipcProviders.ContainsKey(provider))
+            {
+                return;
+            }
 
             try
             {
-                var ipc = _ipcProviders[provider];
+                IIPCProvider ipc = _ipcProviders[provider];
                 ipc.Dispose();
-                _ipcProviders.Remove(provider);
+                _ = _ipcProviders.Remove(provider);
                 PluginLog.Debug($"IPCLoader(DisableProvider): Disabled and disposed of {provider}.");
             }
             catch (Exception e) { PluginLog.Error($"IPCLoader(DisableProvider): Failed to disable and dispose of {provider} - {e.Message}"); }

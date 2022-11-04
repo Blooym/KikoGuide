@@ -1,11 +1,18 @@
+using KikoGuide.Base;
+using KikoGuide.Types;
+
 namespace KikoGuide.UI.ImGuiFullComponents.DutyList
 {
-    using KikoGuide.Base;
-    using KikoGuide.Types;
-
     public sealed class DutyListPresenter
     {
-        public Duty? GetPlayerDuty() => PluginService.DutyManager.GetPlayerDuty();
-        public bool HasDutyData(Duty duty) => duty.Sections != null && duty.Sections.Count > 0;
+        public static Duty? GetPlayerDuty()
+        {
+            return PluginService.DutyManager.GetPlayerDuty();
+        }
+
+        public static bool HasDutyData(Duty duty)
+        {
+            return duty.Sections != null && duty.Sections.Count > 0;
+        }
     }
 }

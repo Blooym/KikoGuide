@@ -1,12 +1,12 @@
+using Dalamud.Game.ClientState;
+using Dalamud.IoC;
+using Dalamud.Logging;
+using Dalamud.Plugin;
+using KikoGuide.IPC;
+using KikoGuide.Managers;
+
 namespace KikoGuide.Base
 {
-    using Dalamud.IoC;
-    using Dalamud.Plugin;
-    using Dalamud.Logging;
-    using Dalamud.Game.ClientState;
-    using KikoGuide.Managers;
-    using KikoGuide.IPC;
-
     /// <summary>
     ///     Provides access to necessary instances and services.
     /// </summary>
@@ -37,8 +37,9 @@ namespace KikoGuide.Base
             IPC = new IPCLoader();
 
 #if !DEBUG
-            ResourceManager.UpdateResources();
+            ResourceManager.Update();
 #endif
+
             PluginLog.Debug("PluginService(Initialize): Successfully initialized plugin services.");
         }
 

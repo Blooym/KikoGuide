@@ -1,9 +1,9 @@
+using System;
+using CheapLoc;
+using KikoGuide.Base;
+
 namespace KikoGuide.Localization
 {
-    using System;
-    using CheapLoc;
-    using KikoGuide.Base;
-
     /// <summary> 
     ///     A collection translatable strings.
     /// </summary>
@@ -11,7 +11,7 @@ namespace KikoGuide.Localization
     {
         // Generics
         internal static string Error => Loc.Localize("Generics.Error", "An error occured.");
-        internal static string Donate => Loc.Localize("Generics.Support", "Support");
+        internal static string Donate => Loc.Localize("Generics.Donate", "Donate");
         internal static string OpenFile => Loc.Localize("Generics.OpenFile", "Open File");
         internal static string SaveFile => Loc.Localize("Generics.SaveFile", "Save File");
         internal static string Search => Loc.Localize("Generics.Search", "Search");
@@ -72,7 +72,7 @@ namespace KikoGuide.Localization
 
 
         // Duty List Component
-        internal static string DutyListNoneFound => Loc.Localize("DutyList.NoneFound", "No duties found.");
+        internal static string DutyListNoneFound => Loc.Localize("DutyList.NoneFound", "No duties found for this query.");
         internal static string DutyListNoGuide(string dutyName) => String.Format(Loc.Localize("DutyList.NoGuide", "No guide available for {0}."), dutyName);
         internal static string DutyListNeedsUpdate => String.Format(Loc.Localize("DutyList.NeedsUpdate", "Cannot display duty as it was not made for this plugin version."));
 

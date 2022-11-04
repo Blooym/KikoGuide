@@ -1,6 +1,5 @@
 namespace KikoGuide.Base
 {
-
     // TODO: Update things here to match new plugin changes.
 
     /// <summary> 

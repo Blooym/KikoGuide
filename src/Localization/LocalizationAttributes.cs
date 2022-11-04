@@ -1,8 +1,8 @@
+using System;
+using CheapLoc;
+
 namespace KikoGuide.Localization
 {
-    using System;
-    using CheapLoc;
-
     /// <summary>
     ///     A localizable name attribute.
     /// </summary>
@@ -14,8 +14,8 @@ namespace KikoGuide.Localization
 
         public LocalizableNameAttribute(string key, string fallback)
         {
-            this.Key = key;
-            this.Fallback = fallback;
+            Key = key;
+            Fallback = fallback;
         }
     }
 
@@ -30,8 +30,8 @@ namespace KikoGuide.Localization
 
         public LocalizableDescriptionAttribute(string key, string fallback)
         {
-            this.Key = key;
-            this.Fallback = fallback;
+            Key = key;
+            Fallback = fallback;
         }
     }
 
@@ -39,15 +39,15 @@ namespace KikoGuide.Localization
     {
         public static string GetLocalizedName(this Enum value)
         {
-            var field = value.GetType().GetField(value.ToString());
-            var attribute = field?.GetCustomAttributes(typeof(LocalizableNameAttribute), false);
+            System.Reflection.FieldInfo? field = value.GetType().GetField(value.ToString());
+            object[]? attribute = field?.GetCustomAttributes(typeof(LocalizableNameAttribute), false);
             return attribute?.Length > 0 ? Loc.Localize(((LocalizableNameAttribute)attribute[0]).Key, ((LocalizableNameAttribute)attribute[0]).Fallback) : value.ToString();
         }
 
         public static string GetLocalizedDescription(this Enum value)
         {
-            var field = value.GetType().GetField(value.ToString());
-            var attribute = field?.GetCustomAttributes(typeof(LocalizableDescriptionAttribute), false);
+            System.Reflection.FieldInfo? field = value.GetType().GetField(value.ToString());
+            object[]? attribute = field?.GetCustomAttributes(typeof(LocalizableDescriptionAttribute), false);
             return attribute?.Length > 0 ? Loc.Localize(((LocalizableDescriptionAttribute)attribute[0]).Key, ((LocalizableDescriptionAttribute)attribute[0]).Fallback) : value.ToString();
         }
     }

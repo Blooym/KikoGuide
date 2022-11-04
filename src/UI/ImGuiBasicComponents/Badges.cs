@@ -1,12 +1,12 @@
+using System.Numerics;
+using ImGuiNET;
+
 namespace KikoGuide.UI.ImGuiBasicComponents
 {
-    using System.Numerics;
-    using ImGuiNET;
-
     /// <summary>
     ///     A collection of badge components.
     /// </summary>
-    static class Badges
+    internal static class Badges
     {
         /// <summary>
         ///     Draws a custom badge with the given colour, text and optional tooltip on the same line.
@@ -18,7 +18,10 @@ namespace KikoGuide.UI.ImGuiBasicComponents
         {
             ImGui.SameLine();
             ImGui.TextColored(colour, tag);
-            if (tooltip != null) Common.AddTooltip(tooltip);
+            if (tooltip != null)
+            {
+                Common.AddTooltip(tooltip);
+            }
         }
 
         /// <summary> 

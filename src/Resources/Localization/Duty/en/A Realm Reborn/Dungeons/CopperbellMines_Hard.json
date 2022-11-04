@@ -14,7 +14,6 @@
             "Phases": [
                 {
                     "Strategy": "Pulling the boss to the end of the Flaming Track is the easiest way to deal with this fight with a decent group. Be aware that doing so will spawn all of the upcoming mechanics in sequence instead of over the course of the fight, as they are tied to when the Flaming Track is activated.\n\nThe closer you are to the end of the track, the faster the Flambeau's will use Self-destruct.",
-                    "StrategyShort": "FILL LATER",
                     "KeyMechanics": [
                         {
                             "Name": "Mining Dross",
@@ -46,7 +45,6 @@
             "Phases": [
                 {
                     "Strategy": "Tanks should stand apart from the group as the boss will use various AoEs on them while running around the room.\n\nWhen placing the bomb, try to place it a few seconds in front of the boss to ensure that it will hit him. Adjust for when he uses AoEs. Try to wait until there's only a few seconds left on the timer for best chances of hitting him.\n\nIf you have a left over Waymaker Bomb you can use it on Biggy when he emerges from the Rock Suit, instantly finishing him off.",
-                    "StrategyShort": "FILL LATER",
                     "KeyMechanics": [
                         {
                             "Name": "Rock Suit",
@@ -103,7 +101,6 @@
             "Phases": [
                 {
                     "Strategy": "Keep an eye on the chat log to see when to feed a Crystalized Rock to the Abyss Worm.\n\nAvoid standing in Mercurial Strike.\n\nHealers should be ready to dispel any Slow debuffs from players caught in Power Attack.",
-                    "StrategyShort": "FILL LATER",
                     "KeyMechanics": [
                         {
                             "Name": "Crystalized Rock",

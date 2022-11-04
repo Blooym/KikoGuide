@@ -1,7 +1,7 @@
+using KikoGuide.Localization;
+
 namespace KikoGuide.IPC
 {
-    using KikoGuide.Localization;
-
     /// <summary> 
     ///     Contains all IPC IDs for the plugin which are automatically added to the UI.
     /// </summary>

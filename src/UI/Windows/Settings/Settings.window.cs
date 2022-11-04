@@ -1,16 +1,16 @@
+using System;
+using System.Linq;
+using System.Numerics;
+using Dalamud.Interface.Windowing;
+using ImGuiNET;
+using KikoGuide.IPC;
+using KikoGuide.Localization;
+using KikoGuide.Managers;
+using KikoGuide.Types;
+using KikoGuide.UI.ImGuiBasicComponents;
+
 namespace KikoGuide.UI.Windows.Settings
 {
-    using System;
-    using System.Numerics;
-    using System.Linq;
-    using Dalamud.Interface.Windowing;
-    using ImGuiNET;
-    using KikoGuide.IPC;
-    using KikoGuide.Types;
-    using KikoGuide.Managers;
-    using KikoGuide.Localization;
-    using KikoGuide.UI.ImGuiBasicComponents;
-
     public sealed class SettingsWindow : Window, IDisposable
     {
         public SettingsPresenter _presenter;
@@ -19,16 +19,19 @@ namespace KikoGuide.UI.Windows.Settings
             Size = new Vector2(400, 400);
             SizeCondition = ImGuiCond.FirstUseEver;
 
-            this._presenter = new SettingsPresenter();
+            _presenter = new SettingsPresenter();
         }
-        public void Dispose() => this._presenter.Dispose();
+        public void Dispose()
+        {
+            _presenter.Dispose();
+        }
 
         public override void Draw()
         {
-            var disabledMechanics = this._presenter.GetConfiguration().Display.DisabledMechanics;
-            var autoOpenDuty = this._presenter.GetConfiguration().Display.AutoToggleGuideForDuty;
-            var shortenStrategies = this._presenter.GetConfiguration().Accessiblity.ShortenGuideText;
-            var supportButtonShown = this._presenter.GetConfiguration().Display.DonateButtonShown;
+            System.Collections.Generic.List<DutyMechanics> disabledMechanics = SettingsPresenter.GetConfiguration().Display.DisabledMechanics;
+            bool autoOpenDuty = SettingsPresenter.GetConfiguration().Display.AutoToggleGuideForDuty;
+            bool shortenStrategies = SettingsPresenter.GetConfiguration().Accessiblity.ShortenGuideText;
+            bool supportButtonShown = SettingsPresenter.GetConfiguration().Display.DonateButtonShown;
 
             if (ImGui.BeginTabBar("##Settings"))
             {
@@ -38,8 +41,8 @@ namespace KikoGuide.UI.Windows.Settings
                     // Auto-open duty setting.
                     Common.ToggleCheckbox(TStrings.SettingsAutoOpenInDuty, ref autoOpenDuty, () =>
                    {
-                       this._presenter.GetConfiguration().Display.AutoToggleGuideForDuty = !autoOpenDuty;
-                       this._presenter.GetConfiguration().Save();
+                       SettingsPresenter.GetConfiguration().Display.AutoToggleGuideForDuty = !autoOpenDuty;
+                       SettingsPresenter.GetConfiguration().Save();
                    });
                     Common.AddTooltip(TStrings.SettingsAutoOpenInDutyTooltip);
 
@@ -47,8 +50,8 @@ namespace KikoGuide.UI.Windows.Settings
                     // Short mode setting.
                     Common.ToggleCheckbox(TStrings.SettingsShortMode, ref shortenStrategies, () =>
                     {
-                        this._presenter.GetConfiguration().Accessiblity.ShortenGuideText = !shortenStrategies;
-                        this._presenter.GetConfiguration().Save();
+                        SettingsPresenter.GetConfiguration().Accessiblity.ShortenGuideText = !shortenStrategies;
+                        SettingsPresenter.GetConfiguration().Save();
                     });
                     Common.AddTooltip(TStrings.SettingsShortModeTooltip);
 
@@ -56,8 +59,8 @@ namespace KikoGuide.UI.Windows.Settings
                     // Support button setting.
                     Common.ToggleCheckbox(TStrings.SettingsShowSupportButton, ref supportButtonShown, () =>
                     {
-                        this._presenter.GetConfiguration().Display.DonateButtonShown = !supportButtonShown;
-                        this._presenter.GetConfiguration().Save();
+                        SettingsPresenter.GetConfiguration().Display.DonateButtonShown = !supportButtonShown;
+                        SettingsPresenter.GetConfiguration().Save();
                     });
                     Common.AddTooltip(TStrings.SettingsShowSupportButtonTooltip);
 
@@ -67,8 +70,11 @@ namespace KikoGuide.UI.Windows.Settings
                     Common.TextHeading(TStrings.SettingsResourcesAndLocalization);
 
 #if DEBUG
-                    this._presenter.dialogManager.Draw();
-                    if (ImGui.Button("Export Localizable")) this._presenter.dialogManager.OpenFolderDialog("Select Export Directory", this._presenter.OnDirectoryPicked);
+                    _presenter.dialogManager.Draw();
+                    if (ImGui.Button("Export Localizable"))
+                    {
+                        _presenter.dialogManager.OpenFolderDialog("Select Export Directory", SettingsPresenter.OnDirectoryPicked);
+                    }
 #endif
 
                     ImGui.EndTabItem();
@@ -82,10 +88,10 @@ namespace KikoGuide.UI.Windows.Settings
                     ImGui.Columns(2, "##Mechanics", false);
 
                     // For each mechanic enum, creating a checkbox for it.
-                    foreach (var mechanic in Enum.GetValues(typeof(DutyMechanics)).Cast<int>().ToList())
+                    foreach (int mechanic in Enum.GetValues(typeof(DutyMechanics)).Cast<int>().ToList())
                     {
                         // See if the mechanic is enabled by looking at the list for the enum value.
-                        var isMechanicDisabled = disabledMechanics.Contains((DutyMechanics)mechanic);
+                        bool isMechanicDisabled = disabledMechanics.Contains((DutyMechanics)mechanic);
 
                         // Create a checkbox for the mechanic.
                         Common.ToggleCheckbox(TStrings.SettingsHideMechanic(Enum.GetName(typeof(DutyMechanics), mechanic)), ref isMechanicDisabled, () =>
@@ -93,13 +99,14 @@ namespace KikoGuide.UI.Windows.Settings
                             switch (isMechanicDisabled)
                             {
                                 case false:
-                                    this._presenter.GetConfiguration().Display.DisabledMechanics.Add((DutyMechanics)mechanic);
+                                    SettingsPresenter.GetConfiguration().Display.DisabledMechanics.Add((DutyMechanics)mechanic);
                                     break;
                                 case true:
-                                    this._presenter.GetConfiguration().Display.DisabledMechanics.Remove((DutyMechanics)mechanic);
+                                    SettingsPresenter.GetConfiguration().Display.DisabledMechanics.Remove((DutyMechanics)mechanic);
                                     break;
+                                default:
                             }
-                            this._presenter.GetConfiguration().Save();
+                            SettingsPresenter.GetConfiguration().Save();
                         });
 
                         Common.AddTooltip(TStrings.SettingsHideMechanicTooltip(Enum.GetName(typeof(DutyMechanics), mechanic)));
@@ -119,26 +126,27 @@ namespace KikoGuide.UI.Windows.Settings
                     Common.TextHeading(TStrings.SettingsAvailableIntegrations);
 
                     // For each mechanic enum, creating a checkbox for it.
-                    foreach (var integration in Enum.GetValues(typeof(IPCProviders)))
+                    foreach (object? integration in Enum.GetValues(typeof(IPCProviders)))
                     {
-                        var isIntegrationDisabled = this._presenter.GetConfiguration().IPC.EnabledIntegrations.Contains((IPCProviders)integration);
-                        var name = LoCExtensions.GetLocalizedName((IPCProviders)integration);
-                        var tooltip = LoCExtensions.GetLocalizedDescription((IPCProviders)integration);
+                        bool isIntegrationDisabled = SettingsPresenter.GetConfiguration().IPC.EnabledIntegrations.Contains((IPCProviders)integration);
+                        string name = LoCExtensions.GetLocalizedName((IPCProviders)integration);
+                        string tooltip = LoCExtensions.GetLocalizedDescription((IPCProviders)integration);
 
                         Common.ToggleCheckbox(name, ref isIntegrationDisabled, () =>
                         {
                             switch (isIntegrationDisabled)
                             {
                                 case false:
-                                    this._presenter.GetConfiguration().IPC.EnabledIntegrations.Add((IPCProviders)integration);
-                                    this._presenter.SetIPCProviderEnabled((IPCProviders)integration);
+                                    SettingsPresenter.GetConfiguration().IPC.EnabledIntegrations.Add((IPCProviders)integration);
+                                    SettingsPresenter.SetIPCProviderEnabled((IPCProviders)integration);
                                     break;
                                 case true:
-                                    this._presenter.GetConfiguration().IPC.EnabledIntegrations.Remove((IPCProviders)integration);
-                                    this._presenter.SetIPCProviderDisabled((IPCProviders)integration);
+                                    SettingsPresenter.GetConfiguration().IPC.EnabledIntegrations.Remove((IPCProviders)integration);
+                                    SettingsPresenter.SetIPCProviderDisabled((IPCProviders)integration);
                                     break;
+                                default:
                             }
-                            this._presenter.GetConfiguration().Save();
+                            SettingsPresenter.GetConfiguration().Save();
                         });
                         Common.AddTooltip(tooltip);
                     }

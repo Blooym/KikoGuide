@@ -1,12 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using FFXIVClientStructs.FFXIV.Client.Game;
+using KikoGuide.Localization;
+using Newtonsoft.Json;
+
 namespace KikoGuide.Types
 {
-    using System;
-    using System.Linq;
-    using System.Collections.Generic;
-    using KikoGuide.Localization;
-    using Newtonsoft.Json;
-    using FFXIVClientStructs.FFXIV.Client.Game;
-
     /// <summary>
     ///     Represents an in-game duty.
     /// </summary>
@@ -22,7 +22,7 @@ namespace KikoGuide.Types
         /// <summary>
         ///     The current duty version.
         /// </summary>
-        public int Version;
+        public int Version = 1;
 
         /// <summary>
         ///     The duty name.
@@ -47,17 +47,17 @@ namespace KikoGuide.Types
         /// <summary>
         ///     The duty level.
         /// </summary>
-        public int Level = 0;
+        public int Level;
 
         /// <summary>
         ///     The duty's unlock quest ID.
         /// </summary>
-        public uint UnlockQuestID = 0;
+        public uint UnlockQuestID;
 
         /// <summary>
         ///     The duty's TerritoryID(s).
         /// </summary>
-        public List<uint> TerritoryIDs = new List<uint>();
+        public List<uint> TerritoryIDs = new();
 
         /// <summary>
         ///     The duty's section data.
@@ -143,14 +143,26 @@ namespace KikoGuide.Types
         /// </summary>
         public bool IsSupported()
         {
-            if (this.Version != _formatVersion) return false;
-            if (!Enum.IsDefined(typeof(DutyExpansion), this.Expansion)) return false;
-            if (!Enum.IsDefined(typeof(DutyType), this.Type)) return false;
-            if (!Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)) return false;
-            if (this.Sections?.Any(s => !Enum.IsDefined(typeof(DutySectionType), s.Type)) ?? false) return false;
-            if (this.Sections?.Any(s => s.Phases?.Any(p => p.Mechanics?.Any(m => !Enum.IsDefined(typeof(DutyMechanics), m.Type)) == true) == true) == true) return false;
+            if (Version != _formatVersion)
+            {
+                return false;
+            }
 
-            return true;
+            if (!Enum.IsDefined(typeof(DutyExpansion), Expansion))
+            {
+                return false;
+            }
+
+            if (!Enum.IsDefined(typeof(DutyType), Type))
+            {
+                return false;
+            }
+
+#pragma warning disable IDE0075 // Simplify conditional expression
+            return !Enum.IsDefined(typeof(DutyDifficulty), Difficulty)
+                ? false
+                : Sections?.Any(s => !Enum.IsDefined(typeof(DutySectionType), s.Type) || s.Phases?.Any(p => p.Mechanics?.Any(m => !Enum.IsDefined(typeof(DutyMechanics), m.Type)) == true) == true) != true;
+#pragma warning restore IDE0075 // Simplify conditional expression
         }
 
         /// <summary>
@@ -158,15 +170,20 @@ namespace KikoGuide.Types
         /// </summary>
         public string GetCanonicalName()
         {
-            if (!Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)) return this.Name;
-            else if (this.Difficulty != (int)DutyDifficulty.Normal) return $"{this.Name} ({(LoCExtensions.GetLocalizedName(this.Difficulty))})";
-            else return this.Name;
+            return !Enum.IsDefined(typeof(DutyDifficulty), Difficulty)
+                ? Name
+                : Difficulty != (int)DutyDifficulty.Normal
+                ? $"{Name} ({LoCExtensions.GetLocalizedName(Difficulty)})"
+                : Name;
         }
 
         /// <summary>
         ///     Get if the player has unlocked this duty.
         /// </summary>
-        public bool IsUnlocked() => this.UnlockQuestID != 0 && QuestManager.IsQuestCurrent(this.UnlockQuestID) || QuestManager.IsQuestComplete(this.UnlockQuestID);
+        public bool IsUnlocked()
+        {
+            return (UnlockQuestID != 0 && QuestManager.IsQuestCurrent(UnlockQuestID)) || QuestManager.IsQuestComplete(UnlockQuestID);
+        }
     }
 
 
@@ -232,7 +249,7 @@ namespace KikoGuide.Types
 
     public enum DutyMechanics
     {
-        [LocalizableName("TypeDutyMechanicsTankBuster", "Tank Buster")]
+        [LocalizableName("TypeDutyMechanicsTankBuster", "Tankbuster")]
         [LocalizableDescription("TypeDutyMechanicsTankBusterDesc", "A mechanic that requires a tank to take the hit.")]
         Tankbuster = 0,
 

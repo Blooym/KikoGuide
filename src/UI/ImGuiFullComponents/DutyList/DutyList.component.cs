@@ -1,20 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using ImGuiNET;
+using KikoGuide.Localization;
+using KikoGuide.Types;
+using KikoGuide.UI.ImGuiBasicComponents;
+
 namespace KikoGuide.UI.ImGuiFullComponents.DutyList
 {
-    using ImGuiNET;
-    using KikoGuide.Localization;
-    using KikoGuide.Types;
-    using KikoGuide.UI.ImGuiBasicComponents;
-    using System;
-    using System.Linq;
-    using System.Collections.Generic;
-
     /// <summary>
     ///     A component for displaying a list of duties.
     /// </summary>
     public static class DutyListComponent
     {
-        private static DutyListPresenter _presenter = new DutyListPresenter();
-
         /// <summary>
         ///     Draws the duty list.
         /// </summary>
@@ -26,12 +24,10 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
         {
             try
             {
-                List<Duty> dutyList;
-                if (dutyType != null) dutyList = dutyPool.Where(duty => duty.Type == dutyType).ToList();
-                else dutyList = dutyPool;
+                List<Duty> dutyList = dutyType != null ? dutyPool.Where(duty => duty.Type == dutyType).ToList() : dutyPool;
 
                 // If there are no duties found, display a message and return.
-                if (dutyList.Count() == 0)
+                if (dutyList.Count == 0)
                 {
                     ImGui.TextDisabled(TStrings.DutyListNoneFound);
                     return;
@@ -46,27 +42,41 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
                     ImGui.TableHeadersRow();
 
                     // Fetch all duties for this duty type and draw them.
-                    foreach (var duty in dutyList)
+                    // sort by level
+                    foreach (Duty? duty in dutyList.OrderBy(d => d.Level))
                     {
                         // Do not show the duty if it isn't unlocked or isn't part of the filter.
-                        if (!duty.IsUnlocked()) continue;
-                        if (!duty.Name.ToLower().Contains(filter.ToLower())) continue;
+                        if (!duty.IsUnlocked())
+                        {
+                            continue;
+                        }
+
+                        if (!duty.Name.ToLower().Contains(filter.ToLower()))
+                        {
+                            continue;
+                        }
 
                         // Ad the level and duty name to the list.
                         ImGui.TableNextRow();
-                        ImGui.TableNextColumn();
+                        _ = ImGui.TableNextColumn();
                         ImGui.Text(duty.Level.ToString());
-                        ImGui.TableNextColumn();
+                        _ = ImGui.TableNextColumn();
 
                         // If this duty does not have any data or is unsupported, draw it as such and move on.
-                        if (!_presenter.HasDutyData(duty)) { NoDataDuty(duty.GetCanonicalName()); continue; }
                         if (!duty.IsSupported()) { UnsupportedDuty(duty.GetCanonicalName()); continue; }
+                        if (!DutyListPresenter.HasDutyData(duty)) { NoDataDuty(duty.GetCanonicalName()); continue; }
 
                         // Draw a selectable text for this duty and trigger the onDutySelected event when clicked.
-                        if (ImGui.Selectable(duty.GetCanonicalName(), false, ImGuiSelectableFlags.AllowDoubleClick)) onDutySelected(duty);
+                        if (ImGui.Selectable(duty.GetCanonicalName(), false, ImGuiSelectableFlags.AllowDoubleClick))
+                        {
+                            onDutySelected(duty);
+                        }
 
                         // If the player is inside this duty, add some text next to it.
-                        if (duty == _presenter.GetPlayerDuty()) Badges.Custom(Colours.Green, TStrings.InDuty);
+                        if (duty == DutyListPresenter.GetPlayerDuty())
+                        {
+                            Badges.Custom(Colours.Green, TStrings.InDuty);
+                        }
                     }
 
                     ImGui.EndTable();

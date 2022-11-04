@@ -1,7 +1,7 @@
-namespace KikoGuide.IPC
-{
-    using System;
+using System;
 
+namespace KikoGuide.IPC.Interfaces
+{
     /// <summary>
     ///     Provides a common interface that IPC providers must implement to be used by the plugin.
     /// </summary>

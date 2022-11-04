@@ -1,12 +1,12 @@
+using System;
+using ImGuiNET;
+
 namespace KikoGuide.UI.ImGuiBasicComponents
 {
-    using System;
-    using ImGuiNET;
-
     /// <summary>
     ///     A collection of common reusable components.
     /// </summary>
-    static class Common
+    internal static class Common
     {
         /// <summary>
         ///     Draws a standard title heading.
@@ -28,7 +28,7 @@ namespace KikoGuide.UI.ImGuiBasicComponents
             if (ImGui.Checkbox(label, ref value))
             {
                 value = !value;
-                if (onPress != null) onPress();
+                onPress?.Invoke();
             }
         }
 
@@ -37,7 +37,10 @@ namespace KikoGuide.UI.ImGuiBasicComponents
         /// </summary>
         public static void AddTooltip(string text)
         {
-            if (ImGui.IsItemHovered()) ImGui.SetTooltip(text);
+            if (ImGui.IsItemHovered())
+            {
+                ImGui.SetTooltip(text);
+            }
         }
     }
 }

@@ -4,9 +4,9 @@ namespace KikoGuide.IPC.Providers
     using CheapLoc;
     using Dalamud.Plugin.Ipc;
     using KikoGuide.Base;
-    using KikoGuide.Types;
-    using KikoGuide.Managers;
     using KikoGuide.IPC;
+    using KikoGuide.Managers;
+    using KikoGuide.Types;
     using KikoGuide.UI.Windows.DutyInfo;
     using KikoGuide.UI.Windows.DutyList;
     using KikoGuide.UI.Windows.Editor;
@@ -86,7 +86,7 @@ namespace KikoGuide.IPC.Providers
             {
                 if (PluginService.WindowManager.windowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow dutyInfoWindow)
                 {
-                    dutyInfoWindow.presenter.selectedDuty = duty;
+                    dutyInfoWindow._presenter.selectedDuty = duty;
                     dutyInfoWindow.IsOpen = true;
                 }
             }

@@ -1,16 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Dalamud.Interface.ImGuiFileDialog;
+using Dalamud.Interface.Internal.Notifications;
+using Dalamud.Utility;
+using KikoGuide.Base;
+using KikoGuide.Localization;
+using KikoGuide.Types;
+using Newtonsoft.Json;
+
 namespace KikoGuide.UI.Windows.Editor
 {
-    using System;
-    using System.IO;
-    using Newtonsoft.Json;
-    using System.Collections.Generic;
-    using Dalamud.Utility;
-    using Dalamud.Interface.ImGuiFileDialog;
-    using Dalamud.Interface.Internal.Notifications;
-    using KikoGuide.Base;
-    using KikoGuide.Types;
-    using KikoGuide.Localization;
-
     public sealed class EditorPresenter : IDisposable
     {
         public void Dispose() { }
@@ -18,22 +18,25 @@ namespace KikoGuide.UI.Windows.Editor
         /// <summary>
         ///     Pulls the configuration from the plugin service.
         /// </summary>
-        internal Configuration Configuration => PluginService.Configuration;
+        internal static Configuration Configuration => PluginService.Configuration;
 
         /// <summary>
         ///     Opens the contributing guide.
         /// </summary>
-        public void OpenContributingGuide() => Util.OpenLink($"{PluginConstants.repoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
+        public static void OpenContributingGuide()
+        {
+            Util.OpenLink($"{PluginConstants.repoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
+        }
 
         /// <summary>
         ///     Gets the players current territory.
         /// </summary>
-        public uint GetPlayerTerritory => PluginService.ClientState.TerritoryType;
+        public static uint GetPlayerTerritory => PluginService.ClientState.TerritoryType;
 
         /// <summary>
         ///     An instance of the FileDialogManager for loading/saving duties.
         /// </summary>
-        public FileDialogManager dialogManager = new FileDialogManager();
+        public FileDialogManager dialogManager = new();
 
         /// <summary> 
         ///     The character limit for the input text fields, applies to the UI and file loading.
@@ -45,14 +48,21 @@ namespace KikoGuide.UI.Windows.Editor
         /// </summary>
         public string OnFileSelect(bool success, string file, string text)
         {
-            if (!success) return text;
-            var fileText = File.ReadAllText(file);
+            if (!success)
+            {
+                return text;
+            }
+
+            string fileText = File.ReadAllText(file);
 
             // If the length was zero, it likely means they cancelled the dialog or the file was empty.
-            if (fileText.Length == 0) return text;
+            if (fileText.Length == 0)
+            {
+                return text;
+            }
 
             // Reject loading if the file length is beyond the character limit.
-            if (fileText.Length > this.characterLimit)
+            if (fileText.Length > characterLimit)
             {
                 PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileTooLarge, PluginConstants.pluginName, NotificationType.Error);
                 return text;
@@ -65,10 +75,14 @@ namespace KikoGuide.UI.Windows.Editor
         /// <summary>
         ///     Handles the file save event.
         /// </summary>
-        public void OnFileSave(bool success, string file, string text)
+        public static void OnFileSave(bool success, string file, string text)
         {
-            if (!success) return;
-            text = this.OnFormat(text);
+            if (!success)
+            {
+                return;
+            }
+
+            text = OnFormat(text);
             File.WriteAllText(file, text);
             PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullySaved, PluginConstants.pluginName, NotificationType.Success);
         }
@@ -76,12 +90,19 @@ namespace KikoGuide.UI.Windows.Editor
         /// <summary>
         ///     Formats the given text into a better layout.
         /// </summary>
-        public string OnFormat(string text)
+        public static string OnFormat(string text)
         {
             try
             {
-                var newLines = new List<string>();
-                foreach (var line in text.Split('\n')) if (line.Trim().Length > 0) newLines.Add(line);
+                List<string> newLines = new();
+                foreach (string line in text.Split('\n'))
+                {
+                    if (line.Trim().Length > 0)
+                    {
+                        newLines.Add(line);
+                    }
+                }
+
                 return string.Join("\n", newLines).Trim().Replace("\t", "    ");
             }
             catch { return text; }
@@ -102,19 +123,23 @@ namespace KikoGuide.UI.Windows.Editor
         /// </summary>
         public Tuple<Duty?, Exception?> ParseDuty(string dutyText)
         {
-            if (dutyText == this._parsedDutyText && this._lastParseResult != null) return this._lastParseResult;
-            this._parsedDutyText = dutyText;
+            if (dutyText == _parsedDutyText && _lastParseResult != null)
+            {
+                return _lastParseResult;
+            }
+
+            _parsedDutyText = dutyText;
 
             try
             {
-                this._lastParseResult = new Tuple<Duty?, Exception?>(JsonConvert.DeserializeObject<Duty>(dutyText), null);
-                return this._lastParseResult;
+                _lastParseResult = new Tuple<Duty?, Exception?>(JsonConvert.DeserializeObject<Duty>(dutyText), null);
+                return _lastParseResult;
             }
 
             catch (Exception e)
             {
-                this._lastParseResult = new Tuple<Duty?, Exception?>(null, e);
-                return this._lastParseResult;
+                _lastParseResult = new Tuple<Duty?, Exception?>(null, e);
+                return _lastParseResult;
             }
         }
     }
