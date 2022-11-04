@@ -92,7 +92,7 @@ namespace KikoGuide.Types
                 /// <summary>
                 ///     The overriden title of the phase, usually left blank.
                 /// </summary>
-                public string TitleOverride = "???";
+                public string? TitleOverride;
 
                 /// <summary>
                 ///     The strategy for the phase.
