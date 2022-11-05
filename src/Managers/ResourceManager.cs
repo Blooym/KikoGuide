@@ -24,9 +24,9 @@ namespace KikoGuide.Managers
         {
             PluginLog.Debug("ResourceManager(ResourceManager): Initializing...");
 
-            Setup(PluginService.PluginInterface.UiLanguage);
-            PluginService.PluginInterface.LanguageChanged += Setup;
-            ResourcesUpdated += OnResourceUpdate;
+            this.Setup(PluginService.PluginInterface.UiLanguage);
+            PluginService.PluginInterface.LanguageChanged += this.Setup;
+            ResourcesUpdated += this.OnResourceUpdate;
 
             PluginLog.Debug("ResourceManager(ResourceManager): Initialization complete.");
         }
@@ -36,8 +36,8 @@ namespace KikoGuide.Managers
         /// </summary>
         public void Dispose()
         {
-            PluginService.PluginInterface.LanguageChanged -= Setup;
-            ResourcesUpdated -= OnResourceUpdate;
+            PluginService.PluginInterface.LanguageChanged -= this.Setup;
+            ResourcesUpdated -= this.OnResourceUpdate;
 
             PluginLog.Debug("ResourceManager(Dispose): Successfully disposed.");
         }
@@ -47,10 +47,10 @@ namespace KikoGuide.Managers
         /// </summary>
         internal void Update()
         {
-            string repoName = PluginConstants.pluginName.Replace(" ", "");
-            string zipFilePath = Path.Combine(Path.GetTempPath(), $"{repoName}.zip");
-            string zipExtractPath = Path.Combine(Path.GetTempPath(), $"{repoName}-{PluginConstants.repoBranch}", $"{PluginConstants.repoResourcesDir}");
-            string pluginExtractPath = Path.Combine(PluginConstants.pluginResourcesDir);
+            var repoName = PluginConstants.PluginName.Replace(" ", "");
+            var zipFilePath = Path.Combine(Path.GetTempPath(), $"{repoName}.zip");
+            var zipExtractPath = Path.Combine(Path.GetTempPath(), $"{repoName}-{PluginConstants.RepoBranch}", $"{PluginConstants.RepoResourcesDir}");
+            var pluginExtractPath = Path.Combine(PluginConstants.PluginResourcesDir);
 
             // NOTE: This is only GitHub compatible, changes will need to be made here for other providers as necessary.
             new Thread(() =>
@@ -61,23 +61,23 @@ namespace KikoGuide.Managers
 
                     // Download the files from the repository and extract them into the temp directory.
                     using HttpClient client = new();
-                    client.GetAsync($"{PluginConstants.repoUrl}archive/refs/heads/{PluginConstants.repoBranch}.zip").ContinueWith((task) =>
+                    client.GetAsync($"{PluginConstants.RepoUrl}archive/refs/heads/{PluginConstants.RepoBranch}.zip").ContinueWith((task) =>
                     {
-                        using Stream stream = task.Result.Content.ReadAsStreamAsync().Result;
-                        using FileStream fileStream = File.Create(zipFilePath);
+                        using var stream = task.Result.Content.ReadAsStreamAsync().Result;
+                        using var fileStream = File.Create(zipFilePath);
                         stream.CopyTo(fileStream);
                     }).Wait();
                     PluginLog.Information($"ResourceManager(Update): Downloaded resource files to: {zipFilePath}");
 
                     // Extract the zip file and copy the resources.
                     ZipFile.ExtractToDirectory(zipFilePath, Path.GetTempPath(), true);
-                    foreach (string dirPath in Directory.GetDirectories(zipExtractPath, "*", SearchOption.AllDirectories))
+                    foreach (var dirPath in Directory.GetDirectories(zipExtractPath, "*", SearchOption.AllDirectories))
                     {
-                        _ = Directory.CreateDirectory(dirPath.Replace(zipExtractPath, pluginExtractPath));
+                        Directory.CreateDirectory(dirPath.Replace(zipExtractPath, pluginExtractPath));
                         PluginLog.Debug($"ResourceManager(Update): Created directory: {dirPath.Replace(zipExtractPath, pluginExtractPath)}");
                     }
 
-                    foreach (string newPath in Directory.GetFiles(zipExtractPath, "*.*", SearchOption.AllDirectories))
+                    foreach (var newPath in Directory.GetFiles(zipExtractPath, "*.*", SearchOption.AllDirectories))
                     {
                         PluginLog.Debug($"ResourceManager(Update): Copying file from: {newPath} to: {newPath.Replace(zipExtractPath, pluginExtractPath)}");
                         File.Copy(newPath, newPath.Replace(zipExtractPath, pluginExtractPath), true);
@@ -85,7 +85,7 @@ namespace KikoGuide.Managers
 
                     // Cleanup temporary files.
                     File.Delete(zipFilePath);
-                    Directory.Delete($"{Path.GetTempPath()}{repoName}-{PluginConstants.repoBranch}", true);
+                    Directory.Delete($"{Path.GetTempPath()}{repoName}-{PluginConstants.RepoBranch}", true);
                     PluginLog.Information($"ResourceManager(Update): Deleted temporary files.");
 
                     // Broadcast an event indicating that the resources have been updated.
@@ -101,7 +101,7 @@ namespace KikoGuide.Managers
         private void OnResourceUpdate()
         {
             PluginLog.Debug($"ResourceManager(OnResourceUpdate): Resources updated.");
-            Setup(PluginService.PluginInterface.UiLanguage);
+            this.Setup(PluginService.PluginInterface.UiLanguage);
         }
 
         /// <summary>
@@ -111,7 +111,8 @@ namespace KikoGuide.Managers
         {
             PluginLog.Information($"ResourceManager(Setup): Setting up resources for language {language}...");
 
-            try { Loc.Setup(File.ReadAllText($"{PluginConstants.pluginlocalizationDir}{language}.json")); PluginService.DutyManager.ClearCache(); }
+            try
+            { Loc.Setup(File.ReadAllText($"{PluginConstants.PluginlocalizationDir}{language}.json")); PluginService.DutyManager.ClearCache(); }
             catch { Loc.SetupWithFallbacks(); }
 
             PluginLog.Information("ResourceManager(Setup): Resources setup.");

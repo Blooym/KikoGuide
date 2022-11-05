@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 
 namespace KikoGuide.Types
 {
+#pragma warning disable CA1051 // Do not declare visible instance fields
     /// <summary>
     ///     Represents an in-game duty.
     /// </summary>
@@ -18,7 +19,7 @@ namespace KikoGuide.Types
         ///     When this version does not match a duty, it cannot be loaded.
         /// </summary>
         [JsonIgnore]
-        private const int _formatVersion = 1;
+        private const int FormatVersion = 1;
 
         /// <summary>
         ///     The current duty version.
@@ -137,6 +138,7 @@ namespace KikoGuide.Types
                 }
             }
         }
+#pragma warning restore CA1051 // Do not declare visible instance fields
 
         /// <summary>
         ///     Boolean value indicating if this duty is not supported on the current plugin version.
@@ -144,49 +146,42 @@ namespace KikoGuide.Types
         /// </summary>
         public bool IsSupported()
         {
-            if (Version != _formatVersion)
+            if (this.Version != FormatVersion)
             {
                 return false;
             }
 
-            if (!Enum.IsDefined(typeof(DutyExpansion), Expansion))
+            if (!Enum.IsDefined(typeof(DutyExpansion), this.Expansion))
             {
                 return false;
             }
 
-            if (!Enum.IsDefined(typeof(DutyType), Type))
+            if (!Enum.IsDefined(typeof(DutyType), this.Type))
             {
                 return false;
             }
 
 #pragma warning disable IDE0075 // Simplify conditional expression
-            return !Enum.IsDefined(typeof(DutyDifficulty), Difficulty)
+            return !Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)
                 ? false
-                : Sections?.Any(s => !Enum.IsDefined(typeof(DutySectionType), s.Type) || s.Phases?.Any(p => p.Mechanics?.Any(m => !Enum.IsDefined(typeof(DutyMechanics), m.Type)) == true) == true) != true;
+                : this.Sections?.Any(s => !Enum.IsDefined(typeof(DutySectionType), s.Type) || s.Phases?.Any(p => p.Mechanics?.Any(m => !Enum.IsDefined(typeof(DutyMechanics), m.Type)) == true) == true) != true;
 #pragma warning restore IDE0075 // Simplify conditional expression
         }
 
         /// <summary>
         ///     Get the canonical name for the duty
         /// </summary>
-        public string GetCanonicalName()
-        {
-            return !Enum.IsDefined(typeof(DutyDifficulty), Difficulty)
-                ? Name
-                : Difficulty != (int)DutyDifficulty.Normal
-                ? $"{Name} ({AttributeExtensions.GetNameAttribute(Difficulty)})"
-                : Name;
-        }
+        public string GetCanonicalName() => !Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)
+                ? this.Name
+                : this.Difficulty != (int)DutyDifficulty.Normal
+                ? $"{this.Name} ({AttributeExtensions.GetNameAttribute(this.Difficulty)})"
+                : this.Name;
 
         /// <summary>
         ///     Get if the player has unlocked this duty.
         /// </summary>
-        public bool IsUnlocked()
-        {
-            return (UnlockQuestID != 0 && QuestManager.IsQuestCurrent(UnlockQuestID)) || QuestManager.IsQuestComplete(UnlockQuestID);
-        }
+        public bool IsUnlocked() => (this.UnlockQuestID != 0 && QuestManager.IsQuestCurrent(this.UnlockQuestID)) || QuestManager.IsQuestComplete(this.UnlockQuestID);
     }
-
 
     public enum DutyType
     {

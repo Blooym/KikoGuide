@@ -14,25 +14,22 @@ namespace KikoGuide.UI.Windows.Settings
 {
     public sealed class SettingsWindow : Window, IDisposable
     {
-        public SettingsPresenter _presenter;
+        internal SettingsPresenter Presenter;
         public SettingsWindow() : base(WindowManager.SettingsWindowName)
         {
-            Size = new Vector2(400, 400);
-            SizeCondition = ImGuiCond.FirstUseEver;
+            this.Size = new Vector2(400, 400);
+            this.SizeCondition = ImGuiCond.FirstUseEver;
 
-            _presenter = new SettingsPresenter();
+            this.Presenter = new SettingsPresenter();
         }
-        public void Dispose()
-        {
-            _presenter.Dispose();
-        }
+        public void Dispose() => this.Presenter.Dispose();
 
         public override void Draw()
         {
-            System.Collections.Generic.List<DutyMechanics> disabledMechanics = SettingsPresenter.GetConfiguration().Display.DisabledMechanics;
-            bool autoOpenDuty = SettingsPresenter.GetConfiguration().Display.AutoToggleGuideForDuty;
-            bool shortenStrategies = SettingsPresenter.GetConfiguration().Accessiblity.ShortenGuideText;
-            bool supportButtonShown = SettingsPresenter.GetConfiguration().Display.DonateButtonShown;
+            var disabledMechanics = SettingsPresenter.GetConfiguration().Display.DisabledMechanics;
+            var autoOpenDuty = SettingsPresenter.GetConfiguration().Display.AutoToggleGuideForDuty;
+            var shortenStrategies = SettingsPresenter.GetConfiguration().Accessiblity.ShortenGuideText;
+            var supportButtonShown = SettingsPresenter.GetConfiguration().Display.DonateButtonShown;
 
             if (ImGui.BeginTabBar("##Settings"))
             {
@@ -71,10 +68,10 @@ namespace KikoGuide.UI.Windows.Settings
                     Common.TextHeading(TStrings.SettingsResourcesAndLocalization);
 
 #if DEBUG
-                    _presenter.dialogManager.Draw();
+                    this.Presenter.DialogManager.Draw();
                     if (ImGui.Button("Export Localizable"))
                     {
-                        _presenter.dialogManager.OpenFolderDialog("Select Export Directory", SettingsPresenter.OnDirectoryPicked);
+                        this.Presenter.DialogManager.OpenFolderDialog("Select Export Directory", SettingsPresenter.OnDirectoryPicked);
                     }
 #endif
 
@@ -89,10 +86,10 @@ namespace KikoGuide.UI.Windows.Settings
                     ImGui.Columns(2, "##Mechanics", false);
 
                     // For each mechanic enum, creating a checkbox for it.
-                    foreach (int mechanic in Enum.GetValues(typeof(DutyMechanics)).Cast<int>().ToList())
+                    foreach (var mechanic in Enum.GetValues(typeof(DutyMechanics)).Cast<int>().ToList())
                     {
                         // See if the mechanic is enabled by looking at the list for the enum value.
-                        bool isMechanicDisabled = disabledMechanics.Contains((DutyMechanics)mechanic);
+                        var isMechanicDisabled = disabledMechanics.Contains((DutyMechanics)mechanic);
 
                         // Create a checkbox for the mechanic.
                         Common.ToggleCheckbox(TStrings.SettingsHideMechanic(Enum.GetName(typeof(DutyMechanics), mechanic)), ref isMechanicDisabled, () =>
@@ -127,11 +124,11 @@ namespace KikoGuide.UI.Windows.Settings
                     Common.TextHeading(TStrings.SettingsAvailableIntegrations);
 
                     // For each mechanic enum, creating a checkbox for it.
-                    foreach (object? integration in Enum.GetValues(typeof(IPCProviders)))
+                    foreach (var integration in Enum.GetValues(typeof(IPCProviders)))
                     {
-                        bool isIntegrationDisabled = SettingsPresenter.GetConfiguration().IPC.EnabledIntegrations.Contains((IPCProviders)integration);
-                        string name = AttributeExtensions.GetNameAttribute((IPCProviders)integration);
-                        string tooltip = AttributeExtensions.GetDescriptionAttribute((IPCProviders)integration);
+                        var isIntegrationDisabled = SettingsPresenter.GetConfiguration().IPC.EnabledIntegrations.Contains((IPCProviders)integration);
+                        var name = AttributeExtensions.GetNameAttribute((IPCProviders)integration);
+                        var tooltip = AttributeExtensions.GetDescriptionAttribute((IPCProviders)integration);
 
                         Common.ToggleCheckbox(name, ref isIntegrationDisabled, () =>
                         {

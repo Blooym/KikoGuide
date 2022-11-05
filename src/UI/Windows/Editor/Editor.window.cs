@@ -17,24 +17,21 @@ namespace KikoGuide.UI.Windows.Editor
 {
     public sealed class EditorWindow : Window, IDisposable
     {
-        public EditorPresenter _presenter = new();
+        internal EditorPresenter Presenter = new();
         public EditorWindow() : base(WindowManager.EditorWindowName)
         {
-            Flags |= ImGuiWindowFlags.NoScrollbar;
-            Flags |= ImGuiWindowFlags.NoScrollWithMouse;
+            this.Flags |= ImGuiWindowFlags.NoScrollbar;
+            this.Flags |= ImGuiWindowFlags.NoScrollWithMouse;
 
-            Size = new Vector2(600, 400);
-            SizeCondition = ImGuiCond.FirstUseEver;
+            this.Size = new Vector2(600, 400);
+            this.SizeCondition = ImGuiCond.FirstUseEver;
         }
-        public void Dispose()
-        {
-            _presenter.Dispose();
-        }
+        public void Dispose() => this.Presenter.Dispose();
 
         /// <summary> 
         ///     The current editor input text.
         /// </summary>
-        private string _inputText = "";
+        private string inputText = "";
 
         /// <summary> 
         ///     Draws the Editor window and sub-components.
@@ -42,10 +39,10 @@ namespace KikoGuide.UI.Windows.Editor
         public override void Draw()
         {
             // Draw the dialog manager as a sub-menu of the editor.
-            _presenter.dialogManager.Draw();
+            this.Presenter.DialogManager.Draw();
 
             // Draw some buttons at the top of the editor.
-            DrawEditorButtons();
+            this.DrawEditorButtons();
 
             try
             {
@@ -53,17 +50,17 @@ namespace KikoGuide.UI.Windows.Editor
                 if (ImGui.BeginTable("##DutyInfoTable", 2, ImGuiTableFlags.Resizable))
                 {
                     ImGui.TableNextRow();
-                    _ = ImGui.TableNextColumn();
+                    ImGui.TableNextColumn();
                     if (ImGui.BeginChild("##EditorInput"))
                     {
-                        DrawEditorInput();
+                        this.DrawEditorInput();
                         ImGui.EndChild();
                     }
 
-                    _ = ImGui.TableNextColumn();
+                    ImGui.TableNextColumn();
                     if (ImGui.BeginChild("##EditorPreview"))
                     {
-                        DrawEditorPreview();
+                        this.DrawEditorPreview();
                         ImGui.EndChild();
                     }
                     ImGui.EndTable();
@@ -84,7 +81,7 @@ namespace KikoGuide.UI.Windows.Editor
             // Open a file.
             if (ImGuiComponents.IconButton(FontAwesomeIcon.FileImport))
             {
-                _presenter.dialogManager.OpenFileDialog(TStrings.OpenFile, ".json", (success, file) => _inputText = _presenter.OnFileSelect(success, file, _inputText));
+                this.Presenter.DialogManager.OpenFileDialog(TStrings.OpenFile, ".json", (success, file) => this.inputText = this.Presenter.OnFileSelect(success, file, this.inputText));
             }
             Common.AddTooltip(TStrings.OpenFile);
             ImGui.SameLine();
@@ -92,7 +89,7 @@ namespace KikoGuide.UI.Windows.Editor
             // Save a file.
             if (ImGuiComponents.IconButton(FontAwesomeIcon.Save))
             {
-                _presenter.dialogManager.SaveFileDialog(TStrings.SaveFile, ".json", "", ".json", (success, file) => EditorPresenter.OnFileSave(success, file, _inputText));
+                this.Presenter.DialogManager.SaveFileDialog(TStrings.SaveFile, ".json", "", ".json", (success, file) => EditorPresenter.OnFileSave(success, file, this.inputText));
             }
             Common.AddTooltip(TStrings.SaveFile);
             ImGui.SameLine();
@@ -100,7 +97,7 @@ namespace KikoGuide.UI.Windows.Editor
             // Format the file.
             if (ImGuiComponents.IconButton(FontAwesomeIcon.PaintBrush))
             {
-                _inputText = EditorPresenter.OnFormat(_inputText);
+                this.inputText = EditorPresenter.OnFormat(this.inputText);
             }
             Common.AddTooltip(TStrings.EditorFormat);
             ImGui.SameLine();
@@ -108,7 +105,7 @@ namespace KikoGuide.UI.Windows.Editor
             // Clear the file.
             if (ImGuiComponents.IconButton(FontAwesomeIcon.Trash))
             {
-                _inputText = "";
+                this.inputText = "";
             }
             Common.AddTooltip(TStrings.EditorClear);
             ImGui.SameLine();
@@ -126,7 +123,7 @@ namespace KikoGuide.UI.Windows.Editor
                 ImGui.SameLine();
                 if (ImGuiComponents.IconButton(FontAwesomeIcon.Heart))
                 {
-                    Util.OpenLink(PluginConstants.donateButtonUrl);
+                    Util.OpenLink(PluginConstants.DonateButtonUrl);
                 }
                 Common.AddTooltip(TStrings.Donate);
             }
@@ -138,16 +135,16 @@ namespace KikoGuide.UI.Windows.Editor
         ///  </summary>
         private void DrawEditorInput()
         {
-            Tuple<Duty?, Exception?> parsedDuty = _presenter.ParseDuty(_inputText);
-            string inputText = _inputText;
+            var parsedDuty = this.Presenter.ParseDuty(this.inputText);
+            var inputText = this.inputText;
 
             // Total lines & characters display
-            ImGui.TextWrapped($"Lines: {inputText.Split('\n').Length} | Characters: {inputText.Length}/{_presenter.characterLimit}");
+            ImGui.TextWrapped($"Lines: {inputText.Split('\n').Length} | Characters: {inputText.Length}/{this.Presenter.CharacterLimit}");
 
             // Editor input
-            if (ImGui.InputTextMultiline("##DutyInfoInput", ref inputText, _presenter.characterLimit, new Vector2(-1, -70), ImGuiInputTextFlags.AllowTabInput))
+            if (ImGui.InputTextMultiline("##DutyInfoInput", ref inputText, this.Presenter.CharacterLimit, new Vector2(-1, -70), ImGuiInputTextFlags.AllowTabInput))
             {
-                _inputText = inputText;
+                this.inputText = inputText;
             }
 
             // Problems window.
@@ -172,7 +169,7 @@ namespace KikoGuide.UI.Windows.Editor
         /// </summary>
         private void DrawEditorPreview()
         {
-            Duty? duty = _presenter.ParseDuty(_inputText).Item1;
+            var duty = this.Presenter.ParseDuty(this.inputText).Item1;
 
             if (ImGui.BeginTabBar("##DutyEditorTooling"))
             {
@@ -225,12 +222,12 @@ namespace KikoGuide.UI.Windows.Editor
                                 ImGui.TableSetupColumn("Name");
                                 ImGui.TableSetupColumn("ID");
                                 ImGui.TableHeadersRow();
-                                foreach (object? mechanic in Enum.GetValues(typeof(DutyMechanics)))
+                                foreach (var mechanic in Enum.GetValues(typeof(DutyMechanics)))
                                 {
-                                    _ = ImGui.TableNextColumn();
+                                    ImGui.TableNextColumn();
                                     ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyMechanics)mechanic)}");
                                     Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyMechanics)mechanic));
-                                    _ = ImGui.TableNextColumn();
+                                    ImGui.TableNextColumn();
                                     ImGui.TextWrapped($"{(int)mechanic}");
                                 }
                                 ImGui.EndTable();
@@ -245,12 +242,12 @@ namespace KikoGuide.UI.Windows.Editor
                             ImGui.TableSetupColumn("Name");
                             ImGui.TableSetupColumn("ID");
                             ImGui.TableHeadersRow();
-                            foreach (object? type in Enum.GetValues(typeof(DutyType)))
+                            foreach (var type in Enum.GetValues(typeof(DutyType)))
                             {
-                                _ = ImGui.TableNextColumn();
+                                ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyType)type)}");
                                 Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyType)type));
-                                _ = ImGui.TableNextColumn();
+                                ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{(int)type}");
                             }
                             ImGui.EndTable();
@@ -264,12 +261,12 @@ namespace KikoGuide.UI.Windows.Editor
                             ImGui.TableSetupColumn("Name");
                             ImGui.TableSetupColumn("ID");
                             ImGui.TableHeadersRow();
-                            foreach (object? difficulty in Enum.GetValues(typeof(DutyDifficulty)))
+                            foreach (var difficulty in Enum.GetValues(typeof(DutyDifficulty)))
                             {
-                                _ = ImGui.TableNextColumn();
+                                ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyDifficulty)difficulty)}");
                                 Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyDifficulty)difficulty));
-                                _ = ImGui.TableNextColumn();
+                                ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{(int)difficulty}");
                             }
                             ImGui.EndTable();
@@ -283,12 +280,12 @@ namespace KikoGuide.UI.Windows.Editor
                             ImGui.TableSetupColumn("Name");
                             ImGui.TableSetupColumn("ID");
                             ImGui.TableHeadersRow();
-                            foreach (object? section in Enum.GetValues(typeof(DutySectionType)))
+                            foreach (var section in Enum.GetValues(typeof(DutySectionType)))
                             {
-                                _ = ImGui.TableNextColumn();
+                                ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutySectionType)section)}");
                                 Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutySectionType)section));
-                                _ = ImGui.TableNextColumn();
+                                ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{(int)section}");
                             }
                             ImGui.EndTable();
@@ -302,12 +299,12 @@ namespace KikoGuide.UI.Windows.Editor
                             ImGui.TableSetupColumn("Name");
                             ImGui.TableSetupColumn("ID");
                             ImGui.TableHeadersRow();
-                            foreach (object? expansion in Enum.GetValues(typeof(DutyExpansion)))
+                            foreach (var expansion in Enum.GetValues(typeof(DutyExpansion)))
                             {
-                                _ = ImGui.TableNextColumn();
+                                ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyExpansion)expansion)}");
                                 Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyExpansion)expansion));
-                                _ = ImGui.TableNextColumn();
+                                ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{(int)expansion}");
                             }
                             ImGui.EndTable();

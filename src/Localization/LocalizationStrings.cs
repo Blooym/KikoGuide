@@ -1,4 +1,3 @@
-using System;
 using CheapLoc;
 using KikoGuide.Base;
 
@@ -24,7 +23,7 @@ namespace KikoGuide.Localization
 
 
         // Editor Strings
-        internal static string EditorTitle => String.Format(Loc.Localize("DutyEditor.Title", "{0} - Duty Editor"), PluginConstants.pluginName);
+        internal static string EditorTitle => string.Format(Loc.Localize("DutyEditor.Title", "{0} - Duty Editor"), PluginConstants.PluginName);
         internal static string EditorFormat => Loc.Localize("Editor.Format", "Format");
         internal static string EditorClear => Loc.Localize("Editor.Clear", "Clear");
         internal static string EditorPreview => Loc.Localize("Editor.Preview", "Preview");
@@ -39,7 +38,7 @@ namespace KikoGuide.Localization
 
 
         // Settings Strings
-        internal static string SettingsTitle => String.Format(Loc.Localize("Settings.Title", "{0} - Settings"), PluginConstants.pluginName);
+        internal static string SettingsTitle => string.Format(Loc.Localize("Settings.Title", "{0} - Settings"), PluginConstants.PluginName);
         internal static string SettingsGeneral => Loc.Localize("Settings.General", "General");
         internal static string SettingsAutoOpenInDuty => Loc.Localize("Settings.AutoOpenInDuty", "Auto Open In Duty");
         internal static string SettingsAutoOpenInDutyTooltip => Loc.Localize("Settings.AutoOpenDuty.Tooltip", "Open the duty guide when entering a duty.");
@@ -51,34 +50,34 @@ namespace KikoGuide.Localization
         internal static string SettingsResourcesAndLocalizationDesc => Loc.Localize("Settings.ResourcesAndLocalization.Tooltip", "Downloads the latest resources, localizations & guides.");
         internal static string SettingsUpdateResources => Loc.Localize("Settings.UpdateResources", "Update Resources");
         internal static string SettingsUpdateFailed => Loc.Localize("Settings.UpdateFailed", "Update Failed");
-        internal static string SettingsLastUpdate(string time) => String.Format(Loc.Localize("Settings.LastUpdate", "Last Update: {0}"), time);
+        internal static string SettingsLastUpdate(string time) => string.Format(Loc.Localize("Settings.LastUpdate", "Last Update: {0}"), time);
         internal static string SettingsMechanics => Loc.Localize("Settings.Mechanics", "Mechanics");
-        internal static string SettingsHideMechanic(string? mechanicName) => String.Format(Loc.Localize("Settings.HideMechanic", "Hide: {0}"), mechanicName);
-        internal static string SettingsHideMechanicTooltip(string? mechanicName) => String.Format(Loc.Localize("Settings.HideMechanicTooltip", "Hide {0} from duty guides."), mechanicName);
+        internal static string SettingsHideMechanic(string? mechanicName) => string.Format(Loc.Localize("Settings.HideMechanic", "Hide: {0}"), mechanicName);
+        internal static string SettingsHideMechanicTooltip(string? mechanicName) => string.Format(Loc.Localize("Settings.HideMechanicTooltip", "Hide {0} from duty guides."), mechanicName);
         internal static string SettingsIntegrations => Loc.Localize("Settings.Integrations", "Integrations");
         internal static string SettingsAvailableIntegrations => Loc.Localize("Settings.Integrations.Available", "Available Integrations");
         internal static string SettingsIntegrationsDesc => Loc.Localize("Settings.Integrations.Tooltip", "You can enable or disable integrations below, changes will take effect next plugin load if the integration plugin is present.");
 
 
         // Duty Finder
-        internal static string DutyFinderTitle => String.Format(Loc.Localize("DutyFinder.Title", "{0} - Duty Finder"), PluginConstants.pluginName);
+        internal static string DutyFinderTitle => string.Format(Loc.Localize("DutyFinder.Title", "{0} - Duty Finder"), PluginConstants.PluginName);
         internal static string DutyFinderContentNotFound => Loc.Localize("DutyFinder.NoFiles", "No duty files detected! Please try Settings -> Update Resources.");
 
 
         // Duty Info
-        internal static string DutyInfoTitle => String.Format(Loc.Localize("DutyInfo.Title", "{0} - Duty Info"), PluginConstants.pluginName);
+        internal static string DutyInfoTitle => string.Format(Loc.Localize("DutyInfo.Title", "{0} - Duty Info"), PluginConstants.PluginName);
         internal static string DutyInfoNoneSelected => Loc.Localize("DutyInfo.NoDuty", "No duty selected, use /kikolist to see all available duties.");
         internal static string DutyInfoNotUnlocked => Loc.Localize("DutyInfo.NotUnlocked", "You cannot view the guide for this duty as you have not unlocked it yet.");
 
 
         // Duty List Component
         internal static string DutyListNoneFound => Loc.Localize("DutyList.NoneFound", "No duties found for this query.");
-        internal static string DutyListNoGuide(string dutyName) => String.Format(Loc.Localize("DutyList.NoGuide", "No guide available for {0}."), dutyName);
-        internal static string DutyListNeedsUpdate => String.Format(Loc.Localize("DutyList.NeedsUpdate", "Cannot display duty as it was not made for this plugin version."));
+        internal static string DutyListNoGuide(string dutyName) => string.Format(Loc.Localize("DutyList.NoGuide", "No guide available for {0}."), dutyName);
+        internal static string DutyListNeedsUpdate => string.Format(Loc.Localize("DutyList.NeedsUpdate", "Cannot display duty as it was not made for this plugin version."));
 
 
         // Duty Heading Component
-        internal static string DutyHeadingTitle(string dutyName) => String.Format(Loc.Localize("DutyHeading.Title", "Duty: {0}"), dutyName);
+        internal static string DutyHeadingTitle(string dutyName) => string.Format(Loc.Localize("DutyHeading.Title", "Duty: {0}"), dutyName);
 
 
         // Commands

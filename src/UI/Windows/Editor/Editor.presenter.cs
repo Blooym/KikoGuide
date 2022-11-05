@@ -23,10 +23,7 @@ namespace KikoGuide.UI.Windows.Editor
         /// <summary>
         ///     Opens the contributing guide.
         /// </summary>
-        public static void OpenContributingGuide()
-        {
-            Util.OpenLink($"{PluginConstants.repoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
-        }
+        public static void OpenContributingGuide() => Util.OpenLink($"{PluginConstants.RepoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
 
         /// <summary>
         ///     Gets the players current territory.
@@ -36,12 +33,12 @@ namespace KikoGuide.UI.Windows.Editor
         /// <summary>
         ///     An instance of the FileDialogManager for loading/saving duties.
         /// </summary>
-        public FileDialogManager dialogManager = new();
+        internal FileDialogManager DialogManager = new();
 
         /// <summary> 
         ///     The character limit for the input text fields, applies to the UI and file loading.
         /// </summary>
-        public uint characterLimit = 35000;
+        internal uint CharacterLimit = 35000;
 
         /// <summary> 
         ///     Handles the file select event
@@ -53,7 +50,7 @@ namespace KikoGuide.UI.Windows.Editor
                 return text;
             }
 
-            string fileText = File.ReadAllText(file);
+            var fileText = File.ReadAllText(file);
 
             // If the length was zero, it likely means they cancelled the dialog or the file was empty.
             if (fileText.Length == 0)
@@ -62,13 +59,13 @@ namespace KikoGuide.UI.Windows.Editor
             }
 
             // Reject loading if the file length is beyond the character limit.
-            if (fileText.Length > characterLimit)
+            if (fileText.Length > this.CharacterLimit)
             {
-                PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileTooLarge, PluginConstants.pluginName, NotificationType.Error);
+                PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileTooLarge, PluginConstants.PluginName, NotificationType.Error);
                 return text;
             }
 
-            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullyLoaded, PluginConstants.pluginName, NotificationType.Success);
+            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullyLoaded, PluginConstants.PluginName, NotificationType.Success);
             return fileText;
         }
 
@@ -84,7 +81,7 @@ namespace KikoGuide.UI.Windows.Editor
 
             text = OnFormat(text);
             File.WriteAllText(file, text);
-            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullySaved, PluginConstants.pluginName, NotificationType.Success);
+            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullySaved, PluginConstants.PluginName, NotificationType.Success);
         }
 
         /// <summary>
@@ -95,7 +92,7 @@ namespace KikoGuide.UI.Windows.Editor
             try
             {
                 List<string> newLines = new();
-                foreach (string line in text.Split('\n'))
+                foreach (var line in text.Split('\n'))
                 {
                     if (line.Trim().Length > 0)
                     {
@@ -111,35 +108,35 @@ namespace KikoGuide.UI.Windows.Editor
         /// <summary>
         ///     The last parse result from this.ParseDuty()
         /// </summary>
-        private Tuple<Duty?, Exception?>? _lastParseResult;
+        private Tuple<Duty?, Exception?>? lastParseResult;
 
         /// <summary> 
         ///     The last parsed dutyText for this.ParseDuty(), used to prevent consistently deserializing. 
         /// </summary>
-        private string _parsedDutyText = "";
+        private string parsedDutyText = "";
 
         /// <summary> 
         ///     Parses the given dutyText into a Duty object or returns an Exception.
         /// </summary>
         public Tuple<Duty?, Exception?> ParseDuty(string dutyText)
         {
-            if (dutyText == _parsedDutyText && _lastParseResult != null)
+            if (dutyText == this.parsedDutyText && this.lastParseResult != null)
             {
-                return _lastParseResult;
+                return this.lastParseResult;
             }
 
-            _parsedDutyText = dutyText;
+            this.parsedDutyText = dutyText;
 
             try
             {
-                _lastParseResult = new Tuple<Duty?, Exception?>(JsonConvert.DeserializeObject<Duty>(dutyText), null);
-                return _lastParseResult;
+                this.lastParseResult = new Tuple<Duty?, Exception?>(JsonConvert.DeserializeObject<Duty>(dutyText), null);
+                return this.lastParseResult;
             }
 
             catch (Exception e)
             {
-                _lastParseResult = new Tuple<Duty?, Exception?>(null, e);
-                return _lastParseResult;
+                this.lastParseResult = new Tuple<Duty?, Exception?>(null, e);
+                return this.lastParseResult;
             }
         }
     }

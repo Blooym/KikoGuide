@@ -16,15 +16,15 @@ namespace KikoGuide.Managers
     /// </summary>
     internal sealed class WindowManager : IDisposable
     {
-        public static readonly string SettingsWindowName = $"{PluginConstants.pluginName} - Settings";
-        public static readonly string DutyListWindowName = $"{PluginConstants.pluginName} - Duty Finder";
-        public static readonly string DutyInfoWindowName = $"{PluginConstants.pluginName} - Duty Info";
-        public static readonly string EditorWindowName = $"{PluginConstants.pluginName} - Editor";
+        public static readonly string SettingsWindowName = $"{PluginConstants.PluginName} - Settings";
+        public static readonly string DutyListWindowName = $"{PluginConstants.PluginName} - Duty Finder";
+        public static readonly string DutyInfoWindowName = $"{PluginConstants.PluginName} - Duty Info";
+        public static readonly string EditorWindowName = $"{PluginConstants.PluginName} - Editor";
 
         /// <summary>
         ///     The windowing system service provided by Dalamud.
         /// </summary>
-        public readonly WindowSystem windowSystem = new(PluginConstants.pluginName);
+        public readonly WindowSystem WindowSystem = new(PluginConstants.PluginName);
 
         /// <summary>
         ///     All windows managed by the WindowManager.
@@ -45,14 +45,14 @@ namespace KikoGuide.Managers
             PluginLog.Debug("WindowManager(WindowManager): Initializing...");
 
 
-            foreach (Window window in windows)
+            foreach (var window in this.windows)
             {
                 PluginLog.Debug($"WindowManager(WindowManager): Registering window: {window.GetType().Name}");
-                windowSystem.AddWindow(window);
+                this.WindowSystem.AddWindow(window);
             }
 
-            PluginService.PluginInterface.UiBuilder.Draw += OnDrawUI;
-            PluginService.PluginInterface.UiBuilder.OpenConfigUi += OnOpenConfigUI;
+            PluginService.PluginInterface.UiBuilder.Draw += this.OnDrawUI;
+            PluginService.PluginInterface.UiBuilder.OpenConfigUi += this.OnOpenConfigUI;
 
             PluginLog.Debug("WindowManager(WindowManager): Successfully initialized.");
         }
@@ -60,17 +60,14 @@ namespace KikoGuide.Managers
         /// <summary>
         ///     Draws all windows for the draw event.
         /// </summary>
-        private void OnDrawUI()
-        {
-            windowSystem.Draw();
-        }
+        private void OnDrawUI() => this.WindowSystem.Draw();
 
         /// <summary>
         ///     Opens/Closes the plugin configuration window. 
         /// </summary> 
         private void OnOpenConfigUI()
         {
-            if (windowSystem.GetWindow(SettingsWindowName) is SettingsWindow window)
+            if (this.WindowSystem.GetWindow(SettingsWindowName) is SettingsWindow window)
             {
                 window.IsOpen = !window.IsOpen;
             }
@@ -81,16 +78,16 @@ namespace KikoGuide.Managers
         /// </summary>
         public void Dispose()
         {
-            PluginService.PluginInterface.UiBuilder.Draw -= OnDrawUI;
-            PluginService.PluginInterface.UiBuilder.OpenConfigUi -= OnOpenConfigUI;
+            PluginService.PluginInterface.UiBuilder.Draw -= this.OnDrawUI;
+            PluginService.PluginInterface.UiBuilder.OpenConfigUi -= this.OnOpenConfigUI;
 
-            foreach (IDisposable window in windows.OfType<IDisposable>())
+            foreach (var window in this.windows.OfType<IDisposable>())
             {
                 PluginLog.Debug($"WindowManager(Dispose): Disposing of {window.GetType().Name}...");
                 window.Dispose();
             }
 
-            windowSystem.RemoveAllWindows();
+            this.WindowSystem.RemoveAllWindows();
 
             PluginLog.Debug("WindowManager(Dispose): Successfully disposed.");
         }

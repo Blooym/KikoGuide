@@ -15,10 +15,10 @@ namespace KikoGuide.Managers
     /// </summary>
     public sealed class CommandManager : IDisposable
     {
-        private const string listCommand = "/kikolist";
-        private const string settingsCommand = "/kikoconfig";
-        private const string editorCommand = "/kikoeditor";
-        private const string dutyInfoCommand = "/kikoinfo";
+        private const string ListCommand = "/kikolist";
+        private const string SettingsCommand = "/kikoconfig";
+        private const string EditorCommand = "/kikoeditor";
+        private const string DutyInfoCommand = "/kikoinfo";
 
         /// <summary>
         ///     Initializes the CommandManager and its resources.
@@ -27,10 +27,10 @@ namespace KikoGuide.Managers
         {
             PluginLog.Debug("CommandManager(Constructor): Initializing...");
 
-            _ = PluginService.Commands.AddHandler(listCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.DutyListHelp });
-            _ = PluginService.Commands.AddHandler(settingsCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.SettingsHelp });
-            _ = PluginService.Commands.AddHandler(editorCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.EditorHelp });
-            _ = PluginService.Commands.AddHandler(dutyInfoCommand, new CommandInfo(OnCommand) { HelpMessage = TStrings.InfoHelp });
+            PluginService.Commands.AddHandler(ListCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.DutyListHelp });
+            PluginService.Commands.AddHandler(SettingsCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.SettingsHelp });
+            PluginService.Commands.AddHandler(EditorCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.EditorHelp });
+            PluginService.Commands.AddHandler(DutyInfoCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.InfoHelp });
 
             PluginLog.Debug("CommandManager(Constructor): Initialization complete.");
         }
@@ -42,10 +42,10 @@ namespace KikoGuide.Managers
         {
             PluginLog.Debug("CommandManager(Dispose): Disposing...");
 
-            _ = PluginService.Commands.RemoveHandler(listCommand);
-            _ = PluginService.Commands.RemoveHandler(settingsCommand);
-            _ = PluginService.Commands.RemoveHandler(editorCommand);
-            _ = PluginService.Commands.RemoveHandler(dutyInfoCommand);
+            PluginService.Commands.RemoveHandler(ListCommand);
+            PluginService.Commands.RemoveHandler(SettingsCommand);
+            PluginService.Commands.RemoveHandler(EditorCommand);
+            PluginService.Commands.RemoveHandler(DutyInfoCommand);
 
             PluginLog.Debug("CommandManager(Dispose): Successfully disposed.");
         }
@@ -55,31 +55,31 @@ namespace KikoGuide.Managers
         /// </summary>
         private void OnCommand(string command, string args)
         {
-            Dalamud.Interface.Windowing.WindowSystem windowSystem = PluginService.WindowManager.windowSystem;
+            var windowSystem = PluginService.WindowManager.WindowSystem;
             switch (command)
             {
-                case listCommand:
+                case ListCommand:
                     if (windowSystem.GetWindow(WindowManager.DutyListWindowName) is DutyListWindow dutyListWindow)
                     {
                         dutyListWindow.IsOpen = !dutyListWindow.IsOpen;
                     }
 
                     break;
-                case settingsCommand:
+                case SettingsCommand:
                     if (windowSystem.GetWindow(WindowManager.SettingsWindowName) is SettingsWindow settingsWindow)
                     {
                         settingsWindow.IsOpen = !settingsWindow.IsOpen;
                     }
 
                     break;
-                case editorCommand:
+                case EditorCommand:
                     if (windowSystem.GetWindow(WindowManager.EditorWindowName) is EditorWindow editorWindow)
                     {
                         editorWindow.IsOpen = !editorWindow.IsOpen;
                     }
 
                     break;
-                case dutyInfoCommand:
+                case DutyInfoCommand:
                     if (windowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow dutyInfoScreen)
                     {
                         dutyInfoScreen.IsOpen = !dutyInfoScreen.IsOpen;

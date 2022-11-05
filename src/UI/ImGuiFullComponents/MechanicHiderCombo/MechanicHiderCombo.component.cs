@@ -10,18 +10,18 @@ namespace KikoGuide.UI.ImGuiFullComponents.MechanicHiderCombo
 {
     public static class MechanicHiderComboComponent
     {
-        private static string _hiddenSectionFilter = string.Empty;
+        private static string hiddenSectionFilter = string.Empty;
         public static void Draw()
         {
-            List<DutyMechanics>? disabledMechanic = MechanicHiderComboPresenter.Configuration.Display.DisabledMechanics;
+            var disabledMechanic = MechanicHiderComboPresenter.Configuration.Display.DisabledMechanics;
             if (ImGui.BeginCombo("##MechanicHiderCombo", $"Hidden Mechanic Types: {disabledMechanic.Count}"))
             {
                 ImGui.SetNextItemWidth(-1);
-                _ = ImGui.InputTextWithHint("##MechanicHiderComboSearch", "Filter types...", ref _hiddenSectionFilter, 100);
+                ImGui.InputTextWithHint("##MechanicHiderComboSearch", "Filter types...", ref hiddenSectionFilter, 100);
                 ImGui.Separator();
-                foreach (DutyMechanics mechanicType in Enum.GetValues(typeof(DutyMechanics)).Cast<DutyMechanics>())
+                foreach (var mechanicType in Enum.GetValues(typeof(DutyMechanics)).Cast<DutyMechanics>())
                 {
-                    if (_hiddenSectionFilter != string.Empty && !mechanicType.ToString().ToLower().Contains(_hiddenSectionFilter.ToLower()))
+                    if (hiddenSectionFilter != string.Empty && !mechanicType.ToString().ToLower().Contains(hiddenSectionFilter.ToLower()))
                     {
                         continue;
                     }

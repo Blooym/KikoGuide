@@ -8,20 +8,14 @@ namespace KikoGuide.UI.Windows.DutyInfo
 {
     public sealed class DutyInfoPresenter : IDisposable
     {
-        public DutyInfoPresenter()
-        {
-            PluginService.ClientState.TerritoryChanged += OnTerritoryChange;
-        }
+        public DutyInfoPresenter() => PluginService.ClientState.TerritoryChanged += this.OnTerritoryChange;
 
-        public void Dispose()
-        {
-            PluginService.ClientState.TerritoryChanged -= OnTerritoryChange;
-        }
+        public void Dispose() => PluginService.ClientState.TerritoryChanged -= this.OnTerritoryChange;
 
         /// <summary> 
         ///     The currently selected duty to show in the info window.
         /// </summary>
-        public Duty? selectedDuty;
+        internal Duty? SelectedDuty;
 
         /// <summary>
         ///     Pulls the configuration from the plugin service.
@@ -33,7 +27,7 @@ namespace KikoGuide.UI.Windows.DutyInfo
         /// </summary>
         internal static void ToggleSettingsWindow()
         {
-            if (PluginService.WindowManager.windowSystem.GetWindow(WindowManager.SettingsWindowName) is SettingsWindow window)
+            if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.SettingsWindowName) is SettingsWindow window)
             {
                 window.IsOpen ^= true;
             }
@@ -44,15 +38,15 @@ namespace KikoGuide.UI.Windows.DutyInfo
         /// </summary>
         public void OnTerritoryChange(object? sender, ushort e)
         {
-            Duty? playerDuty = PluginService.DutyManager.GetPlayerDuty();
+            var playerDuty = PluginService.DutyManager.GetPlayerDuty();
 
             // If the player has entered a duty with data and has the setting enabled, show the duty info window.
             if (playerDuty != null && playerDuty?.Sections?.Count > 0)
             {
-                selectedDuty = playerDuty;
+                this.SelectedDuty = playerDuty;
                 if (PluginService.Configuration.Display.AutoToggleGuideForDuty)
                 {
-                    if (PluginService.WindowManager.windowSystem.GetWindow("Info") is DutyInfoWindow window)
+                    if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow window)
                     {
                         window.IsOpen = true;
                     }
@@ -62,8 +56,8 @@ namespace KikoGuide.UI.Windows.DutyInfo
             // If the player has entered a territory that does not have any data, deselect the duty & hide the UI
             else if (playerDuty == null)
             {
-                selectedDuty = null;
-                if (PluginService.WindowManager.windowSystem.GetWindow("Info") is DutyInfoWindow window)
+                this.SelectedDuty = null;
+                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow window)
                 {
                     window.IsOpen = false;
                 }

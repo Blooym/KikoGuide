@@ -22,7 +22,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyInfo
             {
                 if (ImGui.BeginTabBar("##DutySectionComponentTabs", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton))
                 {
-                    foreach (Duty.Section section in sections)
+                    foreach (var section in sections)
                     {
                         if (ImGui.BeginTabItem(section.Name))
                         {
@@ -34,7 +34,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyInfo
                             {
                                 if (ImGui.BeginTabBar("##DutySectionComponentPhaseTabs", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton))
                                 {
-                                    foreach (Duty.Section.Phase phase in section.Phases)
+                                    foreach (var phase in section.Phases)
                                     {
                                         if (ImGui.BeginTabItem($"Phase {(phase.TitleOverride != null ? phase.TitleOverride : section.Phases.IndexOf(phase) + 1)}"))
                                         {

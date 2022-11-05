@@ -14,42 +14,36 @@ namespace KikoGuide.UI.Windows.DutyInfo
 {
     public sealed class DutyInfoWindow : Window, IDisposable
     {
-        public DutyInfoPresenter _presenter = new();
+        internal DutyInfoPresenter Presenter = new();
 
         public DutyInfoWindow() : base(WindowManager.DutyInfoWindowName)
         {
-            Flags |= ImGuiWindowFlags.NoScrollbar;
+            this.Flags |= ImGuiWindowFlags.NoScrollbar;
 
-            Size = new Vector2(380, 420);
-            SizeCondition = ImGuiCond.FirstUseEver;
+            this.Size = new Vector2(380, 420);
+            this.SizeCondition = ImGuiCond.FirstUseEver;
 
             if (DutyInfoPresenter.Configuration.Display.PreventDutyInfoWindowMovement)
             {
-                Flags |= ImGuiWindowFlags.NoMove;
+                this.Flags |= ImGuiWindowFlags.NoMove;
             }
 
             if (DutyInfoPresenter.Configuration.Display.PreventDutyInfoWindowResize)
             {
-                Flags |= ImGuiWindowFlags.NoResize;
+                this.Flags |= ImGuiWindowFlags.NoResize;
             }
         }
 
-        public void Dispose()
-        {
-            _presenter.Dispose();
-        }
+        public void Dispose() => this.Presenter.Dispose();
 
-        private static bool CanShowExtendedInfo(Duty duty)
-        {
-            return ImGui.GetWindowWidth() - ImGui.CalcTextSize(TStrings.DutyHeadingTitle(duty.Name)).X > 150;
-        }
+        private static bool CanShowExtendedInfo(Duty duty) => ImGui.GetWindowWidth() - ImGui.CalcTextSize(TStrings.DutyHeadingTitle(duty.Name)).X > 150;
 
         /// <summary>
         ///     Draws the duty info window.
         /// </summary>
         public override void Draw()
         {
-            Duty? duty = _presenter.selectedDuty;
+            var duty = this.Presenter.SelectedDuty;
 
             if (duty == null)
             { ImGui.TextWrapped(TStrings.DutyInfoNoneSelected); return; }
@@ -57,7 +51,8 @@ namespace KikoGuide.UI.Windows.DutyInfo
             { ImGui.TextWrapped(TStrings.DutyInfoNotUnlocked); return; }
 
             Colours.TextWrappedColoured(Colours.Grey, TStrings.DutyHeadingTitle(duty.Name));
-            if (CanShowExtendedInfo(duty)) { ImGui.SameLine(); DrawHeaderButtons(); }
+            if (CanShowExtendedInfo(duty))
+            { ImGui.SameLine(); this.DrawHeaderButtons(); }
             ImGui.Separator();
 
             if (duty.Sections == null || duty.Sections.Count == 0)
@@ -70,14 +65,14 @@ namespace KikoGuide.UI.Windows.DutyInfo
 
         private void DrawHeaderButtons()
         {
-            bool dutyWindowNoMove = DutyInfoPresenter.Configuration.Display.PreventDutyInfoWindowMovement;
-            bool dutyWindowNoResize = DutyInfoPresenter.Configuration.Display.PreventDutyInfoWindowResize;
+            var dutyWindowNoMove = DutyInfoPresenter.Configuration.Display.PreventDutyInfoWindowMovement;
+            var dutyWindowNoResize = DutyInfoPresenter.Configuration.Display.PreventDutyInfoWindowResize;
 
             ImGui.SameLine();
             ImGui.SetCursorPosX(ImGui.GetWindowWidth() - 130);
             if (ImGuiComponents.IconButton(dutyWindowNoMove ? FontAwesomeIcon.Lock : FontAwesomeIcon.Unlock))
             {
-                Flags ^= ImGuiWindowFlags.NoMove;
+                this.Flags ^= ImGuiWindowFlags.NoMove;
                 DutyInfoPresenter.Configuration.Display.PreventDutyInfoWindowMovement ^= true;
                 DutyInfoPresenter.Configuration.Save();
             }
@@ -86,7 +81,7 @@ namespace KikoGuide.UI.Windows.DutyInfo
             ImGui.SameLine();
             if (ImGuiComponents.IconButton(dutyWindowNoResize ? FontAwesomeIcon.Compress : FontAwesomeIcon.Expand))
             {
-                Flags ^= ImGuiWindowFlags.NoResize;
+                this.Flags ^= ImGuiWindowFlags.NoResize;
                 DutyInfoPresenter.Configuration.Display.PreventDutyInfoWindowResize ^= true;
                 DutyInfoPresenter.Configuration.Save();
             }

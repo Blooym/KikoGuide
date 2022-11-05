@@ -9,20 +9,17 @@ namespace KikoGuide
         /// <summary> 
         ///     The plugin name, fetched from PStrings.
         /// </summary>
-        public string Name => PluginConstants.pluginName;
+        public string Name => PluginConstants.PluginName;
 
         /// <summary>
         ///     The plugin's main entry point.
         /// </summary>
         public KikoPlugin([RequiredVersion("1.0")] DalamudPluginInterface pluginInterface)
         {
-            _ = pluginInterface.Create<PluginService>();
+            pluginInterface.Create<PluginService>();
             PluginService.Initialize();
         }
 
-        public void Dispose()
-        {
-            PluginService.Dispose();
-        }
+        public void Dispose() => PluginService.Dispose();
     }
 }

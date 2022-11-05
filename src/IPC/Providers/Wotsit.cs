@@ -12,36 +12,80 @@ using KikoGuide.UI.Windows.Editor;
 namespace KikoGuide.IPC.Providers
 {
     /// <summary> 
-    ///     Provider for WotsitIPC
+    ///     Provider for Wotsit
     /// </summary>
     public sealed class WotsitIPC : IIPCProvider
     {
         public IPCProviders ID { get; } = IPCProviders.Wotsit;
 
-        private ICallGateSubscriber<string, string, uint, string>? _wotsitRegister;
-        private ICallGateSubscriber<string, bool>? _wotsitUnregister;
-        private ICallGateSubscriber<bool>? _wotsitAvailable;
         private const uint WotsitIconID = 21;
 
-        private string? _wotsitOpenListIpc;
-        private string? _wotsitOpenEditorIpc;
-        private readonly Dictionary<string, Duty> _wotsitDutyIpcs = new();
+        /// <summary>
+        ///     Available label.
+        /// </summary>
+        private const string LabelProviderAvailable = "FA.Available";
+
+        /// <summary>
+        ///     Register label.
+        /// </summary>
+        private const string LabelProviderRegister = "FA.Register";
+
+        /// <summary>
+        ///     UnregisterAll label.
+        /// </summary>
+        private const string LabelProviderUnregisterAll = "FA.UnregisterAll";
+
+        /// <summary>
+        ///     Invoke label.
+        /// </summary>
+        private const string LabelProviderInvoke = "FA.Invoke";
+
+        /// <summary>
+        ///     Register CallGateSubscriber.
+        /// </summary>
+        private ICallGateSubscriber<string, string, uint, string>? wotsitRegister;
+
+        /// <summary>
+        ///     Unregister CallGateSubscriber.
+        /// </summary>
+        private ICallGateSubscriber<string, bool>? wotsitUnregister;
+
+        /// <summary>
+        ///     Available CallGateSubscriber.
+        /// </summary>
+        private ICallGateSubscriber<bool>? wotsitAvailable;
+
+        /// <summary>
+        ///     Stored GUID for OpenListIPC.
+        /// </summary>
+        private string? wotsitOpenListIpc;
+
+        /// <summary>
+        ///     Stored GUID for OpenEditorIPC.
+        /// </summary>
+        private string? wotsitOpenEditorIpc;
+
+        /// <summary>
+        ///     Stored GUIDs for Duty's.
+        /// </summary>
+        private readonly Dictionary<string, Duty> wotsitDutyIpcs = new();
 
         public void Enable()
         {
-            try { Initialize(); }
+            try
+            { this.Initialize(); }
             catch { /* Ignore */ }
 
-            _wotsitAvailable = PluginService.PluginInterface.GetIpcSubscriber<bool>("FA.Available");
-            _wotsitAvailable.Subscribe(Initialize);
+            this.wotsitAvailable = PluginService.PluginInterface.GetIpcSubscriber<bool>(LabelProviderAvailable);
+            this.wotsitAvailable.Subscribe(this.Initialize);
         }
 
         public void Dispose()
         {
             try
             {
-                _wotsitAvailable?.Unsubscribe(Initialize);
-                _ = (_wotsitUnregister?.InvokeFunc(PluginConstants.pluginName));
+                this.wotsitAvailable?.Unsubscribe(this.Initialize);
+                this.wotsitUnregister?.InvokeFunc(PluginConstants.PluginName);
             }
             catch { /* Ignore */ }
         }
@@ -51,13 +95,13 @@ namespace KikoGuide.IPC.Providers
         /// </summary>
         private void Initialize()
         {
-            _wotsitRegister = PluginService.PluginInterface.GetIpcSubscriber<string, string, uint, string>("FA.Register");
-            _wotsitUnregister = PluginService.PluginInterface.GetIpcSubscriber<string, bool>("FA.UnregisterAll");
+            this.wotsitRegister = PluginService.PluginInterface.GetIpcSubscriber<string, string, uint, string>(LabelProviderRegister);
+            this.wotsitUnregister = PluginService.PluginInterface.GetIpcSubscriber<string, bool>(LabelProviderUnregisterAll);
 
-            ICallGateSubscriber<string, bool> subscribe = PluginService.PluginInterface.GetIpcSubscriber<string, bool>("FA.Invoke");
-            subscribe.Subscribe(HandleInvoke);
+            var subscribe = PluginService.PluginInterface.GetIpcSubscriber<string, bool>(LabelProviderInvoke);
+            subscribe.Subscribe(this.HandleInvoke);
 
-            RegisterAll();
+            this.RegisterAll();
         }
 
         /// <summary>
@@ -65,19 +109,19 @@ namespace KikoGuide.IPC.Providers
         /// </summary>
         private void RegisterAll()
         {
-            if (_wotsitRegister == null)
+            if (this.wotsitRegister == null)
             {
                 return;
             }
 
-            foreach (Duty duty in PluginService.DutyManager.GetDuties())
+            foreach (var duty in PluginService.DutyManager.GetDuties())
             {
-                string guid = _wotsitRegister.InvokeFunc(PluginConstants.pluginName, $"{duty.GetCanonicalName()}", WotsitIconID);
-                _wotsitDutyIpcs.Add(guid, duty);
+                var guid = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, $"{duty.GetCanonicalName()}", WotsitIconID);
+                this.wotsitDutyIpcs.Add(guid, duty);
             }
 
-            _wotsitOpenListIpc = _wotsitRegister.InvokeFunc(PluginConstants.pluginName, Loc.Localize("WotsitIPC.OpenDutyFinder", "Open Duty Finder"), WotsitIconID);
-            _wotsitOpenEditorIpc = _wotsitRegister.InvokeFunc(PluginConstants.pluginName, Loc.Localize("WotsitIPC.OpenDutyEditor", "Open Duty Editor"), WotsitIconID);
+            this.wotsitOpenListIpc = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, Loc.Localize("WotsitIPC.OpenDutyFinder", "Open Duty Finder"), WotsitIconID);
+            this.wotsitOpenEditorIpc = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, Loc.Localize("WotsitIPC.OpenDutyEditor", "Open Duty Editor"), WotsitIconID);
         }
 
         /// <summary> 
@@ -85,26 +129,26 @@ namespace KikoGuide.IPC.Providers
         /// </summary>
         private void HandleInvoke(string guid)
         {
-            if (_wotsitDutyIpcs.TryGetValue(guid, out Duty? duty))
+            if (this.wotsitDutyIpcs.TryGetValue(guid, out var duty))
             {
-                if (PluginService.WindowManager.windowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow dutyInfoWindow)
+                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow dutyInfoWindow)
                 {
-                    dutyInfoWindow._presenter.selectedDuty = duty;
+                    dutyInfoWindow.Presenter.SelectedDuty = duty;
                     dutyInfoWindow.IsOpen = true;
                 }
             }
 
-            else if (guid == _wotsitOpenListIpc)
+            else if (guid == this.wotsitOpenListIpc)
             {
-                if (PluginService.WindowManager.windowSystem.GetWindow(WindowManager.DutyListWindowName) is DutyListWindow dutyListWindow)
+                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.DutyListWindowName) is DutyListWindow dutyListWindow)
                 {
                     dutyListWindow.IsOpen = true;
                 }
             }
 
-            else if (guid == _wotsitOpenEditorIpc)
+            else if (guid == this.wotsitOpenEditorIpc)
             {
-                if (PluginService.WindowManager.windowSystem.GetWindow(WindowManager.EditorWindowName) is EditorWindow dutyEditorWindow)
+                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.EditorWindowName) is EditorWindow dutyEditorWindow)
                 {
                     dutyEditorWindow.IsOpen = true;
                 }

@@ -24,7 +24,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
         {
             try
             {
-                List<Duty> dutyList = dutyType != null ? dutyPool.Where(duty => duty.Type == dutyType).ToList() : dutyPool;
+                var dutyList = dutyType != null ? dutyPool.Where(duty => duty.Type == dutyType).ToList() : dutyPool;
 
                 // If there are no duties found, display a message and return.
                 if (dutyList.Count == 0)
@@ -43,7 +43,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
 
                     // Fetch all duties for this duty type and draw them.
                     // sort by level
-                    foreach (Duty? duty in dutyList.OrderBy(d => d.Level))
+                    foreach (var duty in dutyList.OrderBy(d => d.Level))
                     {
                         // Do not show the duty if it isn't unlocked or isn't part of the filter.
                         if (!duty.IsUnlocked())
@@ -58,13 +58,15 @@ namespace KikoGuide.UI.ImGuiFullComponents.DutyList
 
                         // Ad the level and duty name to the list.
                         ImGui.TableNextRow();
-                        _ = ImGui.TableNextColumn();
+                        ImGui.TableNextColumn();
                         ImGui.Text(duty.Level.ToString());
-                        _ = ImGui.TableNextColumn();
+                        ImGui.TableNextColumn();
 
                         // If this duty does not have any data or is unsupported, draw it as such and move on.
-                        if (!duty.IsSupported()) { UnsupportedDuty(duty.GetCanonicalName()); continue; }
-                        if (!DutyListPresenter.HasDutyData(duty)) { NoDataDuty(duty.GetCanonicalName()); continue; }
+                        if (!duty.IsSupported())
+                        { UnsupportedDuty(duty.GetCanonicalName()); continue; }
+                        if (!DutyListPresenter.HasDutyData(duty))
+                        { NoDataDuty(duty.GetCanonicalName()); continue; }
 
                         // Draw a selectable text for this duty and trigger the onDutySelected event when clicked.
                         if (ImGui.Selectable(duty.GetCanonicalName(), false, ImGuiSelectableFlags.AllowDoubleClick))

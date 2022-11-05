@@ -16,30 +16,27 @@ namespace KikoGuide.UI.Windows.DutyList
 {
     public sealed class DutyListWindow : Window, IDisposable
     {
-        public DutyListPresenter _presenter;
+        internal DutyListPresenter Presenter;
         public DutyListWindow() : base(WindowManager.DutyListWindowName)
         {
-            Flags |= ImGuiWindowFlags.NoScrollbar;
-            Flags |= ImGuiWindowFlags.NoScrollWithMouse;
+            this.Flags |= ImGuiWindowFlags.NoScrollbar;
+            this.Flags |= ImGuiWindowFlags.NoScrollWithMouse;
 
-            SizeConstraints = new WindowSizeConstraints
+            this.SizeConstraints = new WindowSizeConstraints
             {
                 MinimumSize = new Vector2(360, 300),
                 MaximumSize = new Vector2(1000, 1000)
             };
-            SizeCondition = ImGuiCond.FirstUseEver;
+            this.SizeCondition = ImGuiCond.FirstUseEver;
 
-            _presenter = new DutyListPresenter();
+            this.Presenter = new DutyListPresenter();
         }
-        public void Dispose()
-        {
-            _presenter.Dispose();
-        }
+        public void Dispose() => this.Presenter.Dispose();
 
         /// <summary>
         ///     The current search query.
         /// </summary>
-        private string _searchText = "";
+        private string searchText = "";
 
         public override void Draw()
         {
@@ -51,14 +48,14 @@ namespace KikoGuide.UI.Windows.DutyList
             }
 
             // If the plugin detects no duties, show a warning message.
-            System.Collections.Generic.List<Duty> duties = DutyListPresenter.GetDuties();
+            var duties = DutyListPresenter.GetDuties();
             if (duties.Count == 0)
             {
                 Colours.TextWrappedColoured(Colours.Error, TStrings.DutyFinderContentNotFound);
             }
 
             // If the support button is shown, make the search bar accommodate it, otherwise make it full width.
-            bool supportButtonShown = DutyListPresenter.GetConfiguration().Display.DonateButtonShown;
+            var supportButtonShown = DutyListPresenter.GetConfiguration().Display.DonateButtonShown;
             if (supportButtonShown)
             {
                 ImGui.SetNextItemWidth(-(ImGui.CalcTextSize(TStrings.Donate).X + (ImGui.GetStyle().FramePadding.X * 2) + ImGui.GetStyle().ItemSpacing.X));
@@ -68,7 +65,7 @@ namespace KikoGuide.UI.Windows.DutyList
                 ImGui.SetNextItemWidth(-1);
             }
 
-            _ = ImGui.InputTextWithHint("", TStrings.Search, ref _searchText, 60);
+            ImGui.InputTextWithHint("", TStrings.Search, ref this.searchText, 60);
 
             // If support button shown, add the button next to the search bar.
             if (supportButtonShown)
@@ -78,24 +75,21 @@ namespace KikoGuide.UI.Windows.DutyList
                 ImGui.PushStyleColor(ImGuiCol.ButtonHovered, 0xAA000000 | 0xe76262);
                 if (ImGui.Button(TStrings.Donate))
                 {
-                    Util.OpenLink(PluginConstants.donateButtonUrl);
+                    Util.OpenLink(PluginConstants.DonateButtonUrl);
                 }
 
                 ImGui.PopStyleColor(2);
             }
 
             // For each duty type enum, create a tab for it.
-            _ = ImGui.BeginTabBar("##DutyListTabBar");
-            foreach (int dutyType in Enum.GetValues(typeof(DutyType)).Cast<int>().ToList())
+            ImGui.BeginTabBar("##DutyListTabBar");
+            foreach (var dutyType in Enum.GetValues(typeof(DutyType)).Cast<int>().ToList())
             {
                 if (ImGui.BeginTabItem(AttributeExtensions.GetNameAttribute((DutyType)dutyType)))
                 {
-                    _ = ImGui.BeginChild(dutyType.ToString());
+                    ImGui.BeginChild(dutyType.ToString());
 
-                    DutyListComponent.Draw(duties, (duty) =>
-                    {
-                        DutyListPresenter.OnDutyListSelection(duty);
-                    }, _searchText, (DutyType)dutyType);
+                    DutyListComponent.Draw(duties, (duty) => DutyListPresenter.OnDutyListSelection(duty), this.searchText, (DutyType)dutyType);
 
                     ImGui.EndChild();
                     ImGui.EndTabItem();

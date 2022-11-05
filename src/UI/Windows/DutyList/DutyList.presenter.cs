@@ -14,29 +14,23 @@ namespace KikoGuide.UI.Windows.DutyList
         /// <summary>
         ///     Gets the duty list from the duty manager.
         /// </summary>
-        public static List<Duty> GetDuties()
-        {
-            return PluginService.DutyManager.GetDuties();
-        }
+        public static List<Duty> GetDuties() => PluginService.DutyManager.GetDuties();
 
         /// <summary>
         ///     Handles a duty list selection event.
         /// </summary>
         public static void OnDutyListSelection(Duty duty)
         {
-            if (PluginService.WindowManager.windowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow dutyInfoWindow)
+            if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow dutyInfoWindow)
             {
                 dutyInfoWindow.IsOpen = true;
-                dutyInfoWindow._presenter.selectedDuty = duty;
+                dutyInfoWindow.Presenter.SelectedDuty = duty;
             }
         }
 
         /// <summary>
         ///     Pulls the configuration from the plugin service.
         /// </summary>
-        internal static Configuration GetConfiguration()
-        {
-            return PluginService.Configuration;
-        }
+        internal static Configuration GetConfiguration() => PluginService.Configuration;
     }
 }

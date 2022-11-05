@@ -15,29 +15,20 @@ namespace KikoGuide.UI.Windows.Settings
         /// <summary>
         ///     Pulls the configuration from the plugin service.
         /// </summary>
-        internal static Configuration GetConfiguration()
-        {
-            return PluginService.Configuration;
-        }
+        internal static Configuration GetConfiguration() => PluginService.Configuration;
 
         /// <summary>
         ///     Sets an IPCProvider as enabled.
         /// </summary>
-        public static void SetIPCProviderEnabled(IPCProviders provider)
-        {
-            PluginService.IPC.EnableProvider(provider);
-        }
+        public static void SetIPCProviderEnabled(IPCProviders provider) => PluginService.IPC.EnableProvider(provider);
 
         /// <summary>
         ///     Sets an IPCProvider as disabled.
         /// </summary>
-        public static void SetIPCProviderDisabled(IPCProviders provider)
-        {
-            PluginService.IPC.DisableProvider(provider);
-        }
+        public static void SetIPCProviderDisabled(IPCProviders provider) => PluginService.IPC.DisableProvider(provider);
 
 #if DEBUG
-        public FileDialogManager dialogManager = new();
+        internal FileDialogManager DialogManager = new();
 
         /// <summary>
         ///     Handles the directory select event and saves the location to that directory.
@@ -49,12 +40,12 @@ namespace KikoGuide.UI.Windows.Settings
                 return;
             }
 
-            string directory = Directory.GetCurrentDirectory();
+            var directory = Directory.GetCurrentDirectory();
             Directory.SetCurrentDirectory(path);
             Loc.ExportLocalizable();
             File.Copy(Path.Combine(path, "KikoGuide_Localizable.json"), Path.Combine(path, "en.json"), true);
             Directory.SetCurrentDirectory(directory);
-            PluginService.PluginInterface.UiBuilder.AddNotification("Localization exported successfully.", PluginConstants.pluginName, NotificationType.Success);
+            PluginService.PluginInterface.UiBuilder.AddNotification("Localization exported successfully.", PluginConstants.PluginName, NotificationType.Success);
         }
 #endif
     }

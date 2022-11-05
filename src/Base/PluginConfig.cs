@@ -78,29 +78,20 @@ namespace KikoGuide.Base
         /// <summary>
         ///     Saves the current configuration (and any modifications) to the config file.
         /// </summary>
-        internal void Save()
-        {
-            PluginService.PluginInterface.SavePluginConfig(this);
-        }
+        internal void Save() => PluginService.PluginInterface.SavePluginConfig(this);
 
         /// <summary>
         ///     Reads the given file from the plugin configuration directory
         /// </summary>
         /// <param name="fileName">The file to read from, relative to the plugin configuration directory</param>
         /// <returns>The contents of the file</returns>
-        internal static string ReadFile(string fileName)
-        {
-            return File.ReadAllText(Path.Combine(PluginService.PluginInterface.GetPluginConfigDirectory(), fileName));
-        }
+        internal static string ReadFile(string fileName) => File.ReadAllText(Path.Combine(PluginService.PluginInterface.GetPluginConfigDirectory(), fileName));
 
         /// <summary>
         ///     Writes the given file and text to the plugin configuration directory
         /// </summary>
         /// <param name="fileName">The file to write to</param>
         /// <param name="text">The text to write to the file, relative to the plugin configuration directory</param>
-        internal static void WriteFile(string fileName, string text)
-        {
-            File.WriteAllText(Path.Combine(PluginService.PluginInterface.GetPluginConfigDirectory(), fileName), text);
-        }
+        internal static void WriteFile(string fileName, string text) => File.WriteAllText(Path.Combine(PluginService.PluginInterface.GetPluginConfigDirectory(), fileName), text);
     }
 }

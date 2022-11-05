@@ -15,8 +15,8 @@ namespace KikoGuide.UI.ImGuiFullComponents.MechanicTable
         {
             try
             {
-                List<DutyMechanics>? disabledMechanics = MechanicTablePresenter.Configuration.Display.DisabledMechanics;
-                bool shortMode = MechanicTablePresenter.Configuration.Accessiblity.ShortenGuideText;
+                var disabledMechanics = MechanicTablePresenter.Configuration.Display.DisabledMechanics;
+                var shortMode = MechanicTablePresenter.Configuration.Accessiblity.ShortenGuideText;
 
                 if (!mechanics.All(x => disabledMechanics?.Contains((DutyMechanics)x.Type) ?? false))
                 {
@@ -27,7 +27,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.MechanicTable
                         ImGui.TableSetupColumn(label: TStrings.Description);
                         ImGui.TableSetupColumn(TStrings.Type);
                         ImGui.TableHeadersRow();
-                        foreach (Duty.Section.Phase.Mechanic mechanic in mechanics)
+                        foreach (var mechanic in mechanics)
                         {
                             if (disabledMechanics?.Contains((DutyMechanics)mechanic.Type) == true)
                             {
@@ -35,11 +35,11 @@ namespace KikoGuide.UI.ImGuiFullComponents.MechanicTable
                             }
 
                             ImGui.TableNextRow();
-                            _ = ImGui.TableNextColumn();
+                            ImGui.TableNextColumn();
                             ImGui.Text(mechanic.Name);
-                            _ = ImGui.TableNextColumn();
+                            ImGui.TableNextColumn();
                             ImGui.TextWrapped((shortMode && mechanic.ShortDesc != null) ? mechanic.ShortDesc : mechanic.Description);
-                            _ = ImGui.TableNextColumn();
+                            ImGui.TableNextColumn();
                             ImGui.Text(AttributeExtensions.GetNameAttribute((DutyMechanics)mechanic.Type));
                             Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyMechanics)mechanic.Type));
                         }
