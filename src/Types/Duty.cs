@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FFXIVClientStructs.FFXIV.Client.Game;
+using KikoGuide.Attributes;
 using KikoGuide.Localization;
 using Newtonsoft.Json;
 
@@ -173,7 +174,7 @@ namespace KikoGuide.Types
             return !Enum.IsDefined(typeof(DutyDifficulty), Difficulty)
                 ? Name
                 : Difficulty != (int)DutyDifficulty.Normal
-                ? $"{Name} ({LoCExtensions.GetLocalizedName(Difficulty)})"
+                ? $"{Name} ({AttributeExtensions.GetNameAttribute(Difficulty)})"
                 : Name;
         }
 
@@ -189,37 +190,37 @@ namespace KikoGuide.Types
 
     public enum DutyType
     {
-        [LocalizableName("TypeDutyTypeDungeon", "Dungeons")]
+        [Name("Dungeon")]
         Dungeon = 0,
 
-        [LocalizableName("TypeDutyTypeTrial", "Trials")]
+        [Name("Trial")]
         Trial = 1,
 
-        [LocalizableName("TypeDutyTypeAllianceRaid", "Alliance Raids")]
+        [Name("Alliance Raid")]
         AllianceRaid = 2,
 
-        [LocalizableName("TypeDutyTypeRaid", "Raids")]
-        Raid = 3,
+        [Name("Raid")]
+        NormalRaid = 3,
     }
 
     public enum DutyDifficulty
     {
-        [LocalizableName("TypeDutyDifficultyNormal", "Normal")]
+        [Name("Normal")]
         Normal = 0,
 
-        [LocalizableName("TypeDutyDifficultyHard", "Hard")]
+        [Name("Hard")]
         Hard = 1,
 
-        [LocalizableName("TypeDutyDifficultyExtreme", "Extreme")]
+        [Name("Extreme")]
         Extreme = 2,
 
-        [LocalizableName("TypeDutyDifficultySavage", "Savage")]
+        [Name("Savage")]
         Savage = 3,
 
-        [LocalizableName("TypeDutyDifficultyUltimate", "Ultimate")]
+        [Name("Ultimate")]
         Ultimate = 4,
 
-        [LocalizableName("TypeDutyDifficultyUnreal", "Unreal")]
+        [Name("Unreal")]
         Unreal = 5
     }
 
@@ -234,63 +235,63 @@ namespace KikoGuide.Types
 
     public enum DutySectionType
     {
-        [LocalizableName("TypeDutySectionTypeBoss", "Boss")]
-        [LocalizableDescription("TypeDutySectionTypeBossDesc", "A boss fight.")]
+        [Name("Boss")]
+        [Description("A boss fight.")]
         Boss = 0,
 
-        [LocalizableName("TypeDutySectionTypeTrashpack", "Trashpack")]
-        [LocalizableDescription("TypeDutySectionTypeTrashpackDesc", "A group of enemies that are not a boss.")]
+        [Name("Trashpack")]
+        [Description("A group of enemies that are not a boss.")]
         Trashpack = 1,
 
-        [LocalizableName("TypeDutySectionTypeOther", "Other")]
-        [LocalizableDescription("TypeDutySectionTypeOtherDesc", "A section that does not fit into the other categories.")]
+        [Name("Other")]
+        [Description("A section that does not fit into the other categories.")]
         Other = 2
     }
 
     public enum DutyMechanics
     {
-        [LocalizableName("TypeDutyMechanicsTankBuster", "Tankbuster")]
-        [LocalizableDescription("TypeDutyMechanicsTankBusterDesc", "A mechanic that requires a tank to take the hit.")]
+        [Name("Tankbuster")]
+        [Description("A mechanic that requires a tank to take the hit.")]
         Tankbuster = 0,
 
-        [LocalizableName("TypeDutyMechanicsEnrage", "Enrage")]
-        [LocalizableDescription("TypeDutyMechanicsEnrageDesc", "A mechanic that causes the boss to go into an enraged state, dealing more damage.")]
+        [Name("Enrage")]
+        [Description("A mechanic that causes the boss to go into an enraged state, dealing more damage.")]
         Enrage = 1,
 
-        [LocalizableName("TypeDutyMechanicsAOE", "AoE")]
-        [LocalizableDescription("TypeDutyMechanicsAOEDesc", "A mechanic that requires the party to spread out.")]
+        [Name("AoE")]
+        [Description("A mechanic that requires the party to spread out.")]
         AOE = 2,
 
-        [LocalizableName("TypeDutyMechanicsStackmarker", "Stackmarker")]
-        [LocalizableDescription("TypeDutyMechanicsStackmarkerDesc", "A mechanic that requires the party to stack up.")]
+        [Name("Stackmarker")]
+        [Description("A mechanic that requires the party to stack up.")]
         Stackmarker = 3,
 
-        [LocalizableName("TypeDutyMechanicsRaidwide", "Raidwide")]
-        [LocalizableDescription("TypeDutyMechanicsRaidwideDesc", "A mechanic that affects the entire raid.")]
+        [Name("Raidwide")]
+        [Description("A mechanic that affects the entire raid.")]
         Raidwide = 4,
 
-        [LocalizableName("TypeDutyMechanicsInvulnerability", "Invulnerability")]
-        [LocalizableDescription("TypeDutyMechanicsInvulnerabilityDesc", "A mechanic that makes the boss invulnerable.")]
+        [Name("Invulnerability")]
+        [Description("A mechanic that makes the boss invulnerable.")]
         Invulnerablity = 5,
 
-        [LocalizableName("TypeDutyMechanicsTargetted", "Targetted")]
-        [LocalizableDescription("TypeDutyMechanicsTargettedDesc", "A mechanic that targets a specific player.")]
+        [Name("Targetted")]
+        [Description("A mechanic that targets a specific player.")]
         Targetted = 6,
 
-        [LocalizableName("TypeDutyMechanicsAddspawn", "Addspawn")]
-        [LocalizableDescription("TypeDutyMechanicsAddspawnDesc", "A mechanic that spawns additional enemies.")]
+        [Name("Addspawn")]
+        [Description("A mechanic that spawns additional enemies.")]
         AddSpawn = 7,
 
-        [LocalizableName("TypeDutyMechanicsDPSCheck", "DPS Check")]
-        [LocalizableDescription("TypeDutyMechanicsDPSCheckDesc", "A mechanic that requires the party to deal a certain amount of damage.")]
+        [Name("DPS Check")]
+        [Description("A mechanic that requires the party to deal a certain amount of damage.")]
         DPSCheck = 8,
 
-        [LocalizableName("TypeDutyMechanicsCleave", "Cleave")]
-        [LocalizableDescription("TypeDutyMechanicsCleaveDesc", "A mechanic that deals damage in a non-telegraphed cone.")]
+        [Name("Cleave")]
+        [Description("A mechanic that deals damage in a non-telegraphed cone.")]
         Cleave = 9,
 
-        [LocalizableName("TypeDutyMechanicsOther", "Other")]
-        [LocalizableDescription("TypeDutyMechanicsOtherDesc", "A mechanic that does not fit into any other category.")]
+        [Name("Other")]
+        [Description("A mechanic that does not fit into any other category.")]
         Other = 10,
     }
 }

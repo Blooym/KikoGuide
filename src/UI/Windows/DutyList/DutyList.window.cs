@@ -4,6 +4,7 @@ using System.Numerics;
 using Dalamud.Interface.Windowing;
 using Dalamud.Utility;
 using ImGuiNET;
+using KikoGuide.Attributes;
 using KikoGuide.Base;
 using KikoGuide.Localization;
 using KikoGuide.Managers;
@@ -87,7 +88,7 @@ namespace KikoGuide.UI.Windows.DutyList
             _ = ImGui.BeginTabBar("##DutyListTabBar");
             foreach (int dutyType in Enum.GetValues(typeof(DutyType)).Cast<int>().ToList())
             {
-                if (ImGui.BeginTabItem(LoCExtensions.GetLocalizedName((DutyType)dutyType)))
+                if (ImGui.BeginTabItem(AttributeExtensions.GetNameAttribute((DutyType)dutyType)))
                 {
                     _ = ImGui.BeginChild(dutyType.ToString());
 

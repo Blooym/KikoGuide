@@ -3,6 +3,7 @@ using System.Linq;
 using System.Numerics;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
+using KikoGuide.Attributes;
 using KikoGuide.IPC;
 using KikoGuide.Localization;
 using KikoGuide.Managers;
@@ -129,8 +130,8 @@ namespace KikoGuide.UI.Windows.Settings
                     foreach (object? integration in Enum.GetValues(typeof(IPCProviders)))
                     {
                         bool isIntegrationDisabled = SettingsPresenter.GetConfiguration().IPC.EnabledIntegrations.Contains((IPCProviders)integration);
-                        string name = LoCExtensions.GetLocalizedName((IPCProviders)integration);
-                        string tooltip = LoCExtensions.GetLocalizedDescription((IPCProviders)integration);
+                        string name = AttributeExtensions.GetNameAttribute((IPCProviders)integration);
+                        string tooltip = AttributeExtensions.GetDescriptionAttribute((IPCProviders)integration);
 
                         Common.ToggleCheckbox(name, ref isIntegrationDisabled, () =>
                         {

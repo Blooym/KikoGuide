@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ImGuiNET;
-using KikoGuide.Localization;
+using KikoGuide.Attributes;
 using KikoGuide.Types;
 using KikoGuide.UI.ImGuiBasicComponents;
 
@@ -26,7 +26,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.MechanicHiderCombo
                         continue;
                     }
 
-                    if (ImGui.Selectable(LoCExtensions.GetLocalizedName(mechanicType), disabledMechanic?.Contains(mechanicType) ?? false))
+                    if (ImGui.Selectable(AttributeExtensions.GetNameAttribute(mechanicType), disabledMechanic?.Contains(mechanicType) ?? false))
                     {
                         disabledMechanic = disabledMechanic?.Contains(mechanicType) ?? false
                             ? disabledMechanic.Where(t => t != mechanicType).ToList()
@@ -34,7 +34,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.MechanicHiderCombo
                         MechanicHiderComboPresenter.Configuration.Display.DisabledMechanics = disabledMechanic;
                         MechanicHiderComboPresenter.Configuration.Save();
                     }
-                    Common.AddTooltip(LoCExtensions.GetLocalizedDescription(mechanicType));
+                    Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute(mechanicType));
                 }
                 ImGui.EndCombo();
             }

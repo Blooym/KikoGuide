@@ -1,4 +1,4 @@
-using KikoGuide.Localization;
+using KikoGuide.Attributes;
 
 namespace KikoGuide.IPC
 {
@@ -7,7 +7,7 @@ namespace KikoGuide.IPC
     /// </summary>
     public enum IPCProviders
     {
-        [LocalizableDescription("IPC.Provider.Wotsit.Description", "Integrate with Wotsit to provide search capibilities.")]
+        [Description("Integrate with Wotsit to provide search capibilities.")]
         Wotsit
     }
 }

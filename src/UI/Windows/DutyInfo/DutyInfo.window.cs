@@ -74,16 +74,7 @@ namespace KikoGuide.UI.Windows.DutyInfo
             bool dutyWindowNoResize = DutyInfoPresenter.Configuration.Display.PreventDutyInfoWindowResize;
 
             ImGui.SameLine();
-            ImGui.BeginDisabled();
-            if (ImGuiComponents.IconButton(FontAwesomeIcon.List))
-            {
-
-            }
-            Common.AddTooltip("Open In Duty Finder");
-            ImGui.EndDisabled();
-
-            ImGui.SameLine();
-            ImGui.SetCursorPosX(ImGui.GetWindowWidth() - 100);
+            ImGui.SetCursorPosX(ImGui.GetWindowWidth() - 130);
             if (ImGuiComponents.IconButton(dutyWindowNoMove ? FontAwesomeIcon.Lock : FontAwesomeIcon.Unlock))
             {
                 Flags ^= ImGuiWindowFlags.NoMove;
@@ -104,9 +95,9 @@ namespace KikoGuide.UI.Windows.DutyInfo
             ImGui.SameLine();
             if (ImGuiComponents.IconButton(FontAwesomeIcon.Cog))
             {
-                // _presenter.OpenSettingsWIndow();
+                DutyInfoPresenter.ToggleSettingsWindow();
             }
-            Common.AddTooltip("Open Settings");
+            Common.AddTooltip("Toggle Settings Window");
         }
     }
 

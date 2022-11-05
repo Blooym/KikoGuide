@@ -1,6 +1,8 @@
 using System;
 using KikoGuide.Base;
+using KikoGuide.Managers;
 using KikoGuide.Types;
+using KikoGuide.UI.Windows.Settings;
 
 namespace KikoGuide.UI.Windows.DutyInfo
 {
@@ -25,6 +27,17 @@ namespace KikoGuide.UI.Windows.DutyInfo
         ///     Pulls the configuration from the plugin service.
         /// </summary>
         internal static Configuration Configuration => PluginService.Configuration;
+
+        /// <summary>
+        ///     Toggles the settings window.
+        /// </summary>
+        internal static void ToggleSettingsWindow()
+        {
+            if (PluginService.WindowManager.windowSystem.GetWindow(WindowManager.SettingsWindowName) is SettingsWindow window)
+            {
+                window.IsOpen ^= true;
+            }
+        }
 
         /// <summary>
         ///     Handles territory change even and changes the UI state accordingly.

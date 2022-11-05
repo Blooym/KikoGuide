@@ -5,6 +5,7 @@ using Dalamud.Interface.Components;
 using Dalamud.Interface.Windowing;
 using Dalamud.Utility;
 using ImGuiNET;
+using KikoGuide.Attributes;
 using KikoGuide.Base;
 using KikoGuide.Localization;
 using KikoGuide.Managers;
@@ -49,18 +50,24 @@ namespace KikoGuide.UI.Windows.Editor
             try
             {
                 // Duty Editor panes.
-                _ = ImGui.BeginTable("##DutyInfoTable", 2, ImGuiTableFlags.Resizable);
-                ImGui.TableNextRow();
-                _ = ImGui.TableNextColumn();
-                _ = ImGui.BeginChild("##EditorInput");
-                DrawEditorInput();
-                ImGui.EndChild();
+                if (ImGui.BeginTable("##DutyInfoTable", 2, ImGuiTableFlags.Resizable))
+                {
+                    ImGui.TableNextRow();
+                    _ = ImGui.TableNextColumn();
+                    if (ImGui.BeginChild("##EditorInput"))
+                    {
+                        DrawEditorInput();
+                        ImGui.EndChild();
+                    }
 
-                _ = ImGui.TableNextColumn();
-                _ = ImGui.BeginChild("##EditorPreview");
-                DrawEditorPreview();
-                ImGui.EndChild();
-                ImGui.EndTable();
+                    _ = ImGui.TableNextColumn();
+                    if (ImGui.BeginChild("##EditorPreview"))
+                    {
+                        DrawEditorPreview();
+                        ImGui.EndChild();
+                    }
+                    ImGui.EndTable();
+                }
             }
             catch (Exception e)
             {
@@ -191,10 +198,10 @@ namespace KikoGuide.UI.Windows.Editor
                     {
                         ImGui.TextWrapped($"Version: {duty.Version}");
                         ImGui.TextWrapped($"Name: {duty.Name}");
-                        ImGui.TextWrapped($"Type: {LoCExtensions.GetLocalizedName(duty.Type)}");
-                        ImGui.TextWrapped($"Difficulty: {LoCExtensions.GetLocalizedName(duty.Difficulty)}");
+                        ImGui.TextWrapped($"Type: {AttributeExtensions.GetNameAttribute(duty.Type)}");
+                        ImGui.TextWrapped($"Difficulty: {AttributeExtensions.GetNameAttribute(duty.Difficulty)}");
                         ImGui.TextWrapped($"Level: {duty.Level}");
-                        ImGui.TextWrapped($"Expansion: {LoCExtensions.GetLocalizedName(duty.Expansion)}");
+                        ImGui.TextWrapped($"Expansion: {AttributeExtensions.GetNameAttribute(duty.Expansion)}");
                         ImGui.TextWrapped($"TerritoryIDs: {string.Join(", ", duty.TerritoryIDs)} (Current: {EditorPresenter.GetPlayerTerritory})");
                         ImGui.TextWrapped($"UnlockQuestID: {duty.UnlockQuestID}");
                     }
@@ -209,23 +216,25 @@ namespace KikoGuide.UI.Windows.Editor
                 // Enum IDs pane.
                 if (ImGui.BeginTabItem("Enum IDs"))
                 {
-                    _ = ImGui.BeginChild("##EnumIDs");
-                    if (ImGui.CollapsingHeader("Mechanic IDs"))
+                    if (ImGui.BeginChild("##EnumIDs"))
                     {
-                        if (ImGui.BeginTable("##MechanicIDs", 2, ImGuiTableFlags.Borders))
+                        if (ImGui.CollapsingHeader("Mechanic IDs"))
                         {
-                            ImGui.TableSetupColumn("Name");
-                            ImGui.TableSetupColumn("ID");
-                            ImGui.TableHeadersRow();
-                            foreach (object? mechanic in Enum.GetValues(typeof(DutyMechanics)))
+                            if (ImGui.BeginTable("##MechanicIDs", 2, ImGuiTableFlags.Borders))
                             {
-                                _ = ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{LoCExtensions.GetLocalizedName((DutyMechanics)mechanic)}");
-                                Common.AddTooltip(LoCExtensions.GetLocalizedDescription((DutyMechanics)mechanic));
-                                _ = ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{(int)mechanic}");
+                                ImGui.TableSetupColumn("Name");
+                                ImGui.TableSetupColumn("ID");
+                                ImGui.TableHeadersRow();
+                                foreach (object? mechanic in Enum.GetValues(typeof(DutyMechanics)))
+                                {
+                                    _ = ImGui.TableNextColumn();
+                                    ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyMechanics)mechanic)}");
+                                    Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyMechanics)mechanic));
+                                    _ = ImGui.TableNextColumn();
+                                    ImGui.TextWrapped($"{(int)mechanic}");
+                                }
+                                ImGui.EndTable();
                             }
-                            ImGui.EndTable();
                         }
                     }
 
@@ -239,8 +248,8 @@ namespace KikoGuide.UI.Windows.Editor
                             foreach (object? type in Enum.GetValues(typeof(DutyType)))
                             {
                                 _ = ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{LoCExtensions.GetLocalizedName((DutyType)type)}");
-                                Common.AddTooltip(LoCExtensions.GetLocalizedDescription((DutyType)type));
+                                ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyType)type)}");
+                                Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyType)type));
                                 _ = ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{(int)type}");
                             }
@@ -258,8 +267,8 @@ namespace KikoGuide.UI.Windows.Editor
                             foreach (object? difficulty in Enum.GetValues(typeof(DutyDifficulty)))
                             {
                                 _ = ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{LoCExtensions.GetLocalizedName((DutyDifficulty)difficulty)}");
-                                Common.AddTooltip(LoCExtensions.GetLocalizedDescription((DutyDifficulty)difficulty));
+                                ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyDifficulty)difficulty)}");
+                                Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyDifficulty)difficulty));
                                 _ = ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{(int)difficulty}");
                             }
@@ -277,8 +286,8 @@ namespace KikoGuide.UI.Windows.Editor
                             foreach (object? section in Enum.GetValues(typeof(DutySectionType)))
                             {
                                 _ = ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{LoCExtensions.GetLocalizedName((DutySectionType)section)}");
-                                Common.AddTooltip(LoCExtensions.GetLocalizedDescription((DutySectionType)section));
+                                ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutySectionType)section)}");
+                                Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutySectionType)section));
                                 _ = ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{(int)section}");
                             }
@@ -296,8 +305,8 @@ namespace KikoGuide.UI.Windows.Editor
                             foreach (object? expansion in Enum.GetValues(typeof(DutyExpansion)))
                             {
                                 _ = ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{LoCExtensions.GetLocalizedName((DutyExpansion)expansion)}");
-                                Common.AddTooltip(LoCExtensions.GetLocalizedDescription((DutyExpansion)expansion));
+                                ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyExpansion)expansion)}");
+                                Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyExpansion)expansion));
                                 _ = ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{(int)expansion}");
                             }
