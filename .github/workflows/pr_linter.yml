@@ -1,8 +1,6 @@
-name: "Always: Linter"
+name: "PR: Linter"
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
     types: [ready_for_review, opened, synchronize, reopened]
