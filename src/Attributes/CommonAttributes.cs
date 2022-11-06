@@ -38,8 +38,14 @@ namespace KikoGuide.Attributes
         public DescriptionAttribute(string description) => this.Description = description;
     }
 
+    /// <summary>
+    ///     Attribute extensions useful for localization.
+    /// </summary>
     public static class AttributeExtensions
     {
+        /// <summary>
+        ///     Gets the name of the attribute.
+        /// </summary>
         public static string GetNameAttribute(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());
@@ -47,6 +53,9 @@ namespace KikoGuide.Attributes
             return attribute?.Length > 0 ? ((NameAttribute)attribute[0]).Name : value.ToString();
         }
 
+        /// <summary>
+        ///     Gets the description of the attribute.
+        /// </summary>
         public static string GetDescriptionAttribute(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());

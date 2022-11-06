@@ -31,7 +31,7 @@ namespace KikoGuide.UI.Windows.Editor
         public static uint GetPlayerTerritory => PluginService.ClientState.TerritoryType;
 
         /// <summary>
-        ///     An instance of the FileDialogManager for loading/saving duties.
+        ///     An instance of the FileDialogManager for loading/saving guides.
         /// </summary>
         internal FileDialogManager DialogManager = new();
 
@@ -61,11 +61,11 @@ namespace KikoGuide.UI.Windows.Editor
             // Reject loading if the file length is beyond the character limit.
             if (fileText.Length > this.CharacterLimit)
             {
-                PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileTooLarge, PluginConstants.PluginName, NotificationType.Error);
+                PluginService.PluginInterface.UiBuilder.AddNotification(TEditor.FileTooLarge, PluginConstants.PluginName, NotificationType.Error);
                 return text;
             }
 
-            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullyLoaded, PluginConstants.PluginName, NotificationType.Success);
+            PluginService.PluginInterface.UiBuilder.AddNotification(TEditor.FileSuccessfullyLoaded, PluginConstants.PluginName, NotificationType.Success);
             return fileText;
         }
 
@@ -81,7 +81,7 @@ namespace KikoGuide.UI.Windows.Editor
 
             text = OnFormat(text);
             File.WriteAllText(file, text);
-            PluginService.PluginInterface.UiBuilder.AddNotification(TStrings.EditorFileSuccessfullySaved, PluginConstants.PluginName, NotificationType.Success);
+            PluginService.PluginInterface.UiBuilder.AddNotification(TEditor.FileSuccessfullySaved, PluginConstants.PluginName, NotificationType.Success);
         }
 
         /// <summary>
@@ -106,36 +106,36 @@ namespace KikoGuide.UI.Windows.Editor
         }
 
         /// <summary>
-        ///     The last parse result from this.ParseDuty()
+        ///     The last parse result from this.ParseGuide()
         /// </summary>
-        private Tuple<Duty?, Exception?>? lastParseResult;
+        private Tuple<Guide?, Exception?>? lastParseResult;
 
         /// <summary> 
-        ///     The last parsed dutyText for this.ParseDuty(), used to prevent consistently deserializing. 
+        ///     The last parsed guideText for this.ParseGuide(), used to prevent consistently deserializing. 
         /// </summary>
-        private string parsedDutyText = "";
+        private string parsedGuideText = "";
 
         /// <summary> 
-        ///     Parses the given dutyText into a Duty object or returns an Exception.
+        ///     Parses the given guideText into a Guide object or returns an Exception.
         /// </summary>
-        public Tuple<Duty?, Exception?> ParseDuty(string dutyText)
+        public Tuple<Guide?, Exception?> ParseGuide(string guideText)
         {
-            if (dutyText == this.parsedDutyText && this.lastParseResult != null)
+            if (guideText == this.parsedGuideText && this.lastParseResult != null)
             {
                 return this.lastParseResult;
             }
 
-            this.parsedDutyText = dutyText;
+            this.parsedGuideText = guideText;
 
             try
             {
-                this.lastParseResult = new Tuple<Duty?, Exception?>(JsonConvert.DeserializeObject<Duty>(dutyText), null);
+                this.lastParseResult = new Tuple<Guide?, Exception?>(JsonConvert.DeserializeObject<Guide>(guideText), null);
                 return this.lastParseResult;
             }
 
             catch (Exception e)
             {
-                this.lastParseResult = new Tuple<Duty?, Exception?>(null, e);
+                this.lastParseResult = new Tuple<Guide?, Exception?>(null, e);
                 return this.lastParseResult;
             }
         }

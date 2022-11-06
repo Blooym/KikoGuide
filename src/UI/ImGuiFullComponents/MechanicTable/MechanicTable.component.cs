@@ -11,25 +11,25 @@ namespace KikoGuide.UI.ImGuiFullComponents.MechanicTable
 {
     public static class MechanicTableComponent
     {
-        public static void Draw(List<Duty.Section.Phase.Mechanic> mechanics)
+        public static void Draw(List<Guide.Section.Phase.Mechanic> mechanics)
         {
             try
             {
-                var disabledMechanics = MechanicTablePresenter.Configuration.Display.DisabledMechanics;
+                var hiddenMechanics = MechanicTablePresenter.Configuration.Display.HiddenMechanics;
                 var shortMode = MechanicTablePresenter.Configuration.Accessiblity.ShortenGuideText;
 
-                if (!mechanics.All(x => disabledMechanics?.Contains((DutyMechanics)x.Type) ?? false))
+                if (!mechanics.All(x => hiddenMechanics?.Contains((GuideMechanics)x.Type) ?? false))
                 {
 
                     if (ImGui.BeginTable("##MechanicTableComponentMechTable", 3, ImGuiTableFlags.Hideable | ImGuiTableFlags.Reorderable | ImGuiTableFlags.Borders | ImGuiTableFlags.Resizable))
                     {
-                        ImGui.TableSetupColumn(label: TStrings.Mechanic);
-                        ImGui.TableSetupColumn(label: TStrings.Description);
-                        ImGui.TableSetupColumn(TStrings.Type);
+                        ImGui.TableSetupColumn(label: TGenerics.Mechanic);
+                        ImGui.TableSetupColumn(label: TGenerics.Description);
+                        ImGui.TableSetupColumn(TGenerics.Type);
                         ImGui.TableHeadersRow();
                         foreach (var mechanic in mechanics)
                         {
-                            if (disabledMechanics?.Contains((DutyMechanics)mechanic.Type) == true)
+                            if (hiddenMechanics?.Contains((GuideMechanics)mechanic.Type) == true)
                             {
                                 continue;
                             }
@@ -40,8 +40,8 @@ namespace KikoGuide.UI.ImGuiFullComponents.MechanicTable
                             ImGui.TableNextColumn();
                             ImGui.TextWrapped((shortMode && mechanic.ShortDesc != null) ? mechanic.ShortDesc : mechanic.Description);
                             ImGui.TableNextColumn();
-                            ImGui.Text(AttributeExtensions.GetNameAttribute((DutyMechanics)mechanic.Type));
-                            Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyMechanics)mechanic.Type));
+                            ImGui.Text(AttributeExtensions.GetNameAttribute((GuideMechanics)mechanic.Type));
+                            Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((GuideMechanics)mechanic.Type));
                         }
 
                         ImGui.EndTable();

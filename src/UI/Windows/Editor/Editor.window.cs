@@ -11,7 +11,7 @@ using KikoGuide.Localization;
 using KikoGuide.Managers;
 using KikoGuide.Types;
 using KikoGuide.UI.ImGuiBasicComponents;
-using KikoGuide.UI.ImGuiFullComponents.DutyInfo;
+using KikoGuide.UI.ImGuiFullComponents.GuideSection;
 
 namespace KikoGuide.UI.Windows.Editor
 {
@@ -46,19 +46,19 @@ namespace KikoGuide.UI.Windows.Editor
 
             try
             {
-                // Duty Editor panes.
-                if (ImGui.BeginTable("##DutyInfoTable", 2, ImGuiTableFlags.Resizable))
+                // Guide Editor panes.
+                if (ImGui.BeginTable("##GuideEditorTable", 2, ImGuiTableFlags.Resizable))
                 {
                     ImGui.TableNextRow();
                     ImGui.TableNextColumn();
-                    if (ImGui.BeginChild("##EditorInput"))
+                    if (ImGui.BeginChild("##GuideEditorInput"))
                     {
                         this.DrawEditorInput();
                         ImGui.EndChild();
                     }
 
                     ImGui.TableNextColumn();
-                    if (ImGui.BeginChild("##EditorPreview"))
+                    if (ImGui.BeginChild("##GuideEditorPreview"))
                     {
                         this.DrawEditorPreview();
                         ImGui.EndChild();
@@ -81,17 +81,17 @@ namespace KikoGuide.UI.Windows.Editor
             // Open a file.
             if (ImGuiComponents.IconButton(FontAwesomeIcon.FileImport))
             {
-                this.Presenter.DialogManager.OpenFileDialog(TStrings.OpenFile, ".json", (success, file) => this.inputText = this.Presenter.OnFileSelect(success, file, this.inputText));
+                this.Presenter.DialogManager.OpenFileDialog(TGenerics.OpenFile, ".json", (success, file) => this.inputText = this.Presenter.OnFileSelect(success, file, this.inputText));
             }
-            Common.AddTooltip(TStrings.OpenFile);
+            Common.AddTooltip(TGenerics.OpenFile);
             ImGui.SameLine();
 
             // Save a file.
             if (ImGuiComponents.IconButton(FontAwesomeIcon.Save))
             {
-                this.Presenter.DialogManager.SaveFileDialog(TStrings.SaveFile, ".json", "", ".json", (success, file) => EditorPresenter.OnFileSave(success, file, this.inputText));
+                this.Presenter.DialogManager.SaveFileDialog(TGenerics.SaveFile, ".json", "", ".json", (success, file) => EditorPresenter.OnFileSave(success, file, this.inputText));
             }
-            Common.AddTooltip(TStrings.SaveFile);
+            Common.AddTooltip(TGenerics.SaveFile);
             ImGui.SameLine();
 
             // Format the file.
@@ -99,7 +99,7 @@ namespace KikoGuide.UI.Windows.Editor
             {
                 this.inputText = EditorPresenter.OnFormat(this.inputText);
             }
-            Common.AddTooltip(TStrings.EditorFormat);
+            Common.AddTooltip(TEditor.Format);
             ImGui.SameLine();
 
             // Clear the file.
@@ -107,7 +107,7 @@ namespace KikoGuide.UI.Windows.Editor
             {
                 this.inputText = "";
             }
-            Common.AddTooltip(TStrings.EditorClear);
+            Common.AddTooltip(TEditor.Clear);
             ImGui.SameLine();
 
             // Open the contributing guide.
@@ -115,7 +115,7 @@ namespace KikoGuide.UI.Windows.Editor
             {
                 EditorPresenter.OpenContributingGuide();
             }
-            Common.AddTooltip(TStrings.EditorContributingGuide);
+            Common.AddTooltip(TEditor.ContributingGuide);
 
             // Open the donation link.
             if (EditorPresenter.Configuration.Display.DonateButtonShown)
@@ -125,93 +125,92 @@ namespace KikoGuide.UI.Windows.Editor
                 {
                     Util.OpenLink(PluginConstants.DonateButtonUrl);
                 }
-                Common.AddTooltip(TStrings.Donate);
+                Common.AddTooltip(TGenerics.Donate);
             }
         }
-
 
         /// <summary> 
         ///     Draws the input zone for the editor.
         ///  </summary>
         private void DrawEditorInput()
         {
-            var parsedDuty = this.Presenter.ParseDuty(this.inputText);
+            var parsedGuide = this.Presenter.ParseGuide(this.inputText);
             var inputText = this.inputText;
 
             // Total lines & characters display
             ImGui.TextWrapped($"Lines: {inputText.Split('\n').Length} | Characters: {inputText.Length}/{this.Presenter.CharacterLimit}");
 
             // Editor input
-            if (ImGui.InputTextMultiline("##DutyInfoInput", ref inputText, this.Presenter.CharacterLimit, new Vector2(-1, -70), ImGuiInputTextFlags.AllowTabInput))
+            if (ImGui.InputTextMultiline("##GuideEditorInfoInput", ref inputText, this.Presenter.CharacterLimit, new Vector2(-1, -70), ImGuiInputTextFlags.AllowTabInput))
             {
                 this.inputText = inputText;
             }
 
             // Problems window.
-            ImGui.TextWrapped(TStrings.EditorProblems);
-            if (parsedDuty.Item2?.Message != null)
+            ImGui.TextWrapped(TEditor.Problems);
+            if (parsedGuide.Item2?.Message != null)
             {
-                Colours.TextWrappedColoured(Colours.Error, parsedDuty.Item2.Message);
+                Colours.TextWrappedColoured(Colours.Error, parsedGuide.Item2.Message);
             }
-            else if (parsedDuty?.Item1?.IsSupported() == false)
+            else if (parsedGuide?.Item1?.IsSupported() == false)
             {
-                Colours.TextWrappedColoured(Colours.Warning, TStrings.EditorProblemUnsupported);
+                Colours.TextWrappedColoured(Colours.Warning, TEditor.ProblemUnsupported);
             }
             else
             {
-                ImGui.TextWrapped(TStrings.EditorNoProblems);
+                ImGui.TextWrapped(TEditor.NoProblems);
             }
         }
 
 
         /// <summary>
-        ///     Draws the duty preview pane for the duty editor.
+        ///     Draws the guide preview pane for the guide editor.
         /// </summary>
         private void DrawEditorPreview()
         {
-            var duty = this.Presenter.ParseDuty(this.inputText).Item1;
+            var guide = this.Presenter.ParseGuide(this.inputText).Item1;
 
-            if (ImGui.BeginTabBar("##DutyEditorTooling"))
+            if (ImGui.BeginTabBar("##GuideEditorTooling"))
             {
-                // DutyInfo preview pane.
-                if (ImGui.BeginTabItem("DutyInfo Preview"))
+                // GuideViewer preview pane.
+                if (ImGui.BeginTabItem(TEditor.Preview))
                 {
-                    if (duty != null && duty.Sections != null)
+                    if (guide != null && guide.Sections != null)
                     {
-                        DutyInfoComponent.Draw(duty.Sections);
+                        GuideSectionComponent.Draw(guide.Sections);
                     }
                     else
                     {
-                        ImGui.TextWrapped("Unable to parse duty; preview unavailable.");
+                        ImGui.TextWrapped("Unable to parse guide; preview unavailable.");
                     }
 
                     ImGui.EndTabItem();
                 }
 
                 // Metadata pane.
-                if (ImGui.BeginTabItem(TStrings.EditorMetadata))
+                if (ImGui.BeginTabItem(TEditor.Metadata))
                 {
-                    if (duty != null)
+                    if (guide != null)
                     {
-                        ImGui.TextWrapped($"Version: {duty.Version}");
-                        ImGui.TextWrapped($"Name: {duty.Name}");
-                        ImGui.TextWrapped($"Type: {AttributeExtensions.GetNameAttribute(duty.Type)}");
-                        ImGui.TextWrapped($"Difficulty: {AttributeExtensions.GetNameAttribute(duty.Difficulty)}");
-                        ImGui.TextWrapped($"Level: {duty.Level}");
-                        ImGui.TextWrapped($"Expansion: {AttributeExtensions.GetNameAttribute(duty.Expansion)}");
-                        ImGui.TextWrapped($"TerritoryIDs: {string.Join(", ", duty.TerritoryIDs)} (Current: {EditorPresenter.GetPlayerTerritory})");
-                        ImGui.TextWrapped($"UnlockQuestID: {duty.UnlockQuestID}");
+                        ImGui.TextWrapped($"Version: {guide.Version}");
+                        ImGui.TextWrapped($"Name: {guide.Name}");
+                        ImGui.TextWrapped($"Type: {AttributeExtensions.GetNameAttribute(guide.Type)}");
+                        ImGui.TextWrapped($"Difficulty: {AttributeExtensions.GetNameAttribute(guide.Difficulty)}");
+                        ImGui.TextWrapped($"Level: {guide.Level}");
+                        ImGui.TextWrapped($"Expansion: {AttributeExtensions.GetNameAttribute(guide.Expansion)}");
+                        ImGui.TextWrapped($"TerritoryIDs: {string.Join(", ", guide.TerritoryIDss)} (Current: {EditorPresenter.GetPlayerTerritory})");
+                        ImGui.TextWrapped($"UnlockQuestID: {guide.UnlockQuestID}");
                     }
                     else
                     {
-                        ImGui.TextWrapped("Unable to parse duty; cannot display metadata.");
+                        ImGui.TextWrapped(TEditor.CannotParseNoPreview);
                     }
 
                     ImGui.EndTabItem();
                 }
 
                 // Enum IDs pane.
-                if (ImGui.BeginTabItem("Enum IDs"))
+                if (ImGui.BeginTabItem(TEditor.EnumList))
                 {
                     if (ImGui.BeginChild("##EnumIDs"))
                     {
@@ -222,11 +221,11 @@ namespace KikoGuide.UI.Windows.Editor
                                 ImGui.TableSetupColumn("Name");
                                 ImGui.TableSetupColumn("ID");
                                 ImGui.TableHeadersRow();
-                                foreach (var mechanic in Enum.GetValues(typeof(DutyMechanics)))
+                                foreach (var mechanic in Enum.GetValues(typeof(GuideMechanics)))
                                 {
                                     ImGui.TableNextColumn();
-                                    ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyMechanics)mechanic)}");
-                                    Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyMechanics)mechanic));
+                                    ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((GuideMechanics)mechanic)}");
+                                    Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((GuideMechanics)mechanic));
                                     ImGui.TableNextColumn();
                                     ImGui.TextWrapped($"{(int)mechanic}");
                                 }
@@ -280,11 +279,11 @@ namespace KikoGuide.UI.Windows.Editor
                             ImGui.TableSetupColumn("Name");
                             ImGui.TableSetupColumn("ID");
                             ImGui.TableHeadersRow();
-                            foreach (var section in Enum.GetValues(typeof(DutySectionType)))
+                            foreach (var section in Enum.GetValues(typeof(GuideSectionType)))
                             {
                                 ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutySectionType)section)}");
-                                Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutySectionType)section));
+                                ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((GuideSectionType)section)}");
+                                Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((GuideSectionType)section));
                                 ImGui.TableNextColumn();
                                 ImGui.TextWrapped($"{(int)section}");
                             }

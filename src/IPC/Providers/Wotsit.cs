@@ -5,9 +5,9 @@ using KikoGuide.Base;
 using KikoGuide.IPC.Interfaces;
 using KikoGuide.Managers;
 using KikoGuide.Types;
-using KikoGuide.UI.Windows.DutyInfo;
-using KikoGuide.UI.Windows.DutyList;
 using KikoGuide.UI.Windows.Editor;
+using KikoGuide.UI.Windows.GuideList;
+using KikoGuide.UI.Windows.GuideViewer;
 
 namespace KikoGuide.IPC.Providers
 {
@@ -66,9 +66,9 @@ namespace KikoGuide.IPC.Providers
         private string? wotsitOpenEditorIpc;
 
         /// <summary>
-        ///     Stored GUIDs for Duty's.
+        ///     Stored GUIDs for Guides's.
         /// </summary>
-        private readonly Dictionary<string, Duty> wotsitDutyIpcs = new();
+        private readonly Dictionary<string, Guide> wotsitGuideIpcs = new();
 
         public void Enable()
         {
@@ -114,14 +114,14 @@ namespace KikoGuide.IPC.Providers
                 return;
             }
 
-            foreach (var duty in PluginService.DutyManager.GetDuties())
+            foreach (var guide in GuideManager.GetGuides())
             {
-                var guid = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, $"{duty.GetCanonicalName()}", WotsitIconID);
-                this.wotsitDutyIpcs.Add(guid, duty);
+                var guid = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, WotsitTranslations.WotsitIPCOpenGuideFor(guide.GetCanonicalName()), WotsitIconID);
+                this.wotsitGuideIpcs.Add(guid, guide);
             }
 
-            this.wotsitOpenListIpc = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, Loc.Localize("WotsitIPC.OpenDutyFinder", "Open Duty Finder"), WotsitIconID);
-            this.wotsitOpenEditorIpc = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, Loc.Localize("WotsitIPC.OpenDutyEditor", "Open Duty Editor"), WotsitIconID);
+            this.wotsitOpenListIpc = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, WotsitTranslations.WotsitIPCOpenGuideList, WotsitIconID);
+            this.wotsitOpenEditorIpc = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, WotsitTranslations.WotsitIPCOpenGuideEditor, WotsitIconID);
         }
 
         /// <summary> 
@@ -129,30 +129,40 @@ namespace KikoGuide.IPC.Providers
         /// </summary>
         private void HandleInvoke(string guid)
         {
-            if (this.wotsitDutyIpcs.TryGetValue(guid, out var duty))
+            if (this.wotsitGuideIpcs.TryGetValue(guid, out var guide))
             {
-                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow dutyInfoWindow)
+                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.GuideViewerWindowName) is GuideViewerWindow guideViewerWindow)
                 {
-                    dutyInfoWindow.Presenter.SelectedDuty = duty;
-                    dutyInfoWindow.IsOpen = true;
+                    guideViewerWindow.Presenter.SelectedGuide = guide;
+                    guideViewerWindow.IsOpen = true;
                 }
             }
 
             else if (guid == this.wotsitOpenListIpc)
             {
-                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.DutyListWindowName) is DutyListWindow dutyListWindow)
+                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.GuideListWindowName) is GuideListWindow guideListWIndow)
                 {
-                    dutyListWindow.IsOpen = true;
+                    guideListWIndow.IsOpen = true;
                 }
             }
 
             else if (guid == this.wotsitOpenEditorIpc)
             {
-                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.EditorWindowName) is EditorWindow dutyEditorWindow)
+                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.EditorWindowName) is EditorWindow guideEditorWindow)
                 {
-                    dutyEditorWindow.IsOpen = true;
+                    guideEditorWindow.IsOpen = true;
                 }
             }
+        }
+
+        /// <summary>
+        ///     Translations for Wotsit.
+        /// </summary>
+        private static class WotsitTranslations
+        {
+            public static string WotsitIPCOpenGuideList => Loc.Localize("IPC.Wotsit.OpenGuideList", "Open Guide List");
+            public static string WotsitIPCOpenGuideEditor => Loc.Localize("IPC.Wotsit.OpenGuideEditor", "Open Guide Editor");
+            public static string WotsitIPCOpenGuideFor(string guideName) => string.Format(Loc.Localize("IPC.Wotsit.OpenGuideFor", "Open Guide for {0}"), guideName);
         }
     }
 }

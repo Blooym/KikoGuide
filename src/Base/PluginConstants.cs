@@ -1,7 +1,5 @@
 namespace KikoGuide.Base
 {
-    // TODO: Update things here to match new plugin changes.
-
     /// <summary> 
     ///     A collection of constants used throughout the plugin.
     /// </summary>
@@ -16,6 +14,11 @@ namespace KikoGuide.Base
         ///     The repository to linked to this plugin.
         /// </summary>
         internal static readonly string RepoUrl = "https://github.com/BitsOfAByte/KikoGuide/";
+
+        /// <summary>
+        ///     The raw repository to linked to this plugin.
+        /// </summary>
+        internal static readonly string RawRepoUrl = "https://raw.githubusercontent.com/BitsOfAByte/KikoGuide/";
 
         /// <summary>
         ///     The production branch of the repository.

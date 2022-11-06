@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Dalamud.Configuration;
+using Dalamud.Logging;
 using KikoGuide.IPC;
 using KikoGuide.Types;
 
@@ -49,19 +50,24 @@ namespace KikoGuide.Base
             public bool AutoToggleGuideForDuty { get; set; }
 
             /// <summary>
-            ///     Whether or not to lock the position of the Duty Guide window.
+            ///     Whether or not to lock the position of the Guide viewer window.
             /// </summary>
-            public bool PreventDutyInfoWindowMovement { get; set; }
+            public bool PreventGuideViewerMovement { get; set; }
 
             /// <summary>
-            ///     Whether or not to prevnet resizing of the Duty Guide window.
+            ///     Whether or not to prevnet resizing of the Guide viewer window.
             /// </summary>
-            public bool PreventDutyInfoWindowResize { get; set; }
+            public bool PreventGuideViewerResize { get; set; }
 
             /// <summary>
-            ///     Mechanics that are hidden when drawing mechanics within the UI.
+            ///     Mechanics that are hidden when drawing the UI.
             /// </summary>
-            public List<DutyMechanics> DisabledMechanics { get; set; } = new List<DutyMechanics>();
+            public List<GuideMechanics> HiddenMechanics { get; set; } = new List<GuideMechanics>();
+
+            /// <summary>
+            ///     Whether or not to hide locked guides from the guide list to prevent spoilers.
+            /// </summary>
+            public bool HideLockedGuides { get; set; } = true;
         }
 
         /// <summary>
@@ -93,5 +99,16 @@ namespace KikoGuide.Base
         /// <param name="fileName">The file to write to</param>
         /// <param name="text">The text to write to the file, relative to the plugin configuration directory</param>
         internal static void WriteFile(string fileName, string text) => File.WriteAllText(Path.Combine(PluginService.PluginInterface.GetPluginConfigDirectory(), fileName), text);
+
+        /// <summary>
+        ///     Removes invalid enum values from the configuration and saves the configuration.
+        /// </summary>
+        internal void RemoveInvalidEnumValues()
+        {
+            PluginLog.Debug("Configuration(RemoveInvalidEnumValues): Removing invalid enum values from configuration and saving.");
+            this.Display.HiddenMechanics.RemoveAll(m => !Enum.IsDefined(typeof(GuideMechanics), m));
+            this.IPC.EnabledIntegrations.RemoveAll(p => !Enum.IsDefined(typeof(IPCProviders), p));
+            this.Save();
+        }
     }
 }

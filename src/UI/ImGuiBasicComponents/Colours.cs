@@ -10,7 +10,6 @@ namespace KikoGuide.UI.ImGuiBasicComponents
     {
         // Generic colours
         public static Vector4 Red = new(1.0f, 0.0f, 0.0f, 1.0f);
-        public static Vector4 Blue = new(0.0f, 1.0f, 1.0f, 1.0f);
         public static Vector4 Green = new(0.0f, 0.5f, 0.0f, 1.0f);
         public static Vector4 Grey = new(0.5f, 0.5f, 0.5f, 1.0f);
 

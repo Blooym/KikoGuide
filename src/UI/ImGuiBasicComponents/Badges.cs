@@ -23,16 +23,5 @@ namespace KikoGuide.UI.ImGuiBasicComponents
                 Common.AddTooltip(tooltip);
             }
         }
-
-        /// <summary> 
-        ///     Draws a [?] box, hovering will show a tooltip with the given text.
-        /// </summary>
-        /// <param name="tooltip"> The tooltip to show on hover. </param>
-        public static void Questionmark(string tooltip)
-        {
-            ImGui.SameLine();
-            ImGui.TextColored(Colours.Grey, "[?]");
-            Common.AddTooltip(tooltip);
-        }
     }
 }

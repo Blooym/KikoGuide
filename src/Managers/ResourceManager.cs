@@ -16,6 +16,7 @@ namespace KikoGuide.Managers
     {
         internal event ResourceUpdateDelegate? ResourcesUpdated;
         internal delegate void ResourceUpdateDelegate();
+        private bool initialized;
 
         /// <summary>
         ///     Initializes the ResourceManager and associated resources.
@@ -111,10 +112,16 @@ namespace KikoGuide.Managers
         {
             PluginLog.Information($"ResourceManager(Setup): Setting up resources for language {language}...");
 
+            if (this.initialized)
+            {
+                GuideManager.ClearCache();
+            }
+
             try
-            { Loc.Setup(File.ReadAllText($"{PluginConstants.PluginlocalizationDir}{language}.json")); PluginService.DutyManager.ClearCache(); }
+            { Loc.Setup(File.ReadAllText($"{PluginConstants.PluginlocalizationDir}{language}.json")); }
             catch { Loc.SetupWithFallbacks(); }
 
+            this.initialized = true;
             PluginLog.Information("ResourceManager(Setup): Resources setup.");
         }
     }

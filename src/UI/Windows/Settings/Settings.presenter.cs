@@ -15,7 +15,7 @@ namespace KikoGuide.UI.Windows.Settings
         /// <summary>
         ///     Pulls the configuration from the plugin service.
         /// </summary>
-        internal static Configuration GetConfiguration() => PluginService.Configuration;
+        internal static Configuration Configuration => PluginService.Configuration;
 
         /// <summary>
         ///     Sets an IPCProvider as enabled.

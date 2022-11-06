@@ -4,9 +4,9 @@ using System.Linq;
 using Dalamud.Interface.Windowing;
 using Dalamud.Logging;
 using KikoGuide.Base;
-using KikoGuide.UI.Windows.DutyInfo;
-using KikoGuide.UI.Windows.DutyList;
 using KikoGuide.UI.Windows.Editor;
+using KikoGuide.UI.Windows.GuideList;
+using KikoGuide.UI.Windows.GuideViewer;
 using KikoGuide.UI.Windows.Settings;
 
 namespace KikoGuide.Managers
@@ -17,8 +17,8 @@ namespace KikoGuide.Managers
     internal sealed class WindowManager : IDisposable
     {
         public static readonly string SettingsWindowName = $"{PluginConstants.PluginName} - Settings";
-        public static readonly string DutyListWindowName = $"{PluginConstants.PluginName} - Duty Finder";
-        public static readonly string DutyInfoWindowName = $"{PluginConstants.PluginName} - Duty Info";
+        public static readonly string GuideListWindowName = $"{PluginConstants.PluginName} - Guide List";
+        public static readonly string GuideViewerWindowName = $"{PluginConstants.PluginName} - Guide Viewer";
         public static readonly string EditorWindowName = $"{PluginConstants.PluginName} - Editor";
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace KikoGuide.Managers
         private readonly List<Window> windows = new()
         {
             new SettingsWindow(),
-            new DutyListWindow(),
+            new GuideListWindow(),
             new EditorWindow(),
-            new DutyInfoWindow()
+            new GuideViewerWindow()
         };
 
         /// <summary>
@@ -53,6 +53,7 @@ namespace KikoGuide.Managers
 
             PluginService.PluginInterface.UiBuilder.Draw += this.OnDrawUI;
             PluginService.PluginInterface.UiBuilder.OpenConfigUi += this.OnOpenConfigUI;
+            PluginService.ClientState.Logout += this.OnLogout;
 
             PluginLog.Debug("WindowManager(WindowManager): Successfully initialized.");
         }
@@ -70,6 +71,17 @@ namespace KikoGuide.Managers
             if (this.WindowSystem.GetWindow(SettingsWindowName) is SettingsWindow window)
             {
                 window.IsOpen = !window.IsOpen;
+            }
+        }
+
+        /// <summary>
+        ///    Handles the OnLogout event.
+        /// </summary>
+        public void OnLogout(object? e, EventArgs args)
+        {
+            foreach (var window in this.windows)
+            {
+                window.IsOpen = false;
             }
         }
 

@@ -1,0 +1,110 @@
+{
+    "Version": 0,
+    "Name": "The Mothercrystal",
+    "Difficulty": 0,
+    "Type": 1,
+    "Expansion": 4,
+    "Level": 89,
+	"TerritoryIDs": [995],
+    "UnlockQuestID": 69985,
+	"Bosses": [
+		{
+			"Name": "Hydaelyn (Phase 1)",
+			"Strategy": "Watch out for her Dawn Mantle. Red icon means stack inside her hitbox, green means stay away from her, blue means that she'll cast large line AoEs in a cross shape from her position.",
+			"Mechanics": [
+				{
+					"Name": "Heroes's Radiance",
+					"Description": "Unavoidable raidwide damage.",
+					"Type": 4
+				},
+				{
+					"Name": "Dawn Mantle",
+					"Description": "Boss swaps weapons to indicate which mechanic is used:\n\nDancer chakrams (Red icon):\nLarge donut AoE. Safe zone inside her hitbox.\nWhite Mage staff (Green icon):\nLarge circle AoE around the boss.\nPaladin Sword & Shield (Blue icon): Cross shaped line AoEs at Hydaelyn's position.",
+					"Type": 2
+				},
+				{
+					"Name": "Mousa's Scorn",
+					"Description": "Shared tankbuster.",
+					"Type": 0
+				},
+				{
+					"Name": "Magos's Radiance",
+					"Description": "Heavy raidwide damage.",
+					"Type": 4
+				}
+			]
+		},
+		{
+			"Name": "Crystals of Light (Add Phase)",
+			"Strategy": "Destroy all of the crystals before Hydaelyn's Conviction bar reaches 100.",
+			"Mechanics": [
+				{
+					"Name": "Hydaelyn's Ray",
+					"Description": "Proximity dive attack. Stand far away from the line.",
+					"Type": 4
+				},
+				{
+					"Name": "Crystalline Stone III",
+					"Description": "Heavy raidwide damage.",
+					"Type": 3
+				},
+				{
+					"Name": "Crystalline Blizzard III",
+					"Description": "Targeted circle AoEs under all players.",
+					"Type": 6
+				},
+				{
+					"Name": "Exodus",
+					"Description": "Massive raidwide damage.",
+					"Type": 4
+				}
+			]
+		},
+		{
+			"Name": "Hydaelyn (Phase 2)",
+			"Strategy": "React to mechanics from phase 1, while she also casts Crystallize, which is either a party stack or circle AoEs around each player. Memorize in which order the Chakrams from Parhelion go out to avoid upcoming AoEs. Stand in the safe quadrant when she casts Lightwave. Stay with your party when she casts Echoes.",
+			"Mechanics": [
+				{
+					"Name": "Heroes's Sundering",
+					"Description": "Cleave tankbuster.",
+					"Type": 0
+				},
+				{
+					"Name": "Radiant Halo",
+					"Description": "Unavoidable raidwide damage.",
+					"Type": 4
+				},
+				{
+					"Name": "Crystallize",
+					"Description": "Casts either AoE puddles below every player or a stack marker after a certain delay, usually shortly after Dawn Mantle is cast.",
+					"Type": 2
+				},
+				{
+					"Name": "Parhelion",
+					"Description": "Fires 3 sets of line AoEs towards each third of the arena.",
+					"Type": 2
+				},
+				{
+					"Name": "Subparhelion",
+					"Description": "The chakrams from Parhelion will fly back to the opposite side of the arena in the order they were cast, covering the entire platform, so movement is mandatory.",
+					"Type": 2
+				},
+				{
+					"Name": "Parhelic Circle",
+					"Description": "Yellow lines on the ground will form a snowflake shape. At the end of this cast light orbs are summoned and moved to the ends of the yellow lines, subsequently exploding in circle AoEs.",
+					"Type": 2
+				},
+				{
+					"Name": "Lightwave",
+					"Description": "Four large waves of light spawn at the edge of the arena, slowly moving over the platform. Typically has one quarter of the arena as safe zone.",
+					"Type": 2
+				},
+				{
+					"Name": "Echoes",
+					"Description": "Multi-hit stack marker. Cast during Lightwave.",
+					"Type": 3
+				}
+			]
+		}
+	]	
+}

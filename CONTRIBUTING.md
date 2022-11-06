@@ -72,7 +72,7 @@ It is highly recommended to use the in-game editor to edit guides, as it will pr
 - `Expansion`: The expansion ID of the duty
 - `Level`: The level of the duty in-game
 - `UnlockQuestID`: The [quest ID](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/Quest.csv) that unlocks the duty
-- `TerritoryID`: The territory ID in-game when inside of the duty
+- `TerritoryIDs`: The territory ID in-game when inside of the duty
 - `Bosses`: The list of bosses in the duty
     - `Name`: The name of the boss
     - `Strategy` (preferred): A longer-form guide on fighting the boss

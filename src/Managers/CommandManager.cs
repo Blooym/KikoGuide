@@ -3,9 +3,9 @@ using Dalamud.Game.Command;
 using Dalamud.Logging;
 using KikoGuide.Base;
 using KikoGuide.Localization;
-using KikoGuide.UI.Windows.DutyInfo;
-using KikoGuide.UI.Windows.DutyList;
 using KikoGuide.UI.Windows.Editor;
+using KikoGuide.UI.Windows.GuideList;
+using KikoGuide.UI.Windows.GuideViewer;
 using KikoGuide.UI.Windows.Settings;
 
 namespace KikoGuide.Managers
@@ -18,7 +18,7 @@ namespace KikoGuide.Managers
         private const string ListCommand = "/kikolist";
         private const string SettingsCommand = "/kikoconfig";
         private const string EditorCommand = "/kikoeditor";
-        private const string DutyInfoCommand = "/kikoinfo";
+        private const string GuideViewerCommand = "/kikoinfo";
 
         /// <summary>
         ///     Initializes the CommandManager and its resources.
@@ -27,10 +27,10 @@ namespace KikoGuide.Managers
         {
             PluginLog.Debug("CommandManager(Constructor): Initializing...");
 
-            PluginService.Commands.AddHandler(ListCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.DutyListHelp });
+            PluginService.Commands.AddHandler(ListCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.GuideListHelp });
             PluginService.Commands.AddHandler(SettingsCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.SettingsHelp });
             PluginService.Commands.AddHandler(EditorCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.EditorHelp });
-            PluginService.Commands.AddHandler(DutyInfoCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.InfoHelp });
+            PluginService.Commands.AddHandler(GuideViewerCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.InfoHelp });
 
             PluginLog.Debug("CommandManager(Constructor): Initialization complete.");
         }
@@ -40,12 +40,10 @@ namespace KikoGuide.Managers
         /// </summary>
         public void Dispose()
         {
-            PluginLog.Debug("CommandManager(Dispose): Disposing...");
-
             PluginService.Commands.RemoveHandler(ListCommand);
             PluginService.Commands.RemoveHandler(SettingsCommand);
             PluginService.Commands.RemoveHandler(EditorCommand);
-            PluginService.Commands.RemoveHandler(DutyInfoCommand);
+            PluginService.Commands.RemoveHandler(GuideViewerCommand);
 
             PluginLog.Debug("CommandManager(Dispose): Successfully disposed.");
         }
@@ -59,9 +57,9 @@ namespace KikoGuide.Managers
             switch (command)
             {
                 case ListCommand:
-                    if (windowSystem.GetWindow(WindowManager.DutyListWindowName) is DutyListWindow dutyListWindow)
+                    if (windowSystem.GetWindow(WindowManager.GuideListWindowName) is GuideListWindow guideListWindow)
                     {
-                        dutyListWindow.IsOpen = !dutyListWindow.IsOpen;
+                        guideListWindow.IsOpen = !guideListWindow.IsOpen;
                     }
 
                     break;
@@ -79,12 +77,11 @@ namespace KikoGuide.Managers
                     }
 
                     break;
-                case DutyInfoCommand:
-                    if (windowSystem.GetWindow(WindowManager.DutyInfoWindowName) is DutyInfoWindow dutyInfoScreen)
+                case GuideViewerCommand:
+                    if (windowSystem.GetWindow(WindowManager.GuideViewerWindowName) is GuideViewerWindow guideViewerScreen)
                     {
-                        dutyInfoScreen.IsOpen = !dutyInfoScreen.IsOpen;
+                        guideViewerScreen.IsOpen = !guideViewerScreen.IsOpen;
                     }
-
                     break;
                 default:
                     break;

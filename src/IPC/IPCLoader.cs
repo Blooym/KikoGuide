@@ -19,36 +19,30 @@ namespace KikoGuide.IPC
         private readonly Dictionary<IPCProviders, IIPCProvider> ipcProviders = new();
 
         /// <summary>
-        ///     Initializes the IPCLoader and loads all IPC providers.
+        ///     Initializes the IPCLoader and loads all enabled IPC providers.
         /// </summary>
         public IPCLoader()
         {
-            PluginLog.Debug("IPCLoader(Constructor): Beginning detection of IPC providers...");
+            PluginLog.Debug("IPCLoader(Constructor): Beginning detection of IPC providers");
 
-            // Get every IPC provider in the assembly and attempt to initialize it.
             foreach (var type in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IIPCProvider))))
             {
                 try
                 {
-                    if (type == null)
-                    {
-                        continue;
-                    }
-
-                    PluginLog.Debug($"IPCLoader(Constructor): Found  {type.FullName} - Attempting to Initialize");
+                    PluginLog.Debug($"IPCLoader(Constructor): Found {type.FullName} - Going to try to initialize it");
                     var ipc = Activator.CreateInstance(type);
 
                     if (ipc is IIPCProvider provider)
                     {
                         if (!PluginService.Configuration.IPC.EnabledIntegrations.Contains(provider.ID))
                         {
-                            PluginLog.Debug($"IPCLoader(Constructor): {type.FullName} is disabled in the configuration. Skipping...");
+                            PluginLog.Debug($"IPCLoader(Constructor): {type.FullName} is disabled in the configuration, skipped");
                             continue;
                         }
 
                         provider.Enable();
                         this.ipcProviders.Add(provider.ID, provider);
-                        PluginLog.Debug($"IPCLoader(Constructor): Finished initializing {type.FullName}");
+                        PluginLog.Information($"IPCLoader(Constructor): Integration for {type.FullName} initialized.");
                     }
                 }
                 catch (Exception e) { PluginLog.Error($"IPCManager(Constructor): Failed to initialize {type.FullName} - {e.Message}"); }
@@ -61,7 +55,7 @@ namespace KikoGuide.IPC
         /// </summary>
         public void Dispose()
         {
-            PluginLog.Debug("IPCLoader(Dispose): Disposing of all IPC providers...");
+            PluginLog.Debug("IPCLoader(Dispose): Disposing of all IPC providers");
 
             foreach (var ipc in this.ipcProviders.Values)
             {
@@ -107,7 +101,7 @@ namespace KikoGuide.IPC
                 {
                     ipcProvider.Enable();
                     this.ipcProviders.Add(ipcProvider.ID, ipcProvider);
-                    PluginLog.Debug($"IPCLoader(EnableProvider): Finished initializing {type.FullName}");
+                    PluginLog.Information($"IPCLoader(EnableProvider): Integration for {type.FullName} enabled and initialized.");
                 }
             }
             catch (Exception e) { PluginLog.Error($"IPCLoader(EnableProvider): Failed to initialize {provider} - {e.Message}"); }
@@ -123,13 +117,12 @@ namespace KikoGuide.IPC
             {
                 return;
             }
-
             try
             {
                 var ipc = this.ipcProviders[provider];
                 ipc.Dispose();
                 this.ipcProviders.Remove(provider);
-                PluginLog.Debug($"IPCLoader(DisableProvider): Disabled and disposed of {provider}.");
+                PluginLog.Information($"IPCLoader(DisableProvider): Integration for {provider} disabled and disposed.");
             }
             catch (Exception e) { PluginLog.Error($"IPCLoader(DisableProvider): Failed to disable and dispose of {provider} - {e.Message}"); }
         }

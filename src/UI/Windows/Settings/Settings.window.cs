@@ -1,14 +1,12 @@
 using System;
-using System.Linq;
 using System.Numerics;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
-using KikoGuide.Attributes;
-using KikoGuide.IPC;
 using KikoGuide.Localization;
 using KikoGuide.Managers;
-using KikoGuide.Types;
 using KikoGuide.UI.ImGuiBasicComponents;
+using KikoGuide.UI.ImGuiFullComponents.IPCProviderCombo;
+using KikoGuide.UI.ImGuiFullComponents.MechanicHiderCombo;
 
 namespace KikoGuide.UI.Windows.Settings
 {
@@ -17,7 +15,12 @@ namespace KikoGuide.UI.Windows.Settings
         internal SettingsPresenter Presenter;
         public SettingsWindow() : base(WindowManager.SettingsWindowName)
         {
-            this.Size = new Vector2(400, 400);
+            this.SizeConstraints = new WindowSizeConstraints
+            {
+                MinimumSize = new Vector2(400, 250),
+                MaximumSize = new Vector2(600, 250)
+            };
+
             this.SizeCondition = ImGuiCond.FirstUseEver;
 
             this.Presenter = new SettingsPresenter();
@@ -26,134 +29,151 @@ namespace KikoGuide.UI.Windows.Settings
 
         public override void Draw()
         {
-            var disabledMechanics = SettingsPresenter.GetConfiguration().Display.DisabledMechanics;
-            var autoOpenDuty = SettingsPresenter.GetConfiguration().Display.AutoToggleGuideForDuty;
-            var shortenStrategies = SettingsPresenter.GetConfiguration().Accessiblity.ShortenGuideText;
-            var supportButtonShown = SettingsPresenter.GetConfiguration().Display.DonateButtonShown;
+            var autoOpenGuideForDuty = SettingsPresenter.Configuration.Display.AutoToggleGuideForDuty;
+            var shortenGuideText = SettingsPresenter.Configuration.Accessiblity.ShortenGuideText;
+            var supportButtonShown = SettingsPresenter.Configuration.Display.DonateButtonShown;
+            var hideLockedGuides = SettingsPresenter.Configuration.Display.HideLockedGuides;
 
-            if (ImGui.BeginTabBar("##Settings"))
+            if (ImGui.BeginTabBar("##SettingsTabs"))
             {
                 // General settings go in here.
-                if (ImGui.BeginTabItem(TStrings.SettingsGeneral))
+                if (ImGui.BeginTabItem(TSettings.Configuration))
                 {
-                    // Auto-open duty setting.
-                    Common.ToggleCheckbox(TStrings.SettingsAutoOpenInDuty, ref autoOpenDuty, () =>
-                   {
-                       SettingsPresenter.GetConfiguration().Display.AutoToggleGuideForDuty = !autoOpenDuty;
-                       SettingsPresenter.GetConfiguration().Save();
-                   });
-                    Common.AddTooltip(TStrings.SettingsAutoOpenInDutyTooltip);
-
-
-                    // Short mode setting.
-                    Common.ToggleCheckbox(TStrings.SettingsShortMode, ref shortenStrategies, () =>
+                    ImGui.BeginChild("##SettingsGeneralTabContent");
+                    if (ImGui.BeginTable("##SettingsGeneralTable", 2))
                     {
-                        SettingsPresenter.GetConfiguration().Accessiblity.ShortenGuideText = !shortenStrategies;
-                        SettingsPresenter.GetConfiguration().Save();
-                    });
-                    Common.AddTooltip(TStrings.SettingsShortModeTooltip);
+                        ImGui.TableNextRow();
 
 
-                    // Support button setting.
-                    Common.ToggleCheckbox(TStrings.SettingsShowSupportButton, ref supportButtonShown, () =>
-                    {
-                        SettingsPresenter.GetConfiguration().Display.DonateButtonShown = !supportButtonShown;
-                        SettingsPresenter.GetConfiguration().Save();
-                    });
-                    Common.AddTooltip(TStrings.SettingsShowSupportButtonTooltip);
+                        // Auto open in duty setting
+                        ImGui.TableSetColumnIndex(0);
+                        ImGui.TextWrapped(TSettings.AutoOpenGuideForDuty);
+                        ImGui.TableSetColumnIndex(1);
+                        ImGui.SetNextItemWidth(-1);
+                        if (ImGui.BeginCombo("##AutoOpenGuideForDuty", autoOpenGuideForDuty ? TGenerics.Enabled : TGenerics.Disabled))
+                        {
+                            if (ImGui.Selectable(TGenerics.Enabled, autoOpenGuideForDuty))
+                            {
+                                SettingsPresenter.Configuration.Display.AutoToggleGuideForDuty = true;
+                                SettingsPresenter.Configuration.Save();
+                            }
+                            if (ImGui.Selectable(TGenerics.Disabled, !autoOpenGuideForDuty))
+                            {
+                                SettingsPresenter.Configuration.Display.AutoToggleGuideForDuty = false;
+                                SettingsPresenter.Configuration.Save();
+                            }
+                            ImGui.EndCombo();
+                        }
+                        Common.AddTooltip(TSettings.SettingsAutoOpenInDutyTooltip);
+                        ImGui.TableNextRow();
 
 
-                    // Update resources / localizable button.
-                    ImGui.Dummy(new Vector2(0, 5));
-                    Common.TextHeading(TStrings.SettingsResourcesAndLocalization);
+                        // Donate/support button shown setting
+                        ImGui.TableSetColumnIndex(0);
+                        ImGui.TextWrapped(TSettings.ShowDonateButton);
+                        ImGui.TableSetColumnIndex(1);
+                        ImGui.SetNextItemWidth(-1);
+                        if (ImGui.BeginCombo("##DonateButtonShown", supportButtonShown ? TGenerics.Enabled : TGenerics.Disabled))
+                        {
+                            if (ImGui.Selectable(TGenerics.Enabled, supportButtonShown))
+                            {
+                                SettingsPresenter.Configuration.Display.DonateButtonShown = true;
+                                SettingsPresenter.Configuration.Save();
+                            }
+                            if (ImGui.Selectable(TGenerics.Disabled, !supportButtonShown))
+                            {
+                                SettingsPresenter.Configuration.Display.DonateButtonShown = false;
+                                SettingsPresenter.Configuration.Save();
+                            }
+                            ImGui.EndCombo();
+                        }
+                        Common.AddTooltip(TSettings.ShowDonateButtonTooltip);
+                        ImGui.TableNextRow();
+
+
+                        // Shorten guide text setting
+                        ImGui.TableSetColumnIndex(0);
+                        ImGui.TextWrapped(TSettings.ShortenGuideText);
+                        ImGui.TableSetColumnIndex(1);
+                        ImGui.SetNextItemWidth(-1);
+                        if (ImGui.BeginCombo("##ShortenGuideText", shortenGuideText ? TGenerics.Enabled : TGenerics.Disabled))
+                        {
+                            if (ImGui.Selectable(TGenerics.Enabled, shortenGuideText))
+                            {
+                                SettingsPresenter.Configuration.Accessiblity.ShortenGuideText = true;
+                                SettingsPresenter.Configuration.Save();
+                            }
+                            if (ImGui.Selectable(TGenerics.Disabled, !shortenGuideText))
+                            {
+                                SettingsPresenter.Configuration.Accessiblity.ShortenGuideText = false;
+                                SettingsPresenter.Configuration.Save();
+                            }
+                            ImGui.EndCombo();
+                        }
+                        Common.AddTooltip(TSettings.ShortenGuideTextTooltip);
+                        ImGui.TableNextRow();
+
+
+                        // Hide locked gudies setting
+                        ImGui.TableSetColumnIndex(0);
+                        ImGui.TextWrapped(TSettings.HideLockedGuides);
+                        ImGui.TableSetColumnIndex(1);
+                        ImGui.SetNextItemWidth(-1);
+                        if (ImGui.BeginCombo("##HideLockedGuides", hideLockedGuides ? TGenerics.Enabled : TGenerics.Disabled))
+                        {
+                            if (ImGui.Selectable(TGenerics.Enabled, hideLockedGuides))
+                            {
+                                SettingsPresenter.Configuration.Display.HideLockedGuides = true;
+                                SettingsPresenter.Configuration.Save();
+                            }
+                            if (ImGui.Selectable(TGenerics.Disabled, !hideLockedGuides))
+                            {
+                                SettingsPresenter.Configuration.Display.HideLockedGuides = false;
+                                SettingsPresenter.Configuration.Save();
+                            }
+                            ImGui.EndCombo();
+                        }
+                        Common.AddTooltip(TSettings.HideLockedGuidesTooltip);
+                        ImGui.TableNextRow();
+
+
+                        // Hidden mechanics setting
+                        ImGui.TableSetColumnIndex(0);
+                        ImGui.TextWrapped(TSettings.HiddenMechanics);
+                        ImGui.TableSetColumnIndex(1);
+                        ImGui.SetNextItemWidth(-1);
+                        MechanicHiderComboComponent.Draw();
+                        Common.AddTooltip(TSettings.HiddenMechanicsTooltip);
+                        ImGui.TableNextRow();
+
+
+                        // IPC Providers enabled setting
+                        ImGui.TableSetColumnIndex(0);
+                        ImGui.TextWrapped(TSettings.EnabledIntegrations);
+                        ImGui.TableSetColumnIndex(1);
+                        ImGui.SetNextItemWidth(-1);
+                        IPCProviderComboComponent.Draw();
+                        Common.AddTooltip(TSettings.EnabledIntegrationsTooltip);
 
 #if DEBUG
-                    this.Presenter.DialogManager.Draw();
-                    if (ImGui.Button("Export Localizable"))
-                    {
-                        this.Presenter.DialogManager.OpenFolderDialog("Select Export Directory", SettingsPresenter.OnDirectoryPicked);
-                    }
+                        ImGui.TableNextRow();
+                        ImGui.TableSetColumnIndex(0);
+                        ImGui.TextWrapped("Export Localization");
+                        ImGui.TableSetColumnIndex(1);
+                        this.Presenter.DialogManager.Draw();
+                        if (ImGui.Button("Export"))
+                        {
+                            this.Presenter.DialogManager.OpenFolderDialog("Export Localization", SettingsPresenter.OnDirectoryPicked);
+                        }
 #endif
 
-                    ImGui.EndTabItem();
-                }
 
-                // Mechanics settings go in here. 
-                if (ImGui.BeginTabItem(TStrings.SettingsMechanics))
-                {
-                    // Create a child since we're using columns.
-                    ImGui.BeginChild("##Mechanics", new Vector2(0, 0), false);
-                    ImGui.Columns(2, "##Mechanics", false);
-
-                    // For each mechanic enum, creating a checkbox for it.
-                    foreach (var mechanic in Enum.GetValues(typeof(DutyMechanics)).Cast<int>().ToList())
-                    {
-                        // See if the mechanic is enabled by looking at the list for the enum value.
-                        var isMechanicDisabled = disabledMechanics.Contains((DutyMechanics)mechanic);
-
-                        // Create a checkbox for the mechanic.
-                        Common.ToggleCheckbox(TStrings.SettingsHideMechanic(Enum.GetName(typeof(DutyMechanics), mechanic)), ref isMechanicDisabled, () =>
-                        {
-                            switch (isMechanicDisabled)
-                            {
-                                case false:
-                                    SettingsPresenter.GetConfiguration().Display.DisabledMechanics.Add((DutyMechanics)mechanic);
-                                    break;
-                                case true:
-                                    SettingsPresenter.GetConfiguration().Display.DisabledMechanics.Remove((DutyMechanics)mechanic);
-                                    break;
-                                default:
-                            }
-                            SettingsPresenter.GetConfiguration().Save();
-                        });
-
-                        Common.AddTooltip(TStrings.SettingsHideMechanicTooltip(Enum.GetName(typeof(DutyMechanics), mechanic)));
-
-                        ImGui.NextColumn();
+                        ImGui.EndTable();
+                        ImGui.EndChild();
+                        ImGui.EndTabItem();
                     }
-
-                    ImGui.EndChild();
-                    ImGui.EndTabItem();
-                }
-
-                // Integrations settings go in here. 
-                if (ImGui.BeginTabItem(TStrings.SettingsIntegrations))
-                {
-                    ImGui.TextWrapped(TStrings.SettingsIntegrationsDesc);
-                    ImGui.Dummy(new Vector2(0, 10));
-                    Common.TextHeading(TStrings.SettingsAvailableIntegrations);
-
-                    // For each mechanic enum, creating a checkbox for it.
-                    foreach (var integration in Enum.GetValues(typeof(IPCProviders)))
-                    {
-                        var isIntegrationDisabled = SettingsPresenter.GetConfiguration().IPC.EnabledIntegrations.Contains((IPCProviders)integration);
-                        var name = AttributeExtensions.GetNameAttribute((IPCProviders)integration);
-                        var tooltip = AttributeExtensions.GetDescriptionAttribute((IPCProviders)integration);
-
-                        Common.ToggleCheckbox(name, ref isIntegrationDisabled, () =>
-                        {
-                            switch (isIntegrationDisabled)
-                            {
-                                case false:
-                                    SettingsPresenter.GetConfiguration().IPC.EnabledIntegrations.Add((IPCProviders)integration);
-                                    SettingsPresenter.SetIPCProviderEnabled((IPCProviders)integration);
-                                    break;
-                                case true:
-                                    SettingsPresenter.GetConfiguration().IPC.EnabledIntegrations.Remove((IPCProviders)integration);
-                                    SettingsPresenter.SetIPCProviderDisabled((IPCProviders)integration);
-                                    break;
-                                default:
-                            }
-                            SettingsPresenter.GetConfiguration().Save();
-                        });
-                        Common.AddTooltip(tooltip);
-                    }
-
-                    ImGui.EndTabItem();
                 }
             }
-
-            ImGui.EndTabBar();
         }
     }
 }

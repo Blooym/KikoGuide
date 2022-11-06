@@ -7,7 +7,7 @@ namespace KikoGuide
     internal sealed class KikoPlugin : IDalamudPlugin
     {
         /// <summary> 
-        ///     The plugin name, fetched from PStrings.
+        ///     The plugin name, fetched from PluginConstants.
         /// </summary>
         public string Name => PluginConstants.PluginName;
 
