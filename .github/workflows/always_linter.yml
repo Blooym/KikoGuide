@@ -1,4 +1,4 @@
-name: "Always: Linting"
+name: "Always: Linter"
 
 on:
   push:
