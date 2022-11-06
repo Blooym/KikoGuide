@@ -1,90 +1,105 @@
 {
-    "Version": 0,
-    "Name": "The Aurum Vale",
-    "Difficulty": 0,
-    "Type": 0,
-    "Expansion": 0,
-    "Level": 47,
-    "UnlockQuestID": 66550,
-    "TerritoryIDs": [172],
-    "Bosses": [
+  "Version": 0,
+  "Name": "The Aurum Vale",
+  "Difficulty": 0,
+  "Type": 0,
+  "Expansion": 0,
+  "Level": 47,
+  "UnlockQuestID": 66550,
+  "TerritoryIDs": [172],
+  "Sections": [
+    {
+      "Type": 0,
+      "Name": "Locksmith",
+      "Phases": [
         {
-            "Name": "Locksmith",
-            "Strategy": "Morbol Fruit will grow along the sides of the arena. Locksmith will cast a Gold Lung debuff on the party that can't be cleansed by Esuna. To remove the debuff, players will need to click on the Morbol Fruit to interact with the item and remove the debuff. Players should never have more than 2 stacks of Gold Lung. After interacting with a fruit, it will disappear. The Morbol Fruits will respawn over time. Tanks may have to stun Locksmith when before interacting with Morbol Fruit to avoid being interrupted.",
-            "StrategyShort": "Eat Morbol Fruit to remove the Gold Lung debuff at 2 stacks. Tanks should stun Locksmith before interacting with Morbol Fruit",
-            "Mechanics": [
-                {
-                    "Name": "Hundred Lashings",
-                    "Description": "Melee attack that deals a high amount of damage",
-                    "Type": 0
-                },
-                {
-                    "Name": "Gold Rush",
-                    "Description": "Places a DoT debuff called Gold Lung on all players",
-                    "Type": 4
-                },
-                {
-                    "Name": "Gold Dust",
-                    "Description": "Circular AoE spell that appears under a random player",
-                    "Type": 2
-                }
-            ]
-        },
-        {
-            "Name": "Coincounter",
-            "Strategy": "Coincounter is a giant cyclops that has powerful front AoE attacks, swipe cleave abilities, and a room-wide lightningg mechanic. All non-tank players should stay away from the front of the boss at all times- Coincounter has 2 types of 100-Tonze Swipe cleaves: The first type can be identified when he holds his mace with only 1 of his hands. This is a frontal cone AoE attack.\n\nThe second type can be identified when he holds his mace with 2 of his hands. This is a circular AoE attack that does an enormous amount of damage to all targets around him. 100-Tonze swipe attack can be stunned or interrupted.\n\nAt about half HP, Coincounter will start using Eye of the Beholder, a long range, frontal cone, AoE spell. Ranged damage dealers and healers should spread apart and avoid his Glower and Eye of the Beholder abilities if possible.",
-            "StrategyShort": "Avoid the front of Coincounter and ranged DPS and healers should spread apart to avoid his Glower and Eye of the Beholder abilities",
-            "Mechanics": [
-                {
-                    "Name": "10-Tonze Swipe",
-                    "Description": "Instant front cleave",
-                    "Type": 9
-                },
-                {
-                    "Name": "100-Tonze Swipe (1 Hand)",
-                    "Description": "Frontal cone AoE attack that does a large amount of damage",
-                    "Type": 2
-                },
-                {
-                    "Name": "100-Tonze Swipe (2 Hands)",
-                    "Description": "Circular AoE attack that does a large amount of damage",
-                    "Type": 2
-                },
-                {
-                    "Name": "Glower",
-                    "Description": "Laser fired at a random player. Target inflicted with Paralysis",
-                    "Type": 6
-                },
-                {
-                    "Name": "Eye of the Beholder",
-                    "Description": "Partial donut AoE that inflicts Electrocution"
-                }
-            ]
-        },
-        {
-            "Name": "Miser's Mistress",
-            "Strategy": "Miser's Mistress has powerful frontal AoE attacks and should faced away from all non-tank players. Similar to Locksmith, there are objects named Morbol Fruit around the boss room. Players can consume the fruit to remove all the stacks of the debuff \"Burrs\" on them. Players should consume the fruit at 2-3 Burrs stacks.\n\nAdds:\nAt 50%% HP, Miser's Mistress will spawn 5 strange Morbol Fruits that must be destroyed immediately. Use a physical ranged or caster limit break if needed. Any fruits that hatch will turn into Morbol Seedlings that will add Burr debuff stacks with every attack.\n\nPlayers can also use Morbol fruit to remove the debuffs given when hit with \"Bad Breath\"",
-            "Mechanics": [
-                {
-                    "Name": "Bad Breath",
-                    "Description": "Frontal cone AoE spell that inflicts the debuffs Paralysis, Silence, Poison, Blind, Slow, Heavy, HP Penalty, and Determination Down to all targets hit",
-                    "Type": 2
-                },
-                {
-                    "Name": "Vine Probe",
-                    "Description": "Frontal column AoE attack",
-                    "Type": 2
-                },
-                {
-                    "Name": "Hooked Burrs",
-                    "Description": "Inflicts Burrs on a random player",
-                    "Type": 6
-                },
-                {
-                    "Name": "Burr Burrow",
-                    "Description": "Inflicts the player with the debuff Burrs and deals damage per stack of Burrs already on the player"
-                }
-            ]
+          "Strategy": "Morbol Fruit will grow along the sides of the arena. Locksmith will cast a Gold Lung debuff on the party that can't be cleansed by Esuna. To remove the debuff, players will need to click on the Morbol Fruit to interact with the item and remove the debuff. Players should never have more than 2 stacks of Gold Lung. After interacting with a fruit, it will disappear. The Morbol Fruits will respawn over time. Tanks may have to stun Locksmith when before interacting with Morbol Fruit to avoid being interrupted.",
+          "StrategyShort": "Eat Morbol Fruit to remove the Gold Lung debuff at 2 stacks. Tanks should stun Locksmith before interacting with Morbol Fruit",
+          "Mechanics": [
+            {
+              "Name": "Hundred Lashings",
+              "Description": "Melee attack that deals a high amount of damage",
+              "Type": 0
+            },
+            {
+              "Name": "Gold Rush",
+              "Description": "Places a DoT debuff called Gold Lung on all players",
+              "Type": 4
+            },
+            {
+              "Name": "Gold Dust",
+              "Description": "Circular AoE spell that appears under a random player",
+              "Type": 2
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "Type": 0,
+      "Name": "Coincounter",
+      "Phases": [
+        {
+          "Strategy": "Coincounter is a giant cyclops that has powerful front AoE attacks, swipe cleave abilities, and a room-wide lightningg mechanic. All non-tank players should stay away from the front of the boss at all times- Coincounter has 2 types of 100-Tonze Swipe cleaves: The first type can be identified when he holds his mace with only 1 of his hands. This is a frontal cone AoE attack.\n\nThe second type can be identified when he holds his mace with 2 of his hands. This is a circular AoE attack that does an enormous amount of damage to all targets around him. 100-Tonze swipe attack can be stunned or interrupted.\n\nAt about half HP, Coincounter will start using Eye of the Beholder, a long range, frontal cone, AoE spell. Ranged damage dealers and healers should spread apart and avoid his Glower and Eye of the Beholder abilities if possible.",
+          "StrategyShort": "Avoid the front of Coincounter and ranged DPS and healers should spread apart to avoid his Glower and Eye of the Beholder abilities",
+          "Mechanics": [
+            {
+              "Name": "10-Tonze Swipe",
+              "Description": "Instant front cleave",
+              "Type": 9
+            },
+            {
+              "Name": "100-Tonze Swipe (1 Hand)",
+              "Description": "Frontal cone AoE attack that does a large amount of damage",
+              "Type": 2
+            },
+            {
+              "Name": "100-Tonze Swipe (2 Hands)",
+              "Description": "Circular AoE attack that does a large amount of damage",
+              "Type": 2
+            },
+            {
+              "Name": "Glower",
+              "Description": "Laser fired at a random player. Target inflicted with Paralysis",
+              "Type": 6
+            },
+            {
+              "Name": "Eye of the Beholder",
+              "Description": "Partial donut AoE that inflicts Electrocution"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Type": 0,
+      "Name": "Miser's Mistress",
+      "Phases": [
+        {
+          "Strategy": "Miser's Mistress has powerful frontal AoE attacks and should faced away from all non-tank players. Similar to Locksmith, there are objects named Morbol Fruit around the boss room. Players can consume the fruit to remove all the stacks of the debuff \"Burrs\" on them. Players should consume the fruit at 2-3 Burrs stacks.\n\nAdds:\nAt 50%% HP, Miser's Mistress will spawn 5 strange Morbol Fruits that must be destroyed immediately. Use a physical ranged or caster limit break if needed. Any fruits that hatch will turn into Morbol Seedlings that will add Burr debuff stacks with every attack.\n\nPlayers can also use Morbol fruit to remove the debuffs given when hit with \"Bad Breath\"",
+          "Mechanics": [
+            {
+              "Name": "Bad Breath",
+              "Description": "Frontal cone AoE spell that inflicts the debuffs Paralysis, Silence, Poison, Blind, Slow, Heavy, HP Penalty, and Determination Down to all targets hit",
+              "Type": 2
+            },
+            {
+              "Name": "Vine Probe",
+              "Description": "Frontal column AoE attack",
+              "Type": 2
+            },
+            {
+              "Name": "Hooked Burrs",
+              "Description": "Inflicts Burrs on a random player",
+              "Type": 6
+            },
+            {
+              "Name": "Burr Burrow",
+              "Description": "Inflicts the player with the debuff Burrs and deals damage per stack of Burrs already on the player"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

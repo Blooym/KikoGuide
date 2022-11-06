@@ -232,7 +232,7 @@
     "description": "TGuideListTable.get_NoGuidesFoundForSearch"
   },
   "GuideListTable.UnsupportedGuide": {
-    "message": "The guide for {0} is for a different version of the plugin and cannot be loaded.",
+    "message": "The guide for {0} is for a different version of the plugin and cannot be loaded yet",
     "description": "TGuideListTable.UnsupportedGuide"
   },
   "GuideListTable.NoGuideData": {
