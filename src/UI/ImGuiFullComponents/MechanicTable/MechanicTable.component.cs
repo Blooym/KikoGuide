@@ -38,7 +38,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.MechanicTable
                             ImGui.TableNextColumn();
                             ImGui.Text(mechanic.Name);
                             ImGui.TableNextColumn();
-                            ImGui.TextWrapped((shortMode && mechanic.ShortDesc != null) ? mechanic.ShortDesc : mechanic.Description);
+                            ImGui.TextWrapped((shortMode && mechanic.ShortDescription != null) ? mechanic.ShortDescription : mechanic.Description);
                             ImGui.TableNextColumn();
                             ImGui.Text(AttributeExtensions.GetNameAttribute((GuideMechanics)mechanic.Type));
                             Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((GuideMechanics)mechanic.Type));

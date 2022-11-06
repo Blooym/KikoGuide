@@ -129,7 +129,7 @@ namespace KikoGuide.Types
                     /// <summary>
                     ///     The mechanic's short description.
                     /// </summary>
-                    public string? ShortDesc { get; set; }
+                    public string? ShortDescription { get; set; }
 
                     /// <summary>
                     ///     The type of mechanic.
@@ -193,9 +193,6 @@ namespace KikoGuide.Types
 
         [Name("Alliance Raid")]
         AllianceRaid = 2,
-
-        [Name("Raid")]
-        NormalRaid = 3,
     }
 
     public enum DutyDifficulty
