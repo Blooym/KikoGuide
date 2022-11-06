@@ -18,6 +18,9 @@ namespace KikoGuide.UI.ImGuiBasicComponents
         public static Vector4 Warning = new(1.0f, 0.5f, 0.0f, 1.0f);
         public static Vector4 Error = new(1.0f, 0.0f, 0.0f, 1.0f);
 
+        // Misc
+        public static Vector4 GuideDisabled = new(0.5f, 0.25f, 0.0f, 1.0f);
+
         /// <summary> 
         ///     Creates a ImGui.TextWrapped() with the given text and colour.
         /// </summary>

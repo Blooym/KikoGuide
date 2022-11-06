@@ -78,7 +78,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideListTable
                         // If this guide does not have any data or is unsupported, handle it.
                         if (!guide.IsSupported())
                         {
-                            UnsupportedGuide(guide.GetCanonicalName());
+                            OutdatedGuide(guide.GetCanonicalName());
                             continue;
                         }
 
@@ -106,11 +106,11 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideListTable
         }
 
         /// <summary>
-        ///     Draws an unsupported guide in the list.
+        ///     Draws an outdated guide in the list.
         /// </summary>
-        private static void UnsupportedGuide(string name)
+        private static void OutdatedGuide(string name)
         {
-            ImGui.TextDisabled(name);
+            ImGui.TextColored(Colours.GuideDisabled, name);
             Common.AddTooltip(TGuideListTable.UnsupportedGuide(name));
         }
 
@@ -119,7 +119,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideListTable
         /// </summary>
         private static void NoDataGuide(string name)
         {
-            ImGui.TextColored(Colours.Red, name);
+            ImGui.TextDisabled(name);
             Common.AddTooltip(TGuideListTable.NoGuideData(name));
         }
     }

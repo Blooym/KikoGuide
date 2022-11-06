@@ -107,7 +107,7 @@ namespace KikoGuide.Localization
         internal static string NoneFoundForType => Loc.Localize("GuideListTable.NoneFoundForType", "No guides found for this duty type.");
         internal static string NoGuidesUnlocked => Loc.Localize("GuideListTable.NoGuidesUnlocked", "You have not unlocked any guides for this type.");
         internal static string NoGuidesFoundForSearch => Loc.Localize("GuideListTable.NoGuidesFoundForSearch", "No guides found for your search.");
-        internal static string UnsupportedGuide(string guideName) => string.Format(Loc.Localize("GuideListTable.UnsupportedGuide", "The guide for {0} is for a different version of the plugin."), guideName);
+        internal static string UnsupportedGuide(string guideName) => string.Format(Loc.Localize("GuideListTable.UnsupportedGuide", "The guide for {0} is for a different version of the plugin and cannot be loaded."), guideName);
         internal static string NoGuideData(string guideName) => string.Format(Loc.Localize("GuideListTable.NoGuideData", "There is no data for {0} yet."), guideName);
     }
 }
