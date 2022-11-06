@@ -13,7 +13,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
 
         public void Dispose() => PluginService.ClientState.TerritoryChanged -= this.OnTerritoryChange;
 
-        /// <summary> 
+        /// <summary>
         ///     The currently selected guide to show in the GuideViewer window.
         /// </summary>
         internal Guide? SelectedGuide;

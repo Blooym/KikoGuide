@@ -10,7 +10,7 @@ using KikoGuide.UI.Windows.Settings;
 
 namespace KikoGuide.Managers
 {
-    /// <summary> 
+    /// <summary>
     ///     Initializes and manages all commands and command-events for the plugin.
     /// </summary>
     public sealed class CommandManager : IDisposable

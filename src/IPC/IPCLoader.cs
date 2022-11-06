@@ -13,7 +13,7 @@ namespace KikoGuide.IPC
     /// </summary>
     public sealed class IPCLoader : IDisposable
     {
-        /// <summary> 
+        /// <summary>
         ///     All of the currently registered IPC providers alongside their ID.
         /// </summary>
         private readonly Dictionary<IPCProviders, IIPCProvider> ipcProviders = new();

@@ -12,7 +12,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
     /// </summary>
     internal static class GuideSectionComponent
     {
-        /// <summary> 
+        /// <summary>
         ///     Draws the guide sections for the given guide.
         /// </summary>
         /// <param name="section"> The sections to draw information for. </param>

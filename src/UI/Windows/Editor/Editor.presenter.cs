@@ -35,12 +35,12 @@ namespace KikoGuide.UI.Windows.Editor
         /// </summary>
         internal FileDialogManager DialogManager = new();
 
-        /// <summary> 
+        /// <summary>
         ///     The character limit for the input text fields, applies to the UI and file loading.
         /// </summary>
         internal uint CharacterLimit = 35000;
 
-        /// <summary> 
+        /// <summary>
         ///     Handles the file select event
         /// </summary>
         public string OnFileSelect(bool success, string file, string text)
@@ -110,12 +110,12 @@ namespace KikoGuide.UI.Windows.Editor
         /// </summary>
         private Tuple<Guide?, Exception?>? lastParseResult;
 
-        /// <summary> 
-        ///     The last parsed guideText for this.ParseGuide(), used to prevent consistently deserializing. 
+        /// <summary>
+        ///     The last parsed guideText for this.ParseGuide(), used to prevent consistently deserializing.
         /// </summary>
         private string parsedGuideText = "";
 
-        /// <summary> 
+        /// <summary>
         ///     Parses the given guideText into a Guide object or returns an Exception.
         /// </summary>
         public Tuple<Guide?, Exception?> ParseGuide(string guideText)

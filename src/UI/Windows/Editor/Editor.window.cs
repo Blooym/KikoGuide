@@ -28,12 +28,12 @@ namespace KikoGuide.UI.Windows.Editor
         }
         public void Dispose() => this.Presenter.Dispose();
 
-        /// <summary> 
+        /// <summary>
         ///     The current editor input text.
         /// </summary>
         private string inputText = "";
 
-        /// <summary> 
+        /// <summary>
         ///     Draws the Editor window and sub-components.
         /// </summary>
         public override void Draw()
@@ -73,7 +73,7 @@ namespace KikoGuide.UI.Windows.Editor
         }
 
 
-        /// <summary> 
+        /// <summary>
         ///     Draws the buttons at the top of the editor.
         /// </summary>
         private void DrawEditorButtons()
@@ -129,7 +129,7 @@ namespace KikoGuide.UI.Windows.Editor
             }
         }
 
-        /// <summary> 
+        /// <summary>
         ///     Draws the input zone for the editor.
         ///  </summary>
         private void DrawEditorInput()

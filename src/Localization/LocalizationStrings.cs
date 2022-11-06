@@ -2,7 +2,7 @@ using CheapLoc;
 
 namespace KikoGuide.Localization
 {
-    /// <summary> 
+    /// <summary>
     ///     A collection translatable strings.
     /// </summary>
     internal sealed class TStrings

@@ -3,7 +3,7 @@ using ImGuiNET;
 
 namespace KikoGuide.UI.ImGuiBasicComponents
 {
-    /// <summary> 
+    /// <summary>
     ///     Components and constants for colours.
     /// </summary>
     internal static class Colours
@@ -21,7 +21,7 @@ namespace KikoGuide.UI.ImGuiBasicComponents
         // Misc
         public static Vector4 GuideDisabled = new(0.5f, 0.25f, 0.0f, 1.0f);
 
-        /// <summary> 
+        /// <summary>
         ///     Creates a ImGui.TextWrapped() with the given text and colour.
         /// </summary>
         /// <param name="colour"> The colour to show the text in. </param>

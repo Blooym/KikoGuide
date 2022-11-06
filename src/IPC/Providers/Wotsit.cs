@@ -11,7 +11,7 @@ using KikoGuide.UI.Windows.GuideViewer;
 
 namespace KikoGuide.IPC.Providers
 {
-    /// <summary> 
+    /// <summary>
     ///     Provider for Wotsit
     /// </summary>
     public sealed class WotsitIPC : IIPCProvider
@@ -124,7 +124,7 @@ namespace KikoGuide.IPC.Providers
             this.wotsitOpenEditorIpc = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, WotsitTranslations.WotsitIPCOpenGuideEditor, WotsitIconID);
         }
 
-        /// <summary> 
+        /// <summary>
         ///     Handles IPC invocations for Wotsit.
         /// </summary>
         private void HandleInvoke(string guid)

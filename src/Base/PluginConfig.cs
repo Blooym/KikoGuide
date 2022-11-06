@@ -27,7 +27,7 @@ namespace KikoGuide.Base
         /// </summary>
         public class AccessiblityConfiguration
         {
-            /// <summary> 
+            /// <summary>
             ///     Whether or not to show shorter text when possible.
             /// </summary>
             public bool ShortenGuideText { get; set; }

@@ -64,8 +64,8 @@ namespace KikoGuide.Managers
         private void OnDrawUI() => this.WindowSystem.Draw();
 
         /// <summary>
-        ///     Opens/Closes the plugin configuration window. 
-        /// </summary> 
+        ///     Opens/Closes the plugin configuration window.
+        /// </summary>
         private void OnOpenConfigUI()
         {
             if (this.WindowSystem.GetWindow(SettingsWindowName) is SettingsWindow window)

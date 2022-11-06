@@ -43,7 +43,7 @@ namespace KikoGuide.Managers
             PluginLog.Debug("ResourceManager(Dispose): Successfully disposed.");
         }
 
-        /// <summary> 
+        /// <summary>
         ///     Downloads the repository from GitHub and extracts the resource data.
         /// </summary>
         internal void Update()

@@ -5,7 +5,7 @@
 // namespace KikoGuide.IPC.Providers
 // {
 // #pragma warning disable IDE0051 // Remove unused private members
-//     /// <summary> 
+//     /// <summary>
 //     ///     Provider for Tippy
 //     /// </summary>
 //     public sealed class TippyIPC : IIPCProvider
