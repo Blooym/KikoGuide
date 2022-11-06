@@ -23,7 +23,7 @@ Localizations to plugin strings are handled through [Crowdin](https://crowdin.co
 #### Duty Localizations
 Duty localizations are not currently handled through Crowdin due to the sheer amount of duties that have not been written yet. They will eventually be added to Crowdin once the project has matured a bit more and the localization code of the plugin has been updated to make it as easy as possible to add new localizations.
 
-For now, if you wish to add a duty localization in a supported language, please make a new folder in `Resources/Localization/Duty/<2 letter country code>/` and make sure it has all the same paths as the source duty files. Do not rename the file name itself, just the content within it.
+For now, if you wish to add a duty localization in a supported language, please make a new folder in `Resources/Localization/Duty/<2 letter country code>/` and make sure it has all the same paths as the source duty files. Do not rename the filename itself, just the content within it.
 
 ---
 

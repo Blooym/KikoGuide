@@ -28,7 +28,7 @@ Kiko Guide is a plugin written for the [Dalamud](https://github.com/goatcorp/Dal
 - Great configuration options to customize the plugin to your liking.
 - Full localization support for any language, including duty guides, that updates automatically and independently of the plugin.
 - Integrations with your other favourite plugins like Wotsit.
-- A built in guide editor with error highlighting to make contributing guides easier than ever.
+- A built-in guide editor with error highlighting to make contributing guides easier than ever.
 - Spoiler checks to ensure you don't see spoilers for content you haven't unlocked yet.
 
 ## Installing
