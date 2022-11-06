@@ -3,7 +3,6 @@ using System.Numerics;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using KikoGuide.Localization;
-using KikoGuide.Managers;
 using KikoGuide.UI.ImGuiBasicComponents;
 using KikoGuide.UI.ImGuiFullComponents.IPCProviderCombo;
 using KikoGuide.UI.ImGuiFullComponents.MechanicHiderCombo;
@@ -13,7 +12,7 @@ namespace KikoGuide.UI.Windows.Settings
     public sealed class SettingsWindow : Window, IDisposable
     {
         internal SettingsPresenter Presenter;
-        public SettingsWindow() : base(WindowManager.SettingsWindowName)
+        public SettingsWindow() : base(TWindowNames.Settings)
         {
             this.SizeConstraints = new WindowSizeConstraints
             {

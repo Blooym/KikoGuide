@@ -1,63 +1,35 @@
 {
-  "DutyFinder.Title": {
-    "message": "{0} - Duty list",
-    "description": "TStrings.get_DutyFinderTitle"
-  },
-  "DutyFinder.NoFiles": {
-    "message": "No duty files detected! Please try Settings -> Update Resources.",
-    "description": "TStrings.get_DutyFinderContentNotFound"
-  },
-  "DutyInfo.Title": {
-    "message": "{0} - Guide viewer",
-    "description": "TStrings.get_DutyInfoTitle"
-  },
-  "DutyInfo.NoDuty": {
-    "message": "No duty selected, use /kikolist to see all available duties.",
-    "description": "TStrings.get_DutyInfoNoneSelected"
-  },
-  "DutyInfo.NotUnlocked": {
-    "message": "You cannot view the guide for this duty as you have not unlocked it yet.",
-    "description": "TStrings.get_DutyInfoNotUnlocked"
-  },
-  "DutyList.NoneFound": {
-    "message": "No duties found for this query.",
-    "description": "TStrings.get_DutyListNoneFound"
-  },
-  "DutyList.NoGuide": {
-    "message": "No guide available for {0}.",
-    "description": "TStrings.DutyListNoGuide"
-  },
-  "DutyList.NeedsUpdate": {
-    "message": "Cannot display duty as it was not made for this plugin version.",
-    "description": "TStrings.get_DutyListNeedsUpdate"
-  },
-  "DutyHeading.Title": {
-    "message": "Duty: {0}",
-    "description": "TStrings.DutyHeadingTitle"
-  },
   "Commands.DutyList.Help": {
-    "message": "Toggles the duty list",
-    "description": "TStrings.get_DutyListHelp"
+    "message": "Toggles the guide list",
+    "description": "TCommands.get_GuideListHelp"
   },
   "Commands.Settings.Help": {
     "message": "Toggles the settings menu",
-    "description": "TStrings.get_SettingsHelp"
+    "description": "TCommands.get_SettingsHelp"
   },
   "Commands.Editor.Help": {
-    "message": "Toggles the duty editor",
-    "description": "TStrings.get_EditorHelp"
+    "message": "Toggles the guide editor",
+    "description": "TCommands.get_EditorHelp"
   },
   "Commands.Info.Help": {
-    "message": "Toggles the guide viewer window if a duty is loaded",
-    "description": "TStrings.get_InfoHelp"
+    "message": "Toggles the guide viewer window",
+    "description": "TCommands.get_InfoHelp"
   },
-  "Types.Duty.Name.None": {
-    "message": "Unnamed Duty",
-    "description": "TStrings..cctor"
+  "Window.Settings": {
+    "message": "{0} - Settings",
+    "description": "TWindowNames..cctor"
   },
-  "Types.Duty.Section.Strategy.None": {
-    "message": "No description available.",
-    "description": "TStrings..cctor"
+  "Window.GuideList": {
+    "message": "{0} - Guide List",
+    "description": "TWindowNames..cctor"
+  },
+  "Window.GuideViewer": {
+    "message": "{0} - Guide Viewer",
+    "description": "TWindowNames..cctor"
+  },
+  "Window.GuideEditor": {
+    "message": "{0} - Guide Editor",
+    "description": "TWindowNames..cctor"
   },
   "Generics.Donate": {
     "message": "Donate",
@@ -75,9 +47,9 @@
     "message": "Search",
     "description": "TGenerics.get_Search"
   },
-  "Generics.Duty": {
-    "message": "Duty",
-    "description": "TGenerics.get_Duty"
+  "Generics.Guide": {
+    "message": "Guide",
+    "description": "TGenerics.get_Guide"
   },
   "Generics.InDuty": {
     "message": "In Duty",
@@ -140,7 +112,7 @@
     "description": "TEditor.get_ContributingGuide"
   },
   "Editor.Problem.Unsupported": {
-    "message": "Duty contains invalid IDs and/or is unsupported by this plugin version.",
+    "message": "Guide contains invalid IDs and/or is unsupported by this plugin version.",
     "description": "TEditor.get_ProblemUnsupported"
   },
   "Editor.Problem.None": {
@@ -163,9 +135,9 @@
     "message": "Configuration",
     "description": "TSettings.get_Configuration"
   },
-  "Settings.AutoOpenInDuty": {
-    "message": "Auto Open In Duty",
-    "description": "TSettings.get_AutoOpenInDuty"
+  "Settings.AutOpenGuideForDuty": {
+    "message": "Auto Open Guide for Duty",
+    "description": "TSettings.get_AutoOpenGuideForDuty"
   },
   "Settings.AutoOpenDuty.Tooltip": {
     "message": "Automatically open/hide the guide for the given duty when you enter/leave it.",
@@ -187,13 +159,13 @@
     "message": "Show donate buttons in the plugin to help support the plugin and its development.",
     "description": "TSettings.get_ShowDonateButtonTooltip"
   },
-  "Settings.HideLockedDuties": {
-    "message": "Hide Locked Duties",
-    "description": "TSettings.get_HideLockedDuties"
+  "Settings.HideLockedGuides": {
+    "message": "Hide Locked Guides",
+    "description": "TSettings.get_HideLockedGuides"
   },
-  "Settings.HideLockedDuties.Tooltip": {
-    "message": "Hide duties that you have not unlocked yet from the duty list and prevent opening them in the guide viewer.\nWARNING: Turning this off will show you spoilers for duties you have not unlocked yet.",
-    "description": "TSettings.get_HideLockedDutiesTooltip"
+  "Settings.HideLockedGuides.Tooltip": {
+    "message": "Hide guides that you have not unlocked yet from the guide list and prevent opening them in the guide viewer.\nWARNING: Turning this off will show you spoilers for guides you have not unlocked yet.",
+    "description": "TSettings.get_HideLockedGuidesTooltip"
   },
   "Settings.HiddenMechanics": {
     "message": "Hidden Mechanics",
@@ -211,13 +183,77 @@
     "message": "Enable or disable integrations with other plugins. Please note that the plugin(s) must be installed for the integration to work.",
     "description": "TSettings.get_EnabledIntegrationsTooltip"
   },
-  "IPC.Wotsit.OpenDutyList": {
-    "message": "Open Duty List",
-    "description": "WotsitTranslations.get_WotsitIPCOpenDutyList"
+  "GuideViewer.NoInfoAvailable": {
+    "message": "There is no information available for this guide right now.",
+    "description": "TGuideViewer.get_NoInfoAvailable"
   },
-  "IPC.Wotsit.OpenDutyEditor": {
-    "message": "Open Duty Editor",
-    "description": "WotsitTranslations.get_WotsitIPCOpenDutyEditor"
+  "GuideViewer.UnlockWindowMovement": {
+    "message": "Unlock Window Movement",
+    "description": "TGuideViewer.get_UnlockWindowMovement"
+  },
+  "GuideViewer.LockWindowMovement": {
+    "message": "Lock Window Movement",
+    "description": "TGuideViewer.get_LockWindowMovement"
+  },
+  "GuideViewer.UnlockWindowResize": {
+    "message": "Unlock Window Resize",
+    "description": "TGuideViewer.get_UnlockWindowResize"
+  },
+  "GuideViewer.LockWindowResize": {
+    "message": "Lock Window Resize",
+    "description": "TGuideViewer.get_LockWindowResize"
+  },
+  "GuideViewer.ToggleSettingsWindow": {
+    "message": "Toggle Settings Window",
+    "description": "TGuideViewer.get_ToggleSettingsWindow"
+  },
+  "GuideViewer.GuideHeading": {
+    "message": "Guide for {0}",
+    "description": "TGuideViewer.GuideHeading"
+  },
+  "GuideViewer.NoGuideSelected": {
+    "message": "No guide selected, use /kikolist to see all available guides.",
+    "description": "TGuideViewer.get_NoGuideSelected"
+  },
+  "GuideViewer.GuideInfoNotUnlocked": {
+    "message": "You cannot view the guide for this duty as you have not unlocked it yet.",
+    "description": "TGuideViewer.get_GuideNotUnlocked"
+  },
+  "GuideListTable.NoneFoundForType": {
+    "message": "No guides found for this duty type.",
+    "description": "TGuideListTable.get_NoneFoundForType"
+  },
+  "GuideListTable.NoGuidesUnlocked": {
+    "message": "You have not unlocked any guides for this type.",
+    "description": "TGuideListTable.get_NoGuidesUnlocked"
+  },
+  "GuideListTable.NoGuidesFoundForSearch": {
+    "message": "No guides found for your search.",
+    "description": "TGuideListTable.get_NoGuidesFoundForSearch"
+  },
+  "GuideListTable.UnsupportedGuide": {
+    "message": "The guide for {0} is for a different version of the plugin and cannot be loaded.",
+    "description": "TGuideListTable.UnsupportedGuide"
+  },
+  "GuideListTable.NoGuideData": {
+    "message": "There is no data for {0} yet.",
+    "description": "TGuideListTable.NoGuideData"
+  },
+  "GuideListTable.NoGuidesFilesDetected": {
+    "message": "No guide files were detected, please check your installation.",
+    "description": "TGuideListTable.get_NoGuidesFilesDetected"
+  },
+  "Types.Duty.Name.None": {
+    "message": "Unnamed Guide",
+    "description": "TGuide..cctor"
+  },
+  "IPC.Wotsit.OpenGuideList": {
+    "message": "Open Guide List",
+    "description": "WotsitTranslations.get_WotsitIPCOpenGuideList"
+  },
+  "IPC.Wotsit.OpenGuideEditor": {
+    "message": "Open Guide Editor",
+    "description": "WotsitTranslations.get_WotsitIPCOpenGuideEditor"
   },
   "IPC.Wotsit.OpenGuideFor": {
     "message": "Open Guide for {0}",

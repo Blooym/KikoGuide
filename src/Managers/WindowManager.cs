@@ -4,6 +4,7 @@ using System.Linq;
 using Dalamud.Interface.Windowing;
 using Dalamud.Logging;
 using KikoGuide.Base;
+using KikoGuide.Localization;
 using KikoGuide.UI.Windows.Editor;
 using KikoGuide.UI.Windows.GuideList;
 using KikoGuide.UI.Windows.GuideViewer;
@@ -16,10 +17,7 @@ namespace KikoGuide.Managers
     /// </summary>
     internal sealed class WindowManager : IDisposable
     {
-        public static readonly string SettingsWindowName = $"{PluginConstants.PluginName} - Settings";
-        public static readonly string GuideListWindowName = $"{PluginConstants.PluginName} - Guide List";
-        public static readonly string GuideViewerWindowName = $"{PluginConstants.PluginName} - Guide Viewer";
-        public static readonly string EditorWindowName = $"{PluginConstants.PluginName} - Editor";
+
 
         /// <summary>
         ///     The windowing system service provided by Dalamud.
@@ -68,7 +66,7 @@ namespace KikoGuide.Managers
         /// </summary>
         private void OnOpenConfigUI()
         {
-            if (this.WindowSystem.GetWindow(SettingsWindowName) is SettingsWindow window)
+            if (this.WindowSystem.GetWindow(TWindowNames.Settings) is SettingsWindow window)
             {
                 window.IsOpen = !window.IsOpen;
             }

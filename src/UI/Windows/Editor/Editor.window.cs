@@ -8,7 +8,6 @@ using ImGuiNET;
 using KikoGuide.Attributes;
 using KikoGuide.Base;
 using KikoGuide.Localization;
-using KikoGuide.Managers;
 using KikoGuide.Types;
 using KikoGuide.UI.ImGuiBasicComponents;
 using KikoGuide.UI.ImGuiFullComponents.GuideSection;
@@ -18,7 +17,7 @@ namespace KikoGuide.UI.Windows.Editor
     public sealed class EditorWindow : Window, IDisposable
     {
         internal EditorPresenter Presenter = new();
-        public EditorWindow() : base(WindowManager.EditorWindowName)
+        public EditorWindow() : base(TWindowNames.GuideEditor)
         {
             this.Flags |= ImGuiWindowFlags.NoScrollbar;
             this.Flags |= ImGuiWindowFlags.NoScrollWithMouse;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using KikoGuide.Base;
+using KikoGuide.Localization;
 using KikoGuide.Managers;
 using KikoGuide.Types;
 using KikoGuide.UI.Windows.GuideViewer;
@@ -21,7 +22,7 @@ namespace KikoGuide.UI.Windows.GuideList
         /// </summary>
         public static void OnGuideListSelection(Guide guide)
         {
-            if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.GuideViewerWindowName) is GuideViewerWindow guideViewerWindow)
+            if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow guideViewerWindow)
             {
                 guideViewerWindow.IsOpen = true;
                 guideViewerWindow.Presenter.SelectedGuide = guide;

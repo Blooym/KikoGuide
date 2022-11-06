@@ -1,6 +1,7 @@
 using System;
 using Dalamud.Logging;
 using KikoGuide.Base;
+using KikoGuide.Localization;
 using KikoGuide.Managers;
 using KikoGuide.Types;
 using KikoGuide.UI.Windows.Settings;
@@ -28,7 +29,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
         /// </summary>
         internal static void ToggleSettingsWindow()
         {
-            if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.SettingsWindowName) is SettingsWindow window)
+            if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.Settings) is SettingsWindow window)
             {
                 window.IsOpen ^= true;
             }
@@ -48,7 +49,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
                 this.SelectedGuide = playerGuide;
                 if (PluginService.Configuration.Display.AutoToggleGuideForDuty)
                 {
-                    if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.GuideViewerWindowName) is GuideViewerWindow window)
+                    if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
                     {
                         PluginLog.Information($"GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to open and displaying guide for {playerGuide.Name}.");
                         window.IsOpen = true;
@@ -60,7 +61,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
             else if (playerGuide == null)
             {
                 this.SelectedGuide = null;
-                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.GuideViewerWindowName) is GuideViewerWindow window)
+                if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
                 {
                     PluginLog.Debug($"GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to closed - no guide data found for territory {e}.");
                     window.IsOpen = false;

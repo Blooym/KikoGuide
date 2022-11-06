@@ -27,10 +27,10 @@ namespace KikoGuide.Managers
         {
             PluginLog.Debug("CommandManager(Constructor): Initializing...");
 
-            PluginService.Commands.AddHandler(ListCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.GuideListHelp });
-            PluginService.Commands.AddHandler(SettingsCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.SettingsHelp });
-            PluginService.Commands.AddHandler(EditorCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.EditorHelp });
-            PluginService.Commands.AddHandler(GuideViewerCommand, new CommandInfo(this.OnCommand) { HelpMessage = TStrings.InfoHelp });
+            PluginService.Commands.AddHandler(ListCommand, new CommandInfo(this.OnCommand) { HelpMessage = TCommands.GuideListHelp });
+            PluginService.Commands.AddHandler(SettingsCommand, new CommandInfo(this.OnCommand) { HelpMessage = TCommands.SettingsHelp });
+            PluginService.Commands.AddHandler(EditorCommand, new CommandInfo(this.OnCommand) { HelpMessage = TCommands.EditorHelp });
+            PluginService.Commands.AddHandler(GuideViewerCommand, new CommandInfo(this.OnCommand) { HelpMessage = TCommands.InfoHelp });
 
             PluginLog.Debug("CommandManager(Constructor): Initialization complete.");
         }
@@ -57,28 +57,28 @@ namespace KikoGuide.Managers
             switch (command)
             {
                 case ListCommand:
-                    if (windowSystem.GetWindow(WindowManager.GuideListWindowName) is GuideListWindow guideListWindow)
+                    if (windowSystem.GetWindow(TWindowNames.GuideList) is GuideListWindow guideListWindow)
                     {
                         guideListWindow.IsOpen = !guideListWindow.IsOpen;
                     }
 
                     break;
                 case SettingsCommand:
-                    if (windowSystem.GetWindow(WindowManager.SettingsWindowName) is SettingsWindow settingsWindow)
+                    if (windowSystem.GetWindow(TWindowNames.Settings) is SettingsWindow settingsWindow)
                     {
                         settingsWindow.IsOpen = !settingsWindow.IsOpen;
                     }
 
                     break;
                 case EditorCommand:
-                    if (windowSystem.GetWindow(WindowManager.EditorWindowName) is EditorWindow editorWindow)
+                    if (windowSystem.GetWindow(TWindowNames.GuideEditor) is EditorWindow editorWindow)
                     {
                         editorWindow.IsOpen = !editorWindow.IsOpen;
                     }
 
                     break;
                 case GuideViewerCommand:
-                    if (windowSystem.GetWindow(WindowManager.GuideViewerWindowName) is GuideViewerWindow guideViewerScreen)
+                    if (windowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow guideViewerScreen)
                     {
                         guideViewerScreen.IsOpen = !guideViewerScreen.IsOpen;
                     }

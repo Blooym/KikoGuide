@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using KikoGuide.Attributes;
-using KikoGuide.Localization;
 using Newtonsoft.Json;
 
 namespace KikoGuide.Types
@@ -29,7 +28,7 @@ namespace KikoGuide.Types
         /// <summary>
         ///     The duty/guide name.
         /// </summary>
-        public string Name = TStrings.TypeDutyUnnamed;
+        public string Name = "???";
 
         /// <summary>
         ///     The duty difficulty level.
@@ -99,7 +98,7 @@ namespace KikoGuide.Types
                 /// <summary>
                 ///     The strategy for the phase.
                 /// </summary>
-                public string Strategy = TStrings.TypeDutySectionStrategyNone;
+                public string Strategy = "???";
 
                 /// <summary>
                 ///     The short strategy for the phase.

@@ -3,6 +3,7 @@ using CheapLoc;
 using Dalamud.Plugin.Ipc;
 using KikoGuide.Base;
 using KikoGuide.IPC.Interfaces;
+using KikoGuide.Localization;
 using KikoGuide.Managers;
 using KikoGuide.Types;
 using KikoGuide.UI.Windows.Editor;
@@ -131,7 +132,7 @@ namespace KikoGuide.IPC.Providers
         {
             if (this.wotsitGuideIpcs.TryGetValue(guid, out var guide))
             {
-                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.GuideViewerWindowName) is GuideViewerWindow guideViewerWindow)
+                if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow guideViewerWindow)
                 {
                     guideViewerWindow.Presenter.SelectedGuide = guide;
                     guideViewerWindow.IsOpen = true;
@@ -140,7 +141,7 @@ namespace KikoGuide.IPC.Providers
 
             else if (guid == this.wotsitOpenListIpc)
             {
-                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.GuideListWindowName) is GuideListWindow guideListWIndow)
+                if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideList) is GuideListWindow guideListWIndow)
                 {
                     guideListWIndow.IsOpen = true;
                 }
@@ -148,7 +149,7 @@ namespace KikoGuide.IPC.Providers
 
             else if (guid == this.wotsitOpenEditorIpc)
             {
-                if (PluginService.WindowManager.WindowSystem.GetWindow(WindowManager.EditorWindowName) is EditorWindow guideEditorWindow)
+                if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideEditor) is EditorWindow guideEditorWindow)
                 {
                     guideEditorWindow.IsOpen = true;
                 }

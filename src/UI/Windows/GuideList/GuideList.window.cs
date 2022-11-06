@@ -7,7 +7,6 @@ using ImGuiNET;
 using KikoGuide.Attributes;
 using KikoGuide.Base;
 using KikoGuide.Localization;
-using KikoGuide.Managers;
 using KikoGuide.Types;
 using KikoGuide.UI.ImGuiBasicComponents;
 using KikoGuide.UI.ImGuiFullComponents.GuideListTable;
@@ -17,7 +16,7 @@ namespace KikoGuide.UI.Windows.GuideList
     public sealed class GuideListWindow : Window, IDisposable
     {
         internal GuideListPresenter Presenter;
-        public GuideListWindow() : base(WindowManager.GuideListWindowName)
+        public GuideListWindow() : base(TWindowNames.GuideList)
         {
             this.Flags |= ImGuiWindowFlags.NoScrollbar;
             this.Flags |= ImGuiWindowFlags.NoScrollWithMouse;
@@ -51,7 +50,7 @@ namespace KikoGuide.UI.Windows.GuideList
             var guides = GuideListPresenter.GetGuides();
             if (guides.Count == 0)
             {
-                Colours.TextWrappedColoured(Colours.Error, TStrings.GuideListContentNotFound);
+                Colours.TextWrappedColoured(Colours.Error, TGuideListTable.NoGuidesFilesDetected);
             }
 
             // If the support button is shown, make the search bar accommodate it, otherwise make it full width.

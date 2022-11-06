@@ -5,7 +5,6 @@ using Dalamud.Interface.Components;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using KikoGuide.Localization;
-using KikoGuide.Managers;
 using KikoGuide.Types;
 using KikoGuide.UI.ImGuiBasicComponents;
 using KikoGuide.UI.ImGuiFullComponents.GuideSection;
@@ -16,7 +15,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
     {
         internal GuideViewerPresenter Presenter = new();
 
-        public GuideViewerWindow() : base(WindowManager.GuideViewerWindowName)
+        public GuideViewerWindow() : base(TWindowNames.GuideViewer)
         {
             this.Flags |= ImGuiWindowFlags.NoScrollbar;
 
@@ -48,14 +47,14 @@ namespace KikoGuide.UI.Windows.GuideViewer
             // No guide selected, show non-selected message.
             if (guide == null)
             {
-                ImGui.TextWrapped(TStrings.GuideInfoNoneSelected);
+                ImGui.TextWrapped(TGuideViewer.NoGuideSelected);
                 return;
             }
 
             // Player does not have the guide unlocked and have the setting enabled to hide locked guides.
             if (!guide.IsUnlocked() && GuideViewerPresenter.Configuration.Display.HideLockedGuides)
             {
-                ImGui.TextWrapped(TStrings.GuideInfoNotUnlocked);
+                ImGui.TextWrapped(TGuideViewer.GuideNotUnlocked);
                 return;
             }
 
