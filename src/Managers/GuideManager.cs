@@ -15,6 +15,11 @@ namespace KikoGuide.Managers
     public static class GuideManager
     {
         /// <summary>
+        ///     The guide version folder to load from.
+        /// </summary>
+        private const string GuideVersionFolder = "v1";
+
+        /// <summary>
         ///     The loaded guide cache, prevents re-reading the files every lookup.
         /// </summary>
         private static List<Guide>? loadedGuideCache;
@@ -49,7 +54,8 @@ namespace KikoGuide.Managers
 
             // Try and get the language from the settings, or use fallback to default if not found.
             var language = PluginService.PluginInterface.UiLanguage;
-            if (!Directory.Exists($"{PluginConstants.PluginlocalizationDir}\\Guide\\{language}"))
+            var directory = $"{PluginConstants.PluginlocalizationDir}\\Guide\\{GuideVersionFolder}\\{language}";
+            if (!Directory.Exists(directory))
             {
                 language = PluginConstants.FallbackLanguage;
             }
@@ -58,7 +64,7 @@ namespace KikoGuide.Managers
             var guides = Enumerable.Empty<Guide>().ToList();
             try
             {
-                foreach (var file in Directory.GetFiles($"{PluginConstants.PluginlocalizationDir}\\Guide\\{language}", "*.json", SearchOption.AllDirectories))
+                foreach (var file in Directory.GetFiles(directory, "*.json", SearchOption.AllDirectories))
                 {
                     try
                     {
