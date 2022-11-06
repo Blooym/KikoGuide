@@ -29,7 +29,7 @@ jobs:
 
       - name: Download Dalamud Library
         run: |
-          cd src
+          cd KikoGuide
           wget -O Dalamud.zip https://goatcorp.github.io/dalamud-distrib/latest.zip
           unzip -o -d Dalamud Dalamud.zip
           export IsCI=true
@@ -44,8 +44,8 @@ jobs:
         shell: bash
         run: |
           dotnet build --configuration Release --nologo -p:AssemblyVersion=${{ steps.tag_name.outputs.TAG }} -p:AssemblyInformationalVersion=${{ steps.tag_name }}
-          sha512sum src/bin/x64/Release/KikoGuide/latest.zip  >> checksums.txt
-          sha512sum src/bin/x64/Release/KikoGuide/KikoGuide.json >> checksums.txt
+          sha512sum KikoGuide/bin/x64/Release/KikoGuide/latest.zip  >> checksums.txt
+          sha512sum KikoGuide/bin/x64/Release/KikoGuide/KikoGuide.json >> checksums.txt
           cat checksums.txt
 
       - name: Release
@@ -54,6 +54,6 @@ jobs:
           generate_release_notes: true
           prerelease: false
           files: |
-            src/bin/x64/Release/KikoGuide/latest.zip
-            src/bin/x64/Release/KikoGuide/KikoGuide.json
+            KikoGuide/bin/x64/Release/KikoGuide/latest.zip
+            KikoGuide/bin/x64/Release/KikoGuide/KikoGuide.json
             checksums.txt

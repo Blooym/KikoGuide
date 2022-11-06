@@ -81,7 +81,7 @@ It is highly recommended to use the in-game duty editor to edit guides, as it wi
       - `ShortDescription`: The short description of the mechanic used when enabled in the settings
       - `Type`: The type of mechanic
 
-An example guide to refer to for help when writing or editing can be found [here](src/Resources/Localization/v1/Guide/en/A%20Realm%20Reborn/Dungeons/CopperbellMines.json).
+An example guide to refer to for help when writing or editing can be found [here](KikoGuide/Resources/Localization/v1/Guide/en/A%20Realm%20Reborn/Dungeons/CopperbellMines.json).
 
 When writing descriptions of mechanics or sections, please try and minimize the language used to keep it down to just key information, and avoid lesser-known terminology. Keep the level/expansion of the duty in mind, as some players may not have experienced certain mechanics/strategies before.
 
@@ -89,7 +89,7 @@ When writing descriptions of mechanics or sections, please try and minimize the 
 When writing the guides, you can use `\n` to move to a new line as JSON does not support this. You can also use `\t` to indent the text by 1 tab space when needed. If you want to use a percentage sign, you will have to do `%%` to display a single percent sign. 
 
 #### Internal IDs (DutyType, MechanicTypes, DutyDifficulty, etc)
-You can find all internal IDs used for identifying duty data inside of the [Guide Type](src/Types/Guide.cs) of the repository or inside of the in-game editor (`/kikoeditor`)
+You can find all internal IDs used for identifying duty data inside of the [Guide Type](KikoGuide/Types/Guide.cs) of the repository or inside of the in-game editor (`/kikoeditor`)
 
 #### Game IDs (Quest, Territory, etc)
 You can find all game IDs through the csv files available from the FFXIV-Datamining repository [here](https://github.com/xivapi/ffxiv-datamining)
