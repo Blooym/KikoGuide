@@ -1,12 +1,10 @@
-name: "PR: JSON Changes"
+name: "PR: Run Linter"
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-    paths:
-      - "**.json"
     types: [ready_for_review, opened, synchronize, reopened]
 
 jobs:
@@ -17,7 +15,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Validate JSON Syntax
-        uses: limitusus/json-syntax-check@v1
-        with:
-          pattern: "\\.json$"
+      - name: Lint Codebase
+        uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
