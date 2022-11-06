@@ -76,7 +76,7 @@ jobs:
             |  Name | Detail |
             |---------------------------------|------------------------------------------------------------------------------------|
             | **Commit** 						          | ${{ github.sha }}                                                                  |
-            | **Logs** 							  | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}        |
+            | **Logs & Artifacts** 					  | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}        |
             | **Build Environment** 			    | ${{ runner.os }}/${{ runner.arch }}                                                |
             | **Triggered By**							  | [${{ github.actor }}](https://github.com/${{ github.actor }})                      |
 
