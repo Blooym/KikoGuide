@@ -1,0 +1,80 @@
+{
+    "Version": 0,
+    "Name": "The Lost City of Amdapor",
+    "Difficulty": 0,
+    "Type": 0,
+    "Expansion": 0,
+    "Level": 50,
+    "UnlockQuestID": 66925,
+    "TerritoryIDs": [363],
+    "Bosses": [
+        {
+            "Name": "Wamoura",
+            "StrategyShort": "Ensure that you focus down the Voracious Maw when it spawns so your teammate doesn't die.",
+            "Mechanics": [
+                {
+                    "Name": "Dirty Sneeze",
+                    "Description": "Frontal cone AoE. Avoid facing the group.",
+                    "Type": 9
+                },
+                {
+                    "Name": "Moldy Phlegm",
+                    "Description": "Targets a random player with an AoE. Leaves behind an AoE puddle that applies a DoT.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Voracious Maw",
+                    "Description": "Prey mechanic. The boss will tether to a random player and the message \"The decaying gourmand marks his prey!\" will appear. Running over the player will transfer the prey marker. After a few seconds, the player will be sucked into the boss' stomach, and the Voracious Maw will become targetable. Players need to kill it ASAP to free their teammate. If the party fails to do so within a certain amount of time, the player will be killed.",
+                    "Type": 6
+                }
+            ]
+        },
+        {
+            "Name": "Arioch",
+            "StrategyShort": "The boss is attracted to the player with the largest amount of Scale Flake stacks, so make sure the tank has more of those than anyone else.\n\nScale Flakes also makes players take more damage, so limit how many stacks you're picking up.\n\nPull another Ranch Wamoura at 10-15 seconds left on Scale Flakes.",
+            "Mechanics": [
+                {
+                    "Name": "Ranch Wamoura",
+                    "Description": "Spawns throughout the fight. Used to bring the boss down to fight.\n\nPoison Dust\n\tAvoidable frontal cone AoE that applies a 30-second stackable Poison debuff that can be dispeled.\n\nScale Flakes\n\tUsed just before it dies. An unmarked frontal cone AoE that applies a 45-second stacking debuff on players caught in the AoE. Used to attract the boss. Increases damage taken as well.",
+                    "Type": 7
+                },
+                {
+                    "Name": "Eerie Soundwave",
+                    "Description": "Roomwide AoE damage.",
+                    "Type": 4
+                },
+                {
+                    "Name": "Corrosive Gale",
+                    "Description": "Long line AoE on a random player.",
+                    "Type": 2
+                }
+            ]
+        },
+        {
+            "Name": "Diabolos",
+            "StrategyShort": "It is possible to live through skipping the first set of Gates during Ruinous Omen, which generally gives you enough DPS to kill the boss before the second set.\n\nWait until 1/2 to 3/4 through Ruinous Omen before opening the Gates so you can avoid the damage from the ability.",
+            "Mechanics": [
+                {
+                    "Name": "Diabolic Gates",
+                    "Description": "There are 8 gates that spawn, with each gate \"paired\" to another by way of matching symbols. After a few seconds, the symbols will be covered and the doors will close. Players need to remember where at least 1 matching pair is. Open one of the doors first, and then mark the other one so you know which to open during Ruinous Omen. Whenever a matched set is opened, the other symbols will be revealed, allowing you to find another set.",
+                    "Type": 10
+                },
+                {
+                    "Name": "Graviball",
+                    "Description": "Targets a random player and drops an orb on them that pulses every few seconds, dealing moderate damage in an extra large AoE around it.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Ruinous Omen",
+                    "Description": "Boss Ultimate. Deals heavy damage to all players caught in it (~80%). Negated by opening matching Diabolic Gates.",
+                    "Type": 4
+                },
+                {
+                    "Name": "Ultimate Terror",
+                    "Description": "Donut AoE. Be in melee range or max cast range.",
+                    "Type": 2
+                }
+            ]
+        }
+    ]
+}

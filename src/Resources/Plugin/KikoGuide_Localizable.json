@@ -1,0 +1,226 @@
+{
+  "DutyFinder.Title": {
+    "message": "{0} - Duty list",
+    "description": "TStrings.get_DutyFinderTitle"
+  },
+  "DutyFinder.NoFiles": {
+    "message": "No duty files detected! Please try Settings -> Update Resources.",
+    "description": "TStrings.get_DutyFinderContentNotFound"
+  },
+  "DutyInfo.Title": {
+    "message": "{0} - Guide viewer",
+    "description": "TStrings.get_DutyInfoTitle"
+  },
+  "DutyInfo.NoDuty": {
+    "message": "No duty selected, use /kikolist to see all available duties.",
+    "description": "TStrings.get_DutyInfoNoneSelected"
+  },
+  "DutyInfo.NotUnlocked": {
+    "message": "You cannot view the guide for this duty as you have not unlocked it yet.",
+    "description": "TStrings.get_DutyInfoNotUnlocked"
+  },
+  "DutyList.NoneFound": {
+    "message": "No duties found for this query.",
+    "description": "TStrings.get_DutyListNoneFound"
+  },
+  "DutyList.NoGuide": {
+    "message": "No guide available for {0}.",
+    "description": "TStrings.DutyListNoGuide"
+  },
+  "DutyList.NeedsUpdate": {
+    "message": "Cannot display duty as it was not made for this plugin version.",
+    "description": "TStrings.get_DutyListNeedsUpdate"
+  },
+  "DutyHeading.Title": {
+    "message": "Duty: {0}",
+    "description": "TStrings.DutyHeadingTitle"
+  },
+  "Commands.DutyList.Help": {
+    "message": "Toggles the duty list",
+    "description": "TStrings.get_DutyListHelp"
+  },
+  "Commands.Settings.Help": {
+    "message": "Toggles the settings menu",
+    "description": "TStrings.get_SettingsHelp"
+  },
+  "Commands.Editor.Help": {
+    "message": "Toggles the duty editor",
+    "description": "TStrings.get_EditorHelp"
+  },
+  "Commands.Info.Help": {
+    "message": "Toggles the guide viewer window if a duty is loaded",
+    "description": "TStrings.get_InfoHelp"
+  },
+  "Types.Duty.Name.None": {
+    "message": "Unnamed Duty",
+    "description": "TStrings..cctor"
+  },
+  "Types.Duty.Section.Strategy.None": {
+    "message": "No description available.",
+    "description": "TStrings..cctor"
+  },
+  "Generics.Donate": {
+    "message": "Donate",
+    "description": "TGenerics.get_Donate"
+  },
+  "Generics.OpenFile": {
+    "message": "Open File",
+    "description": "TGenerics.get_OpenFile"
+  },
+  "Generics.SaveFile": {
+    "message": "Save File",
+    "description": "TGenerics.get_SaveFile"
+  },
+  "Generics.Search": {
+    "message": "Search",
+    "description": "TGenerics.get_Search"
+  },
+  "Generics.Duty": {
+    "message": "Duty",
+    "description": "TGenerics.get_Duty"
+  },
+  "Generics.InDuty": {
+    "message": "In Duty",
+    "description": "TGenerics.get_InDuty"
+  },
+  "Generics.Mechanic": {
+    "message": "Mechanic",
+    "description": "TGenerics.get_Mechanic"
+  },
+  "Generics.Description": {
+    "message": "Description",
+    "description": "TGenerics.get_Description"
+  },
+  "Generics.Level": {
+    "message": "Level",
+    "description": "TGenerics.get_Level"
+  },
+  "Generics.Type": {
+    "message": "Type",
+    "description": "TGenerics.get_Type"
+  },
+  "Generics.Enabled": {
+    "message": "Enabled",
+    "description": "TGenerics.get_Enabled"
+  },
+  "Generics.Disabled": {
+    "message": "Disabled",
+    "description": "TGenerics.get_Disabled"
+  },
+  "Editor.Problems": {
+    "message": "Problems",
+    "description": "TEditor.get_Problems"
+  },
+  "Editor.Preview": {
+    "message": "Preview",
+    "description": "TEditor.get_Preview"
+  },
+  "Editor.Clear": {
+    "message": "Clear",
+    "description": "TEditor.get_Clear"
+  },
+  "Editor.Format": {
+    "message": "Format",
+    "description": "TEditor.get_Format"
+  },
+  "Editor.Metadata": {
+    "message": "Metadata",
+    "description": "TEditor.get_Metadata"
+  },
+  "Editor.EnumList": {
+    "message": "Enum List",
+    "description": "TEditor.get_EnumList"
+  },
+  "Editor.CannotParse": {
+    "message": "Cannot parse file, unable to preview.",
+    "description": "TEditor.get_CannotParseNoPreview"
+  },
+  "Editor.ContributingGuide": {
+    "message": "Contributing Guide",
+    "description": "TEditor.get_ContributingGuide"
+  },
+  "Editor.Problem.Unsupported": {
+    "message": "Duty contains invalid IDs and/or is unsupported by this plugin version.",
+    "description": "TEditor.get_ProblemUnsupported"
+  },
+  "Editor.Problem.None": {
+    "message": "No problems detected.",
+    "description": "TEditor.get_NoProblems"
+  },
+  "Editor.FileTooBig": {
+    "message": "Your file is too big to be loaded into the editor.",
+    "description": "TEditor.get_FileTooLarge"
+  },
+  "Editor.FileLoaded": {
+    "message": "Your file was successfully loaded.",
+    "description": "TEditor.get_FileSuccessfullyLoaded"
+  },
+  "Editor.FileSaved": {
+    "message": "Your file was successfully saved.",
+    "description": "TEditor.get_FileSuccessfullySaved"
+  },
+  "Settings.Configuration": {
+    "message": "Configuration",
+    "description": "TSettings.get_Configuration"
+  },
+  "Settings.AutoOpenInDuty": {
+    "message": "Auto Open In Duty",
+    "description": "TSettings.get_AutoOpenInDuty"
+  },
+  "Settings.AutoOpenDuty.Tooltip": {
+    "message": "Automatically open/hide the guide for the given duty when you enter/leave it.",
+    "description": "TSettings.get_SettingsAutoOpenInDutyTooltip"
+  },
+  "Settings.ShortedGuideText": {
+    "message": "Shorten Guide Text",
+    "description": "TSettings.get_ShortenGuideText"
+  },
+  "Settings.ShortenGuideText.Tooltip": {
+    "message": "Shorten text in all guides when available to help make them more accessible and save space.",
+    "description": "TSettings.get_ShortenGuideTextTooltip"
+  },
+  "Settings.ShowDonateButton": {
+    "message": "Show Donate Button",
+    "description": "TSettings.get_ShowDonateButton"
+  },
+  "Settings.ShowDonateButton.Tooltip": {
+    "message": "Show donate buttons in the plugin to help support the plugin and its development.",
+    "description": "TSettings.get_ShowDonateButtonTooltip"
+  },
+  "Settings.HideLockedDuties": {
+    "message": "Hide Locked Duties",
+    "description": "TSettings.get_HideLockedDuties"
+  },
+  "Settings.HideLockedDuties.Tooltip": {
+    "message": "Hide duties that you have not unlocked yet from the duty list and prevent opening them in the guide viewer.\nWARNING: Turning this off will show you spoilers for duties you have not unlocked yet.",
+    "description": "TSettings.get_HideLockedDutiesTooltip"
+  },
+  "Settings.HiddenMechanics": {
+    "message": "Hidden Mechanics",
+    "description": "TSettings.get_HiddenMechanics"
+  },
+  "Settings.HiddenMechanics.Tooltip": {
+    "message": "Hide mechanic types, preventing them from being shown in any guides.",
+    "description": "TSettings.get_HiddenMechanicsTooltip"
+  },
+  "Settings.EnabledIntegrations": {
+    "message": "Enabled Integrations",
+    "description": "TSettings.get_EnabledIntegrations"
+  },
+  "Settings.EnabledIntegrations.Tooltip": {
+    "message": "Enable or disable integrations with other plugins. Please note that the plugin(s) must be installed for the integration to work.",
+    "description": "TSettings.get_EnabledIntegrationsTooltip"
+  },
+  "IPC.Wotsit.OpenDutyList": {
+    "message": "Open Duty List",
+    "description": "WotsitTranslations.get_WotsitIPCOpenDutyList"
+  },
+  "IPC.Wotsit.OpenDutyEditor": {
+    "message": "Open Duty Editor",
+    "description": "WotsitTranslations.get_WotsitIPCOpenDutyEditor"
+  },
+  "IPC.Wotsit.OpenGuideFor": {
+    "message": "Open Guide for {0}",
+    "description": "WotsitTranslations.WotsitIPCOpenGuideFor"
+  }
+}

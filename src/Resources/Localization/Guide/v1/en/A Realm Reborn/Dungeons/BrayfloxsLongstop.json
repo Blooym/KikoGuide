@@ -1,0 +1,57 @@
+{
+    "Version": 1,
+    "Name": "Brayflox's Longstop",
+    "Difficulty": 0,
+    "Type": 0,
+    "Expansion": 0,
+    "Level": 32,
+    "UnlockQuestID": 66368,
+    "TerritoryIDs": [1041],
+    "Sections": [
+        {
+            "Type": 0,
+            "Name": "Great Yellow Pelican",
+            "Phases": [
+                {
+                    "Strategy": "During the fight, Pelican will summon small birds called Violet Back. Kill the birds quickly before they overwhelm the party. Additionally, the Pelican can poison the tank."
+                }
+            ]
+        },
+        {
+            "Type": 0,
+            "Name": "Inferno Drake",
+            "Phases": [
+                {
+                    "Strategy": "Inferno Drake is a fire-breathing drake. It has an AoE cone attack that should be avoided by casters and melee dps. Halfway through the way, Brayflox will run into the boss room with a drake named Tempest Biast, chasing him. Kill the smaller drake, save Brayflox, then kill the Inferno Drake."
+                }
+            ]
+        },
+        {
+            "Type": 0,
+            "Name": "Hellbender",
+            "Phases": [
+                {
+                    "Strategy": "Hellbender is a giant amphibian creature. During the fight, it will periodically crowd control a party member in a bubble. Kill the bubble quickly and free your teammate. At the end of Hellbender's lifespan, Aiatar, the dragon, flies in and consumes the amphibian. Attack Aiatar until his HP is about 50%%, then it will fly away."
+                }
+            ]
+        },
+        {
+            "Type": 0,
+            "Name": "Deep Jungle Coeurl (Optional)",
+            "Phases": [
+                {
+                    "Strategy": "Deep Jungle Coeurl is an optional mini-boss and is a coeurl with an AoE attack. Be sure to run out of the big red circle on the ground to avoid it."
+                }
+            ]
+        },
+        {
+        "Type": 0,
+        "Name": "Aiatar",
+        "Phases": [
+            {
+                "Strategy": "Aiatar has an AoE cone attack that happens fairly quickly and should be avoided by the squishier members of the party. During the fight, the dragon will spit green poisonous goo at members of the party, dealing a moderate amount of damage. The goo leaves a green puddle on the ground which not only poisons anyone standing in it, but also heals the dragon. Get out of the puddle quickly. Tank should make sure that Aiatar is not standing in the puddle and getting healed."
+            }
+        ]
+        }
+    ]       
+}

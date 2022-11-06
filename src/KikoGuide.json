@@ -2,8 +2,9 @@
   "Author": "BitsOfAByte",
   "Name": "Kiko Guide",
   "InternalName": "KikoGuide",
-  "Punchline": "The ultimate guidebook for in-game duties, great for sprouts & daily roulettes!",
-  "Description": "Comprehensive guides for duty content such as Dungeons, Trials and Alliance Raids.\n\nKey features:\n- Automatically open a guide when entering a duty\n- Neat boss mechanic tables\n- A shortend strategy mode for easy reading\n- Anti-spoiler protections\n- Built in guide editor\n& more to come!",
+  "Punchline": "The ultimate guidebook for in-game duties, great for sprouts & doing your daily roulettes!",
+  "Description": "Comprehensive guides for duty content such as Dungeons, Trials and Alliance Raids.\n\nKey features:\n- Automatically open a guide when entering a duty\n- Neat user interface that scales well at small sizes\n- A short-text mode for easier reading & accessibility\n- Anti-spoiler protections by default\n- Built-in guide editor\n- Integrations with your favourite plugins\n& more to come!",
   "RepoUrl": "https://github.com/BitsOfAByte/KikoGuide",
-  "Tags": ["Duty Finder", "Duties", "Guide"]
+  "Tags": ["Duty Finder", "Duties", "Guide"],
+  "CategoryTags": ["Utility"]
 }

@@ -1,0 +1,73 @@
+{
+    "Version": 0,
+    "Name": "Haukke Manor",
+    "Difficulty": 0,
+    "Type": 0,
+    "Expansion": 0,
+    "Level": 28,
+    "UnlockQuestID": 66337,
+    "TerritoryIDs": [1040],
+    "Bosses": [
+        {
+            "Name": "Manor Claviger",
+            "Strategy": "Manor Claviger has an untelevised melee cleave attack. The attack can do massive physical damage to lightly armored party members. Make sure the tank faces her away from the rest of the party. When defeated, the doors leading to the Foyer will open, and Claviger will drop a Green Key. Do not go forward to the Foyer. Instead, proceed back out of the entrance of the boss room and use the Green Key to unlock the Ivy Door.",
+            "StrategyShort": "Face away from party due to cleave attacks. When the boss is defeated, exit the boss room the way you came in and open the door to the basement.",
+            "Mechanics": [
+                {
+                    "Name": "Sweet Steel",
+                    "Description": "Untelivised cone AoE melee attack",
+                    "Type": 2
+                },
+                {
+                    "Name": "Void Fire II",
+                    "Description": "Uninterruptable AoE",
+                    "Type": 2
+                },
+                {
+                    "Name": "Dark Mist",
+                    "Description": "Large PBAoE, can be avoided by stunning Claviger.",
+                    "Type": 2
+                }
+            ]
+        }, 
+        {
+            "Name": "Manor Jester and Manor Steward",
+            "Strategy": "Manor Jester and Manor Steward are two bosses located in the same room. Jester is the spell caster and Steward is the tank. Players should kill Jester first because it deals more damage and has less HP. When defeated, Steward will drop a slip of Bloody Parchment, use this to unlock the Sealed Barrier on the stairs at the start of the Dungeon.",
+            "StrategyShort": "Kill Jester first. Then, use the Bloody Parchment to unlock the Sealed Barrier on the stairs by the entrance to the dungeon.",
+            "Mechanics": [
+                {
+                    "Name": "Ice Spikes (Jester)",
+                    "Description": "Uninterruptable casted spell",
+                    "Type": 6
+                },
+                {
+                    "Name": "Soul Drain (Steward)",
+                    "Description": "Large PBAoE, can be avoided by stunning Steward.",
+                    "Type": 2
+                }
+            ]
+        },
+        {
+            "Name": "Lady Amandine",
+            "Strategy": "In the boss room, there are 4 Void Lamps. During the fight, the Void Lamps will periodically light up, doing AoE damage to the entire party. Players should turn off the lamps as soon as possible. Lady Amandine will cast Void Fire and Void Thunder. Avoid her spellcast if possible by interrupting or stunning her.\n\nAt approximately 50%% health, she will summon Lady's Candles which are bombs that will self-destruct if not destroyed quickly.\n\nAt approximately 25%% health, Lady Amandine will summon a Manor Sentry and Lady's Handmaidens. It is possible in certain circumstances to DPS down the boss if the party acts quickly enough. Otherwise, kill these adds before finishing off the boss.",
+            "StrategyShort": "Turn off Void Lamps as soon as possible. Avoid Void Fire and Void Thunder. If Lady Amandine summons Manor Sentry and Handmaidens, kill them before killing the boss.",
+            "Mechanics": [
+                {
+                    "Name": "Void Fire III",
+                    "Description": "Uninterruptable spell",
+                    "Type": 6
+                },
+                {
+                    "Name": "Void Thunder III",
+                    "Description": "Uninterruptable  spell",
+                    "Type": 6
+                },
+                {
+                    "Name": "Dark Mist",
+                    "Description": "Large PBAoE spell. This spell can be avoided by stunning Lady Amandine.",
+                    "Type": 2
+                }
+            ]
+        }
+    ]
+}

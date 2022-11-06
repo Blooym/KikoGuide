@@ -17,23 +17,19 @@ A Dalamud plugin that provides players with hand-written guides to duty content.
 ---
 <!-- Repository Header End -->
 
-> **Note**  
-> This plugin is in an unfinished and unstable state; work is being done to improve this and support additional content but as this is just a side project, this may take some time. Patience is appreciated.
-
 
 ## About
 
-Kiko Guide is a plugin written for the [Dalamud](https://github.com/goatcorp/Dalamud) plugin framework which allows players to easily access written guides to duty content in an accessible way in the hopes of making the game a little bit easier for everyone.
+Kiko Guide is a plugin written for the [Dalamud](https://github.com/goatcorp/Dalamud) plugin framework which allows players easy access written guides to duty content in an easy to read and accessible way.
 
 **Key Features**:
-- Automatically have guides open when you enter a duty with a written guide available.
-- Mechanics tables with easy show/hide functionality.
-- A "Short mode" that cuts down on the amount of text used for explainations.
-- Able to be fully localized into any language, both plugin text & guides.
-- Localization & Resources update independently of the plugin.
-- Integration support with other Dalamud plugins such as [Wotsit](https://github.com/goaaats/Dalamud.FindAnything).
-- A built in guide editor with error highlighting to make contribution easy.
-- Built in spoiler protections.
+- Automatically open a guide upon entering a duty that has a guide available.
+- Well polished UI that is easy to navigate.
+- Great configuration options to customize the plugin to your liking.
+- Full localization support for any language, including duty guides, that updates automatically and independently of the plugin.
+- Integrations with your other favourite plugins like Wotsit.
+- A built-in guide editor with error highlighting to make contributing guides easier than ever.
+- Spoiler checks to ensure you don't see spoilers for content you haven't unlocked yet.
 
 ## Installing
 

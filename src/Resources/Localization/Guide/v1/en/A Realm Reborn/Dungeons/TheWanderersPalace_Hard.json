@@ -1,0 +1,115 @@
+{
+    "Version": 0,
+    "Name": "The Wanderer's Palace",
+    "Difficulty": 1,
+    "Type": 0,
+    "Expansion": 0,
+    "Level": 50,
+    "UnlockQuestID": 65967,
+    "TerritoryIDs": [188],
+    "Bosses": [
+        {
+            "Name": "Frumious Koheel Ja",
+            "StrategyShort": "DPS must destroy the Sacred Spears when they appear. At around 33% he will use this twice in a row, leaving two spears to destroy.\n\nFairly simple tank and spank boss aside from the spears.",
+            "Mechanics": [
+                {
+                    "Name": "Batterhorn",
+                    "Description": "Inflicts damage and knockback.",
+                    "Type": 0
+                },
+                {
+                    "Name": "Fire Angon",
+                    "Description": "Fire damage to a random party member.",
+                    "Type": 6
+                },
+                {
+                    "Name": "Blazing Angon",
+                    "Description": "Tosses a Sacred Spear into the ground, which periodically uses a skill likewise called Blazing Angon to inflict roomwide fire damage and apply a stacking Burns debuff which deals fire damage over time.",
+                    "Type": 8
+                },
+                {
+                    "Name": "Burning Memories",
+                    "Description": "Targeted AoE damage on a random party member. Can be avoided.",
+                    "Type": 2
+                }
+            ]
+        },
+        {
+            "Name": "Slithy Zolool Ja",
+            "StrategyShort": "The colors of the standards and their buffs/debuffs vary each time. The first time it is used, only the Heavy, Fire Resistance Down, and Damage Up totems will spawn. Figure out which one is the Damage Up totem, and the missing color will always be the Toad totem.\n\nIt's beneficial for the DPS to figure out which is the Damage Up standard as it grants them a buff. Later in the fight, there are multiple Damage Up standards so multiple members can receive the buff.",
+            "Mechanics": [
+                {
+                    "Name": "Fire",
+                    "Description": "Fire damage to the tank",
+                    "Type": 0
+                },
+                {
+                    "Name": "Groundburst",
+                    "Description": "AoE damage to a random party member. Instant cast.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Firespit",
+                    "Description": "Heavy fire damage to the tank.",
+                    "Type": 0
+                },
+                {
+                    "Name": "Sacred Standard",
+                    "Description": "Summons a varying amount of standards around the battlefield that give buffs or debuffs when entered. There will be a blue, green, red, and purple standard, one will inflict Heavy, another inflicts Fire Resistance Down (very dangerous), one grants Damage Up, and one will toggle Toad status, either inflicting it if normal or removing it if toaded.",
+                    "Type": 10
+                },
+                {
+                    "Name": "Standard Retrieval",
+                    "Description": "Recalls his standards, and any Damage Up totems that are still up will give him a stack of Damage Up.",
+                    "Type": 10
+                },
+                {
+                    "Name": "Toad",
+                    "Description": "Inflicts the Toad status on a player, preventing them from taking any actions for the duration. Removed by one of the standards, or waiting it out.",
+                    "Type": 6
+                }
+            ]
+        },
+        {
+            "Name": "Manxome Molaa Ja Ja",
+            "StrategyShort": "The boss should be tanked as close to the wall as possible. Whenever he drops a Sacred Standard, follow the wall until he is just barely not standing in it (you can see it on his buffs). When he drops a Sacred Idol, just keep him still and DPS down the Idol.\n\nIt's best to stand close to the boss so you can more easily dodge Tyrannic Blare.\n\nThe healer needs to keep an eye on the debuffs of party members so they know who ends up marked with Soul Douse to prevent unwanted deaths.",
+            "Mechanics": [
+                {
+                    "Name": "Rushing Slash",
+                    "Description": "Physical damage to the tank.",
+                    "Type": 0
+                },
+                {
+                    "Name": "Tyrannic Blare",
+                    "Description": "Conal attack that inflicts Stun and Magic Vulnerability Up. Has long range and targets a random party member, so ranged units are advised to stay close to him.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Rot Gas",
+                    "Description": "Inflicts poison and heavy.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Vorpal Wheel",
+                    "Description": "Ranged attack that inflicts Rotting Lungs, which will cause the target to explode if damaged by Rot Gas.",
+                    "Type": 6
+                },
+                {
+                    "Name": "Soul Douse",
+                    "Description": "Inflicts a version of Doom that will kill the target if they are not healed to full HP before it wears off.",
+                    "Type": 6
+                },
+                {
+                    "Name": "Sacred Standard",
+                    "Description": "Not a move, he summons these occasionally. They are very difficult to destroy, and will buff him with Damage Up and Vulnerability Down so long as he remains inside the circle. The tank should rotate him around the arena to stay out of them.",
+                    "Type": 7
+                },
+                {
+                    "Name": "Sacred Idol",
+                    "Description": "Very similar to the standard, but will buff the boss no matter where he is. DPS can easily destroy it however.",
+                    "Type": 7
+                }
+            ]
+        }
+    ]
+}

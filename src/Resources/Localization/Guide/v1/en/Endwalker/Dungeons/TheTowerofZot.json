@@ -1,0 +1,135 @@
+{
+    "Version": 0,
+    "Name": "The Tower of Babil",
+    "Difficulty": 0,
+    "Type": 0,
+    "Expansion": 4,
+    "Level": 83,
+    "UnlockQuestID": 69931,
+    "TerritoryIDs": [969],
+    "Bosses": [
+        {
+            "Name": "Barnabas",
+            "Strategy": "This fight revolves around reacting to several magnetism mechanics. As always with these: Same polarities push each other away, opposite polarities attract each other. Move accordingly to not get pushed or pulled into mechanics.",
+            "Mechanics": [
+                {
+                    "Name": "Ground and Pound",
+                    "Description": "Line AoE at a random player.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Shocking Force",
+                    "Description": "Party stack.",
+                    "Type": 6
+                },
+                {
+                    "Name": "Dynamic Pound",
+                    "Description": "Boss moves to the northern edge of the arena and casts a line AoE through the middle that leaves a damaging field with a polarity. Position yourself accordingly to not get pushed into the edge of the arena or pulled into the line AoE.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Dynamic Scrapline",
+                    "Description": "Boss moves to the center of the arena and casts a polarity on himself and each player. Soon afterwards he will cast a circle AoE around himself that goes off right after the polarities push or pull players around.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Thundercall",
+                    "Description": "Summons three lightning orbs around the arena. Both the orbs as well as the boss will cast a circle AoE around themselves that deals heavy damage and knocks players away.",
+                    "Type": 2
+                }
+			]
+        },
+        {
+            "Name": "Lugae",
+            "Strategy": "Lugar's mechanics are mostly different AoEs, as well as two mechanics that revolve around the coloured panels on the floor close to the middle of the arena. \nThe green field turns players into toads, while the purple field shrinks players. Turn into a toad when the room gets flooded and shrink yourself when he summons chakrams on the edge of the arena.",
+            "Mechanics": [
+                {
+                    "Name": "Thermal Suppression",
+                    "Description": "Unavoidable raidwide damage.",
+                    "Type": 4
+                },
+                {
+                    "Name": "Magitek Missle",
+                    "Description": "Circle AoEs on two random players.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Magitek Ray",
+                    "Description": "Line AoE at one random player.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Magitek Explosion",
+                    "Description": "Spawns three large bombs that explode in a cross-line pattern simultaneously.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Magitek Chakram",
+                    "Description": "Spawns a line of chakrams along the edges of the arena that cast line AoEs covering the entire arena. \nPlayers need to receive the Mini debuff to evade these by stepping into the purple panel.",
+                    "Type": 10
+                },
+                {
+                    "Name": "Downpour",
+                    "Description": "Fills the room with water, inflicting all players with Heavy and a stacking Breathless debuffs that kills them once it reaches 8 stacks.\nPlayers need to receive the Toad debuff to remove the Heavy and the Breathless stacks by stepping into the green panel.",
+                    "Type": 10
+                }
+			]
+        },
+        {
+            "Name": "Anima",
+            "Strategy": "The fight consists of a couple AoE focused mechanics, an intermission phase that is also a DPS check, and the final phase that simply loops the first phase indefinitely.",
+            "Mechanics": [
+                {
+                    "Name": "Lunar Nail",
+                    "Description": "Nails will drop in the middle and around the edges of the arena, dividing it into 4 quadrants.",
+                    "Type": 10
+                },
+                {
+                    "Name": "Phantom Pain",
+                    "Description": "Casts an AoE in 3 of the 4 quadrants of the arena marked by Lunar Nails. The quadrant that doesn't have a nail in the corner is safe.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Mega Graviton",
+                    "Description": "Unavoidable raidwide damage. Leaves a Mega-Graviton orb in each corner of the arena.",
+                    "Type": 4
+                },
+                {
+                    "Name": "Pater Patriae",
+                    "Description": "Large line AoE from Anima through the middle of the arena.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Aetherial Pull",
+                    "Description": "Tethers each player to one of the Mega-Graviton orbs. Shortly after Pater Patriae goes off players are pulled towards their orb. Run away from the orb until the tether changes its appearance.",
+                    "Type": 10
+                },
+                {
+                    "Name": "Boundless Pain",
+                    "Description": "Pulls all players to the middle of the arena, then casts a continuously damaging AoE that grows in size until it reaches the center edges of the arena.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Imperatum",
+                    "Description": "Drags all players down into Anima's dimension. A Chaos gauge will slowly fill, acting as a dps check.",
+                    "Type": 10
+                },
+                {
+                    "Name": "Obliviating Claw",
+                    "Description": "Spawns sets of claws on one side of the arena and then on the other. They will go off as line AoEs in the order they were spawned.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Erupting Pain",
+                    "Description": "Two players are marked with chaser AoEs.",
+                    "Type": 2
+                },
+                {
+                    "Name": "Oblivion",
+                    "Description": "Unavoidable raidwide damage. Wipes the party if the Chaos gauge is full before this is cast.",
+                    "Type": 4
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+name: "Always: Linter"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [ready_for_review, opened, synchronize, reopened]
+
+jobs:
+  Validate:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Lint Codebase
+        uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_YAML: false
+          VALIDATE_GITLEAKS: false
+          VALIDATE_MARKDOWN: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
