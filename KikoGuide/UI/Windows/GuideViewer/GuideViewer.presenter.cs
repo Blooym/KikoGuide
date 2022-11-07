@@ -47,7 +47,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
         public void OnTerritoryChange(object? sender, ushort e)
         {
             var playerGuide = GuideManager.GetGuideForCurrentTerritory();
-            PluginLog.Information($"GuideViewerPresenter(OnTerritoryChange): Player changed territory to {e}. (Guide for Territory: {playerGuide?.Name ?? "None"})");
+            PluginLog.Debug($"GuideViewerPresenter(OnTerritoryChange): Player changed territory to {e}. (Guide for Territory: {playerGuide?.Name ?? "None"})");
 
             // If the player has entered a duty with a guide and has the setting enabled, show the guide viewer window.
             if (playerGuide != null && playerGuide?.Sections?.Count > 0)
@@ -57,7 +57,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
                 {
                     if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
                     {
-                        PluginLog.Information($"GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to open and displaying guide for {playerGuide.Name}.");
+                        PluginLog.Debug($"GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to open and displaying guide for {playerGuide.Name}.");
                         window.IsOpen = true;
                     }
                 }

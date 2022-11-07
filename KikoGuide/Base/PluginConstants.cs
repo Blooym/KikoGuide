@@ -28,7 +28,7 @@ namespace KikoGuide.Base
         /// <summary>
         ///     The resources directory relative to the base of the repository.
         /// </summary>
-        internal static readonly string RepoResourcesDir = "src/Resources/";
+        internal static readonly string RepoResourcesDir = "KikoGuide/Resources/";
 
         /// <summary>
         ///     The support button URL.
