@@ -1,6 +1,6 @@
 name: 📃 Guide Issue Report
 description: Report issues or suggest changes for guides.
-title: "Guide Amendment: "
+title: "Guide Issue Report: "
 labels: "type | guide-problem"
 body:
   - type: markdown
