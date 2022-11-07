@@ -17,8 +17,6 @@ namespace KikoGuide.Managers
     /// </summary>
     internal sealed class WindowManager : IDisposable
     {
-
-
         /// <summary>
         ///     The windowing system service provided by Dalamud.
         /// </summary>

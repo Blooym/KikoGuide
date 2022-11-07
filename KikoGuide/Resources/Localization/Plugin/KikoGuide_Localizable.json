@@ -187,24 +187,28 @@
     "message": "There is no information available for this guide right now.",
     "description": "TGuideViewer.get_NoInfoAvailable"
   },
+  "GuideViewer.ReportIssueWithGuide": {
+    "message": "Report issue with guide",
+    "description": "TGuideViewer.get_ReportIssueWithGuide"
+  },
   "GuideViewer.UnlockWindowMovement": {
-    "message": "Unlock Window Movement",
+    "message": "Unlock window movement",
     "description": "TGuideViewer.get_UnlockWindowMovement"
   },
   "GuideViewer.LockWindowMovement": {
-    "message": "Lock Window Movement",
+    "message": "Lock window movement",
     "description": "TGuideViewer.get_LockWindowMovement"
   },
   "GuideViewer.UnlockWindowResize": {
-    "message": "Unlock Window Resize",
+    "message": "Unlock window resize",
     "description": "TGuideViewer.get_UnlockWindowResize"
   },
   "GuideViewer.LockWindowResize": {
-    "message": "Lock Window Resize",
+    "message": "Lock window resize",
     "description": "TGuideViewer.get_LockWindowResize"
   },
   "GuideViewer.ToggleSettingsWindow": {
-    "message": "Toggle Settings Window",
+    "message": "Toggle settings window",
     "description": "TGuideViewer.get_ToggleSettingsWindow"
   },
   "GuideViewer.GuideHeading": {

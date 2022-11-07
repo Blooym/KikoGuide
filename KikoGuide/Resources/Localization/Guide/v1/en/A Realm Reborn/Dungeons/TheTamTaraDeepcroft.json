@@ -1,5 +1,5 @@
 {
-  "Version": 0,
+  "Version": 1,
   "Name": "The Tam-Tara Deepcroft",
   "Difficulty": 0,
   "Type": 0,
@@ -7,19 +7,29 @@
   "Level": 16,
   "UnlockQuestID": 66213,
   "TerritoryIDs": [1037],
-  "Bosses": [
+  "Sections": [
     {
+      "Type": 2,
       "Name": "Void Soulcounter",
-      "Strategy": "Appears after the destruction of each sealed barrier."
+      "Phases": [
+        {
+          "Strategy": "Appears after the destruction of each sealed barrier."
+        }
+      ]
     },
     {
+      "Type": 1,
       "Name": "Denn the Orcatoothed",
-      "Strategy": "Summons 3 waves of adds during the fight. The imps make Galvanth immune to damage, so prioritize killing them before killing the other adds. Attacks from the imps will interrupt spell casting.",
-      "Mechanics": [
+      "Phases": [
         {
-          "Name": "Shielded",
-          "Description": "Cannot be damaged whilst imps are alive.",
-          "Type": 5
+          "Strategy": "Summons 3 waves of adds during the fight. The imps make Galvanth immune to damage, so prioritize killing them before killing the other adds. Attacks from the imps will interrupt spell casting.",
+          "Mechanics": [
+            {
+              "Name": "Shielded",
+              "Description": "Cannot be damaged whilst imps are alive.",
+              "Type": 5
+            }
+          ]
         }
       ]
     }

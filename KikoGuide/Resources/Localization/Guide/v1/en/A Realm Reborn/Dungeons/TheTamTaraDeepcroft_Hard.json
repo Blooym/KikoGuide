@@ -1,5 +1,5 @@
 {
-  "Version": 0,
+  "Version": 1,
   "Name": "The Tam-Tara Deepcroft",
   "Difficulty": 1,
   "Type": 0,
@@ -7,82 +7,97 @@
   "Level": 50,
   "UnlockQuestID": 67060,
   "TerritoryIDs": [373],
-  "Bosses": [
+  "Sections": [
     {
+      "Type": 1,
       "Name": "Liavinne",
-      "StrategyShort": "It's easiest to just have the entire group stack on the boss so no one needs to chase after the adds to kill them with Rotting Arrow.\n\nNever kill the adds yourself; let Rotting Arrow do the work for you.",
-      "Mechanics": [
+      "Phases": [
         {
-          "Name": "Instability",
-          "Description": "Throws three red orbs at a random player, marking them as the target of the Best Men.",
-          "Type": 6
-        },
-        {
-          "Name": "Rotting Arrow",
-          "Description": "Targets a random player with a large red arrow marker. After a few seconds, they will be targeted for a large AoE that deals damage to both players and the Best Men around them.",
-          "Type": 6
-        },
-        {
-          "Name": "Best Men",
-          "Description": "Spawns increasingly more adds throughout the fight. Will singlemindedly attack the player marked by Instability. Killing them yourselves will cause them to explode to deal light damage and apply a Vulnerability Up debuff. By hitting them with Rotting Arrow, no one is damaged and no debuffs are applied.",
-          "Type": 7
+          "Strategy": "It's easiest to just have the entire group stack on the boss so no one needs to chase after the adds to kill them with Rotting Arrow.\n\nNever kill the adds yourself; let Rotting Arrow do the work for you.",
+          "Mechanics": [
+            {
+              "Name": "Instability",
+              "Description": "Throws three red orbs at a random player, marking them as the target of the Best Men.",
+              "Type": 6
+            },
+            {
+              "Name": "Rotting Arrow",
+              "Description": "Targets a random player with a large red arrow marker. After a few seconds, they will be targeted for a large AoE that deals damage to both players and the Best Men around them.",
+              "Type": 6
+            },
+            {
+              "Name": "Best Men",
+              "Description": "Spawns increasingly more adds throughout the fight. Will singlemindedly attack the player marked by Instability. Killing them yourselves will cause them to explode to deal light damage and apply a Vulnerability Up debuff. By hitting them with Rotting Arrow, no one is damaged and no debuffs are applied.",
+              "Type": 7
+            }
+          ]
         }
       ]
     },
     {
+      "Type": 1,
       "Name": "Spare Body",
-      "StrategyShort": "Two extra large Orbs will spawn near the end of the fight that deal heavy damage.\n\nThe tank should keep the boss against the edge of the arena, avoiding Orbs and moving out of Cloudcover as necessary.",
-      "Mechanics": [
+      "Phases": [
         {
-          "Name": "Paiyo Reiyo",
-          "Description": "Appears in the center of the arena and is locked in place. Must be kept alive. If he dies, the group will wipe and have to restart. He can be healed if necessary.",
-          "Type": 10
-        },
-        {
-          "Name": "Portals",
-          "Description": "Seven void portals will spawn along the edge of the arena that spit out Orbs occasionally.",
-          "Type": 7
-        },
-        {
-          "Name": "Orbs",
-          "Description": "Spawn from the Portals. Slowly move towards the center of the room. Will deal damage to Paiyo Reiyo. Players need to intercept these orbs with their own bodies, causing them to explode. If the boss gets near any orbs, it will grant him a stacking Damage Up buff while increasing his size. For this reason, the tank should avoid picking up the orbs.",
-          "Type": 10
-        },
-        {
-          "Name": "Cloudcover",
-          "Description": "Targets the tank for a large circle AoE puddle. Standing in it applies a Bleed DoT.",
-          "Type": 2
-        },
-        {
-          "Name": "Iron Justice",
-          "Description": "Frontal cleave on the MT. Keep the boss facing away from the group.",
-          "Type": 9
+          "Strategy": "Two extra large Orbs will spawn near the end of the fight that deal heavy damage.\n\nThe tank should keep the boss against the edge of the arena, avoiding Orbs and moving out of Cloudcover as necessary.",
+          "Mechanics": [
+            {
+              "Name": "Paiyo Reiyo",
+              "Description": "Appears in the center of the arena and is locked in place. Must be kept alive. If he dies, the group will wipe and have to restart. He can be healed if necessary.",
+              "Type": 10
+            },
+            {
+              "Name": "Portals",
+              "Description": "Seven void portals will spawn along the edge of the arena that spit out Orbs occasionally.",
+              "Type": 7
+            },
+            {
+              "Name": "Orbs",
+              "Description": "Spawn from the Portals. Slowly move towards the center of the room. Will deal damage to Paiyo Reiyo. Players need to intercept these orbs with their own bodies, causing them to explode. If the boss gets near any orbs, it will grant him a stacking Damage Up buff while increasing his size. For this reason, the tank should avoid picking up the orbs.",
+              "Type": 10
+            },
+            {
+              "Name": "Cloudcover",
+              "Description": "Targets the tank for a large circle AoE puddle. Standing in it applies a Bleed DoT.",
+              "Type": 2
+            },
+            {
+              "Name": "Iron Justice",
+              "Description": "Frontal cleave on the MT. Keep the boss facing away from the group.",
+              "Type": 9
+            }
+          ]
         }
       ]
     },
     {
+      "Type": 1,
       "Name": "Avere Bravearm & Edda Pureheart",
-      "StrategyShort": "Kill the Grooms-to-be ASAP so you don't need to worry about the Runes.\n\nThe portal adds will appear in larger numbers, using increasing amounts of AoE as the fight goes on. Be ready to squeeze into tiny safe spots between the overlapping AoEs.",
-      "Mechanics": [
+      "Phases": [
         {
-          "Name": "Runes",
-          "Description": "Numerous large, dark red runes appear around the puddle in the center of the room. One will light up for each Groom-to-be that reaches the center of the room. Increases the damage dealt by Red Wedding.",
-          "Type": 10
-        },
-        {
-          "Name": "Portals",
-          "Description": "Numerous portals spawn along the edges of the room. Occasionally, untargetable adds will appear from them, using various AoEs. Also spawns Grooms-to-be.\n\nWalkgoyles\n\tuse long line AoEs\n\nFlygoyles\n\tuse large circle AoEs",
-          "Type": 7
-        },
-        {
-          "Name": "Groom-to-be",
-          "Description": "Will appear from a portal and begin crawling towards the center of the room. Must be killed ASAP. Every groom that reaches the center will charge up a Rune.",
-          "Type": 7
-        },
-        {
-          "Name": "Red Wedding",
-          "Description": "Used after each Groom-to-be phase or immediately if all Runes are lit up. Deals increased damage for each Rune that is lit up.",
-          "Type": 4
+          "Strategy": "Kill the Grooms-to-be ASAP so you don't need to worry about the Runes.\n\nThe portal adds will appear in larger numbers, using increasing amounts of AoE as the fight goes on. Be ready to squeeze into tiny safe spots between the overlapping AoEs.",
+          "Mechanics": [
+            {
+              "Name": "Runes",
+              "Description": "Numerous large, dark red runes appear around the puddle in the center of the room. One will light up for each Groom-to-be that reaches the center of the room. Increases the damage dealt by Red Wedding.",
+              "Type": 10
+            },
+            {
+              "Name": "Portals",
+              "Description": "Numerous portals spawn along the edges of the room. Occasionally, untargetable adds will appear from them, using various AoEs. Also spawns Grooms-to-be.\n\nWalkgoyles\n\tuse long line AoEs\n\nFlygoyles\n\tuse large circle AoEs",
+              "Type": 7
+            },
+            {
+              "Name": "Groom-to-be",
+              "Description": "Will appear from a portal and begin crawling towards the center of the room. Must be killed ASAP. Every groom that reaches the center will charge up a Rune.",
+              "Type": 7
+            },
+            {
+              "Name": "Red Wedding",
+              "Description": "Used after each Groom-to-be phase or immediately if all Runes are lit up. Deals increased damage for each Rune that is lit up.",
+              "Type": 4
+            }
+          ]
         }
       ]
     }

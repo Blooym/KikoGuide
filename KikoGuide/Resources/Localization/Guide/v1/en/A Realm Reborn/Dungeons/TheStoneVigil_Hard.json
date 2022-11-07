@@ -1,5 +1,5 @@
 {
-  "Version": 0,
+  "Version": 1,
   "Name": "The Stone Vigil",
   "Difficulty": 1,
   "Type": 0,
@@ -7,97 +7,112 @@
   "Level": 50,
   "UnlockQuestID": 67061,
   "TerritoryIDs": [365],
-  "Bosses": [
+  "Sections": [
     {
+      "Type": 1,
       "Name": "Gorynich",
-      "StrategyShort": "Try to keep the boss away from the dying Vigil Heirs so they don't buff him.\n\nMove with the boss when he trundles away from the tank; usually he's going to use Swinge and you want to be avoiding that.",
-      "Mechanics": [
+      "Phases": [
         {
-          "Name": "Swinge",
-          "Description": "Massive frontal cone AoE. Majority of the time, the boss will move to an edge of the room and turn to face the room before using this. Make sure to move with the boss and stand on his sides or behind him to avoid being hit.",
-          "Type": 2
-        },
-        {
-          "Name": "Lion's Breath",
-          "Description": "Frontal cone AoE.",
-          "Type": 7
-        },
-        {
-          "Name": "Rake",
-          "Description": "Tankbuster.",
-          "Type": 0
-        },
-        {
-          "Name": "Vigil Heirs",
-          "Description": "Spawns multiple waves of these adds throughout the fight. If they die near Gorynich, they will buff him with stacks of haste and increased damage dealt. They will also use Agony when they die.",
-          "Type": 7
-        },
-        {
-          "Name": "Agony",
-          "Description": "Used by the Vigil Heirs on their death. Will either be a massive frontal cone AoE or a massive circle AoE centered on the monster.",
-          "Type": 2
+          "Strategy": "Try to keep the boss away from the dying Vigil Heirs so they don't buff him.\n\nMove with the boss when he trundles away from the tank; usually he's going to use Swinge and you want to be avoiding that.",
+          "Mechanics": [
+            {
+              "Name": "Swinge",
+              "Description": "Massive frontal cone AoE. Majority of the time, the boss will move to an edge of the room and turn to face the room before using this. Make sure to move with the boss and stand on his sides or behind him to avoid being hit.",
+              "Type": 2
+            },
+            {
+              "Name": "Lion's Breath",
+              "Description": "Frontal cone AoE.",
+              "Type": 7
+            },
+            {
+              "Name": "Rake",
+              "Description": "Tankbuster.",
+              "Type": 0
+            },
+            {
+              "Name": "Vigil Heirs",
+              "Description": "Spawns multiple waves of these adds throughout the fight. If they die near Gorynich, they will buff him with stacks of haste and increased damage dealt. They will also use Agony when they die.",
+              "Type": 7
+            },
+            {
+              "Name": "Agony",
+              "Description": "Used by the Vigil Heirs on their death. Will either be a massive frontal cone AoE or a massive circle AoE centered on the monster.",
+              "Type": 2
+            }
+          ]
         }
       ]
     },
     {
+      "Type": 1,
       "Name": "Cuca Fera",
-      "StrategyShort": "This boss can't be attacked the traditional way; instead, players will need to use the 4 Bertha cannons to DPS him down.",
-      "Mechanics": [
+      "Phases": [
         {
-          "Name": "Bertha",
-          "Description": "Your immobile cannon companion. Grants you 2 abilities on your pet hotbar\n\nIron Kiss\n\tThe only way you can damage the boss. Has a short cast time and shares GCD with all of your skills.\n\nSpindly Finger\n\tStuns targets in the area of the AoE. Has a 30-second cooldown. Used to stop Hard Stomp.",
-          "Type": 10
-        },
-        {
-          "Name": "Diamondback",
-          "Description": "Causes the boss to reflect all damage. Immediately stop shooting the Bertha cannons at the boss. Lasts for 6 seconds, and his shell will flash red for the duration of use.",
-          "Type": 5
-        },
-        {
-          "Name": "Hard Stomp",
-          "Description": "A massive AoE that deals heavy damage. Can be canceled with Spindly Finger.",
-          "Type": 2
-        },
-        {
-          "Name": "Adds",
-          "Description": "Spawns a few waves of adds throughout the fight that must be killed. Best to use Iron Kiss for this. Mobs that get too close to the cannon can't be hit so target the ones on the other side of the room. Can kill the Bertha's if not careful.",
-          "Type": 7
-        },
-        {
-          "Name": "Whipstream",
-          "Description": "The boss engulfs itself in flame and charges one of the Bertha's.",
-          "Type": 6
+          "Strategy": "This boss can't be attacked the traditional way; instead, players will need to use the 4 Bertha cannons to DPS him down.",
+          "Mechanics": [
+            {
+              "Name": "Bertha",
+              "Description": "Your immobile cannon companion. Grants you 2 abilities on your pet hotbar\n\nIron Kiss\n\tThe only way you can damage the boss. Has a short cast time and shares GCD with all of your skills.\n\nSpindly Finger\n\tStuns targets in the area of the AoE. Has a 30-second cooldown. Used to stop Hard Stomp.",
+              "Type": 10
+            },
+            {
+              "Name": "Diamondback",
+              "Description": "Causes the boss to reflect all damage. Immediately stop shooting the Bertha cannons at the boss. Lasts for 6 seconds, and his shell will flash red for the duration of use.",
+              "Type": 5
+            },
+            {
+              "Name": "Hard Stomp",
+              "Description": "A massive AoE that deals heavy damage. Can be canceled with Spindly Finger.",
+              "Type": 2
+            },
+            {
+              "Name": "Adds",
+              "Description": "Spawns a few waves of adds throughout the fight that must be killed. Best to use Iron Kiss for this. Mobs that get too close to the cannon can't be hit so target the ones on the other side of the room. Can kill the Bertha's if not careful.",
+              "Type": 7
+            },
+            {
+              "Name": "Whipstream",
+              "Description": "The boss engulfs itself in flame and charges one of the Bertha's.",
+              "Type": 6
+            }
+          ]
         }
       ]
     },
     {
+      "Type": 1,
       "Name": "Giruveganaus",
-      "StrategyShort": "Important to note that you cannot hold aggro on this fight.\n\nIt may be easier to burn down one of the bosses before starting the other so there is less stuff to dodge.\n\nBoth bosses use the same abilities.",
-      "Mechanics": [
+      "Phases": [
         {
-          "Name": "Wild Charge",
-          "Description": "The boss takes a runner's stance and drops his right shoulder before dashing forwards, dealing damage and knocking back players in its path and applying an Infirmity debuff.",
-          "Type": 10
-        },
-        {
-          "Name": "Tail Swipe",
-          "Description": "The boss raises his tail before swiping behind him in a...backwards cone. Applies an Infirmity debuff.",
-          "Type": 9
-        },
-        {
-          "Name": "Claw Slash",
-          "Description": "The boss raises one of his paws before slashing forward in a frontal cone. Applies an Infirmity debuff.",
-          "Type": 9
-        },
-        {
-          "Name": "Fireball",
-          "Description": "The boss leans back and sucks in energy/air before spitting a fireball at a random player. Leaves behind a fire puddle. Applies an Infirmity debuff.",
-          "Type": 2
-        },
-        {
-          "Name": "Add",
-          "Description": "A second boss will spawn when the first reaches ~60%. Both must be killed to finish the fight, but don't need to be killed at the same time.",
-          "Type": 7
+          "Strategy": "Important to note that you cannot hold aggro on this fight.\n\nIt may be easier to burn down one of the bosses before starting the other so there is less stuff to dodge.\n\nBoth bosses use the same abilities.",
+          "Mechanics": [
+            {
+              "Name": "Wild Charge",
+              "Description": "The boss takes a runner's stance and drops his right shoulder before dashing forwards, dealing damage and knocking back players in its path and applying an Infirmity debuff.",
+              "Type": 10
+            },
+            {
+              "Name": "Tail Swipe",
+              "Description": "The boss raises his tail before swiping behind him in a...backwards cone. Applies an Infirmity debuff.",
+              "Type": 9
+            },
+            {
+              "Name": "Claw Slash",
+              "Description": "The boss raises one of his paws before slashing forward in a frontal cone. Applies an Infirmity debuff.",
+              "Type": 9
+            },
+            {
+              "Name": "Fireball",
+              "Description": "The boss leans back and sucks in energy/air before spitting a fireball at a random player. Leaves behind a fire puddle. Applies an Infirmity debuff.",
+              "Type": 2
+            },
+            {
+              "Name": "Add",
+              "Description": "A second boss will spawn when the first reaches ~60%. Both must be killed to finish the fight, but don't need to be killed at the same time.",
+              "Type": 7
+            }
+          ]
         }
       ]
     }

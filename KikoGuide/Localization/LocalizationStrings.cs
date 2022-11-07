@@ -90,11 +90,12 @@ namespace KikoGuide.Localization
     internal static class TGuideViewer
     {
         internal static string NoInfoAvailable => Loc.Localize("GuideViewer.NoInfoAvailable", "There is no information available for this guide right now.");
-        internal static string UnlockWindowMovement => Loc.Localize("GuideViewer.UnlockWindowMovement", "Unlock Window Movement");
-        internal static string LockWindowMovement => Loc.Localize("GuideViewer.LockWindowMovement", "Lock Window Movement");
-        internal static string UnlockWindowResize => Loc.Localize("GuideViewer.UnlockWindowResize", "Unlock Window Resize");
-        internal static string LockWindowResize => Loc.Localize("GuideViewer.LockWindowResize", "Lock Window Resize");
-        internal static string ToggleSettingsWindow => Loc.Localize("GuideViewer.ToggleSettingsWindow", "Toggle Settings Window");
+        internal static string ReportIssueWithGuide => Loc.Localize("GuideViewer.ReportIssueWithGuide", "Report issue with guide");
+        internal static string UnlockWindowMovement => Loc.Localize("GuideViewer.UnlockWindowMovement", "Unlock window movement");
+        internal static string LockWindowMovement => Loc.Localize("GuideViewer.LockWindowMovement", "Lock window movement");
+        internal static string UnlockWindowResize => Loc.Localize("GuideViewer.UnlockWindowResize", "Unlock window resize");
+        internal static string LockWindowResize => Loc.Localize("GuideViewer.LockWindowResize", "Lock window resize");
+        internal static string ToggleSettingsWindow => Loc.Localize("GuideViewer.ToggleSettingsWindow", "Toggle settings window");
         internal static string GuideHeading(string guideName) => string.Format(Loc.Localize("GuideViewer.GuideHeading", "Guide for {0}"), guideName);
         internal static string NoGuideSelected => Loc.Localize("GuideViewer.NoGuideSelected", "No guide selected, use /kikolist to see all available guides.");
         internal static string GuideNotUnlocked => Loc.Localize("GuideViewer.GuideInfoNotUnlocked", "You cannot view the guide for this duty as you have not unlocked it yet.");

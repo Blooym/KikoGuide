@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using Dalamud.Logging;
 using KikoGuide.Base;
 using KikoGuide.Localization;
@@ -34,6 +35,11 @@ namespace KikoGuide.UI.Windows.GuideViewer
                 window.IsOpen ^= true;
             }
         }
+
+        /// <summary>
+        ///     Gets the current plugin version.
+        /// </summary>
+        internal static string PluginVersion => Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "Unknown";
 
         /// <summary>
         ///     Handles territory change even and changes the UI state accordingly.

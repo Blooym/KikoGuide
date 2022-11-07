@@ -3,7 +3,9 @@ using System.Numerics;
 using Dalamud.Interface;
 using Dalamud.Interface.Components;
 using Dalamud.Interface.Windowing;
+using Dalamud.Utility;
 using ImGuiNET;
+using KikoGuide.Base;
 using KikoGuide.Localization;
 using KikoGuide.Types;
 using KikoGuide.UI.ImGuiBasicComponents;
@@ -35,7 +37,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
 
         public void Dispose() => this.Presenter.Dispose();
 
-        private static bool CanShowExtendedInfo(Guide guide) => ImGui.GetWindowWidth() - ImGui.CalcTextSize(TGuideViewer.GuideHeading(guide.Name)).X > 150;
+        private static bool CanShowExtendedInfo(Guide guide) => ImGui.GetWindowWidth() - ImGui.CalcTextSize(TGuideViewer.GuideHeading(guide.Name)).X > 180;
 
         /// <summary>
         ///     Draws the guide viewer window.
@@ -77,9 +79,24 @@ namespace KikoGuide.UI.Windows.GuideViewer
         {
             var guideWindowNoMove = GuideViewerPresenter.Configuration.Display.PreventGuideViewerMovement;
             var guideWindowNoResize = GuideViewerPresenter.Configuration.Display.PreventGuideViewerResize;
+            var issueReportUrl = $"{PluginConstants.RepoUrl}/issues/new?labels=type+|+guide-problem&template=guide_issue_report.yaml&title=Guide+Issue+Report%3A+{this.Presenter?.SelectedGuide?.Name} (PluginVer. {GuideViewerPresenter.PluginVersion})";
 
             ImGui.SameLine();
-            ImGui.SetCursorPosX(ImGui.GetWindowWidth() - 110);
+            if (this.Presenter?.SelectedGuide != null)
+            {
+                ImGui.SetCursorPosX(ImGui.GetWindowWidth() - 160);
+                if (ImGuiComponents.IconButton(FontAwesomeIcon.Flag))
+                {
+                    Util.OpenLink(issueReportUrl);
+                }
+                Common.AddTooltip($"{TGuideViewer.ReportIssueWithGuide}");
+                ImGui.SameLine();
+            }
+            else
+            {
+                ImGui.SetCursorPosX(ImGui.GetWindowWidth() - 120);
+            }
+
             if (ImGuiComponents.IconButton(guideWindowNoMove ? FontAwesomeIcon.Lock : FontAwesomeIcon.Unlock))
             {
                 this.Flags ^= ImGuiWindowFlags.NoMove;

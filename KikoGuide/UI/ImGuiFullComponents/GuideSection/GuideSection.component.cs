@@ -38,6 +38,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
                                     {
                                         if (ImGui.BeginTabItem($"Phase {(phase.TitleOverride != null ? phase.TitleOverride : section.Phases.IndexOf(phase) + 1)}"))
                                         {
+                                            ImGui.BeginChild("##GuideSectionComponentPhaseTabsChild");
 
                                             if (
                                                 phase.StrategyShort != null && phase.Strategy != string.Empty &&
@@ -56,6 +57,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
                                                 MechanicTableComponent.Draw(phase.Mechanics);
                                             }
 
+                                            ImGui.EndChild();
                                             ImGui.EndTabItem();
                                         }
                                     }

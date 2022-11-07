@@ -1,5 +1,5 @@
 {
-  "Version": 0,
+  "Version": 1,
   "Name": "The Stone Vigil",
   "Difficulty": 0,
   "Type": 0,
@@ -7,73 +7,88 @@
   "Level": 41,
   "UnlockQuestID": 66488,
   "TerritoryIDs": [1042],
-  "Bosses": [
+  "Sections": [
     {
+      "Type": 1,
       "Name": "Chudo-Yudo",
-      "Strategy": "At some point during the fight Chudo-yudo will move to a random point in the arena and start casting Swinge, all players must get behind the boss to avoid being hit with several debuffs.",
-      "Mechanics": [
+      "Phases": [
         {
-          "Name": "Rake",
-          "Description": "Rake is an instant attack that will deal a small ammount of damage to the tank.",
-          "Type": 6
-        },
-        {
-          "Name": "Lion's Breath",
-          "Description": "A casted breath attack that will hit any player infront of the boss and inflict them with the Burns debuff.",
-          "Type": 9
-        },
-        {
-          "Name": "Swinge",
-          "Description": "Frontal AOE that will inflice the Silence and Pacification debuff for 5 seconds to any player hit.",
-          "Type": 2
+          "Strategy": "At some point during the fight Chudo-yudo will move to a random point in the arena and start casting Swinge, all players must get behind the boss to avoid being hit with several debuffs.",
+          "Mechanics": [
+            {
+              "Name": "Rake",
+              "Description": "Rake is an instant attack that will deal a small ammount of damage to the tank.",
+              "Type": 6
+            },
+            {
+              "Name": "Lion's Breath",
+              "Description": "A casted breath attack that will hit any player infront of the boss and inflict them with the Burns debuff.",
+              "Type": 9
+            },
+            {
+              "Name": "Swinge",
+              "Description": "Frontal AOE that will inflice the Silence and Pacification debuff for 5 seconds to any player hit.",
+              "Type": 2
+            }
+          ]
         }
       ]
     },
     {
+      "Type": 1,
       "Name": "Koshchei",
-      "Strategy": "Avoid attacks while fighting the boss",
-      "Mechanics": [
+      "Phases": [
         {
-          "Name": "Collapse",
-          "Description": "Instant cast ability that will hit all players infront of the boss",
-          "Type": 9
-        },
-        {
-          "Name": "Spiked Tail",
-          "Description": "Spiked Tail will inflict the Poison debuff on whoever it hits.",
-          "Type": 6
-        },
-        {
-          "Name": "Typhoon",
-          "Description": "Typhoon will spawn a tornado in the area that will slowly follow a player around, anyone hit by the tornado will take some damage and be inflicted with the Windburn debuff.",
-          "Type": 6
-        },
-        {
-          "Name": "Blazing Trail",
-          "Description": "A frontal cone AOE that will deal high damage to anyone hit.",
-          "Type": 2
+          "Strategy": "Avoid attacks while fighting the boss",
+          "Mechanics": [
+            {
+              "Name": "Collapse",
+              "Description": "Instant cast ability that will hit all players infront of the boss",
+              "Type": 9
+            },
+            {
+              "Name": "Spiked Tail",
+              "Description": "Spiked Tail will inflict the Poison debuff on whoever it hits.",
+              "Type": 6
+            },
+            {
+              "Name": "Typhoon",
+              "Description": "Typhoon will spawn a tornado in the area that will slowly follow a player around, anyone hit by the tornado will take some damage and be inflicted with the Windburn debuff.",
+              "Type": 6
+            },
+            {
+              "Name": "Blazing Trail",
+              "Description": "A frontal cone AOE that will deal high damage to anyone hit.",
+              "Type": 2
+            }
+          ]
         }
       ]
     },
     {
+      "Type": 1,
       "Name": "Isgebind",
-      "Strategy": "Throughout the fight Isgebind will fly up and half the arena will be taken up by a ice blue AOE indicator dealing high damage and inflicting the Frostbite debuff to anyone caught in it after a few seconds after this the boss will use Touchdown and land on the tank dealing damage to the tank and anyone arround them",
-      "StrategyShort": "Isgebind will periodically fly into the air and cast line AOEs across the arena dealing damage and inflicting debuffs, after this he will then land on the tank.",
-      "Mechanics": [
+      "Phases": [
         {
-          "Name": "Rime Wreath",
-          "Description": "A raidwide damage attack that will hit all players for moderate damage.",
-          "Type": 4
-        },
-        {
-          "Name": "Frost Breath",
-          "Description": "Frost breath is a frontal AOE that will hit all players inside for high damage.",
-          "Type": 2
-        },
-        {
-          "Name": "Sheet of ice",
-          "Description": "Isgebind will target a random player and use sheet of ice when this ability hits the player it will inflictthe Paralysis debuff and leave behind and patch of ice that will deal damage and the Fostbite debuff to anyone who walks in",
-          "Type": 6
+          "Strategy": "Throughout the fight Isgebind will fly up and half the arena will be taken up by a ice blue AOE indicator dealing high damage and inflicting the Frostbite debuff to anyone caught in it after a few seconds after this the boss will use Touchdown and land on the tank dealing damage to the tank and anyone arround them",
+          "StrategyShort": "Isgebind will periodically fly into the air and cast line AOEs across the arena dealing damage and inflicting debuffs, after this he will then land on the tank.",
+          "Mechanics": [
+            {
+              "Name": "Rime Wreath",
+              "Description": "A raidwide damage attack that will hit all players for moderate damage.",
+              "Type": 4
+            },
+            {
+              "Name": "Frost Breath",
+              "Description": "Frost breath is a frontal AOE that will hit all players inside for high damage.",
+              "Type": 2
+            },
+            {
+              "Name": "Sheet of ice",
+              "Description": "Isgebind will target a random player and use sheet of ice when this ability hits the player it will inflictthe Paralysis debuff and leave behind and patch of ice that will deal damage and the Fostbite debuff to anyone who walks in",
+              "Type": 6
+            }
+          ]
         }
       ]
     }
