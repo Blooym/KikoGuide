@@ -1,12 +1,12 @@
-name: 📃 Guide Amendment
-description: Report issues with or suggested changes for guides.
+name: 📃 Guide Issue Report
+description: Report issues or suggest changes for guides.
 title: "Guide Amendment: "
-labels: "type | amendment"
+labels: "type | guide-problem"
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for submitting a guide Amendment request.
+        Thank you for reporting an issue with a guide.
 
         Please fill out the template below to make it easier to work on your issue.
 
@@ -24,14 +24,20 @@ body:
     validations:
       required: true
 
-  - type: textarea
+  - type: input
     attributes:
-      label: Summary of Amendment / Why should this be changed?
+      label: Language of Guide?
     validations:
       required: true
 
   - type: textarea
     attributes:
-      label: Suggested Changes
+      label: Summary of Issue / Changes
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Your Suggested Changes (in full)
     validations:
       required: true
