@@ -192,12 +192,12 @@ namespace KikoGuide.UI.Windows.Editor
                     if (guide != null)
                     {
                         ImGui.TextWrapped($"Version: {guide.Version}");
-                        ImGui.TextWrapped($"Name: {guide.Name}");
+                        ImGui.TextWrapped($"Name: {guide.Name} (Canonical: {guide.CanonicalName})");
                         ImGui.TextWrapped($"Type: {AttributeExtensions.GetNameAttribute(guide.Type)}");
                         ImGui.TextWrapped($"Difficulty: {AttributeExtensions.GetNameAttribute(guide.Difficulty)}");
                         ImGui.TextWrapped($"Level: {guide.Level}");
                         ImGui.TextWrapped($"Expansion: {AttributeExtensions.GetNameAttribute(guide.Expansion)}");
-                        ImGui.TextWrapped($"TerritoryIDs: {string.Join(", ", guide.TerritoryIDss)} (Current: {EditorPresenter.GetPlayerTerritory})");
+                        ImGui.TextWrapped($"TerritoryIDs: {string.Join(", ", guide.TerritoryIDs)} (Current: {EditorPresenter.GetPlayerTerritory})");
                         ImGui.TextWrapped($"UnlockQuestID: {guide.UnlockQuestID}");
                     }
                     else

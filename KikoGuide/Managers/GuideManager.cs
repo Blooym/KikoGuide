@@ -32,7 +32,7 @@ namespace KikoGuide.Managers
         /// <summary>
         ///     Get the guide for the territory the player is currently in.
         /// </summary>
-        public static Guide? GetGuideForCurrentTerritory() => GetGuides().Find(guide => guide.TerritoryIDss.Contains(PluginService.ClientState.TerritoryType));
+        public static Guide? GetGuideForCurrentTerritory() => GetGuides().Find(guide => guide.TerritoryIDs.Contains(PluginService.ClientState.TerritoryType));
 
         public static List<Guide> GetGuides()
         {
@@ -57,7 +57,7 @@ namespace KikoGuide.Managers
             var directory = $"{PluginConstants.PluginlocalizationDir}\\Guide\\{GuideVersionFolder}\\{language}";
             if (!Directory.Exists(directory))
             {
-                language = PluginConstants.FallbackLanguage;
+                directory = $"{PluginConstants.PluginlocalizationDir}\\Guide\\{GuideVersionFolder}\\{PluginConstants.FallbackLanguage}";
             }
 
             // Start loading every guide file for the language and deserialize it into the guide type.
@@ -70,7 +70,7 @@ namespace KikoGuide.Managers
                     {
                         var guide = JsonConvert.DeserializeObject<Guide>(File.ReadAllText(file));
                         if (guide != null)
-                        { guides.Add(guide); PluginLog.Verbose($"GuideManager(LoadGuideData): Loaded {guide.GetCanonicalName()}"); }
+                        { guides.Add(guide); PluginLog.Verbose($"GuideManager(LoadGuideData): Loaded {guide.CanonicalName}"); }
                     }
                     catch (Exception e)
                     {

@@ -19,6 +19,9 @@ namespace KikoGuide.IPC.Providers
     {
         public IPCProviders ID { get; } = IPCProviders.Wotsit;
 
+        /// <summary>
+        ///     The IconID that represents KikoGuide in Wotsit.
+        /// </summary>
         private const uint WotsitIconID = 21;
 
         /// <summary>
@@ -85,6 +88,7 @@ namespace KikoGuide.IPC.Providers
         {
             try
             {
+                PluginService.PluginInterface.LanguageChanged += this.OnLanguageChange;
                 this.wotsitAvailable?.Unsubscribe(this.Initialize);
                 this.wotsitUnregister?.InvokeFunc(PluginConstants.PluginName);
             }
@@ -102,6 +106,8 @@ namespace KikoGuide.IPC.Providers
             var subscribe = PluginService.PluginInterface.GetIpcSubscriber<string, bool>(LabelProviderInvoke);
             subscribe.Subscribe(this.HandleInvoke);
 
+            PluginService.PluginInterface.LanguageChanged += this.OnLanguageChange;
+
             this.RegisterAll();
         }
 
@@ -117,7 +123,7 @@ namespace KikoGuide.IPC.Providers
 
             foreach (var guide in GuideManager.GetGuides())
             {
-                var guid = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, WotsitTranslations.WotsitIPCOpenGuideFor(guide.GetCanonicalName()), WotsitIconID);
+                var guid = this.wotsitRegister.InvokeFunc(PluginConstants.PluginName, WotsitTranslations.WotsitIPCOpenGuideFor(guide.CanonicalName), WotsitIconID);
                 this.wotsitGuideIpcs.Add(guid, guide);
             }
 
@@ -154,6 +160,15 @@ namespace KikoGuide.IPC.Providers
                     guideEditorWindow.IsOpen = true;
                 }
             }
+        }
+
+        /// <summary>
+        ///     When the resources are updated, we need to re-register in-case of a language change.
+        /// </summary>
+        private void OnLanguageChange(string language)
+        {
+            this.wotsitUnregister?.InvokeFunc(PluginConstants.PluginName);
+            this.RegisterAll();
         }
 
         /// <summary>

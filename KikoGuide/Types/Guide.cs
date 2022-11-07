@@ -31,6 +31,11 @@ namespace KikoGuide.Types
         public string Name = "???";
 
         /// <summary>
+        ///     Whether or not this duty is disabled and shouldn't be accessible.
+        /// </summary>
+        public bool Disabled;
+
+        /// <summary>
         ///     The duty difficulty level.
         /// </summary>
         public DutyDifficulty Difficulty = (int)DutyDifficulty.Normal;
@@ -58,7 +63,7 @@ namespace KikoGuide.Types
         /// <summary>
         ///     The duty's TerritoryIDs(s).
         /// </summary>
-        public List<uint> TerritoryIDss = new();
+        public List<uint> TerritoryIDs = new();
 
         /// <summary>
         ///     The guide section data.
@@ -170,7 +175,7 @@ namespace KikoGuide.Types
         /// <summary>
         ///     Get the canonical name for the duty/guide.
         /// </summary>
-        public string GetCanonicalName() => !Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)
+        public string CanonicalName => !Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)
                 ? this.Name
                 : this.Difficulty != (int)DutyDifficulty.Normal
                 ? $"{this.Name} ({AttributeExtensions.GetNameAttribute(this.Difficulty)})"
@@ -180,6 +185,11 @@ namespace KikoGuide.Types
         ///     Get if the player has unlocked this duty/guide.
         /// </summary>
         public bool IsUnlocked() => (this.UnlockQuestID != 0 && QuestManager.IsQuestCurrent(this.UnlockQuestID)) || QuestManager.IsQuestComplete(this.UnlockQuestID);
+
+        /// <summary>
+        ///     Whether or not this guide is disabled.
+        /// </summary>
+        public bool IsDisabled => this.Disabled;
     }
 
     public enum DutyType

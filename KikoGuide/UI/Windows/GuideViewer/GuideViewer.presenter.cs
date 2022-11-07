@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using Dalamud.Interface.Internal.Notifications;
 using Dalamud.Logging;
 using KikoGuide.Base;
 using KikoGuide.Localization;
@@ -11,19 +12,9 @@ namespace KikoGuide.UI.Windows.GuideViewer
 {
     public sealed class GuideViewerPresenter : IDisposable
     {
-        public GuideViewerPresenter() => PluginService.ClientState.TerritoryChanged += this.OnTerritoryChange;
+        public GuideViewerPresenter() => PluginService.Framework.Update += this.OnFrameworkUpdate;
 
-        public void Dispose() => PluginService.ClientState.TerritoryChanged -= this.OnTerritoryChange;
-
-        /// <summary>
-        ///     The currently selected guide to show in the GuideViewer window.
-        /// </summary>
-        internal Guide? SelectedGuide;
-
-        /// <summary>
-        ///     Pulls the configuration from the plugin service.
-        /// </summary>
-        internal static Configuration Configuration => PluginService.Configuration;
+        public void Dispose() => PluginService.Framework.Update -= this.OnFrameworkUpdate;
 
         /// <summary>
         ///     Toggles the settings window.
@@ -42,35 +33,63 @@ namespace KikoGuide.UI.Windows.GuideViewer
         internal static string PluginVersion => Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "Unknown";
 
         /// <summary>
-        ///     Handles territory change even and changes the UI state accordingly.
+        ///     Pulls the configuration from the plugin service.
         /// </summary>
-        public void OnTerritoryChange(object? sender, ushort e)
-        {
-            var playerGuide = GuideManager.GetGuideForCurrentTerritory();
-            PluginLog.Debug($"GuideViewerPresenter(OnTerritoryChange): Player changed territory to {e}. (Guide for Territory: {playerGuide?.Name ?? "None"})");
+        internal static Configuration Configuration => PluginService.Configuration;
 
-            // If the player has entered a duty with a guide and has the setting enabled, show the guide viewer window.
-            if (playerGuide != null && playerGuide?.Sections?.Count > 0)
+        /// <summary>
+        ///     The currently selected guide to show in the GuideViewer window.
+        /// </summary>
+        internal Guide? SelectedGuide;
+
+        /// <summary>
+        ///     Last auto-selected guide.
+        /// </summary>
+        private Guide? lastAutoSelectedGuide;
+
+        /// <summary>
+        ///     The current player territory, used to determine if the zone has changed.
+        /// </summary>
+        private uint currentTerritory;
+
+        /// <summary>
+        ///     Detect when the player has changed zones and update the guide viewer accordingly through the game framework update event.
+        /// </summary>
+        public void OnFrameworkUpdate(object? e)
+        {
+            var currentTerritory = PluginService.ClientState.TerritoryType;
+            if (currentTerritory != this.currentTerritory)
             {
-                this.SelectedGuide = playerGuide;
-                if (PluginService.Configuration.Display.AutoToggleGuideForDuty)
+                this.currentTerritory = currentTerritory;
+                var playerGuide = GuideManager.GetGuideForCurrentTerritory();
+                PluginLog.Debug($"GuideViewerPresenter(OnFrameworkUpdate): Player changed territory to {this.currentTerritory}. (Guide for Territory: {playerGuide?.Name ?? "None"})");
+
+                if (playerGuide != null && playerGuide?.Sections?.Count > 0)
                 {
-                    if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
+                    this.SelectedGuide = playerGuide;
+                    this.lastAutoSelectedGuide = playerGuide;
+                    if (PluginService.Configuration.Display.AutoToggleGuideForDuty)
                     {
-                        PluginLog.Debug($"GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to open and displaying guide for {playerGuide.Name}.");
-                        window.IsOpen = true;
+                        if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
+                        {
+                            PluginLog.Debug($"GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to open and displaying guide for {playerGuide.Name}.");
+                            window.IsOpen = true;
+                        }
+                    }
+                    else if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer)?.IsOpen == false)
+                    {
+                        PluginService.PluginInterface.UiBuilder.AddNotification(TGuideViewer.GuideAvailableForDuty, PluginConstants.PluginName, NotificationType.Info);
                     }
                 }
-            }
 
-            // If the player has entered a territory that does not have any data, deselect the guide & hide the UI
-            else if (playerGuide == null)
-            {
-                this.SelectedGuide = null;
-                if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
+                else if (playerGuide == null && this.lastAutoSelectedGuide != null && this.lastAutoSelectedGuide == this.SelectedGuide)
                 {
-                    PluginLog.Debug($"GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to closed - no guide data found for territory {e}.");
-                    window.IsOpen = false;
+                    this.SelectedGuide = null;
+                    if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
+                    {
+                        PluginLog.Debug($"GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to closed - no guide data found for territory and last auto-selected guide is the same as the current selected guide.");
+                        window.IsOpen = false;
+                    }
                 }
             }
         }

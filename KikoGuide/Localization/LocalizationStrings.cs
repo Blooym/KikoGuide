@@ -42,6 +42,7 @@ namespace KikoGuide.Localization
         internal static string Type => Loc.Localize("Generics.Type", "Type");
         internal static string Enabled => Loc.Localize("Generics.Enabled", "Enabled");
         internal static string Disabled => Loc.Localize("Generics.Disabled", "Disabled");
+        internal static string Unkown => Loc.Localize("Generics.Unknown", "Unknown");
     }
 
     /// <summary>
@@ -99,6 +100,7 @@ namespace KikoGuide.Localization
         internal static string GuideHeading(string guideName) => string.Format(Loc.Localize("GuideViewer.GuideHeading", "Guide for {0}"), guideName);
         internal static string NoGuideSelected => Loc.Localize("GuideViewer.NoGuideSelected", "No guide selected, use /kikolist to see all available guides.");
         internal static string GuideNotUnlocked => Loc.Localize("GuideViewer.GuideInfoNotUnlocked", "You cannot view the guide for this duty as you have not unlocked it yet.");
+        internal static string GuideAvailableForDuty => Loc.Localize("GuideViewer.GuideAvailableForDuty", "A guide is available for this duty, use /kikoinfo to view it.");
     }
 
     /// <summary>

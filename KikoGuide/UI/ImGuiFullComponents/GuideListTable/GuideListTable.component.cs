@@ -78,17 +78,17 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideListTable
                         // If this guide does not have any data or is unsupported, handle it.
                         if (!guide.IsSupported())
                         {
-                            OutdatedGuide(guide.GetCanonicalName());
+                            OutdatedGuide(guide.CanonicalName);
                             continue;
                         }
 
                         if (!GuideListTablePresenter.HasGuideData(guide))
                         {
-                            NoDataGuide(guide.GetCanonicalName());
+                            NoDataGuide(guide.CanonicalName);
                             continue;
                         }
                         // Draw a selectable text for this guide and trigger the onSelected event when clicked.
-                        if (ImGui.Selectable(guide.GetCanonicalName(), false, ImGuiSelectableFlags.AllowDoubleClick))
+                        if (ImGui.Selectable(guide.CanonicalName, false, ImGuiSelectableFlags.AllowDoubleClick))
                         {
                             onSelected(guide);
                         }

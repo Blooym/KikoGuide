@@ -1,3 +1,4 @@
+using Dalamud.Game;
 using Dalamud.Game.ClientState;
 using Dalamud.IoC;
 using Dalamud.Logging;
@@ -16,6 +17,7 @@ namespace KikoGuide.Base
         [PluginService] internal static DalamudPluginInterface PluginInterface { get; private set; }
         [PluginService] internal static Dalamud.Game.Command.CommandManager Commands { get; private set; }
         [PluginService] internal static ClientState ClientState { get; private set; }
+        [PluginService] internal static Framework Framework { get; private set; }
 
         internal static CommandManager CommandManager { get; private set; }
         internal static WindowManager WindowManager { get; private set; }
