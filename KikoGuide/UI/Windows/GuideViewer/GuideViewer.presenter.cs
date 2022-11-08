@@ -30,7 +30,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
         /// <summary>
         ///     Gets the current plugin version.
         /// </summary>
-        internal static string PluginVersion => Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "Unknown";
+        internal static string PluginVersion => Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? TGenerics.;
 
         /// <summary>
         ///     Pulls the configuration from the plugin service.
