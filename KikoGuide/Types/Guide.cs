@@ -103,7 +103,7 @@ namespace KikoGuide.Types
                 /// <summary>
                 ///     The strategy for the phase.
                 /// </summary>
-                public string Strategy = "???";
+                public string Strategy = string.Empty;
 
                 /// <summary>
                 ///     The short strategy for the phase.
