@@ -88,7 +88,7 @@ namespace KikoGuide.UI.Windows.GuideList
                 {
                     ImGui.BeginChild(dutyType.ToString());
 
-                    GuideListTableComponent.Draw(guides, (guide) => GuideListPresenter.OnGuideListSelection(guide), this.searchText, (DutyType)dutyType);
+                    GuideListTableComponent.Draw(guides, GuideListPresenter.OnGuideListSelection, this.searchText, (DutyType)dutyType);
 
                     ImGui.EndChild();
                     ImGui.EndTabItem();
