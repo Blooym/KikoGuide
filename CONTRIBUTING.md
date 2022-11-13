@@ -15,28 +15,26 @@
 ---
 
 ## Localization Contribution
-Localization support & contributions are still being worked on being better supported for future releases, but any changes are appreciated nonetheless.
-
-#### Plugin Strings
-Localizations to plugin strings are handled through [Crowdin](https://crowdin.com/project/KikoGuide).
+#### Plugin Text
+All plugin source strings are regularly published to [Crowdin](https://crowdin.com/project/KikoGuide) for easy translation. If you want to translate a language that is not listed, please open an issue. All translation files are automatically synced up with the repository after a review.
 
 #### Guide Localizations
-Guide localizations are not currently handled through Crowdin due to the sheer amount of Guide that need to be written. They will most likely be listed on Crowdin in the future when the groundwork has been done to support it better.
-
-For now, if you wish to add a guide in a supported language, please make a new folder in `Resources/Localization/Duty/<version>/<2 letter country code>/` and make sure it has all the same paths as the source duty files. Do not rename the filename itself, just the content within it.
+Guide localization, while supported by KikoGuide, is not available through Crowdin at the moment. The localization system for Guides is in a weird state, as soon as 1 guide is available for a given language the plugin will automatically ignore all guides in any other language and only load those. A lot of work needs to be done to improve the system, and any support is appreciated from other developers.
 
 ---
 
 ## Code Contribution
-When making any code changes to the plugin, the most important thing to do is make sure that all your changes comply with the [Dalamud Plugin Rules](https://goatcorp.github.io/faq/development#q-what-am-i-allowed-to-do-in-my-plugin) for what is allowed in a plugin. Any changes that do not meet this requirement will not be merged as the plugin is listed in the official repository. You should make an issue first if you are unsure if your changes will be accepted.
+Before making any code/functionality changes to KikoGuide, please first check that the changes comply with the [Dalamud Plugin Rules](https://goatcorp.github.io/faq/development#q-what-am-i-allowed-to-do-in-my-plugin). Any changes that do not comply will not be merged.
+
+It is recommended you open an issue if you wish to improve on or add additional functionality to the plugin.
 
 #### Building
 When setting up a development environment it is recommended to use the provided [dev container](./.devcontainer) setup, as it will automatically handle installing and configuring the development environment for you. If you want to develop on your local machine instead of a container then you can find a guide [here](https://goatcorp.github.io/faq/development). 
 
 Please note if you are using Linux you must set the `DALAMUD_HOME` environment variable to wherever your Dalamud development folder is located. (this is done for you if using the container environment).
 
-#### Code Standards 
-It is highly preferred that you are using a linter and formatting your code cleanly to ensure that it is easy to read and extend in the future. Most code editors should provide support for this out of the box or with an additional extension.
+#### Code Standards
+A `.editorconfig` file has been provided in the repository, please ensure that all code changes follow along with the rules outlined in that file where possible.
 
 #### Functionality 
 Please ensure that all code is properly separated based on its functionality and work towards achieving proper encapsulation where possible. For example, UI elements should not contain any logic that will not be used for drawing itself or displaying information, fetching the information it is displaying should be fetched from a separate class in a different file, like a presenter or service.
@@ -47,19 +45,17 @@ Please write `<summary>` comments for functions, methods and classes to help und
 ---
  
 ## Guide Contribution
-Guide contributions are highly appreciated due to the amount of duties that are in the game. All files for supported duty types already exist in the repository, and new ones will be made when new duties release. Please note that this repository may not checked around major patches to avoid spoiling new content, so a guide may not be made available until a few days after a patch.
+Guide contributions are relatively simple to make, and should not require any highly-technical knowledge. There should already be files in the repository for most duties in the game already, and new ones will be added when expansions release after a few days. Please note that this repository may not be checked around patch days to avoid spoiling new content. 
 
 #### Editing Guides
-Guides are stored as `.json` files inside of the `Resources/Localization/Duty/<version>/<lang>/` folder, and are named their exact English in-game name no matter the language. 
+Guides are stored as `.json` files inside of the `KikoGuide/Resources/Localization/Duty/<version>/<lang>/` folder, and are named their exact English in-game name no matter the language they are for. When changing these files, it is important you run them through a JSON validator as otherwise the plugin may not be able to load them. It is also recommended to run the file through a quick grammar/spell checker when appropriate.
 
-When changing these files, it is important to run it through a JSON validator before committing back to the repository, otherwise it may be disabled on load due to being unparsable. You should also consider running a spell/grammar checker on the file.
-
-It is highly recommended to use the in-game duty editor to edit guides, as it will provide a live preview of all your changes, as well as real-time validation and formatting, you can access the editor by using `/kikoeditor` with the plugin installed. 
+It is **highly recommended** to use the guide editor that is apart of KikoGuide, you can access this at `/kikoeditor`. KikoGuide's guide editor will automatically detect when guide file is unloadable; It will also provide you with a preview of how the guide will look in the guide viewer, and provide you with IDs you may need while editing.
 
 ##### Editor Preview
 ![Editor Preview](./.assets/editor.png)
 
-##### Keys for JSON files
+##### Guide JSON File Keys
 - `Version`: The duty file version, do not change this manually.
 - `Name`: The name of the duty
 - `Difficulty`: The difficulty ID of the duty
@@ -72,7 +68,7 @@ It is highly recommended to use the in-game duty editor to edit guides, as it wi
   - `Type`: The type of section
   - `Name`: The name of the section (usually the name of the boss)
   - `Phases`: The phases of the section
-    - `TitleOverride`: The title of the phase (optional, only set in special cases)
+    - `TitleOverride`: The title of the phase (Optional, you do not need to set this 99.99% of the time)
     - `Strategy`: The strategy for the phase
     - `StrategyShort`: The short strategy for the phase used when enabled in the settings
     - `Mechanics`:
@@ -81,14 +77,14 @@ It is highly recommended to use the in-game duty editor to edit guides, as it wi
       - `ShortDescription`: The short description of the mechanic used when enabled in the settings
       - `Type`: The type of mechanic
 
-An example guide to refer to for help when writing or editing can be found [here](KikoGuide/Resources/Localization/v1/Guide/en/A%20Realm%20Reborn/Dungeons/CopperbellMines.json).
+When writing descriptions of mechanics or sections, please try to keep in mind the terminology the player may or may not be aware of at the given level, it is good practice to explain things if you believe the player may be unsure. It is also **highly** requested that you provide "short" versions of all explainations in the given fields (eg. "StrategyShort", "ShortDescription") as it helps make guides more accessabile to readers.
 
-When writing descriptions of mechanics or sections, please try and minimize the language used to keep it down to just key information, and avoid lesser-known terminology. Keep the level/expansion of the duty in mind, as some players may not have experienced certain mechanics/strategies before.
+#### Formatting Tips
+- `\n` will act as a new line, you can use `\n\n` to start a new paragraph with a space inbetween.
+- `\t` will act as a tab space.
+- `%%` will show up as a single percent symbol, single percent symbols do not show.
 
-#### Formatting 
-When writing the guides, you can use `\n` to move to a new line as JSON does not support this. You can also use `\t` to indent the text by 1 tab space when needed. If you want to use a percentage sign, you will have to do `%%` to display a single percent sign. 
-
-#### Internal IDs (DutyType, MechanicTypes, DutyDifficulty, etc)
+#### Guide Enums (DutyType, MechanicTypes, DutyDifficulty, etc)
 You can find all internal IDs used for identifying duty data inside of the [Guide Type](KikoGuide/Types/Guide.cs) of the repository or inside of the in-game editor (`/kikoeditor`)
 
 #### Game IDs (Quest, Territory, etc)
