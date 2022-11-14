@@ -19,10 +19,10 @@ namespace KikoGuide.Localization
     /// </summary>
     internal sealed class TWindowNames
     {
-        public static readonly string Settings = string.Format(Loc.Localize("Window.Settings", "{0} - Settings"), PluginConstants.PluginName);
-        public static readonly string GuideList = string.Format(Loc.Localize("Window.GuideList", "{0} - Guide List"), PluginConstants.PluginName);
-        public static readonly string GuideViewer = string.Format(Loc.Localize("Window.GuideViewer", "{0} - Guide Viewer"), PluginConstants.PluginName);
-        public static readonly string GuideEditor = string.Format(Loc.Localize("Window.GuideEditor", "{0} - Guide Editor"), PluginConstants.PluginName);
+        public static string Settings => string.Format(Loc.Localize("Window.Settings", "{0} - Settings"), PluginConstants.PluginName);
+        public static string GuideList => string.Format(Loc.Localize("Window.GuideList", "{0} - Guide List"), PluginConstants.PluginName);
+        public static string GuideViewer => string.Format(Loc.Localize("Window.GuideViewer", "{0} - Guide Viewer"), PluginConstants.PluginName);
+        public static string GuideEditor => string.Format(Loc.Localize("Window.GuideEditor", "{0} - Guide Editor"), PluginConstants.PluginName);
     }
 
     /// <summary>
