@@ -121,6 +121,6 @@ namespace KikoGuide.Localization
     /// </summary>
     internal static class TGuide
     {
-        internal static string DutyUnnamed = Loc.Localize("Types.Duty.Name.None", "Unnamed Guide");
+        internal static string DutyUnnamed => Loc.Localize("Types.Duty.Name.None", "Unnamed Guide");
     }
 }
