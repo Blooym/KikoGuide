@@ -20,7 +20,7 @@ namespace KikoGuide.Managers
         /// <summary>
         ///     The windowing system service provided by Dalamud.
         /// </summary>
-        public readonly WindowSystem WindowSystem = new(PluginConstants.PluginName);
+        private readonly WindowSystem windowSystem = new(PluginConstants.PluginName);
 
         /// <summary>
         ///     All windows managed by the WindowManager.
@@ -44,7 +44,7 @@ namespace KikoGuide.Managers
             foreach (var window in this.windows)
             {
                 PluginLog.Debug($"WindowManager(WindowManager): Registering window: {window.GetType().Name}");
-                this.WindowSystem.AddWindow(window);
+                this.windowSystem.AddWindow(window);
             }
 
             PluginService.PluginInterface.UiBuilder.Draw += this.OnDrawUI;
@@ -57,14 +57,14 @@ namespace KikoGuide.Managers
         /// <summary>
         ///     Draws all windows for the draw event.
         /// </summary>
-        private void OnDrawUI() => this.WindowSystem.Draw();
+        private void OnDrawUI() => this.windowSystem.Draw();
 
         /// <summary>
         ///     Opens/Closes the plugin configuration window.
         /// </summary>
         private void OnOpenConfigUI()
         {
-            if (this.WindowSystem.GetWindow(TWindowNames.Settings) is SettingsWindow window)
+            if (this.windowSystem.GetWindow(TWindowNames.Settings) is SettingsWindow window)
             {
                 window.IsOpen = !window.IsOpen;
             }
@@ -95,9 +95,16 @@ namespace KikoGuide.Managers
                 window.Dispose();
             }
 
-            this.WindowSystem.RemoveAllWindows();
+            this.windowSystem.RemoveAllWindows();
 
             PluginLog.Debug("WindowManager(Dispose): Successfully disposed.");
         }
+
+        /// <summary>
+        ///     Gets a window by its name.
+        /// </summary>
+        /// <param name="name"> The name of the window to get. </param>
+        /// <returns> The window with the given name. </returns>
+        public Window? GetWindow(string name) => this.windowSystem.GetWindow(name);
     }
 }

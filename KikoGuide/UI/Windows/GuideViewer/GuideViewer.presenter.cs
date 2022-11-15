@@ -7,6 +7,7 @@ using KikoGuide.Localization;
 using KikoGuide.Managers;
 using KikoGuide.Types;
 using KikoGuide.UI.Windows.Settings;
+using KikoGuide.Utils;
 
 namespace KikoGuide.UI.Windows.GuideViewer
 {
@@ -21,7 +22,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
         /// </summary>
         internal static void ToggleSettingsWindow()
         {
-            if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.Settings) is SettingsWindow window)
+            if (PluginService.WindowManager.GetWindow(TWindowNames.Settings) is SettingsWindow window)
             {
                 window.IsOpen ^= true;
             }
@@ -70,22 +71,22 @@ namespace KikoGuide.UI.Windows.GuideViewer
                     this.lastAutoSelectedGuide = playerGuide;
                     if (PluginService.Configuration.Display.AutoToggleGuideForDuty)
                     {
-                        if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
+                        if (PluginService.WindowManager.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
                         {
                             PluginLog.Debug($"GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to open and displaying guide for {playerGuide.Name}.");
                             window.IsOpen = true;
                         }
                     }
-                    else if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer)?.IsOpen == false)
+                    else if (PluginService.WindowManager.GetWindow(TWindowNames.GuideViewer)?.IsOpen == false)
                     {
-                        PluginService.PluginInterface.UiBuilder.AddNotification(TGuideViewer.GuideAvailableForDuty, PluginConstants.PluginName, NotificationType.Info);
+                        Notifications.ShowToast(message: TGuideViewer.GuideAvailableForDuty, type: NotificationType.Info);
                     }
                 }
 
                 else if (playerGuide == null && this.lastAutoSelectedGuide != null && this.lastAutoSelectedGuide == this.SelectedGuide)
                 {
                     this.SelectedGuide = null;
-                    if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
+                    if (PluginService.WindowManager.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
                     {
                         PluginLog.Debug($"GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to closed - no guide data found for territory and last auto-selected guide is the same as the current selected guide.");
                         window.IsOpen = false;

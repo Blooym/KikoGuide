@@ -53,32 +53,32 @@ namespace KikoGuide.Managers
         /// </summary>
         private void OnCommand(string command, string args)
         {
-            var windowSystem = PluginService.WindowManager.WindowSystem;
+            var windowManager = PluginService.WindowManager;
             switch (command)
             {
                 case ListCommand:
-                    if (windowSystem.GetWindow(TWindowNames.GuideList) is GuideListWindow guideListWindow)
+                    if (windowManager.GetWindow(TWindowNames.GuideList) is GuideListWindow guideListWindow)
                     {
                         guideListWindow.IsOpen = !guideListWindow.IsOpen;
                     }
 
                     break;
                 case SettingsCommand:
-                    if (windowSystem.GetWindow(TWindowNames.Settings) is SettingsWindow settingsWindow)
+                    if (windowManager.GetWindow(TWindowNames.Settings) is SettingsWindow settingsWindow)
                     {
                         settingsWindow.IsOpen = !settingsWindow.IsOpen;
                     }
 
                     break;
                 case EditorCommand:
-                    if (windowSystem.GetWindow(TWindowNames.GuideEditor) is EditorWindow editorWindow)
+                    if (windowManager.GetWindow(TWindowNames.GuideEditor) is EditorWindow editorWindow)
                     {
                         editorWindow.IsOpen = !editorWindow.IsOpen;
                     }
 
                     break;
                 case GuideViewerCommand:
-                    if (windowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow guideViewerScreen)
+                    if (windowManager.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow guideViewerScreen)
                     {
                         guideViewerScreen.IsOpen = !guideViewerScreen.IsOpen;
                     }

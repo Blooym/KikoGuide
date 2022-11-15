@@ -7,6 +7,7 @@ using Dalamud.Utility;
 using KikoGuide.Base;
 using KikoGuide.Localization;
 using KikoGuide.Types;
+using KikoGuide.Utils;
 using Newtonsoft.Json;
 
 namespace KikoGuide.UI.Windows.Editor
@@ -61,11 +62,11 @@ namespace KikoGuide.UI.Windows.Editor
             // Reject loading if the file length is beyond the character limit.
             if (fileText.Length > this.CharacterLimit)
             {
-                PluginService.PluginInterface.UiBuilder.AddNotification(TEditor.FileTooLarge, PluginConstants.PluginName, NotificationType.Error);
+                Notifications.ShowToast(message: TEditor.FileTooLarge, type: NotificationType.Error);
                 return text;
             }
 
-            PluginService.PluginInterface.UiBuilder.AddNotification(TEditor.FileSuccessfullyLoaded, PluginConstants.PluginName, NotificationType.Success);
+            Notifications.ShowToast(message: TEditor.FileSuccessfullyLoaded, type: NotificationType.Success);
             return fileText;
         }
 
@@ -81,7 +82,7 @@ namespace KikoGuide.UI.Windows.Editor
 
             text = OnFormat(text);
             File.WriteAllText(file, text);
-            PluginService.PluginInterface.UiBuilder.AddNotification(TEditor.FileSuccessfullySaved, PluginConstants.PluginName, NotificationType.Success);
+            Notifications.ShowToast(message: TEditor.FileSuccessfullySaved, type: NotificationType.Success);
         }
 
         /// <summary>

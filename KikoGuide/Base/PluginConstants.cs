@@ -8,32 +8,32 @@ namespace KikoGuide.Base
         /// <summary>
         ///    This is the name that will be shown in all UI elements, does not change InternalName.
         /// </summary>
-        internal static readonly string PluginName = "Kiko Guide";
+        internal const string PluginName = "Kiko Guide";
 
         /// <summary>
         ///     The repository to linked to this plugin.
         /// </summary>
-        internal static readonly string RepoUrl = "https://github.com/BitsOfAByte/KikoGuide/";
+        internal const string RepoUrl = "https://github.com/BitsOfAByte/KikoGuide/";
 
         /// <summary>
         ///     The raw repository to linked to this plugin.
         /// </summary>
-        internal static readonly string RawRepoUrl = "https://raw.githubusercontent.com/BitsOfAByte/KikoGuide/";
+        internal const string RawRepoUrl = "https://raw.githubusercontent.com/BitsOfAByte/KikoGuide/";
 
         /// <summary>
         ///     The production branch of the repository.
         /// </summary>
-        internal static readonly string RepoBranch = "main";
+        internal const string RepoBranch = "main";
 
         /// <summary>
         ///     The resources directory relative to the base of the repository.
         /// </summary>
-        internal static readonly string RepoResourcesDir = "KikoGuide/Resources/";
+        internal const string RepoResourcesDir = "KikoGuide/Resources/";
 
         /// <summary>
         ///     The support button URL.
         /// </summary>
-        internal static readonly string DonateButtonUrl = "https://github.com/sponsors/BitsOfAByte";
+        internal const string DonateButtonUrl = "https://github.com/sponsors/BitsOfAByte";
 
         /// <summary>
         ///     The path to the plugin's resources folder with trailing slashes, relative to the plugin assembly location with trailing slashes.
@@ -48,6 +48,6 @@ namespace KikoGuide.Base
         /// <summary>
         ///    The fallback language to use if the user's language is not supported for localization (ISO 639-1 code).
         /// </summary>
-        internal static readonly string FallbackLanguage = "en";
+        internal const string FallbackLanguage = "en";
     }
 }
