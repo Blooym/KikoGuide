@@ -90,7 +90,7 @@ You can find all internal IDs used for identifying duty data inside of the [Guid
 #### Game IDs (Quest, Territory, etc)
 You can find all game IDs through the csv files available from the FFXIV-Datamining repository [here](https://github.com/xivapi/ffxiv-datamining)
 
-If for whatever reason you are struggling to locate any of these IDs, feel free to make the pull request without them and clarify that in the request and they will be added for you.
+If for whatever reason you are struggling to locate any of these IDs, feel free to make the pull request without them and clarify that in the request and they will be added for you. If you do not know what to put in a field, please just do not add it to the file, do not add a placeholder value as it will cause issues when the plugin tries to load the file.
 
 --- 
 ###### See Also
