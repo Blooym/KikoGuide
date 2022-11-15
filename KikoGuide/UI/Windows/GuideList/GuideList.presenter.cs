@@ -22,7 +22,7 @@ namespace KikoGuide.UI.Windows.GuideList
         /// </summary>
         public static void OnGuideListSelection(Guide guide)
         {
-            if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow guideViewerWindow)
+            if (PluginService.WindowManager.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow guideViewerWindow)
             {
                 guideViewerWindow.IsOpen = true;
                 guideViewerWindow.Presenter.SelectedGuide = guide;

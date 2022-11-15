@@ -60,6 +60,11 @@ namespace KikoGuide.IPC.Providers
         private ICallGateSubscriber<bool>? wotsitAvailable;
 
         /// <summary>
+        ///     Invoke CallGateSubscriber.
+        /// </summary>
+        private ICallGateSubscriber<string, bool>? wotsitInvoke;
+
+        /// <summary>
         ///     Stored GUID for OpenListIPC.
         /// </summary>
         private string? wotsitOpenListIpc;
@@ -89,8 +94,9 @@ namespace KikoGuide.IPC.Providers
             try
             {
                 PluginService.PluginInterface.LanguageChanged += this.OnLanguageChange;
-                this.wotsitAvailable?.Unsubscribe(this.Initialize);
                 this.wotsitUnregister?.InvokeFunc(PluginConstants.PluginName);
+                this.wotsitAvailable?.Unsubscribe(this.Initialize);
+                this.wotsitInvoke?.Unsubscribe(this.HandleInvoke);
             }
             catch { /* Ignore */ }
         }
@@ -102,12 +108,11 @@ namespace KikoGuide.IPC.Providers
         {
             this.wotsitRegister = PluginService.PluginInterface.GetIpcSubscriber<string, string, uint, string>(LabelProviderRegister);
             this.wotsitUnregister = PluginService.PluginInterface.GetIpcSubscriber<string, bool>(LabelProviderUnregisterAll);
-
-            var subscribe = PluginService.PluginInterface.GetIpcSubscriber<string, bool>(LabelProviderInvoke);
-            subscribe.Subscribe(this.HandleInvoke);
+            this.wotsitInvoke = PluginService.PluginInterface.GetIpcSubscriber<string, bool>(LabelProviderInvoke);
 
             PluginService.PluginInterface.LanguageChanged += this.OnLanguageChange;
 
+            this.wotsitInvoke?.Subscribe(this.HandleInvoke);
             this.RegisterAll();
         }
 
@@ -138,7 +143,7 @@ namespace KikoGuide.IPC.Providers
         {
             if (this.wotsitGuideIpcs.TryGetValue(guid, out var guide))
             {
-                if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow guideViewerWindow)
+                if (PluginService.WindowManager.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow guideViewerWindow)
                 {
                     guideViewerWindow.Presenter.SelectedGuide = guide;
                     guideViewerWindow.IsOpen = true;
@@ -147,7 +152,7 @@ namespace KikoGuide.IPC.Providers
 
             else if (guid == this.wotsitOpenListIpc)
             {
-                if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideList) is GuideListWindow guideListWIndow)
+                if (PluginService.WindowManager.GetWindow(TWindowNames.GuideList) is GuideListWindow guideListWIndow)
                 {
                     guideListWIndow.IsOpen = true;
                 }
@@ -155,7 +160,7 @@ namespace KikoGuide.IPC.Providers
 
             else if (guid == this.wotsitOpenEditorIpc)
             {
-                if (PluginService.WindowManager.WindowSystem.GetWindow(TWindowNames.GuideEditor) is EditorWindow guideEditorWindow)
+                if (PluginService.WindowManager.GetWindow(TWindowNames.GuideEditor) is EditorWindow guideEditorWindow)
                 {
                     guideEditorWindow.IsOpen = true;
                 }
