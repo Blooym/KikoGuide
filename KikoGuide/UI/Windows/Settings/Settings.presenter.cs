@@ -21,11 +21,13 @@ namespace KikoGuide.UI.Windows.Settings
         /// <summary>
         ///     Sets an IPCProvider as enabled.
         /// </summary>
+        /// <param name="provider"> The provider to enable. </param>
         public static void SetIPCProviderEnabled(IPCProviders provider) => PluginService.IPC.EnableProvider(provider);
 
         /// <summary>
         ///     Sets an IPCProvider as disabled.
         /// </summary>
+        /// <param name="provider"> The provider to disable. </param>
         public static void SetIPCProviderDisabled(IPCProviders provider) => PluginService.IPC.DisableProvider(provider);
 
 #if DEBUG
@@ -34,9 +36,11 @@ namespace KikoGuide.UI.Windows.Settings
         /// <summary>
         ///     Handles the directory select event and saves the location to that directory.
         /// </summary>
-        public static void OnDirectoryPicked(bool success, string path)
+        /// <param name="cancelled">Whether the dialog was cancelled.</param>
+        /// <param name="path">The path to the selected directory.</param>
+        public static void OnDirectoryPicked(bool cancelled, string path)
         {
-            if (!success)
+            if (!cancelled)
             {
                 return;
             }

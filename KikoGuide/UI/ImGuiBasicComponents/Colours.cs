@@ -8,17 +8,23 @@ namespace KikoGuide.UI.ImGuiBasicComponents
     /// </summary>
     internal static class Colours
     {
-        // Generic colours
+        /// <summary>
+        /// Generic colours
+        /// </summary>
         public static Vector4 Red = new(1.0f, 0.0f, 0.0f, 1.0f);
         public static Vector4 Green = new(0.0f, 0.5f, 0.0f, 1.0f);
         public static Vector4 Grey = new(0.5f, 0.5f, 0.5f, 1.0f);
 
-        // State colours
+        /// <summary>
+        /// State colours
+        /// </summary>
         public static Vector4 Success = new(0.0f, 1.0f, 0.0f, 1.0f);
         public static Vector4 Warning = new(1.0f, 0.5f, 0.0f, 1.0f);
         public static Vector4 Error = new(1.0f, 0.0f, 0.0f, 1.0f);
 
-        // Misc
+        /// <summary>
+        /// Misc
+        /// </summary>
         public static Vector4 GuideDisabled = new(0.5f, 0.25f, 0.0f, 1.0f);
 
         /// <summary>

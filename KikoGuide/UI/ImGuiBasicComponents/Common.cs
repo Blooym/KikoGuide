@@ -11,6 +11,7 @@ namespace KikoGuide.UI.ImGuiBasicComponents
         /// <summary>
         ///     Draws a standard title heading.
         /// </summary>
+        /// <param name="text"> The text to show. </param>
         public static void TextHeading(string text)
         {
             ImGui.TextDisabled(text);
@@ -35,6 +36,7 @@ namespace KikoGuide.UI.ImGuiBasicComponents
         /// <summary>
         ///     Shows a tooltip when hovering over the last item.
         /// </summary>
+        /// <param name="text"> The text to show in the tooltip. </param>
         public static void AddTooltip(string text)
         {
             if (ImGui.IsItemHovered())

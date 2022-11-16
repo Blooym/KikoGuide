@@ -22,12 +22,12 @@ namespace KikoGuide.UI.ImGuiFullComponents.MechanicHiderCombo
                 ImGui.Separator();
                 foreach (var mechanicType in Enum.GetValues(typeof(GuideMechanics)).Cast<GuideMechanics>())
                 {
-                    if (hiddenSectionFilter != string.Empty && !mechanicType.ToString().ToLower().Contains(hiddenSectionFilter.ToLower()))
+                    if (hiddenSectionFilter != string.Empty && !mechanicType.ToString().Contains(hiddenSectionFilter, StringComparison.OrdinalIgnoreCase))
                     {
                         continue;
                     }
 
-                    if (ImGui.Selectable(AttributeExtensions.GetNameAttribute(mechanicType), disabledMechanic?.Contains(mechanicType) ?? false, ImGuiSelectableFlags.DontClosePopups))
+                    if (ImGui.Selectable(mechanicType.GetNameAttribute(), disabledMechanic?.Contains(mechanicType) ?? false, ImGuiSelectableFlags.DontClosePopups))
                     {
                         disabledMechanic = disabledMechanic?.Contains(mechanicType) ?? false
                             ? disabledMechanic.Where(t => t != mechanicType).ToList()
@@ -35,7 +35,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.MechanicHiderCombo
                         MechanicHiderComboPresenter.Configuration.Display.HiddenMechanics = disabledMechanic;
                         MechanicHiderComboPresenter.Configuration.Save();
                     }
-                    Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute(mechanicType));
+                    Common.AddTooltip(mechanicType.GetDescriptionAttribute());
                 }
                 ImGui.EndCombo();
             }

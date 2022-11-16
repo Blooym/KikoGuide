@@ -139,6 +139,7 @@ namespace KikoGuide.IPC.Providers
         /// <summary>
         ///     Handles IPC invocations for Wotsit.
         /// </summary>
+        /// <param name="guid">The GUID of the invoked method.</param>
         private void HandleInvoke(string guid)
         {
             if (this.wotsitGuideIpcs.TryGetValue(guid, out var guide))
@@ -149,7 +150,6 @@ namespace KikoGuide.IPC.Providers
                     guideViewerWindow.IsOpen = true;
                 }
             }
-
             else if (guid == this.wotsitOpenListIpc)
             {
                 if (PluginService.WindowManager.GetWindow(TWindowNames.GuideList) is GuideListWindow guideListWIndow)
@@ -157,7 +157,6 @@ namespace KikoGuide.IPC.Providers
                     guideListWIndow.IsOpen = true;
                 }
             }
-
             else if (guid == this.wotsitOpenEditorIpc)
             {
                 if (PluginService.WindowManager.GetWindow(TWindowNames.GuideEditor) is EditorWindow guideEditorWindow)
@@ -170,6 +169,7 @@ namespace KikoGuide.IPC.Providers
         /// <summary>
         ///     When the resources are updated, we need to re-register in-case of a language change.
         /// </summary>
+        /// <param name="language"></param>
         private void OnLanguageChange(string language)
         {
             this.wotsitUnregister?.InvokeFunc(PluginConstants.PluginName);

@@ -51,6 +51,8 @@ namespace KikoGuide.Managers
         /// <summary>
         ///     Event handler for when a command is issued by the user.
         /// </summary>
+        /// <param name="command">The command that was issued.</param>
+        /// <param name="args">The arguments that were passed with the command.</param>
         private void OnCommand(string command, string args)
         {
             var windowManager = PluginService.WindowManager;
@@ -82,8 +84,6 @@ namespace KikoGuide.Managers
                     {
                         guideViewerScreen.IsOpen = !guideViewerScreen.IsOpen;
                     }
-                    break;
-                default:
                     break;
             }
         }

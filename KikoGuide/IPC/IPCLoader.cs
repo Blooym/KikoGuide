@@ -90,7 +90,7 @@ namespace KikoGuide.IPC
 
             try
             {
-                var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.GetInterfaces().Contains(typeof(IIPCProvider)));
+                var type = Array.Find(Assembly.GetExecutingAssembly().GetTypes(), t => t.GetInterfaces().Contains(typeof(IIPCProvider)));
                 if (type == null)
                 {
                     return;

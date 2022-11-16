@@ -43,7 +43,6 @@ namespace KikoGuide.UI.Windows.Settings
                     {
                         ImGui.TableNextRow();
 
-
                         // Auto open in duty setting
                         ImGui.TableSetColumnIndex(0);
                         ImGui.TextWrapped(TSettings.AutoOpenGuideForDuty);
@@ -65,7 +64,6 @@ namespace KikoGuide.UI.Windows.Settings
                         }
                         Common.AddTooltip(TSettings.SettingsAutoOpenInDutyTooltip);
                         ImGui.TableNextRow();
-
 
                         // Donate/support button shown setting
                         ImGui.TableSetColumnIndex(0);
@@ -89,7 +87,6 @@ namespace KikoGuide.UI.Windows.Settings
                         Common.AddTooltip(TSettings.ShowDonateButtonTooltip);
                         ImGui.TableNextRow();
 
-
                         // Shorten guide text setting
                         ImGui.TableSetColumnIndex(0);
                         ImGui.TextWrapped(TSettings.ShortenGuideText);
@@ -111,7 +108,6 @@ namespace KikoGuide.UI.Windows.Settings
                         }
                         Common.AddTooltip(TSettings.ShortenGuideTextTooltip);
                         ImGui.TableNextRow();
-
 
                         // Hide locked gudies setting
                         ImGui.TableSetColumnIndex(0);
@@ -135,7 +131,6 @@ namespace KikoGuide.UI.Windows.Settings
                         Common.AddTooltip(TSettings.HideLockedGuidesTooltip);
                         ImGui.TableNextRow();
 
-
                         // Hidden mechanics setting
                         ImGui.TableSetColumnIndex(0);
                         ImGui.TextWrapped(TSettings.HiddenMechanics);
@@ -144,7 +139,6 @@ namespace KikoGuide.UI.Windows.Settings
                         MechanicHiderComboComponent.Draw();
                         Common.AddTooltip(TSettings.HiddenMechanicsTooltip);
                         ImGui.TableNextRow();
-
 
                         // IPC Providers enabled setting
                         ImGui.TableSetColumnIndex(0);
@@ -165,7 +159,6 @@ namespace KikoGuide.UI.Windows.Settings
                             this.Presenter.DialogManager.OpenFolderDialog("Export Localization", SettingsPresenter.OnDirectoryPicked);
                         }
 #endif
-
 
                         ImGui.EndTable();
                         ImGui.EndChild();

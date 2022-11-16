@@ -46,6 +46,7 @@ namespace KikoGuide.Attributes
         /// <summary>
         ///     Gets the name of the attribute.
         /// </summary>
+        /// <param name="value">The attribute to get the name of.</param>
         public static string GetNameAttribute(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());
@@ -56,6 +57,7 @@ namespace KikoGuide.Attributes
         /// <summary>
         ///     Gets the description of the attribute.
         /// </summary>
+        /// <param name="value">The attribute to get the description of.</param>
         public static string GetDescriptionAttribute(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());

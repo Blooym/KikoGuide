@@ -50,7 +50,7 @@ namespace KikoGuide.Managers
         /// </summary>
         private static List<Guide> LoadGuideData()
         {
-            PluginLog.Information($"GuideManager(LoadGuideData): Loading guide data from files, this could cause a lag spike if your storage is slow");
+            PluginLog.Information("GuideManager(LoadGuideData): Loading guide data from files, this could cause a lag spike if your storage is slow");
 
             // Try and get the language from the settings, or use fallback to default if not found.
             var language = PluginService.PluginInterface.UiLanguage;
@@ -80,7 +80,7 @@ namespace KikoGuide.Managers
             }
             catch
             {
-                PluginLog.Error($"GuideManager(LoadGuideData): Failed to load guide data from files, you may need to reinstall the plugin or check your files for corruption.");
+                PluginLog.Error("GuideManager(LoadGuideData): Failed to load guide data from files, you may need to reinstall the plugin or check your files for corruption.");
             }
 
             PluginLog.Information($"GuideManager(LoadGuideData): Loaded {guides.Count} guides for {language}");

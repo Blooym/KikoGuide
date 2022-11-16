@@ -9,7 +9,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideListTable
     {
         public static Guide? GetGuideForPlayerTerritory() => GuideManager.GetGuideForCurrentTerritory();
 
-        public static bool HasGuideData(Guide guide) => guide.Sections != null && guide.Sections.Count > 0;
+        public static bool HasGuideData(Guide guide) => guide.Sections?.Count > 0;
 
         public static bool HasAnyGuideUnlocked(List<Guide> guideList)
         {
@@ -30,7 +30,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideListTable
             var guideExistsForSearch = false;
             foreach (var guide in guideList)
             {
-                if (guide.Name.ToLower().Contains(search.ToLower()))
+                if (guide.Name.Contains(search, System.StringComparison.OrdinalIgnoreCase))
                 {
                     guideExistsForSearch = true;
                     break;

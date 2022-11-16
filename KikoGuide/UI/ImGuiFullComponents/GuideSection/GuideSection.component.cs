@@ -15,7 +15,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
         /// <summary>
         ///     Draws the guide sections for the given guide.
         /// </summary>
-        /// <param name="section"> The sections to draw information for. </param>
+        /// <param name="sections"></param>
         public static void Draw(List<Guide.Section> sections)
         {
             try
@@ -30,39 +30,36 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
                             {
                                 Colours.TextWrappedColoured(Colours.Warning, "No phase data found for this section.");
                             }
-                            else
+                            else if (ImGui.BeginTabBar("##GuideSectionComponentPhaseTabs", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton))
                             {
-                                if (ImGui.BeginTabBar("##GuideSectionComponentPhaseTabs", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton))
+                                foreach (var phase in section.Phases)
                                 {
-                                    foreach (var phase in section.Phases)
+                                    if (ImGui.BeginTabItem($"Phase {phase.TitleOverride ?? (section.Phases.IndexOf(phase) + 1).ToString()}"))
                                     {
-                                        if (ImGui.BeginTabItem($"Phase {(phase.TitleOverride != null ? phase.TitleOverride : section.Phases.IndexOf(phase) + 1)}"))
+                                        ImGui.BeginChild("##GuideSectionComponentPhaseTabsChild");
+
+                                        if (
+                                            phase.StrategyShort != null && phase.Strategy != string.Empty &&
+                                            GuideSectionPresenter.Configuration.Accessiblity.ShortenGuideText
+                                            )
                                         {
-                                            ImGui.BeginChild("##GuideSectionComponentPhaseTabsChild");
-
-                                            if (
-                                                phase.StrategyShort != null && phase.Strategy != string.Empty &&
-                                                GuideSectionPresenter.Configuration.Accessiblity.ShortenGuideText
-                                                )
-                                            {
-                                                ImGui.TextWrapped(phase.StrategyShort);
-                                            }
-                                            else
-                                            {
-                                                ImGui.TextWrapped(phase.Strategy);
-                                            }
-
-                                            if (phase.Mechanics != null)
-                                            {
-                                                MechanicTableComponent.Draw(phase.Mechanics);
-                                            }
-
-                                            ImGui.EndChild();
-                                            ImGui.EndTabItem();
+                                            ImGui.TextWrapped(phase.StrategyShort);
                                         }
+                                        else
+                                        {
+                                            ImGui.TextWrapped(phase.Strategy);
+                                        }
+
+                                        if (phase.Mechanics != null)
+                                        {
+                                            MechanicTableComponent.Draw(phase.Mechanics);
+                                        }
+
+                                        ImGui.EndChild();
+                                        ImGui.EndTabItem();
                                     }
-                                    ImGui.EndTabBar();
                                 }
+                                ImGui.EndTabBar();
                             }
                             ImGui.EndTabItem();
                         }
@@ -72,6 +69,5 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
             }
             catch (Exception e) { ImGui.TextColored(Colours.Error, $"Component Exception: {e.Message}"); }
         }
-
     }
 }

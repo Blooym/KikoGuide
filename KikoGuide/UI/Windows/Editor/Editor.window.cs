@@ -71,7 +71,6 @@ namespace KikoGuide.UI.Windows.Editor
             }
         }
 
-
         /// <summary>
         ///     Draws the buttons at the top of the editor.
         /// </summary>
@@ -161,7 +160,6 @@ namespace KikoGuide.UI.Windows.Editor
             }
         }
 
-
         /// <summary>
         ///     Draws the guide preview pane for the guide editor.
         /// </summary>
@@ -174,7 +172,7 @@ namespace KikoGuide.UI.Windows.Editor
                 // GuideViewer preview pane.
                 if (ImGui.BeginTabItem(TEditor.Preview))
                 {
-                    if (guide != null && guide.Sections != null)
+                    if (guide?.Sections != null)
                     {
                         GuideSectionComponent.Draw(guide.Sections);
                     }
@@ -193,10 +191,10 @@ namespace KikoGuide.UI.Windows.Editor
                     {
                         ImGui.TextWrapped($"Version: {guide.Version}");
                         ImGui.TextWrapped($"Name: {guide.Name} (Canonical: {guide.CanonicalName})");
-                        ImGui.TextWrapped($"Type: {AttributeExtensions.GetNameAttribute(guide.Type)}");
-                        ImGui.TextWrapped($"Difficulty: {AttributeExtensions.GetNameAttribute(guide.Difficulty)}");
+                        ImGui.TextWrapped($"Type: {guide.Type.GetNameAttribute()}");
+                        ImGui.TextWrapped($"Difficulty: {guide.Difficulty.GetNameAttribute()}");
                         ImGui.TextWrapped($"Level: {guide.Level}");
-                        ImGui.TextWrapped($"Expansion: {AttributeExtensions.GetNameAttribute(guide.Expansion)}");
+                        ImGui.TextWrapped($"Expansion: {guide.Expansion.GetNameAttribute()}");
                         ImGui.TextWrapped($"TerritoryIDs: {string.Join(", ", guide.TerritoryIDs)} (Current: {EditorPresenter.GetPlayerTerritory})");
                         ImGui.TextWrapped($"UnlockQuestID: {guide.UnlockQuestID}");
                     }
@@ -211,102 +209,84 @@ namespace KikoGuide.UI.Windows.Editor
                 // Enum IDs pane.
                 if (ImGui.BeginTabItem(TEditor.EnumList))
                 {
-                    if (ImGui.BeginChild("##EnumIDs"))
+                    if (ImGui.BeginChild("##EnumIDs") && ImGui.CollapsingHeader("Mechanic IDs") && ImGui.BeginTable("##MechanicIDs", 2, ImGuiTableFlags.Borders))
                     {
-                        if (ImGui.CollapsingHeader("Mechanic IDs"))
+                        ImGui.TableSetupColumn("Name");
+                        ImGui.TableSetupColumn("ID");
+                        ImGui.TableHeadersRow();
+                        foreach (var mechanic in Enum.GetValues(typeof(GuideMechanics)))
                         {
-                            if (ImGui.BeginTable("##MechanicIDs", 2, ImGuiTableFlags.Borders))
-                            {
-                                ImGui.TableSetupColumn("Name");
-                                ImGui.TableSetupColumn("ID");
-                                ImGui.TableHeadersRow();
-                                foreach (var mechanic in Enum.GetValues(typeof(GuideMechanics)))
-                                {
-                                    ImGui.TableNextColumn();
-                                    ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((GuideMechanics)mechanic)}");
-                                    Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((GuideMechanics)mechanic));
-                                    ImGui.TableNextColumn();
-                                    ImGui.TextWrapped($"{(int)mechanic}");
-                                }
-                                ImGui.EndTable();
-                            }
+                            ImGui.TableNextColumn();
+                            ImGui.TextWrapped($"{((GuideMechanics)mechanic).GetNameAttribute()}");
+                            Common.AddTooltip(((GuideMechanics)mechanic).GetDescriptionAttribute());
+                            ImGui.TableNextColumn();
+                            ImGui.TextWrapped($"{(int)mechanic}");
                         }
+                        ImGui.EndTable();
                     }
 
-                    if (ImGui.CollapsingHeader("Duty Type IDs"))
+                    if (ImGui.CollapsingHeader("Duty Type IDs") && ImGui.BeginTable("##DutyTypeIDs", 2, ImGuiTableFlags.Borders))
                     {
-                        if (ImGui.BeginTable("##DutyTypeIDs", 2, ImGuiTableFlags.Borders))
+                        ImGui.TableSetupColumn("Name");
+                        ImGui.TableSetupColumn("ID");
+                        ImGui.TableHeadersRow();
+                        foreach (var type in Enum.GetValues(typeof(DutyType)))
                         {
-                            ImGui.TableSetupColumn("Name");
-                            ImGui.TableSetupColumn("ID");
-                            ImGui.TableHeadersRow();
-                            foreach (var type in Enum.GetValues(typeof(DutyType)))
-                            {
-                                ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyType)type)}");
-                                Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyType)type));
-                                ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{(int)type}");
-                            }
-                            ImGui.EndTable();
+                            ImGui.TableNextColumn();
+                            ImGui.TextWrapped($"{((DutyType)type).GetNameAttribute()}");
+                            Common.AddTooltip(((DutyType)type).GetDescriptionAttribute());
+                            ImGui.TableNextColumn();
+                            ImGui.TextWrapped($"{(int)type}");
                         }
+                        ImGui.EndTable();
                     }
 
-                    if (ImGui.CollapsingHeader("Difficulty IDs"))
+                    if (ImGui.CollapsingHeader("Difficulty IDs") && ImGui.BeginTable("##DifficultyIDs", 2, ImGuiTableFlags.Borders))
                     {
-                        if (ImGui.BeginTable("##DifficultyIDs", 2, ImGuiTableFlags.Borders))
+                        ImGui.TableSetupColumn("Name");
+                        ImGui.TableSetupColumn("ID");
+                        ImGui.TableHeadersRow();
+                        foreach (var difficulty in Enum.GetValues(typeof(DutyDifficulty)))
                         {
-                            ImGui.TableSetupColumn("Name");
-                            ImGui.TableSetupColumn("ID");
-                            ImGui.TableHeadersRow();
-                            foreach (var difficulty in Enum.GetValues(typeof(DutyDifficulty)))
-                            {
-                                ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyDifficulty)difficulty)}");
-                                Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyDifficulty)difficulty));
-                                ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{(int)difficulty}");
-                            }
-                            ImGui.EndTable();
+                            ImGui.TableNextColumn();
+                            ImGui.TextWrapped($"{((DutyDifficulty)difficulty).GetNameAttribute()}");
+                            Common.AddTooltip(((DutyDifficulty)difficulty).GetDescriptionAttribute());
+                            ImGui.TableNextColumn();
+                            ImGui.TextWrapped($"{(int)difficulty}");
                         }
+                        ImGui.EndTable();
                     }
 
-                    if (ImGui.CollapsingHeader("Duty Section IDs"))
+                    if (ImGui.CollapsingHeader("Duty Section IDs") && ImGui.BeginTable("##DutySectionIDs", 2, ImGuiTableFlags.Borders))
                     {
-                        if (ImGui.BeginTable("##DutySectionIDs", 2, ImGuiTableFlags.Borders))
+                        ImGui.TableSetupColumn("Name");
+                        ImGui.TableSetupColumn("ID");
+                        ImGui.TableHeadersRow();
+                        foreach (var section in Enum.GetValues(typeof(GuideSectionType)))
                         {
-                            ImGui.TableSetupColumn("Name");
-                            ImGui.TableSetupColumn("ID");
-                            ImGui.TableHeadersRow();
-                            foreach (var section in Enum.GetValues(typeof(GuideSectionType)))
-                            {
-                                ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((GuideSectionType)section)}");
-                                Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((GuideSectionType)section));
-                                ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{(int)section}");
-                            }
-                            ImGui.EndTable();
+                            ImGui.TableNextColumn();
+                            ImGui.TextWrapped($"{((GuideSectionType)section).GetNameAttribute()}");
+                            Common.AddTooltip(((GuideSectionType)section).GetDescriptionAttribute());
+                            ImGui.TableNextColumn();
+                            ImGui.TextWrapped($"{(int)section}");
                         }
+                        ImGui.EndTable();
                     }
 
-                    if (ImGui.CollapsingHeader("Expansion IDs"))
+                    if (ImGui.CollapsingHeader("Expansion IDs") && ImGui.BeginTable("##ExpansionIDs", 2, ImGuiTableFlags.Borders))
                     {
-                        if (ImGui.BeginTable("##ExpansionIDs", 2, ImGuiTableFlags.Borders))
+                        ImGui.TableSetupColumn("Name");
+                        ImGui.TableSetupColumn("ID");
+                        ImGui.TableHeadersRow();
+                        foreach (var expansion in Enum.GetValues(typeof(DutyExpansion)))
                         {
-                            ImGui.TableSetupColumn("Name");
-                            ImGui.TableSetupColumn("ID");
-                            ImGui.TableHeadersRow();
-                            foreach (var expansion in Enum.GetValues(typeof(DutyExpansion)))
-                            {
-                                ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{AttributeExtensions.GetNameAttribute((DutyExpansion)expansion)}");
-                                Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute((DutyExpansion)expansion));
-                                ImGui.TableNextColumn();
-                                ImGui.TextWrapped($"{(int)expansion}");
-                            }
-                            ImGui.EndTable();
+                            ImGui.TableNextColumn();
+                            ImGui.TextWrapped($"{((DutyExpansion)expansion).GetNameAttribute()}");
+                            Common.AddTooltip(((DutyExpansion)expansion).GetDescriptionAttribute());
+                            ImGui.TableNextColumn();
+                            ImGui.TextWrapped($"{(int)expansion}");
                         }
+                        ImGui.EndTable();
                     }
                     ImGui.EndChild();
                     ImGui.EndTabItem();
@@ -314,6 +294,5 @@ namespace KikoGuide.UI.Windows.Editor
                 ImGui.EndTabBar();
             }
         }
-
     }
 }

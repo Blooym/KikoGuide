@@ -56,6 +56,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
         /// <summary>
         ///     Detect when the player has changed zones and update the guide viewer accordingly through the game framework update event.
         /// </summary>
+        /// <param name="e"></param>
         public void OnFrameworkUpdate(object? e)
         {
             var currentTerritory = PluginService.ClientState.TerritoryType;
@@ -82,13 +83,12 @@ namespace KikoGuide.UI.Windows.GuideViewer
                         Notifications.ShowToast(message: TGuideViewer.GuideAvailableForDuty, type: NotificationType.Info);
                     }
                 }
-
                 else if (playerGuide == null && this.lastAutoSelectedGuide != null && this.lastAutoSelectedGuide == this.SelectedGuide)
                 {
                     this.SelectedGuide = null;
                     if (PluginService.WindowManager.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
                     {
-                        PluginLog.Debug($"GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to closed - no guide data found for territory and last auto-selected guide is the same as the current selected guide.");
+                        PluginLog.Debug("GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to closed - no guide data found for territory and last auto-selected guide is the same as the current selected guide.");
                         window.IsOpen = false;
                     }
                 }

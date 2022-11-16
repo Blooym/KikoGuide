@@ -64,7 +64,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideListTable
                             continue;
                         }
 
-                        if (!guide.Name.ToLower().Contains(filter.ToLower()))
+                        if (!guide.Name.Contains(filter, StringComparison.OrdinalIgnoreCase))
                         {
                             continue;
                         }
@@ -108,6 +108,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideListTable
         /// <summary>
         ///     Draws an outdated guide in the list.
         /// </summary>
+        /// <param name="name"> The name of the guide. </param>
         private static void OutdatedGuide(string name)
         {
             ImGui.TextColored(Colours.GuideDisabled, name);
@@ -117,6 +118,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideListTable
         /// <summary>
         ///     Draws a guide with no data.
         /// </summary>
+        /// <param name="name"> The name of the guide. </param>
         private static void NoDataGuide(string name)
         {
             ImGui.TextDisabled(name);

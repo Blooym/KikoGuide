@@ -44,9 +44,12 @@ namespace KikoGuide.UI.Windows.Editor
         /// <summary>
         ///     Handles the file select event
         /// </summary>
-        public string OnFileSelect(bool success, string file, string text)
+        /// <param name="cancelled"> Whether the file selection was cancelled or not. </param>
+        /// <param name="file"> The file that was selected. </param>
+        /// <param name="text"> The text that was loaded from the file. </param>
+        public string OnFileSelect(bool cancelled, string file, string text)
         {
-            if (!success)
+            if (!cancelled)
             {
                 return text;
             }
@@ -73,6 +76,9 @@ namespace KikoGuide.UI.Windows.Editor
         /// <summary>
         ///     Handles the file save event.
         /// </summary>
+        /// <param name="success"></param>
+        /// <param name="file"></param>
+        /// <param name="text"></param>
         public static void OnFileSave(bool success, string file, string text)
         {
             if (!success)
@@ -88,6 +94,7 @@ namespace KikoGuide.UI.Windows.Editor
         /// <summary>
         ///     Formats the given text into a better layout.
         /// </summary>
+        /// <param name="text"></param>
         public static string OnFormat(string text)
         {
             try
@@ -119,6 +126,7 @@ namespace KikoGuide.UI.Windows.Editor
         /// <summary>
         ///     Parses the given guideText into a Guide object or returns an Exception.
         /// </summary>
+        /// <param name="guideText"></param>
         public Tuple<Guide?, Exception?> ParseGuide(string guideText)
         {
             if (guideText == this.parsedGuideText && this.lastParseResult != null)
@@ -133,7 +141,6 @@ namespace KikoGuide.UI.Windows.Editor
                 this.lastParseResult = new Tuple<Guide?, Exception?>(JsonConvert.DeserializeObject<Guide>(guideText), null);
                 return this.lastParseResult;
             }
-
             catch (Exception e)
             {
                 this.lastParseResult = new Tuple<Guide?, Exception?>(null, e);

@@ -14,6 +14,7 @@ namespace KikoGuide
         /// <summary>
         ///     The plugin's main entry point.
         /// </summary>
+        /// <param name="pluginInterface"> The plugin interface. </param>
         public KikoPlugin([RequiredVersion("1.0")] DalamudPluginInterface pluginInterface)
         {
             pluginInterface.Create<PluginService>();

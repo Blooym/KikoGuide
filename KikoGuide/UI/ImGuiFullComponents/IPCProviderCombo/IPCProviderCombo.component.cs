@@ -22,12 +22,12 @@ namespace KikoGuide.UI.ImGuiFullComponents.IPCProviderCombo
                 ImGui.Separator();
                 foreach (var provider in Enum.GetValues(typeof(IPCProviders)).Cast<IPCProviders>())
                 {
-                    if (searchFilter != string.Empty && !provider.ToString().ToLower().Contains(searchFilter.ToLower()))
+                    if (searchFilter != string.Empty && !provider.ToString().Contains(searchFilter, StringComparison.OrdinalIgnoreCase))
                     {
                         continue;
                     }
 
-                    if (ImGui.Selectable(AttributeExtensions.GetNameAttribute(provider), enabledIntegrations?.Contains(provider) ?? false, ImGuiSelectableFlags.DontClosePopups))
+                    if (ImGui.Selectable(provider.GetNameAttribute(), enabledIntegrations?.Contains(provider) ?? false, ImGuiSelectableFlags.DontClosePopups))
                     {
                         if (enabledIntegrations?.Contains(provider) ?? false)
                         {
@@ -43,9 +43,8 @@ namespace KikoGuide.UI.ImGuiFullComponents.IPCProviderCombo
                             IPCProviderComboPresenter.Configuration.Save();
                             IPCProviderComboPresenter.IPC.EnableProvider(provider);
                         }
-
                     }
-                    Common.AddTooltip(AttributeExtensions.GetDescriptionAttribute(provider));
+                    Common.AddTooltip(provider.GetDescriptionAttribute());
                 }
                 ImGui.EndCombo();
             }

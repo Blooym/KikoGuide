@@ -122,5 +122,4 @@ namespace KikoGuide.UI.Windows.GuideViewer
             Common.AddTooltip(TGuideViewer.ToggleSettingsWindow);
         }
     }
-
 }

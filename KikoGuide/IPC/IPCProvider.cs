@@ -8,9 +8,6 @@ namespace KikoGuide.IPC
     public enum IPCProviders
     {
         [Description("Integrate with Wotsit to provide search capibilities.")]
-        Wotsit,
-
-        // [Description("Integrate with Tippy to provide awful tooltips.")]
-        // Tippy
+        Wotsit = 0,
     }
 }
