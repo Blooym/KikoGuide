@@ -9,7 +9,3 @@ RUN adduser --disabled-password --gecos "" dev
 
 # Install required dependencies.
 RUN apk add --update openssh
-
-# Download the repository into /workspaces (overwrote if using a compliant tool).
-WORKDIR /workspaces 
-RUN git clone https://github.com/BitsOfAByte/KikoGuide.git
