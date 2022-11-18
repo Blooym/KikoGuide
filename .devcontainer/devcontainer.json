@@ -11,10 +11,11 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-dotnettools.csharp",
-                "wayou.vscode-todo-highlight",
-                "vivaxy.vscode-conventional-commits"
-            ]
+				"ms-dotnettools.csharp",
+				"wayou.vscode-todo-highlight",
+				"vivaxy.vscode-conventional-commits",
+				"EditorConfig.EditorConfig"
+			]
         }
     }
 }
