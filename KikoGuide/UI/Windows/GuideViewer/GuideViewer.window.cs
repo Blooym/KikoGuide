@@ -66,7 +66,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
             // Draw guide sections.
             if (guide.Sections == null || guide.Sections.Count == 0 || !guide.IsSupported())
             {
-                ImGui.TextWrapped(TGuideViewer.NoInfoAvailable);
+                ImGui.TextWrapped(TGuideViewer.NoGuideInfoAvailable);
                 return;
             }
             GuideSectionComponent.Draw(guide.Sections);

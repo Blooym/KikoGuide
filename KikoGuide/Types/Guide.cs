@@ -4,6 +4,7 @@ using System.Linq;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using KikoGuide.Attributes;
 using KikoGuide.Localization;
+using Lumina.Excel.GeneratedSheets;
 using Newtonsoft.Json;
 
 namespace KikoGuide.Types
@@ -109,7 +110,7 @@ namespace KikoGuide.Types
                 /// <summary>
                 ///     The strategy for the phase.
                 /// </summary>
-                public string Strategy = TGuide.NoStrategy;
+                public string? Strategy;
 
                 /// <summary>
                 ///     The short strategy for the phase.
@@ -122,6 +123,11 @@ namespace KikoGuide.Types
                 public List<Mechanic>? Mechanics;
 
                 /// <summary>
+                ///     The phase's associated notes.
+                /// </summary>
+                public List<Note>? Notes;
+
+                /// <summary>
                 ///     Represents a mechanic of a guide.
                 /// </summary>
                 public class Mechanic
@@ -129,12 +135,12 @@ namespace KikoGuide.Types
                     /// <summary>
                     ///     The mechanic's name.
                     /// </summary>
-                    public string Name { get; set; } = "???";
+                    public string Name { get; set; } = TGenerics.Unknown;
 
                     /// <summary>
                     ///     The mechanic's description.
                     /// </summary>
-                    public string Description { get; set; } = "???";
+                    public string Description { get; set; } = TGenerics.Unspecified;
 
                     /// <summary>
                     ///     The mechanic's short description.
@@ -145,6 +151,15 @@ namespace KikoGuide.Types
                     ///     The type of mechanic.
                     /// </summary>
                     public int Type { get; set; } = (int)GuideMechanics.Other;
+                }
+
+                /// <summary>
+                ///     Represents a note of a guide.
+                /// </summary>
+                public class Note
+                {
+                    public string? Text { get; set; }
+                    public string? TextShort { get; set; }
                 }
             }
         }

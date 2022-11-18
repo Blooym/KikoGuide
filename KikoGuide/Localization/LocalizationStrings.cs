@@ -39,12 +39,15 @@ namespace KikoGuide.Localization
         internal static string Mechanic => Loc.Localize("Generics.Mechanic", "Mechanic");
         internal static string Mechanics => Loc.Localize("Generics.Mechanics", "Mechanics");
         internal static string Strategy => Loc.Localize("Generics.Strategy", "Strategy");
+        internal static string Notes => Loc.Localize("Generics.Notes", "Notes");
         internal static string Description => Loc.Localize("Generics.Description", "Description");
         internal static string Level => Loc.Localize("Generics.Level", "Level");
         internal static string Type => Loc.Localize("Generics.Type", "Type");
         internal static string Enabled => Loc.Localize("Generics.Enabled", "Enabled");
         internal static string Disabled => Loc.Localize("Generics.Disabled", "Disabled");
-        internal static string Unkown => Loc.Localize("Generics.Unknown", "Unknown");
+        internal static string Unknown => Loc.Localize("Generics.Unknown", "Unknown");
+        internal static string Unspecified => Loc.Localize("Generics.Unspecified", "Unspecified");
+        internal static string None => Loc.Localize("Generics.None", "None");
     }
 
     /// <summary>
@@ -101,12 +104,11 @@ namespace KikoGuide.Localization
     /// </summary>
     internal static class TGuideViewer
     {
-        internal static string NoInfoAvailable => Loc.Localize("GuideViewer.NoInfoAvailable", "There is no information available for this guide right now.");
+        internal static string NoGuideInfoAvailable => Loc.Localize("GuideViewer.NoGuideInfoAvailable", "There is no information available for this guide right now.");
+        internal static string NoPhaseInfoAvailable => Loc.Localize("GuideViewer.NoPhaseInfoAvailable", "There is no information available for this phase right now.");
         internal static string ReportIssueWithGuide => Loc.Localize("GuideViewer.ReportIssueWithGuide", "Report issue with guide");
         internal static string UnlockWindowMovement => Loc.Localize("GuideViewer.UnlockWindowMovement", "Unlock window");
         internal static string LockWindowMovement => Loc.Localize("GuideViewer.LockWindowMovement", "Lock window");
-        internal static string UnlockWindowResize => Loc.Localize("GuideViewer.UnlockWindowResize", "Unlock window resize");
-        internal static string LockWindowResize => Loc.Localize("GuideViewer.LockWindowResize", "Lock window resize");
         internal static string ToggleSettingsWindow => Loc.Localize("GuideViewer.ToggleSettingsWindow", "Toggle settings window");
         internal static string GuideHeading(string guideName) => string.Format(Loc.Localize("GuideViewer.GuideHeading", "Guide for {0}"), guideName);
         internal static string NoGuideSelected => Loc.Localize("GuideViewer.NoGuideSelected", "No guide selected, use /kikolist to see all available guides.");

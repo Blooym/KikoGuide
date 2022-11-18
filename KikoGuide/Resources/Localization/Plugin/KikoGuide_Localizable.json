@@ -17,19 +17,19 @@
   },
   "Window.Settings": {
     "message": "{0} - Settings",
-    "description": "TWindowNames..cctor"
+    "description": "TWindowNames.get_Settings"
   },
   "Window.GuideList": {
     "message": "{0} - Guide List",
-    "description": "TWindowNames..cctor"
+    "description": "TWindowNames.get_GuideList"
   },
   "Window.GuideViewer": {
     "message": "{0} - Guide Viewer",
-    "description": "TWindowNames..cctor"
+    "description": "TWindowNames.get_GuideViewer"
   },
   "Window.GuideEditor": {
     "message": "{0} - Guide Editor",
-    "description": "TWindowNames..cctor"
+    "description": "TWindowNames.get_GuideEditor"
   },
   "Generics.Donate": {
     "message": "Donate",
@@ -59,6 +59,18 @@
     "message": "Mechanic",
     "description": "TGenerics.get_Mechanic"
   },
+  "Generics.Mechanics": {
+    "message": "Mechanics",
+    "description": "TGenerics.get_Mechanics"
+  },
+  "Generics.Strategy": {
+    "message": "Strategy",
+    "description": "TGenerics.get_Strategy"
+  },
+  "Generics.Notes": {
+    "message": "Notes",
+    "description": "TGenerics.get_Notes"
+  },
   "Generics.Description": {
     "message": "Description",
     "description": "TGenerics.get_Description"
@@ -78,6 +90,26 @@
   "Generics.Disabled": {
     "message": "Disabled",
     "description": "TGenerics.get_Disabled"
+  },
+  "Generics.Unknown": {
+    "message": "Unknown",
+    "description": "TGenerics.get_Unknown"
+  },
+  "Generics.Unspecified": {
+    "message": "Unspecified",
+    "description": "TGenerics.get_Unspecified"
+  },
+  "Generics.None": {
+    "message": "None",
+    "description": "TGenerics.get_None"
+  },
+  "Types.Duty.Name.None": {
+    "message": "Unnamed Guide",
+    "description": "TGuide.get_DutyUnnamed"
+  },
+  "Guide.NoStrategy": {
+    "message": "No strategy available.",
+    "description": "TGuide.get_NoStrategy"
   },
   "Editor.Problems": {
     "message": "Problems",
@@ -183,9 +215,13 @@
     "message": "Enable or disable integrations with other plugins. Please note that the plugin(s) must be installed for the integration to work.",
     "description": "TSettings.get_EnabledIntegrationsTooltip"
   },
-  "GuideViewer.NoInfoAvailable": {
+  "GuideViewer.NoGuideInfoAvailable": {
     "message": "There is no information available for this guide right now.",
-    "description": "TGuideViewer.get_NoInfoAvailable"
+    "description": "TGuideViewer.get_NoGuideInfoAvailable"
+  },
+  "GuideViewer.NoPhaseInfoAvailable": {
+    "message": "There is no information available for this phase right now.",
+    "description": "TGuideViewer.get_NoPhaseInfoAvailable"
   },
   "GuideViewer.ReportIssueWithGuide": {
     "message": "Report issue with guide",
@@ -198,14 +234,6 @@
   "GuideViewer.LockWindowMovement": {
     "message": "Lock window",
     "description": "TGuideViewer.get_LockWindowMovement"
-  },
-  "GuideViewer.UnlockWindowResize": {
-    "message": "Unlock window resize",
-    "description": "TGuideViewer.get_UnlockWindowResize"
-  },
-  "GuideViewer.LockWindowResize": {
-    "message": "Lock window resize",
-    "description": "TGuideViewer.get_LockWindowResize"
   },
   "GuideViewer.ToggleSettingsWindow": {
     "message": "Toggle settings window",
@@ -222,6 +250,14 @@
   "GuideViewer.GuideInfoNotUnlocked": {
     "message": "You cannot view the guide for this duty as you have not unlocked it yet.",
     "description": "TGuideViewer.get_GuideNotUnlocked"
+  },
+  "GuideViewer.GuideAvailableForDuty": {
+    "message": "A guide is available for this duty, use /kikoinfo to view it.",
+    "description": "TGuideViewer.get_GuideAvailableForDuty"
+  },
+  "GuideViewer.Lore": {
+    "message": "Lore",
+    "description": "TGuideViewer.get_Lore"
   },
   "GuideListTable.NoneFoundForType": {
     "message": "No guides found for this duty type.",
@@ -246,10 +282,6 @@
   "GuideListTable.NoGuidesFilesDetected": {
     "message": "No guide files were detected, please check your installation.",
     "description": "TGuideListTable.get_NoGuidesFilesDetected"
-  },
-  "Types.Duty.Name.None": {
-    "message": "Unnamed Guide",
-    "description": "TGuide..cctor"
   },
   "IPC.Wotsit.OpenGuideList": {
     "message": "Open Guide List",
