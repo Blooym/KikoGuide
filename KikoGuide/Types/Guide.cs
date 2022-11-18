@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using KikoGuide.Attributes;
+using KikoGuide.Localization;
 using Newtonsoft.Json;
 
 namespace KikoGuide.Types
@@ -66,6 +67,11 @@ namespace KikoGuide.Types
         public List<uint> TerritoryIDs = new();
 
         /// <summary>
+        ///     The lore for the duty.
+        /// </summary>
+        public string? Lore;
+
+        /// <summary>
         ///     The guide section data.
         /// </summary>
         public List<Section>? Sections;
@@ -103,7 +109,7 @@ namespace KikoGuide.Types
                 /// <summary>
                 ///     The strategy for the phase.
                 /// </summary>
-                public string Strategy = string.Empty;
+                public string Strategy = TGuide.NoStrategy;
 
                 /// <summary>
                 ///     The short strategy for the phase.

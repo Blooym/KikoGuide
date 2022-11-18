@@ -24,14 +24,11 @@ namespace KikoGuide.UI.Windows.GuideViewer
             this.Size = new Vector2(380, 420);
             this.SizeCondition = ImGuiCond.FirstUseEver;
 
-            if (GuideViewerPresenter.Configuration.Display.PreventGuideViewerMovement)
+            if (GuideViewerPresenter.Configuration.Display.LockGuideViewerWindow)
             {
                 this.Flags |= ImGuiWindowFlags.NoMove;
-            }
-
-            if (GuideViewerPresenter.Configuration.Display.PreventGuideViewerResize)
-            {
                 this.Flags |= ImGuiWindowFlags.NoResize;
+                this.RespectCloseHotkey = false;
             }
         }
 
@@ -66,7 +63,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
             { ImGui.SameLine(); this.DrawHeaderButtons(); }
             ImGui.Separator();
 
-            // No guide sections for this guide, cannot show anything.
+            // Draw guide sections.
             if (guide.Sections == null || guide.Sections.Count == 0 || !guide.IsSupported())
             {
                 ImGui.TextWrapped(TGuideViewer.NoInfoAvailable);
@@ -77,14 +74,14 @@ namespace KikoGuide.UI.Windows.GuideViewer
 
         private void DrawHeaderButtons()
         {
-            var guideWindowNoMove = GuideViewerPresenter.Configuration.Display.PreventGuideViewerMovement;
-            var guideWindowNoResize = GuideViewerPresenter.Configuration.Display.PreventGuideViewerResize;
-            var issueReportUrl = $"{PluginConstants.RepoUrl}/issues/new?labels=type+|+guide-problem&template=guide_issue_report.yaml&title=Guide+Issue+Report%3A+{this.Presenter?.SelectedGuide?.Name} (PluginVer. {GuideViewerPresenter.PluginVersion})";
+            var guideWindowNoMove = GuideViewerPresenter.Configuration.Display.LockGuideViewerWindow;
 
+            // Report issue button.
             ImGui.SameLine();
-            if (this.Presenter?.SelectedGuide != null)
+            if (this.Presenter?.SelectedGuide != null && this.Presenter.SelectedGuide.Sections != null && this.Presenter.SelectedGuide.Sections.Count > 0)
             {
-                ImGui.SetCursorPosX(ImGui.GetWindowWidth() - 160);
+                var issueReportUrl = $"{PluginConstants.RepoUrl}/issues/new?labels=type+|+guide-problem&template=guide_issue_report.yaml&title=Guide+Issue+Report%3A+{this.Presenter?.SelectedGuide?.Name} (PluginVer. {GuideViewerPresenter.PluginVersion})";
+                ImGui.SetCursorPosX(ImGui.GetWindowWidth() - 100);
                 if (ImGuiComponents.IconButton(FontAwesomeIcon.Flag))
                 {
                     Util.OpenLink(issueReportUrl);
@@ -94,26 +91,22 @@ namespace KikoGuide.UI.Windows.GuideViewer
             }
             else
             {
-                ImGui.SetCursorPosX(ImGui.GetWindowWidth() - 120);
+                ImGui.SetCursorPosX(ImGui.GetWindowWidth() - 70);
             }
 
+            // Lock button.
+            ImGui.SameLine();
             if (ImGuiComponents.IconButton(guideWindowNoMove ? FontAwesomeIcon.Lock : FontAwesomeIcon.Unlock))
             {
                 this.Flags ^= ImGuiWindowFlags.NoMove;
-                GuideViewerPresenter.Configuration.Display.PreventGuideViewerMovement ^= true;
+                this.Flags ^= ImGuiWindowFlags.NoResize;
+                this.RespectCloseHotkey = !this.RespectCloseHotkey;
+                GuideViewerPresenter.Configuration.Display.LockGuideViewerWindow ^= true;
                 GuideViewerPresenter.Configuration.Save();
             }
             Common.AddTooltip(guideWindowNoMove ? TGuideViewer.UnlockWindowMovement : TGuideViewer.LockWindowMovement);
 
-            ImGui.SameLine();
-            if (ImGuiComponents.IconButton(guideWindowNoResize ? FontAwesomeIcon.Compress : FontAwesomeIcon.Expand))
-            {
-                this.Flags ^= ImGuiWindowFlags.NoResize;
-                GuideViewerPresenter.Configuration.Display.PreventGuideViewerResize ^= true;
-                GuideViewerPresenter.Configuration.Save();
-            }
-            Common.AddTooltip(guideWindowNoResize ? TGuideViewer.LockWindowResize : TGuideViewer.UnlockWindowResize);
-
+            // Settings button.
             ImGui.SameLine();
             if (ImGuiComponents.IconButton(FontAwesomeIcon.Cog))
             {

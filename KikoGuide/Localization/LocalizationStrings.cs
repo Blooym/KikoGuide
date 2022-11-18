@@ -37,12 +37,23 @@ namespace KikoGuide.Localization
         internal static string Guide => Loc.Localize("Generics.Guide", "Guide");
         internal static string InDuty => Loc.Localize("Generics.InDuty", "In Duty");
         internal static string Mechanic => Loc.Localize("Generics.Mechanic", "Mechanic");
+        internal static string Mechanics => Loc.Localize("Generics.Mechanics", "Mechanics");
+        internal static string Strategy => Loc.Localize("Generics.Strategy", "Strategy");
         internal static string Description => Loc.Localize("Generics.Description", "Description");
         internal static string Level => Loc.Localize("Generics.Level", "Level");
         internal static string Type => Loc.Localize("Generics.Type", "Type");
         internal static string Enabled => Loc.Localize("Generics.Enabled", "Enabled");
         internal static string Disabled => Loc.Localize("Generics.Disabled", "Disabled");
         internal static string Unkown => Loc.Localize("Generics.Unknown", "Unknown");
+    }
+
+    /// <summary>
+    ///     Translation strings used for the Guide type.
+    /// </summary>
+    internal static class TGuide
+    {
+        internal static string DutyUnnamed => Loc.Localize("Types.Duty.Name.None", "Unnamed Guide");
+        internal static string NoStrategy => Loc.Localize("Guide.NoStrategy", "No strategy available.");
     }
 
     /// <summary>
@@ -92,8 +103,8 @@ namespace KikoGuide.Localization
     {
         internal static string NoInfoAvailable => Loc.Localize("GuideViewer.NoInfoAvailable", "There is no information available for this guide right now.");
         internal static string ReportIssueWithGuide => Loc.Localize("GuideViewer.ReportIssueWithGuide", "Report issue with guide");
-        internal static string UnlockWindowMovement => Loc.Localize("GuideViewer.UnlockWindowMovement", "Unlock window movement");
-        internal static string LockWindowMovement => Loc.Localize("GuideViewer.LockWindowMovement", "Lock window movement");
+        internal static string UnlockWindowMovement => Loc.Localize("GuideViewer.UnlockWindowMovement", "Unlock window");
+        internal static string LockWindowMovement => Loc.Localize("GuideViewer.LockWindowMovement", "Lock window");
         internal static string UnlockWindowResize => Loc.Localize("GuideViewer.UnlockWindowResize", "Unlock window resize");
         internal static string LockWindowResize => Loc.Localize("GuideViewer.LockWindowResize", "Lock window resize");
         internal static string ToggleSettingsWindow => Loc.Localize("GuideViewer.ToggleSettingsWindow", "Toggle settings window");
@@ -101,6 +112,7 @@ namespace KikoGuide.Localization
         internal static string NoGuideSelected => Loc.Localize("GuideViewer.NoGuideSelected", "No guide selected, use /kikolist to see all available guides.");
         internal static string GuideNotUnlocked => Loc.Localize("GuideViewer.GuideInfoNotUnlocked", "You cannot view the guide for this duty as you have not unlocked it yet.");
         internal static string GuideAvailableForDuty => Loc.Localize("GuideViewer.GuideAvailableForDuty", "A guide is available for this duty, use /kikoinfo to view it.");
+        internal static string Lore => Loc.Localize("GuideViewer.Lore", "Lore");
     }
 
     /// <summary>
@@ -114,13 +126,5 @@ namespace KikoGuide.Localization
         internal static string UnsupportedGuide(string guideName) => string.Format(Loc.Localize("GuideListTable.UnsupportedGuide", "The guide for {0} is for a different version of the plugin and cannot be loaded yet"), guideName);
         internal static string NoGuideData(string guideName) => string.Format(Loc.Localize("GuideListTable.NoGuideData", "There is no data for {0} yet."), guideName);
         internal static string NoGuidesFilesDetected => Loc.Localize("GuideListTable.NoGuidesFilesDetected", "No guide files were detected, please check your installation.");
-    }
-
-    /// <summary>
-    ///     Translation strings used in the guide type.
-    /// </summary>
-    internal static class TGuide
-    {
-        internal static string DutyUnnamed => Loc.Localize("Types.Duty.Name.None", "Unnamed Guide");
     }
 }

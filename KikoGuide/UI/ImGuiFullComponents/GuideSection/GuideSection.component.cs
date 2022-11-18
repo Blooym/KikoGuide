@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ImGuiNET;
+using KikoGuide.Localization;
 using KikoGuide.Types;
 using KikoGuide.UI.ImGuiBasicComponents;
 using KikoGuide.UI.ImGuiFullComponents.MechanicTable;
@@ -36,8 +37,9 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
                                 {
                                     if (ImGui.BeginTabItem($"Phase {phase.TitleOverride ?? (section.Phases.IndexOf(phase) + 1).ToString()}"))
                                     {
-                                        ImGui.BeginChild("##GuideSectionComponentPhaseTabsChild");
+                                        ImGui.BeginChild($"##GuideSectionComponentPhaseTabsChild#{section.Name}{section.Phases.IndexOf(phase)}");
 
+                                        Common.TextHeading(TGenerics.Strategy);
                                         if (
                                             phase.StrategyShort != null && phase.Strategy != string.Empty &&
                                             GuideSectionPresenter.Configuration.Accessiblity.ShortenGuideText
@@ -52,6 +54,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
 
                                         if (phase.Mechanics != null)
                                         {
+                                            Common.TextHeading(TGenerics.Mechanics);
                                             MechanicTableComponent.Draw(phase.Mechanics);
                                         }
 

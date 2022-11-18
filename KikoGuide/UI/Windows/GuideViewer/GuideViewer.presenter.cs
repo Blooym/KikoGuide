@@ -41,7 +41,8 @@ namespace KikoGuide.UI.Windows.GuideViewer
         /// <summary>
         ///     The currently selected guide to show in the GuideViewer window.
         /// </summary>
-        internal Guide? SelectedGuide;
+        // when set, the lore menu will be closed.
+        internal Guide? SelectedGuide { get; set; }
 
         /// <summary>
         ///     Last auto-selected guide.

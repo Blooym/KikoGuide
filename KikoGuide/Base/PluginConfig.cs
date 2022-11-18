@@ -51,12 +51,7 @@ namespace KikoGuide.Base
             /// <summary>
             ///     Whether or not to lock the position of the Guide viewer window.
             /// </summary>
-            public bool PreventGuideViewerMovement { get; set; }
-
-            /// <summary>
-            ///     Whether or not to prevnet resizing of the Guide viewer window.
-            /// </summary>
-            public bool PreventGuideViewerResize { get; set; }
+            public bool LockGuideViewerWindow { get; set; }
 
             /// <summary>
             ///     Mechanics that are hidden when drawing the UI.

@@ -192,11 +192,11 @@
     "description": "TGuideViewer.get_ReportIssueWithGuide"
   },
   "GuideViewer.UnlockWindowMovement": {
-    "message": "Unlock window movement",
+    "message": "Unlock window",
     "description": "TGuideViewer.get_UnlockWindowMovement"
   },
   "GuideViewer.LockWindowMovement": {
-    "message": "Lock window movement",
+    "message": "Lock window",
     "description": "TGuideViewer.get_LockWindowMovement"
   },
   "GuideViewer.UnlockWindowResize": {
