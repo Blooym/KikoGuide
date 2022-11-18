@@ -76,6 +76,9 @@ It is **highly recommended** to use the guide editor that is apart of KikoGuide,
       - `Description`: The description of the mechanic
       - `ShortDescription`: The short description of the mechanic used when enabled in the settings
       - `Type`: The type of mechanic
+    - `Notes`:
+      - `Text`: The text of the note
+      - `TextShort`: The shortened text of the note
 
 When writing descriptions of mechanics or sections, please try to keep in mind the terminology the player may or may not be aware of at the given level, it is good practice to explain things if you believe the player may be unsure. It is also **highly** requested that you provide "short" versions of all explainations in the given fields (eg. "StrategyShort", "ShortDescription") as it helps make guides more accessabile to readers.
 
