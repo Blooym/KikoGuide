@@ -75,12 +75,13 @@ namespace KikoGuide.UI.Windows.GuideViewer
         private void DrawHeaderButtons()
         {
             var guideWindowNoMove = GuideViewerPresenter.Configuration.Display.LockGuideViewerWindow;
+            var guide = this.Presenter.SelectedGuide;
 
             // Report issue button.
             ImGui.SameLine();
-            if (this.Presenter?.SelectedGuide != null && this.Presenter.SelectedGuide.Sections != null && this.Presenter.SelectedGuide.Sections.Count > 0)
+            if (guide != null && guide.Sections != null && guide.Sections.Count > 0)
             {
-                var issueReportUrl = $"{PluginConstants.RepoUrl}/issues/new?labels=type+|+guide-problem&template=guide_issue_report.yaml&title=Guide+Issue+Report%3A+{this.Presenter?.SelectedGuide?.Name} (PluginVer. {GuideViewerPresenter.PluginVersion})";
+                var issueReportUrl = $"{PluginConstants.RepoUrl}/issues/new?labels=type+|+guide-problem&template=guide_issue_report.yaml&title=Guide+Issue+Report%3A+{guide.Name} (PluginVer. {GuideViewerPresenter.PluginVersion})";
                 ImGui.SetCursorPosX(ImGui.GetWindowWidth() - 100);
                 if (ImGuiComponents.IconButton(FontAwesomeIcon.Flag))
                 {

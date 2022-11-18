@@ -65,12 +65,17 @@ namespace KikoGuide.Types
         /// <summary>
         ///     The duty's TerritoryIDs(s).
         /// </summary>
-        public List<uint> TerritoryIDs = new();
+        public uint[] TerritoryIDs = Array.Empty<uint>();
 
         /// <summary>
         ///     The lore for the duty.
         /// </summary>
         public string? Lore;
+
+        /// <summary>
+        ///     The guide's writers.
+        /// </summary>
+        public string[]? Writers = Array.Empty<string>();
 
         /// <summary>
         ///     The guide section data.

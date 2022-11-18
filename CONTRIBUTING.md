@@ -64,6 +64,8 @@ It is **highly recommended** to use the guide editor that is apart of KikoGuide,
 - `Level`: The level of the duty in-game
 - `UnlockQuestID`: The [quest ID](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/Quest.csv) that unlocks the duty
 - `TerritoryIDs`: The territory ID(s) to automatically open the guide for
+- `Lore`: The lore of the duty or location
+- `Writers`: The writers of the guide (if you are writing or editing a guide in a substantial way, feel free to add your username here. Do not add your in-game name)
 - `Sections`: The sections of the guide
   - `Type`: The type of section
   - `Name`: The name of the section (usually the name of the boss)
