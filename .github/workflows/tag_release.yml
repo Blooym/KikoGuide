@@ -1,5 +1,3 @@
-# This workflow outlines tasks that are ran when a new tag is made, typically releasing a new plugin version.
-
 name: "Tag: Release"
 
 on:
@@ -29,10 +27,8 @@ jobs:
 
       - name: Download Dalamud Library
         run: |
-          cd KikoGuide
-          wget -O Dalamud.zip https://goatcorp.github.io/dalamud-distrib/latest.zip
-          unzip -o -d Dalamud Dalamud.zip
-          export IsCI=true
+          wget https://goatcorp.github.io/dalamud-distrib/latest.zip -O /tmp/dalamud.zip
+          unzip /tmp/dalamud.zip -d /tmp/dalamud
 
       - name: Get Tag Name
         id: tag_name
@@ -47,6 +43,9 @@ jobs:
           sha512sum KikoGuide/bin/x64/Release/KikoGuide/latest.zip  >> checksums.txt
           sha512sum KikoGuide/bin/x64/Release/KikoGuide/KikoGuide.json >> checksums.txt
           cat checksums.txt
+        env:
+          DALAMUD_HOME: /tmp/dalamud
+          IsCI: true
 
       - name: Release
         uses: softprops/action-gh-release@v1

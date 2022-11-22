@@ -1,17 +1,14 @@
 name: "PR: Chores"
 
 on:
-  pull_request:
-    branches: [main]
-    types: [ready_for_review, opened, synchronize, reopened]
+  pull_request_target:
 
 jobs:
-  # Label the pull request with its file changes
   Label:
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: write
       contents: read
+      pull-requests: write
     steps:
       - name: Label PR
         uses: actions/labeler@v4
