@@ -17,6 +17,10 @@ A Dalamud plugin that provides players with hand-written guides to duty content.
 ---
 <!-- Repository Header End -->
 
+# Notice
+
+This project has been shelved as it requires more work than one person can realistically manage, and I simply do not have the time to write so many guides alone. As such this plugin has been removed from the Dalamud Plugin Repository for the time being, although it may be worked on again in the future when I have more time, who knows.
+
 
 ## About
 
