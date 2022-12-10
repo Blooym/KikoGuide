@@ -14,8 +14,19 @@ namespace KikoGuide.Managers
     /// </summary>
     internal sealed class ResourceManager : IDisposable
     {
-        internal event ResourceUpdateDelegate? ResourcesUpdated;
-        internal delegate void ResourceUpdateDelegate();
+        /// <summary>
+        ///     The delegate for the ResourceUpdate event.
+        /// </summary>
+        internal delegate void DelegateResourceUpdate();
+
+        /// <summary>
+        ///     The event that is fired when the resources are updated.
+        /// </summary>
+        internal event DelegateResourceUpdate? ResourcesUpdated;
+
+        /// <summary>
+        ///     Whether or not the resources have been initialized yet.
+        /// </summary>
         private bool initialized;
 
         /// <summary>
@@ -27,7 +38,6 @@ namespace KikoGuide.Managers
 
             this.Setup(PluginService.PluginInterface.UiLanguage);
             PluginService.PluginInterface.LanguageChanged += this.Setup;
-            ResourcesUpdated += this.OnResourceUpdate;
 
             PluginLog.Debug("ResourceManager(ResourceManager): Initialization complete.");
         }
@@ -38,7 +48,6 @@ namespace KikoGuide.Managers
         public void Dispose()
         {
             PluginService.PluginInterface.LanguageChanged -= this.Setup;
-            ResourcesUpdated -= this.OnResourceUpdate;
 
             PluginLog.Debug("ResourceManager(Dispose): Successfully disposed.");
         }
@@ -89,20 +98,11 @@ namespace KikoGuide.Managers
                     Directory.Delete($"{Path.GetTempPath()}{repoName}-{PluginConstants.RepoBranch}", true);
                     PluginLog.Information("ResourceManager(Update): Deleted temporary files.");
 
-                    // Broadcast an event indicating that the resources have been updated.
-                    ResourcesUpdated?.Invoke();
+                    // Re-setup resources.
+                    this.Setup(PluginService.PluginInterface.UiLanguage);
                 }
                 catch (Exception e) { PluginLog.Error($"ResourceManager(Update): Error updating resource files: {e.Message}"); }
             }).Start();
-        }
-
-        /// <summary>
-        ///     Handles the OnResourceUpdate event.
-        /// </summary>
-        private void OnResourceUpdate()
-        {
-            PluginLog.Debug("ResourceManager(OnResourceUpdate): Resources updated.");
-            this.Setup(PluginService.PluginInterface.UiLanguage);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace KikoGuide.Managers
 
             if (this.initialized)
             {
-                GuideManager.ClearCache();
+                this.ResourcesUpdated?.Invoke();
             }
 
             try
@@ -124,7 +124,7 @@ namespace KikoGuide.Managers
             catch { Loc.SetupWithFallbacks(); }
 
             this.initialized = true;
-            PluginLog.Information("ResourceManager(Setup): Resources setup.");
+            PluginLog.Debug("ResourceManager(Setup): Resources setup.");
         }
     }
 }

@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "Dzemael Darkhold",
+  "InternalName": "DzemaelDarkhold",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 44,
   "UnlockQuestID": 66515,
-  "TerritoryIDs": [171],
+  "TerritoryIDs": [
+    171
+  ],
   "Sections": [
     {
       "Type": 0,
@@ -54,7 +57,7 @@
             },
             {
               "Name": "Elbow Drop",
-              "Description": "Frontal AoE cone attack that deals large amount of damage. Used when under 50%% HP.",
+              "Description": "Frontal AoE cone attack that deals large amount of damage. Used when under 50% HP.",
               "Type": 2
             }
           ]
@@ -66,7 +69,7 @@
       "Name": "Batraal",
       "Phases": [
         {
-          "Strategy": "Batraal is the final boss of Dzemael Darkhold. This demon has an instant frontal AoE cone attack that deals heavy damage to all targets hit. Be sure to have only the tank face the boss. He has has a long ranged AoE column attack named Desolation that does extremely high damage and will instantly kill most players. Throughout the fight, a purple beam will appear between Batraal and a crystal. Batraal will mark a player with a crosshair and fires Desolation at the target. While Batraal is connected to the crystal, he is invulnerable. Be sure to kill the crystal as soon as possible while dodging Desolations. The player who was targeted should avoid aiming the Desolations at the rest of the party. At around 30%% HP and after the 3rd crystal is destroyed, Batraal will use Hellssend and become enraged. He will start using Desolation at will. Batraal will also spawn black pools under 3 players. Players within the pool will take damage over time. Move out of them immediately. The puddles will occasionally explode and deal high damage to anyone standing in them.",
+          "Strategy": "Batraal is the final boss of Dzemael Darkhold. This demon has an instant frontal AoE cone attack that deals heavy damage to all targets hit. Be sure to have only the tank face the boss. He has has a long ranged AoE column attack named Desolation that does extremely high damage and will instantly kill most players. Throughout the fight, a purple beam will appear between Batraal and a crystal. Batraal will mark a player with a crosshair and fires Desolation at the target. While Batraal is connected to the crystal, he is invulnerable. Be sure to kill the crystal as soon as possible while dodging Desolations. The player who was targeted should avoid aiming the Desolations at the rest of the party. At around 30% HP and after the 3rd crystal is destroyed, Batraal will use Hellssend and become enraged. He will start using Desolation at will. Batraal will also spawn black pools under 3 players. Players within the pool will take damage over time. Move out of them immediately. The puddles will occasionally explode and deal high damage to anyone standing in them.",
           "StrategyShort": "Destroy the crystals that are linked with the purple beam immediately to do damage to Batraal. Avoid standing with the party if you are targeted by Desolation.",
           "Mechanics": [
             {

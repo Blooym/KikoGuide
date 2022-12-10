@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "The Thousand Maws of Toto-Rak",
+  "InternalName": "TheThousandMawsofTotoRak",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 24,
   "UnlockQuestID": 66050,
-  "TerritoryIDs": [1039],
+  "TerritoryIDs": [
+    1039
+  ],
   "Sections": [
     {
       "Type": 1,

@@ -5,12 +5,14 @@
   "Type": 1,
   "Expansion": 0,
   "Level": 50,
-  "TerritoryIDs": [426],
+  "TerritoryIDs": [
+    426
+  ],
   "UnlockQuestID": 65905,
   "Bosses": [
     {
       "Name": "Nabriales (Phase 1)",
-      "Strategy": "At 80%% HP Nabriales will go invulnerable and spawn orbs that move towards him, each orb gives a debuff and players must alternate between purple and grey orbs to avoid taking massive amounts damage, while orbs are moving small adds will spawn and preform large cone AOEs, After all the orbs are gone Nabriales will preform a raidwide with damage increasing per orb that reached him. \n\nAt 40%% Nabriales will repeat the orbs mechanic. \n\nAt 20%% Nabriales 2nd phase will start.",
+      "Strategy": "At 80% HP Nabriales will go invulnerable and spawn orbs that move towards him, each orb gives a debuff and players must alternate between purple and grey orbs to avoid taking massive amounts damage, while orbs are moving small adds will spawn and preform large cone AOEs, After all the orbs are gone Nabriales will preform a raidwide with damage increasing per orb that reached him. \n\nAt 40% Nabriales will repeat the orbs mechanic. \n\nAt 20% Nabriales 2nd phase will start.",
       "Mechanics": [
         {
           "Name": "Spark",
@@ -35,7 +37,7 @@
     },
     {
       "Name": "Nabriales (Phase 3)",
-      "Strategy": "At 19%% HP Nabriales will start recycling moves from phase 1 with the execption of orbs."
+      "Strategy": "At 19% HP Nabriales will start recycling moves from phase 1 with the execption of orbs."
     }
   ]
 }

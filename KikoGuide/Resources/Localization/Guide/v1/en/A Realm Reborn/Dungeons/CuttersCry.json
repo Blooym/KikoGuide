@@ -1,19 +1,22 @@
 {
   "Version": 1,
   "Name": "Cutter's Cry",
+  "InternalName": "CuttersCry",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 38,
   "UnlockQuestID": 66457,
-  "TerritoryIDs": [170],
+  "TerritoryIDs": [
+    170
+  ],
   "Sections": [
     {
       "Type": 0,
       "Name": "Myrmidon Princess",
       "Phases": [
         {
-          "Strategy": "At around 50%% HP Myrmidon Princess will summon 3 types of adds. The recommended add-kill priority is: Myrmidon Marshal first (can cast an ability that heals Myrmidon Princess), Myrmidon Guard second, and Myrmidon Soldiers last.",
+          "Strategy": "At around 50% HP Myrmidon Princess will summon 3 types of adds. The recommended add-kill priority is: Myrmidon Marshal first (can cast an ability that heals Myrmidon Princess), Myrmidon Guard second, and Myrmidon Soldiers last.",
           "Mechanics": [
             {
               "Name": "Mandible Bite",
@@ -81,8 +84,8 @@
       "Name": "Chimera",
       "Phases": [
         {
-          "Strategy": "Occasionally Chimera will use the abilities Ram's Breath and Dragon's Breath. Ram's Breath causes Ice damage and the heavy debuff on the right side of its body and Dragon's Breath causes Thunder damage and the paralysis debuff on the left side of its body. DPS & Healers can stand directly behind Chimera to avoid these cones. Most of Chimera's attacks will paralyze its target, which can be cleansed with Esuna.\n\nAt 75%% HP, the Chimera will begin to use two attacks called Dragon's Voice and Ram's Voice. When Chimera casts Dragon's Voice all players should move close to the boss to avoid damage. When Chimera casts Ram's Voice all players should move away from Chimera to avoid damage.",
-          "StrategyShort": "Ram's Breath (right side) and Dragon's Breath (left side) cause Ice and Thunder damage respectively.\n\nAt 75%% HP, the Chimera will begin to use two attacks called Dragon's Voice and Ram's Voice. When Chimera casts Dragon's Voice all players should move close to the boss to avoid damage. When Chimera casts Ram's Voice all players should move away from Chimera to avoid damage.",
+          "Strategy": "Occasionally Chimera will use the abilities Ram's Breath and Dragon's Breath. Ram's Breath causes Ice damage and the heavy debuff on the right side of its body and Dragon's Breath causes Thunder damage and the paralysis debuff on the left side of its body. DPS & Healers can stand directly behind Chimera to avoid these cones. Most of Chimera's attacks will paralyze its target, which can be cleansed with Esuna.\n\nAt 75% HP, the Chimera will begin to use two attacks called Dragon's Voice and Ram's Voice. When Chimera casts Dragon's Voice all players should move close to the boss to avoid damage. When Chimera casts Ram's Voice all players should move away from Chimera to avoid damage.",
+          "StrategyShort": "Ram's Breath (right side) and Dragon's Breath (left side) cause Ice and Thunder damage respectively.\n\nAt 75% HP, the Chimera will begin to use two attacks called Dragon's Voice and Ram's Voice. When Chimera casts Dragon's Voice all players should move close to the boss to avoid damage. When Chimera casts Ram's Voice all players should move away from Chimera to avoid damage.",
           "Mechanics": [
             {
               "Name": "Ram's Breath",

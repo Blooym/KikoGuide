@@ -9,10 +9,10 @@ using KikoGuide.UI.ImGuiFullComponents.MechanicHiderCombo;
 
 namespace KikoGuide.UI.Windows.Settings
 {
-    public sealed class SettingsWindow : Window, IDisposable
+    internal sealed class SettingsWindow : Window, IDisposable
     {
         internal SettingsPresenter Presenter;
-        public SettingsWindow() : base(TWindowNames.Settings)
+        internal SettingsWindow() : base(TWindowNames.Settings)
         {
             this.SizeConstraints = new WindowSizeConstraints
             {

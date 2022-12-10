@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "The Stone Vigil",
+  "InternalName": "TheStoneVigilHard",
   "Difficulty": 1,
   "Type": 0,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 67061,
-  "TerritoryIDs": [365],
+  "TerritoryIDs": [
+    365
+  ],
   "Sections": [
     {
       "Type": 1,

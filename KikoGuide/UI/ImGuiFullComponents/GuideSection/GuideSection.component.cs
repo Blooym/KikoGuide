@@ -18,7 +18,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
         ///     Draws the guide sections for the given guide.
         /// </summary>
         /// <param name="sections"></param>
-        public static void Draw(List<Guide.Section> sections)
+        internal static void Draw(List<Guide.Section> sections)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
                         {
                             if (section.Phases == null || section.Phases.Count == 0)
                             {
-                                Colours.TextWrappedColoured(Colours.Warning, "No phase data found for this section.");
+                                ImGui.TextWrapped("No phase data found for this section.");
                             }
 
                             else if (ImGui.BeginTabBar("##GuideSectionComponentPhaseTabs", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton))
@@ -50,15 +50,15 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
 
                                             if (GuideSectionPresenter.Configuration.Accessiblity.ShortenGuideText && !string.IsNullOrEmpty(phase.StrategyShort?.Trim()))
                                             {
-                                                ImGui.TextWrapped(phase.StrategyShort);
+                                                Common.TextWrappedUnformatted(phase.StrategyShort);
                                             }
                                             else if (string.IsNullOrEmpty(phase.Strategy?.Trim()) && !string.IsNullOrEmpty(phase.StrategyShort?.Trim()))
                                             {
-                                                ImGui.TextWrapped(phase.StrategyShort);
+                                                Common.TextWrappedUnformatted(phase.StrategyShort);
                                             }
                                             else
                                             {
-                                                ImGui.TextWrapped(phase.Strategy);
+                                                Common.TextWrappedUnformatted(phase.Strategy ?? string.Empty);
                                             }
                                             hasContent = true;
                                         }
@@ -72,29 +72,29 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideSection
                                             hasContent = true;
                                         }
 
-                                        // Draw notes
-                                        if (phase.Notes != null && phase.Notes.Count > 0)
+                                        // Draw tips
+                                        if (phase.Tips != null && phase.Tips.Count > 0)
                                         {
                                             ImGui.Dummy(new Vector2(0, 5));
-                                            Common.TextHeading(TGenerics.Notes);
-                                            foreach (var note in phase.Notes)
+                                            Common.TextHeading(TGenerics.Tips);
+                                            foreach (var tip in phase.Tips)
                                             {
-                                                if (string.IsNullOrEmpty(note.Text?.Trim()) && string.IsNullOrEmpty(note.TextShort?.Trim()))
+                                                if (string.IsNullOrEmpty(tip.Text?.Trim()) && string.IsNullOrEmpty(tip.TextShort?.Trim()))
                                                 {
                                                     continue;
                                                 }
 
-                                                if (GuideSectionPresenter.Configuration.Accessiblity.ShortenGuideText && !string.IsNullOrEmpty(note.TextShort?.Trim()))
+                                                if (GuideSectionPresenter.Configuration.Accessiblity.ShortenGuideText && !string.IsNullOrEmpty(tip.TextShort?.Trim()))
                                                 {
-                                                    ImGui.TextWrapped($"- {note.TextShort}");
+                                                    ImGui.TextWrapped($"- {tip.TextShort}");
                                                 }
-                                                else if (string.IsNullOrEmpty(note.Text?.Trim()) && !string.IsNullOrEmpty(note.TextShort?.Trim()))
+                                                else if (string.IsNullOrEmpty(tip.Text?.Trim()) && !string.IsNullOrEmpty(tip.TextShort?.Trim()))
                                                 {
-                                                    ImGui.TextWrapped($"- {note.TextShort}");
+                                                    ImGui.TextWrapped($"- {tip.TextShort}");
                                                 }
                                                 else
                                                 {
-                                                    ImGui.TextWrapped($"- {note.Text}");
+                                                    ImGui.TextWrapped($"- {tip.Text}");
                                                 }
                                             }
 

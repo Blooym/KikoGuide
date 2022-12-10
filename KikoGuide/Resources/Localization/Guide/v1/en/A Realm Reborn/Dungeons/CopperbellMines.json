@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "Copperbell Mines",
+  "InternalName": "CopperbellMines",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 17,
   "UnlockQuestID": 66196,
-  "TerritoryIDs": [1038],
+  "TerritoryIDs": [
+    1038
+  ],
   "Sections": [
     {
       "Type": 0,
@@ -44,7 +47,7 @@
       "Name": "Ichorous Ire",
       "Phases": [
         {
-          "Strategy": "Will occasionally split off into multiple Ichorous Drips below 50%% HP, which will each explode after a short time.",
+          "Strategy": "Will occasionally split off into multiple Ichorous Drips below 50% HP, which will each explode after a short time.",
           "Mechanics": [
             {
               "Name": "Fluid Spread",
@@ -70,7 +73,7 @@
       "Name": "Gyges the Great",
       "Phases": [
         {
-          "Strategy": "Will occasionally split off into multiple Ichorous Drips below 50%% HP, which will each explode after a short time.",
+          "Strategy": "Will occasionally split off into multiple Ichorous Drips below 50% HP, which will each explode after a short time.",
           "Mechanics": [
             {
               "Name": "Grand Slam",

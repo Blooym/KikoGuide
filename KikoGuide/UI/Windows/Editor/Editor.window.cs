@@ -14,10 +14,10 @@ using KikoGuide.UI.ImGuiFullComponents.GuideSection;
 
 namespace KikoGuide.UI.Windows.Editor
 {
-    public sealed class EditorWindow : Window, IDisposable
+    internal sealed class EditorWindow : Window, IDisposable
     {
         internal EditorPresenter Presenter = new();
-        public EditorWindow() : base(TWindowNames.GuideEditor)
+        internal EditorWindow() : base(TWindowNames.GuideEditor)
         {
             this.Flags |= ImGuiWindowFlags.NoScrollbar;
             this.Flags |= ImGuiWindowFlags.NoScrollWithMouse;
@@ -190,7 +190,7 @@ namespace KikoGuide.UI.Windows.Editor
                     if (guide != null)
                     {
                         ImGui.TextWrapped($"Version: {guide.Version}");
-                        ImGui.TextWrapped($"Name: {guide.Name} (Canonical: {guide.CanonicalName})");
+                        ImGui.TextWrapped($"Name: {guide.Name} (Canonical: {guide.GetCanonicalName()})");
                         ImGui.TextWrapped($"Type: {guide.Type.GetNameAttribute()}");
                         ImGui.TextWrapped($"Difficulty: {guide.Difficulty.GetNameAttribute()}");
                         ImGui.TextWrapped($"Level: {guide.Level}");

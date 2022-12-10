@@ -1,16 +1,19 @@
 {
   "Version": 0,
   "Name": "The Bowl of Embers",
+  "InternalName": "TheBowlOfEmbers",
   "Difficulty": 0,
   "Type": 1,
   "Expansion": 0,
   "Level": 20,
   "UnlockQuestID": 65879,
-  "TerritoryIDs": [1045],
+  "TerritoryIDs": [
+    1045
+  ],
   "Bosses": [
     {
       "Name": "Ifrit",
-      "Strategy": "Most of this fights mechanics are usually skipped due to the high amount of damage dealt from the party.\n\nBelow 75%% HP: Ifrit will periodically use Eruption.\n\nBelow 50%% HP: Ifrit will spawn an infernal nail that should be destroyed.\n\nBelow 25%% HP: Eruption will create non-targeted AoEs.",
+      "Strategy": "Most of this fights mechanics are usually skipped due to the high amount of damage dealt from the party.\n\nBelow 75% HP: Ifrit will periodically use Eruption.\n\nBelow 50% HP: Ifrit will spawn an infernal nail that should be destroyed.\n\nBelow 25% HP: Eruption will create non-targeted AoEs.",
       "Mechanics": [
         {
           "Name": "Eruption",

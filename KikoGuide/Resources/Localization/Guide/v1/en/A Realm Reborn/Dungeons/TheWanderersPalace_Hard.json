@@ -1,12 +1,15 @@
 {
   "Version": 0,
   "Name": "The Wanderer's Palace",
+  "InternalName": "TheWanderersPalaceHard",
   "Difficulty": 1,
   "Type": 0,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 65967,
-  "TerritoryIDs": [188],
+  "TerritoryIDs": [
+    188
+  ],
   "Sections": [
     {
       "Type": 1,

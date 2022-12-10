@@ -24,6 +24,7 @@ namespace KikoGuide.Base
         internal static ResourceManager ResourceManager { get; private set; }
         internal static Configuration Configuration { get; private set; }
         internal static IPCLoader IPC { get; private set; }
+        internal static GuideManager GuideManager { get; private set; }
 #pragma warning restore CS8618, RCS1170
 
         /// <summary>
@@ -33,6 +34,7 @@ namespace KikoGuide.Base
         {
             ResourceManager = new ResourceManager();
             Configuration = PluginInterface?.GetPluginConfig() as Configuration ?? new Configuration();
+            GuideManager = new GuideManager();
             WindowManager = new WindowManager();
             CommandManager = new CommandManager();
             IPC = new IPCLoader();

@@ -58,6 +58,8 @@ It is **highly recommended** to use the guide editor that is apart of KikoGuide,
 ##### Guide JSON File Keys
 - `Version`: The duty file version, do not change this manually.
 - `Name`: The name of the duty
+- `Disabled`: Whether or not this guide is disabled and should not be loaded.
+- `Hidden`: Whether or not this guide should be hidden from the guide UI, still accessible through auto load when entering the territory ID.
 - `Difficulty`: The difficulty ID of the duty
 - `Type`: The type ID of the duty
 - `Expansion`: The expansion ID of the duty
@@ -65,7 +67,7 @@ It is **highly recommended** to use the guide editor that is apart of KikoGuide,
 - `UnlockQuestID`: The [quest ID](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/Quest.csv) that unlocks the duty
 - `TerritoryIDs`: The territory ID(s) to automatically open the guide for
 - `Lore`: The lore of the duty or location
-- `Writers`: The writers of the guide (if you are writing or editing a guide in a substantial way, feel free to add your username here. Do not add your in-game name)
+- `Authors`: The authors of the guide (if you are writing or editing a guide in a substantial way, feel free to add your username here. Do not add your in-game name)
 - `Sections`: The sections of the guide
   - `Type`: The type of section
   - `Name`: The name of the section (usually the name of the boss)
@@ -78,7 +80,7 @@ It is **highly recommended** to use the guide editor that is apart of KikoGuide,
       - `Description`: The description of the mechanic
       - `ShortDescription`: The short description of the mechanic used when enabled in the settings
       - `Type`: The type of mechanic
-    - `Notes`:
+    - `Tips`:
       - `Text`: The text of the note
       - `TextShort`: The shortened text of the note
 
@@ -87,7 +89,6 @@ When writing descriptions of mechanics or sections, please try to keep in mind t
 #### Formatting Tips
 - `\n` will act as a new line, you can use `\n\n` to start a new paragraph with a space inbetween.
 - `\t` will act as a tab space.
-- `%%` will show up as a single percent symbol, single percent symbols do not show.
 
 #### Guide Enums (DutyType, MechanicTypes, DutyDifficulty, etc)
 You can find all internal IDs used for identifying duty data inside of the [Guide Type](KikoGuide/Types/Guide.cs) of the repository or inside of the in-game editor (`/kikoeditor`)

@@ -11,7 +11,7 @@ namespace KikoGuide.IPC
     /// <summary>
     ///     Controls all IPC providers and handles loading and unloading them.
     /// </summary>
-    public sealed class IPCLoader : IDisposable
+    internal sealed class IPCLoader : IDisposable
     {
         /// <summary>
         ///     All of the currently registered IPC providers alongside their ID.
@@ -21,7 +21,7 @@ namespace KikoGuide.IPC
         /// <summary>
         ///     Initializes the IPCLoader and loads all enabled IPC providers.
         /// </summary>
-        public IPCLoader()
+        internal IPCLoader()
         {
             PluginLog.Debug("IPCLoader(Constructor): Beginning detection of IPC providers");
 
@@ -75,13 +75,13 @@ namespace KikoGuide.IPC
         /// </summary>
         /// <param name="provider">The provider to check.</param>
         /// <returns>True if the provider is enabled, false otherwise.</returns>
-        public bool GetStatus(IPCProviders provider) => this.ipcProviders.ContainsKey(provider);
+        internal bool GetStatus(IPCProviders provider) => this.ipcProviders.ContainsKey(provider);
 
         /// <summary>
         ///     Enables an IPC provider.
         /// </summary>
         /// <param name="provider">The provider to enable.</param>
-        public void EnableProvider(IPCProviders provider)
+        internal void EnableProvider(IPCProviders provider)
         {
             if (this.ipcProviders.ContainsKey(provider))
             {
@@ -111,7 +111,7 @@ namespace KikoGuide.IPC
         ///     Disables an IPC provider.
         /// </summary>
         /// <param name="provider">The provider to disable.</param>
-        public void DisableProvider(IPCProviders provider)
+        internal void DisableProvider(IPCProviders provider)
         {
             if (!this.ipcProviders.ContainsKey(provider))
             {

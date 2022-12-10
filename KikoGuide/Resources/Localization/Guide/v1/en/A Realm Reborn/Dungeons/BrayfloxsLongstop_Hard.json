@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "Brayflox's Longstop",
+  "InternalName": "BrayfloxsLongstopHard",
   "Difficulty": 1,
   "Type": 0,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 66947,
-  "TerritoryIDs": [362],
+  "TerritoryIDs": [
+    362
+  ],
   "Sections": [
     {
       "Type": 0,

@@ -1,10 +1,13 @@
 {
   "Version": 1,
   "Name": "Hullbreaker Isle",
+  "InternalName": "HullbreakerIsle",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 67062,
-  "TerritoryIDs": [361]
+  "TerritoryIDs": [
+    361
+  ]
 }

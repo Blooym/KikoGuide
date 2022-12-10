@@ -1,19 +1,22 @@
 {
   "Version": 1,
   "Name": "The Sunken Temple of Qarn",
+  "InternalName": "TheSunkenTempleofQarn",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 35,
   "UnlockQuestID": 66300,
-  "TerritoryIDs": [163],
+  "TerritoryIDs": [
+    163
+  ],
   "Sections": [
     {
       "Type": 1,
       "Name": "Teratotaur",
       "Phases": [
         {
-          "Strategy": "Teratotaur will occasionally summon Dung Wespes, which should be killed before they cast Final Sting, which will deal 90%% of a targets maxmium health. When Teratotaur is under 50%% HP, he will periodically \"begin to growl\", and then use Mortal Ray. This room-wide AoE ability places the Doom debuff on your party. The debuff lasts 12 seconds and will instantly kill anyone still afflicted by it when the timer ends. Players can remove this debuff by stepping on the square plate that is glowing orange.",
+          "Strategy": "Teratotaur will occasionally summon Dung Wespes, which should be killed before they cast Final Sting, which will deal 90% of a targets maxmium health. When Teratotaur is under 50% HP, he will periodically \"begin to growl\", and then use Mortal Ray. This room-wide AoE ability places the Doom debuff on your party. The debuff lasts 12 seconds and will instantly kill anyone still afflicted by it when the timer ends. Players can remove this debuff by stepping on the square plate that is glowing orange.",
           "StrategyShort": "Focus killing Dung Wespes before they cast final sting. Stand on the glowing orange plate when afflicted with the Doom debuff.",
           "Mechanics": [
             {

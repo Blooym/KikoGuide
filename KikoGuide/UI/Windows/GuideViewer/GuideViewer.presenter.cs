@@ -1,19 +1,20 @@
 using System;
+using System.IO;
 using System.Reflection;
 using Dalamud.Interface.Internal.Notifications;
 using Dalamud.Logging;
+using KikoGuide.Attributes;
 using KikoGuide.Base;
 using KikoGuide.Localization;
-using KikoGuide.Managers;
 using KikoGuide.Types;
 using KikoGuide.UI.Windows.Settings;
 using KikoGuide.Utils;
 
 namespace KikoGuide.UI.Windows.GuideViewer
 {
-    public sealed class GuideViewerPresenter : IDisposable
+    internal sealed class GuideViewerPresenter : IDisposable
     {
-        public GuideViewerPresenter() => PluginService.Framework.Update += this.OnFrameworkUpdate;
+        internal GuideViewerPresenter() => PluginService.Framework.Update += this.OnFrameworkUpdate;
 
         public void Dispose() => PluginService.Framework.Update -= this.OnFrameworkUpdate;
 
@@ -41,8 +42,27 @@ namespace KikoGuide.UI.Windows.GuideViewer
         /// <summary>
         ///     The currently selected guide to show in the GuideViewer window.
         /// </summary>
-        // when set, the lore menu will be closed.
-        internal Guide? SelectedGuide { get; set; }
+        internal Guide? SelectedGuide { get; private set; }
+
+        /// <summary>
+        ///     The linked note to the currently selected guide.
+        /// </summary>
+        internal Note? LinkedNote { get; private set; }
+
+        internal void SetSelectedGuide(Guide? guide)
+        {
+            this.SelectedGuide = guide;
+
+            if (guide != null)
+            {
+                this.LinkedNote = Note.CreateOrLoad(guide.InternalName, Path.Combine(Note.DefaultLocationBase, guide.Type.GetPluralNameAttribute()));
+                PluginLog.Debug($"GuideViewerPresenter(SetSelectedGuide): Note: {this.LinkedNote.Contents}");
+            }
+            else
+            {
+                this.LinkedNote = null;
+            }
+        }
 
         /// <summary>
         ///     Last auto-selected guide.
@@ -58,18 +78,19 @@ namespace KikoGuide.UI.Windows.GuideViewer
         ///     Detect when the player has changed zones and update the guide viewer accordingly through the game framework update event.
         /// </summary>
         /// <param name="e"></param>
-        public void OnFrameworkUpdate(object? e)
+        internal void OnFrameworkUpdate(object? e)
         {
             var currentTerritory = PluginService.ClientState.TerritoryType;
+
             if (currentTerritory != this.currentTerritory)
             {
                 this.currentTerritory = currentTerritory;
-                var playerGuide = GuideManager.GetGuideForCurrentTerritory();
+                var playerGuide = GuideUtil.GetGuideForCurrentTerritory();
                 PluginLog.Debug($"GuideViewerPresenter(OnFrameworkUpdate): Player changed territory to {this.currentTerritory}. (Guide for Territory: {playerGuide?.Name ?? "None"})");
 
                 if (playerGuide != null && playerGuide?.Sections?.Count > 0)
                 {
-                    this.SelectedGuide = playerGuide;
+                    this.SetSelectedGuide(playerGuide);
                     this.lastAutoSelectedGuide = playerGuide;
                     if (PluginService.Configuration.Display.AutoToggleGuideForDuty)
                     {
@@ -86,7 +107,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
                 }
                 else if (playerGuide == null && this.lastAutoSelectedGuide != null && this.lastAutoSelectedGuide == this.SelectedGuide)
                 {
-                    this.SelectedGuide = null;
+                    this.SetSelectedGuide(null);
                     if (PluginService.WindowManager.GetWindow(TWindowNames.GuideViewer) is GuideViewerWindow window)
                     {
                         PluginLog.Debug("GuideViewerPresenter(OnTerritoryChange): Toggling guide viewer to closed - no guide data found for territory and last auto-selected guide is the same as the current selected guide.");

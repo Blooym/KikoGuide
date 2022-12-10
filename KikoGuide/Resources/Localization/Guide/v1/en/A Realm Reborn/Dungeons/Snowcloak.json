@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "Snowcloak",
+  "InternalName": "Snowcloak",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 65611,
-  "TerritoryIDs": [371],
+  "TerritoryIDs": [
+    371
+  ],
   "Sections": [
     {
       "Type": 0,
@@ -37,7 +40,7 @@
             },
             {
               "Name": "Tundra",
-              "Description": "At around ~40%% health the boss will shrink the arena. Standing on the ice will inflict you with a stack of *Frozen",
+              "Description": "At around ~40% health the boss will shrink the arena. Standing on the ice will inflict you with a stack of *Frozen",
               "Type": 10
             },
             {

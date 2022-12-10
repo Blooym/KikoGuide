@@ -9,9 +9,9 @@ using KikoGuide.UI.ImGuiBasicComponents;
 
 namespace KikoGuide.UI.ImGuiFullComponents.MechanicTable
 {
-    public static class MechanicTableComponent
+    internal static class MechanicTableComponent
     {
-        public static void Draw(List<Guide.Section.Phase.Mechanic> mechanics)
+        internal static void Draw(List<Guide.Section.Phase.Mechanic> mechanics)
         {
             try
             {

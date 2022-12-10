@@ -25,7 +25,7 @@ namespace KikoGuide.Base
         /// <summary>
         ///     Accessibility configuration options.
         /// </summary>
-        public class AccessiblityConfiguration
+        internal class AccessiblityConfiguration
         {
             /// <summary>
             ///     Whether or not to show shorter text when possible.
@@ -36,7 +36,7 @@ namespace KikoGuide.Base
         /// <summary>
         ///     Display configuration options.
         /// </summary>
-        public class DisplayConfiguration
+        internal class DisplayConfiguration
         {
             /// <summary>
             ///     Whether or not to show the support button in the UI.
@@ -67,7 +67,7 @@ namespace KikoGuide.Base
         /// <summary>
         ///     IPC configuration options.
         /// </summary>
-        public class IPCConfiguration
+        internal class IPCConfiguration
         {
             /// <summary>
             ///     Whether or not to show the IPC button in the UI.
@@ -104,5 +104,10 @@ namespace KikoGuide.Base
             this.IPC.EnabledIntegrations.RemoveAll(p => !Enum.IsDefined(typeof(IPCProviders), p));
             this.Save();
         }
+
+        /// <summary>
+        ///     Deletes the notes directory.
+        /// </summary>
+        internal static void DeleteNotesDirectory() => Directory.Delete(Note.DefaultLocationBase, true);
     }
 }

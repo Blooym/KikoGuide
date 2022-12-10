@@ -9,10 +9,10 @@ using KikoGuide.UI.ImGuiBasicComponents;
 
 namespace KikoGuide.UI.ImGuiFullComponents.IPCProviderCombo
 {
-    public static class IPCProviderComboComponent
+    internal static class IPCProviderComboComponent
     {
         private static string searchFilter = string.Empty;
-        public static void Draw()
+        internal static void Draw()
         {
             var enabledIntegrations = IPCProviderComboPresenter.Configuration.IPC.EnabledIntegrations;
             if (ImGui.BeginCombo("##IPCProviderCombo", $"Enabled Integrations: {enabledIntegrations.Count}"))

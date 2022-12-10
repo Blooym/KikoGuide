@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "Halatali",
+  "InternalName": "HalataliHard",
   "Difficulty": 1,
   "Type": 0,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 66946,
-  "TerritoryIDs": [360],
+  "TerritoryIDs": [
+    360
+  ],
   "Sections": [
     {
       "Type": 0,

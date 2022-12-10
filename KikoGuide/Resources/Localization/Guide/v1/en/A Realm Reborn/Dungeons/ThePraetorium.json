@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "The Praetorium",
+  "InternalName": "ThePraetorium",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 70058,
-  "TerritoryIDs": [1044],
+  "TerritoryIDs": [
+    1044
+  ],
   "Sections": [
     {
       "Type": 1,
@@ -88,7 +91,7 @@
       "Name": "Gaius van Baelsar",
       "Phases": [
         {
-          "Strategy": "At 5%% HP, Gaius will summon 4 Phantom Gaius adds that must be taken out while he charges up Blade Energy for his ultimate attack \"Veni Vidi Vici\", which will instantly kill the party if energy reaches 100%",
+          "Strategy": "At 5% HP, Gaius will summon 4 Phantom Gaius adds that must be taken out while he charges up Blade Energy for his ultimate attack \"Veni Vidi Vici\", which will instantly kill the party if energy reaches 100%",
           "Mechanics": [
             {
               "Name": "Innocence",

@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "Castrum Meridianum",
+  "InternalName": "CastrumMeridianum",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 66672,
-  "TerritoryIDs": [1043],
+  "TerritoryIDs": [
+    1043
+  ],
   "Sections": [
     {
       "Type": 0,

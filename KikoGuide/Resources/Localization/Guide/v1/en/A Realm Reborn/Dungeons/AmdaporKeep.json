@@ -1,19 +1,22 @@
 {
   "Version": 1,
   "Name": "Amdapor Keep",
+  "InternalName": "AmdaporKeep",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 66671,
-  "TerritoryIDs": [167],
+  "TerritoryIDs": [
+    167
+  ],
   "Sections": [
     {
       "Type": 0,
       "Name": "Psycheflayer",
       "Phases": [
         {
-          "Strategy": "When you first walk into the boss arena an only an enemy called the Lunatic Priest will be here once this enemy reaches 50%% HP he will summon the Pyscheflayer. Players should focus on killing the Lunatic Priest before dealing with the Psycheflayer as the Lunatic Priest will throw out high damage AOEs. \n\nThroughout the fight Psycheflayer will spawn adds that cast AOEs players should make sure to kill them as soon as they spawn.",
+          "Strategy": "When you first walk into the boss arena an only an enemy called the Lunatic Priest will be here once this enemy reaches 50% HP he will summon the Pyscheflayer. Players should focus on killing the Lunatic Priest before dealing with the Psycheflayer as the Lunatic Priest will throw out high damage AOEs. \n\nThroughout the fight Psycheflayer will spawn adds that cast AOEs players should make sure to kill them as soon as they spawn.",
           "Mechanics": [
             {
               "Name": "Water",

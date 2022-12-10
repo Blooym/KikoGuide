@@ -14,7 +14,7 @@ namespace KikoGuide.Utils
         /// <param name="message"> The message to send. </param>
         /// <param name="title"> The title of the notification. </param>
         /// <param name="type"> The type of notification to show </param>
-        public static void ShowToast(string message, string title = PluginConstants.PluginName, NotificationType type = NotificationType.None) =>
+        internal static void ShowToast(string message, string title = PluginConstants.PluginName, NotificationType type = NotificationType.None) =>
             PluginService.PluginInterface.UiBuilder.AddNotification(message, title, type);
     }
 }

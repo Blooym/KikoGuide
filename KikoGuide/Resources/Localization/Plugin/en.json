@@ -280,7 +280,7 @@
     "description": "TGuideListTable.NoGuideData"
   },
   "GuideListTable.NoGuidesFilesDetected": {
-    "message": "No guide files were detected, please check your installation.",
+    "message": "No guide files were detected or loaded, check /xllog for errors or try reinstalling the plugin.",
     "description": "TGuideListTable.get_NoGuidesFilesDetected"
   },
   "IPC.Wotsit.OpenGuideList": {

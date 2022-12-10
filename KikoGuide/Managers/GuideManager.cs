@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 namespace KikoGuide.Managers
 {
     /// <summary>
-    ///     The GuideManager works ontop of the Guide type to abstract critical tasks.
+    ///     The GuideManager loads and manages guide data.
     /// </summary>
-    public static class GuideManager
+    internal sealed class GuideManager : IDisposable
     {
         /// <summary>
         ///     The guide version folder to load from.
@@ -22,30 +22,38 @@ namespace KikoGuide.Managers
         /// <summary>
         ///     The loaded guide cache, prevents re-reading the files every lookup.
         /// </summary>
-        private static List<Guide>? loadedGuideCache;
+        private List<Guide>? loadedGuideCache;
+
+        /// <summary>
+        ///     The GuideManager constructor.
+        /// </summary>
+        internal GuideManager() => PluginService.ResourceManager.ResourcesUpdated += this.OnResourceUpdate;
+
+        /// <summary>
+        ///     Disposes of the GuideManager.
+        /// </summary>
+        public void Dispose() => PluginService.ResourceManager.ResourcesUpdated -= this.OnResourceUpdate;
 
         /// <summary>
         ///     Clears the loaded guide cache and forces a re-read of the files.
         /// </summary>
-        public static void ClearCache() => loadedGuideCache = null;
+        private void OnResourceUpdate() => this.loadedGuideCache = null;
 
         /// <summary>
-        ///     Get the guide for the territory the player is currently in.
+        ///     Gets the cached guide list or loads them from the file system if the cache is empty.
         /// </summary>
-        public static Guide? GetGuideForCurrentTerritory() => GetGuides().Find(guide => guide.TerritoryIDs.Contains(PluginService.ClientState.TerritoryType));
-
-        public static List<Guide> GetGuides()
+        internal List<Guide> GetAllGuides()
         {
-            if (loadedGuideCache != null)
+            if (this.loadedGuideCache != null)
             {
-                return loadedGuideCache;
+                return this.loadedGuideCache;
             }
 
-            loadedGuideCache = LoadGuideData();
-            return loadedGuideCache;
+            this.loadedGuideCache = LoadGuideData();
+            return this.loadedGuideCache;
         }
 
-        /// <summary>
+        /// <summary>e
         ///     Loads the guide data from the local files, this should be cached after usage.
         /// </summary>
         private static List<Guide> LoadGuideData()
@@ -69,12 +77,34 @@ namespace KikoGuide.Managers
                     try
                     {
                         var guide = JsonConvert.DeserializeObject<Guide>(File.ReadAllText(file));
-                        if (guide != null)
-                        { guides.Add(guide); PluginLog.Verbose($"GuideManager(LoadGuideData): Loaded {guide.CanonicalName}"); }
+                        var errorMessage = $"GuideManager(LoadGuideData): Failed to load guide file {file}:";
+
+                        if (guide == null)
+                        {
+                            PluginLog.Warning($"{errorMessage} Guide is null");
+                            continue;
+                        }
+
+                        if (guide.Disabled)
+                        {
+                            PluginLog.Verbose($"GuideManager(LoadGuideData): {guide.GetCanonicalName()} ({guide.InternalName}) is disabled, skipping");
+                            continue;
+                        }
+
+                        if (guide.InternalName == guides.Find(g => g.InternalName == guide.InternalName)?.InternalName)
+                        {
+                            PluginLog.Warning($"{errorMessage} Duplicate internal name ({guide.InternalName})");
+                            continue;
+                        }
+
+                        guides.Add(guide);
+                        PluginLog.Verbose($"GuideManager(LoadGuideData): Loaded {guide.GetCanonicalName()} ({guide.InternalName})");
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
-                        PluginLog.Warning($"GuideManager(LoadGuideData): Failed to load guide from file {file}: {e.Message}. [Skipping]");
+#if !DEBUG
+                        PluginLog.Warning($"GuideManager(LoadGuideData): Failed to load guide from file {file}: {e.Message}");
+#endif
                     }
                 }
             }
@@ -84,7 +114,6 @@ namespace KikoGuide.Managers
             }
 
             PluginLog.Information($"GuideManager(LoadGuideData): Loaded {guides.Count} guides for {language}");
-
             return guides;
         }
     }

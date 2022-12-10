@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace KikoGuide.UI.Windows.Editor
 {
-    public sealed class EditorPresenter : IDisposable
+    internal sealed class EditorPresenter : IDisposable
     {
         public void Dispose() { }
 
@@ -24,12 +24,12 @@ namespace KikoGuide.UI.Windows.Editor
         /// <summary>
         ///     Opens the contributing guide.
         /// </summary>
-        public static void OpenContributingGuide() => Util.OpenLink($"{PluginConstants.RepoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
+        internal static void OpenContributingGuide() => Util.OpenLink($"{PluginConstants.RepoUrl}blob/main/CONTRIBUTING.md#guide-contribution");
 
         /// <summary>
         ///     Gets the players current territory.
         /// </summary>
-        public static uint GetPlayerTerritory => PluginService.ClientState.TerritoryType;
+        internal static uint GetPlayerTerritory => PluginService.ClientState.TerritoryType;
 
         /// <summary>
         ///     An instance of the FileDialogManager for loading/saving guides.
@@ -47,7 +47,7 @@ namespace KikoGuide.UI.Windows.Editor
         /// <param name="cancelled"> Whether the file selection was cancelled or not. </param>
         /// <param name="file"> The file that was selected. </param>
         /// <param name="text"> The text that was loaded from the file. </param>
-        public string OnFileSelect(bool cancelled, string file, string text)
+        internal string OnFileSelect(bool cancelled, string file, string text)
         {
             if (!cancelled)
             {
@@ -79,7 +79,7 @@ namespace KikoGuide.UI.Windows.Editor
         /// <param name="success"></param>
         /// <param name="file"></param>
         /// <param name="text"></param>
-        public static void OnFileSave(bool success, string file, string text)
+        internal static void OnFileSave(bool success, string file, string text)
         {
             if (!success)
             {
@@ -95,7 +95,7 @@ namespace KikoGuide.UI.Windows.Editor
         ///     Formats the given text into a better layout.
         /// </summary>
         /// <param name="text"></param>
-        public static string OnFormat(string text)
+        internal static string OnFormat(string text)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace KikoGuide.UI.Windows.Editor
         ///     Parses the given guideText into a Guide object or returns an Exception.
         /// </summary>
         /// <param name="guideText"></param>
-        public Tuple<Guide?, Exception?> ParseGuide(string guideText)
+        internal Tuple<Guide?, Exception?> ParseGuide(string guideText)
         {
             if (guideText == this.parsedGuideText && this.lastParseResult != null)
             {

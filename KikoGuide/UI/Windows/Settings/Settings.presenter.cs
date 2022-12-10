@@ -9,7 +9,7 @@ using KikoGuide.Utils;
 
 namespace KikoGuide.UI.Windows.Settings
 {
-    public sealed class SettingsPresenter : IDisposable
+    internal sealed class SettingsPresenter : IDisposable
     {
         public void Dispose() { }
 
@@ -22,13 +22,13 @@ namespace KikoGuide.UI.Windows.Settings
         ///     Sets an IPCProvider as enabled.
         /// </summary>
         /// <param name="provider"> The provider to enable. </param>
-        public static void SetIPCProviderEnabled(IPCProviders provider) => PluginService.IPC.EnableProvider(provider);
+        internal static void SetIPCProviderEnabled(IPCProviders provider) => PluginService.IPC.EnableProvider(provider);
 
         /// <summary>
         ///     Sets an IPCProvider as disabled.
         /// </summary>
         /// <param name="provider"> The provider to disable. </param>
-        public static void SetIPCProviderDisabled(IPCProviders provider) => PluginService.IPC.DisableProvider(provider);
+        internal static void SetIPCProviderDisabled(IPCProviders provider) => PluginService.IPC.DisableProvider(provider);
 
 #if DEBUG
         internal FileDialogManager DialogManager = new();
@@ -38,7 +38,7 @@ namespace KikoGuide.UI.Windows.Settings
         /// </summary>
         /// <param name="cancelled">Whether the dialog was cancelled.</param>
         /// <param name="path">The path to the selected directory.</param>
-        public static void OnDirectoryPicked(bool cancelled, string path)
+        internal static void OnDirectoryPicked(bool cancelled, string path)
         {
             if (!cancelled)
             {

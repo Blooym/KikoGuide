@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "Amdapor Keep",
+  "InternalName": "AmdaporKeepHard",
   "Difficulty": 1,
   "Type": 0,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 65966,
-  "TerritoryIDs": [189],
+  "TerritoryIDs": [
+    189
+  ],
   "Sections": [
     {
       "Type": 0,
@@ -23,7 +26,7 @@
       "Name": "Boogyman",
       "Phases": [
         {
-          "Strategy": "During the fight Boogyman will become partially invisible and untargetable. Kill the Luminescence orb and grab the Irradiance buff by standing in the area around it. Run to the invisible Boogyman to reveal him when the buff wears off with an illuminating AOE explosion that knocks him back. Adds will appear as the dead bodies on the ground are reanimated. The first set will spawn at around 55%%. The next set will spawn at around 30%% when Boogyman splits into two. When his HP is low, Boogyman will split into two and both forms will become invisible. Players need to split up with the Irradiance buff to reveal both of them.",
+          "Strategy": "During the fight Boogyman will become partially invisible and untargetable. Kill the Luminescence orb and grab the Irradiance buff by standing in the area around it. Run to the invisible Boogyman to reveal him when the buff wears off with an illuminating AOE explosion that knocks him back. Adds will appear as the dead bodies on the ground are reanimated. The first set will spawn at around 55%. The next set will spawn at around 30% when Boogyman splits into two. When his HP is low, Boogyman will split into two and both forms will become invisible. Players need to split up with the Irradiance buff to reveal both of them.",
           "StrategyShort": "Kill the luminescence orb and stand inside of it to gain the irradiance buff, then run ontop of the Boogyman to reveal him."
         }
       ]

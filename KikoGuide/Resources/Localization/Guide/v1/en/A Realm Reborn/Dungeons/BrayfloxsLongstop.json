@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "Brayflox's Longstop",
+  "InternalName": "BrayfloxsLongstop",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 32,
   "UnlockQuestID": 66368,
-  "TerritoryIDs": [1041],
+  "TerritoryIDs": [
+    1041
+  ],
   "Sections": [
     {
       "Type": 0,
@@ -31,7 +34,7 @@
       "Name": "Hellbender",
       "Phases": [
         {
-          "Strategy": "Hellbender is a giant amphibian creature. During the fight, it will periodically crowd control a party member in a bubble. Kill the bubble quickly and free your teammate. At the end of Hellbender's lifespan, Aiatar, the dragon, flies in and consumes the amphibian. Attack Aiatar until his HP is about 50%%, then it will fly away."
+          "Strategy": "Hellbender is a giant amphibian creature. During the fight, it will periodically crowd control a party member in a bubble. Kill the bubble quickly and free your teammate. At the end of Hellbender's lifespan, Aiatar, the dragon, flies in and consumes the amphibian. Attack Aiatar until his HP is about 50%, then it will fly away."
         }
       ]
     },

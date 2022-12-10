@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "The Aurum Vale",
+  "InternalName": "TheAurumVale",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 47,
   "UnlockQuestID": 66550,
-  "TerritoryIDs": [172],
+  "TerritoryIDs": [
+    172
+  ],
   "Sections": [
     {
       "Type": 0,
@@ -76,7 +79,7 @@
       "Name": "Miser's Mistress",
       "Phases": [
         {
-          "Strategy": "Miser's Mistress has powerful frontal AoE attacks and should faced away from all non-tank players. Similar to Locksmith, there are objects named Morbol Fruit around the boss room. Players can consume the fruit to remove all the stacks of the debuff \"Burrs\" on them. Players should consume the fruit at 2-3 Burrs stacks.\n\nAdds:\nAt 50%% HP, Miser's Mistress will spawn 5 strange Morbol Fruits that must be destroyed immediately. Use a physical ranged or caster limit break if needed. Any fruits that hatch will turn into Morbol Seedlings that will add Burr debuff stacks with every attack.\n\nPlayers can also use Morbol fruit to remove the debuffs given when hit with \"Bad Breath\"",
+          "Strategy": "Miser's Mistress has powerful frontal AoE attacks and should faced away from all non-tank players. Similar to Locksmith, there are objects named Morbol Fruit around the boss room. Players can consume the fruit to remove all the stacks of the debuff \"Burrs\" on them. Players should consume the fruit at 2-3 Burrs stacks.\n\nAdds:\nAt 50% HP, Miser's Mistress will spawn 5 strange Morbol Fruits that must be destroyed immediately. Use a physical ranged or caster limit break if needed. Any fruits that hatch will turn into Morbol Seedlings that will add Burr debuff stacks with every attack.\n\nPlayers can also use Morbol fruit to remove the debuffs given when hit with \"Bad Breath\"",
           "Mechanics": [
             {
               "Name": "Bad Breath",

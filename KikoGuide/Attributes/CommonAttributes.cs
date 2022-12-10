@@ -3,51 +3,69 @@ using System;
 namespace KikoGuide.Attributes
 {
     /// <summary>
-    ///     A localizable name attribute.
+    ///     A name attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field)]
-    public class NameAttribute : Attribute
+    internal class NameAttribute : Attribute
     {
         /// <summary>
         ///     The name of the attribute.
         /// </summary>
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
         /// <summary>
         ///     Creates a new <see cref="NameAttribute"/>.
         /// </summary>
         /// <param name="name">The name of the attribute.</param>
-        public NameAttribute(string name) => this.Name = name;
+        internal NameAttribute(string name) => this.Name = name;
     }
 
     /// <summary>
-    ///     A localizable description attribute.
+    ///     A plural name attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field)]
-    public class DescriptionAttribute : Attribute
+    internal class PluralNameAttribute : Attribute
+    {
+        /// <summary>
+        ///     The plural name of the attribute.
+        /// </summary>
+        internal string PluralName { get; set; }
+
+        /// <summary>
+        ///     Creates a new <see cref="PluralNameAttribute"/>.
+        /// </summary>
+        /// <param name="pluralName">The plural name of the attribute.</param>
+        internal PluralNameAttribute(string pluralName) => this.PluralName = pluralName;
+    }
+
+    /// <summary>
+    ///     A description attribute.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Field)]
+    internal class DescriptionAttribute : Attribute
     {
         /// <summary>
         ///     The description of the attribute.
         /// </summary>
-        public string Description { get; set; }
+        internal string Description { get; set; }
 
         /// <summary>
         ///     Creates a new <see cref="DescriptionAttribute"/>.
         /// </summary>
         /// <param name="description">The description of the attribute.</param>
-        public DescriptionAttribute(string description) => this.Description = description;
+        internal DescriptionAttribute(string description) => this.Description = description;
     }
 
     /// <summary>
-    ///     Attribute extensions useful for localization.
+    ///     Attribute extensions.
     /// </summary>
-    public static class AttributeExtensions
+    internal static class AttributeExtensions
     {
         /// <summary>
         ///     Gets the name of the attribute.
         /// </summary>
         /// <param name="value">The attribute to get the name of.</param>
-        public static string GetNameAttribute(this Enum value)
+        internal static string GetNameAttribute(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());
             var attribute = field?.GetCustomAttributes(typeof(NameAttribute), false);
@@ -55,10 +73,21 @@ namespace KikoGuide.Attributes
         }
 
         /// <summary>
+        ///     Gets the plural name of the attribute.
+        /// </summary>
+        /// <param name="value">The attribute to get the plural name of.</param>
+        internal static string GetPluralNameAttribute(this Enum value)
+        {
+            var field = value.GetType().GetField(value.ToString());
+            var attribute = field?.GetCustomAttributes(typeof(PluralNameAttribute), false);
+            return attribute?.Length > 0 ? ((PluralNameAttribute)attribute[0]).PluralName : value.ToString();
+        }
+
+        /// <summary>
         ///     Gets the description of the attribute.
         /// </summary>
         /// <param name="value">The attribute to get the description of.</param>
-        public static string GetDescriptionAttribute(this Enum value)
+        internal static string GetDescriptionAttribute(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());
             var attribute = field?.GetCustomAttributes(typeof(DescriptionAttribute), false);

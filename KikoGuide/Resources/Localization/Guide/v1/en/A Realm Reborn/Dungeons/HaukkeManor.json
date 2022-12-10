@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "Haukke Manor",
+  "InternalName": "HaukkeManor",
   "Difficulty": 0,
   "Type": 0,
   "Expansion": 0,
   "Level": 28,
   "UnlockQuestID": 66337,
-  "TerritoryIDs": [1040],
+  "TerritoryIDs": [
+    1040
+  ],
   "Sections": [
     {
       "Type": 0,
@@ -62,7 +65,7 @@
       "Name": "Lady Amandine",
       "Phases": [
         {
-          "Strategy": "In the boss room, there are 4 Void Lamps. During the fight, the Void Lamps will periodically light up, doing AoE damage to the entire party. Players should turn off the lamps as soon as possible. Lady Amandine will cast Void Fire and Void Thunder. Avoid her spellcast if possible by interrupting or stunning her.\n\nAt approximately 50%% health, she will summon Lady's Candles which are bombs that will self-destruct if not destroyed quickly.\n\nAt approximately 25%% health, Lady Amandine will summon a Manor Sentry and Lady's Handmaidens. It is possible in certain circumstances to DPS down the boss if the party acts quickly enough. Otherwise, kill these adds before finishing off the boss.",
+          "Strategy": "In the boss room, there are 4 Void Lamps. During the fight, the Void Lamps will periodically light up, doing AoE damage to the entire party. Players should turn off the lamps as soon as possible. Lady Amandine will cast Void Fire and Void Thunder. Avoid her spellcast if possible by interrupting or stunning her.\n\nAt approximately 50% health, she will summon Lady's Candles which are bombs that will self-destruct if not destroyed quickly.\n\nAt approximately 25% health, Lady Amandine will summon a Manor Sentry and Lady's Handmaidens. It is possible in certain circumstances to DPS down the boss if the party acts quickly enough. Otherwise, kill these adds before finishing off the boss.",
           "StrategyShort": "Turn off Void Lamps as soon as possible. Avoid Void Fire and Void Thunder. If Lady Amandine summons Manor Sentry and Handmaidens, kill them before killing the boss.",
           "Mechanics": [
             {

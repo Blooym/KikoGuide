@@ -14,7 +14,7 @@ namespace KikoGuide.UI.ImGuiBasicComponents
         /// <param name="colour"> The colour of the badge. </param>
         /// <param name="tag"> The text to show on the badge. </param>
         /// <param name="tooltip"> The tooltip to show on hover if set. </param>
-        public static void Custom(Vector4 colour, string tag, string? tooltip = null)
+        internal static void Custom(Vector4 colour, string tag, string? tooltip = null)
         {
             ImGui.SameLine();
             ImGui.TextColored(colour, tag);

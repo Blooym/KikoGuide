@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "The Bowl of Embers",
+  "InternalName": "TheBowlofEmbers",
   "Difficulty": 1,
   "Type": 1,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 66584,
-  "TerritoryIDs": [292],
+  "TerritoryIDs": [
+    292
+  ],
   "Sections": [
     {
       "Name": "Ifrit",
@@ -52,7 +55,7 @@
           ]
         },
         {
-          "Strategy": "At 50%% HP, ifrit will summon 4 nails. If any nails remain when Ifrit casts Hellfire, it will kill all players.",
+          "Strategy": "At 50% HP, ifrit will summon 4 nails. If any nails remain when Ifrit casts Hellfire, it will kill all players.",
           "Mechanics": [
             {
               "Name": "Hellfire",

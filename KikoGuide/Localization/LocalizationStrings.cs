@@ -19,10 +19,10 @@ namespace KikoGuide.Localization
     /// </summary>
     internal sealed class TWindowNames
     {
-        public static string Settings => string.Format(Loc.Localize("Window.Settings", "{0} - Settings"), PluginConstants.PluginName);
-        public static string GuideList => string.Format(Loc.Localize("Window.GuideList", "{0} - Guide List"), PluginConstants.PluginName);
-        public static string GuideViewer => string.Format(Loc.Localize("Window.GuideViewer", "{0} - Guide Viewer"), PluginConstants.PluginName);
-        public static string GuideEditor => string.Format(Loc.Localize("Window.GuideEditor", "{0} - Guide Editor"), PluginConstants.PluginName);
+        internal static string Settings => string.Format(Loc.Localize("Window.Settings", "{0} - Settings"), PluginConstants.PluginName);
+        internal static string GuideList => string.Format(Loc.Localize("Window.GuideList", "{0} - Guide List"), PluginConstants.PluginName);
+        internal static string GuideViewer => string.Format(Loc.Localize("Window.GuideViewer", "{0} - Guide Viewer"), PluginConstants.PluginName);
+        internal static string GuideEditor => string.Format(Loc.Localize("Window.GuideEditor", "{0} - Guide Editor"), PluginConstants.PluginName);
     }
 
     /// <summary>
@@ -35,11 +35,12 @@ namespace KikoGuide.Localization
         internal static string SaveFile => Loc.Localize("Generics.SaveFile", "Save File");
         internal static string Search => Loc.Localize("Generics.Search", "Search");
         internal static string Guide => Loc.Localize("Generics.Guide", "Guide");
-        internal static string InDuty => Loc.Localize("Generics.InDuty", "In Duty");
+        internal static string InTerritory => Loc.Localize("Generics.InTerritory", "In Territory");
         internal static string Mechanic => Loc.Localize("Generics.Mechanic", "Mechanic");
         internal static string Mechanics => Loc.Localize("Generics.Mechanics", "Mechanics");
         internal static string Strategy => Loc.Localize("Generics.Strategy", "Strategy");
-        internal static string Notes => Loc.Localize("Generics.Notes", "Notes");
+        internal static string Note => Loc.Localize("Generics.Note", "Note");
+        internal static string Tips => Loc.Localize("Generics.Tips", "Tips");
         internal static string Description => Loc.Localize("Generics.Description", "Description");
         internal static string Level => Loc.Localize("Generics.Level", "Level");
         internal static string Type => Loc.Localize("Generics.Type", "Type");
@@ -48,15 +49,6 @@ namespace KikoGuide.Localization
         internal static string Unknown => Loc.Localize("Generics.Unknown", "Unknown");
         internal static string Unspecified => Loc.Localize("Generics.Unspecified", "Unspecified");
         internal static string None => Loc.Localize("Generics.None", "None");
-    }
-
-    /// <summary>
-    ///     Translation strings used for the Guide type.
-    /// </summary>
-    internal static class TGuide
-    {
-        internal static string DutyUnnamed => Loc.Localize("Types.Duty.Name.None", "Unnamed Guide");
-        internal static string NoStrategy => Loc.Localize("Guide.NoStrategy", "No strategy available.");
     }
 
     /// <summary>
@@ -104,7 +96,7 @@ namespace KikoGuide.Localization
     /// </summary>
     internal static class TGuideViewer
     {
-        internal static string NoGuideInfoAvailable => Loc.Localize("GuideViewer.NoGuideInfoAvailable", "There is no information available for this guide right now.");
+        internal static string NoGuideInfoAvailable => Loc.Localize("GuideViewer.NoGuideInfoAvailable", "There is no information available for this guide right now or the guide is not supported by this plugin version.");
         internal static string NoPhaseInfoAvailable => Loc.Localize("GuideViewer.NoPhaseInfoAvailable", "There is no information available for this phase right now.");
         internal static string ReportIssueWithGuide => Loc.Localize("GuideViewer.ReportIssueWithGuide", "Report issue with guide");
         internal static string UnlockWindowMovement => Loc.Localize("GuideViewer.UnlockWindowMovement", "Unlock window");
@@ -127,6 +119,6 @@ namespace KikoGuide.Localization
         internal static string NoGuidesFoundForSearch => Loc.Localize("GuideListTable.NoGuidesFoundForSearch", "No guides found for your search.");
         internal static string UnsupportedGuide(string guideName) => string.Format(Loc.Localize("GuideListTable.UnsupportedGuide", "The guide for {0} is for a different version of the plugin and cannot be loaded yet"), guideName);
         internal static string NoGuideData(string guideName) => string.Format(Loc.Localize("GuideListTable.NoGuideData", "There is no data for {0} yet."), guideName);
-        internal static string NoGuidesFilesDetected => Loc.Localize("GuideListTable.NoGuidesFilesDetected", "No guide files were detected, please check your installation.");
+        internal static string NoGuidesFilesDetected => Loc.Localize("GuideListTable.NoGuidesFilesDetected", "No guide files were detected or loaded, check /xllog for errors or try reinstalling the plugin.");
     }
 }

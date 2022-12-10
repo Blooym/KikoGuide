@@ -16,11 +16,6 @@ namespace KikoGuide.Base
         internal const string RepoUrl = "https://github.com/BitsOfAByte/KikoGuide/";
 
         /// <summary>
-        ///     The raw repository to linked to this plugin.
-        /// </summary>
-        internal const string RawRepoUrl = "https://raw.githubusercontent.com/BitsOfAByte/KikoGuide/";
-
-        /// <summary>
         ///     The production branch of the repository.
         /// </summary>
         internal const string RepoBranch = "main";

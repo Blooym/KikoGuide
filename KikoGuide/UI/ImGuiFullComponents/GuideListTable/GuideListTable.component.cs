@@ -11,43 +11,43 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideListTable
     /// <summary>
     ///     A component for displaying a list of guides.
     /// </summary>
-    public static class GuideListTableComponent
+    internal static class GuideListTableComponent
     {
         /// <summary>
-        ///     Draws the guide list.
+        ///     Draws the guide list with the given guide pools.
         /// </summary>
         /// <param name="guidePool"> The guide pool to draw information for. </param>
         /// <param name="onSelected"> The action to call when an item is selected. </param>
-        /// <param name="filter"> The filter to use when drawing the guide list, empty to show all. </param>
+        /// <param name="searchFilter"> The search filter to use when drawing the guide list, compares against the guide name. </param>
         /// <param name="dutyType"> The duty type to show listings for, or null to show all. </param>
-        public static void Draw(List<Guide> guidePool, Action<Guide> onSelected, string filter = "", DutyType? dutyType = null)
+        internal static void Draw(List<Guide> guidePool, Action<Guide> onSelected, string searchFilter = "", DutyType? dutyType = null)
         {
             try
             {
                 var guideList = dutyType != null ? guidePool.Where(duty => duty.Type == dutyType).ToList() : guidePool;
 
-                // No guides found in the guideList.
+                // No guides found in the guideList, show a message and return.
                 if (guideList.Count == 0)
                 {
                     ImGui.TextDisabled(TGuideListTable.NoneFoundForType);
                     return;
                 }
 
-                // Has no guides unlocked in this guideList.
+                // No guides unlocked for this duty type, show a message and return.
                 if (!GuideListTablePresenter.HasAnyGuideUnlocked(guideList))
                 {
                     ImGui.TextDisabled(TGuideListTable.NoGuidesUnlocked);
                     return;
                 }
 
-                // No guides found for this search in the guideList.
-                if (filter != string.Empty && !GuideListTablePresenter.GuideExistsForSearch(guideList, filter))
+                // No guides found for the search filter, show a message and return.
+                if (searchFilter != string.Empty && !GuideListTablePresenter.GuideExistsForSearch(guideList, searchFilter))
                 {
                     ImGui.TextDisabled(TGuideListTable.NoGuidesFoundForSearch);
                     return;
                 }
 
-                // Create a table and add each guide, containing its level and name.
+                // Create a table for the guides to be drawn in.
                 if (ImGui.BeginTable("##GuideListTable", 2, ImGuiTableFlags.ScrollY))
                 {
                     ImGui.TableSetupScrollFreeze(0, 1);
@@ -55,74 +55,59 @@ namespace KikoGuide.UI.ImGuiFullComponents.GuideListTable
                     ImGui.TableSetupColumn(TGenerics.Guide);
                     ImGui.TableHeadersRow();
 
-                    // Fetch all guides for this duty type and draw them.
-                    foreach (var guide in guideList.OrderBy(d => d.Level))
+                    // Fetch all guides in the guideList and then sort them by level and apply the search filter.
+                    foreach (var guide in guideList.OrderBy(d => d.Level).Where(g => g.Name.Contains(searchFilter, StringComparison.OrdinalIgnoreCase)))
                     {
-                        // Do not show the guide if it isn't unlocked or isn't part of the filter.
+                        // Do not show the guide if it is set to be hidden.
+                        if (guide.IsHidden())
+                        {
+                            continue;
+                        }
+
+                        // Do not show the guide if it isn't unlocked and the user has the setting enabled.
                         if (!guide.IsUnlocked() && GuideListTablePresenter.Configuration.Display.HideLockedGuides)
                         {
                             continue;
                         }
 
-                        if (!guide.Name.Contains(filter, StringComparison.OrdinalIgnoreCase))
-                        {
-                            continue;
-                        }
-
-                        // Add the level and guide name to the list.
+                        // Go to the next row in the table and add a the guide.
                         ImGui.TableNextRow();
                         ImGui.TableNextColumn();
                         ImGui.Text(guide.Level.ToString());
                         ImGui.TableNextColumn();
 
-                        // If this guide does not have any data or is unsupported, handle it.
+                        // If this guide is unsupported by this plugin version, draw it as disabled.
                         if (!guide.IsSupported())
                         {
-                            OutdatedGuide(guide.CanonicalName);
+                            ImGui.TextDisabled(guide.GetCanonicalName());
+                            Common.AddTooltip(TGuideListTable.UnsupportedGuide(guide.GetCanonicalName()));
                             continue;
                         }
 
+                        // If this guide does not have any data, draw it as disabled.
                         if (!GuideListTablePresenter.HasGuideData(guide))
                         {
-                            NoDataGuide(guide.CanonicalName);
+                            ImGui.TextDisabled(guide.GetCanonicalName());
+                            Common.AddTooltip(TGuideListTable.NoGuideData(guide.GetCanonicalName()));
                             continue;
                         }
-                        // Draw a selectable text for this guide and trigger the onSelected event when clicked.
-                        if (ImGui.Selectable(guide.CanonicalName, false, ImGuiSelectableFlags.AllowDoubleClick))
+
+                        // Draw a selectable button that calls the onSelected action when clicked.
+                        if (ImGui.Selectable(guide.GetCanonicalName(), false, ImGuiSelectableFlags.AllowDoubleClick))
                         {
                             onSelected(guide);
                         }
 
-                        // If the player is inside this duty, add some text next to it.
+                        // If the player is inside the guide territory(s), add a tooltip.
                         if (guide == GuideListTablePresenter.GetGuideForPlayerTerritory())
                         {
-                            Badges.Custom(Colours.Green, TGenerics.InDuty);
+                            Badges.Custom(Colours.Green, TGenerics.InTerritory);
                         }
                     }
                     ImGui.EndTable();
                 }
             }
             catch (Exception e) { ImGui.TextColored(Colours.Error, $"Component Exception: {e.Message}"); }
-        }
-
-        /// <summary>
-        ///     Draws an outdated guide in the list.
-        /// </summary>
-        /// <param name="name"> The name of the guide. </param>
-        private static void OutdatedGuide(string name)
-        {
-            ImGui.TextColored(Colours.GuideDisabled, name);
-            Common.AddTooltip(TGuideListTable.UnsupportedGuide(name));
-        }
-
-        /// <summary>
-        ///     Draws a guide with no data.
-        /// </summary>
-        /// <param name="name"> The name of the guide. </param>
-        private static void NoDataGuide(string name)
-        {
-            ImGui.TextDisabled(name);
-            Common.AddTooltip(TGuideListTable.NoGuideData(name));
         }
     }
 }

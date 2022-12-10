@@ -74,7 +74,7 @@ namespace KikoGuide.Managers
         /// </summary>
         /// <param name="e"></param>
         /// <param name="args"></param>
-        public void OnLogout(object? e, EventArgs args)
+        internal void OnLogout(object? e, EventArgs args)
         {
             foreach (var window in this.windows)
             {
@@ -106,6 +106,6 @@ namespace KikoGuide.Managers
         /// </summary>
         /// <param name="name"> The name of the window to get. </param>
         /// <returns> The window with the given name. </returns>
-        public Window? GetWindow(string name) => this.windowSystem.GetWindow(name);
+        internal Window? GetWindow(string name) => this.windowSystem.GetWindow(name);
     }
 }

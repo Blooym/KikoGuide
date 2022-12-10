@@ -1,12 +1,15 @@
 {
   "Version": 1,
   "Name": "Copperbell Mines",
+  "InternalName": "CopperbellMinesHard",
   "Difficulty": 1,
   "Type": 0,
   "Expansion": 0,
   "Level": 50,
   "UnlockQuestID": 66752,
-  "TerritoryIDs": [349],
+  "TerritoryIDs": [
+    349
+  ],
   "Sections": [
     {
       "Type": 0,
