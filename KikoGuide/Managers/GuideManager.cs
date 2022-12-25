@@ -100,11 +100,9 @@ namespace KikoGuide.Managers
                         guides.Add(guide);
                         PluginLog.Verbose($"GuideManager(LoadGuideData): Loaded {guide.GetCanonicalName()} ({guide.InternalName})");
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-#if !DEBUG
                         PluginLog.Warning($"GuideManager(LoadGuideData): Failed to load guide from file {file}: {e.Message}");
-#endif
                     }
                 }
             }

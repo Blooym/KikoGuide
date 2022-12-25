@@ -4,9 +4,9 @@ using KikoGuide.Base;
 namespace KikoGuide.Localization
 {
     /// <summary>
-    ///     A collection translatable Command Help strings.
+    ///     Translatable strings used for commands.
     /// </summary>
-    internal sealed class TCommands
+    internal static class TCommands
     {
         internal static string GuideListHelp => Loc.Localize("Commands.DutyList.Help", "Toggles the guide list");
         internal static string SettingsHelp => Loc.Localize("Commands.Settings.Help", "Toggles the settings menu");
@@ -15,9 +15,9 @@ namespace KikoGuide.Localization
     }
 
     /// <summary>
-    ///     A collection of translatable window strings.
+    ///     Translation strings used for window names.
     /// </summary>
-    internal sealed class TWindowNames
+    internal static class TWindowNames
     {
         internal static string Settings => string.Format(Loc.Localize("Window.Settings", "{0} - Settings"), PluginConstants.PluginName);
         internal static string GuideList => string.Format(Loc.Localize("Window.GuideList", "{0} - Guide List"), PluginConstants.PluginName);

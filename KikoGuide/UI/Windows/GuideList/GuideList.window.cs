@@ -16,7 +16,7 @@ namespace KikoGuide.UI.Windows.GuideList
     internal sealed class GuideListWindow : Window, IDisposable
     {
         internal GuideListPresenter Presenter;
-        public GuideListWindow() : base(TWindowNames.GuideList)
+        internal GuideListWindow() : base(TWindowNames.GuideList)
         {
             this.Flags |= ImGuiWindowFlags.NoScrollbar;
             this.Flags |= ImGuiWindowFlags.NoScrollWithMouse;

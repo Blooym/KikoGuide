@@ -108,6 +108,6 @@ namespace KikoGuide.Base
         /// <summary>
         ///     Deletes the notes directory.
         /// </summary>
-        internal static void DeleteNotesDirectory() => Directory.Delete(Note.DefaultLocationBase, true);
+        internal static void DeleteNotesDirectory() => Directory.Delete(Note.DefaultLocation, true);
     }
 }

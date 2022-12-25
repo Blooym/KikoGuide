@@ -40,8 +40,7 @@ jobs:
         shell: bash
         run: |
           dotnet build --configuration Release --nologo -p:AssemblyVersion=${{ steps.tag_name.outputs.TAG }} -p:AssemblyInformationalVersion=${{ steps.tag_name }}
-          sha512sum KikoGuide/bin/x64/Release/KikoGuide/latest.zip  >> checksums.txt
-          sha512sum KikoGuide/bin/x64/Release/KikoGuide/KikoGuide.json >> checksums.txt
+          sha512sum KikoGuide/bin/Release/KikoGuide/latest.zip  >> checksums.txt
           cat checksums.txt
         env:
           DALAMUD_HOME: /tmp/dalamud
@@ -53,6 +52,5 @@ jobs:
           generate_release_notes: true
           prerelease: false
           files: |
-            KikoGuide/bin/x64/Release/KikoGuide/latest.zip
-            KikoGuide/bin/x64/Release/KikoGuide/KikoGuide.json
+            KikoGuide/bin/Release/KikoGuide/latest.zip
             checksums.txt

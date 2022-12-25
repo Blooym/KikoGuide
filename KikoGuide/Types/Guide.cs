@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 
 namespace KikoGuide.Types
 {
-#pragma warning disable CA1051 // Do not declare visible instance fields
     /// <summary>
     ///     Represents a guide for an in-game duty.
     /// </summary>
@@ -25,85 +24,81 @@ namespace KikoGuide.Types
         /// <summary>
         ///     The current guide version.
         /// </summary>
-        public int Version = 1;
+        public int Version { get; private set; }
 
         /// <summary>
         ///     The guide's internal name, should be unique and not change after creation.
         /// </summary>
-        public string InternalName;
+        public string InternalName { get; private set; }
 
         /// <summary>
         ///     The constructor for a guide.
         /// </summary>
-        public Guide(string internalName)
+        public Guide(int version, string internalName)
         {
-            this.InternalName = internalName;
-
-            if (this.InternalName == null)
-            {
-                throw new ArgumentNullException(nameof(internalName));
-            }
+            this.Version = version;
+            this.InternalName = internalName ?? throw new ArgumentNullException(nameof(internalName));
         }
 
         /// <summary>
         ///     The duty/guide name.
         /// </summary>
-        public string Name = "???";
+        public string Name { get; set; } = TGenerics.Unknown;
 
         /// <summary>
         ///     Whether or not this duty is disabled and shouldn't be loaded.
         /// </summary>
-        public bool Disabled;
+        public bool Disabled { get; set; }
 
         /// <summary>
         ///     Whether or not the guide is hidden from all forms of listing. Will still be accessible via auto-open.
         /// </summary>
-        public bool Hidden;
+        public bool Hidden { get; set; }
 
         /// <summary>
         ///     The duty difficulty level.
         /// </summary>
-        public DutyDifficulty Difficulty = (int)DutyDifficulty.Normal;
+        public DutyDifficulty Difficulty { get; set; } = (int)DutyDifficulty.Normal;
 
         /// <summary>
         ///     The expansion the duty is from.
         /// </summary>
-        public DutyExpansion Expansion = (int)DutyExpansion.ARealmReborn;
+        public DutyExpansion Expansion { get; set; } = (int)DutyExpansion.ARealmReborn;
 
         /// <summary>
         ///     The duty type.
         /// </summary>
-        public DutyType Type = (int)DutyType.Dungeon;
+        public DutyType Type { get; set; } = (int)DutyType.Dungeon;
 
         /// <summary>
         ///     The duty level.
         /// </summary>
-        public int Level;
+        public int Level { get; set; }
 
         /// <summary>
         ///     The duty's unlock quest ID.
         /// </summary>
-        public uint UnlockQuestID;
+        public uint UnlockQuestID { get; set; }
 
         /// <summary>
         ///     The duty's TerritoryIDs(s).
         /// </summary>
-        public uint[] TerritoryIDs = Array.Empty<uint>();
+        public uint[] TerritoryIDs { get; set; } = Array.Empty<uint>();
 
         /// <summary>
         ///     The lore for the duty.
         /// </summary>
-        public string? Lore;
+        public string? Lore { get; set; }
 
         /// <summary>
         ///     The guide's authors.
         /// </summary>
-        public string[]? Authors = Array.Empty<string>();
+        public string[]? Authors { get; set; } = Array.Empty<string>();
 
         /// <summary>
         ///     The guide section data.
         /// </summary>
-        public List<Section>? Sections;
+        public List<Section>? Sections { get; set; }
 
         /// <summary>
         ///     Represents a section of a guide.
@@ -113,17 +108,17 @@ namespace KikoGuide.Types
             /// <summary>
             ///     The type of section.
             /// </summary>
-            public GuideSectionType Type = (int)GuideSectionType.Boss;
+            public GuideSectionType Type { get; set; } = (int)GuideSectionType.Boss;
 
             /// <summary>
             ///     The section's name.
             /// </summary>
-            public string Name = "???";
+            public string Name { get; set; } = TGenerics.Unknown;
 
             /// <summary>
             ///     The phases that belong to this section.
             /// </summary>
-            public List<Phase>? Phases;
+            public List<Phase>? Phases { get; set; }
 
             /// <summary>
             ///     Represents a phase of a section.
@@ -133,27 +128,27 @@ namespace KikoGuide.Types
                 /// <summary>
                 ///     The overriden title of the phase, usually left blank.
                 /// </summary>
-                public string? TitleOverride;
+                public string? TitleOverride { get; set; }
 
                 /// <summary>
                 ///     The strategy for the phase.
                 /// </summary>
-                public string? Strategy;
+                public string? Strategy { get; set; }
 
                 /// <summary>
                 ///     The short strategy for the phase.
                 /// </summary>
-                public string? StrategyShort;
+                public string? StrategyShort { get; set; }
 
                 /// <summary>
                 ///     The phase's associated mechanics.
                 /// </summary>
-                public List<Mechanic>? Mechanics;
+                public List<Mechanic>? Mechanics { get; set; }
 
                 /// <summary>
                 ///     The phase's associated tips.
                 /// </summary>
-                public List<Tip>? Tips;
+                public List<Tip>? Tips { get; set; }
 
                 /// <summary>
                 ///     Represents a mechanic of a phase.
@@ -191,7 +186,6 @@ namespace KikoGuide.Types
                 }
             }
         }
-#pragma warning restore CA1051 // Do not declare visible instance fields
 
         /// <summary>
         ///     Boolean value indicating if this duty is not supported on the current plugin version.
@@ -214,10 +208,8 @@ namespace KikoGuide.Types
                 return false;
             }
 
-#pragma warning disable IDE0075 // Simplify conditional expression
             return Enum.IsDefined(typeof(DutyDifficulty), this.Difficulty)
                 && this.Sections?.Any(s => !Enum.IsDefined(typeof(GuideSectionType), s.Type) || s.Phases?.Any(p => p.Mechanics?.Any(m => !Enum.IsDefined(typeof(GuideMechanics), m.Type)) == true) == true) != true;
-#pragma warning restore IDE0075 // Simplify conditional expression
         }
 
         /// <summary>
@@ -254,22 +246,22 @@ namespace KikoGuide.Types
 
     public enum DutyType
     {
-        [Name("Dungeon"), PluralName("Dungeons")]
+        [Name("Dungeon", "Dungeons")]
         Dungeon = 0,
 
-        [Name("Trial"), PluralName("Trials")]
+        [Name("Trial", "Trials")]
         Trial = 1,
 
-        [Name("Alliance Raid"), PluralName("Alliance Raids")]
+        [Name("Alliance Raid", "Alliance Raids")]
         AllianceRaid = 2,
 
-        [Name("Raid"), PluralName("Raids")]
+        [Name("Raid", "Raids")]
         Raid = 3,
 
-        [Name("FATE"), PluralName("FATEs")]
+        [Name("FATE", "FATEs")]
         FATE = 4,
 
-        [Name("Misc"), PluralName("Misc")]
+        [Name("Misc")]
         Misc = 5,
     }
 
@@ -296,71 +288,80 @@ namespace KikoGuide.Types
 
     public enum DutyExpansion
     {
+        [Name("A Realm Reborn")]
         ARealmReborn = 0,
+
+        [Name("Heavensward")]
         Heavensward = 1,
+
+        [Name("Stormblood")]
         Stormblood = 2,
+
+        [Name("Shadowbringers")]
         Shadowbringers = 3,
+
+        [Name("Endwalker")]
         Endwalker = 4
     }
 
     public enum GuideSectionType
     {
-        [Name("Boss")]
+        [Name("Boss", "Bosses")]
         [Description("A boss fight.")]
         Boss = 0,
 
-        [Name("Trashpack")]
+        [Name("Trashpack", "Trashpacks")]
         [Description("A group of enemies that are not a boss.")]
         Trashpack = 1,
 
-        [Name("Other")]
+        [Name("Other", "Others")]
         [Description("A section that does not fit into the other categories.")]
         Other = 2
     }
 
     public enum GuideMechanics
     {
-        [Name("Tankbuster")]
+        [Name("Tankbuster", "Tankbusters")]
         [Description("A mechanic that requires a tank to take the hit.")]
         Tankbuster = 0,
 
-        [Name("Enrage")]
+        [Name("Enrage", "Enrages")]
         [Description("A mechanic that causes the boss to go into an enraged state, dealing more damage.")]
         Enrage = 1,
 
-        [Name("AoE")]
+        [Name("AoE", "AoEs")]
         [Description("A mechanic that requires the party to spread out.")]
         AOE = 2,
 
-        [Name("Stackmarker")]
+        [Name("Stackmarker", "Stackmarkers")]
         [Description("A mechanic that requires the party to stack up.")]
         Stackmarker = 3,
 
-        [Name("Raidwide")]
+        [Name("Raidwide", "Raidwides")]
         [Description("A mechanic that affects the entire raid.")]
         Raidwide = 4,
 
-        [Name("Invulnerability")]
+        [Name("Invulnerability", "Invulnerabilities")]
         [Description("A mechanic that makes the boss invulnerable.")]
         Invulnerablity = 5,
 
-        [Name("Targetted")]
+        [Name("Targetted", "Targetted")]
         [Description("A mechanic that targets a specific player.")]
         Targetted = 6,
 
-        [Name("Add Spawn")]
+        [Name("Add Spawn", "Add Spawns")]
         [Description("A mechanic that spawns additional enemies.")]
         AddSpawn = 7,
 
-        [Name("DPS Check")]
+        [Name("DPS Check", "DPS Checks")]
         [Description("A mechanic that requires the party to deal a certain amount of damage.")]
         DPSCheck = 8,
 
-        [Name("Cleave")]
+        [Name("Cleave", "Cleaves")]
         [Description("A mechanic that deals damage in a non-telegraphed cone.")]
         Cleave = 9,
 
-        [Name("Other")]
+        [Name("Other", "Others")]
         [Description("A mechanic that does not fit into any other category.")]
         Other = 10,
     }

@@ -22,7 +22,7 @@ namespace KikoGuide
         }
 
         /// <summary>
-        ///     Plugin disposal point.
+        ///     Disposes of the plugin.
         /// </summary>
         public void Dispose() => PluginService.Dispose();
     }

@@ -19,6 +19,11 @@ namespace KikoGuide.IPC
         private readonly Dictionary<IPCProviders, IIPCProvider> ipcProviders = new();
 
         /// <summary>
+        ///     A list of all forcefully disabled IPC providers.
+        /// </summary>
+        private readonly List<IPCProviders> forceDisabledProviders = new();
+
+        /// <summary>
         ///     Initializes the IPCLoader and loads all enabled IPC providers.
         /// </summary>
         internal IPCLoader()
@@ -34,6 +39,13 @@ namespace KikoGuide.IPC
 
                     if (ipc is IIPCProvider provider)
                     {
+                        if (provider.ForcefullyDisabled)
+                        {
+                            PluginLog.Debug($"IPCLoader(Constructor): {type.FullName} is forcefully disabled, skipped");
+                            this.forceDisabledProviders.Add(provider.ID);
+                            continue;
+                        }
+
                         if (!PluginService.Configuration.IPC.EnabledIntegrations.Contains(provider.ID))
                         {
                             PluginLog.Debug($"IPCLoader(Constructor): {type.FullName} is disabled in the configuration, skipped");
@@ -99,6 +111,11 @@ namespace KikoGuide.IPC
                 var ipc = Activator.CreateInstance(type);
                 if (ipc is IIPCProvider ipcProvider)
                 {
+                    if (ipcProvider.ForcefullyDisabled)
+                    {
+                        return;
+                    }
+
                     ipcProvider.Enable();
                     this.ipcProviders.Add(ipcProvider.ID, ipcProvider);
                     PluginLog.Information($"IPCLoader(EnableProvider): Integration for {type.FullName} enabled and initialized.");
@@ -117,6 +134,7 @@ namespace KikoGuide.IPC
             {
                 return;
             }
+
             try
             {
                 var ipc = this.ipcProviders[provider];
@@ -126,5 +144,12 @@ namespace KikoGuide.IPC
             }
             catch (Exception e) { PluginLog.Error($"IPCLoader(DisableProvider): Failed to disable and dispose of {provider} - {e.Message}"); }
         }
+
+        /// <summary>
+        ///    Checks to see if the provider is forcefully disabled.
+        /// </summary>
+        /// <param name="provider">The provider to check.</param>
+        /// <returns>True if the provider is disabled, false otherwise.</returns>
+        internal bool IsForcefullyDisabled(IPCProviders provider) => this.forceDisabledProviders.Contains(provider);
     }
 }

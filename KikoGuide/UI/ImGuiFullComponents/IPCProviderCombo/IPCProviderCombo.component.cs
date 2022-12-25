@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ImGuiNET;
 using KikoGuide.Attributes;
+using KikoGuide.Base;
 using KikoGuide.IPC;
 using KikoGuide.Localization;
 using KikoGuide.UI.ImGuiBasicComponents;
@@ -27,6 +28,8 @@ namespace KikoGuide.UI.ImGuiFullComponents.IPCProviderCombo
                         continue;
                     }
 
+
+                    ImGui.BeginDisabled(PluginService.IPC.IsForcefullyDisabled(provider));
                     if (ImGui.Selectable(provider.GetNameAttribute(), enabledIntegrations?.Contains(provider) ?? false, ImGuiSelectableFlags.DontClosePopups))
                     {
                         if (enabledIntegrations?.Contains(provider) ?? false)
@@ -44,6 +47,7 @@ namespace KikoGuide.UI.ImGuiFullComponents.IPCProviderCombo
                             IPCProviderComboPresenter.IPC.EnableProvider(provider);
                         }
                     }
+                    ImGui.EndDisabled();
                     Common.AddTooltip(provider.GetDescriptionAttribute());
                 }
                 ImGui.EndCombo();

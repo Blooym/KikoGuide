@@ -55,8 +55,7 @@ namespace KikoGuide.UI.Windows.GuideViewer
 
             if (guide != null)
             {
-                this.LinkedNote = Note.CreateOrLoad(guide.InternalName, Path.Combine(Note.DefaultLocationBase, guide.Type.GetPluralNameAttribute()));
-                PluginLog.Debug($"GuideViewerPresenter(SetSelectedGuide): Note: {this.LinkedNote.Contents}");
+                this.LinkedNote = Note.CreateOrLoad(guide.InternalName, Path.Combine(Note.DefaultLocation, guide.Type.GetNameAttribute()));
             }
             else
             {

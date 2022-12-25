@@ -7,14 +7,14 @@ using Newtonsoft.Json;
 namespace KikoGuide.Types
 {
     /// <summary>
-    ///     A note.
+    ///     Represents a note.
     /// </summary>
     public class Note
     {
         /// <summary>
         ///     The default directory to store notes in.
         /// </summary>
-        public static readonly string DefaultLocationBase = Path.Combine(PluginService.PluginInterface.GetPluginConfigDirectory(), "Notes");
+        public static readonly string DefaultLocation = Path.Combine(PluginService.PluginInterface.GetPluginConfigDirectory(), "Notes");
 
         /// <summary>
         ///     The naming template for storing notes.
@@ -24,7 +24,7 @@ namespace KikoGuide.Types
         /// <summary>
         ///     The storage directory of the note
         /// </summary>
-        public string StorageDirectory { get; private set; } = DefaultLocationBase;
+        public string StorageDirectory { get; private set; } = DefaultLocation;
 
         /// <summary>
         ///     The name of the note
@@ -164,7 +164,7 @@ namespace KikoGuide.Types
         public Note SetDefaultDirectory()
         {
             this.OldLocationToDelete = this.GetLocation();
-            this.StorageDirectory = DefaultLocationBase;
+            this.StorageDirectory = DefaultLocation;
             this.LastEdited = DateTime.Now;
             return this;
         }
@@ -247,13 +247,13 @@ namespace KikoGuide.Types
                 throw new ArgumentNullException(nameof(name));
             }
 
-            if (!File.Exists(Path.Combine(DefaultLocationBase, string.Format(StorageNameTemplate, name))))
+            if (!File.Exists(Path.Combine(DefaultLocation, string.Format(StorageNameTemplate, name))))
             {
-                return new Note(name, string.Empty, DefaultLocationBase);
+                return new Note(name, string.Empty, DefaultLocation);
             }
 
-            var note = JsonConvert.DeserializeObject<Note>(File.ReadAllText(Path.Combine(DefaultLocationBase, string.Format(StorageNameTemplate, name))));
-            return note ?? new Note(name, string.Empty, DefaultLocationBase);
+            var note = JsonConvert.DeserializeObject<Note>(File.ReadAllText(Path.Combine(DefaultLocation, string.Format(StorageNameTemplate, name))));
+            return note ?? new Note(name, string.Empty, DefaultLocation);
         }
 
         /// <summary>
@@ -284,6 +284,47 @@ namespace KikoGuide.Types
 
             var note = JsonConvert.DeserializeObject<Note>(File.ReadAllText(Path.Combine(directory, string.Format(StorageNameTemplate, name))));
             return note ?? new Note(name, string.Empty, directory);
+        }
+
+        /// <summary>
+        ///    Checks to see if the given note exists.
+        /// </summary>
+        /// <param name="name"> The name of the note. </param>
+        /// <returns> True if the note exists, false otherwise. </returns>
+        public static bool Exists(string name)
+        {
+            name = SanitizeName(name);
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+
+            return File.Exists(Path.Combine(DefaultLocation, string.Format(StorageNameTemplate, name)));
+        }
+
+        /// <summary>
+        ///    Checks to see if the given note exists in the given directory.
+        /// </summary>
+        /// <param name="name"> The name of the note. </param>
+        /// <param name="directory"> The directory of the note. </param>
+        /// <returns> True if the note exists, false otherwise. </returns>
+        public static bool Exists(string name, string directory)
+        {
+            name = SanitizeName(name);
+            directory = SanitizeDirectory(directory);
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+
+            if (string.IsNullOrWhiteSpace(directory))
+            {
+                throw new ArgumentNullException(nameof(directory));
+            }
+
+            return File.Exists(Path.Combine(directory, string.Format(StorageNameTemplate, name)));
         }
 
         /// <summary>

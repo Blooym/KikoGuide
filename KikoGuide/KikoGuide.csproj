@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
+  <!--  Project Properties -->
   <PropertyGroup>
+    <AssemblyName>KikoGuide</AssemblyName>
+    <Authors>BitsOfAByte</Authors>
+    <Description>Hand-written guides for duty content.</Description>
     <Version>1.5.0.2</Version>
     <PackageProjectUrl>https://github.com/BitsOfAByte/KikoGuide</PackageProjectUrl>
   </PropertyGroup>
 
+  <!--  Output Properties -->
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Platforms>x64</Platforms>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
 
+  <!--  Project Resources -->
   <ItemGroup>
-    <None Update="KikoGuide.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Resources/**/*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
-  <PropertyGroup>
+  <!-- Dalamud Location -->
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT' AND '$(CI)' != 'true'">
     <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(OS)' != 'Windows_NT' OR '$(CI)' == 'true'">
     <DalamudLibPath>$(DALAMUD_HOME)/</DalamudLibPath>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(IsCI)' == 'true'">
-      <DalamudLibPath>Dalamud</DalamudLibPath>
-  </PropertyGroup>
-
+  <!--  Package References -->
   <ItemGroup>
     <PackageReference Include="DalamudPackager" Version="2.1.8" />
     <Reference Include="FFXIVClientStructs">

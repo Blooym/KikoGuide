@@ -14,28 +14,20 @@ namespace KikoGuide.Attributes
         internal string Name { get; set; }
 
         /// <summary>
-        ///     Creates a new <see cref="NameAttribute"/>.
-        /// </summary>
-        /// <param name="name">The name of the attribute.</param>
-        internal NameAttribute(string name) => this.Name = name;
-    }
-
-    /// <summary>
-    ///     A plural name attribute.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Field)]
-    internal class PluralNameAttribute : Attribute
-    {
-        /// <summary>
-        ///     The plural name of the attribute.
+        ///    The plural name of the attribute.
         /// </summary>
         internal string PluralName { get; set; }
 
         /// <summary>
-        ///     Creates a new <see cref="PluralNameAttribute"/>.
+        ///     Creates a new <see cref="NameAttribute"/>.
         /// </summary>
+        /// <param name="name">The name of the attribute.</param>
         /// <param name="pluralName">The plural name of the attribute.</param>
-        internal PluralNameAttribute(string pluralName) => this.PluralName = pluralName;
+        internal NameAttribute(string name, string? pluralName = null)
+        {
+            this.Name = name;
+            this.PluralName = pluralName ?? name;
+        }
     }
 
     /// <summary>
@@ -62,9 +54,10 @@ namespace KikoGuide.Attributes
     internal static class AttributeExtensions
     {
         /// <summary>
-        ///     Gets the name of the attribute.
+        ///     Gets the singular name of the attribute.
         /// </summary>
         /// <param name="value">The attribute to get the name of.</param>
+        /// <returns>The singular name of the attribute.</returns>
         internal static string GetNameAttribute(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());
@@ -73,14 +66,15 @@ namespace KikoGuide.Attributes
         }
 
         /// <summary>
-        ///     Gets the plural name of the attribute.
+        ///    Gets the plural name of the attribute.
         /// </summary>
         /// <param name="value">The attribute to get the plural name of.</param>
+        /// <returns>The plural name of the attribute.</returns>
         internal static string GetPluralNameAttribute(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());
-            var attribute = field?.GetCustomAttributes(typeof(PluralNameAttribute), false);
-            return attribute?.Length > 0 ? ((PluralNameAttribute)attribute[0]).PluralName : value.ToString();
+            var attribute = field?.GetCustomAttributes(typeof(NameAttribute), false);
+            return attribute?.Length > 0 ? ((NameAttribute)attribute[0]).PluralName : value.ToString();
         }
 
         /// <summary>

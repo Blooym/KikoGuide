@@ -13,6 +13,16 @@ namespace KikoGuide.IPC.Interfaces
         IPCProviders ID { get; }
 
         /// <summary>
+        ///    Whether or not the IPC provider is initialized.
+        /// </summary>
+        bool Initialized { get; }
+
+        /// <summary>
+        ///     Whether or not the IPC provider is forcefully disabled.
+        /// </summary>
+        bool ForcefullyDisabled { get; }
+
+        /// <summary>
         ///     Enables the IPC provider, either initializing it immediately or subscribing to it being available.
         /// </summary>
         void Enable();
