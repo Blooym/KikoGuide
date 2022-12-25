@@ -8,7 +8,6 @@ using KikoGuide.Base;
 using KikoGuide.Localization;
 using KikoGuide.Types;
 using KikoGuide.Utils;
-using Newtonsoft.Json;
 
 namespace KikoGuide.UI.Windows.Editor
 {
@@ -138,7 +137,7 @@ namespace KikoGuide.UI.Windows.Editor
 
             try
             {
-                this.lastParseResult = new Tuple<Guide?, Exception?>(JsonConvert.DeserializeObject<Guide>(guideText), null);
+                this.lastParseResult = new Tuple<Guide?, Exception?>(Guide.FromJson(guideText), null);
                 return this.lastParseResult;
             }
             catch (Exception e)

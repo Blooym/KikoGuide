@@ -5,7 +5,6 @@ using System.Linq;
 using Dalamud.Logging;
 using KikoGuide.Base;
 using KikoGuide.Types;
-using Newtonsoft.Json;
 
 namespace KikoGuide.Managers
 {
@@ -76,14 +75,8 @@ namespace KikoGuide.Managers
                 {
                     try
                     {
-                        var guide = JsonConvert.DeserializeObject<Guide>(File.ReadAllText(file));
+                        var guide = Guide.FromJson(File.ReadAllText(file));
                         var errorMessage = $"GuideManager(LoadGuideData): Failed to load guide file {file}:";
-
-                        if (guide == null)
-                        {
-                            PluginLog.Warning($"{errorMessage} Guide is null");
-                            continue;
-                        }
 
                         if (guide.Disabled)
                         {

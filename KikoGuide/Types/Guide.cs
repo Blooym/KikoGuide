@@ -14,6 +14,8 @@ namespace KikoGuide.Types
     /// </summary>
     public class Guide
     {
+        private Guide() { }
+
         /// <summary>
         ///     The current format version, incremented on breaking changes.
         ///     When this version does not match a guide, it cannot be loaded.
@@ -24,81 +26,86 @@ namespace KikoGuide.Types
         /// <summary>
         ///     The current guide version.
         /// </summary>
+        [JsonProperty]
         public int Version { get; private set; }
 
         /// <summary>
         ///     The guide's internal name, should be unique and not change after creation.
         /// </summary>
-        public string InternalName { get; private set; }
-
-        /// <summary>
-        ///     The constructor for a guide.
-        /// </summary>
-        public Guide(int version, string internalName)
-        {
-            this.Version = version;
-            this.InternalName = internalName ?? throw new ArgumentNullException(nameof(internalName));
-        }
+        [JsonProperty(Required = Required.Always)]
+        public string InternalName { get; private set; } = TGenerics.Unknown;
 
         /// <summary>
         ///     The duty/guide name.
         /// </summary>
-        public string Name { get; set; } = TGenerics.Unknown;
+        [JsonProperty(Required = Required.Always)]
+        public string Name { get; private set; } = TGenerics.Unknown;
 
         /// <summary>
         ///     Whether or not this duty is disabled and shouldn't be loaded.
         /// </summary>
-        public bool Disabled { get; set; }
+        [JsonProperty]
+        public bool Disabled { get; private set; }
 
         /// <summary>
         ///     Whether or not the guide is hidden from all forms of listing. Will still be accessible via auto-open.
         /// </summary>
-        public bool Hidden { get; set; }
+        [JsonProperty]
+        public bool Hidden { get; private set; }
 
         /// <summary>
         ///     The duty difficulty level.
         /// </summary>
-        public DutyDifficulty Difficulty { get; set; } = (int)DutyDifficulty.Normal;
+        [JsonProperty]
+        public DutyDifficulty Difficulty { get; private set; } = (int)DutyDifficulty.Normal;
 
         /// <summary>
         ///     The expansion the duty is from.
         /// </summary>
-        public DutyExpansion Expansion { get; set; } = (int)DutyExpansion.ARealmReborn;
+        [JsonProperty]
+        public DutyExpansion Expansion { get; private set; } = (int)DutyExpansion.ARealmReborn;
 
         /// <summary>
         ///     The duty type.
         /// </summary>
-        public DutyType Type { get; set; } = (int)DutyType.Dungeon;
+        [JsonProperty]
+        public DutyType Type { get; private set; } = (int)DutyType.Dungeon;
 
         /// <summary>
         ///     The duty level.
         /// </summary>
-        public int Level { get; set; }
+        [JsonProperty]
+        public int Level { get; private set; }
 
         /// <summary>
         ///     The duty's unlock quest ID.
         /// </summary>
-        public uint UnlockQuestID { get; set; }
+        [JsonProperty]
+        public uint UnlockQuestID { get; private set; }
 
         /// <summary>
         ///     The duty's TerritoryIDs(s).
         /// </summary>
-        public uint[] TerritoryIDs { get; set; } = Array.Empty<uint>();
+        [JsonProperty]
+        public uint[] TerritoryIDs { get; private set; } = Array.Empty<uint>();
 
         /// <summary>
         ///     The lore for the duty.
         /// </summary>
-        public string? Lore { get; set; }
+        [JsonProperty]
+        public string? Lore { get; private set; }
 
         /// <summary>
         ///     The guide's authors.
         /// </summary>
-        public string[]? Authors { get; set; } = Array.Empty<string>();
+        [JsonProperty]
+        public string[]? Authors { get; private set; } = Array.Empty<string>();
 
         /// <summary>
         ///     The guide section data.
         /// </summary>
-        public List<Section>? Sections { get; set; }
+        [JsonProperty]
+        public List<Section>? Sections { get; private set; }
 
         /// <summary>
         ///     Represents a section of a guide.
@@ -108,17 +115,20 @@ namespace KikoGuide.Types
             /// <summary>
             ///     The type of section.
             /// </summary>
-            public GuideSectionType Type { get; set; } = (int)GuideSectionType.Boss;
+            [JsonProperty]
+            public GuideSectionType Type { get; private set; } = (int)GuideSectionType.Boss;
 
             /// <summary>
             ///     The section's name.
             /// </summary>
-            public string Name { get; set; } = TGenerics.Unknown;
+            [JsonProperty]
+            public string Name { get; private set; } = TGenerics.Unknown;
 
             /// <summary>
             ///     The phases that belong to this section.
             /// </summary>
-            public List<Phase>? Phases { get; set; }
+            [JsonProperty]
+            public List<Phase>? Phases { get; private set; }
 
             /// <summary>
             ///     Represents a phase of a section.
@@ -128,27 +138,32 @@ namespace KikoGuide.Types
                 /// <summary>
                 ///     The overriden title of the phase, usually left blank.
                 /// </summary>
-                public string? TitleOverride { get; set; }
+                [JsonProperty]
+                public string? TitleOverride { get; private set; }
 
                 /// <summary>
                 ///     The strategy for the phase.
                 /// </summary>
-                public string? Strategy { get; set; }
+                [JsonProperty]
+                public string? Strategy { get; private set; }
 
                 /// <summary>
                 ///     The short strategy for the phase.
                 /// </summary>
-                public string? StrategyShort { get; set; }
+                [JsonProperty]
+                public string? StrategyShort { get; private set; }
 
                 /// <summary>
                 ///     The phase's associated mechanics.
                 /// </summary>
-                public List<Mechanic>? Mechanics { get; set; }
+                [JsonProperty]
+                public List<Mechanic>? Mechanics { get; private set; }
 
                 /// <summary>
                 ///     The phase's associated tips.
                 /// </summary>
-                public List<Tip>? Tips { get; set; }
+                [JsonProperty]
+                public List<Tip>? Tips { get; private set; }
 
                 /// <summary>
                 ///     Represents a mechanic of a phase.
@@ -158,22 +173,26 @@ namespace KikoGuide.Types
                     /// <summary>
                     ///     The mechanic's name.
                     /// </summary>
-                    public string Name { get; set; } = TGenerics.Unknown;
+                    [JsonProperty]
+                    public string Name { get; private set; } = TGenerics.Unknown;
 
                     /// <summary>
                     ///     The mechanic's description.
                     /// </summary>
-                    public string Description { get; set; } = TGenerics.Unspecified;
+                    [JsonProperty]
+                    public string Description { get; private set; } = TGenerics.Unspecified;
 
                     /// <summary>
                     ///     The mechanic's short description.
                     /// </summary>
-                    public string? ShortDescription { get; set; }
+                    [JsonProperty]
+                    public string? ShortDescription { get; private set; }
 
                     /// <summary>
                     ///     The type of mechanic.
                     /// </summary>
-                    public int Type { get; set; } = (int)GuideMechanics.Other;
+                    [JsonProperty]
+                    public int Type { get; private set; } = (int)GuideMechanics.Other;
                 }
 
                 /// <summary>
@@ -181,8 +200,17 @@ namespace KikoGuide.Types
                 /// </summary>
                 public class Tip
                 {
-                    public string? Text { get; set; }
-                    public string? TextShort { get; set; }
+                    /// <summary>
+                    ///     The text of the tip.
+                    /// </summary>
+                    [JsonProperty]
+                    public string? Text { get; private set; }
+
+                    /// <summary>
+                    ///     The short text of the tip.
+                    /// </summary>
+                    [JsonProperty]
+                    public string? TextShort { get; private set; }
                 }
             }
         }
@@ -242,6 +270,13 @@ namespace KikoGuide.Types
         ///     Whether or not this guide is hidden and should not be listed.
         /// </summary>
         public bool IsHidden() => this.Hidden || this.Disabled;
+
+        /// <summary>
+        ///    Creates a new Guide object from a JSON input.
+        /// </summary>
+        /// <param name="json">The JSON input.</param>
+        /// <returns>The Guide object.</returns>
+        public static Guide FromJson(string json) => JsonConvert.DeserializeObject<Guide>(json) ?? throw new JsonException("Failed to deserialize guide JSON.");
     }
 
     public enum DutyType

@@ -178,7 +178,7 @@ namespace KikoGuide.UI.Windows.Editor
                     }
                     else
                     {
-                        ImGui.TextWrapped("Unable to parse guide; preview unavailable.");
+                        ImGui.TextWrapped("Unable to parse guide or no sections found.");
                     }
 
                     ImGui.EndTabItem();
