@@ -24,8 +24,8 @@ namespace KikoGuide.Common
             public const string GuideViewerHelp = "Toggle the guide viewer window.";
             public const string GuideEditor = "/kikoeditor";
             public const string GuideEditorHelp = "Toggle the guide editor window.";
-            public const string Settings = "/kikoconfig";
-            public const string SettingsHelp = "Toggle the configuration window.";
+            public const string Settings = "/kikosettings";
+            public const string SettingsHelp = "Toggle the settings window.";
         }
 
         internal static class ExceptionMessages

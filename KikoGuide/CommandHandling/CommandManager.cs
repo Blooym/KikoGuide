@@ -52,6 +52,7 @@ namespace KikoGuide.CommandHandling
             }
 
             this.registeredCommands.Clear();
+            instance = null;
             GC.SuppressFinalize(this);
         }
     }

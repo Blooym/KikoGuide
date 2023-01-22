@@ -46,6 +46,7 @@ namespace KikoGuide.UserInterface
         public void Dispose()
         {
             this.WindowingSystem.Dispose();
+            instance = null;
             GC.SuppressFinalize(this);
         }
     }

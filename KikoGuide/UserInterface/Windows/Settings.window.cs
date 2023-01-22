@@ -1,6 +1,7 @@
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using KikoGuide.Common;
+using Sirensong.UserInterface;
 
 namespace KikoGuide.UserInterface.Windows
 {
@@ -14,8 +15,16 @@ namespace KikoGuide.UserInterface.Windows
 
         public override void Draw()
         {
-            ImGui.Text("Hello, world!");
-            ImGui.Text("This is the settings window.");
+            var guides = Services.ResourceManager.GetAllGuides();
+            foreach (var guide in guides)
+            {
+                if (guide.LinkedDuty?.CFCondition?.Image != null)
+                {
+                    SiUI.Icon(guide.LinkedDuty.CFCondition.Image, ScalingMode.Contain);
+                }
+
+                ImGui.TextUnformatted(guide.Name.UICurrent);
+            }
         }
     }
 }

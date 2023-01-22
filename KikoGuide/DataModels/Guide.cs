@@ -1,8 +1,8 @@
 using System;
-using System.Text.Json.Serialization;
 using KikoGuide.Common;
 using KikoGuide.DataStructures;
 using Lumina.Excel.GeneratedSheets;
+using Newtonsoft.Json;
 
 #pragma warning disable IDE0051, IDE0044
 namespace KikoGuide.DataModels
@@ -13,7 +13,17 @@ namespace KikoGuide.DataModels
     [Serializable]
     public sealed record class Guide
     {
-        internal Guide() { }
+        [JsonConstructor]
+        private Guide(TranslatableString name) // Put all required properties here to make sure they're not null
+        {
+            if (name.EN == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+            this.Name = name;
+        }
+
+        public static Guide FromJson(string json) => JsonConvert.DeserializeObject<Guide>(json) ?? throw new InvalidOperationException("Failed to deserialize guide");
 
         // Guide metadata
         [JsonIgnore]
@@ -21,7 +31,7 @@ namespace KikoGuide.DataModels
         public int Version { get; init; }
         public bool NoLoad { get; init; }
         public bool Hidden { get; init; }
-        public TranslatableString GuideName { get; init; }
+        public required TranslatableString Name { get; init; }
 
         // Linked duty
         public uint LinkedDutyID { get; init; }
@@ -44,7 +54,7 @@ namespace KikoGuide.DataModels
         private Note? note;
         [JsonIgnore]
         public Note Note
-           => this.note ??= Note.CreateOrLoad(this.GuideName.EN);
+           => this.note ??= Note.CreateOrLoad(this.Name.EN);
 
         // Guide content
         public GuideContent? Content { get; init; }

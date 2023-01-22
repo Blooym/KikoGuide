@@ -5,7 +5,7 @@ using KikoGuide.UserInterface.Windows;
 
 namespace KikoGuide.CommandHandling.Commands
 {
-    public class KikoConfig : ICommand
+    public class KikoSettings : ICommand
     {
         /// <inheritdoc />
         public string Name => Constants.Commands.Settings;
