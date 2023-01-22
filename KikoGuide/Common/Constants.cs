@@ -1,0 +1,72 @@
+using System;
+using System.Reflection;
+using CheapLoc;
+
+namespace KikoGuide.Common
+{
+    /// <summary>
+    ///     Compile-time constants, readonly values, and localization strings.
+    /// </summary>
+    internal static class Constants
+    {
+        public const string PluginName = "Kiko Guide";
+        public static readonly string NotesDirectory = $@"{Services.PluginInterface.GetPluginConfigDirectory()}\Notes";
+        public static readonly Version Version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0, 0);
+        public static readonly string GitCommitHash = Assembly.GetExecutingAssembly().GetCustomAttribute<GitHashAttribute>()?.Value ?? "Unknown";
+        public static readonly DateTime GitCommitDate = DateTime.TryParse(Assembly.GetExecutingAssembly().GetCustomAttribute<GitCommitDateAttribute>()?.Value, out var date) ? date : DateTime.MinValue;
+        public static readonly string GitBranch = Assembly.GetExecutingAssembly().GetCustomAttribute<GitBranchAttribute>()?.Value ?? "Unknown";
+
+        internal static class Commands
+        {
+            public const string GuideList = "/kikolist";
+            public const string GuideListHelp = "Toggle a list of all available guides.";
+            public const string GuideViewer = "/kikoviewer";
+            public const string GuideViewerHelp = "Toggle the guide viewer window.";
+            public const string GuideEditor = "/kikoeditor";
+            public const string GuideEditorHelp = "Toggle the guide editor window.";
+            public const string Settings = "/kikoconfig";
+            public const string SettingsHelp = "Toggle the configuration window.";
+        }
+
+        internal static class ExceptionMessages
+        {
+            public const string NoContentFinderCondition = "Unable to find ContentFinderCondition Row for the given ID";
+            public const string NoContentFinderConditionTransient = "Unable to find ContentFinderConditionTransient Row for the given ID";
+            public const string NoQuest = "Unable to find Quest Row for the given ID";
+        }
+
+        internal static class Windows
+        {
+            public static string SettingsTitle => string.Format(Loc.Localize("Windows.Settings", "{0} - Settings"), PluginName);
+            public static string GuideListTitle => string.Format(Loc.Localize("Windows.GuideList", "{0} - Guide List"), PluginName);
+            public static string GuideViewerTitle => string.Format(Loc.Localize("Windows.GuideViewer", "{0} - Guide Viewer"), PluginName);
+            public static string GuideEditorTitle => string.Format(Loc.Localize("Windows.GuideEditor", "{0} - Guide Editor"), PluginName);
+        }
+
+        internal static class Common
+        {
+
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Assembly)]
+    internal sealed class GitHashAttribute : Attribute
+    {
+        public string Value { get; set; }
+        public GitHashAttribute(string value) => this.Value = value;
+    }
+
+    [AttributeUsage(AttributeTargets.Assembly)]
+    internal sealed class GitCommitDateAttribute : Attribute
+    {
+        public string Value { get; set; }
+        public GitCommitDateAttribute(string value) => this.Value = value;
+    }
+
+    [AttributeUsage(AttributeTargets.Assembly)]
+    internal sealed class GitBranchAttribute : Attribute
+    {
+        public string Value { get; set; }
+        public GitBranchAttribute(string value) => this.Value = value;
+    }
+}

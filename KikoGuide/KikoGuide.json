@@ -1,0 +1,17 @@
+{
+    "Author": "BitsOfAByte",
+    "Name": "Kiko Guide",
+    "InternalName": "KikoGuide",
+    "Punchline": "The ultimate guidebook for in-game duties, great for sprouts & doing your daily roulettes!",
+    "Description": "Comprehensive guides for duty content such as Dungeons, Trials and Alliance Raids.",
+    "RepoUrl": "https://github.com/BitsOfAByte/KikoGuide",
+    "Tags": [
+        "KikoGuide",
+        "Duty Finder",
+        "Roulette",
+        "Guide"
+    ],
+    "CategoryTags": [
+        "Utility"
+    ]
+}

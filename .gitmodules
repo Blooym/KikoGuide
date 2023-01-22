@@ -1,0 +1,3 @@
+[submodule "Sirensong"]
+	path = Sirensong
+	url = https://github.com/BitsOfAByte/Sirensong.git
