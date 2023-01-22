@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+using KikoGuide.CommandHandling.Commands;
 using KikoGuide.CommandHandling.Interfaces;
 using KikoGuide.Common;
 
@@ -22,22 +20,22 @@ namespace KikoGuide.CommandHandling
         /// <summary>
         ///     The list of registered commands.
         /// </summary>
-        private readonly List<ICommand> registeredCommands = new();
+        private ICommand[] commands =
+        {
+            new KikoEditor(),
+            new KikoList(),
+            new KikoViewer(),
+            new KikoSettings(),
+        };
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="CommandManager"/> class.
         /// </summary>
         private CommandManager()
         {
-            foreach (var command in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(ICommand))))
+            foreach (var command in this.commands)
             {
-                var commandInstance = (ICommand?)command.GetConstructor(Type.EmptyTypes)?.Invoke(null);
-                if (commandInstance == null || !commandInstance.Enabled)
-                {
-                    continue;
-                }
-                Services.Commands.AddHandler(commandInstance.Name, commandInstance.Command);
-                this.registeredCommands.Add(commandInstance);
+                Services.Commands.AddHandler(command.Name, command.Command);
             }
         }
 
@@ -46,12 +44,11 @@ namespace KikoGuide.CommandHandling
         /// </summary>
         public void Dispose()
         {
-            foreach (var command in this.registeredCommands)
+            foreach (var command in this.commands)
             {
                 Services.Commands.RemoveHandler(command.Name);
             }
-
-            this.registeredCommands.Clear();
+            this.commands = Array.Empty<ICommand>();
             instance = null;
             GC.SuppressFinalize(this);
         }

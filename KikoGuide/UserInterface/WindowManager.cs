@@ -1,7 +1,7 @@
 using System;
-using System.Linq;
-using System.Reflection;
+using System.Collections.Generic;
 using Dalamud.Interface.Windowing;
+using KikoGuide.UserInterface.Windows;
 using Sirensong;
 using Sirensong.UserInterface.Windowing;
 
@@ -25,18 +25,24 @@ namespace KikoGuide.UserInterface
         public WindowingSystem WindowingSystem { get; } = SirenCore.GetOrCreateService<WindowingSystem>();
 
         /// <summary>
+        ///     All windows to add to the windowing system.
+        /// </summary>
+        private readonly Dictionary<Window, bool> windows = new()
+        {
+            { new GuideEditorWindow(), false },
+            { new GuideListWindow(), false },
+            { new GuideViewerWindow(), false },
+            { new SettingsWindow(), true },
+        };
+
+        /// <summary>
         ///     Initializes a new instance of the <see cref="WindowManager" /> class.
         /// </summary>
         private WindowManager()
         {
-            foreach (var windowType in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsSubclassOf(typeof(Window)) && !t.IsAbstract))
+            foreach (var (window, isSettings) in this.windows)
             {
-                var window = (Window?)Activator.CreateInstance(windowType);
-                if (window == null)
-                {
-                    continue;
-                }
-                this.WindowingSystem.AddWindow(window);
+                this.WindowingSystem.AddWindow(window, isSettings);
             }
         }
 
