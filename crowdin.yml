@@ -2,6 +2,6 @@ files:
   - source: /KikoGuide/Resources/Localization/Plugin/*_Localizable.json
     translation: /%original_path%/%two_letters_code%.json
 
-pull_request_title: "chore(i18n): Translation updates (Crowdin)"
-commit_message: "chore(i18n): translations updates for %original_file_name% [skip ci]"
+pull_request_title: "chore(i10n): Translation updates (Crowdin)"
+commit_message: "chore(i10n): translations updates for %original_file_name% [skip ci]"
 append_commit_message: false

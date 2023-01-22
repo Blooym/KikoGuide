@@ -1,7 +1,9 @@
-.vs/
+# Code Editors
+.vs/                
+.idea/
+
+# .NET outputs
 obj/
 bin/
-Lib/
-.idea/
-*.user
-*.log
+
+# Misc

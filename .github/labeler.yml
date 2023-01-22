@@ -1,14 +1,5 @@
-changes | resources:
-  - "KikoGuide/Resources/**/*"
-
 changes | ci:
   - ".github/workflows/**/*"
 
 changes | plugin:
   - "KikoGuide/**/*.cs"
-
-changes | assets:
-  - ".assets/**"
-
-changes | docs:
-  - "**.md"

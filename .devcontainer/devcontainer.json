@@ -11,8 +11,9 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-dotnettools.csharp",
-                "EditorConfig.EditorConfig"
+                "editorconfig.editorconfig",
+                "tintoy.msbuild-project-tools",
+                "kreativ-software.csharpextensions"
             ]
         }
     }

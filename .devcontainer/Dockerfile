@@ -1,4 +1,4 @@
-FROM ghcr.io/bitsofabyte/docker-dalamud:latest
+FROM ghcr.io/bitsofabyte/docker-dalamud:staging
 
 # Optout of telemtry.
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
