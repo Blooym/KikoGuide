@@ -16,3 +16,6 @@ A Dalamud plugin that provides players with hand-written guides to duty content.
 
 ---
 <!-- Repository Header End -->
+
+# Important!
+KikoGuide is currently being rewritten! Expect a lot of repository changes.
