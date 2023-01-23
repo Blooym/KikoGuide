@@ -1,10 +1,9 @@
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using KikoGuide.Common;
-
 namespace KikoGuide.UserInterface.Windows
 {
-    public class GuideListWindow : Window
+    public sealed class GuideListWindow : Window
     {
         public GuideListWindow() : base(Constants.Windows.GuideListTitle)
         {
@@ -12,6 +11,8 @@ namespace KikoGuide.UserInterface.Windows
             this.SizeCondition = ImGuiCond.FirstUseEver;
         }
 
-        public override void Draw() { }
+        public override void Draw()
+        {
+        }
     }
 }

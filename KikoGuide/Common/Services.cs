@@ -4,6 +4,7 @@ using Dalamud.Game.ClientState.Objects;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using KikoGuide.CommandHandling;
+using KikoGuide.Guides;
 using KikoGuide.Resources;
 using KikoGuide.UserInterface;
 using Sirensong;
@@ -25,6 +26,7 @@ namespace KikoGuide.Common
         internal static CommandManager CommandManager { get; private set; } = null!;
         internal static WindowManager WindowManager { get; private set; } = null!;
         internal static ResourceManager ResourceManager { get; private set; } = null!;
+        internal static GuideManager GuideManager { get; private set; } = null!;
 
         /// <summary>
         ///     Initializes the service class.
@@ -35,6 +37,7 @@ namespace KikoGuide.Common
             pluginInterface.Create<Services>();
 
             ResourceManager = ResourceManager.Instance;
+            GuideManager = GuideManager.Instance;
             WindowManager = WindowManager.Instance;
             CommandManager = CommandManager.Instance;
         }
@@ -46,6 +49,7 @@ namespace KikoGuide.Common
         {
             CommandManager.Dispose();
             WindowManager.Dispose();
+            GuideManager.Dispose();
             ResourceManager.Dispose();
         }
     }

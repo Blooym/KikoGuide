@@ -18,12 +18,6 @@ namespace KikoGuide.DataModels
         internal const int FormatVersion = 0;
 
         /// <summary>
-        ///     The directory where notes are stored.
-        /// </summary>
-        [JsonIgnore]
-        public static readonly string NotesDirectory = $@"{Services.PluginInterface.GetPluginConfigDirectory()}\Notes";
-
-        /// <summary>
         ///     The version of the note format.
         /// </summary>
         public int Version { get; private set; }
@@ -112,6 +106,10 @@ namespace KikoGuide.DataModels
         public Note Save()
         {
             this.LastModifiedAt = DateTime.Now;
+            if (!Directory.Exists(Constants.NotesDirectory))
+            {
+                Directory.CreateDirectory(Constants.NotesDirectory);
+            }
             File.WriteAllText(GetPath(this.Name), JsonConvert.SerializeObject(this, Formatting.Indented));
             return this;
         }

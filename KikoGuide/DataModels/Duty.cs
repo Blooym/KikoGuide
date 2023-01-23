@@ -1,14 +1,29 @@
+using System;
 using KikoGuide.Common;
 using Lumina.Excel.GeneratedSheets;
 
 #pragma warning disable IDE0051, IDE0044
 namespace KikoGuide.DataModels
 {
+    /// <summary>
+    ///     Represents an in-game duty.
+    /// </summary>
     public sealed record Duty
     {
-        public ContentFinderCondition? CFCondition { get; init; }
-        public ContentFinderConditionTransient? CFConditionTransient { get; init; }
-        public InstanceContent? Instance { get; init; }
+        /// <summary>
+        ///     The <see cref="ContentFinderCondition"/> row.
+        /// </summary>
+        public ContentFinderCondition CFCondition { get; init; }
+
+        /// <summary>
+        ///     The <see cref="ContentFinderConditionTransient"/> row.
+        /// </summary>
+        public ContentFinderConditionTransient CFConditionTransient { get; init; }
+
+        /// <summary>
+        ///     The <see cref="InstanceContent"/> row.
+        /// </summary>
+        public InstanceContent Instance { get; init; }
 
         /// <summary>
         ///     Gets the <see cref="ContentFinderCondition"/> row from the given ID.
@@ -40,10 +55,9 @@ namespace KikoGuide.DataModels
         /// <param name="id">The RowID of the duty from the <see cref="ContentFinderCondition"/> sheet.</param>
         internal Duty(uint id)
         {
-            // It seems that all sheets share ContentFinderCondition's ID.
-            this.CFCondition = GetContentFinderCondition(id);
-            this.CFConditionTransient = GetContentFinderConditionTransient(id);
-            this.Instance = GetInstanceContent(id);
+            this.CFCondition = GetContentFinderCondition(id) ?? throw new ArgumentException(Constants.ExceptionMessages.NoContentFinderCondition);
+            this.CFConditionTransient = GetContentFinderConditionTransient(id) ?? throw new ArgumentException(Constants.ExceptionMessages.NoContentFinderConditionTransient);
+            this.Instance = GetInstanceContent(id) ?? throw new ArgumentException(Constants.ExceptionMessages.NoInstanceContent);
         }
     }
 }

@@ -1,17 +1,14 @@
 using Dalamud.Game.Command;
 using KikoGuide.CommandHandling.Interfaces;
 using KikoGuide.Common;
-using Sirensong.Game.UI;
+using KikoGuide.UserInterface.Windows;
 
 namespace KikoGuide.CommandHandling.Commands
 {
-    public class KikoList : ICommand
+    public sealed class KikoList : ICommand
     {
         /// <inheritdoc />
         public string Name => Constants.Commands.GuideList;
-
-        /// <inheritdoc />
-        public bool Enabled { get; set; } = true;
 
         /// <inheritdoc />
         public CommandInfo Command => new(this.OnExecute)
@@ -25,7 +22,7 @@ namespace KikoGuide.CommandHandling.Commands
         {
             if (command == Constants.Commands.GuideList)
             {
-                GameChat.Print("Opening list window.");
+                Services.WindowManager.WindowingSystem.GetWindow<GuideListWindow>()?.Toggle();
             }
         };
     }

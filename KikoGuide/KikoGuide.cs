@@ -1,4 +1,3 @@
-using Dalamud.IoC;
 using Dalamud.Plugin;
 using KikoGuide.Common;
 using Sirensong;
@@ -15,12 +14,11 @@ namespace KikoGuide
         /// <summary>
         ///     The plugin's main entry point.
         /// </summary>
-        public KikoGuide([RequiredVersion("1.0")] DalamudPluginInterface pluginInterface)
+        public KikoGuide(DalamudPluginInterface pluginInterface)
         {
             SirenCore.Initialize(pluginInterface, this.Name);
             Services.Initialize(pluginInterface);
         }
-
 
         /// <summary>
         ///     Disposes of the plugin.

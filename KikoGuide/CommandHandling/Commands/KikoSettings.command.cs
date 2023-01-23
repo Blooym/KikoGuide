@@ -5,13 +5,10 @@ using KikoGuide.UserInterface.Windows;
 
 namespace KikoGuide.CommandHandling.Commands
 {
-    public class KikoSettings : ICommand
+    public sealed class KikoSettings : ICommand
     {
         /// <inheritdoc />
         public string Name => Constants.Commands.Settings;
-
-        /// <inheritdoc />
-        public bool Enabled { get; set; } = true;
 
         /// <inheritdoc />
         public CommandInfo Command => new(this.OnExecute)

@@ -13,11 +13,6 @@ namespace KikoGuide.CommandHandling.Interfaces
         string Name { get; }
 
         /// <summary>
-        ///     Whether the command is enabled.
-        /// </summary>
-        bool Enabled { get; set; }
-
-        /// <summary>
         ///     The command info.
         /// </summary>
         CommandInfo Command { get; }

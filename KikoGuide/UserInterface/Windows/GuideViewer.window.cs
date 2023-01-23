@@ -4,7 +4,7 @@ using KikoGuide.Common;
 
 namespace KikoGuide.UserInterface.Windows
 {
-    public class GuideViewerWindow : Window
+    public sealed class GuideViewerWindow : Window
     {
         public GuideViewerWindow() : base(Constants.Windows.GuideViewerTitle)
         {

@@ -1,15 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using CheapLoc;
 using KikoGuide.Common;
-using KikoGuide.DataModels;
 
 namespace KikoGuide.Resources
 {
-    public class ResourceManager : IDisposable
+    public sealed class ResourceManager : IDisposable
     {
         /// <summary>
         ///     The singleton instance of <see cref="ResourceManager" />.
@@ -20,11 +17,6 @@ namespace KikoGuide.Resources
         ///     Gets the singleton instance of <see cref="ResourceManager" />.
         /// </summary>
         public static ResourceManager Instance => instance ??= new();
-
-        /// <summary>
-        ///     All currently loaded guides.
-        /// </summary>
-        private List<Guide>? loadedGuideCache;
 
         /// <summary>
         ///     Creates a new resource manager and sets up resources.
@@ -43,64 +35,6 @@ namespace KikoGuide.Resources
             Services.PluginInterface.LanguageChanged -= this.OnLanguageChange;
             instance = null!;
             GC.SuppressFinalize(this);
-        }
-
-        public IEnumerable<Guide> GetAllGuides()
-        {
-            if (this.loadedGuideCache != null)
-            {
-                return this.loadedGuideCache;
-            }
-            this.loadedGuideCache = LoadAllGuides();
-            if (this.loadedGuideCache == null)
-            {
-                throw new InvalidOperationException("Could not load guides.");
-            }
-            return this.loadedGuideCache;
-        }
-
-        /// <summary>
-        ///     Loads all guides from the embedded resources.
-        /// </summary>
-        /// <returns>A list of all loaded guides.</returns>
-        private static List<Guide>? LoadAllGuides()
-        {
-            try
-            {
-                var guides = new List<Guide>();
-                var resources = Assembly.GetExecutingAssembly().GetManifestResourceNames()
-                    .Where(x =>
-                            x.StartsWith("KikoGuide.Resources.Guides", StringComparison.InvariantCultureIgnoreCase)
-                            && x.EndsWith(".json", StringComparison.InvariantCultureIgnoreCase));
-
-                // Load all guides
-                foreach (var resource in resources)
-                {
-                    try
-                    {
-                        BetterLog.Debug($"Loading guide from resource {resource}");
-                        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource);
-                        if (stream == null)
-                        {
-                            throw new FileNotFoundException($"Could not find resource file {resource}.");
-                        }
-
-                        using var reader = new StreamReader(stream);
-                        var guide = Guide.FromJson(reader.ReadToEnd());
-                        guides.Add(guide);
-                    }
-                    catch (Exception e)
-                    {
-                        BetterLog.Warning($"Could not load guide from resource {resource}, skipping. Error: {e.Message}");
-                    }
-                }
-                return guides;
-            }
-            catch (Exception e)
-            {
-                BetterLog.Error($"Could not load guides from resources. Error: {e.Message}");
-                return null;
-            }
         }
 
         /// <summary>

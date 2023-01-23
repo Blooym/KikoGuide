@@ -9,15 +9,9 @@ namespace KikoGuide.UserInterface
 {
     public class WindowManager : IDisposable
     {
-        /// <summary>
-        ///     The singleton instance of <see cref="WindowManager" />.
-        /// </summary>
-        private static WindowManager? instance;
-
-        /// <summary>
         ///     Gets the singleton instance of <see cref="WindowManager" />.
         /// </summary>
-        public static WindowManager Instance => instance ??= new WindowManager();
+        public static WindowManager Instance { get; } = new();
 
         /// <summary>
         ///     The windowing system.
@@ -29,7 +23,6 @@ namespace KikoGuide.UserInterface
         /// </summary>
         private readonly Dictionary<Window, bool> windows = new()
         {
-            { new GuideEditorWindow(), false },
             { new GuideListWindow(), false },
             { new GuideViewerWindow(), false },
             { new SettingsWindow(), true },
@@ -52,7 +45,6 @@ namespace KikoGuide.UserInterface
         public void Dispose()
         {
             this.WindowingSystem.Dispose();
-            instance = null;
             GC.SuppressFinalize(this);
         }
     }

@@ -43,13 +43,26 @@ namespace KikoGuide.DataStructures
         };
 
         /// <summary>
-        ///     Gets the string for the current ClientLanguage.
+        ///     Gets the string for the current game language or English if not found.
         /// </summary>
-        [JsonIgnore] public string CCurrent => this[Services.ClientState.ClientLanguage];
+        [JsonIgnore] public string GameCurrent => this[Services.ClientState.ClientLanguage];
 
         /// <summary>
-        ///     Gets the string for the current ISO code.
+        ///     Returns the string for the current Dalamud UI language or English if not found.
         /// </summary>
         [JsonIgnore] public string UICurrent => this[Services.PluginInterface.UiLanguage];
+
+
+        /// <summary>
+        ///     Whether the string is null or empty.
+        /// </summary>
+        /// <returns>True if the string is null or empty, false otherwise.</returns>
+        public bool IsNullOrEmpty() => string.IsNullOrEmpty(this.EN);
+
+        /// <summary>
+        ///     Whether the string is null or whitespace.
+        /// </summary>
+        /// <returns>True if the string is null or whitespace, false otherwise.</returns>
+        public bool IsNullOrWhiteSpace() => string.IsNullOrWhiteSpace(this.EN);
     }
 }

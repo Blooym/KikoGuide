@@ -5,24 +5,18 @@ using KikoGuide.Common;
 
 namespace KikoGuide.CommandHandling
 {
-    public class CommandManager : IDisposable
+    public sealed class CommandManager : IDisposable
     {
         /// <summary>
         ///     The singleton instance of <see cref="CommandManager"/>.
         /// </summary>
-        private static CommandManager? instance;
-
-        /// <summary>
-        ///     Gets the singleton instance of <see cref="CommandManager"/>.
-        /// </summary>
-        public static CommandManager Instance => instance ??= new();
+        public static CommandManager Instance { get; } = new();
 
         /// <summary>
         ///     The list of registered commands.
         /// </summary>
         private ICommand[] commands =
         {
-            new KikoEditor(),
             new KikoList(),
             new KikoViewer(),
             new KikoSettings(),
@@ -49,7 +43,6 @@ namespace KikoGuide.CommandHandling
                 Services.Commands.RemoveHandler(command.Name);
             }
             this.commands = Array.Empty<ICommand>();
-            instance = null;
             GC.SuppressFinalize(this);
         }
     }
