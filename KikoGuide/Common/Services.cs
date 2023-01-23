@@ -7,7 +7,10 @@ using KikoGuide.CommandHandling;
 using KikoGuide.Guides;
 using KikoGuide.Resources;
 using KikoGuide.UserInterface;
+using Lumina.Excel.GeneratedSheets;
 using Sirensong;
+using Sirensong.Caching;
+using Sirensong.IoC;
 
 namespace KikoGuide.Common
 {
@@ -16,11 +19,15 @@ namespace KikoGuide.Common
     /// </summary>
     internal sealed class Services
     {
+        // Dalamud services
         [PluginService] internal static DalamudPluginInterface PluginInterface { get; private set; } = null!;
         [PluginService] internal static ClientState ClientState { get; private set; } = null!;
         [PluginService] internal static ObjectTable ObjectTable { get; private set; } = null!;
         [PluginService] internal static Dalamud.Game.Command.CommandManager Commands { get; private set; } = null!;
         [PluginService] internal static DataManager Data { get; private set; } = null!;
+
+        // Sirensong services
+        [SirenService] internal static LuminaCacheService<Status> StatusCache { get; private set; } = null!;
 
         // Plugin services
         internal static CommandManager CommandManager { get; private set; } = null!;

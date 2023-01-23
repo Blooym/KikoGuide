@@ -3,8 +3,8 @@ using Dalamud.Utility;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using KikoGuide.Common;
 using KikoGuide.DataModels;
-using KikoGuide.DataStructures;
 using Lumina.Excel.GeneratedSheets;
+using Sirensong.DataStructures;
 
 namespace KikoGuide.Guides
 {
@@ -142,6 +142,7 @@ namespace KikoGuide.Guides
                         // Mechanic content
                         public TranslatableString Name { get; init; }
                         public TranslatableString Description { get; init; }
+                        public string? Tooltip { get; init; }
                     }
 
                     /// <summary>

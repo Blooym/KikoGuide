@@ -8,13 +8,11 @@ namespace KikoGuide.DataModels
     /// <summary>
     ///     A note that is stored on the filesystem.
     /// </summary>
-    [Serializable]
     public sealed record Note
     {
         /// <summary>
         ///     The version of the note format, incremented when breaking changes are made.
         /// </summary>
-        [JsonIgnore]
         internal const int FormatVersion = 0;
 
         /// <summary>

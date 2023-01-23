@@ -13,7 +13,7 @@ namespace KikoGuide.Guides.Guides.Dungeons
                 {
                     Title = new()
                     {
-                        EN = $"Chopper",
+                       EN = "Chopper",
                     },
                     SubSections = new[]
                     {
@@ -21,7 +21,7 @@ namespace KikoGuide.Guides.Guides.Dungeons
                         {
                             Content = new()
                             {
-                                EN = "Avoid being hit by \"Charged Whisker\", which is an AoE attack that inflicts Paralysis.",
+                                EN = $"Avoid being hit by \"Charged Whisker\", which is an AoE attack that inflicts {Statuses.Paralysis.Name}.",
                             },
                             Mechanics = new GuideContent.ContentSection.SubSection.Mechanic[]
                             {
@@ -33,7 +33,7 @@ namespace KikoGuide.Guides.Guides.Dungeons
                                     },
                                     Description = new()
                                     {
-                                        EN = "Inflicts paralysis on all players in a wide AoE.",
+                                        EN = $"Inflicts {Statuses.Paralysis.Name} to all players hit.",
                                     },
                                 }
                             },
