@@ -1,11 +1,7 @@
-using Dalamud.Interface.Colors;
 using Dalamud.Interface.Windowing;
-using Dalamud.Utility;
 using ImGuiNET;
 using KikoGuide.Common;
 using KikoGuide.UserInterface.Windows.GuideList.TableParts;
-using Sirensong.UserInterface;
-using Sirensong.UserInterface.Windowing;
 
 namespace KikoGuide.UserInterface.Windows.GuideList
 {
@@ -14,32 +10,32 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         public GuideListLogic Logic { get; } = new();
         public GuideListWindow() : base(Constants.Windows.GuideListTitle)
         {
-            this.Size = new(800, 380);
+            this.Size = new(800, 460);
             this.SizeConstraints = new WindowSizeConstraints()
             {
-                MinimumSize = new(600, 380),
+                MinimumSize = new(800, 460),
                 MaximumSize = new(7680, 4320),
             };
             this.SizeCondition = ImGuiCond.FirstUseEver;
-            this.Flags = ImGuiWindowFlagExtras.NoScroll;
+            this.Flags = ImGuiWindowFlags.NoScrollbar;
             this.IsOpen = true;
         }
 
         public override void Draw()
         {
-            // No guides found, show a warning message.
-            if (GuideListLogic.TotalGuides == 0)
+            // No guides available
+            if (GuideListLogic.UnlockedGuides == 0)
             {
-                DrawNoGuidesFound();
+                DrawNoGuidesAvailable();
                 return;
             }
 
-            // Begin the table.
             if (ImGui.BeginTable("GuideList", 2, ImGuiTableFlags.BordersInnerV))
             {
-                ImGui.TableSetupColumn("Sidebar", ImGuiTableColumnFlags.WidthFixed, ImGui.GetWindowWidth() * 0.30f);
-                ImGui.TableSetupColumn("Listings", ImGuiTableColumnFlags.WidthFixed, ImGui.GetWindowWidth() * 0.70f);
+                ImGui.TableSetupColumn("Sidebar", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.28f);
+                ImGui.TableSetupColumn("Listings", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.72f);
 
+                // Sidebar
                 ImGui.TableNextColumn();
                 if (ImGui.BeginChild("SidebarChild"))
                 {
@@ -47,8 +43,8 @@ namespace KikoGuide.UserInterface.Windows.GuideList
                     ImGui.EndChild();
                 }
 
+                // Listings
                 ImGui.TableNextColumn();
-
                 if (ImGui.BeginChild("ListingsChild"))
                 {
                     Listings.Draw(this.Logic);
@@ -59,22 +55,13 @@ namespace KikoGuide.UserInterface.Windows.GuideList
             }
         }
 
-
         /// <summary>
         ///     Draw a warning message if no guides were found.
         /// </summary>
-        private static void DrawNoGuidesFound()
+        private static void DrawNoGuidesAvailable()
         {
-            SiGui.TextWrappedColoured(ImGuiColors.DalamudRed, "WARNING! No guides were able to load.");
-            ImGui.Separator();
-
-            SiGui.TextWrappedColoured(ImGuiColors.DalamudOrange, "Your installation may be corrupted or otherwise broken, if you encounter this issue please report it on GitHub.");
-            ImGui.Dummy(new(0, 10));
-
-            if (ImGui.Button("Report on GitHub"))
-            {
-                Util.OpenLink(Constants.Links.GitHub);
-            }
+            ImGui.TextUnformatted("You have not yet unlocked any guides! Check back another time.");
+            ImGui.TextUnformatted("If you believe this is an error, please contact the developer.");
         }
     }
 }

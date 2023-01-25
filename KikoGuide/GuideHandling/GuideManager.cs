@@ -13,26 +13,33 @@ namespace KikoGuide.GuideHandling
         public static GuideManager Instance { get; } = new();
 
         /// <summary>
-        ///     The current guide.
-        /// </summary>
-        public Guide? CurrentGuide { get; set; }
-
-        /// <summary>
         ///     All loaded guides.
         /// </summary>
-        public HashSet<Guide> Guides { get; private set; } = new();
+        public HashSet<GuideBase> Guides { get; private set; } = new();
 
-        // precompute all guides and types for faster access
-        private static readonly Dictionary<ContentTypeModified, HashSet<Guide>> GuidesByType = new();
+        /// <summary>
+        ///     All loaded guides by type.
+        /// </summary>
+        private static readonly Dictionary<ContentTypeModified, HashSet<GuideBase>> GuidesByType = new();
 
-        public HashSet<Guide> GetGuidesForType(ContentTypeModified type)
+        /// <summary>
+        ///     The current guide.
+        /// </summary>
+        public GuideBase? CurrentGuide { get; set; }
+
+        /// <summary>
+        ///     Gets all guides for a given type.
+        /// </summary>
+        /// <param name="type">The type to get guides for.</param>
+        /// <returns>A <see cref="HashSet{T}" /> of <see cref="GuideBase" />.</returns>
+        public HashSet<GuideBase> GetGuidesForType(ContentTypeModified type)
         {
             if (GuidesByType.TryGetValue(type, out var guides))
             {
                 return guides;
             }
 
-            guides = new HashSet<Guide>();
+            guides = new HashSet<GuideBase>();
             foreach (var guide in this.Guides)
             {
                 if (guide.Type == type)
@@ -73,13 +80,13 @@ namespace KikoGuide.GuideHandling
             {
                 try
                 {
-                    if (type.IsSubclassOf(typeof(Guide)))
+                    if (type.IsSubclassOf(typeof(GuideBase)))
                     {
                         if (type.GetProperty("NoLoad")?.GetValue(null) is bool noLoad && noLoad)
                         {
                             continue;
                         }
-                        var guide = (Guide)type.GetConstructor(Array.Empty<Type>())!.Invoke(Array.Empty<object>());
+                        var guide = (GuideBase)type.GetConstructor(Array.Empty<Type>())!.Invoke(Array.Empty<object>());
                         this.Guides.Add(guide);
                     }
                 }
@@ -88,7 +95,7 @@ namespace KikoGuide.GuideHandling
 #if DEBUG
                     BetterLog.Warning($"Failed to load guide {type.Name}: {e}");
 #else
-                    BetterLog.Warning($"Failed to load guide {type.Name}: {e.InnerException.Message}");
+                    BetterLog.Warning($"Failed to load guide {type.Name}: {e.InnerException?.Message}");
 #endif
                 }
             }

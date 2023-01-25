@@ -42,10 +42,10 @@ namespace KikoGuide.Common
             pluginInterface.Create<Services>();
 
             ResourceManager = ResourceManager.Instance;
-            WindowManager = WindowManager.Instance;
             GuideManager = GuideManager.Instance;
+            WindowManager = WindowManager.Instance;
             CommandManager = CommandManager.Instance;
-            Configuration = PluginInterface.GetPluginConfig() as PluginConfiguration ?? new();
+            Configuration = PluginConfiguration.Load();
         }
 
         /// <summary>

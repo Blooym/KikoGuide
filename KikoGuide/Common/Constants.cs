@@ -37,6 +37,7 @@ namespace KikoGuide.Common
         internal static class Links
         {
             public const string GitHub = "https://github.com/BitsOfAByte/KikoGuide";
+            public const string KoFi = "https://ko-fi.com/BitsOfAByte";
         }
 
         internal static class Windows

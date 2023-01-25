@@ -11,6 +11,7 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
         {
             this.Size = new(400, 400);
             this.SizeCondition = ImGuiCond.FirstUseEver;
+            this.Flags = ImGuiWindowFlags.NoScrollbar;
         }
 
         public override void OnClose() => GuideViewerLogic.SetCurrentGuide(null);

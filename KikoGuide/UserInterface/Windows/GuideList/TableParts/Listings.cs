@@ -1,7 +1,5 @@
 using System;
-using Dalamud.Interface.Colors;
 using ImGuiNET;
-using KikoGuide.Common;
 using KikoGuide.Enums;
 using KikoGuide.GuideHandling;
 
@@ -31,9 +29,8 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         /// <param name="contentType"></param>
         private static void DrawContentTypeListings(GuideListLogic logic, ContentTypeModified contentType)
         {
-            // If there are no guides for this ContentType, don't draw the tab
-            var amount = GuideListLogic.GuidesForContentType(contentType);
-            if (amount == 0)
+            // If there are no guides for this ContentType, don't draw  the tab
+            if (GuideListLogic.GuidesForContentType(contentType) == 0)
             {
                 return;
             }
@@ -45,9 +42,23 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
             {
                 if (ImGui.BeginChild($"ContentTypeTab_{contentType}"))
                 {
-                    foreach (var guide in guides)
+                    // No guides found
+                    if (guides.Count == 0)
                     {
-                        DrawGuideSelectable(guide);
+                        ImGui.Text("No guides found for filter criteria.");
+                    }
+                    // Draw guides
+                    else
+                    {
+                        if (ImGui.BeginTable($"ContentTypeTable_{contentType}", 1, ImGuiTableFlags.RowBg))
+                        {
+                            foreach (var guide in guides)
+                            {
+                                ImGui.TableNextColumn();
+                                DrawGuideSelectable(logic, guide);
+                            }
+                            ImGui.EndTable();
+                        }
                     }
                     ImGui.EndChild();
                 }
@@ -60,20 +71,14 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         ///     Draw a selectable guide.
         /// </summary>
         /// <param name="guide"></param>
-        private static void DrawGuideSelectable(Guide guide)
+        private static void DrawGuideSelectable(GuideListLogic _, GuideBase guide)
         {
-            if (Services.GuideManager.CurrentGuide == guide)
+            if (!guide.IsGuideUnlocked)
             {
-                ImGui.PushStyleColor(ImGuiCol.Text, ImGuiColors.ParsedGreen);
-
-                if (ImGui.Selectable($"{guide.Name}##{guide.Id}"))
-                {
-                    guide.SetCurrent(true);
-                }
-
-                ImGui.PopStyleColor();
+                return;
             }
-            else if (ImGui.Selectable($"{guide.Name}##{guide.Id}"))
+
+            if (ImGui.Selectable($"{guide.Name}##{guide.Id}", guide.IsActive))
             {
                 guide.SetCurrent(true);
             }

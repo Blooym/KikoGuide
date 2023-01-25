@@ -1,3 +1,4 @@
+using System;
 using Dalamud.Configuration;
 using KikoGuide.Common;
 
@@ -8,10 +9,13 @@ namespace KikoGuide.Configuration
     /// </summary>
     internal sealed class PluginConfiguration : IPluginConfiguration
     {
+        /// <summary>
+        ///     The current version of the configuration, used for migrations.
+        /// </summary>
         private const int CurrentVersion = 1;
 
         /// <summary>
-        ///     The current version of the configuration, used for migrations.
+        ///     The version of the configuration.
         /// </summary>
         public int Version { get; set; } = CurrentVersion;
 
@@ -21,21 +25,25 @@ namespace KikoGuide.Configuration
         public bool OpenGuideOnInstanceLoad { get; set; }
 
         /// <summary>
-        ///     Saves the configuration, migrating it if necessary.
+        ///     Loads the configuration and migrates it if necessary.
         /// </summary>
-        internal void Save()
+        /// <returns></returns>
+        internal static PluginConfiguration Load()
         {
-            if (this.Version != CurrentVersion)
+            try
             {
-                Migrate();
+                return Services.PluginInterface.GetPluginConfig() as PluginConfiguration ?? new();
             }
-
-            Services.PluginInterface.SavePluginConfig(this);
+            catch (Exception ex)
+            {
+                BetterLog.Error($"Failed to load plugin configuration, reverting to default: {ex}");
+                return new PluginConfiguration();
+            }
         }
 
         /// <summary>
-        ///     Migrates the configuration to the current version.
+        ///     Saves the configuration.
         /// </summary>
-        internal static void Migrate() { }
+        internal void Save() => Services.PluginInterface.SavePluginConfig(this);
     }
 }

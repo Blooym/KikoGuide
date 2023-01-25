@@ -6,7 +6,7 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
 {
     internal sealed class GuideViewerLogic : IWindowLogic
     {
-        public static Guide? GetCurrentGuide() => Services.GuideManager.CurrentGuide;
-        public static void SetCurrentGuide(Guide? guide) => Services.GuideManager.CurrentGuide = guide;
+        public static GuideBase? GetCurrentGuide() => Services.GuideManager.CurrentGuide;
+        public static void SetCurrentGuide(GuideBase? guide) => Services.GuideManager.CurrentGuide = guide;
     }
 }

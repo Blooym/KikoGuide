@@ -1,44 +1,41 @@
 using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using Dalamud.Utility;
 using FFXIVClientStructs.FFXIV.Client.Game;
-using FFXIVClientStructs.FFXIV.Client.Game.Event;
 using KikoGuide.Common;
 using KikoGuide.DataModels;
 using KikoGuide.Enums;
-using KikoGuide.UserInterface.GuideLayouts;
+using KikoGuide.UserInterface.Layouts;
 using KikoGuide.UserInterface.Windows.GuideViewer;
 using Lumina.Excel.GeneratedSheets;
 using Sirensong.DataStructures;
 using Sirensong.Game.Enums;
 using Sirensong.Game.Extensions;
 using Sirensong.Game.UI;
-using Sirensong.Game.Utility;
 
 namespace KikoGuide.GuideHandling
 {
     /// <summary>
-    ///     Represents a guide, which is a collection of information for a specific duty.
+    ///     Represents a guide, which is a collection of information.
     /// </summary>
     /// <remarks>
     ///     This class is abstract and should be inherited from to create a new guide.
     /// </remarks>
-    internal abstract class Guide : IDisposable
+    internal abstract class GuideBase : IDisposable
     {
         // Constructors, Destructors & Dispose
 
         /// <summary>
         ///     Creates a new guide.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown if the unlock quest or linked duty is null.</exception>
-        public Guide()
+        /// <exception cref="ArgumentException">Thrown if the unlock quest or linked duty is null and the guide is not marked as unsafe.</exception>
+        public GuideBase()
         {
             this.Duty = Duty.GetDutyOrNull(this.DutyId)!;
             this.UnlockQuest = Services.Data.GetExcelSheet<Quest>()?.GetRow(this.UnlockQuestId)!;
             this.Note = Note.CreateOrLoad(this.Name);
 
-            if (!this.UnsafeDisableDutyQuestValidation && (this.UnlockQuest == null || this.Duty == null))
+            if (!this.UseUnsafeNoGuideLink && (this.UnlockQuest == null || this.Duty == null))
             {
                 throw new ArgumentException(Constants.ExceptionMessages.InvalidDutyOrUnlockQuest);
             }
@@ -49,7 +46,7 @@ namespace KikoGuide.GuideHandling
         /// <summary>
         ///     Destructor for the guide.
         /// </summary>
-        ~Guide()
+        ~GuideBase()
         {
             this.Dispose(false);
         }
@@ -77,7 +74,7 @@ namespace KikoGuide.GuideHandling
 
             if (disposing)
             {
-                //
+                // Dispose of managed resources.
             }
 
             Services.ClientState.TerritoryChanged -= this.HandleTerritoryChange;
@@ -89,59 +86,29 @@ namespace KikoGuide.GuideHandling
         // Events & Handlers
 
         /// <summary>
-        ///     Handles territory changes.
+        ///     Handles territory changes for the guide, auto opening if <see cref="ShouldAutoOpen" /> & <see cref="IsInGuideTerritory" /> are true.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="territory">The territory the player has changed to.</param>
         protected virtual unsafe void HandleTerritoryChange(object? sender, ushort territory)
         {
-            if (this.Duty?.CFCondition.TerritoryType.Value?.RowId != territory && Services.GuideManager.CurrentGuide != this)
+            if (!this.IsInGuideTerritory || Services.GuideManager.CurrentGuide == this)
             {
                 return;
             }
 
-            Task.Run(() =>
+            Services.GuideManager.CurrentGuide = this;
+            switch (this.ShouldAutoOpen)
             {
-                var director = EventFramework.Instance()->GetInstanceContentDirector();
-                var tries = 0;
-
-                // If the director is not available, wait for it to be available.
-                while (director == null)
-                {
-                    if (tries > 5)
-                    {
-                        BetterLog.Error("Failed to get instance content director, aborting.");
-                        return;
-                    }
-
-                    director = EventFramework.Instance()->GetInstanceContentDirector();
-                    Task.Delay(500).Wait();
-                    tries++;
-                }
-
-                // Handle content flags.
-                switch (InstanceDirectorUtil.GetInstanceContentFlag())
-                {
-                    case ContentFlag.ExplorerMode:
-                        BetterLog.Warning("Explorer mode detected. Not loading a guide.");
-                        return;
-                    default:
-                        break;
-                }
-
-                Services.GuideManager.CurrentGuide = this;
-                switch (this.ShouldAutoOpen)
-                {
-                    case true:
-                        this.SetCurrent(true);
-                        break;
-                    case false:
-                        this.SetCurrent(false);
-                        GameChat.Print($"A guide is available for {this.Name}. Use /kiko to open it.");
-                        break;
-                    default:
-                }
-            });
+                case true:
+                    this.SetCurrent(true);
+                    break;
+                case false:
+                    this.SetCurrent(false);
+                    GameChat.Print($"A guide is available for {this.Name}. Use /kiko to open it.");
+                    break;
+                default:
+            }
         }
 
 
@@ -151,6 +118,11 @@ namespace KikoGuide.GuideHandling
         ///     The cached normalized name of the guide, prevents converting SeString -> string every time.
         /// </summary>
         private string? nameCached;
+
+        /// <summary>
+        ///     The cached icon of the guide, prevents reading from a sheet every time.
+        /// </summary>
+        private uint? iconCached;
 
         /// <summary>
         ///     The cached content type of the guide, prevents remapping every time.
@@ -173,24 +145,14 @@ namespace KikoGuide.GuideHandling
         public Guid Id { get; } = Guid.NewGuid();
 
         /// <summary>
-        ///     Whether or not this guide should be hidden from the UI.
+        ///     Whether or not this guide should be hidden from all UI/IPC.
         /// </summary>
         public virtual bool NoShow { get; }
 
         /// <summary>
-        ///     Disable duty and quest validation for this guide, only use this if you know what you're doing and making a guide not linked to a duty.
+        ///     Disables validation checks for the guide. Only use for creating custom guides that don't link to duties and if you know what you're doing.
         /// </summary>
-        protected virtual bool UnsafeDisableDutyQuestValidation { get; }
-
-        /// <summary>
-        ///     The linked difficulty of the guide, usually the same as the duty.
-        /// </summary>
-        public virtual ContentDifficulty Difficulty => this.contentDifficultyCached ??= this.Duty?.CFCondition.GetContentDifficulty() ?? ContentDifficulty.Normal;
-
-        /// <summary>
-        ///     The content type of the guide, usually the same as the duty.
-        /// </summary>
-        public virtual ContentTypeModified Type => this.contentTypeCached ??= (ContentTypeModified?)this.Duty?.CFCondition.GetContentType() ?? ContentTypeModified.Custom;
+        protected virtual bool UseUnsafeNoGuideLink { get; }
 
         /// <summary>
         ///     The note associated with this guide.
@@ -222,28 +184,53 @@ namespace KikoGuide.GuideHandling
         /// </summary>
         public abstract GuideContent Content { get; protected set; }
 
+        /// <summary>
+        ///     The author(s) of this guide.
+        /// </summary>
+        public abstract string[] Authors { get; }
+
 
         // Methods
 
         /// <summary>
         ///     The name of the guide, usually the name of the linked duty.
         /// </summary>
-        public virtual string Name => this.nameCached ??= CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.Duty?.CFCondition.Name.ToDalamudString().ToString() ?? string.Empty);
+        public virtual string Name => this.nameCached ??= CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.Duty?.CFCondition.Name.ToDalamudString().ToString() ?? "An Unnamed Guide");
+
+        /// <summary>
+        ///     The icon to show for this guide in all supported UIs.
+        /// </summary>
+        public virtual uint Icon => this.iconCached ??= (this.Duty.CFCondition.ContentType.Value?.Icon ?? 21);
+
+        /// <summary>
+        ///     The linked difficulty of the guide, usually the same as the duty.
+        /// </summary>
+        public virtual ContentDifficulty Difficulty => this.contentDifficultyCached ??= this.Duty?.CFCondition.GetContentDifficulty() ?? ContentDifficulty.Normal;
+
+        /// <summary>
+        ///     The content type of the guide, usually the same as the duty.
+        /// </summary>
+        public virtual ContentTypeModified Type => this.contentTypeCached ??= (ContentTypeModified?)this.Duty?.CFCondition.GetContentType() ?? ContentTypeModified.Custom;
 
         /// <summary>
         ///     Whether or not the player has unlocked this guide.
         /// </summary>
-        public virtual unsafe bool IsGuideUnlocked => QuestManager.IsQuestComplete(this.UnlockQuestId) || QuestManager.Instance()->IsQuestAccepted(this.UnlockQuestId);
+        public virtual unsafe bool IsGuideUnlocked => this.UnlockQuest == null || QuestManager.IsQuestComplete(this.UnlockQuestId) || QuestManager.Instance()->IsQuestAccepted(this.UnlockQuestId);
 
         /// <summary>
-        ///     Whether or not the player is currently in the duty this guide is linked to.
+        ///     Whether or not the player is currently in the territory this guide is linked to.
         /// </summary>
-        public virtual unsafe bool IsInGuideTerritory => Services.ClientState.TerritoryType == this.Duty?.CFCondition.TerritoryType.Value?.RowId;
+        public virtual unsafe bool IsInGuideTerritory => this.Duty == null || Services.ClientState.TerritoryType == this.Duty?.CFCondition.TerritoryType.Value?.RowId;
 
         /// <summary>
         ///     Whether or not the guide should be automatically opened when the player enters the territory.
         /// </summary>
         protected virtual bool ShouldAutoOpen => Services.Configuration.OpenGuideOnInstanceLoad;
+
+        /// <summary>
+        ///     Whether or not the guide is currently set as active in the <see cref="GuideManager"/>.
+        /// </summary>
+        public bool IsActive => Services.GuideManager.CurrentGuide == this;
 
         /// <summary>
         ///     Sets the current guide to this guide and opens the guide viewer window if <paramref name="openWindow"/> is true.
@@ -263,10 +250,9 @@ namespace KikoGuide.GuideHandling
         }
 
         /// <summary>
-        ///     Draws the guide.
+        ///     Draws the UI for this guide.
         /// </summary>
         public virtual void Draw() => DutyGuideLayout.Draw(this);
-
 
         // Sub-records & enums
 
