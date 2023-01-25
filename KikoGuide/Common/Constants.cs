@@ -21,7 +21,7 @@ namespace KikoGuide.Common
         {
             public const string GuideList = "/kikolist";
             public static string GuideListHelp => Loc.Localize("Commands.GuideList.Help", "Toggle a list of all available guides.");
-            public const string GuideViewer = "/kikoviewer";
+            public const string GuideViewer = "/kiko";
             public static string GuideViewerHelp => Loc.Localize("Commands.GuideViewer.Help", "Toggle the guide viewer window.");
             public const string GuideEditor = "/kikoeditor";
             public static string GuideEditorHelp => Loc.Localize("Commands.GuideEditor.Help", "Toggle the guide editor window.");
@@ -31,11 +31,12 @@ namespace KikoGuide.Common
 
         internal static class ExceptionMessages
         {
-            public const string NoContentFinderCondition = "Unable to find ContentFinderCondition Row for the given ID";
-            public const string NoContentFinderConditionTransient = "Unable to find ContentFinderConditionTransient Row for the given ID";
-            public const string NoInstanceContent = "Unable to find InstanceContent Row for the given ID";
-            public const string NoQuestRow = "Unable to find Quest Row for the given ID";
             public const string InvalidDutyOrUnlockQuest = "The given duty ID or unlock quest ID is invalid and could not be found in the game data.";
+        }
+
+        internal static class Links
+        {
+            public const string GitHub = "https://github.com/BitsOfAByte/KikoGuide";
         }
 
         internal static class Windows

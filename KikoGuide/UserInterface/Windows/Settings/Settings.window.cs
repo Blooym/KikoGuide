@@ -1,11 +1,13 @@
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using KikoGuide.Common;
+using Sirensong.UserInterface;
 
-namespace KikoGuide.UserInterface.Windows
+namespace KikoGuide.UserInterface.Windows.Settings
 {
-    public sealed class SettingsWindow : Window
+    internal sealed class SettingsWindow : Window
     {
+        public SettingsLogic Logic { get; } = new();
         public SettingsWindow() : base(Constants.Windows.SettingsTitle)
         {
             this.Size = new(400, 400);
@@ -14,8 +16,8 @@ namespace KikoGuide.UserInterface.Windows
 
         public override void Draw()
         {
-            ImGui.Text("Settings");
-            ImGui.Text("Coming soon!");
+            SiGui.TextHeading("General");
+            ImGui.TextUnformatted("These settings apply to all guides.");
         }
     }
 }

@@ -1,11 +1,11 @@
 using Dalamud.Game.Command;
 using KikoGuide.CommandHandling.Interfaces;
 using KikoGuide.Common;
-using KikoGuide.UserInterface.Windows;
+using KikoGuide.UserInterface.Windows.Settings;
 
 namespace KikoGuide.CommandHandling.Commands
 {
-    public sealed class KikoSettings : ICommand
+    internal sealed class KikoSettingsCommand : ICommand
     {
         /// <inheritdoc />
         public string Name => Constants.Commands.Settings;

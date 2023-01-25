@@ -1,9 +1,8 @@
-namespace KikoGuide.Guides.Guides.Dungeons
+namespace KikoGuide.GuideHandling.Guides.Dungeons.ARR
 {
-    public class Sastasha : Guide
+    internal sealed class Sastasha : Guide
     {
         public override uint DutyId { get; } = 4;
-        public override DutyDifficulty Difficulty { get; } = DutyDifficulty.Normal;
         public override uint UnlockQuestId { get; } = 66211;
         public override GuideContent Content { get; protected set; } = new()
         {
@@ -21,11 +20,11 @@ namespace KikoGuide.Guides.Guides.Dungeons
                         {
                             Content = new()
                             {
-                                EN = $"Avoid being hit by \"Charged Whisker\", which is an AoE attack that inflicts {Statuses.Paralysis.Name}.",
+                                EN = "Avoid being hit by \"Charged Whisker\", which is an AoE attack that inflicts Paralysis.",
                             },
-                            Mechanics = new GuideContent.ContentSection.SubSection.Mechanic[]
+                            Mechanics = new GuideContent.ContentSection.SubSection.TableRow[]
                             {
-                                new GuideContent.ContentSection.SubSection.Mechanic
+                                new GuideContent.ContentSection.SubSection.TableRow
                                 {
                                     Name = new()
                                     {
@@ -33,7 +32,7 @@ namespace KikoGuide.Guides.Guides.Dungeons
                                     },
                                     Description = new()
                                     {
-                                        EN = $"Inflicts {Statuses.Paralysis.Name} to all players hit.",
+                                        EN = "Inflicts Paralysis to all players hit.",
                                     },
                                 }
                             },

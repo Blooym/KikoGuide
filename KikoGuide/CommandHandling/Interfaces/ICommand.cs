@@ -5,7 +5,7 @@ namespace KikoGuide.CommandHandling.Interfaces
     /// <summary>
     ///     Represents a command.
     /// </summary>
-    public interface ICommand
+    internal interface ICommand
     {
         /// <summary>
         ///     The name of the command (including the /)

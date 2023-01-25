@@ -1,16 +1,14 @@
 using Dalamud.Data;
+using Dalamud.Game;
 using Dalamud.Game.ClientState;
-using Dalamud.Game.ClientState.Objects;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using KikoGuide.CommandHandling;
-using KikoGuide.Guides;
+using KikoGuide.Configuration;
+using KikoGuide.GuideHandling;
 using KikoGuide.Resources;
 using KikoGuide.UserInterface;
-using Lumina.Excel.GeneratedSheets;
 using Sirensong;
-using Sirensong.Caching;
-using Sirensong.IoC;
 
 namespace KikoGuide.Common
 {
@@ -22,18 +20,18 @@ namespace KikoGuide.Common
         // Dalamud services
         [PluginService] internal static DalamudPluginInterface PluginInterface { get; private set; } = null!;
         [PluginService] internal static ClientState ClientState { get; private set; } = null!;
-        [PluginService] internal static ObjectTable ObjectTable { get; private set; } = null!;
         [PluginService] internal static Dalamud.Game.Command.CommandManager Commands { get; private set; } = null!;
         [PluginService] internal static DataManager Data { get; private set; } = null!;
-
-        // Sirensong services
-        [SirenService] internal static LuminaCacheService<Status> StatusCache { get; private set; } = null!;
+        [PluginService] internal static Framework Framework { get; private set; } = null!;
 
         // Plugin services
         internal static CommandManager CommandManager { get; private set; } = null!;
         internal static WindowManager WindowManager { get; private set; } = null!;
         internal static ResourceManager ResourceManager { get; private set; } = null!;
         internal static GuideManager GuideManager { get; private set; } = null!;
+
+        // Other plugin stuff
+        internal static PluginConfiguration Configuration { get; private set; } = null!;
 
         /// <summary>
         ///     Initializes the service class.
@@ -44,9 +42,10 @@ namespace KikoGuide.Common
             pluginInterface.Create<Services>();
 
             ResourceManager = ResourceManager.Instance;
-            GuideManager = GuideManager.Instance;
             WindowManager = WindowManager.Instance;
+            GuideManager = GuideManager.Instance;
             CommandManager = CommandManager.Instance;
+            Configuration = PluginInterface.GetPluginConfig() as PluginConfiguration ?? new();
         }
 
         /// <summary>

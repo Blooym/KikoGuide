@@ -1,11 +1,11 @@
 using Dalamud.Game.Command;
 using KikoGuide.CommandHandling.Interfaces;
 using KikoGuide.Common;
-using KikoGuide.UserInterface.Windows;
+using KikoGuide.UserInterface.Windows.GuideViewer;
 
 namespace KikoGuide.CommandHandling.Commands
 {
-    public sealed class KikoViewer : ICommand
+    internal sealed class KikoCommand : ICommand
     {
         /// <inheritdoc />
         public string Name => Constants.Commands.GuideViewer;

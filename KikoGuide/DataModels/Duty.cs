@@ -2,13 +2,12 @@ using System;
 using KikoGuide.Common;
 using Lumina.Excel.GeneratedSheets;
 
-#pragma warning disable IDE0051, IDE0044
 namespace KikoGuide.DataModels
 {
     /// <summary>
-    ///     Represents an in-game duty.
+    ///     Represents an in-game duty and models the data associated with it.
     /// </summary>
-    public sealed record Duty
+    internal sealed class Duty
     {
         /// <summary>
         ///     The <see cref="ContentFinderCondition"/> row.
@@ -20,44 +19,41 @@ namespace KikoGuide.DataModels
         /// </summary>
         public ContentFinderConditionTransient CFConditionTransient { get; init; }
 
-        /// <summary>
-        ///     The <see cref="InstanceContent"/> row.
-        /// </summary>
-        public InstanceContent Instance { get; init; }
+        /// <returns>The duty, or <see langword="null"/> if unable to find necessary data.</returns>
+        public static Duty? GetDutyOrNull(uint id)
+        {
+            var cfCondition = Services.Data.GetExcelSheet<ContentFinderCondition>()?.GetRow(id);
+            var cfConditionTransient = Services.Data.GetExcelSheet<ContentFinderConditionTransient>()?.GetRow(id);
 
-        /// <summary>
-        ///     Gets the <see cref="ContentFinderCondition"/> row from the given ID.
-        /// </summary>
-        /// <param name="id">The ID of the row to get.</param>
-        /// <returns>The <see cref="ContentFinderCondition"/> row, or <see langword="null"/> if it wasn't found.</returns>
-        private static ContentFinderCondition? GetContentFinderCondition(uint id)
-            => Services.Data.GetExcelSheet<ContentFinderCondition>()?.GetRow(id);
+            if (cfCondition == null || cfConditionTransient == null)
+            {
+                return null;
+            }
 
-        /// <summary>
-        ///     Gets the <see cref="ContentFinderConditionTransient"/> row from the given ID.
-        /// </summary>
-        /// <param name="id">The ID of the row to get.</param>
-        /// <returns>The <see cref="ContentFinderConditionTransient"/> row, or <see langword="null"/> if it wasn't found.</returns>
-        private static ContentFinderConditionTransient? GetContentFinderConditionTransient(uint id)
-            => Services.Data.GetExcelSheet<ContentFinderConditionTransient>()?.GetRow(id);
+            return new Duty(cfCondition, cfConditionTransient);
+        }
 
-        /// <summary>
-        ///     Gets the <see cref="Instance"/> row from the given ID.
-        /// </summary>
-        /// <param name="id">The ID of the row to get.</param>
-        /// <returns>The <see cref="Instance"/> row, or <see langword="null"/> if it wasn't found.</returns>
-        private static InstanceContent? GetInstanceContent(uint id)
-            => Services.Data.GetExcelSheet<InstanceContent>()?.GetRow(id);
+        public static Duty GetDuty(uint id)
+        {
+            var cfCondition = Services.Data.GetExcelSheet<ContentFinderCondition>()?.GetRow(id);
+            var cfConditionTransient = Services.Data.GetExcelSheet<ContentFinderConditionTransient>()?.GetRow(id);
+
+            if (cfCondition == null || cfConditionTransient == null)
+            {
+                throw new ArgumentException($"Unable to find duty with ID {id}.");
+            }
+
+            return new Duty(cfCondition, cfConditionTransient);
+        }
 
         /// <summary>
         ///     Creates a new <see cref="Duty"/> instance.
         /// </summary>
         /// <param name="id">The RowID of the duty from the <see cref="ContentFinderCondition"/> sheet.</param>
-        internal Duty(uint id)
+        public Duty(ContentFinderCondition cfCondition, ContentFinderConditionTransient cfConditionTransient)
         {
-            this.CFCondition = GetContentFinderCondition(id) ?? throw new ArgumentException(Constants.ExceptionMessages.NoContentFinderCondition);
-            this.CFConditionTransient = GetContentFinderConditionTransient(id) ?? throw new ArgumentException(Constants.ExceptionMessages.NoContentFinderConditionTransient);
-            this.Instance = GetInstanceContent(id) ?? throw new ArgumentException(Constants.ExceptionMessages.NoInstanceContent);
+            this.CFCondition = cfCondition;
+            this.CFConditionTransient = cfConditionTransient;
         }
     }
 }

@@ -5,7 +5,7 @@ using KikoGuide.Common;
 
 namespace KikoGuide.CommandHandling
 {
-    public sealed class CommandManager : IDisposable
+    internal sealed class CommandManager : IDisposable
     {
         /// <summary>
         ///     The singleton instance of <see cref="CommandManager"/>.
@@ -17,9 +17,9 @@ namespace KikoGuide.CommandHandling
         /// </summary>
         private ICommand[] commands =
         {
-            new KikoList(),
-            new KikoViewer(),
-            new KikoSettings(),
+            new KikoListCommand(),
+            new KikoCommand(),
+            new KikoSettingsCommand(),
         };
 
         /// <summary>

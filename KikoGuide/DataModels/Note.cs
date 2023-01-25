@@ -8,7 +8,7 @@ namespace KikoGuide.DataModels
     /// <summary>
     ///     A note that is stored on the filesystem.
     /// </summary>
-    public sealed record Note
+    internal sealed record Note
     {
         /// <summary>
         ///     The version of the note format, incremented when breaking changes are made.
@@ -18,7 +18,7 @@ namespace KikoGuide.DataModels
         /// <summary>
         ///     The version of the note format.
         /// </summary>
-        public int Version { get; private set; }
+        public int Version { get; private set; } = FormatVersion;
 
         /// <summary>
         ///     The name of the note.

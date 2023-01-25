@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using KikoGuide.Common;
+using KikoGuide.Enums;
 
-namespace KikoGuide.Guides
+namespace KikoGuide.GuideHandling
 {
-    public class GuideManager : IDisposable
+    internal sealed class GuideManager : IDisposable
     {
         /// <summary>
         ///     The singleton instance of <see cref="GuideManager" />.
@@ -19,7 +20,30 @@ namespace KikoGuide.Guides
         /// <summary>
         ///     All loaded guides.
         /// </summary>
-        public List<Guide> Guides { get; private set; } = new();
+        public HashSet<Guide> Guides { get; private set; } = new();
+
+        // precompute all guides and types for faster access
+        private static readonly Dictionary<ContentTypeModified, HashSet<Guide>> GuidesByType = new();
+
+        public HashSet<Guide> GetGuidesForType(ContentTypeModified type)
+        {
+            if (GuidesByType.TryGetValue(type, out var guides))
+            {
+                return guides;
+            }
+
+            guides = new HashSet<Guide>();
+            foreach (var guide in this.Guides)
+            {
+                if (guide.Type == type)
+                {
+                    guides.Add(guide);
+                }
+            }
+
+            GuidesByType.Add(type, guides);
+            return guides;
+        }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="GuideManager" /> class.
@@ -36,6 +60,7 @@ namespace KikoGuide.Guides
                 guide.Dispose();
             }
             this.Guides.Clear();
+
             GC.SuppressFinalize(this);
         }
 
@@ -54,7 +79,8 @@ namespace KikoGuide.Guides
                         {
                             continue;
                         }
-                        this.Guides.Add((Guide)type.GetConstructor(Array.Empty<Type>())!.Invoke(Array.Empty<object>()));
+                        var guide = (Guide)type.GetConstructor(Array.Empty<Type>())!.Invoke(Array.Empty<object>());
+                        this.Guides.Add(guide);
                     }
                 }
                 catch (Exception e)
@@ -66,15 +92,6 @@ namespace KikoGuide.Guides
 #endif
                 }
             }
-        }
-
-        /// <summary>
-        ///     Reloads all guides.
-        /// </summary>
-        public void ReloadGuides()
-        {
-            this.Guides.Clear();
-            this.LoadGuides();
         }
     }
 }

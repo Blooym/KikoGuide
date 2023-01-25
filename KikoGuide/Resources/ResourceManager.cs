@@ -6,7 +6,7 @@ using KikoGuide.Common;
 
 namespace KikoGuide.Resources
 {
-    public sealed class ResourceManager : IDisposable
+    internal sealed class ResourceManager : IDisposable
     {
         /// <summary>
         ///     The singleton instance of <see cref="ResourceManager" />.

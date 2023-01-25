@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 using Dalamud.Interface.Windowing;
-using KikoGuide.UserInterface.Windows;
+using KikoGuide.UserInterface.Windows.GuideList;
+using KikoGuide.UserInterface.Windows.GuideViewer;
+using KikoGuide.UserInterface.Windows.Settings;
 using Sirensong;
 using Sirensong.UserInterface.Windowing;
 
 namespace KikoGuide.UserInterface
 {
-    public class WindowManager : IDisposable
+    internal sealed class WindowManager : IDisposable
     {
         ///     Gets the singleton instance of <see cref="WindowManager" />.
         /// </summary>
