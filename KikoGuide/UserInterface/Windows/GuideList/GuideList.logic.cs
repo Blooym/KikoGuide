@@ -4,13 +4,12 @@ using System.Linq;
 using KikoGuide.Common;
 using KikoGuide.Enums;
 using KikoGuide.Extensions;
-using KikoGuide.GuideHandling;
-using KikoGuide.UserInterface.Interfaces;
+using KikoGuide.GuideSystem;
 using Sirensong.Game.Enums;
 
 namespace KikoGuide.UserInterface.Windows.GuideList
 {
-    internal sealed class GuideListLogic : IWindowLogic
+    internal sealed class GuideListLogic
     {
         /// <summary>
         /// The search text to apply.
@@ -25,19 +24,23 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         /// <summary>
         /// The total number of guides.
         /// </summary>
-        public static int UnlockedGuides => Services.GuideManager.Guides.Where(g => !g.NoShow && g.IsGuideUnlocked).Count();
+        public static int UnlockedGuides => Services.GuideManager.Guides.Where(g => !g.NoShow && g.IsUnlocked).Count();
 
         /// <summary>
         /// Get the number of guides for a given content type.
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static int GuidesForContentType(ContentTypeModified type) => Services.GuideManager.GetGuidesForType(type).Where(g => !g.NoShow && g.IsGuideUnlocked).Count();
+        public static int GuidesForContentType(ContentTypeModified type) => Services.GuideManager.GetGuidesForType(type).Where(g => !g.NoShow && g.IsUnlocked).Count();
 
         /// <summary>
         /// Whether or not the player is logged in.
         /// </summary>
         public static bool IsLoggedIn => Services.ClientState.IsLoggedIn;
+
+        public static GuideBase? CurrentGuide => Services.GuideManager.CurrentGuide;
+
+        public static void SetCurrentGuide(GuideBase? guide) => Services.GuideManager.CurrentGuide = guide;
 
         /// <summary>
         /// Fetch a filtered list of guides based on configuration, duty type, and search text.
@@ -51,7 +54,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList
 
             foreach (var guide in guides.Where(g => !g.NoShow))
             {
-                if ((this.DifficultyFilter.HasValue && guide.Difficulty != this.DifficultyFilter.Value) || !guide.IsGuideUnlocked)
+                if ((this.DifficultyFilter.HasValue && guide.Difficulty != this.DifficultyFilter.Value) || !guide.IsUnlocked)
                 {
                     continue;
                 }

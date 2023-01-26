@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using KikoGuide.Common;
 using KikoGuide.Enums;
 
-namespace KikoGuide.GuideHandling
+namespace KikoGuide.GuideSystem
 {
     internal sealed class GuideManager : IDisposable
     {
@@ -20,7 +20,7 @@ namespace KikoGuide.GuideHandling
         /// <summary>
         /// All loaded guides by type.
         /// </summary>
-        private static readonly Dictionary<ContentTypeModified, HashSet<GuideBase>> GuidesByType = new();
+        private readonly Dictionary<ContentTypeModified, HashSet<GuideBase>> guidesByType = new();
 
         /// <summary>
         /// The current guide.
@@ -34,7 +34,7 @@ namespace KikoGuide.GuideHandling
         /// <returns>A <see cref="HashSet{T}" /> of <see cref="GuideBase" />.</returns>
         public HashSet<GuideBase> GetGuidesForType(ContentTypeModified type)
         {
-            if (GuidesByType.TryGetValue(type, out var guides))
+            if (this.guidesByType.TryGetValue(type, out var guides))
             {
                 return guides;
             }
@@ -42,13 +42,13 @@ namespace KikoGuide.GuideHandling
             guides = new HashSet<GuideBase>();
             foreach (var guide in this.Guides)
             {
-                if (guide.Type == type)
+                if (guide.ContentType == type)
                 {
                     guides.Add(guide);
                 }
             }
 
-            GuidesByType.Add(type, guides);
+            this.guidesByType.Add(type, guides);
             return guides;
         }
 
@@ -80,12 +80,9 @@ namespace KikoGuide.GuideHandling
             {
                 try
                 {
-                    if (type.IsSubclassOf(typeof(GuideBase)))
+                    if (!type.IsAbstract && type.IsSubclassOf(typeof(GuideBase)))
                     {
-                        if (type.GetProperty("NoLoad")?.GetValue(null) is bool noLoad && noLoad)
-                        {
-                            continue;
-                        }
+                        BetterLog.Debug($"[{type.BaseType?.Name}] Loading guide with name \"{type.Name}\"...");
                         var guide = (GuideBase)type.GetConstructor(Array.Empty<Type>())!.Invoke(Array.Empty<object>());
                         this.Guides.Add(guide);
                     }

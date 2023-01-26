@@ -5,7 +5,7 @@ using Dalamud.IoC;
 using Dalamud.Plugin;
 using KikoGuide.CommandHandling;
 using KikoGuide.Configuration;
-using KikoGuide.GuideHandling;
+using KikoGuide.GuideSystem;
 using KikoGuide.Resources.Localization;
 using KikoGuide.UserInterface;
 using Sirensong;

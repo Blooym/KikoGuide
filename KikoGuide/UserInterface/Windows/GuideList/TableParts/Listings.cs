@@ -1,7 +1,7 @@
 using System;
 using ImGuiNET;
 using KikoGuide.Enums;
-using KikoGuide.GuideHandling;
+using KikoGuide.GuideSystem;
 
 namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
 {
@@ -73,14 +73,14 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         /// <param name="guide"></param>
         private static void DrawGuideSelectable(GuideListLogic _, GuideBase guide)
         {
-            if (!guide.IsGuideUnlocked)
+            if (!guide.IsUnlocked)
             {
                 return;
             }
 
-            if (ImGui.Selectable($"{guide.Name}##{guide.Id}", guide.IsActive))
+            if (ImGui.Selectable($"{guide.Name}##{guide.Id}", GuideListLogic.CurrentGuide == guide))
             {
-                guide.SetCurrent(true);
+                GuideListLogic.SetCurrentGuide(guide);
             }
         }
     }

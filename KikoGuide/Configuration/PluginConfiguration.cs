@@ -22,12 +22,13 @@ namespace KikoGuide.Configuration
         /// <summary>
         /// Whether or not to automatically open the guide on instance load.
         /// </summary>
-        public bool OpenGuideOnInstanceLoad { get; set; }
+        public bool AutoOpenGuides { get; set; }
 
         /// <summary>
         /// Loads the configuration and migrates it if necessary.
         /// </summary>
         /// <returns></returns>
+        // TODO: re-implement migration logic
         internal static PluginConfiguration Load()
         {
             try
