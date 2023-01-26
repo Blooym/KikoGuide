@@ -62,5 +62,23 @@ namespace KikoGuide.Resources.Localization {
                 return ResourceManager.GetString("Guide List Command Help", resourceCulture);
             }
         }
+        
+        internal static string Settings_Window_Title {
+            get {
+                return ResourceManager.GetString("Settings Window Title", resourceCulture);
+            }
+        }
+        
+        internal static string Gudie_List_Window_Title {
+            get {
+                return ResourceManager.GetString("Gudie List Window Title", resourceCulture);
+            }
+        }
+        
+        internal static string Guide_Viewer_Window_Title {
+            get {
+                return ResourceManager.GetString("Guide Viewer Window Title", resourceCulture);
+            }
+        }
     }
 }

@@ -126,4 +126,13 @@
   <data name="Guide List Command Help" xml:space="preserve">
     <value>Toggles the guide list window.</value>
   </data>
+  <data name="Settings Window Title" xml:space="preserve">
+    <value>[{0}] Settings</value>
+  </data>
+  <data name="Gudie List Window Title" xml:space="preserve">
+    <value>[{0}] Guide List</value>
+  </data>
+  <data name="Guide Viewer Window Title" xml:space="preserve">
+    <value>[{0}] Guide Viewer</value>
+  </data>
 </root>

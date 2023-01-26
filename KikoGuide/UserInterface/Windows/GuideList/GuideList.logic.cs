@@ -28,11 +28,16 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         public static int UnlockedGuides => Services.GuideManager.Guides.Where(g => !g.NoShow && g.IsGuideUnlocked).Count();
 
         /// <summary>
-        ///Get the number of guides for a given content type.
+        /// Get the number of guides for a given content type.
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
         public static int GuidesForContentType(ContentTypeModified type) => Services.GuideManager.GetGuidesForType(type).Where(g => !g.NoShow && g.IsGuideUnlocked).Count();
+
+        /// <summary>
+        /// Whether or not the player is logged in.
+        /// </summary>
+        public static bool IsLoggedIn => Services.ClientState.IsLoggedIn;
 
         /// <summary>
         /// Fetch a filtered list of guides based on configuration, duty type, and search text.

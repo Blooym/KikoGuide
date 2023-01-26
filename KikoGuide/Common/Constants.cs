@@ -1,6 +1,6 @@
 using System;
 using System.Reflection;
-using CheapLoc;
+using KikoGuide.Resources.Localization;
 
 namespace KikoGuide.Common
 {
@@ -38,10 +38,9 @@ namespace KikoGuide.Common
 
         internal static class Windows
         {
-            public static string SettingsTitle => string.Format(Loc.Localize("Windows.Settings", "{0} - Settings"), PluginName);
-            public static string GuideListTitle => string.Format(Loc.Localize("Windows.GuideList", "{0} - Guide List"), PluginName);
-            public static string GuideViewerTitle => string.Format(Loc.Localize("Windows.GuideViewer", "{0} - Guide Viewer"), PluginName);
-            public static string GuideEditorTitle => string.Format(Loc.Localize("Windows.GuideEditor", "{0} - Guide Editor"), PluginName);
+            public static string SettingsTitle => string.Format(Strings.Settings_Window_Title, PluginName);
+            public static string GuideListTitle => string.Format(Strings.Gudie_List_Window_Title, PluginName);
+            public static string GuideViewerTitle => string.Format(Strings.Guide_Viewer_Window_Title, PluginName);
         }
 
         internal static class Common

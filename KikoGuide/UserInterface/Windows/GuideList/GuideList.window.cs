@@ -14,7 +14,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList
             this.SizeConstraints = new WindowSizeConstraints()
             {
                 MinimumSize = new(800, 460),
-                MaximumSize = new(7680, 4320),
+                MaximumSize = new(1200, 700),
             };
             this.SizeCondition = ImGuiCond.FirstUseEver;
             this.Flags = ImGuiWindowFlags.NoScrollbar;
@@ -23,6 +23,12 @@ namespace KikoGuide.UserInterface.Windows.GuideList
 
         public override void Draw()
         {
+            if (!GuideListLogic.IsLoggedIn)
+            {
+                ImGui.TextUnformatted("Please log in to a character in order to view guides.");
+                return;
+            }
+
             // No guides available
             if (GuideListLogic.UnlockedGuides == 0)
             {

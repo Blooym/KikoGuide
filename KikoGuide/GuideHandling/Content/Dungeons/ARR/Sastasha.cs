@@ -1,8 +1,8 @@
-namespace KikoGuide.GuideHandling.Guides.Dungeons.ARR
+namespace KikoGuide.GuideHandling.Content.Dungeons.ARR
 {
     internal sealed class Sastasha : GuideBase
     {
-        public override uint DutyId { get; } = 4;
+        public override uint DutyId { get; } = 47;
         public override uint UnlockQuestId { get; } = 66211;
         public override string[] Authors { get; } = new[] { "Kiko" };
         public override GuideContent Content { get; protected set; } = new()
