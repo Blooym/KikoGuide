@@ -11,17 +11,17 @@ namespace KikoGuide.UserInterface
 {
     internal sealed class WindowManager : IDisposable
     {
-        ///     Gets the singleton instance of <see cref="WindowManager" />.
+        /// Gets the singleton instance of <see cref="WindowManager" />.
         /// </summary>
         public static WindowManager Instance { get; } = new();
 
         /// <summary>
-        ///     The windowing system.
+        /// The windowing system.
         /// </summary>
         public WindowingSystem WindowingSystem { get; } = SirenCore.GetOrCreateService<WindowingSystem>();
 
         /// <summary>
-        ///     All windows to add to the windowing system.
+        /// All windows to add to the windowing system.
         /// </summary>
         private readonly Dictionary<Window, bool> windows = new()
         {
@@ -31,7 +31,7 @@ namespace KikoGuide.UserInterface
         };
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="WindowManager" /> class.
+        /// Initializes a new instance of the <see cref="WindowManager" /> class.
         /// </summary>
         private WindowManager()
         {
@@ -42,7 +42,7 @@ namespace KikoGuide.UserInterface
         }
 
         /// <summary>
-        ///     Disposes of the window manager.
+        /// Disposes of the window manager.
         /// </summary>
         public void Dispose()
         {

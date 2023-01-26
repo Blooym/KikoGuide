@@ -8,27 +8,27 @@ namespace KikoGuide.GuideHandling
     internal sealed class GuideManager : IDisposable
     {
         /// <summary>
-        ///     The singleton instance of <see cref="GuideManager" />.
+        /// The singleton instance of <see cref="GuideManager" />.
         /// </summary>
         public static GuideManager Instance { get; } = new();
 
         /// <summary>
-        ///     All loaded guides.
+        /// All loaded guides.
         /// </summary>
         public HashSet<GuideBase> Guides { get; private set; } = new();
 
         /// <summary>
-        ///     All loaded guides by type.
+        /// All loaded guides by type.
         /// </summary>
         private static readonly Dictionary<ContentTypeModified, HashSet<GuideBase>> GuidesByType = new();
 
         /// <summary>
-        ///     The current guide.
+        /// The current guide.
         /// </summary>
         public GuideBase? CurrentGuide { get; set; }
 
         /// <summary>
-        ///     Gets all guides for a given type.
+        /// Gets all guides for a given type.
         /// </summary>
         /// <param name="type">The type to get guides for.</param>
         /// <returns>A <see cref="HashSet{T}" /> of <see cref="GuideBase" />.</returns>
@@ -53,12 +53,12 @@ namespace KikoGuide.GuideHandling
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="GuideManager" /> class.
+        /// Initializes a new instance of the <see cref="GuideManager" /> class.
         /// </summary>
         private GuideManager() => this.LoadGuides();
 
         /// <summary>
-        ///     Disposes of all guides.
+        /// Disposes of all guides.
         /// </summary>
         public void Dispose()
         {
@@ -72,7 +72,7 @@ namespace KikoGuide.GuideHandling
         }
 
         /// <summary>
-        ///     Loads all guides.
+        /// Loads all guides.
         /// </summary>
         private void LoadGuides()
         {

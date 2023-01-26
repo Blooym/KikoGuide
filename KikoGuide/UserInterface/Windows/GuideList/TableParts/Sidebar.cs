@@ -12,7 +12,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
     internal static class Sidebar
     {
         /// <summary>
-        ///     Draw the sidebar.
+        /// Draw the sidebar.
         /// </summary>
         /// <param name="logic"></param>
         public static void Draw(GuideListLogic logic)
@@ -30,7 +30,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        ///     Draw the searchbar.
+        /// Draw the searchbar.
         /// </summary>
         /// <param name="logic"></param>
         private static void DrawSearchbar(GuideListLogic logic)
@@ -49,7 +49,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        ///     Draw the difficulty filter.
+        /// Draw the difficulty filter.
         /// </summary>
         /// <param name="logic"></param>
         private static void DrawDifficultyFilter(GuideListLogic logic)
@@ -71,7 +71,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        ///     Draw the contributing section.
+        /// Draw the contributing section.
         /// </summary>
         /// <param name="logic"></param>
         private static void DrawContributing(GuideListLogic _)

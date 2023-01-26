@@ -9,17 +9,17 @@ namespace KikoGuide.Resources
     internal sealed class ResourceManager : IDisposable
     {
         /// <summary>
-        ///     The singleton instance of <see cref="ResourceManager" />.
+        /// The singleton instance of <see cref="ResourceManager" />.
         /// </summary>
         private static ResourceManager? instance;
 
         /// <summary>
-        ///     Gets the singleton instance of <see cref="ResourceManager" />.
+        /// Gets the singleton instance of <see cref="ResourceManager" />.
         /// </summary>
         public static ResourceManager Instance => instance ??= new();
 
         /// <summary>
-        ///     Creates a new resource manager and sets up resources.
+        /// Creates a new resource manager and sets up resources.
         /// </summary>
         private ResourceManager()
         {
@@ -28,7 +28,7 @@ namespace KikoGuide.Resources
         }
 
         /// <summary>
-        ///     Disposes of the <see cref="ResourceManager" />
+        /// Disposes of the <see cref="ResourceManager" />
         /// </summary>
         public void Dispose()
         {
@@ -38,13 +38,13 @@ namespace KikoGuide.Resources
         }
 
         /// <summary>
-        ///     Language change handler.
+        /// Language change handler.
         /// </summary>
         /// <param name="newLanguage">The new language</param>
         private void OnLanguageChange(string newLanguage) => SetupLocalization(newLanguage);
 
         /// <summary>
-        ///     Sets up localization for the given language, or uses fallbacks if not found.
+        /// Sets up localization for the given language, or uses fallbacks if not found.
         /// </summary>
         /// <param name="language">The language to use.</param>
         private static void SetupLocalization(string language)

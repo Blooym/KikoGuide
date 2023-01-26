@@ -56,7 +56,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         }
 
         /// <summary>
-        ///     Draw a warning message if no guides were found.
+        /// Draw a warning message if no guides were found.
         /// </summary>
         private static void DrawNoGuidesAvailable()
         {

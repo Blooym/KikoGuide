@@ -5,12 +5,12 @@ using Dalamud.Logging;
 namespace KikoGuide.Common
 {
     /// <summary>
-    ///     A wrapper around <see cref="PluginLog"/> that provides a nicer format.
+    /// A wrapper around <see cref="PluginLog"/> that provides a nicer format.
     /// </summary>
     internal static class BetterLog
     {
         /// <summary>
-        ///     Formats a log message.
+        /// Formats a log message.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="caller"></param>

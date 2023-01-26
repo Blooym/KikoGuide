@@ -8,7 +8,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
     internal static class Listings
     {
         /// <summary>
-        ///     Draw the guide listings.
+        /// Draw the guide listings.
         /// </summary>
         /// <param name="logic"></param>
         public static void Draw(GuideListLogic logic)
@@ -24,7 +24,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        ///     Draw all guides that belong to the given content type.
+        /// Draw all guides that belong to the given content type.
         /// </summary>
         /// <param name="contentType"></param>
         private static void DrawContentTypeListings(GuideListLogic logic, ContentTypeModified contentType)
@@ -68,7 +68,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        ///     Draw a selectable guide.
+        /// Draw a selectable guide.
         /// </summary>
         /// <param name="guide"></param>
         private static void DrawGuideSelectable(GuideListLogic _, GuideBase guide)

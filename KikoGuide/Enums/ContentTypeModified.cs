@@ -1,7 +1,7 @@
 namespace KikoGuide.Enums
 {
     /// <summary>
-    ///     Represents a ContentType, mapping from <see cref="ContentFinderCondition.ContentType" />.
+    /// Represents a ContentType, mapping from <see cref="ContentFinderCondition.ContentType" />.
     /// </summary>
     // a modified version from Sirensong.
     internal enum ContentTypeModified
@@ -37,8 +37,8 @@ namespace KikoGuide.Enums
         VariantCriteonDungeon = 30,
 
         /// <remarks>
-        ///     This isn't a ContentType from the game, but its used in <see cref="ContentFinderConditionExtensions.GetDutyType(Lumina.Excel.GeneratedSheets.ContentFinderCondition)" /> 
-        ///     to determine <see cref="Raids" /> apart from alliance raid.
+        /// This isn't a ContentType from the game, but its used in <see cref="ContentFinderConditionExtensions.GetDutyType(Lumina.Excel.GeneratedSheets.ContentFinderCondition)" /> 
+        /// to determine <see cref="Raids" /> apart from alliance raid.
         /// </remarks>
         AllianceRaid = -1,
 

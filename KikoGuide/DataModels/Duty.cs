@@ -5,17 +5,17 @@ using Lumina.Excel.GeneratedSheets;
 namespace KikoGuide.DataModels
 {
     /// <summary>
-    ///     Represents an in-game duty and models the data associated with it.
+    /// Represents an in-game duty and models the data associated with it.
     /// </summary>
     internal sealed class Duty
     {
         /// <summary>
-        ///     The <see cref="ContentFinderCondition"/> row.
+        /// The <see cref="ContentFinderCondition"/> row.
         /// </summary>
         public ContentFinderCondition CFCondition { get; init; }
 
         /// <summary>
-        ///     The <see cref="ContentFinderConditionTransient"/> row.
+        /// The <see cref="ContentFinderConditionTransient"/> row.
         /// </summary>
         public ContentFinderConditionTransient CFConditionTransient { get; init; }
 
@@ -47,7 +47,7 @@ namespace KikoGuide.DataModels
         }
 
         /// <summary>
-        ///     Creates a new <see cref="Duty"/> instance.
+        /// Creates a new <see cref="Duty"/> instance.
         /// </summary>
         /// <param name="id">The RowID of the duty from the <see cref="ContentFinderCondition"/> sheet.</param>
         public Duty(ContentFinderCondition cfCondition, ContentFinderConditionTransient cfConditionTransient)

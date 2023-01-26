@@ -5,7 +5,7 @@ using CheapLoc;
 namespace KikoGuide.Common
 {
     /// <summary>
-    ///     Compile-time constants, readonly values, and localization strings.
+    /// Compile-time constants, readonly values, and localization strings.
     /// </summary>
     internal static class Constants
     {

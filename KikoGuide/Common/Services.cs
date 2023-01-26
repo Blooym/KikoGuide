@@ -13,7 +13,7 @@ using Sirensong;
 namespace KikoGuide.Common
 {
     /// <summary>
-    ///     Provides access to service instances for Dalamud, Sirensong & The Plugin.
+    /// Provides access to service instances for Dalamud, Sirensong & The Plugin.
     /// </summary>
     internal sealed class Services
     {
@@ -34,7 +34,7 @@ namespace KikoGuide.Common
         internal static PluginConfiguration Configuration { get; private set; } = null!;
 
         /// <summary>
-        ///     Initializes the service class.
+        /// Initializes the service class.
         /// </summary>
         internal static void Initialize(DalamudPluginInterface pluginInterface)
         {
@@ -49,7 +49,7 @@ namespace KikoGuide.Common
         }
 
         /// <summary>
-        ///     Disposes of the service class.
+        /// Disposes of the service class.
         /// </summary>
         internal static void Dispose()
         {

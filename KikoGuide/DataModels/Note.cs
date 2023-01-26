@@ -6,42 +6,42 @@ using Newtonsoft.Json;
 namespace KikoGuide.DataModels
 {
     /// <summary>
-    ///     A note that is stored on the filesystem.
+    /// A note that is stored on the filesystem.
     /// </summary>
     internal sealed record Note
     {
         /// <summary>
-        ///     The version of the note format, incremented when breaking changes are made.
+        /// The version of the note format, incremented when breaking changes are made.
         /// </summary>
         internal const int FormatVersion = 0;
 
         /// <summary>
-        ///     The version of the note format.
+        /// The version of the note format.
         /// </summary>
         public int Version { get; private set; } = FormatVersion;
 
         /// <summary>
-        ///     The name of the note.
+        /// The name of the note.
         /// </summary>
         public string Name { get; private set; } = null!;
 
         /// <summary>
-        ///     The content of the note.
+        /// The content of the note.
         /// </summary>
         public string Content { get; private set; } = string.Empty;
 
         /// <summary>
-        ///     The date and time the note was created.
+        /// The date and time the note was created.
         /// </summary>
         public DateTime CreatedAt { get; } = DateTime.Now;
 
         /// <summary>
-        ///     The date and time the note was last modified.
+        /// The date and time the note was last modified.
         /// </summary>
         public DateTime? LastModifiedAt { get; private set; }
 
         /// <summary>
-        ///     Creates a new note.
+        /// Creates a new note.
         /// </summary>
         /// <param name="name">The name of the note.</param>
         private Note(string name) => this.Name = name;
@@ -51,7 +51,7 @@ namespace KikoGuide.DataModels
         private Note() { }
 
         /// <summary>
-        ///     Creates a new note.
+        /// Creates a new note.
         /// </summary>
         /// <param name="name">The name of the note.</param>
         /// <returns></returns>
@@ -62,7 +62,7 @@ namespace KikoGuide.DataModels
         }
 
         /// <summary>
-        ///     Loads a note from the filesystem.
+        /// Loads a note from the filesystem.
         /// </summary>
         /// <param name="path">The absolute path to the note.</param>
         /// <returns></returns>
@@ -74,14 +74,14 @@ namespace KikoGuide.DataModels
         }
 
         /// <summary>
-        ///     Gets the absolute path to the note.
+        /// Gets the absolute path to the note.
         /// </summary>
         /// <param name="name">The name of the note.</param>
         /// <returns>The absolute path to the note.</returns>
         private static string GetPath(string name) => $@"{Constants.NotesDirectory}\{name}.json";
 
         /// <summary>
-        ///     Creates a new note or loads an existing one.
+        /// Creates a new note or loads an existing one.
         /// </summary>
         /// <param name="path">The absolute path to the note.</param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ namespace KikoGuide.DataModels
         }
 
         /// <summary>
-        ///     Saves the note to the filesystem with the current data.
+        /// Saves the note to the filesystem with the current data.
         /// </summary>
         /// <returns></returns>
         public Note Save()
@@ -115,7 +115,7 @@ namespace KikoGuide.DataModels
         public void Delete() => File.Delete(GetPath(this.Name));
 
         /// <summary>
-        ///     Sets the title of the note.
+        /// Sets the title of the note.
         /// </summary>
         /// <param name="title">The title to set.</param>
         /// <returns></returns>
@@ -127,7 +127,7 @@ namespace KikoGuide.DataModels
         }
 
         /// <summary>
-        ///     Sets the content of the note.
+        /// Sets the content of the note.
         /// </summary>
         /// <param name="content">The content to set.</param>
         /// <returns></returns>

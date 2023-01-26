@@ -8,12 +8,12 @@ namespace KikoGuide.CommandHandling
     internal sealed class CommandManager : IDisposable
     {
         /// <summary>
-        ///     The singleton instance of <see cref="CommandManager"/>.
+        /// The singleton instance of <see cref="CommandManager"/>.
         /// </summary>
         public static CommandManager Instance { get; } = new();
 
         /// <summary>
-        ///     The list of registered commands.
+        /// The list of registered commands.
         /// </summary>
         private ICommand[] commands =
         {
@@ -23,7 +23,7 @@ namespace KikoGuide.CommandHandling
         };
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CommandManager"/> class.
+        /// Initializes a new instance of the <see cref="CommandManager"/> class.
         /// </summary>
         private CommandManager()
         {
@@ -34,7 +34,7 @@ namespace KikoGuide.CommandHandling
         }
 
         /// <summary>
-        ///     Disposes of the command manager.
+        /// Disposes of the command manager.
         /// </summary>
         public void Dispose()
         {
