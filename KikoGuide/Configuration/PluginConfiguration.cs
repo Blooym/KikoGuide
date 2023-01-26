@@ -20,9 +20,14 @@ namespace KikoGuide.Configuration
         public int Version { get; set; } = CurrentVersion;
 
         /// <summary>
-        /// Whether or not to automatically open the guide on instance load.
+        /// Whether or not to automatically open guides when their conditions are met.
         /// </summary>
         public bool AutoOpenGuides { get; set; }
+
+        /// <summary>
+        /// Whether the guide viewer window posistion and size is locked.
+        /// </summary>x
+        public bool LockGuideViewer { get; set; }
 
         /// <summary>
         /// Loads the configuration and migrates it if necessary.
@@ -33,14 +38,15 @@ namespace KikoGuide.Configuration
         {
             try
             {
-                return Services.PluginInterface.GetPluginConfig() as PluginConfiguration ?? new();
+                return Services.PluginInterface.GetPluginConfig() as PluginConfiguration ?? new PluginConfiguration();
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                BetterLog.Error($"Failed to load plugin configuration, reverting to default: {ex}");
+                BetterLog.Error($"Failed to load configuration, making new one: {e}");
                 return new PluginConfiguration();
             }
         }
+
 
         /// <summary>
         /// Saves the configuration.

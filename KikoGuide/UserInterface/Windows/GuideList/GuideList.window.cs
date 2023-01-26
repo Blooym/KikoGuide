@@ -10,10 +10,10 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         public GuideListLogic Logic { get; } = new();
         public GuideListWindow() : base(Constants.Windows.GuideListTitle)
         {
-            this.Size = new(800, 460);
+            this.Size = new(800, 520);
             this.SizeConstraints = new WindowSizeConstraints()
             {
-                MinimumSize = new(800, 460),
+                MinimumSize = new(800, 520),
                 MaximumSize = new(1200, 700),
             };
             this.SizeCondition = ImGuiCond.FirstUseEver;
@@ -36,6 +36,12 @@ namespace KikoGuide.UserInterface.Windows.GuideList
                 return;
             }
 
+            // Quick fix for the table crashing using docking
+            if (ImGui.GetWindowSize().X < 80 || ImGui.GetWindowSize().Y < 80)
+            {
+                return;
+            }
+
             if (ImGui.BeginTable("GuideList", 2, ImGuiTableFlags.BordersInnerV))
             {
                 ImGui.TableSetupColumn("Sidebar", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.28f);
@@ -49,7 +55,6 @@ namespace KikoGuide.UserInterface.Windows.GuideList
                     ImGui.EndChild();
                 }
 
-                // Listings
                 ImGui.TableNextColumn();
                 if (ImGui.BeginChild("ListingsChild"))
                 {

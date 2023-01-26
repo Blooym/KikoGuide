@@ -83,18 +83,26 @@ namespace KikoGuide.DataModels
         /// <summary>
         /// Creates a new note or loads an existing one.
         /// </summary>
-        /// <param name="path">The absolute path to the note.</param>
+        /// <param name="name">The name of the note.</param>
         /// <returns></returns>
         internal static Note CreateOrLoad(string name)
         {
-            if (File.Exists(GetPath(name)))
+            name = string.Join("_", name.Split(Path.GetInvalidFileNameChars()));
+
+            try
             {
-                return Load(GetPath(name));
+                if (File.Exists(GetPath(name)))
+                {
+                    return Load(GetPath(name));
+                }
             }
-            else
+            catch (Exception e)
             {
-                return Create(name);
+                BetterLog.Warning($"Failed to load note {name}, creating new one: {e.Message}");
+                return Create(name).Save();
             }
+
+            return Create(name);
         }
 
         /// <summary>

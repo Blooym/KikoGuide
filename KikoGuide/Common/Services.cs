@@ -42,10 +42,10 @@ namespace KikoGuide.Common
             pluginInterface.Create<Services>();
 
             ResourceManager = LocalizationManager.Instance;
+            Configuration = PluginConfiguration.Load();
             GuideManager = GuideManager.Instance;
             WindowManager = WindowManager.Instance;
             CommandManager = CommandManager.Instance;
-            Configuration = PluginConfiguration.Load();
         }
 
         /// <summary>

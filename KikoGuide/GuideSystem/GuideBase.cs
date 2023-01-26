@@ -1,6 +1,9 @@
 using System;
+using Dalamud.Interface.Colors;
+using KikoGuide.Common;
 using KikoGuide.Enums;
 using Sirensong.Game.Enums;
+using Sirensong.UserInterface;
 
 // TODO: Implement some kind of logic for handling guide auto-opening.
 namespace KikoGuide.GuideSystem
@@ -19,11 +22,6 @@ namespace KikoGuide.GuideSystem
         /// The name of the guide.
         /// </summary>
         public abstract string Name { get; }
-
-        /// <summary>
-        /// The authors of the guide.
-        /// </summary>
-        public abstract string[] Authors { get; }
 
         /// <summary>
         /// The description of the guide.
@@ -46,9 +44,9 @@ namespace KikoGuide.GuideSystem
         public abstract ContentTypeModified ContentType { get; }
 
         /// <summary>
-        /// The method to draw the guide content.
+        /// Whether or not the guide should allow itself to open automatically.
         /// </summary>
-        public abstract void Draw();
+        public virtual bool AutoOpen => Services.Configuration.AutoOpenGuides;
 
         /// <summary>
         /// Whether or not the guide should be considered unlocked.
@@ -59,6 +57,26 @@ namespace KikoGuide.GuideSystem
         /// Whether or not the guide should be hidden from the guide list, even if unlocked.
         /// </summary>
         public virtual bool NoShow { get; }
+
+        /// <summary>
+        /// The content to draw in the guide viewer, called by the base class.
+        /// </summary>
+        protected abstract void DrawAction();
+
+        /// <summary>
+        /// Draws the guide content.
+        /// </summary>
+        public void Draw()
+        {
+            try
+            {
+                this.DrawAction();
+            }
+            catch (Exception e)
+            {
+                SiGui.TextWrappedColoured(ImGuiColors.DalamudRed, $"Draw failed to due to an error! [{e.GetType().Name}] {e.Message}");
+            }
+        }
 
         /// <summary>
         /// The method to dispose of the guide.

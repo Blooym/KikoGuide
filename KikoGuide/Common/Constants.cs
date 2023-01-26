@@ -25,11 +25,6 @@ namespace KikoGuide.Common
             public const string Settings = "/kikosettings";
         }
 
-        internal static class ExceptionMessages
-        {
-            public const string InvalidDutyOrUnlockQuest = "The given duty ID or unlock quest ID is invalid and could not be found in the game data.";
-        }
-
         internal static class Links
         {
             public const string GitHub = "https://github.com/BitsOfAByte/KikoGuide";

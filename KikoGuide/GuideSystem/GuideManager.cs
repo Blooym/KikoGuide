@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using KikoGuide.Common;
 using KikoGuide.Enums;
+using KikoGuide.UserInterface.Windows.GuideViewer;
 
 namespace KikoGuide.GuideSystem
 {
@@ -23,9 +24,58 @@ namespace KikoGuide.GuideSystem
         private readonly Dictionary<ContentTypeModified, HashSet<GuideBase>> guidesByType = new();
 
         /// <summary>
-        /// The current guide.
+        /// The currently active guide.
         /// </summary>
-        public GuideBase? CurrentGuide { get; set; }
+        public GuideBase? SelectedGuide { get; private set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GuideManager" /> class.
+        /// </summary>
+        private GuideManager() => this.LoadGuides();
+
+        /// <summary>
+        /// Disposes of all guides.
+        /// </summary>
+        public void Dispose()
+        {
+            foreach (var guide in this.Guides)
+            {
+                guide.Dispose();
+            }
+            this.Guides.Clear();
+
+            GC.SuppressFinalize(this);
+        }
+
+
+        /// <summary>
+        /// Sets the currently active guide.
+        /// </summary>
+        /// <param name="guide"></param>
+        public void SetSelectedGuide(GuideBase guide, bool openViewer)
+        {
+            this.SelectedGuide = guide;
+            if (openViewer)
+            {
+                var window = Services.WindowManager.WindowingSystem.GetWindow<GuideViewerWindow>();
+                if (window != null)
+                {
+                    window.IsOpen = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Clears the currently active guide.
+        /// </summary>
+        public void ClearSelectedGuide()
+        {
+            if (this.SelectedGuide == null)
+            {
+                return;
+            }
+            this.SelectedGuide = null;
+        }
 
         /// <summary>
         /// Gets all guides for a given type.
@@ -53,25 +103,6 @@ namespace KikoGuide.GuideSystem
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GuideManager" /> class.
-        /// </summary>
-        private GuideManager() => this.LoadGuides();
-
-        /// <summary>
-        /// Disposes of all guides.
-        /// </summary>
-        public void Dispose()
-        {
-            foreach (var guide in this.Guides)
-            {
-                guide.Dispose();
-            }
-            this.Guides.Clear();
-
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
         /// Loads all guides.
         /// </summary>
         private void LoadGuides()
@@ -82,7 +113,7 @@ namespace KikoGuide.GuideSystem
                 {
                     if (!type.IsAbstract && type.IsSubclassOf(typeof(GuideBase)))
                     {
-                        BetterLog.Debug($"[{type.BaseType?.Name}] Loading guide with name \"{type.Name}\"...");
+                        BetterLog.Debug($"[{type.BaseType?.Name}] Loading guide from class {type.Name}.");
                         var guide = (GuideBase)type.GetConstructor(Array.Empty<Type>())!.Invoke(Array.Empty<object>());
                         this.Guides.Add(guide);
                     }

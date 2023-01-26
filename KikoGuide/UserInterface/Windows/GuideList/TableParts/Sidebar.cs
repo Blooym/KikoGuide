@@ -4,6 +4,7 @@ using Dalamud.Interface.Components;
 using Dalamud.Utility;
 using ImGuiNET;
 using KikoGuide.Common;
+using Sirensong.Extensions;
 using Sirensong.Game.Enums;
 using Sirensong.UserInterface;
 
@@ -27,6 +28,10 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
             ImGui.Dummy(new(0, 20));
 
             DrawContributing(logic);
+            ImGui.Dummy(new(0, 5));
+
+            SiGui.TextFooter($"{Constants.PluginName.TrimWhitepace()} v{Constants.Version} (#{Constants.GitCommitHash})");
+            ImGui.TextDisabled($"{Constants.GitBranch} on {Constants.GitCommitDate:yy-MM-dd H:mm:sstt}");
         }
 
         /// <summary>
@@ -37,7 +42,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         {
             ImGui.TextDisabled("Guide Search");
             ImGui.Separator();
-            ImGui.SetNextItemWidth(ImGui.GetColumnWidth() * 0.88f);
+            ImGui.SetNextItemWidth(-30);
             SiGui.InputTextHint("##GuideSearch", "Search by name...", ref logic.SearchText, 100);
             ImGui.SameLine();
             ImGui.BeginDisabled(string.IsNullOrEmpty(logic.SearchText));

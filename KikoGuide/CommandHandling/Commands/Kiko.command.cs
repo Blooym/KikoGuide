@@ -24,7 +24,7 @@ namespace KikoGuide.CommandHandling.Commands
         {
             if (command == Constants.Commands.GuideViewer)
             {
-                if (Services.GuideManager.CurrentGuide == null)
+                if (Services.GuideManager.SelectedGuide == null)
                 {
                     GameChat.PrintError($"Cannot open the guide viewer without a guide selected, select one using {Constants.Commands.GuideList}");
                     return;

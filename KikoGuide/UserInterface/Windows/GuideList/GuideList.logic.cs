@@ -38,9 +38,9 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         /// </summary>
         public static bool IsLoggedIn => Services.ClientState.IsLoggedIn;
 
-        public static GuideBase? CurrentGuide => Services.GuideManager.CurrentGuide;
+        public static GuideBase? CurrentGuide => Services.GuideManager.SelectedGuide;
 
-        public static void SetCurrentGuide(GuideBase? guide) => Services.GuideManager.CurrentGuide = guide;
+        public static void SetCurrentGuide(GuideBase guide) => Services.GuideManager.SetSelectedGuide(guide, true);
 
         /// <summary>
         /// Fetch a filtered list of guides based on configuration, duty type, and search text.

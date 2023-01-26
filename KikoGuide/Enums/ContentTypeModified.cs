@@ -6,6 +6,7 @@ namespace KikoGuide.Enums
     // a modified version from Sirensong.
     internal enum ContentTypeModified
     {
+        Unknown = 0,
         Roulette = 1,
         Dungeons = 2,
         Guildhests = 3,
@@ -32,9 +33,10 @@ namespace KikoGuide.Enums
         DonderousTails = 24,
         CustomDeliveries = 25,
         Eureka = 26,
-        Unknown4 = 27,
+        BlueMage = 27,
+        UltimateRaids = 28,
         SouthernFront = 29,
-        VariantCriteonDungeon = 30,
+        VCDungeon = 30,
 
         /// <remarks>
         /// This isn't a ContentType from the game, but its used in <see cref="ContentFinderConditionExtensions.GetDutyType(Lumina.Excel.GeneratedSheets.ContentFinderCondition)" /> 
