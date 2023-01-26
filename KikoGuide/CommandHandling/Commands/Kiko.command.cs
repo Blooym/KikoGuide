@@ -3,6 +3,7 @@ using KikoGuide.CommandHandling.Interfaces;
 using KikoGuide.Common;
 using KikoGuide.Resources.Localization;
 using KikoGuide.UserInterface.Windows.GuideViewer;
+using Sirensong.Game.UI;
 
 namespace KikoGuide.CommandHandling.Commands
 {
@@ -23,6 +24,12 @@ namespace KikoGuide.CommandHandling.Commands
         {
             if (command == Constants.Commands.GuideViewer)
             {
+                if (Services.GuideManager.CurrentGuide == null)
+                {
+                    GameChat.PrintError($"Cannot open the guide viewer without a guide selected, select one using {Constants.Commands.GuideList}");
+                    return;
+                }
+
                 Services.WindowManager.WindowingSystem.GetWindow<GuideViewerWindow>()?.Toggle();
             }
         };
