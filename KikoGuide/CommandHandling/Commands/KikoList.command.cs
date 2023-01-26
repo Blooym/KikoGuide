@@ -1,6 +1,7 @@
 using Dalamud.Game.Command;
 using KikoGuide.CommandHandling.Interfaces;
 using KikoGuide.Common;
+using KikoGuide.Resources.Localization;
 using KikoGuide.UserInterface.Windows.GuideList;
 
 namespace KikoGuide.CommandHandling.Commands
@@ -13,7 +14,7 @@ namespace KikoGuide.CommandHandling.Commands
         /// <inheritdoc />
         public CommandInfo Command => new(this.OnExecute)
         {
-            HelpMessage = Constants.Commands.GuideListHelp,
+            HelpMessage = Strings.Guide_List_Command_Help,
             ShowInHelp = true,
         };
 

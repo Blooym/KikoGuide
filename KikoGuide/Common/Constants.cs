@@ -20,13 +20,9 @@ namespace KikoGuide.Common
         internal static class Commands
         {
             public const string GuideList = "/kikolist";
-            public static string GuideListHelp => Loc.Localize("Commands.GuideList.Help", "Toggle a list of all available guides.");
             public const string GuideViewer = "/kiko";
-            public static string GuideViewerHelp => Loc.Localize("Commands.GuideViewer.Help", "Toggle the guide viewer window.");
             public const string GuideEditor = "/kikoeditor";
-            public static string GuideEditorHelp => Loc.Localize("Commands.GuideEditor.Help", "Toggle the guide editor window.");
             public const string Settings = "/kikosettings";
-            public static string SettingsHelp => Loc.Localize("Commands.Settings.Help", "Toggle the settings window.");
         }
 
         internal static class ExceptionMessages

@@ -6,7 +6,7 @@ using Dalamud.Plugin;
 using KikoGuide.CommandHandling;
 using KikoGuide.Configuration;
 using KikoGuide.GuideHandling;
-using KikoGuide.Resources;
+using KikoGuide.Resources.Localization;
 using KikoGuide.UserInterface;
 using Sirensong;
 
@@ -27,7 +27,7 @@ namespace KikoGuide.Common
         // Plugin services
         internal static CommandManager CommandManager { get; private set; } = null!;
         internal static WindowManager WindowManager { get; private set; } = null!;
-        internal static ResourceManager ResourceManager { get; private set; } = null!;
+        internal static LocalizationManager ResourceManager { get; private set; } = null!;
         internal static GuideManager GuideManager { get; private set; } = null!;
 
         // Other plugin stuff
@@ -41,7 +41,7 @@ namespace KikoGuide.Common
             SirenCore.InjectServices<Services>();
             pluginInterface.Create<Services>();
 
-            ResourceManager = ResourceManager.Instance;
+            ResourceManager = LocalizationManager.Instance;
             GuideManager = GuideManager.Instance;
             WindowManager = WindowManager.Instance;
             CommandManager = CommandManager.Instance;
