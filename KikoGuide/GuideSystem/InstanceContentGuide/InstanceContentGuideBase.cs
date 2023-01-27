@@ -22,16 +22,15 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
     {
         public InstanceContentGuideBase()
         {
-            this.LinkedDuty = Duty.GetDuty(this.DutyId);
-            this.UnlockQuest = Services.Data.GetExcelSheet<Quest>()?.GetRow(this.UnlockQuestId)!;
-
-            // Throw if invalid data
+            // Get duty and quest data.
+            this.LinkedDuty = Duty.GetDutyOrNull(this.DutyId)!;
+            this.UnlockQuest = Services.QuestCache.GetRow(this.UnlockQuestId)!;
             if (this.UnlockQuest == null || this.LinkedDuty == null)
             {
                 throw new ArgumentException("Invalid duty or unlock quest ID.");
             }
 
-            // Assign to properties
+            // Assign properties
             this.Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.LinkedDuty.CFCondition.Name.ToDalamudString().ToString());
             this.Description = this.LinkedDuty.CFConditionTransient.Description.ToDalamudString().ToString();
             this.ContentType = (ContentTypeModified?)this.LinkedDuty.CFCondition.GetContentType(true) ?? ContentTypeModified.Custom;
@@ -53,6 +52,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
             Services.ClientState.TerritoryChanged += this.HandleTerritoryChange;
         }
 
+        /// <inheritdoc/>
         public override void Dispose() => Services.ClientState.TerritoryChanged -= this.HandleTerritoryChange;
 
         /// <summary>
@@ -114,9 +114,9 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         private unsafe void HandleTerritoryChange(object? sender, ushort territoryId)
         {
             // TODO: Find a better way of hiding guides when no guide is found for the current territory.
-            Services.GuideManager.ClearSelectedGuide();
-            if (this.LinkedDuty.CFCondition.TerritoryType.Row != territoryId || Services.GuideManager.SelectedGuide == this)
+            if (this.LinkedDuty.CFCondition.TerritoryType.Row != territoryId || Services.GuideManager.SelectedGuide != null)
             {
+                Services.GuideManager.SelectedGuide = null;
                 return;
             }
 
@@ -147,11 +147,12 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
                 switch (this.AutoOpen)
                 {
                     case true:
-                        Services.GuideManager.SetSelectedGuide(this, true);
+                        Services.GuideManager.SelectedGuide = this;
+                        Services.WindowManager.SetGuideViewerVisibility(true);
                         break;
                     case false:
                         GameChat.Print($"A guide for the duty {this.Name} is available. Use {Constants.Commands.GuideViewer} to open it.");
-                        Services.GuideManager.SetSelectedGuide(this, false);
+                        Services.GuideManager.SelectedGuide = this;
                         break;
                     default:
                 }

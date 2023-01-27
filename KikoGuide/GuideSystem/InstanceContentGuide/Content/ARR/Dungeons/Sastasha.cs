@@ -1,6 +1,6 @@
 namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
 {
-    internal sealed class Sastasha : InstanceContentGuideBase
+    internal sealed class Sasqtasha : InstanceContentGuideBase
     {
         public override uint DutyId { get; } = 4;
         public override uint UnlockQuestId { get; } = 66211;
@@ -10,7 +10,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
             {
                 new InstanceContentGuideFormat.Section
                 {
-                    Title = new ()
+                    Title = new()
                     {
                        EN = "Chopper",
                     },
@@ -19,6 +19,11 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
                     {
                         new InstanceContentGuideFormat.Section.Subsection
                         {
+                            Title = new()
+                            {
+                                EN = "Phase 1",
+                            },
+
                             Content = new()
                             {
                                 EN = "Avoid being hit by \"Charged Whisker\", which is an AoE attack that inflicts Paralysis.",
@@ -39,17 +44,6 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
                                     },
                                 }
                             },
-
-                            Tips = new[]
-                            {
-                                new InstanceContentGuideFormat.Section.Subsection.Tip
-                                {
-                                    Content = new()
-                                    {
-                                        EN = "Avoid being hit by \"Charged Whisker\", which is an AoE attack that inflicts Paralysis.",
-                                    },
-                                },
-                            }
                         },
                     }
                 },
@@ -65,6 +59,11 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
                     {
                         new InstanceContentGuideFormat.Section.Subsection
                         {
+                            Title = new()
+                            {
+                                EN = "Phase 1",
+                            },
+
                             Content = new()
                             {
                                 EN = "You must defeat Captain Madison twice. In the first encounter, kill adds first and then focus on the boss until they run away. In the second encounter they will summon guard dogs at 50% HP, kill these and attack until they flees.",
@@ -84,6 +83,11 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
                     {
                         new InstanceContentGuideFormat.Section.Subsection
                         {
+                            Title = new()
+                            {
+                                EN = "Phase 1",
+                            },
+
                             Content = new()
                             {
                                 EN = "During the boss fight, adds will spawn from the bubbling water, interact with the grate when it's bubbling to prevent spawning. These can also be safely ignored if enough damage is being dealt to the boss.",

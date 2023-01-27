@@ -24,23 +24,34 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         /// <summary>
         /// The total number of guides.
         /// </summary>
-        public static int UnlockedGuides => Services.GuideManager.Guides.Where(g => !g.NoShow && g.IsUnlocked).Count();
+        public static int UnlockedGuides => Services.GuideManager.GetGuides().Where(g => !g.NoShow && g.IsUnlocked).Count();
 
         /// <summary>
         /// Get the number of guides for a given content type.
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static int GuidesForContentType(ContentTypeModified type) => Services.GuideManager.GetGuidesForType(type).Where(g => !g.NoShow && g.IsUnlocked).Count();
+        public static int GuidesForContentType(ContentTypeModified type) => Services.GuideManager.GetGuides(type).Where(g => !g.NoShow && g.IsUnlocked).Count();
 
         /// <summary>
         /// Whether or not the player is logged in.
         /// </summary>
         public static bool IsLoggedIn => Services.ClientState.IsLoggedIn;
 
+        /// <summary>
+        /// Gets the currently selected guide.
+        /// </summary>
         public static GuideBase? CurrentGuide => Services.GuideManager.SelectedGuide;
 
-        public static void SetCurrentGuide(GuideBase guide) => Services.GuideManager.SetSelectedGuide(guide, true);
+        /// <summary>
+        /// Opens the given guide in the guide viewer.
+        /// </summary>
+        /// <param name="guide">The guide to open.</param>
+        public static void OpenGuide(GuideBase guide)
+        {
+            Services.GuideManager.SelectedGuide = guide;
+            Services.WindowManager.SetGuideViewerVisibility(true);
+        }
 
         /// <summary>
         /// Fetch a filtered list of guides based on configuration, duty type, and search text.
@@ -50,11 +61,16 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         public HashSet<GuideBase> GetFilteredGuides(ContentTypeModified? type)
         {
             var filteredGuides = new HashSet<GuideBase>();
-            var guides = type.HasValue ? Services.GuideManager.GetGuidesForType(type.Value) : Services.GuideManager.Guides;
+            var guides = type.HasValue ? Services.GuideManager.GetGuides(type.Value) : Services.GuideManager.GetGuides();
 
-            foreach (var guide in guides.Where(g => !g.NoShow))
+            foreach (var guide in guides)
             {
-                if ((this.DifficultyFilter.HasValue && guide.Difficulty != this.DifficultyFilter.Value) || !guide.IsUnlocked)
+                if (guide.NoShow || !guide.IsUnlocked)
+                {
+                    continue;
+                }
+
+                if (this.DifficultyFilter.HasValue && guide.Difficulty != this.DifficultyFilter.Value)
                 {
                     continue;
                 }
@@ -64,13 +80,13 @@ namespace KikoGuide.UserInterface.Windows.GuideList
                     filteredGuides.Add(guide);
                 }
             }
+
             return filteredGuides;
         }
 
-
         /// <summary>
-        /// Opens the settings window.
+        /// Toggle the settings window.
         /// </summary>
-        public static void OpenSettings() => Services.WindowManager.WindowingSystem.ToggleConfigWindow();
+        public static void ToggleSettingsWindow() => Services.WindowManager.ToggleSettingsWindow();
     }
 }

@@ -9,33 +9,33 @@ namespace KikoGuide.Common
     /// </summary>
     internal static class Constants
     {
-        public const string PluginName = "Kiko Guide";
-        public static readonly string NotesDirectory = $@"{Services.PluginInterface.GetPluginConfigDirectory()}\Notes";
-        public static readonly string CustomGuidesDirectory = $@"{Services.PluginInterface.GetPluginConfigDirectory()}\Guides";
-        public static readonly Version Version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0, 0);
-        public static readonly string GitCommitHash = Assembly.GetExecutingAssembly().GetCustomAttribute<GitHashAttribute>()?.Value ?? "Unknown";
-        public static readonly DateTime GitCommitDate = DateTime.TryParse(Assembly.GetExecutingAssembly().GetCustomAttribute<GitCommitDateAttribute>()?.Value, out var date) ? date : DateTime.MinValue;
-        public static readonly string GitBranch = Assembly.GetExecutingAssembly().GetCustomAttribute<GitBranchAttribute>()?.Value ?? "Unknown";
+        internal const string PluginName = "Kiko Guide";
+        internal static readonly string NotesDirectory = $@"{Services.PluginInterface.GetPluginConfigDirectory()}\Notes";
+        internal static readonly string CustomGuidesDirectory = $@"{Services.PluginInterface.GetPluginConfigDirectory()}\Guides";
+        internal static readonly Version Version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0, 0);
+        internal static readonly string GitCommitHash = Assembly.GetExecutingAssembly().GetCustomAttribute<GitHashAttribute>()?.Value ?? "Unknown";
+        internal static readonly DateTime GitCommitDate = DateTime.TryParse(Assembly.GetExecutingAssembly().GetCustomAttribute<GitCommitDateAttribute>()?.Value, out var date) ? date : DateTime.MinValue;
+        internal static readonly string GitBranch = Assembly.GetExecutingAssembly().GetCustomAttribute<GitBranchAttribute>()?.Value ?? "Unknown";
 
         internal static class Commands
         {
-            public const string GuideList = "/kikolist";
-            public const string GuideViewer = "/kiko";
-            public const string GuideEditor = "/kikoeditor";
-            public const string Settings = "/kikosettings";
+            internal const string GuideList = "/kikolist";
+            internal const string GuideViewer = "/kiko";
+            internal const string GuideEditor = "/kikoeditor";
+            internal const string Settings = "/kikosettings";
         }
 
         internal static class Links
         {
-            public const string GitHub = "https://github.com/BitsOfAByte/KikoGuide";
-            public const string KoFi = "https://ko-fi.com/BitsOfAByte";
+            internal const string GitHub = "https://github.com/BitsOfAByte/KikoGuide";
+            internal const string KoFi = "https://ko-fi.com/BitsOfAByte";
         }
 
         internal static class Windows
         {
-            public static string SettingsTitle => string.Format(Strings.Settings_Window_Title, PluginName);
-            public static string GuideListTitle => string.Format(Strings.Gudie_List_Window_Title, PluginName);
-            public static string GuideViewerTitle => string.Format(Strings.Guide_Viewer_Window_Title, PluginName);
+            internal static string SettingsTitle => string.Format(Strings.Settings_Window_Title, PluginName);
+            internal static string GuideListTitle => string.Format(Strings.Gudie_List_Window_Title, PluginName);
+            internal static string GuideViewerTitle => string.Format(Strings.Guide_Viewer_Window_Title, PluginName);
         }
 
         internal static class Common

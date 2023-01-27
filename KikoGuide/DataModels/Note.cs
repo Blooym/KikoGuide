@@ -23,43 +23,28 @@ namespace KikoGuide.DataModels
         /// <summary>
         /// The name of the note.
         /// </summary>
-        public string Name { get; private set; } = null!;
+        [JsonProperty(nameof(Name))]
+        public string Name { get; private set; }
 
         /// <summary>
         /// The content of the note.
         /// </summary>
+        [JsonProperty(nameof(Content))]
         public string Content { get; private set; } = string.Empty;
-
-        /// <summary>
-        /// The date and time the note was created.
-        /// </summary>
-        public DateTime CreatedAt { get; } = DateTime.Now;
-
-        /// <summary>
-        /// The date and time the note was last modified.
-        /// </summary>
-        public DateTime? LastModifiedAt { get; private set; }
 
         /// <summary>
         /// Creates a new note.
         /// </summary>
         /// <param name="name">The name of the note.</param>
-        private Note(string name) => this.Name = name;
-
-        /// <inheritdoc cref="Note(string)"/>
         [JsonConstructor]
-        private Note() { }
+        private Note(string name) => this.Name = name;
 
         /// <summary>
         /// Creates a new note.
         /// </summary>
         /// <param name="name">The name of the note.</param>
         /// <returns></returns>
-        private static Note Create(string name)
-        {
-            var note = new Note(name);
-            return note;
-        }
+        private static Note Create(string name) => new(name);
 
         /// <summary>
         /// Loads a note from the filesystem.
@@ -78,7 +63,7 @@ namespace KikoGuide.DataModels
         /// </summary>
         /// <param name="name">The name of the note.</param>
         /// <returns>The absolute path to the note.</returns>
-        private static string GetPath(string name) => $@"{Constants.NotesDirectory}\{name}.json";
+        private static string GetPath(string name) => Path.Combine(Constants.NotesDirectory, name + ".json");
 
         /// <summary>
         /// Creates a new note or loads an existing one.
@@ -88,7 +73,6 @@ namespace KikoGuide.DataModels
         internal static Note CreateOrLoad(string name)
         {
             name = string.Join("_", name.Split(Path.GetInvalidFileNameChars()));
-
             try
             {
                 if (File.Exists(GetPath(name)))
@@ -111,7 +95,6 @@ namespace KikoGuide.DataModels
         /// <returns></returns>
         public Note Save()
         {
-            this.LastModifiedAt = DateTime.Now;
             if (!Directory.Exists(Constants.NotesDirectory))
             {
                 Directory.CreateDirectory(Constants.NotesDirectory);
@@ -123,14 +106,13 @@ namespace KikoGuide.DataModels
         public void Delete() => File.Delete(GetPath(this.Name));
 
         /// <summary>
-        /// Sets the title of the note.
+        /// Sets the name of the note.
         /// </summary>
-        /// <param name="title">The title to set.</param>
+        /// <param name="name">The name to set.</param>
         /// <returns></returns>
-        public Note SetTitle(string title)
+        public Note SetName(string name)
         {
-            this.Name = title;
-            this.LastModifiedAt = DateTime.Now;
+            this.Name = name;
             return this;
         }
 
@@ -142,7 +124,6 @@ namespace KikoGuide.DataModels
         public Note SetContent(string content)
         {
             this.Content = content;
-            this.LastModifiedAt = DateTime.Now;
             return this;
         }
     }

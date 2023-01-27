@@ -10,7 +10,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// <summary>
         /// The sections of the content.
         /// </summary>
-        public Section[]? Sections { get; init; }
+        public required Section[] Sections { get; init; }
 
         /// <summary>
         /// Represents a content section.
@@ -20,12 +20,12 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
             /// <summary>
             /// The title of the section.
             /// </summary>
-            public TranslatableString Title { get; init; }
+            public required TranslatableString Title { get; init; }
 
             /// <summary>
             /// The subsections of the section.
             /// </summary>
-            public Subsection[]? Subsections { get; init; }
+            public required Subsection[] Subsections { get; init; }
 
             /// <summary>
             /// Represents a subsection.
@@ -33,9 +33,14 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
             public readonly record struct Subsection
             {
                 /// <summary>
+                /// The title of the subsection.
+                /// </summary>
+                public required TranslatableString Title { get; init; }
+
+                /// <summary>
                 /// Represents the text content of the subsection.
                 /// </summary>
-                public TranslatableString Content { get; init; }
+                public required TranslatableString Content { get; init; }
 
                 /// <summary>
                 /// A table of mechanics in the subsection.
@@ -45,23 +50,20 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
                 /// <summary>
                 /// The tips/bulletpoints of the subsection.
                 /// </summary>
-                public Tip[]? Tips { get; init; }
+                public TranslatableString[]? Tips { get; init; }
+
+                /// <summary>
+                /// The links of the subsection.
+                /// </summary>
+                public string[] Links { get; init; }
 
                 /// <summary>
                 /// Represents a mechanics table row.
                 /// </summary>
                 public readonly record struct MechanicsTableRow
                 {
-                    public TranslatableString Name { get; init; }
-                    public TranslatableString Description { get; init; }
-                }
-
-                /// <summary>
-                /// Represents a bulletpoint/tip.
-                /// </summary>
-                public readonly record struct Tip
-                {
-                    public TranslatableString Content { get; init; }
+                    public required TranslatableString Name { get; init; }
+                    public required TranslatableString Description { get; init; }
                 }
             }
         }

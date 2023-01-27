@@ -44,6 +44,6 @@ namespace KikoGuide.Enums
         /// </remarks>
         AllianceRaid = -1,
 
-        Custom = 999,
+        Custom = -2,
     }
 }

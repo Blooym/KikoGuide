@@ -1,7 +1,6 @@
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using KikoGuide.Common;
-using Sirensong.UserInterface;
 
 namespace KikoGuide.UserInterface.Windows.Settings
 {
@@ -16,8 +15,7 @@ namespace KikoGuide.UserInterface.Windows.Settings
 
         public override void Draw()
         {
-            SiGui.TextHeading("General");
-            ImGui.TextUnformatted("These settings apply to all guides.");
+
         }
     }
 }

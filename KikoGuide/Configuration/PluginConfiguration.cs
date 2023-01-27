@@ -33,7 +33,6 @@ namespace KikoGuide.Configuration
         /// Loads the configuration and migrates it if necessary.
         /// </summary>
         /// <returns></returns>
-        // TODO: re-implement migration logic
         internal static PluginConfiguration Load()
         {
             try
@@ -46,7 +45,6 @@ namespace KikoGuide.Configuration
                 return new PluginConfiguration();
             }
         }
-
 
         /// <summary>
         /// Saves the configuration.

@@ -74,7 +74,7 @@ namespace KikoGuide.GuideSystem
             }
             catch (Exception e)
             {
-                SiGui.TextWrappedColoured(ImGuiColors.DalamudRed, $"Draw failed to due to an error! [{e.GetType().Name}] {e.Message}");
+                SiGui.TextWrappedColoured(ImGuiColors.DalamudRed, $"Draw failed due to an error! [{e.GetType().Name}] {e.Message}");
             }
         }
 

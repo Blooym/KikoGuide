@@ -2,7 +2,6 @@ using Dalamud.Game.Command;
 using KikoGuide.CommandHandling.Interfaces;
 using KikoGuide.Common;
 using KikoGuide.Resources.Localization;
-using KikoGuide.UserInterface.Windows.GuideList;
 
 namespace KikoGuide.CommandHandling.Commands
 {
@@ -23,7 +22,7 @@ namespace KikoGuide.CommandHandling.Commands
         {
             if (command == Constants.Commands.GuideList)
             {
-                Services.WindowManager.WindowingSystem.GetWindow<GuideListWindow>()?.Toggle();
+                Services.WindowManager.ToggleGuideListWindow();
             }
         };
     }

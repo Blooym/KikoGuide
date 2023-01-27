@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using KikoGuide.Common;
 using KikoGuide.Enums;
-using KikoGuide.UserInterface.Windows.GuideViewer;
 
 namespace KikoGuide.GuideSystem
 {
+    /// <summary>
+    /// The guide manager is the authoritative source for all guide management.
+    /// All guides are loaded via reflection and stored in a <see cref="HashSet{T}" />.
+    /// </summary>
     internal sealed class GuideManager : IDisposable
     {
         /// <summary>
@@ -16,17 +19,17 @@ namespace KikoGuide.GuideSystem
         /// <summary>
         /// All loaded guides.
         /// </summary>
-        public HashSet<GuideBase> Guides { get; private set; } = new();
+        private readonly HashSet<GuideBase> guides = new();
 
         /// <summary>
-        /// All loaded guides by type.
+        /// All loaded guides, grouped by content type.
         /// </summary>
-        private readonly Dictionary<ContentTypeModified, HashSet<GuideBase>> guidesByType = new();
+        private readonly Dictionary<ContentTypeModified, HashSet<GuideBase>> guidesByContentType = new();
 
         /// <summary>
-        /// The currently active guide.
+        /// The currently selected guide.
         /// </summary>
-        public GuideBase? SelectedGuide { get; private set; }
+        public GuideBase? SelectedGuide { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuideManager" /> class.
@@ -38,72 +41,48 @@ namespace KikoGuide.GuideSystem
         /// </summary>
         public void Dispose()
         {
-            foreach (var guide in this.Guides)
+            foreach (var guide in this.guides)
             {
                 guide.Dispose();
             }
-            this.Guides.Clear();
-
+            this.guides.Clear();
+            this.guidesByContentType.Clear();
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Gets all available guides that are loaded.
+        /// </summary>
+        /// <returns>A <see cref="HashSet{T}" /> of all loaded guides.</returns>
+        public HashSet<GuideBase> GetGuides() => this.guides;
 
         /// <summary>
-        /// Sets the currently active guide.
+        /// Gets all available guides for a given content type.
         /// </summary>
-        /// <param name="guide"></param>
-        public void SetSelectedGuide(GuideBase guide, bool openViewer)
+        /// <param name="contentType">The content type to get guides for.</param>
+        /// <returns>A <see cref="HashSet{T}" /> of all loaded guides for the given content type.</returns>
+        public HashSet<GuideBase> GetGuides(ContentTypeModified contentType)
         {
-            this.SelectedGuide = guide;
-            if (openViewer)
-            {
-                var window = Services.WindowManager.WindowingSystem.GetWindow<GuideViewerWindow>();
-                if (window != null)
-                {
-                    window.IsOpen = true;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Clears the currently active guide.
-        /// </summary>
-        public void ClearSelectedGuide()
-        {
-            if (this.SelectedGuide == null)
-            {
-                return;
-            }
-            this.SelectedGuide = null;
-        }
-
-        /// <summary>
-        /// Gets all guides for a given type.
-        /// </summary>
-        /// <param name="type">The type to get guides for.</param>
-        /// <returns>A <see cref="HashSet{T}" /> of <see cref="GuideBase" />.</returns>
-        public HashSet<GuideBase> GetGuidesForType(ContentTypeModified type)
-        {
-            if (this.guidesByType.TryGetValue(type, out var guides))
+            if (this.guidesByContentType.TryGetValue(contentType, out var guides))
             {
                 return guides;
             }
 
             guides = new HashSet<GuideBase>();
-            foreach (var guide in this.Guides)
+            foreach (var guide in this.guides)
             {
-                if (guide.ContentType == type)
+                if (guide.ContentType == contentType)
                 {
                     guides.Add(guide);
                 }
             }
-
-            this.guidesByType.Add(type, guides);
+            this.guidesByContentType.Add(contentType, guides);
             return guides;
         }
 
+
         /// <summary>
-        /// Loads all guides.
+        /// Loads all guides from the assembly into the <see cref="HashSet{T}" />.
         /// </summary>
         private void LoadGuides()
         {
@@ -115,7 +94,7 @@ namespace KikoGuide.GuideSystem
                     {
                         BetterLog.Debug($"[{type.BaseType?.Name}] Loading guide from class {type.Name}.");
                         var guide = (GuideBase)type.GetConstructor(Array.Empty<Type>())!.Invoke(Array.Empty<object>());
-                        this.Guides.Add(guide);
+                        this.guides.Add(guide);
                     }
                 }
                 catch (Exception e)

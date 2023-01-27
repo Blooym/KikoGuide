@@ -1,6 +1,4 @@
 using System;
-using Dalamud.Interface;
-using Dalamud.Interface.Components;
 using Dalamud.Utility;
 using ImGuiNET;
 using KikoGuide.Common;
@@ -30,8 +28,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
             DrawContributing(logic);
             ImGui.Dummy(new(0, 5));
 
-            SiGui.TextFooter($"{Constants.PluginName.TrimWhitepace()} v{Constants.Version} (#{Constants.GitCommitHash})");
-            ImGui.TextDisabled($"{Constants.GitBranch} on {Constants.GitCommitDate:yy-MM-dd H:mm:sstt}");
+            SiGui.TextFooter(Constants.PluginName.TrimWhitepace() + " v" + Constants.Version + " #" + Constants.GitCommitHash);
         }
 
         /// <summary>
@@ -42,15 +39,8 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         {
             ImGui.TextDisabled("Guide Search");
             ImGui.Separator();
-            ImGui.SetNextItemWidth(-30);
-            SiGui.InputTextHint("##GuideSearch", "Search by name...", ref logic.SearchText, 100);
-            ImGui.SameLine();
-            ImGui.BeginDisabled(string.IsNullOrEmpty(logic.SearchText));
-            if (ImGuiComponents.IconButton(FontAwesomeIcon.Times))
-            {
-                logic.SearchText = "";
-            }
-            ImGui.EndDisabled();
+            ImGui.SetNextItemWidth(-1);
+            SiGui.InputTextHint("##GuideSearch", "Search by name...", ref logic.SearchText, 50);
         }
 
         /// <summary>
@@ -106,7 +96,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
             ImGui.Separator();
             if (ImGui.Selectable("Plugin configuration"))
             {
-                GuideListLogic.OpenSettings();
+                GuideListLogic.ToggleSettingsWindow();
             }
 
             ImGui.BeginDisabled();

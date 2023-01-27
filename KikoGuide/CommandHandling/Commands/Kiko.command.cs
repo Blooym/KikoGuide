@@ -2,7 +2,6 @@ using Dalamud.Game.Command;
 using KikoGuide.CommandHandling.Interfaces;
 using KikoGuide.Common;
 using KikoGuide.Resources.Localization;
-using KikoGuide.UserInterface.Windows.GuideViewer;
 using Sirensong.Game.UI;
 
 namespace KikoGuide.CommandHandling.Commands
@@ -26,11 +25,10 @@ namespace KikoGuide.CommandHandling.Commands
             {
                 if (Services.GuideManager.SelectedGuide == null)
                 {
-                    GameChat.PrintError($"Cannot open the guide viewer without a guide selected, select one using {Constants.Commands.GuideList}");
+                    GameChat.PrintError($"Cannot open the guide viewer without a guide selected.");
                     return;
                 }
-
-                Services.WindowManager.WindowingSystem.GetWindow<GuideViewerWindow>()?.Toggle();
+                Services.WindowManager.ToggleGuideViewerWindow();
             }
         };
     }

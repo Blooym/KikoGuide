@@ -11,6 +11,7 @@ namespace KikoGuide.UserInterface
 {
     internal sealed class WindowManager : IDisposable
     {
+        /// <summary>
         /// Gets the singleton instance of <see cref="WindowManager" />.
         /// </summary>
         public static WindowManager Instance { get; } = new();
@@ -48,6 +49,64 @@ namespace KikoGuide.UserInterface
         {
             this.WindowingSystem.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Sets the guide viewer window visibility.
+        /// </summary>
+        /// <param name="visible">Whether or not the guide viewer window should be visible.</param>
+        public void SetGuideViewerVisibility(bool visible)
+        {
+            if (this.WindowingSystem.TryGetWindow<GuideViewerWindow>(out var window))
+            {
+                window.IsOpen = visible;
+            }
+        }
+
+        /// <summary>
+        /// Toggles the guide viewer window visibility.
+        /// </summary>
+        public void ToggleGuideViewerWindow()
+        {
+            if (this.WindowingSystem.TryGetWindow<GuideViewerWindow>(out var window))
+            {
+                window.Toggle();
+            }
+        }
+
+        /// <summary>
+        /// Toggles the guide viewer window visibility.
+        /// </summary>
+        public void ToggleGuideListWindow()
+        {
+            if (this.WindowingSystem.TryGetWindow<GuideListWindow>(out var window))
+            {
+                window.Toggle();
+            }
+        }
+
+        /// <summary>
+        /// Sets the settings window visibility.
+        /// </summary>
+        /// <param name="visible">Whether or not the settings window should be visible.</param>
+        public void SetSettingsWindowVisibility(bool visible)
+        {
+            if (this.WindowingSystem.TryGetWindow<SettingsWindow>(out var window))
+            {
+                window.IsOpen = visible;
+            }
+        }
+
+        /// <summary>
+        /// Toggles the settings window visibility.
+        /// </summary>
+        /// <param name="visible">Whether or not the settings window should be visible.</param>
+        public void ToggleSettingsWindow()
+        {
+            if (this.WindowingSystem.TryGetWindow<SettingsWindow>(out var window))
+            {
+                window.Toggle();
+            }
         }
     }
 }
