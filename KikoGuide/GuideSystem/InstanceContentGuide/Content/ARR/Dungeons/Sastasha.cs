@@ -2,8 +2,8 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
 {
     internal sealed class Sasqtasha : InstanceContentGuideBase
     {
-        public override uint DutyId { get; } = 4;
-        public override uint UnlockQuestId { get; } = 66211;
+        protected override uint DutyId { get; } = 4;
+        protected override uint UnlockQuestId { get; } = 66211;
         public override InstanceContentGuideFormat Content { get; } = new()
         {
             Sections = new[]

@@ -34,7 +34,7 @@ namespace KikoGuide.GuideSystem
         /// <summary>
         /// Initializes a new instance of the <see cref="GuideManager" /> class.
         /// </summary>
-        private GuideManager() => this.LoadGuides();
+        private GuideManager() => this.guides = LoadGuides();
 
         /// <summary>
         /// Disposes of all guides.
@@ -82,10 +82,11 @@ namespace KikoGuide.GuideSystem
 
 
         /// <summary>
-        /// Loads all guides from the assembly into the <see cref="HashSet{T}" />.
+        /// Loads all guides from the assembly into a <see cref="HashSet{T}" />.
         /// </summary>
-        private void LoadGuides()
+        private static HashSet<GuideBase> LoadGuides()
         {
+            var loadedGuides = new HashSet<GuideBase>();
             foreach (var type in typeof(GuideManager).Assembly.GetTypes())
             {
                 try
@@ -93,19 +94,15 @@ namespace KikoGuide.GuideSystem
                     if (!type.IsAbstract && type.IsSubclassOf(typeof(GuideBase)))
                     {
                         BetterLog.Debug($"[{type.BaseType?.Name}] Loading guide from class {type.Name}.");
-                        var guide = (GuideBase)type.GetConstructor(Array.Empty<Type>())!.Invoke(Array.Empty<object>());
-                        this.guides.Add(guide);
+                        loadedGuides.Add((GuideBase)type.GetConstructor(Array.Empty<Type>())!.Invoke(Array.Empty<object>()));
                     }
                 }
                 catch (Exception e)
                 {
-#if DEBUG
                     BetterLog.Warning($"Failed to load guide {type.Name}: {e}");
-#else
-                    BetterLog.Warning($"Failed to load guide {type.Name}: {e.InnerException?.Message}");
-#endif
                 }
             }
+            return loadedGuides;
         }
     }
 }

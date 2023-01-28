@@ -4,11 +4,15 @@ using System.Linq;
 using ImGuiNET;
 using KikoGuide.Enums;
 using KikoGuide.GuideSystem;
+using Sirensong.UserInterface;
 
 namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
 {
-    internal static class Listings
+    internal static class GuideListListings
     {
+        /// <summary>
+        /// The clipper for the guide listings.
+        /// </summary>
         private static readonly unsafe ImGuiListClipperPtr Clipper = new(ImGuiNative.ImGuiListClipper_ImGuiListClipper());
 
         /// <summary>
@@ -17,6 +21,18 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         /// <param name="logic"></param>
         public static void Draw(GuideListLogic logic)
         {
+            if (!GuideListLogic.IsLoggedIn)
+            {
+                DrawNotLoggedIn();
+                return;
+            }
+
+            if (GuideListLogic.UnlockedGuides == 0)
+            {
+                DrawNoGuidesUnlocked();
+                return;
+            }
+
             if (ImGui.BeginTabBar("##GuideListTabs", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton))
             {
                 foreach (var contentType in Enum.GetValues<ContentTypeModified>())
@@ -102,6 +118,24 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
             {
                 GuideListLogic.OpenGuide(guide);
             }
+        }
+
+        /// <summary>
+        /// Draw the "no guides unlocked" message.
+        /// </summary>
+        private static void DrawNoGuidesUnlocked()
+        {
+            SiGui.TextHeading("No guides unlocked");
+            ImGui.TextWrapped("You have not unlocked any guides yet! Try progressing through the games main scenario quests to unlock some.");
+        }
+
+        /// <summary>
+        /// Draw the "not logged in" message.
+        /// </summary>
+        private static void DrawNotLoggedIn()
+        {
+            SiGui.TextHeading("Not logged in");
+            ImGui.TextWrapped("Please log in to a character in order to view guides.");
         }
     }
 }

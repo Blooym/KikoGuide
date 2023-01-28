@@ -7,7 +7,10 @@ namespace KikoGuide.UserInterface.Windows.GuideList
 {
     internal sealed class GuideListWindow : Window
     {
+        /// <inheritdoc/>
         public GuideListLogic Logic { get; } = new();
+
+        /// <inheritdoc/>
         public GuideListWindow() : base(Constants.Windows.GuideListTitle)
         {
             this.Size = new(800, 520);
@@ -21,21 +24,9 @@ namespace KikoGuide.UserInterface.Windows.GuideList
             this.IsOpen = true;
         }
 
+        /// <inheritdoc/>
         public override void Draw()
         {
-            if (!GuideListLogic.IsLoggedIn)
-            {
-                ImGui.TextUnformatted("Please log in to a character in order to view guides.");
-                return;
-            }
-
-            // No guides available
-            if (GuideListLogic.UnlockedGuides == 0)
-            {
-                DrawNoGuidesAvailable();
-                return;
-            }
-
             // Quick fix for the table crashing using docking
             if (ImGui.GetWindowSize().X < 80 || ImGui.GetWindowSize().Y < 80)
             {
@@ -49,30 +40,21 @@ namespace KikoGuide.UserInterface.Windows.GuideList
 
                 // Sidebar
                 ImGui.TableNextColumn();
-                if (ImGui.BeginChild("SidebarChild"))
+                if (ImGui.BeginChild("GuideListSidebarChild"))
                 {
-                    Sidebar.Draw(this.Logic);
+                    GuideListSidebar.Draw(this.Logic);
                     ImGui.EndChild();
                 }
 
                 ImGui.TableNextColumn();
-                if (ImGui.BeginChild("ListingsChild"))
+                if (ImGui.BeginChild("GuideListListingsChild"))
                 {
-                    Listings.Draw(this.Logic);
+                    GuideListListings.Draw(this.Logic);
                     ImGui.EndChild();
                 }
 
                 ImGui.EndTable();
             }
-        }
-
-        /// <summary>
-        /// Draw a warning message if no guides were found.
-        /// </summary>
-        private static void DrawNoGuidesAvailable()
-        {
-            ImGui.TextUnformatted("You have not yet unlocked any guides! Check back another time.");
-            ImGui.TextUnformatted("If you believe this is an error, please contact the developer.");
         }
     }
 }

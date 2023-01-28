@@ -19,7 +19,6 @@ namespace KikoGuide.CommandHandling
         {
             new KikoListCommand(),
             new KikoCommand(),
-            new KikoSettingsCommand(),
         };
 
         /// <summary>

@@ -12,19 +12,39 @@ namespace KikoGuide.UserInterface.Windows.GuideList
     internal sealed class GuideListLogic
     {
         /// <summary>
-        /// The search text to apply.
+        /// The search text to apply to the guide list.
         /// </summary>
         public string SearchText = string.Empty;
 
         /// <summary>
-        /// The difficulty filter to apply.
+        /// The difficulty filter to apply to the guide list.
         /// </summary>
         public ContentDifficulty? DifficultyFilter;
+
+        /// <summary>
+        /// Whether or not the player is logged in.
+        /// </summary>
+        public static bool IsLoggedIn => Services.ClientState.IsLoggedIn;
 
         /// <summary>
         /// The total number of guides.
         /// </summary>
         public static int UnlockedGuides => Services.GuideManager.GetGuides().Where(g => !g.NoShow && g.IsUnlocked).Count();
+
+        /// <summary>
+        /// Gets the currently selected guide.
+        /// </summary>
+        public static GuideBase? CurrentGuide => Services.GuideManager.SelectedGuide;
+
+        /// <summary>
+        /// Toggle the settings window.
+        /// </summary>
+        public static void ToggleSettingsWindow() => Services.WindowManager.ToggleSettingsWindow();
+
+        /// <summary>
+        /// Toggle the integrations window.
+        /// </summary>
+        public static void ToggleIntegrationsWindow() => Services.WindowManager.ToggleIntegrationSettingsWindow();
 
         /// <summary>
         /// Get the number of guides for a given content type.
@@ -34,23 +54,13 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         public static int GuidesForContentType(ContentTypeModified type) => Services.GuideManager.GetGuides(type).Where(g => !g.NoShow && g.IsUnlocked).Count();
 
         /// <summary>
-        /// Whether or not the player is logged in.
-        /// </summary>
-        public static bool IsLoggedIn => Services.ClientState.IsLoggedIn;
-
-        /// <summary>
-        /// Gets the currently selected guide.
-        /// </summary>
-        public static GuideBase? CurrentGuide => Services.GuideManager.SelectedGuide;
-
-        /// <summary>
         /// Opens the given guide in the guide viewer.
         /// </summary>
         /// <param name="guide">The guide to open.</param>
         public static void OpenGuide(GuideBase guide)
         {
             Services.GuideManager.SelectedGuide = guide;
-            Services.WindowManager.SetGuideViewerVisibility(true);
+            Services.WindowManager.SetGuideViewerWindowVis(true);
         }
 
         /// <summary>
@@ -83,10 +93,5 @@ namespace KikoGuide.UserInterface.Windows.GuideList
 
             return filteredGuides;
         }
-
-        /// <summary>
-        /// Toggle the settings window.
-        /// </summary>
-        public static void ToggleSettingsWindow() => Services.WindowManager.ToggleSettingsWindow();
     }
 }

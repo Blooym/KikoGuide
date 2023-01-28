@@ -5,6 +5,7 @@ using Dalamud.Plugin;
 using KikoGuide.CommandHandling;
 using KikoGuide.Configuration;
 using KikoGuide.GuideSystem;
+using KikoGuide.Integrations;
 using KikoGuide.Resources.Localization;
 using KikoGuide.UserInterface;
 using Lumina.Excel.GeneratedSheets;
@@ -38,6 +39,7 @@ namespace KikoGuide.Common
         internal static WindowManager WindowManager { get; private set; } = null!;
         internal static LocalizationManager ResourceManager { get; private set; } = null!;
         internal static GuideManager GuideManager { get; private set; } = null!;
+        internal static IntegrationManager IntegrationManager { get; private set; } = null!;
         internal static PluginConfiguration Configuration { get; private set; } = null!;
 
         /// <summary>
@@ -48,11 +50,12 @@ namespace KikoGuide.Common
             SirenCore.InjectServices<Services>();
             pluginInterface.Create<Services>();
 
-            ResourceManager = LocalizationManager.Instance;
             Configuration = PluginConfiguration.Load();
-            GuideManager = GuideManager.Instance;
+            ResourceManager = LocalizationManager.Instance;
             WindowManager = WindowManager.Instance;
             CommandManager = CommandManager.Instance;
+            GuideManager = GuideManager.Instance;
+            IntegrationManager = IntegrationManager.Instance;
         }
 
         /// <summary>
@@ -63,6 +66,7 @@ namespace KikoGuide.Common
             CommandManager.Dispose();
             WindowManager.Dispose();
             GuideManager.Dispose();
+            IntegrationManager.Dispose();
             ResourceManager.Dispose();
         }
     }

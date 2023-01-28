@@ -8,7 +8,7 @@ using Sirensong.UserInterface;
 
 namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
 {
-    internal static class Sidebar
+    internal static class GuideListSidebar
     {
         /// <summary>
         /// Draw the sidebar.
@@ -90,6 +90,10 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
             }
         }
 
+        /// <summary>
+        /// Draw the configuration section.
+        /// </summary>
+        /// <param name="logic"></param>
         private static void DrawConfiguration(GuideListLogic _)
         {
             ImGui.TextDisabled("Configuration");
@@ -99,12 +103,10 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
                 GuideListLogic.ToggleSettingsWindow();
             }
 
-            ImGui.BeginDisabled();
             if (ImGui.Selectable("Integrations configuration"))
             {
-                //
+                GuideListLogic.ToggleIntegrationsWindow();
             }
-            ImGui.EndDisabled();
         }
     }
 }

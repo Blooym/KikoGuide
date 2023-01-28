@@ -10,8 +10,10 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
 {
     internal sealed class GuideViewerWindow : Window
     {
+        /// <inheritdoc/>
         public GuideViewerLogic Logic { get; } = new();
 
+        /// <inheritdoc/>
         public GuideViewerWindow() : base(Constants.Windows.GuideViewerTitle)
         {
             this.Size = new(400, 300);
@@ -29,12 +31,18 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
             }
         }
 
+        /// <inheritdoc/>
         public override bool DrawConditions() => GuideViewerLogic.GetSelectedGuide() != null;
 
+        /// <inheritdoc/>
         public override void Draw()
         {
-            var selectedGuide = GuideViewerLogic.GetSelectedGuide()!;
+            var selectedGuide = GuideViewerLogic.GetSelectedGuide();
             var guideViewerLocked = GuideViewerLogic.Configuration.LockGuideViewer;
+            if (selectedGuide == null)
+            {
+                return;
+            }
 
             // Heading shared by all guides
             if (ImGui.BeginChild("GuideViewerHeading", new(0, 30)))
@@ -57,7 +65,6 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
                 }
                 ImGui.EndGroup();
                 ImGui.Separator();
-
                 ImGui.EndChild();
             }
 

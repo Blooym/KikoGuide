@@ -53,7 +53,11 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         }
 
         /// <inheritdoc/>
-        public override void Dispose() => Services.ClientState.TerritoryChanged -= this.HandleTerritoryChange;
+        protected override void Dispose(bool disposing)
+        {
+            Services.ClientState.TerritoryChanged -= this.HandleTerritoryChange;
+            base.Dispose(true);
+        }
 
         /// <summary>
         /// The duty associated with this guide.
@@ -91,12 +95,12 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// <summary>
         /// The sheet row of the duty associated with this guide.
         /// </summary>
-        public abstract uint DutyId { get; }
+        protected abstract uint DutyId { get; }
 
         /// <summary>
         /// The sheet row of the quest that unlocks this guide.
         /// </summary>
-        public abstract uint UnlockQuestId { get; }
+        protected abstract uint UnlockQuestId { get; }
 
         /// <summary>
         /// The structured content of the guide, used for rendering.
@@ -148,7 +152,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
                 {
                     case true:
                         Services.GuideManager.SelectedGuide = this;
-                        Services.WindowManager.SetGuideViewerVisibility(true);
+                        Services.WindowManager.SetGuideViewerWindowVis(true);
                         break;
                     case false:
                         GameChat.Print($"A guide for the duty {this.Name} is available. Use {Constants.Commands.GuideViewer} to open it.");

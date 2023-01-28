@@ -13,6 +13,8 @@ namespace KikoGuide.GuideSystem
     /// </summary>
     internal abstract class GuideBase : IDisposable
     {
+        private bool disposedValue;
+
         /// <summary>
         /// The runtime unique identifier of the guide.
         /// </summary>
@@ -70,6 +72,12 @@ namespace KikoGuide.GuideSystem
         {
             try
             {
+                if (!this.IsUnlocked)
+                {
+                    SiGui.TextWrappedColoured(ImGuiColors.DalamudRed, "You have not met the requirements to view this guide yet.");
+                    return;
+                }
+
                 this.DrawAction();
             }
             catch (Exception e)
@@ -79,8 +87,29 @@ namespace KikoGuide.GuideSystem
         }
 
         /// <summary>
-        /// The method to dispose of the guide.
+        /// Dispose of the guide.
         /// </summary>
-        public abstract void Dispose();
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Dispose of the guide.
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposedValue)
+            {
+                if (disposing)
+                {
+
+                }
+
+                this.disposedValue = true;
+            }
+        }
     }
 }

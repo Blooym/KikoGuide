@@ -11,7 +11,7 @@ namespace KikoGuide.Common
     {
         internal const string PluginName = "Kiko Guide";
         internal static readonly string NotesDirectory = $@"{Services.PluginInterface.GetPluginConfigDirectory()}\Notes";
-        internal static readonly string CustomGuidesDirectory = $@"{Services.PluginInterface.GetPluginConfigDirectory()}\Guides";
+        internal static readonly string IntegrationsDirectory = $@"{Services.PluginInterface.GetPluginConfigDirectory()}\Integrations";
         internal static readonly Version Version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0, 0);
         internal static readonly string GitCommitHash = Assembly.GetExecutingAssembly().GetCustomAttribute<GitHashAttribute>()?.Value ?? "Unknown";
         internal static readonly DateTime GitCommitDate = DateTime.TryParse(Assembly.GetExecutingAssembly().GetCustomAttribute<GitCommitDateAttribute>()?.Value, out var date) ? date : DateTime.MinValue;
@@ -21,8 +21,6 @@ namespace KikoGuide.Common
         {
             internal const string GuideList = "/kikolist";
             internal const string GuideViewer = "/kiko";
-            internal const string GuideEditor = "/kikoeditor";
-            internal const string Settings = "/kikosettings";
         }
 
         internal static class Links
@@ -36,6 +34,7 @@ namespace KikoGuide.Common
             internal static string SettingsTitle => string.Format(Strings.Settings_Window_Title, PluginName);
             internal static string GuideListTitle => string.Format(Strings.Gudie_List_Window_Title, PluginName);
             internal static string GuideViewerTitle => string.Format(Strings.Guide_Viewer_Window_Title, PluginName);
+            internal static string IntegrationSettingsTitle => string.Format("[{0}] Integration Settings", PluginName);
         }
 
         internal static class Common
