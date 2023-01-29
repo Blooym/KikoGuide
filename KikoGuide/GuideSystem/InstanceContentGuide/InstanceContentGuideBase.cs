@@ -6,7 +6,6 @@ using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.Event;
 using KikoGuide.Common;
 using KikoGuide.DataModels;
-using KikoGuide.Enums;
 using KikoGuide.Resources.Localization;
 using Lumina.Excel.GeneratedSheets;
 using Sirensong.Game.Enums;
@@ -37,7 +36,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
             // Assign to properties
             this.Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.LinkedDuty.CFCondition.Name.ToDalamudString().ToString());
             this.Description = this.LinkedDuty.CFConditionTransient.Description.ToDalamudString().ToString();
-            this.ContentType = (ContentTypeModified?)this.LinkedDuty.CFCondition.GetContentType(true) ?? ContentTypeModified.Custom;
+            this.ContentType = this.LinkedDuty.CFCondition.GetContentType(true) ?? Sirensong.Game.Enums.ContentType.Unknown;
             this.Difficulty = this.LinkedDuty.CFCondition.GetContentDifficulty();
             this.Icon = this.LinkedDuty.CFCondition.ContentType.Value?.Icon ?? 21;
             this.Note = Note.CreateOrLoad(@$"{this.ContentType}_{this.Name}");
@@ -102,7 +101,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         public override ContentDifficulty Difficulty { get; }
 
         /// <inheritdoc/>
-        public override ContentTypeModified ContentType { get; }
+        public override Sirensong.Game.Enums.ContentType ContentType { get; }
 
         /// <inheritdoc/>
         public override unsafe bool IsUnlocked => QuestManager.IsQuestComplete(this.UnlockQuestId) || QuestManager.Instance()->IsQuestAccepted(this.UnlockQuestId);

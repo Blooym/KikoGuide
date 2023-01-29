@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ImGuiNET;
-using KikoGuide.Enums;
 using KikoGuide.GuideSystem;
 using KikoGuide.Resources.Localization;
+using Sirensong.Game.Enums;
 using Sirensong.UserInterface;
 
 namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
@@ -36,7 +36,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
 
             if (ImGui.BeginTabBar("##GuideListTabs", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton))
             {
-                foreach (var contentType in Enum.GetValues<ContentTypeModified>())
+                foreach (var contentType in Enum.GetValues<ContentType>())
                 {
                     DrawContentTypeListings(logic, contentType);
                 }
@@ -48,7 +48,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         /// Draw all guides that belong to the given content type.
         /// </summary>
         /// <param name="contentType"></param>
-        private static void DrawContentTypeListings(GuideListLogic logic, ContentTypeModified contentType)
+        private static void DrawContentTypeListings(GuideListLogic logic, ContentType contentType)
         {
             // If there are no guides for this ContentType, don't draw  the tab
             if (GuideListLogic.GuidesForContentType(contentType) == 0)

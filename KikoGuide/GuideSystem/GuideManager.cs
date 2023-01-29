@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using KikoGuide.Common;
-using KikoGuide.Enums;
+using Sirensong.Game.Enums;
 
 namespace KikoGuide.GuideSystem
 {
@@ -23,7 +23,7 @@ namespace KikoGuide.GuideSystem
         /// <summary>
         /// All loaded guides, grouped by content type.
         /// </summary>
-        private readonly Dictionary<ContentTypeModified, HashSet<GuideBase>> guidesByContentType = new();
+        private readonly Dictionary<ContentType, HashSet<GuideBase>> guidesByContentType = new();
 
         /// <summary>
         /// The currently selected guide.
@@ -59,7 +59,7 @@ namespace KikoGuide.GuideSystem
         /// </summary>
         /// <param name="contentType">The content type to get guides for.</param>
         /// <returns>A <see cref="HashSet{T}" /> of all loaded guides for the given content type.</returns>
-        public HashSet<GuideBase> GetGuides(ContentTypeModified contentType)
+        public HashSet<GuideBase> GetGuides(ContentType contentType)
         {
             if (this.guidesByContentType.TryGetValue(contentType, out var guides))
             {

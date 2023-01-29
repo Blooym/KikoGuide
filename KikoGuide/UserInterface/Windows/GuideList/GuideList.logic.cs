@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using KikoGuide.Common;
-using KikoGuide.Enums;
 using KikoGuide.Extensions;
 using KikoGuide.GuideSystem;
 using Sirensong.Game.Enums;
@@ -56,7 +55,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static int GuidesForContentType(ContentTypeModified type) => Services.GuideManager.GetGuides(type).Where(g => !g.NoShow && g.IsUnlocked).Count();
+        public static int GuidesForContentType(ContentType type) => Services.GuideManager.GetGuides(type).Where(g => !g.NoShow && g.IsUnlocked).Count();
 
         /// <summary>
         /// Opens the given guide in the guide viewer.
@@ -73,7 +72,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         /// </summary>
         /// <param name="type">The type of duty to filter by.</param>
         /// <returns>A filtered list of guides.</returns>
-        public HashSet<GuideBase> GetFilteredGuides(ContentTypeModified? type)
+        public HashSet<GuideBase> GetFilteredGuides(ContentType? type)
         {
             var filteredGuides = new HashSet<GuideBase>();
             var guides = type.HasValue ? Services.GuideManager.GetGuides(type.Value) : Services.GuideManager.GetGuides();
