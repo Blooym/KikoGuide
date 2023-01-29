@@ -7,9 +7,9 @@ using Sirensong.DataStructures;
 using Sirensong.UserInterface;
 using Sirensong.UserInterface.Style;
 
-namespace KikoGuide.GuideSystem.InstanceContentGuide
+namespace KikoGuide.GuideSystem.InstanceGuide
 {
-    internal static class InstanceContentGuideContentUI
+    internal static class InstanceGuideContentUI
     {
         private static Vector2 GuideAreaSize => new(0, (ImGui.GetWindowContentRegionMax().Y * 0.75f) - ImGui.GetStyle().WindowPadding.Y);
         private static Vector2 NoteAreaSize => new(0, (ImGui.GetWindowSize().Y * 0.25f) - ImGui.GetStyle().WindowPadding.Y);
@@ -20,7 +20,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// Draws the guide.
         /// </summary>
         /// <param name="guide">The guide to draw.</param>
-        public static void Draw(InstanceContentGuideBase guide)
+        public static void Draw(InstanceGuideBase guide)
         {
             // Window too small to display note
             if (ImGui.GetContentRegionAvail().Y < 380)
@@ -28,8 +28,8 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
                 if (ImGui.BeginChild("Guide", Vector2.Zero, true))
                 {
                     DrawSections(guide);
-                    ImGui.EndChild();
                 }
+                ImGui.EndChild();
             }
             // Window large enough to display note
             else
@@ -37,14 +37,14 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
                 if (ImGui.BeginChild("Guide", GuideAreaSize, true))
                 {
                     DrawSections(guide);
-                    ImGui.EndChild();
                 }
+                ImGui.EndChild();
 
                 if (ImGui.BeginChild("Notes", NoteAreaSize, true, ImGuiWindowFlags.NoScrollbar))
                 {
                     DrawNote(guide.Note);
-                    ImGui.EndChild();
                 }
+                ImGui.EndChild();
             }
         }
 
@@ -63,8 +63,8 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
                 if (ImGui.BeginChild("NoteContent", NoteContentSize, false))
                 {
                     SiGui.TextWrapped(noteContent);
-                    ImGui.EndChild();
                 }
+                ImGui.EndChild();
 
                 if (ImGui.Button(Strings.Guide_InstanceContent_Note_Edit))
                 {
@@ -92,7 +92,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// Draws the sections of the guide.
         /// </summary>
         /// <param name="guide">The guide to draw.</param>
-        private static void DrawSections(InstanceContentGuideBase guide)
+        private static void DrawSections(InstanceGuideBase guide)
         {
             if (ImGui.BeginTabBar("Sections", ImGuiTabBarFlags.FittingPolicyScroll | ImGuiTabBarFlags.TabListPopupButton))
             {
@@ -108,7 +108,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// Draws a section.
         /// </summary>
         /// <param name="section">The section to draw.</param>
-        private static void DrawSection(InstanceContentGuideContent.Section section)
+        private static void DrawSection(InstanceGuideContent.Section section)
         {
             if (ImGui.BeginTabItem(section.Title.UICurrent))
             {
@@ -139,7 +139,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// Draws a subsection.
         /// </summary>
         /// <param name="subsection">The subsection to draw.</param>
-        private static void DrawSubsection(InstanceContentGuideContent.Section.Subsection subsection)
+        private static void DrawSubsection(InstanceGuideContent.Section.Subsection subsection)
         {
             if (ImGui.BeginChild("Subsection"))
             {
@@ -166,8 +166,8 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
                     DrawLinks(subsection.Links);
                 }
 
-                ImGui.EndChild();
             }
+            ImGui.EndChild();
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// Draws the mechanics table.
         /// </summary>
         /// <param name="mechanics">The mechanics to draw.</param>
-        private static void DrawMechanicsTable(InstanceContentGuideContent.Section.Subsection.MechanicsTableRow[] mechanics)
+        private static void DrawMechanicsTable(InstanceGuideContent.Section.Subsection.MechanicsTableRow[] mechanics)
         {
             SiGui.Heading(Strings.Guide_InstanceContent_Mechanics_Heading);
             if (ImGui.BeginTable("Mechanics", 2, ImGuiTableFlags.Borders))

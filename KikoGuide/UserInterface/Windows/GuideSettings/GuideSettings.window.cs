@@ -26,31 +26,27 @@ namespace KikoGuide.UserInterface.Windows.GuideSettings
         /// <inheritdoc/>
         public override void Draw()
         {
-            if (ImGui.GetWindowSize().X < 80 || ImGui.GetWindowSize().Y < 80)
-            {
-                return;
-            }
-
             if (ImGui.BeginTable("GuideSettings", 2, ImGuiTableFlags.BordersInnerV))
             {
                 ImGui.TableSetupColumn("GuideSettingsSidebar", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.3f);
                 ImGui.TableSetupColumn("GuideSettingsList", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.7f);
+                ImGui.TableNextRow();
 
                 // Sidebar
                 ImGui.TableNextColumn();
                 if (ImGui.BeginChild("GuideSettingsSidebarChild"))
                 {
                     GuideSettingsSidebar.Draw(this.Logic);
-                    ImGui.EndChild();
                 }
+                ImGui.EndChild();
 
                 // Listings
                 ImGui.TableNextColumn();
                 if (ImGui.BeginChild("GuideSettingsListChild"))
                 {
                     GuideSettingsActive.Draw(this.Logic);
-                    ImGui.EndChild();
                 }
+                ImGui.EndChild();
 
                 ImGui.EndTable();
             }

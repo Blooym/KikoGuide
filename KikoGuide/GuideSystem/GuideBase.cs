@@ -50,7 +50,7 @@ namespace KikoGuide.GuideSystem
         public abstract bool IsUnlocked { get; }
 
         /// <summary>
-        /// Stores the configuration of the overall "type" of the guide, eg. InstanceContentGuideConfiguration would be the configuration for all instance content guides.
+        /// Stores the configuration of the overall "type" of the guide.
         /// </summary>
         public abstract GuideConfigurationBase Configuration { get; }
 

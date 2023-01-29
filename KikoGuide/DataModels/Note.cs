@@ -82,7 +82,7 @@ namespace KikoGuide.DataModels
             }
             catch (Exception e)
             {
-                BetterLog.Warning($"Failed to load note {name}, creating new one: {e.Message}");
+                BetterLog.Error($"Failed to load note {name}, creating new one: {e.Message}");
                 return Create(name).Save();
             }
 

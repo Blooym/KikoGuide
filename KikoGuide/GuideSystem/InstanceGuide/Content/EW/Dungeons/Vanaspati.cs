@@ -1,14 +1,14 @@
-namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
+namespace KikoGuide.GuideSystem.InstanceGuide.Content.EW.Dungeons
 {
-    internal sealed class Vanaspati : InstanceContentGuideBase
+    internal sealed class Vanaspati : InstanceGuideBase
     {
         protected override uint DutyId { get; } = 789;
         protected override uint UnlockQuestId { get; } = 69945;
-        public override InstanceContentGuideContent Content { get; } = new()
+        public override InstanceGuideContent Content { get; } = new()
         {
             Sections = new[]
             {
-                new InstanceContentGuideContent.Section
+                new InstanceGuideContent.Section
                 {
                     Title = new()
                     {
@@ -17,7 +17,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
 
                     Subsections = new[]
                     {
-                        new InstanceContentGuideContent.Section.Subsection
+                        new InstanceGuideContent.Section.Subsection
                         {
                             Title = new()
                             {
@@ -31,7 +31,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
 
                             Mechanics = new[]
                             {
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -43,7 +43,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Tankbuster.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -55,7 +55,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Unavoidable raidwide damage.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -67,7 +67,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "The boss spawns mouths around the floor of the arena. The mouths that open will cast a large circle AoE around themselves.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -79,7 +79,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Half room AoE on the left/right side of the boss. His raised arm and cast indicate which side isn't safe.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -91,7 +91,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Places a spinning, pointing hand cursor above players heads. When players press a movement key the cursor stops spinning and the player moves into the direction the cursor is pointing.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -108,7 +108,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                     }
                 },
 
-                new InstanceContentGuideContent.Section
+                new InstanceGuideContent.Section
                 {
                     Title = new()
                     {
@@ -117,7 +117,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
 
                     Subsections = new[]
                     {
-                        new InstanceContentGuideContent.Section.Subsection
+                        new InstanceGuideContent.Section.Subsection
                         {
                             Title = new()
                             {
@@ -131,7 +131,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
 
                             Mechanics = new[]
                             {
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -143,7 +143,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Tankbuster.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -155,7 +155,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Unavoidable raidwide damage.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -167,7 +167,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Party Stack.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -179,7 +179,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Summons water orbs around the arena. Running into them inflicts the player with Fetters and applies a Water Resistance Down debuff, but makes them immune against fire damage.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -191,7 +191,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "The boss absorbs aether from either the burning buildings or the nearby lake to cast another mechanic afterwards.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -203,7 +203,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Unavoidable raidwide damage that inflicts players with a 20 second Burns debuff. Can be completely negated by running into water orbs.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -220,7 +220,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                     }
                 },
 
-                new InstanceContentGuideContent.Section
+                new InstanceGuideContent.Section
                 {
                     Title = new()
                     {
@@ -229,7 +229,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
 
                     Subsections = new[]
                     {
-                        new InstanceContentGuideContent.Section.Subsection
+                        new InstanceGuideContent.Section.Subsection
                         {
                             Title = new()
                             {
@@ -243,7 +243,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
 
                             Mechanics = new[]
                             {
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -255,7 +255,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Tankbuster.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -267,7 +267,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Unavoidable raidwide damage.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -279,7 +279,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Dives the arena into four sections via two red and two blue line AoEs. A red circle or blue triangle in front of the screen will show which lines explode.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -291,7 +291,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.EW.Dungeons
                                         EN = "Casts either targeted circular AoEs around all players, or a short knockback from the center, or both. Used during Aetherial Disruption.",
                                     },
                                 },
-                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
+                                new InstanceGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {

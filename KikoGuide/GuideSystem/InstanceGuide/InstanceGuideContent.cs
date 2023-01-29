@@ -1,8 +1,8 @@
 using Sirensong.DataStructures;
 
-namespace KikoGuide.GuideSystem.InstanceContentGuide
+namespace KikoGuide.GuideSystem.InstanceGuide
 {
-    public readonly record struct InstanceContentGuideContent
+    public readonly record struct InstanceGuideContent
     {
         /// <summary>
         /// The sections of the content.

@@ -27,31 +27,26 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         /// <inheritdoc/>
         public override void Draw()
         {
-            // Quick fix for the table crashing using docking
-            if (ImGui.GetWindowSize().X < 80 || ImGui.GetWindowSize().Y < 80)
-            {
-                return;
-            }
-
             if (ImGui.BeginTable("GuideList", 2, ImGuiTableFlags.BordersInnerV))
             {
                 ImGui.TableSetupColumn("Sidebar", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.28f);
                 ImGui.TableSetupColumn("Listings", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.72f);
+                ImGui.TableNextRow();
 
                 // Sidebar
                 ImGui.TableNextColumn();
                 if (ImGui.BeginChild("GuideListSidebarChild"))
                 {
                     GuideListSidebar.Draw(this.Logic);
-                    ImGui.EndChild();
                 }
+                ImGui.EndChild();
 
                 ImGui.TableNextColumn();
                 if (ImGui.BeginChild("GuideListListingsChild"))
                 {
                     GuideListListings.Draw(this.Logic);
-                    ImGui.EndChild();
                 }
+                ImGui.EndChild();
 
                 ImGui.EndTable();
             }

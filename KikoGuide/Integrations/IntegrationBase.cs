@@ -9,9 +9,6 @@ namespace KikoGuide.Integrations
 {
     internal abstract class IntegrationBase : IDisposable
     {
-        /// <summary>
-        /// Whether or not the integration has been disposed.
-        /// </summary>
         private bool disposedValue;
 
         /// <summary>

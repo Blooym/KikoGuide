@@ -26,31 +26,26 @@ namespace KikoGuide.UserInterface.Windows.IntegrationSettings
         /// <inheritdoc/>
         public override void Draw()
         {
-            if (ImGui.GetWindowSize().X < 80 || ImGui.GetWindowSize().Y < 80)
-            {
-                return;
-            }
-
             if (ImGui.BeginTable("IntegrationSettings", 2, ImGuiTableFlags.BordersInnerV))
             {
                 ImGui.TableSetupColumn("IntegrationsSidebar", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.3f);
                 ImGui.TableSetupColumn("IntegartionsList", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.7f);
+                ImGui.TableNextRow();
 
                 // Sidebar
                 ImGui.TableNextColumn();
                 if (ImGui.BeginChild("IntegrationsSidebarChild"))
                 {
                     IntegrationsSidebar.Draw(this.Logic);
-                    ImGui.EndChild();
                 }
+                ImGui.EndChild();
 
                 ImGui.TableNextColumn();
                 if (ImGui.BeginChild("IntegrationsListChild"))
                 {
-
                     IntegrationActive.Draw(this.Logic);
-                    ImGui.EndChild();
                 }
+                ImGui.EndChild();
 
                 ImGui.EndTable();
             }

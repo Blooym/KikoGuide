@@ -13,6 +13,8 @@ namespace KikoGuide.UserInterface
 {
     internal sealed class WindowManager : IDisposable
     {
+        private bool disposedValue;
+
         /// <summary>
         /// Gets the singleton instance of <see cref="WindowManager" />.
         /// </summary>
@@ -28,11 +30,11 @@ namespace KikoGuide.UserInterface
         /// </summary>
         private readonly Dictionary<Window, bool> windows = new()
         {
-            { new GuideListWindow(), false },
+            { new GuideListWindow(), true },
             { new GuideViewerWindow(), false },
             { new IntegrationsWindow(), false},
             { new GuideSettingsWindow(), false },
-            { new PluginSettingsWindow(), true },
+            { new PluginSettingsWindow(), false },
         };
 
         /// <summary>
@@ -49,7 +51,14 @@ namespace KikoGuide.UserInterface
         /// <summary>
         /// Disposes of the window manager.
         /// </summary>
-        public void Dispose() => this.WindowingSystem.Dispose();
+        public void Dispose()
+        {
+            if (!this.disposedValue)
+            {
+                this.WindowingSystem.Dispose();
+                this.disposedValue = true;
+            }
+        }
 
         /// <summary>
         /// Sets the guide viewer window visibility.

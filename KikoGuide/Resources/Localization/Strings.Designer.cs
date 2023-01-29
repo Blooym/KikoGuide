@@ -374,5 +374,23 @@ namespace KikoGuide.Resources.Localization {
                 return ResourceManager.GetString("UserInterface_PluginSettings_General_Heading", resourceCulture);
             }
         }
+        
+        internal static string Guide_Fate_Config_AutoOpen {
+            get {
+                return ResourceManager.GetString("Guide_Fate_Config_AutoOpen", resourceCulture);
+            }
+        }
+        
+        internal static string Guide_InstanceContent_Config_AutoOpen {
+            get {
+                return ResourceManager.GetString("Guide_InstanceContent_Config_AutoOpen", resourceCulture);
+            }
+        }
+        
+        internal static string Guide_Fate_TypeName {
+            get {
+                return ResourceManager.GetString("Guide_Fate_TypeName", resourceCulture);
+            }
+        }
     }
 }

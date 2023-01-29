@@ -7,6 +7,8 @@ namespace KikoGuide.CommandHandling
 {
     internal sealed class CommandManager : IDisposable
     {
+        private bool disposedValue;
+
         /// <summary>
         /// The singleton instance of <see cref="CommandManager"/>.
         /// </summary>
@@ -37,11 +39,16 @@ namespace KikoGuide.CommandHandling
         /// </summary>
         public void Dispose()
         {
-            foreach (var command in this.commands)
+            if (!this.disposedValue)
             {
-                Services.Commands.RemoveHandler(command.Name);
+                foreach (var command in this.commands)
+                {
+                    Services.Commands.RemoveHandler(command.Name);
+                }
+                this.commands = Array.Empty<ICommand>();
+
+                this.disposedValue = true;
             }
-            this.commands = Array.Empty<ICommand>();
         }
     }
 }

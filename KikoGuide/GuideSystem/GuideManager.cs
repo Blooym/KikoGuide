@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using KikoGuide.Common;
 using Sirensong.Game.Enums;
 
@@ -10,6 +11,8 @@ namespace KikoGuide.GuideSystem
     /// </summary>
     internal sealed class GuideManager : IDisposable
     {
+        private bool disposedValue;
+
         /// <summary>
         /// The singleton instance of <see cref="GuideManager" />.
         /// </summary>
@@ -26,6 +29,11 @@ namespace KikoGuide.GuideSystem
         private readonly Dictionary<ContentType, HashSet<GuideBase>> guidesByContentType = new();
 
         /// <summary>
+        /// All loaded guides, grouped by inheritance.
+        /// </summary>
+        private readonly Dictionary<Type, HashSet<GuideBase>> guidesByInheritance = new();
+
+        /// <summary>
         /// The currently selected guide.
         /// </summary>
         public GuideBase? SelectedGuide { get; set; }
@@ -40,12 +48,17 @@ namespace KikoGuide.GuideSystem
         /// </summary>
         public void Dispose()
         {
-            foreach (var guide in this.guides)
+            if (!this.disposedValue)
             {
-                guide.Dispose();
+                foreach (var guide in this.guides)
+                {
+                    guide.Dispose();
+                }
+                this.guides.Clear();
+                this.guidesByContentType.Clear();
+
+                this.disposedValue = true;
             }
-            this.guides.Clear();
-            this.guidesByContentType.Clear();
         }
 
         /// <summary>
@@ -76,6 +89,30 @@ namespace KikoGuide.GuideSystem
             }
             this.guidesByContentType.Add(contentType, guides);
             return guides;
+        }
+
+        /// <summary>
+        /// Gets all available guides that inherit from a given type.
+        /// </summary>
+        /// <typeparam name="T">The type to get guides for.</typeparam>
+        /// <returns>A <see cref="HashSet{T}" /> of all loaded guides that inherit from the given type.</returns>
+        public HashSet<T>? GetGuides<T>() where T : GuideBase
+        {
+            if (this.guidesByInheritance.TryGetValue(typeof(T), out _))
+            {
+                return this.guides.Where(guide => guide is T).Cast<T>().ToHashSet();
+            }
+
+            var guides = new HashSet<GuideBase>();
+            foreach (var guide in this.guides)
+            {
+                if (guide is T)
+                {
+                    guides.Add(guide);
+                }
+            }
+            this.guidesByInheritance.Add(typeof(T), guides);
+            return guides.Cast<T>().ToHashSet();
         }
 
         /// <summary>

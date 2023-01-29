@@ -65,15 +65,15 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
                 }
                 ImGui.EndGroup();
                 ImGui.Separator();
-                ImGui.EndChild();
             }
+            ImGui.EndChild();
 
             // The guide's content
             if (ImGui.BeginChild("GuideViewerContent"))
             {
                 selectedGuide.Draw();
-                ImGui.EndChild();
             }
+            ImGui.EndChild();
         }
     }
 }

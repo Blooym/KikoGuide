@@ -1,36 +1,32 @@
 using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using Dalamud.Utility;
 using FFXIVClientStructs.FFXIV.Client.Game;
-using FFXIVClientStructs.FFXIV.Client.Game.Event;
 using KikoGuide.Common;
 using KikoGuide.DataModels;
 using KikoGuide.Resources.Localization;
 using Lumina.Excel.GeneratedSheets;
 using Sirensong.Game.Enums;
 using Sirensong.Game.Extensions;
-using Sirensong.Game.State;
-using Sirensong.Game.UI;
 
-namespace KikoGuide.GuideSystem.InstanceContentGuide
+namespace KikoGuide.GuideSystem.InstanceGuide
 {
     /// <summary>
     /// The base class for instance content guides.
     /// </summary>
-    internal abstract class InstanceContentGuideBase : GuideBase
+    internal abstract class InstanceGuideBase : GuideBase
     {
         private bool disposedValue;
 
         /// <inheritdoc/>
-        public InstanceContentGuideBase()
+        public InstanceGuideBase()
         {
             // Get duty and quest data and throw if they're invalid
             this.LinkedDuty = Duty.GetDutyOrNull(this.DutyId)!;
             this.UnlockQuest = Services.QuestCache.GetRow(this.UnlockQuestId)!;
             if (this.UnlockQuest == null || this.LinkedDuty == null)
             {
-                throw new ArgumentException("Invalid duty or unlock quest ID.");
+                throw new InvalidOperationException("Invalid duty or quest data.");
             }
 
             // Assign to properties
@@ -51,12 +47,12 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
                 this.Icon = 21;
             }
 
-            // Subscribe to territory change events
-            Services.ClientState.TerritoryChanged += this.HandleTerritoryChange;
+            // Register conductor service if it's not already registered
+            Services.RegisterService<InstanceConductorService>();
         }
 
         /// <inheritdoc/>
-        public override InstanceContentGuideConfiguration Configuration { get; } = InstanceContentGuideConfiguration.Instance;
+        public override InstanceGuideConfiguration Configuration { get; } = InstanceGuideConfiguration.Instance;
 
         /// <summary>
         /// The duty associated with this guide.
@@ -81,7 +77,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// <summary>
         /// The structured content of the guide, used for rendering.
         /// </summary>
-        public abstract InstanceContentGuideContent Content { get; }
+        public abstract InstanceGuideContent Content { get; }
 
         /// <summary>
         /// The note associated with this guide.
@@ -107,58 +103,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         public override unsafe bool IsUnlocked => QuestManager.IsQuestComplete(this.UnlockQuestId) || QuestManager.Instance()->IsQuestAccepted(this.UnlockQuestId);
 
         /// <inheritdoc/>
-        protected override void DrawAction() => InstanceContentGuideContentUI.Draw(this);
-
-        /// <summary>
-        /// Handles territory changes and updates the guide if necessary.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="territoryId"></param>
-        // TODO: improve how this works
-        private unsafe void HandleTerritoryChange(object? sender, ushort territoryId)
-        {
-            if (this.LinkedDuty.CFCondition.TerritoryType.Row != territoryId || Services.GuideManager.SelectedGuide != null)
-            {
-                Services.GuideManager.SelectedGuide = null;
-                return;
-            }
-
-            // run a task with a 1 second total allowed delay
-            Task.Run(() =>
-            {
-                var retries = 3;
-                while (EventFramework.Instance()->GetInstanceContentDirector() == null)
-                {
-                    if (retries-- == 0)
-                    {
-                        BetterLog.Warning("Failed to get instance content director.");
-                        return;
-                    }
-                    Task.Delay(400).Wait();
-                }
-
-                // Handle content flags.
-                if (InstanceContentDirector.HasFlag(ContentFlag.ExplorerMode))
-                {
-                    BetterLog.Debug("Not loading guide, player is using explorer mode.");
-                    return;
-                }
-
-                BetterLog.Information($"Config: {this.Configuration.AutoOpen}");
-                switch (this.Configuration.AutoOpen)
-                {
-                    case true:
-                        Services.GuideManager.SelectedGuide = this;
-                        Services.WindowManager.SetGuideViewerWindowVis(true);
-                        break;
-                    case false:
-                        GameChat.Print(string.Format(Strings.Guide_InstanceContent_AvailableForDuty, this.Name, Constants.Commands.GuideViewer));
-                        Services.GuideManager.SelectedGuide = this;
-                        break;
-                    default:
-                }
-            });
-        }
+        protected override void DrawAction() => InstanceGuideContentUI.Draw(this);
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
@@ -167,7 +112,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
             {
                 if (disposing)
                 {
-                    Services.ClientState.TerritoryChanged -= this.HandleTerritoryChange;
+                    Services.UnregisterService<InstanceConductorService>();
                 }
 
                 this.disposedValue = true;

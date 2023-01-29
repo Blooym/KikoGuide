@@ -61,7 +61,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
             ImGui.BeginDisabled(guides.Count == 0);
             if (ImGui.BeginTabItem(contentType.ToString()))
             {
-                if (ImGui.BeginChild("ContentTypeTab_" + contentType))
+                if (ImGui.BeginChild($"ContentTypeTab_{contentType}"))
                 {
                     if (guides.Count == 0)
                     {
@@ -71,8 +71,8 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
                     {
                         DrawGuideTable(logic, guides);
                     }
-                    ImGui.EndChild();
                 }
+                ImGui.EndChild();
                 ImGui.EndTabItem();
             }
             ImGui.EndDisabled();
@@ -115,7 +115,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
                 return;
             }
 
-            if (ImGui.Selectable(guide.Name + "##" + guide.Id, GuideListLogic.CurrentGuide == guide))
+            if (ImGui.Selectable($"{guide.Name}##{guide.Id}", GuideListLogic.CurrentGuide == guide))
             {
                 GuideListLogic.OpenGuide(guide);
             }

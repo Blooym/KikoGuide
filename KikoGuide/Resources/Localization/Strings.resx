@@ -253,7 +253,7 @@
     <value>Note</value>
   </data>
   <data name="Guide_InstanceContent_TypeName" xml:space="preserve">
-    <value>Instance Content Guide</value>
+    <value>Instance Guide</value>
   </data>
   <data name="Guide_InstanceContent_UnnamedInstance" xml:space="preserve">
     <value>An Unnamed Instance</value>
@@ -281,5 +281,14 @@
   </data>
   <data name="UserInterface_PluginSettings_General_Heading" xml:space="preserve">
     <value>General</value>
+  </data>
+  <data name="Guide_Fate_Config_AutoOpen" xml:space="preserve">
+    <value>Automatically open guides when entering FATEs</value>
+  </data>
+  <data name="Guide_InstanceContent_Config_AutoOpen" xml:space="preserve">
+    <value>Automatically open guides when entering instances</value>
+  </data>
+  <data name="Guide_Fate_TypeName" xml:space="preserve">
+    <value>Fate Guide</value>
   </data>
 </root>

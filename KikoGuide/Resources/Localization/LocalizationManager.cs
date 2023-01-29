@@ -6,15 +6,12 @@ namespace KikoGuide.Resources.Localization
 {
     internal sealed class LocalizationManager : IDisposable
     {
-        /// <summary>
-        /// The singleton instance of <see cref="LocalizationManager" />.
-        /// </summary>
-        private static LocalizationManager? instance;
+        private bool disposedValue;
 
         /// <summary>
         /// Gets the singleton instance of <see cref="LocalizationManager" />.
         /// </summary>
-        public static LocalizationManager Instance => instance ??= new();
+        public static LocalizationManager Instance { get; } = new();
 
         /// <summary>
         /// Creates a new resource manager and sets up resources.
@@ -30,8 +27,11 @@ namespace KikoGuide.Resources.Localization
         /// </summary>
         public void Dispose()
         {
-            Services.PluginInterface.LanguageChanged -= SetupLocalization;
-            instance = null!;
+            if (!this.disposedValue)
+            {
+                Services.PluginInterface.LanguageChanged -= SetupLocalization;
+                this.disposedValue = true;
+            }
         }
 
         /// <summary>
