@@ -63,7 +63,7 @@ namespace KikoGuide.DataModels
         /// </summary>
         /// <param name="name">The name of the note.</param>
         /// <returns>The absolute path to the note.</returns>
-        private static string GetPath(string name) => Path.Combine(Constants.NotesDirectory, name + ".json");
+        private static string GetPath(string name) => Path.Combine(Constants.Directory.Notes, name + ".json");
 
         /// <summary>
         /// Creates a new note or loads an existing one.
@@ -95,9 +95,9 @@ namespace KikoGuide.DataModels
         /// <returns></returns>
         public Note Save()
         {
-            if (!Directory.Exists(Constants.NotesDirectory))
+            if (!Directory.Exists(Constants.Directory.Notes))
             {
-                Directory.CreateDirectory(Constants.NotesDirectory);
+                Directory.CreateDirectory(Constants.Directory.Notes);
             }
             File.WriteAllText(GetPath(this.Name), JsonConvert.SerializeObject(this, Formatting.Indented));
             return this;

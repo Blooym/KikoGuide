@@ -42,7 +42,6 @@ namespace KikoGuide.CommandHandling
                 Services.Commands.RemoveHandler(command.Name);
             }
             this.commands = Array.Empty<ICommand>();
-            GC.SuppressFinalize(this);
         }
     }
 }

@@ -1,17 +1,17 @@
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using KikoGuide.Common;
-using KikoGuide.UserInterface.Windows.IntegrationSettings.TableParts;
+using KikoGuide.UserInterface.Windows.PluginSettings.TableParts;
 
-namespace KikoGuide.UserInterface.Windows.IntegrationSettings
+namespace KikoGuide.UserInterface.Windows.PluginSettings
 {
-    internal sealed class IntegrationsWindow : Window
+    internal sealed class PluginSettingsWindow : Window
     {
         /// <inheritdoc/>
-        public IntegrationsLogic Logic { get; } = new();
+        public PluginSettingsLogic Logic { get; } = new();
 
         /// <inheritdoc/>
-        public IntegrationsWindow() : base(Constants.WindowTitles.IntegrationsTitle)
+        public PluginSettingsWindow() : base(Constants.WindowTitles.Settings)
         {
             this.Size = new(600, 400);
             this.SizeConstraints = new WindowSizeConstraints()
@@ -31,24 +31,24 @@ namespace KikoGuide.UserInterface.Windows.IntegrationSettings
                 return;
             }
 
-            if (ImGui.BeginTable("IntegrationSettings", 2, ImGuiTableFlags.BordersInnerV))
+            if (ImGui.BeginTable("PluginSettings", 2, ImGuiTableFlags.BordersInnerV))
             {
-                ImGui.TableSetupColumn("IntegrationsSidebar", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.3f);
-                ImGui.TableSetupColumn("IntegartionsList", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.7f);
+                ImGui.TableSetupColumn("PluginSettingsSidebar", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.3f);
+                ImGui.TableSetupColumn("PluginSettingsList", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.7f);
 
                 // Sidebar
                 ImGui.TableNextColumn();
-                if (ImGui.BeginChild("IntegrationsSidebarChild"))
+                if (ImGui.BeginChild("PluginSettingsSidebarChild"))
                 {
-                    IntegrationsSidebar.Draw(this.Logic);
+                    PluginSettingsSidebar.Draw(this.Logic);
                     ImGui.EndChild();
                 }
 
+                // Listings
                 ImGui.TableNextColumn();
-                if (ImGui.BeginChild("IntegrationsListChild"))
+                if (ImGui.BeginChild("PluginSettingsListChild"))
                 {
-
-                    IntegrationActive.Draw(this.Logic);
+                    PluginSettingsActive.Draw(this.Logic);
                     ImGui.EndChild();
                 }
 

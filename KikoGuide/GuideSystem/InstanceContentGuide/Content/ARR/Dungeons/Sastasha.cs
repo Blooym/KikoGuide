@@ -1,14 +1,14 @@
 namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
 {
-    internal sealed class Sasqtasha : InstanceContentGuideBase
+    internal sealed class Sastasha : InstanceContentGuideBase
     {
         protected override uint DutyId { get; } = 4;
         protected override uint UnlockQuestId { get; } = 66211;
-        public override InstanceContentGuideFormat Content { get; } = new()
+        public override InstanceContentGuideContent Content { get; } = new()
         {
             Sections = new[]
             {
-                new InstanceContentGuideFormat.Section
+                new InstanceContentGuideContent.Section
                 {
                     Title = new()
                     {
@@ -17,7 +17,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
 
                     Subsections = new[]
                     {
-                        new InstanceContentGuideFormat.Section.Subsection
+                        new InstanceContentGuideContent.Section.Subsection
                         {
                             Title = new()
                             {
@@ -31,7 +31,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
 
                             Mechanics = new[]
                             {
-                                new InstanceContentGuideFormat.Section.Subsection.MechanicsTableRow
+                                new InstanceContentGuideContent.Section.Subsection.MechanicsTableRow
                                 {
                                     Name = new()
                                     {
@@ -48,7 +48,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
                     }
                 },
 
-                new InstanceContentGuideFormat.Section
+                new InstanceContentGuideContent.Section
                 {
                     Title = new()
                     {
@@ -57,7 +57,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
 
                     Subsections = new[]
                     {
-                        new InstanceContentGuideFormat.Section.Subsection
+                        new InstanceContentGuideContent.Section.Subsection
                         {
                             Title = new()
                             {
@@ -72,7 +72,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
                     }
                 },
 
-                new InstanceContentGuideFormat.Section
+                new InstanceContentGuideContent.Section
                 {
                     Title = new()
                     {
@@ -81,7 +81,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide.Content.ARR.Dungeons
 
                     Subsections = new[]
                     {
-                        new InstanceContentGuideFormat.Section.Subsection
+                        new InstanceContentGuideContent.Section.Subsection
                         {
                             Title = new()
                             {

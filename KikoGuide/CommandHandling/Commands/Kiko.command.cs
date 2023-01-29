@@ -14,7 +14,7 @@ namespace KikoGuide.CommandHandling.Commands
         /// <inheritdoc />
         public CommandInfo Command => new(this.OnExecute)
         {
-            HelpMessage = Strings.Guide_Viewer_Command_Help,
+            HelpMessage = Strings.Commands_GuideViewer_Help,
             ShowInHelp = true,
         };
 
@@ -25,7 +25,7 @@ namespace KikoGuide.CommandHandling.Commands
             {
                 if (Services.GuideManager.SelectedGuide == null)
                 {
-                    GameChat.PrintError($"Cannot open the guide viewer without a guide selected.");
+                    GameChat.PrintError(Strings.Commands_GuideViewer_NoGuide);
                     return;
                 }
                 Services.WindowManager.ToggleGuideViewerWindow();

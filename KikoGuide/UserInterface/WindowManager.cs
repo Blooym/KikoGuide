@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Dalamud.Interface.Windowing;
 using KikoGuide.UserInterface.Windows.GuideList;
+using KikoGuide.UserInterface.Windows.GuideSettings;
 using KikoGuide.UserInterface.Windows.GuideViewer;
 using KikoGuide.UserInterface.Windows.IntegrationSettings;
 using KikoGuide.UserInterface.Windows.PluginSettings;
@@ -29,7 +30,8 @@ namespace KikoGuide.UserInterface
         {
             { new GuideListWindow(), false },
             { new GuideViewerWindow(), false },
-            { new IntegrationSettingsWindow(), false},
+            { new IntegrationsWindow(), false},
+            { new GuideSettingsWindow(), false },
             { new PluginSettingsWindow(), true },
         };
 
@@ -47,11 +49,7 @@ namespace KikoGuide.UserInterface
         /// <summary>
         /// Disposes of the window manager.
         /// </summary>
-        public void Dispose()
-        {
-            this.WindowingSystem.Dispose();
-            GC.SuppressFinalize(this);
-        }
+        public void Dispose() => this.WindowingSystem.Dispose();
 
         /// <summary>
         /// Sets the guide viewer window visibility.
@@ -104,7 +102,18 @@ namespace KikoGuide.UserInterface
         /// </summary>
         public void ToggleIntegrationSettingsWindow()
         {
-            if (this.WindowingSystem.TryGetWindow<IntegrationSettingsWindow>(out var window))
+            if (this.WindowingSystem.TryGetWindow<IntegrationsWindow>(out var window))
+            {
+                window.Toggle();
+            }
+        }
+
+        /// <summary>
+        /// Toggles the guide config settings window visibility.
+        /// </summary>
+        public void ToggleGuideConfigSettingsWindow()
+        {
+            if (this.WindowingSystem.TryGetWindow<GuideSettingsWindow>(out var window))
             {
                 window.Toggle();
             }

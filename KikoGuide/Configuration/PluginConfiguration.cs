@@ -20,11 +20,6 @@ namespace KikoGuide.Configuration
         public int Version { get; set; } = CurrentVersion;
 
         /// <summary>
-        /// Whether or not to automatically open guides when their conditions are met.
-        /// </summary>
-        public bool AutoOpenGuides { get; set; }
-
-        /// <summary>
         /// Whether the guide viewer window posistion and size is locked.
         /// </summary>x
         public bool LockGuideViewer { get; set; }

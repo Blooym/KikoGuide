@@ -32,7 +32,6 @@ namespace KikoGuide.Resources.Localization
         {
             Services.PluginInterface.LanguageChanged -= SetupLocalization;
             instance = null!;
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>

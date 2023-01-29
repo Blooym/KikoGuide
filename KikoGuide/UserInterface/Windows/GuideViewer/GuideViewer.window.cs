@@ -14,7 +14,7 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
         public GuideViewerLogic Logic { get; } = new();
 
         /// <inheritdoc/>
-        public GuideViewerWindow() : base(Constants.Windows.GuideViewerTitle)
+        public GuideViewerWindow() : base(Constants.WindowTitles.GuideViewer)
         {
             this.Size = new(400, 300);
             this.SizeConstraints = new WindowSizeConstraints()
@@ -50,7 +50,7 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
                 // Icon and name
                 SiGui.Icon(selectedGuide.Icon, ScalingMode.None, new(ImGuiHelpers.GlobalScale * 20));
                 ImGui.SameLine();
-                ImGui.TextDisabled(selectedGuide.Name);
+                SiGui.TextDisabled(selectedGuide.Name);
                 ImGui.SameLine();
 
                 // Window actions

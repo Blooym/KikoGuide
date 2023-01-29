@@ -1,6 +1,9 @@
 using System;
 using ImGuiNET;
 using KikoGuide.Common;
+using KikoGuide.Resources.Localization;
+using Sirensong.UserInterface;
+using Sirensong.UserInterface.Style;
 
 namespace KikoGuide.Integrations
 {
@@ -12,9 +15,14 @@ namespace KikoGuide.Integrations
         private bool disposedValue;
 
         /// <summary>
-        /// Whether or not the integration found the activation <see cref="ICallGateSubscriber{TRet}"/> and is registered to it.
+        /// The user-friendly name of the integration.
         /// </summary>
-        public abstract bool Activated { get; protected set; }
+        public abstract string Name { get; }
+
+        /// <summary>
+        /// The user-friendly description of the integration.
+        /// </summary>
+        public abstract string Description { get; }
 
         /// <summary>
         /// Whether or not the integration has failed to load and has been force-disabled until the next plugin reload.
@@ -38,7 +46,7 @@ namespace KikoGuide.Integrations
         }
 
         /// <summary>
-        /// The code to run when the integration is enabled.
+        /// The code to run when the integration is enabled, this should initialize any resources needed for the integration instead of doing it in a constructor.
         /// </summary>
         protected abstract void OnEnable();
 
@@ -57,14 +65,14 @@ namespace KikoGuide.Integrations
             }
             catch (Exception ex)
             {
-                BetterLog.Error($"{this.Configuration.Name} integration failed to load: {ex}");
+                BetterLog.Error($"{this.Name} integration failed to load: {ex}");
                 this.Dispose();
                 this.ForceDisabled = true;
             }
         }
 
         /// <summary>
-        /// The code to run when the integration is disabled.
+        /// The code to run when the integration is disabled, this should dispose of any resources just like a normal dispose.
         /// </summary>
         protected abstract void OnDisable();
 
@@ -83,7 +91,7 @@ namespace KikoGuide.Integrations
             }
             catch (Exception ex)
             {
-                BetterLog.Error($"{this.Configuration.Name} integration failed to unload: {ex}");
+                BetterLog.Error($"{this.Name} integration failed to unload: {ex}");
                 this.Dispose(false);
                 this.ForceDisabled = true;
             }
@@ -92,21 +100,26 @@ namespace KikoGuide.Integrations
         /// <summary>
         /// The UI to draw to configure the integration.
         /// </summary>
-        protected virtual Action? DrawAction { get; }
+        protected virtual void DrawAction()
+        {
+
+        }
 
         /// <summary>
         /// Draw the UI to configure the integration.
         /// </summary>
         public void Draw()
         {
+            // If the integration is force disabled, don't allow configuration.
             if (this.ForceDisabled)
             {
-                ImGui.TextWrapped($"An error occured with this integration. It has been automatically disabled until the next plugin reload. Please check the log for more information.");
+                SiGui.TextWrapped(Strings.Integrations_ForceDisabled);
                 return;
             }
 
+            // Draw settings that appear on all integrations.
             var enabled = this.Configuration.Enabled;
-            if (ImGui.Checkbox("Enabled", ref enabled))
+            if (ImGui.Checkbox(Strings.Integrations_Enabled, ref enabled))
             {
                 this.Configuration.Enabled = enabled;
                 this.Configuration.Save();
@@ -119,20 +132,16 @@ namespace KikoGuide.Integrations
                     this.Disable();
                 }
             }
+            ImGui.Dummy(Spacing.SectionSpacing);
 
-            if (this.DrawAction == null)
-            {
-                ImGui.TextDisabled($"No configuration available for {this.Configuration.Name}.");
-                return;
-            }
-
+            ImGui.BeginDisabled(!this.Configuration.Enabled);
             this.DrawAction();
+            ImGui.EndDisabled();
         }
 
         /// <summary>
         /// Disposes of the integration.
         /// </summary>
-
         public void Dispose()
         {
             this.Dispose(true);
@@ -149,11 +158,19 @@ namespace KikoGuide.Integrations
             {
                 if (disposing)
                 {
-                    this.Disable();
+                    if (this.Configuration.Enabled)
+                    {
+                        this.Disable();
+                    }
                 }
 
                 this.disposedValue = true;
             }
+        }
+
+        ~IntegrationBase()
+        {
+            this.Dispose(false);
         }
     }
 }

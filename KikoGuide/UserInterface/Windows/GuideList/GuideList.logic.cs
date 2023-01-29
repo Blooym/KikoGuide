@@ -47,6 +47,11 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         public static void ToggleIntegrationsWindow() => Services.WindowManager.ToggleIntegrationSettingsWindow();
 
         /// <summary>
+        /// Toggle the guide settings window.
+        /// </summary>
+        public static void ToggleGuideSettingsWindow() => Services.WindowManager.ToggleGuideConfigSettingsWindow();
+
+        /// <summary>
         /// Get the number of guides for a given content type.
         /// </summary>
         /// <param name="type"></param>

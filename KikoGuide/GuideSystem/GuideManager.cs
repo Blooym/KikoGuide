@@ -7,7 +7,6 @@ namespace KikoGuide.GuideSystem
 {
     /// <summary>
     /// The guide manager is the authoritative source for all guide management.
-    /// All guides are loaded via reflection and stored in a <see cref="HashSet{T}" />.
     /// </summary>
     internal sealed class GuideManager : IDisposable
     {
@@ -47,7 +46,6 @@ namespace KikoGuide.GuideSystem
             }
             this.guides.Clear();
             this.guidesByContentType.Clear();
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -80,7 +78,6 @@ namespace KikoGuide.GuideSystem
             return guides;
         }
 
-
         /// <summary>
         /// Loads all guides from the assembly into a <see cref="HashSet{T}" />.
         /// </summary>
@@ -93,6 +90,12 @@ namespace KikoGuide.GuideSystem
                 {
                     if (!type.IsAbstract && type.IsSubclassOf(typeof(GuideBase)))
                     {
+                        if (type.GetConstructor(Array.Empty<Type>()) == null)
+                        {
+                            BetterLog.Warning($"Guide {type.Name} does not have a parameterless constructor.");
+                            continue;
+                        }
+
                         BetterLog.Debug($"[{type.BaseType?.Name}] Loading guide from class {type.Name}.");
                         loadedGuides.Add((GuideBase)type.GetConstructor(Array.Empty<Type>())!.Invoke(Array.Empty<object>()));
                     }

@@ -7,22 +7,26 @@ using FFXIVClientStructs.FFXIV.Client.Game.Event;
 using KikoGuide.Common;
 using KikoGuide.DataModels;
 using KikoGuide.Enums;
+using KikoGuide.Resources.Localization;
 using Lumina.Excel.GeneratedSheets;
 using Sirensong.Game.Enums;
 using Sirensong.Game.Extensions;
+using Sirensong.Game.State;
 using Sirensong.Game.UI;
-using Sirensong.Game.Utility;
 
 namespace KikoGuide.GuideSystem.InstanceContentGuide
 {
     /// <summary>
-    /// Represents a guide for duty/instance content.
+    /// The base class for instance content guides.
     /// </summary>
     internal abstract class InstanceContentGuideBase : GuideBase
     {
+        private bool disposedValue;
+
+        /// <inheritdoc/>
         public InstanceContentGuideBase()
         {
-            // Get duty and quest data.
+            // Get duty and quest data and throw if they're invalid
             this.LinkedDuty = Duty.GetDutyOrNull(this.DutyId)!;
             this.UnlockQuest = Services.QuestCache.GetRow(this.UnlockQuestId)!;
             if (this.UnlockQuest == null || this.LinkedDuty == null)
@@ -30,7 +34,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
                 throw new ArgumentException("Invalid duty or unlock quest ID.");
             }
 
-            // Assign properties
+            // Assign to properties
             this.Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.LinkedDuty.CFCondition.Name.ToDalamudString().ToString());
             this.Description = this.LinkedDuty.CFConditionTransient.Description.ToDalamudString().ToString();
             this.ContentType = (ContentTypeModified?)this.LinkedDuty.CFCondition.GetContentType(true) ?? ContentTypeModified.Custom;
@@ -38,26 +42,22 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
             this.Icon = this.LinkedDuty.CFCondition.ContentType.Value?.Icon ?? 21;
             this.Note = Note.CreateOrLoad(@$"{this.ContentType}_{this.Name}");
 
-            // Sanity checks for invalid or missing data (can happen with some instance content for some reason)
+            // Do sanity checks for some properties that can be invalid
             if (string.IsNullOrEmpty(this.Name))
             {
-                this.Name = "An unnamed instance";
+                this.Name = Strings.Guide_InstanceContent_UnnamedInstance;
             }
             if (this.Icon == 0)
             {
                 this.Icon = 21;
             }
 
-            // Listen for territory changes
+            // Subscribe to territory change events
             Services.ClientState.TerritoryChanged += this.HandleTerritoryChange;
         }
 
         /// <inheritdoc/>
-        protected override void Dispose(bool disposing)
-        {
-            Services.ClientState.TerritoryChanged -= this.HandleTerritoryChange;
-            base.Dispose(true);
-        }
+        public override InstanceContentGuideConfiguration Configuration { get; } = InstanceContentGuideConfiguration.Instance;
 
         /// <summary>
         /// The duty associated with this guide.
@@ -68,29 +68,6 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// The quest that unlocks this guide.
         /// </summary>
         public Quest UnlockQuest { get; }
-
-        /// <inheritdoc/>
-        public override string Name { get; }
-
-        /// <inheritdoc/>
-        public override string Description { get; }
-
-        /// <inheritdoc/>
-        public override uint Icon { get; }
-
-        /// <summary>
-        /// The note associated with this guide.
-        /// </summary>
-        public Note Note { get; }
-
-        /// <inheritdoc/>
-        public override unsafe bool IsUnlocked => QuestManager.IsQuestComplete(this.UnlockQuestId) || QuestManager.Instance()->IsQuestAccepted(this.UnlockQuestId);
-
-        /// <inheritdoc/>
-        public override ContentDifficulty Difficulty { get; }
-
-        /// <inheritdoc/>
-        public override ContentTypeModified ContentType { get; }
 
         /// <summary>
         /// The sheet row of the duty associated with this guide.
@@ -105,19 +82,42 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// <summary>
         /// The structured content of the guide, used for rendering.
         /// </summary>
-        public abstract InstanceContentGuideFormat Content { get; }
+        public abstract InstanceContentGuideContent Content { get; }
+
+        /// <summary>
+        /// The note associated with this guide.
+        /// </summary>
+        public Note Note { get; }
 
         /// <inheritdoc/>
-        protected override void DrawAction() => InstanceContentGuideLayout.Draw(this);
+        public override string Name { get; }
+
+        /// <inheritdoc/>
+        public override string Description { get; }
+
+        /// <inheritdoc/>
+        public override uint Icon { get; }
+
+        /// <inheritdoc/>
+        public override ContentDifficulty Difficulty { get; }
+
+        /// <inheritdoc/>
+        public override ContentTypeModified ContentType { get; }
+
+        /// <inheritdoc/>
+        public override unsafe bool IsUnlocked => QuestManager.IsQuestComplete(this.UnlockQuestId) || QuestManager.Instance()->IsQuestAccepted(this.UnlockQuestId);
+
+        /// <inheritdoc/>
+        protected override void DrawAction() => InstanceContentGuideContentUI.Draw(this);
 
         /// <summary>
         /// Handles territory changes and updates the guide if necessary.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="territoryId"></param>
+        // TODO: improve how this works
         private unsafe void HandleTerritoryChange(object? sender, ushort territoryId)
         {
-            // TODO: Find a better way of hiding guides when no guide is found for the current territory.
             if (this.LinkedDuty.CFCondition.TerritoryType.Row != territoryId || Services.GuideManager.SelectedGuide != null)
             {
                 Services.GuideManager.SelectedGuide = null;
@@ -139,28 +139,42 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
                 }
 
                 // Handle content flags.
-                switch (InstanceDirectorUtil.GetInstanceContentFlag())
+                if (InstanceContentDirector.HasFlag(ContentFlag.ExplorerMode))
                 {
-                    case ContentFlag.ExplorerMode:
-                        BetterLog.Debug("Not loading guide, player is using explorer mode.");
-                        return;
-                    default:
-                        break;
+                    BetterLog.Debug("Not loading guide, player is using explorer mode.");
+                    return;
                 }
 
-                switch (this.AutoOpen)
+                BetterLog.Information($"Config: {this.Configuration.AutoOpen}");
+                switch (this.Configuration.AutoOpen)
                 {
                     case true:
                         Services.GuideManager.SelectedGuide = this;
                         Services.WindowManager.SetGuideViewerWindowVis(true);
                         break;
                     case false:
-                        GameChat.Print($"A guide for the duty {this.Name} is available. Use {Constants.Commands.GuideViewer} to open it.");
+                        GameChat.Print(string.Format(Strings.Guide_InstanceContent_AvailableForDuty, this.Name, Constants.Commands.GuideViewer));
                         Services.GuideManager.SelectedGuide = this;
                         break;
                     default:
                 }
             });
+        }
+
+        /// <inheritdoc/>
+        protected override void Dispose(bool disposing)
+        {
+            if (!this.disposedValue)
+            {
+                if (disposing)
+                {
+                    Services.ClientState.TerritoryChanged -= this.HandleTerritoryChange;
+                }
+
+                this.disposedValue = true;
+
+                base.Dispose(disposing);
+            }
         }
     }
 }

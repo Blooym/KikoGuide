@@ -1,6 +1,7 @@
 using System.IO;
 using Dalamud.Plugin.Ipc;
 using KikoGuide.Common;
+using KikoGuide.Utility;
 using Newtonsoft.Json;
 
 namespace KikoGuide.Integrations
@@ -13,12 +14,6 @@ namespace KikoGuide.Integrations
         public abstract int Version { get; }
 
         /// <summary>
-        /// The user-friendly name of the integration.
-        /// </summary>
-        [JsonIgnore]
-        public abstract string Name { get; }
-
-        /// <summary>
         /// Whether or not the integration is enabled and will try to find the activation <see cref="ICallGateSubscriber{TRet}"/>.
         /// </summary>
         public bool Enabled { get; set; }
@@ -28,10 +23,10 @@ namespace KikoGuide.Integrations
         /// </summary>
         public void Save()
         {
-            CreatePath();
+            PathUtil.CreatePath(Constants.Directory.Integrations);
 
             var configJson = JsonConvert.SerializeObject(this, Formatting.Indented);
-            File.WriteAllText(Path.Combine(Constants.IntegrationsDirectory, $"{this.Name}.json"), configJson);
+            File.WriteAllText(Path.Combine(Constants.Directory.Integrations, $"{this.GetType().Name}.json"), configJson);
         }
 
         /// <summary>
@@ -39,9 +34,9 @@ namespace KikoGuide.Integrations
         /// </summary>
         public static T Load<T>() where T : IntegrationConfigurationBase, new()
         {
-            CreatePath();
+            PathUtil.CreatePath(Constants.Directory.Integrations);
 
-            var configPath = Path.Combine(Constants.IntegrationsDirectory, $"{new T().Name}.json");
+            var configPath = Path.Combine(Constants.Directory.Integrations, $"{typeof(T).Name}.json");
 
             if (!File.Exists(configPath))
             {
@@ -50,17 +45,6 @@ namespace KikoGuide.Integrations
 
             var configJson = File.ReadAllText(configPath);
             return JsonConvert.DeserializeObject<T>(configJson) ?? new T();
-        }
-
-        /// <summary>
-        /// Creates the directory for the configuration files if it doesn't exist.
-        /// </summary>
-        private static void CreatePath()
-        {
-            if (!Directory.Exists(Constants.IntegrationsDirectory))
-            {
-                Directory.CreateDirectory(Constants.IntegrationsDirectory);
-            }
         }
     }
 }

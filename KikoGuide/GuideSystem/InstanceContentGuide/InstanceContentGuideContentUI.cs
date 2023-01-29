@@ -2,19 +2,18 @@ using Dalamud.Utility;
 using FFXIVClientStructs.FFXIV.Common.Math;
 using ImGuiNET;
 using KikoGuide.DataModels;
+using KikoGuide.Resources.Localization;
 using Sirensong.DataStructures;
 using Sirensong.UserInterface;
+using Sirensong.UserInterface.Style;
 
 namespace KikoGuide.GuideSystem.InstanceContentGuide
 {
-    internal static class InstanceContentGuideLayout
+    internal static class InstanceContentGuideContentUI
     {
-        private static Vector2 GuideAreaSize => new(0, (ImGui.GetWindowContentRegionMax().Y * 0.7f) - ImGui.GetStyle().WindowPadding.Y);
-        private static Vector2 NoteAreaSize => new(0, (ImGui.GetWindowSize().Y * 0.3f) - ImGui.GetStyle().WindowPadding.Y);
+        private static Vector2 GuideAreaSize => new(0, (ImGui.GetWindowContentRegionMax().Y * 0.75f) - ImGui.GetStyle().WindowPadding.Y);
+        private static Vector2 NoteAreaSize => new(0, (ImGui.GetWindowSize().Y * 0.25f) - ImGui.GetStyle().WindowPadding.Y);
         private static Vector2 NoteContentSize => new(-1, ImGui.GetContentRegionAvail().Y * 0.8f);
-        private static Vector2 sectionSpacing = new(0, 10);
-        private static Vector2 headingSpacing = new(0, 2);
-        private static Vector2 dropdownTopSpacing = new(0, 5);
         private static bool isEditingNote;
 
         /// <summary>
@@ -55,7 +54,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// <param name="note">The note to draw.</param>
         private static void DrawNote(Note note)
         {
-            SiGui.TextHeading("Note");
+            SiGui.Heading(Strings.Guide_InstanceContent_Note_Heading);
             var noteContent = note.Content;
 
             // Not editing note
@@ -63,11 +62,11 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
             {
                 if (ImGui.BeginChild("NoteContent", NoteContentSize, false))
                 {
-                    ImGui.TextWrapped(noteContent);
+                    SiGui.TextWrapped(noteContent);
                     ImGui.EndChild();
                 }
 
-                if (ImGui.Button("Edit"))
+                if (ImGui.Button(Strings.Guide_InstanceContent_Note_Edit))
                 {
                     isEditingNote = true;
                 }
@@ -82,7 +81,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
                     isEditingNote = false;
                 }
 
-                if (ImGui.Button("Save"))
+                if (ImGui.Button(Strings.Guide_InstanceContent_Note_Save))
                 {
                     isEditingNote = false;
                 }
@@ -109,7 +108,7 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// Draws a section.
         /// </summary>
         /// <param name="section">The section to draw.</param>
-        private static void DrawSection(InstanceContentGuideFormat.Section section)
+        private static void DrawSection(InstanceContentGuideContent.Section section)
         {
             if (ImGui.BeginTabItem(section.Title.UICurrent))
             {
@@ -140,25 +139,25 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// Draws a subsection.
         /// </summary>
         /// <param name="subsection">The subsection to draw.</param>
-        private static void DrawSubsection(InstanceContentGuideFormat.Section.Subsection subsection)
+        private static void DrawSubsection(InstanceContentGuideContent.Section.Subsection subsection)
         {
             if (ImGui.BeginChild("Subsection"))
             {
                 DrawSubsectionContent(subsection.Content);
-                ImGui.Dummy(sectionSpacing);
+                ImGui.Dummy(Spacing.SectionSpacing);
 
                 // Draw tips if set
                 if (subsection.Tips != null)
                 {
                     DrawTips(subsection.Tips);
-                    ImGui.Dummy(sectionSpacing);
+                    ImGui.Dummy(Spacing.SectionSpacing);
                 }
 
                 // Draw mechanics table if set
                 if (subsection.Mechanics != null)
                 {
                     DrawMechanicsTable(subsection.Mechanics);
-                    ImGui.Dummy(sectionSpacing);
+                    ImGui.Dummy(Spacing.SectionSpacing);
                 }
 
                 // Draw links if set
@@ -177,31 +176,29 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// <param name="content">The content to draw.</param>
         private static void DrawSubsectionContent(TranslatableString content)
         {
-            SiGui.TextHeading("Content");
-            ImGui.Dummy(headingSpacing);
-            ImGui.TextWrapped(content.UICurrent);
+            SiGui.Heading(Strings.Guide_InstanceContent_Content_Heading);
+            SiGui.TextWrapped(content.UICurrent);
         }
 
         /// <summary>
         /// Draws the mechanics table.
         /// </summary>
         /// <param name="mechanics">The mechanics to draw.</param>
-        private static void DrawMechanicsTable(InstanceContentGuideFormat.Section.Subsection.MechanicsTableRow[] mechanics)
+        private static void DrawMechanicsTable(InstanceContentGuideContent.Section.Subsection.MechanicsTableRow[] mechanics)
         {
-            SiGui.TextHeading("Mechanics");
-            ImGui.Dummy(headingSpacing);
+            SiGui.Heading(Strings.Guide_InstanceContent_Mechanics_Heading);
             if (ImGui.BeginTable("Mechanics", 2, ImGuiTableFlags.Borders))
             {
-                ImGui.TableSetupColumn("Name");
-                ImGui.TableSetupColumn("Description");
+                ImGui.TableSetupColumn(Strings.Guide_InstanceContent_Mechanics_Name);
+                ImGui.TableSetupColumn(Strings.Guide_InstanceContent_Mechanics_Description);
                 ImGui.TableHeadersRow();
 
                 foreach (var mechanic in mechanics)
                 {
                     ImGui.TableNextColumn();
-                    ImGui.TextWrapped(mechanic.Name.UICurrent);
+                    SiGui.TextWrapped(mechanic.Name.UICurrent);
                     ImGui.TableNextColumn();
-                    ImGui.TextWrapped(mechanic.Description.UICurrent);
+                    SiGui.TextWrapped(mechanic.Description.UICurrent);
                 }
 
                 ImGui.EndTable();
@@ -214,11 +211,10 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// <param name="tips">The tips to draw.</param>
         private static void DrawTips(TranslatableString[] tips)
         {
-            SiGui.TextHeading("Tips");
-            ImGui.Dummy(headingSpacing);
+            SiGui.Heading(Strings.Guide_InstanceContent_Tips_Heading);
             foreach (var tip in tips)
             {
-                ImGui.TextWrapped("- " + tip.UICurrent);
+                SiGui.TextWrapped("- " + tip.UICurrent);
             }
         }
 
@@ -228,9 +224,8 @@ namespace KikoGuide.GuideSystem.InstanceContentGuide
         /// <param name="links">The links to draw.</param>
         private static void DrawLinks(string[] links)
         {
-            if (ImGui.CollapsingHeader("Links"))
+            if (SiGui.CollapsingHeader(Strings.Guide_InstanceContent_Links_Heading))
             {
-                ImGui.Dummy(dropdownTopSpacing);
                 foreach (var link in links)
                 {
                     if (ImGui.Selectable(link))

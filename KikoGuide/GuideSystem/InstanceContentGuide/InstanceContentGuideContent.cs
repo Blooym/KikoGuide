@@ -2,10 +2,7 @@ using Sirensong.DataStructures;
 
 namespace KikoGuide.GuideSystem.InstanceContentGuide
 {
-    /// <summary>
-    /// Represents the content to be layed out in the user interface.
-    /// </summary>
-    public readonly record struct InstanceContentGuideFormat
+    public readonly record struct InstanceContentGuideContent
     {
         /// <summary>
         /// The sections of the content.

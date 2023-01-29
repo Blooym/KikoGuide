@@ -1,15 +1,15 @@
 using System;
-using Dalamud.Interface.Colors;
-using KikoGuide.Common;
 using KikoGuide.Enums;
+using KikoGuide.Resources.Localization;
 using Sirensong.Game.Enums;
 using Sirensong.UserInterface;
+using Sirensong.UserInterface.Style;
 
 // TODO: Implement some kind of logic for handling guide auto-opening.
 namespace KikoGuide.GuideSystem
 {
     /// <summary>
-    /// The base class that all guides inherit from, controls the basic properties of a guide that are non-specific to the type of guide.
+    /// The base class that all guides inherit from, controls the base functionality of a guide.
     /// </summary>
     internal abstract class GuideBase : IDisposable
     {
@@ -46,14 +46,14 @@ namespace KikoGuide.GuideSystem
         public abstract ContentTypeModified ContentType { get; }
 
         /// <summary>
-        /// Whether or not the guide should allow itself to open automatically.
-        /// </summary>
-        public virtual bool AutoOpen => Services.Configuration.AutoOpenGuides;
-
-        /// <summary>
         /// Whether or not the guide should be considered unlocked.
         /// </summary>
         public abstract bool IsUnlocked { get; }
+
+        /// <summary>
+        /// Stores the configuration of the overall "type" of the guide, eg. InstanceContentGuideConfiguration would be the configuration for all instance content guides.
+        /// </summary>
+        public abstract GuideConfigurationBase Configuration { get; }
 
         /// <summary>
         /// Whether or not the guide should be hidden from the guide list, even if unlocked.
@@ -61,7 +61,7 @@ namespace KikoGuide.GuideSystem
         public virtual bool NoShow { get; }
 
         /// <summary>
-        /// The content to draw in the guide viewer, called by the base class.
+        /// The action to run to draw the content of the guide, this is wrapped by a try/catch and unlock check in the base class.
         /// </summary>
         protected abstract void DrawAction();
 
@@ -74,7 +74,7 @@ namespace KikoGuide.GuideSystem
             {
                 if (!this.IsUnlocked)
                 {
-                    SiGui.TextWrappedColoured(ImGuiColors.DalamudRed, "You have not met the requirements to view this guide yet.");
+                    SiGui.TextWrappedColoured(Colours.Warning, Strings.Guide_NotMetRequirements);
                     return;
                 }
 
@@ -82,7 +82,7 @@ namespace KikoGuide.GuideSystem
             }
             catch (Exception e)
             {
-                SiGui.TextWrappedColoured(ImGuiColors.DalamudRed, $"Draw failed due to an error! [{e.GetType().Name}] {e.Message}");
+                SiGui.TextWrappedColoured(Colours.Error, string.Format(Strings.Errors_DrawFailed, e.GetType().Name, e.Message));
             }
         }
 
@@ -107,9 +107,14 @@ namespace KikoGuide.GuideSystem
                 {
 
                 }
-
-                this.disposedValue = true;
             }
+
+            this.disposedValue = true;
+        }
+
+        ~GuideBase()
+        {
+            this.Dispose(false);
         }
     }
 }

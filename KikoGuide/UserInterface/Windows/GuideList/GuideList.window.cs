@@ -11,7 +11,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         public GuideListLogic Logic { get; } = new();
 
         /// <inheritdoc/>
-        public GuideListWindow() : base(Constants.Windows.GuideListTitle)
+        public GuideListWindow() : base(Constants.WindowTitles.GuideList)
         {
             this.Size = new(800, 520);
             this.SizeConstraints = new WindowSizeConstraints()

@@ -34,7 +34,7 @@ namespace KikoGuide.Integrations
         }
 
         /// <summary>
-        /// 
+        /// Loads all integrations.
         /// </summary>
         /// <returns></returns>
         private static HashSet<IntegrationBase> LoadIntegrations()
@@ -48,6 +48,7 @@ namespace KikoGuide.Integrations
                     loadedIntegrations.Add((IntegrationBase)type.GetConstructor(Array.Empty<Type>())!.Invoke(Array.Empty<object>()));
                 }
             }
+
             return loadedIntegrations;
         }
     }

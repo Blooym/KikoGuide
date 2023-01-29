@@ -1,17 +1,17 @@
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using KikoGuide.Common;
-using KikoGuide.UserInterface.Windows.IntegrationSettings.TableParts;
+using KikoGuide.UserInterface.Windows.GuideSettings.TableParts;
 
-namespace KikoGuide.UserInterface.Windows.IntegrationSettings
+namespace KikoGuide.UserInterface.Windows.GuideSettings
 {
-    internal sealed class IntegrationsWindow : Window
+    internal sealed class GuideSettingsWindow : Window
     {
         /// <inheritdoc/>
-        public IntegrationsLogic Logic { get; } = new();
+        public GuideSettingsLogic Logic { get; } = new();
 
         /// <inheritdoc/>
-        public IntegrationsWindow() : base(Constants.WindowTitles.IntegrationsTitle)
+        public GuideSettingsWindow() : base(Constants.WindowTitles.GuideTypeSettings)
         {
             this.Size = new(600, 400);
             this.SizeConstraints = new WindowSizeConstraints()
@@ -31,24 +31,24 @@ namespace KikoGuide.UserInterface.Windows.IntegrationSettings
                 return;
             }
 
-            if (ImGui.BeginTable("IntegrationSettings", 2, ImGuiTableFlags.BordersInnerV))
+            if (ImGui.BeginTable("GuideSettings", 2, ImGuiTableFlags.BordersInnerV))
             {
-                ImGui.TableSetupColumn("IntegrationsSidebar", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.3f);
-                ImGui.TableSetupColumn("IntegartionsList", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.7f);
+                ImGui.TableSetupColumn("GuideSettingsSidebar", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.3f);
+                ImGui.TableSetupColumn("GuideSettingsList", ImGuiTableColumnFlags.WidthFixed, ImGui.GetContentRegionAvail().X * 0.7f);
 
                 // Sidebar
                 ImGui.TableNextColumn();
-                if (ImGui.BeginChild("IntegrationsSidebarChild"))
+                if (ImGui.BeginChild("GuideSettingsSidebarChild"))
                 {
-                    IntegrationsSidebar.Draw(this.Logic);
+                    GuideSettingsSidebar.Draw(this.Logic);
                     ImGui.EndChild();
                 }
 
+                // Listings
                 ImGui.TableNextColumn();
-                if (ImGui.BeginChild("IntegrationsListChild"))
+                if (ImGui.BeginChild("GuideSettingsListChild"))
                 {
-
-                    IntegrationActive.Draw(this.Logic);
+                    GuideSettingsActive.Draw(this.Logic);
                     ImGui.EndChild();
                 }
 

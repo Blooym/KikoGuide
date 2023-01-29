@@ -13,7 +13,7 @@ namespace KikoGuide.CommandHandling.Commands
         /// <inheritdoc />
         public CommandInfo Command => new(this.OnExecute)
         {
-            HelpMessage = Strings.Guide_List_Command_Help,
+            HelpMessage = Strings.Commands_GuideList_Help,
             ShowInHelp = true,
         };
 

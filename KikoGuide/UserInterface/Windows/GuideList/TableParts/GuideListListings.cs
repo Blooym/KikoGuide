@@ -4,6 +4,7 @@ using System.Linq;
 using ImGuiNET;
 using KikoGuide.Enums;
 using KikoGuide.GuideSystem;
+using KikoGuide.Resources.Localization;
 using Sirensong.UserInterface;
 
 namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
@@ -64,7 +65,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
                 {
                     if (guides.Count == 0)
                     {
-                        ImGui.Text("No guides found for filter criteria.");
+                        SiGui.Text(Strings.UserInterface_GuideList_NoneFound);
                     }
                     else
                     {
@@ -125,8 +126,8 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         /// </summary>
         private static void DrawNoGuidesUnlocked()
         {
-            SiGui.TextHeading("No guides unlocked");
-            ImGui.TextWrapped("You have not unlocked any guides yet! Try progressing through the games main scenario quests to unlock some.");
+            SiGui.Heading(Strings.UserInterface_GuideList_NoneUnlocked_Heading);
+            SiGui.TextWrapped(Strings.UserInterface_GuideList_NoneUnlocked_Body);
         }
 
         /// <summary>
@@ -134,8 +135,8 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         /// </summary>
         private static void DrawNotLoggedIn()
         {
-            SiGui.TextHeading("Not logged in");
-            ImGui.TextWrapped("Please log in to a character in order to view guides.");
+            SiGui.Heading(Strings.UserInterface_GuideList_NoLogin_Title);
+            SiGui.TextWrapped(Strings.UserInterface_GuideList_NoLogin_Body);
         }
     }
 }
