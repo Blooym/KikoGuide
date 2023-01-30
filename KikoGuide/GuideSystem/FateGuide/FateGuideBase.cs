@@ -21,7 +21,7 @@ namespace KikoGuide.GuideSystem.FateGuide
             this.Description = this.Fate.Description.ToDalamudString().ToString();
             this.Icon = this.Fate.IconMap;
 
-            Services.RegisterService<FateConductorService>();
+            Services.GetOrCreateService<FateConductorService>();
         }
 
         public override GuideConfigurationBase Configuration => FateConfiguration.Instance;
@@ -39,7 +39,7 @@ namespace KikoGuide.GuideSystem.FateGuide
         {
             if (disposing)
             {
-                Services.UnregisterService<FateConductorService>();
+                Services.RemoveService<FateConductorService>();
             }
 
             base.Dispose(disposing);

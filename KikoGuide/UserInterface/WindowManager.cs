@@ -16,11 +16,6 @@ namespace KikoGuide.UserInterface
         private bool disposedValue;
 
         /// <summary>
-        /// Gets the singleton instance of <see cref="WindowManager" />.
-        /// </summary>
-        public static WindowManager Instance { get; } = new();
-
-        /// <summary>
         /// The windowing system.
         /// </summary>
         public WindowingSystem WindowingSystem { get; } = SirenCore.GetOrCreateService<WindowingSystem>();

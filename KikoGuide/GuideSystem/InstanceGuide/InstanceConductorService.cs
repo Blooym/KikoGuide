@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using FFXIVClientStructs.FFXIV.Client.Game.Event;
 using KikoGuide.Common;
 using KikoGuide.Resources.Localization;
+using Sirensong.Game;
 using Sirensong.Game.Enums;
-using Sirensong.Game.State;
-using Sirensong.Game.UI;
+using Sirensong.Game.Utility;
 
 namespace KikoGuide.GuideSystem.InstanceGuide
 {
@@ -67,7 +67,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
                 }
 
                 // Handle content flags.
-                if (InstanceContentDirector.HasFlag(ContentFlag.ExplorerMode))
+                if (InstanceContentDirectorUtil.HasFlag(ContentFlag.ExplorerMode))
                 {
                     return;
                 }

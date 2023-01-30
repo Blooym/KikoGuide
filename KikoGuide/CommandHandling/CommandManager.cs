@@ -10,11 +10,6 @@ namespace KikoGuide.CommandHandling
         private bool disposedValue;
 
         /// <summary>
-        /// The singleton instance of <see cref="CommandManager"/>.
-        /// </summary>
-        public static CommandManager Instance { get; } = new();
-
-        /// <summary>
         /// The list of registered commands.
         /// </summary>
         private ICommand[] commands =

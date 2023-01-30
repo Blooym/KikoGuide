@@ -9,11 +9,6 @@ namespace KikoGuide.Resources.Localization
         private bool disposedValue;
 
         /// <summary>
-        /// Gets the singleton instance of <see cref="LocalizationManager" />.
-        /// </summary>
-        public static LocalizationManager Instance { get; } = new();
-
-        /// <summary>
         /// Creates a new resource manager and sets up resources.
         /// </summary>
         private LocalizationManager()

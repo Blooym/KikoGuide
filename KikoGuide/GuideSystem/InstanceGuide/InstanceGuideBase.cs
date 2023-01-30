@@ -48,7 +48,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
             }
 
             // Register conductor service if it's not already registered
-            Services.RegisterService<InstanceConductorService>();
+            Services.GetOrCreateService<InstanceConductorService>();
         }
 
         /// <inheritdoc/>
@@ -112,7 +112,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
             {
                 if (disposing)
                 {
-                    Services.UnregisterService<InstanceConductorService>();
+                    Services.RemoveService<InstanceConductorService>();
                 }
 
                 this.disposedValue = true;

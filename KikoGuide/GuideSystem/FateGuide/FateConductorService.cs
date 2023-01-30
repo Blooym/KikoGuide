@@ -1,32 +1,37 @@
 using System;
 using System.Linq;
-using Dalamud.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.Fate;
 using KikoGuide.Common;
+using Sirensong;
+using Sirensong.Game.State;
 
 namespace KikoGuide.GuideSystem.FateGuide
 {
     /// <summary>
     /// Manages fate guide auto-selection.
     /// </summary>
-    internal sealed class FateConductorService : IDisposable
+    internal sealed unsafe class FateConductorService : IDisposable
     {
         private bool disposedValue;
 
         /// <summary>
         /// The fate configuration.
         /// </summary>
-        private static FateConfiguration Configuration => FateConfiguration.Instance;
+        private static readonly FateConfiguration Configuration = FateConfiguration.Instance;
 
         /// <summary>
-        /// The currently selected fate Id.
+        /// The fate state manager.
         /// </summary>
-        private uint currentFateId;
+        private static readonly FateStateManager FateStateManager = SirenCore.GetOrCreateService<FateStateManager>();
 
         /// <summary>
         /// Creates a new <see cref="FateConductorService"/>.
         /// </summary>
-        public FateConductorService() => Services.Framework.Update += this.OnFrameworkUpdate;
+        public FateConductorService()
+        {
+            FateStateManager.FateJoined += this.OnFateJoined;
+            FateStateManager.FateLeft += this.OnFateLeft;
+        }
 
         /// <summary>
         /// Disposes the <see cref="FateConductorService"/>.
@@ -35,71 +40,61 @@ namespace KikoGuide.GuideSystem.FateGuide
         {
             if (!this.disposedValue)
             {
-                Services.Framework.Update -= this.OnFrameworkUpdate;
+                FateStateManager.FateJoined -= this.OnFateJoined;
+                FateStateManager.FateLeft -= this.OnFateLeft;
                 this.disposedValue = true;
             }
         }
 
         /// <summary>
-        /// Called when the framework updates, handles auto opening of fate guides.
+        /// Handles fate joining.
         /// </summary>
-        /// <param name="framework"></param>
-        private unsafe void OnFrameworkUpdate(Framework framework)
+        /// <param name="fateContext"></param>
+        private void OnFateJoined(FateContext* fateContext)
         {
             if (!Configuration.AutoOpen)
             {
                 return;
             }
 
-            // Get the fate manager.
-            var fateMgr = FateManager.Instance();
-            if (fateMgr == null)
+            // Get guides for the current fate.
+            var fateGuides = Services.GuideManager.GetGuides<FateGuideBase>();
+            if (fateGuides == null)
             {
                 return;
             }
 
-            // Get the current fate.
-            var currentFate = fateMgr->CurrentFate;
-            if (currentFate == null)
+            // Select the first guide that matches the current fate.
+            var fate = fateGuides.FirstOrDefault(f => f.Fate.RowId == fateContext->FateId);
+            if (fate == null)
             {
-                if (this.currentFateId != 0)
-                {
-                    Services.GuideManager.SelectedGuide = null;
-                    this.currentFateId = 0;
-                }
                 return;
             }
 
-            // If the currnet fate is different from the last one, select it.
-            if (currentFate->FateId != this.currentFateId)
+            // Handle opening the guide.
+            switch (Configuration.AutoOpen)
             {
-                this.currentFateId = currentFate->FateId;
-
-                // Get guides for the current fate.
-                var fateGuides = Services.GuideManager.GetGuides<FateGuideBase>();
-                if (fateGuides == null)
-                {
-                    return;
-                }
-
-                // Select the first guide that matches the current fate.
-                var fate = fateGuides.FirstOrDefault(f => f.Fate.RowId == this.currentFateId);
-                if (fate == null)
-                {
-                    return;
-                }
-
-                // Handle opening the guide.
-                switch (Configuration.AutoOpen)
-                {
-                    case true:
-                        Services.GuideManager.SelectedGuide = fate;
-                        Services.WindowManager.SetGuideViewerWindowVis(true);
-                        break;
-                    default:
-                        break;
-                }
+                case true:
+                    Services.GuideManager.SelectedGuide = fate;
+                    Services.WindowManager.SetGuideViewerWindowVis(true);
+                    break;
+                default:
+                    break;
             }
+        }
+
+        /// <summary>
+        /// Handles fate leaving.
+        /// </summary>
+        private void OnFateLeft()
+        {
+            if (!Configuration.AutoOpen)
+            {
+                return;
+            }
+
+            Services.WindowManager.SetGuideViewerWindowVis(false);
+            Services.GuideManager.SelectedGuide = null;
         }
     }
 }

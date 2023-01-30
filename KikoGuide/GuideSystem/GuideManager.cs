@@ -14,11 +14,6 @@ namespace KikoGuide.GuideSystem
         private bool disposedValue;
 
         /// <summary>
-        /// The singleton instance of <see cref="GuideManager" />.
-        /// </summary>
-        public static GuideManager Instance { get; } = new();
-
-        /// <summary>
         /// All loaded guides.
         /// </summary>
         private readonly HashSet<GuideBase> guides = new();

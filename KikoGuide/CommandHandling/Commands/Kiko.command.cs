@@ -2,7 +2,7 @@ using Dalamud.Game.Command;
 using KikoGuide.CommandHandling.Interfaces;
 using KikoGuide.Common;
 using KikoGuide.Resources.Localization;
-using Sirensong.Game.UI;
+using Sirensong.Game;
 
 namespace KikoGuide.CommandHandling.Commands
 {

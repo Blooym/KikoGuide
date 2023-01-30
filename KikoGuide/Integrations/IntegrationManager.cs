@@ -7,11 +7,6 @@ namespace KikoGuide.Integrations
     internal sealed class IntegrationManager : IDisposable
     {
         /// <summary>
-        /// The singleton instance of <see cref="IntegrationManager" />.
-        /// </summary>
-        public static IntegrationManager Instance { get; } = new();
-
-        /// <summary>
         /// All loaded integrations.
         /// </summary>
         public HashSet<IntegrationBase> Integrations { get; private set; } = new();

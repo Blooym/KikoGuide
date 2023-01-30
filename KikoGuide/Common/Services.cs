@@ -35,9 +35,7 @@ namespace KikoGuide.Common
         [SirenService] internal static LuminaCacheService<ContentFinderConditionTransient> ContentFinderConditionTransientCache { get; private set; } = null!;
 
         // Plugin services
-        internal static CommandManager CommandManager { get; private set; } = null!;
         internal static WindowManager WindowManager { get; private set; } = null!;
-        internal static LocalizationManager ResourceManager { get; private set; } = null!;
         internal static GuideManager GuideManager { get; private set; } = null!;
         internal static IntegrationManager IntegrationManager { get; private set; } = null!;
         internal static PluginConfiguration Configuration { get; private set; } = null!;
@@ -50,17 +48,17 @@ namespace KikoGuide.Common
         /// </summary>
         internal static void Initialize(DalamudPluginInterface pluginInterface)
         {
-            // Inject services
+            // Inject Dalamud + Sirensong services
             SirenCore.InjectServices<Services>();
             pluginInterface.Create<Services>();
 
-            // Create plugin services
+            // Create plugin services and add them to variables for quick access
             Configuration = PluginConfiguration.Load();
-            ResourceManager = LocalizationManager.Instance;
-            GuideManager = GuideManager.Instance;
-            WindowManager = WindowManager.Instance;
-            CommandManager = CommandManager.Instance;
-            IntegrationManager = IntegrationManager.Instance;
+            GetOrCreateService<LocalizationManager>();
+            GuideManager = GetOrCreateService<GuideManager>();
+            WindowManager = GetOrCreateService<WindowManager>();
+            GetOrCreateService<CommandManager>();
+            IntegrationManager = GetOrCreateService<IntegrationManager>();
         }
 
         /// <summary>
@@ -68,58 +66,62 @@ namespace KikoGuide.Common
         /// </summary>
         internal static void Dispose()
         {
-            // Dispose of plugin services
-            CommandManager.Dispose();
-            WindowManager.Dispose();
-            GuideManager.Dispose();
-            IntegrationManager.Dispose();
-            ResourceManager.Dispose();
-
-            // Unregister external services
+            // Unregister all services
             foreach (var service in ServiceContainer.ToArray())
             {
                 if (service is IDisposable disposable)
                 {
                     disposable.Dispose();
+                    BetterLog.Debug($"Disposed of service: {service.GetType().Name}");
                 }
+
+                BetterLog.Debug($"Unregistered service: {service.GetType().Name}");
                 ServiceContainer.Remove(service);
             }
         }
 
         /// <summary>
-        /// Registers a class as a service and injects it into the service container.
-        /// </summary>
-        /// <remarks>
-        /// if you do not dispose of the service yourself, it will be disposed of when the plugin is unloaded.
-        /// </remarks>
-        /// <typeparam name="T"></typeparam>
-        /// <returns>The service if it was registered, otherwise false.</returns>
-        internal static bool RegisterService<T>() where T : class, new()
-        {
-            if (ServiceContainer.Find(x => x is T) is not null)
-            {
-                return false;
-            }
-            var service = new T();
-            ServiceContainer.Add(service);
-
-            BetterLog.Debug($"Registered service: {service.GetType().Name}");
-
-            return true;
-        }
-
-        /// <summary>
-        /// Gets an external service from the service container if it exists.
+        /// Gets a service from the service container if it exists.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>The service if found, otherwise <see langword="null"/>.</returns>
         internal static T? GetService<T>() where T : class => ServiceContainer.Find(x => x is T) as T;
 
         /// <summary>
-        /// Unregisters a service from the service container and disposes of it.
+        /// Creates the service if it does not exist, returns the service either way.
+        /// </summary>
+        /// <remarks>
+        /// If you do not dispose of the service yourself, it will be disposed of when the plugin is unloaded.
+        /// </remarks>
+        /// <typeparam name="T">The type of the service.</typeparam>
+        /// <returns>The service that was created or found.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the service could not be created.</exception>
+        internal static T GetOrCreateService<T>() where T : class
+        {
+            var existingService = GetService<T>();
+            if (existingService is not null)
+            {
+                return existingService;
+            }
+
+            BetterLog.Debug($"Creating service: {typeof(T).FullName}");
+
+            if (Activator.CreateInstance(typeof(T), true) is not T service)
+            {
+                throw new InvalidOperationException($"Could not create service of type {typeof(T).FullName}.");
+            }
+
+            ServiceContainer.Add(service);
+            BetterLog.Debug($"Service created: {service.GetType().Name}");
+            return service;
+        }
+
+        /// <summary>
+        /// Removes a service from the service container if it exists and disposes of it if it implements <see cref="IDisposable"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        internal static bool UnregisterService<T>() where T : class
+        /// <returns>True if removal was successful, otherwise false.</returns>
+        internal static bool RemoveService<T>() where T : class
         {
             var service = ServiceContainer.Find(x => x is T);
             if (service is not null)
@@ -128,14 +130,13 @@ namespace KikoGuide.Common
 
                 if (service is IDisposable disposable)
                 {
+                    BetterLog.Debug($"Disposing service: {service.GetType().Name}");
                     disposable.Dispose();
                 }
 
                 BetterLog.Debug($"Unregistered service: {service.GetType().Name}");
-
                 return true;
             }
-
             return false;
         }
     }
