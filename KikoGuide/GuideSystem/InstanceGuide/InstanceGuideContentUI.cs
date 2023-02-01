@@ -1,4 +1,3 @@
-using System.Globalization;
 using Dalamud.Utility;
 using ImGuiNET;
 using KikoGuide.Resources.Localization;
@@ -146,7 +145,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
             SiGui.Heading(Strings.Guide_InstanceContent_Tips_Heading);
             foreach (var tip in tips)
             {
-                SiGui.TextWrapped($"{CultureInfo.CurrentCulture.TextInfo.ListSeparator} {tip.UICurrent}");
+                SiGui.TextWrapped($"• {tip.UICurrent}");
             }
         }
 
