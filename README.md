@@ -28,8 +28,17 @@ KikoGuide is currently not considered stable and therefore is only available to 
 
 These screenshots are from the development version of KikoGuide and may not reflect how the plugin will appear in a stable release.
 
-<img src="./.assets/screenshots/image1.png" alt="Kiko Guide Screenshot 1" width="38%">
-<img src="./.assets/screenshots/image2.png" alt="Kiko Guide Screenshot 2" width="60%">
+<!-- Dropdowns -->
+
+<details>
+<summary>Guide List</summary>
+<img src="./.assets/screenshots/image1.png" alt="Kiko Guide Screenshot 1">
+</details>
+
+<details>
+<summary>Guide View</summary>
+<img src="./.assets/screenshots/image2.png" alt="Kiko Guide Screenshot 2">
+</details>
 
 ---
 
