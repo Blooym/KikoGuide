@@ -32,12 +32,12 @@ These screenshots are from the development version of KikoGuide and may not refl
 
 <details>
 <summary>Guide List</summary>
-<img src="./.assets/screenshots/image1.png" alt="Kiko Guide Screenshot 1">
+<img src="./.assets/screenshots/image2.png" alt="Kiko Guide Screenshot 2">
 </details>
 
 <details>
 <summary>Guide View</summary>
-<img src="./.assets/screenshots/image2.png" alt="Kiko Guide Screenshot 2">
+<img src="./.assets/screenshots/image1.png" alt="Kiko Guide Screenshot 1">
 </details>
 
 ---
