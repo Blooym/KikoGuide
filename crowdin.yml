@@ -1,7 +1,6 @@
 files:
-  - source: /KikoGuide/Resources/Localization/Plugin/*_Localizable.json
-    translation: /%original_path%/%two_letters_code%.json
-
-pull_request_title: "chore(i10n): Translation updates (Crowdin)"
-commit_message: "chore(i10n): translations updates for %original_file_name% [skip ci]"
-append_commit_message: false
+  - source: /KikoGuide/Resources/Localization/*.resx
+    translation: /%original_path%/Strings.%two_letters_code%.resx
+pull_request_title: 'chore(i10n): Translation updates (Crowdin)'
+commit_message: 'chore(i10n): translations updates for %original_file_name% [skip ci]'
+append_commit_message: 
