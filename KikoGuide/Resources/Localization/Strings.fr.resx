@@ -127,13 +127,13 @@
     <value>[{0}] Plugin Settings</value>
   </data>
   <data name="Windows_GuideList_Title" xml:space="preserve">
-    <value>[{0}] Guide List</value>
+    <value>[{0}] - Liste des guides</value>
   </data>
   <data name="Windows_GuideViewer_Title" xml:space="preserve">
     <value>[{0}] Guide Viewer</value>
   </data>
   <data name="Windows_Integrations_Title" xml:space="preserve">
-    <value>[{0}] Integrations</value>
+    <value>[{0}] Intégrations</value>
   </data>
   <data name="Windows_GuideSettings_Title" xml:space="preserve">
     <value>[{0}] Guide Settings</value>
@@ -160,10 +160,10 @@
     <value>An error occured with this integration. It has been automatically disabled until the next plugin reload. Please check Dalamud's logs for more information.</value>
   </data>
   <data name="Integrations_Enabled" xml:space="preserve">
-    <value>Enabled</value>
+    <value>Activé</value>
   </data>
   <data name="UserInterface_Integrations_Title" xml:space="preserve">
-    <value>Integrations</value>
+    <value>Intégrations</value>
   </data>
   <data name="UserInterface_GuideSettings_Title" xml:space="preserve">
     <value>Guide Settings</value>
@@ -184,7 +184,7 @@
     <value>Please log in to a character in order to view guides.</value>
   </data>
   <data name="UserInterface_GuideList_Search_Heading" xml:space="preserve">
-    <value>Search</value>
+    <value>Rechercher</value>
   </data>
   <data name="UserInterface_GuideList_SearchHint" xml:space="preserve">
     <value>Search for guide...</value>
@@ -220,13 +220,13 @@
     <value>Guide Settings</value>
   </data>
   <data name="Guide_InstanceContent_Mechanics_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Nom</value>
   </data>
   <data name="Guide_InstanceContent_Mechanics_Description" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="Guide_InstanceContent_Mechanics_Heading" xml:space="preserve">
-    <value>Mechanics</value>
+    <value>Mécaniques</value>
   </data>
   <data name="Guide_InstanceContent_Content_Heading" xml:space="preserve">
     <value>Content</value>
