@@ -82,7 +82,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         /// <summary>
         /// The note associated with this guide.
         /// </summary>
-        public Note Note { get; }
+        public override Note Note { get; }
 
         /// <inheritdoc/>
         public override string Name { get; }

@@ -135,18 +135,6 @@ namespace KikoGuide.Resources.Localization {
             }
         }
         
-        internal static string Integrations_ActiveStatus_False {
-            get {
-                return ResourceManager.GetString("Integrations_ActiveStatus_False", resourceCulture);
-            }
-        }
-        
-        internal static string Integrations_ActiveStatus_True {
-            get {
-                return ResourceManager.GetString("Integrations_ActiveStatus_True", resourceCulture);
-            }
-        }
-        
         internal static string UserInterface_Integrations_Title {
             get {
                 return ResourceManager.GetString("UserInterface_Integrations_Title", resourceCulture);
@@ -297,21 +285,21 @@ namespace KikoGuide.Resources.Localization {
             }
         }
         
-        internal static string Guide_InstanceContent_Note_Save {
+        internal static string Note_Save {
             get {
-                return ResourceManager.GetString("Guide_InstanceContent_Note_Save", resourceCulture);
+                return ResourceManager.GetString("Note_Save", resourceCulture);
             }
         }
         
-        internal static string Guide_InstanceContent_Note_Edit {
+        internal static string Note_Edit {
             get {
-                return ResourceManager.GetString("Guide_InstanceContent_Note_Edit", resourceCulture);
+                return ResourceManager.GetString("Note_Edit", resourceCulture);
             }
         }
         
-        internal static string Guide_InstanceContent_Note_Heading {
+        internal static string Note_Name {
             get {
-                return ResourceManager.GetString("Guide_InstanceContent_Note_Heading", resourceCulture);
+                return ResourceManager.GetString("Note_Name", resourceCulture);
             }
         }
         
@@ -390,6 +378,36 @@ namespace KikoGuide.Resources.Localization {
         internal static string Guide_Fate_TypeName {
             get {
                 return ResourceManager.GetString("Guide_Fate_TypeName", resourceCulture);
+            }
+        }
+        
+        internal static string Note_Create {
+            get {
+                return ResourceManager.GetString("Note_Create", resourceCulture);
+            }
+        }
+        
+        internal static string UserInterface_GuideViewer_Tooltip_LockViewer {
+            get {
+                return ResourceManager.GetString("UserInterface_GuideViewer_Tooltip_LockViewer", resourceCulture);
+            }
+        }
+        
+        internal static string UserInterface_GuideViewer_Tooltip_UnlockViewer {
+            get {
+                return ResourceManager.GetString("UserInterface_GuideViewer_Tooltip_UnlockViewer", resourceCulture);
+            }
+        }
+        
+        internal static string UserInterface_GuideViewer_Tooltip_ShowNote {
+            get {
+                return ResourceManager.GetString("UserInterface_GuideViewer_Tooltip_ShowNote", resourceCulture);
+            }
+        }
+        
+        internal static string UserInterface_GuideViewer_Tooltip_ShowGuide {
+            get {
+                return ResourceManager.GetString("UserInterface_GuideViewer_Tooltip_ShowGuide", resourceCulture);
             }
         }
     }

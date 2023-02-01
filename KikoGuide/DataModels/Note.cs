@@ -112,7 +112,7 @@ namespace KikoGuide.DataModels
         /// <returns></returns>
         public Note SetName(string name)
         {
-            this.Name = name;
+            this.Name = name.Trim();
             return this;
         }
 
@@ -123,7 +123,7 @@ namespace KikoGuide.DataModels
         /// <returns></returns>
         public Note SetContent(string content)
         {
-            this.Content = content;
+            this.Content = content.Trim();
             return this;
         }
     }

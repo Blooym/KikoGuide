@@ -1,7 +1,6 @@
+using System.Globalization;
 using Dalamud.Utility;
-using FFXIVClientStructs.FFXIV.Common.Math;
 using ImGuiNET;
-using KikoGuide.DataModels;
 using KikoGuide.Resources.Localization;
 using Sirensong.DataStructures;
 using Sirensong.UserInterface;
@@ -11,81 +10,14 @@ namespace KikoGuide.GuideSystem.InstanceGuide
 {
     internal static class InstanceGuideContentUI
     {
-        private static Vector2 GuideAreaSize => new(0, (ImGui.GetWindowContentRegionMax().Y * 0.75f) - ImGui.GetStyle().WindowPadding.Y);
-        private static Vector2 NoteAreaSize => new(0, (ImGui.GetWindowSize().Y * 0.25f) - ImGui.GetStyle().WindowPadding.Y);
-        private static Vector2 NoteContentSize => new(-1, ImGui.GetContentRegionAvail().Y * 0.8f);
-        private static bool isEditingNote;
-
         /// <summary>
         /// Draws the guide.
         /// </summary>
         /// <param name="guide">The guide to draw.</param>
         public static void Draw(InstanceGuideBase guide)
         {
-            // Window too small to display note
-            if (ImGui.GetContentRegionAvail().Y < 380)
-            {
-                if (ImGui.BeginChild("Guide", Vector2.Zero, true))
-                {
-                    DrawSections(guide);
-                }
-                ImGui.EndChild();
-            }
-            // Window large enough to display note
-            else
-            {
-                if (ImGui.BeginChild("Guide", GuideAreaSize, true))
-                {
-                    DrawSections(guide);
-                }
-                ImGui.EndChild();
-
-                if (ImGui.BeginChild("Notes", NoteAreaSize, true, ImGuiWindowFlags.NoScrollbar))
-                {
-                    DrawNote(guide.Note);
-                }
-                ImGui.EndChild();
-            }
-        }
-
-        /// <summary>
-        /// Draws the guide note.
-        /// </summary>
-        /// <param name="note">The note to draw.</param>
-        private static void DrawNote(Note note)
-        {
-            SiGui.Heading(Strings.Guide_InstanceContent_Note_Heading);
-            var noteContent = note.Content;
-
-            // Not editing note
-            if (!isEditingNote)
-            {
-                if (ImGui.BeginChild("NoteContent", NoteContentSize, false))
-                {
-                    SiGui.TextWrapped(noteContent);
-                }
-                ImGui.EndChild();
-
-                if (ImGui.Button(Strings.Guide_InstanceContent_Note_Edit))
-                {
-                    isEditingNote = true;
-                }
-            }
-
-            // Editing note
-            else
-            {
-                if (SiGui.InputTextMultiline("##Note", ref noteContent, 1000, NoteContentSize, true))
-                {
-                    note.SetContent(noteContent).Save();
-                    isEditingNote = false;
-                }
-
-                if (ImGui.Button(Strings.Guide_InstanceContent_Note_Save))
-                {
-                    isEditingNote = false;
-                }
-            }
+            DrawSections(guide);
+            ImGui.EndChild();
         }
 
         /// <summary>
@@ -214,7 +146,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
             SiGui.Heading(Strings.Guide_InstanceContent_Tips_Heading);
             foreach (var tip in tips)
             {
-                SiGui.TextWrapped("- " + tip.UICurrent);
+                SiGui.TextWrapped($"{CultureInfo.CurrentCulture.TextInfo.ListSeparator} {tip.UICurrent}");
             }
         }
 

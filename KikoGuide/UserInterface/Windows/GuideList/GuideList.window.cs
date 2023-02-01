@@ -21,7 +21,6 @@ namespace KikoGuide.UserInterface.Windows.GuideList
             };
             this.SizeCondition = ImGuiCond.FirstUseEver;
             this.Flags = ImGuiWindowFlags.NoScrollbar;
-            this.IsOpen = true;
         }
 
         /// <inheritdoc/>

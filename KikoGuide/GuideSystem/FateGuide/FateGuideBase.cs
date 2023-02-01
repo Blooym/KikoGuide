@@ -1,6 +1,7 @@
 using System;
 using Dalamud.Utility;
 using KikoGuide.Common;
+using KikoGuide.DataModels;
 using Lumina.Excel.GeneratedSheets;
 using Sirensong.Game.Enums;
 using Enums = Sirensong.Game.Enums;
@@ -20,6 +21,7 @@ namespace KikoGuide.GuideSystem.FateGuide
             this.Name = this.Fate.Name.ToDalamudString().ToString();
             this.Description = this.Fate.Description.ToDalamudString().ToString();
             this.Icon = this.Fate.IconMap;
+            this.Note = Note.CreateOrLoad($"{this.ContentType}_{this.Fate.Name}");
 
             Services.GetOrCreateService<FateConductorService>();
         }
@@ -33,6 +35,7 @@ namespace KikoGuide.GuideSystem.FateGuide
         public override bool IsUnlocked { get; } = true;
         public Fate Fate { get; private set; }
         protected abstract uint FateId { get; }
+        public override Note Note { get; }
 
         /// <inheritdoc />
         protected override void Dispose(bool disposing)

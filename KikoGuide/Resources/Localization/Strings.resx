@@ -162,12 +162,6 @@
   <data name="Integrations_Enabled" xml:space="preserve">
     <value>Enabled</value>
   </data>
-  <data name="Integrations_ActiveStatus_False" xml:space="preserve">
-    <value>This integration is waiting to activate.</value>
-  </data>
-  <data name="Integrations_ActiveStatus_True" xml:space="preserve">
-    <value>This integration has successful activated and is ready to use.</value>
-  </data>
   <data name="UserInterface_Integrations_Title" xml:space="preserve">
     <value>Integrations</value>
   </data>
@@ -243,13 +237,13 @@
   <data name="Guide_InstanceContent_Links_Heading" xml:space="preserve">
     <value>Links</value>
   </data>
-  <data name="Guide_InstanceContent_Note_Save" xml:space="preserve">
-    <value>Save</value>
+  <data name="Note_Save" xml:space="preserve">
+    <value>Save Note</value>
   </data>
-  <data name="Guide_InstanceContent_Note_Edit" xml:space="preserve">
-    <value>Edit</value>
+  <data name="Note_Edit" xml:space="preserve">
+    <value>Edit Note</value>
   </data>
-  <data name="Guide_InstanceContent_Note_Heading" xml:space="preserve">
+  <data name="Note_Name" xml:space="preserve">
     <value>Note</value>
   </data>
   <data name="Guide_InstanceContent_TypeName" xml:space="preserve">
@@ -290,5 +284,20 @@
   </data>
   <data name="Guide_Fate_TypeName" xml:space="preserve">
     <value>Fate Guide</value>
+  </data>
+  <data name="Note_Create" xml:space="preserve">
+    <value>Create Note</value>
+  </data>
+  <data name="UserInterface_GuideViewer_Tooltip_LockViewer" xml:space="preserve">
+    <value>Lock the guide viewer</value>
+  </data>
+  <data name="UserInterface_GuideViewer_Tooltip_UnlockViewer" xml:space="preserve">
+    <value>Unlock the guide viewer</value>
+  </data>
+  <data name="UserInterface_GuideViewer_Tooltip_ShowNote" xml:space="preserve">
+    <value>Show your note for this guide</value>
+  </data>
+  <data name="UserInterface_GuideViewer_Tooltip_ShowGuide" xml:space="preserve">
+    <value>Show the guide content</value>
   </data>
 </root>

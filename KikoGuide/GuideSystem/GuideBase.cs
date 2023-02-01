@@ -1,4 +1,5 @@
 using System;
+using KikoGuide.DataModels;
 using KikoGuide.Resources.Localization;
 using Sirensong.Game.Enums;
 using Sirensong.UserInterface;
@@ -43,6 +44,11 @@ namespace KikoGuide.GuideSystem
         /// The content type of the guide.
         /// </summary>
         public abstract ContentType ContentType { get; }
+
+        /// <summary>
+        /// The note associated with the guide.
+        /// </summary>
+        public abstract Note Note { get; }
 
         /// <summary>
         /// Whether or not the guide should be considered unlocked.
