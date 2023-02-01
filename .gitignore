@@ -1,6 +1,7 @@
 # Code Editors
 .vs/                
 .idea/
+*.DotSettings.user
 
 # .NET outputs
 obj/

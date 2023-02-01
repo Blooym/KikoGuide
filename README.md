@@ -40,8 +40,6 @@ These screenshots are from the development version of KikoGuide and may not refl
 <img src="./.assets/screenshots/image1.png" alt="Kiko Guide Screenshot 1">
 </details>
 
----
-
 ## Contributing
 
 ### Guides & Code Contributions
