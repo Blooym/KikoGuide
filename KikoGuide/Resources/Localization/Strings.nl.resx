@@ -300,19 +300,4 @@
   <data name="UserInterface_GuideViewer_Tooltip_ShowGuide" xml:space="preserve">
     <value>Show the guide content</value>
   </data>
-  <data name="Note_Delete" xml:space="preserve">
-    <value>Delete Note</value>
-  </data>
-  <data name="UserInterface_Global_TooltipHint" xml:space="preserve">
-    <value>[?]</value>
-  </data>
-  <data name="UserInterface_GuideViewer_Tooltip_EnableDeleteNote" xml:space="preserve">
-    <value>Hold SHIFT to enable note deletion.</value>
-  </data>
-  <data name="UserInterface_Toast_NoteSaved" xml:space="preserve">
-    <value>Your note was saved.</value>
-  </data>
-  <data name="UserInterface_Toast_NoteDeleted" xml:space="preserve">
-    <value>Your note was deleted.</value>
-  </data>
 </root>
