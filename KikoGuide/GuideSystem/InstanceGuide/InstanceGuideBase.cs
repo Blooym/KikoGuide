@@ -31,9 +31,9 @@ namespace KikoGuide.GuideSystem.InstanceGuide
 
             // Assign to properties
             this.Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.LinkedDuty.CFCondition.Name.ToDalamudString().ToString());
+            this.Difficulty = Services.ContentFinderConditionCache.OfLanguage(Dalamud.ClientLanguage.English).GetRow(this.DutyId)!.GetContentDifficulty();
             this.Description = this.LinkedDuty.CFConditionTransient.Description.ToDalamudString().ToString();
             this.ContentType = this.LinkedDuty.CFCondition.GetContentType(true) ?? Sirensong.Game.Enums.ContentType.Unknown;
-            this.Difficulty = this.LinkedDuty.CFCondition.GetContentDifficulty();
             this.Icon = this.LinkedDuty.CFCondition.ContentType.Value?.Icon ?? 21;
             this.Note = Note.CreateOrLoad(@$"{this.ContentType}_{this.Name}");
 
