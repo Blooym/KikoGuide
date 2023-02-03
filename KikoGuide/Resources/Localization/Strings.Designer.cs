@@ -440,5 +440,11 @@ namespace KikoGuide.Resources.Localization {
                 return ResourceManager.GetString("UserInterface_Toast_NoteDeleted", resourceCulture);
             }
         }
+        
+        internal static string UserInterface_PluginSettings_Title {
+            get {
+                return ResourceManager.GetString("UserInterface_PluginSettings_Title", resourceCulture);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 using ImGuiNET;
+using KikoGuide.Resources.Localization;
 using Sirensong.UserInterface;
 
 namespace KikoGuide.UserInterface.Windows.PluginSettings.TableParts
@@ -7,9 +8,9 @@ namespace KikoGuide.UserInterface.Windows.PluginSettings.TableParts
     {
         public static void Draw(PluginSettingsLogic logic)
         {
-            SiGui.Heading("Plugin Settings");
+            SiGui.Heading(Strings.UserInterface_PluginSettings_Title);
 
-            if (ImGui.Selectable("General", logic.SelectedTab == PluginSettingsLogic.ConfigurationTabs.General))
+            if (ImGui.Selectable(Strings.UserInterface_PluginSettings_General_Heading, logic.SelectedTab == PluginSettingsLogic.ConfigurationTabs.General))
             {
                 logic.SelectedTab = PluginSettingsLogic.ConfigurationTabs.General;
             }

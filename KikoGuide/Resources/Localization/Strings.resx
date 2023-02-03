@@ -315,4 +315,7 @@
   <data name="UserInterface_Toast_NoteDeleted" xml:space="preserve">
     <value>Your note was deleted.</value>
   </data>
+  <data name="UserInterface_PluginSettings_Title" xml:space="preserve">
+    <value>Plugin Settings</value>
+  </data>
 </root>
