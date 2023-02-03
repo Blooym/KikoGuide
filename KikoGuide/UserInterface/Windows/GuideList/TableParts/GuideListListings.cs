@@ -59,7 +59,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
             // Get guides for this duty type and display them
             var guides = logic.GetFilteredGuides(contentType);
             ImGui.BeginDisabled(guides.Count == 0);
-            if (ImGui.BeginTabItem(contentType.ToString()))
+            if (ImGui.BeginTabItem(contentType.GetLocalizedNamePlural()))
             {
                 if (ImGui.BeginChild($"ContentTypeTab_{contentType}"))
                 {

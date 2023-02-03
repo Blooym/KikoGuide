@@ -60,7 +60,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
 
             foreach (var difficulty in Enum.GetValues<ContentDifficulty>())
             {
-                if (ImGui.Selectable(difficulty.ToString(), logic.DifficultyFilter == difficulty))
+                if (ImGui.Selectable(difficulty.GetLocalizedName(), logic.DifficultyFilter == difficulty))
                 {
                     logic.DifficultyFilter = difficulty;
                 }
