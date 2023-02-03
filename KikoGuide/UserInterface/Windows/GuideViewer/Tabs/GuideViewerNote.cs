@@ -9,7 +9,7 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer.Tabs
 {
     internal static class GuideViewerNote
     {
-        private static Vector2 NoteContentSize => new(-1, -30);
+        private static Vector2 NoteContentSize => new(-1, -60);
 
         /// <summary>
         /// Draws the note tab.
@@ -80,12 +80,24 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer.Tabs
                 SaveNoteWithContent(note, content);
                 logic.NoteState = GuideViewerLogic.NoteTabState.Viewing;
             }
+
+            ImGui.BeginDisabled(!ImGui.IsKeyDown(ImGuiKey.LeftShift) && !ImGui.IsKeyDown(ImGuiKey.RightShift));
+            if (ImGui.Selectable(Strings.Note_Delete))
+            {
+                note.Delete();
+                SiGui.ShowToast(Strings.UserInterface_Toast_NoteDeleted, NotificationType.Success, 3000);
+                logic.NoteState = GuideViewerLogic.NoteTabState.Viewing;
+            }
+            ImGui.EndDisabled();
+            ImGui.SameLine();
+            SiGui.TextDisabled(Strings.UserInterface_Global_TooltipHint);
+            SiGui.TooltipLast(Strings.UserInterface_GuideViewer_Tooltip_EnableDeleteNote);
         }
 
         private static void SaveNoteWithContent(Note note, string content)
         {
             note.SetContent(content).Save();
-            SiGui.ShowToast("Note saved!", NotificationType.Success);
+            SiGui.ShowToast(Strings.UserInterface_Toast_NoteSaved, NotificationType.Success, 3000);
         }
     }
 }

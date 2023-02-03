@@ -72,10 +72,10 @@ namespace KikoGuide.GuideSystem.FateGuide
             }
 
             // Handle opening the guide.
+            Services.GuideManager.SelectedGuide = fate;
             switch (Configuration.AutoOpen)
             {
                 case true:
-                    Services.GuideManager.SelectedGuide = fate;
                     Services.WindowManager.SetGuideViewerWindowVis(true);
                     break;
                 default:

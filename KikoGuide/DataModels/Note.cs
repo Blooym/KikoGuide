@@ -103,7 +103,11 @@ namespace KikoGuide.DataModels
             return this;
         }
 
-        public void Delete() => File.Delete(GetPath(this.Name));
+        public void Delete()
+        {
+            this.Content = string.Empty;
+            File.Delete(GetPath(this.Name));
+        }
 
         /// <summary>
         /// Sets the name of the note.

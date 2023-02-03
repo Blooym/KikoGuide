@@ -97,10 +97,7 @@ namespace KikoGuide.Integrations
         /// <summary>
         /// The UI to draw to configure the integration.
         /// </summary>
-        protected virtual void DrawAction()
-        {
-
-        }
+        protected virtual void DrawAction() => SiGui.TextWrapped(Strings.Integrations_NoConfig);
 
         /// <summary>
         /// Draw the UI to configure the integration.

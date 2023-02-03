@@ -410,5 +410,35 @@ namespace KikoGuide.Resources.Localization {
                 return ResourceManager.GetString("UserInterface_GuideViewer_Tooltip_ShowGuide", resourceCulture);
             }
         }
+        
+        internal static string Note_Delete {
+            get {
+                return ResourceManager.GetString("Note_Delete", resourceCulture);
+            }
+        }
+        
+        internal static string UserInterface_Global_TooltipHint {
+            get {
+                return ResourceManager.GetString("UserInterface_Global_TooltipHint", resourceCulture);
+            }
+        }
+        
+        internal static string UserInterface_GuideViewer_Tooltip_EnableDeleteNote {
+            get {
+                return ResourceManager.GetString("UserInterface_GuideViewer_Tooltip_EnableDeleteNote", resourceCulture);
+            }
+        }
+        
+        internal static string UserInterface_Toast_NoteSaved {
+            get {
+                return ResourceManager.GetString("UserInterface_Toast_NoteSaved", resourceCulture);
+            }
+        }
+        
+        internal static string UserInterface_Toast_NoteDeleted {
+            get {
+                return ResourceManager.GetString("UserInterface_Toast_NoteDeleted", resourceCulture);
+            }
+        }
     }
 }
