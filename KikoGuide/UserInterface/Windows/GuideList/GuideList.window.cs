@@ -2,6 +2,7 @@ using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using KikoGuide.Common;
 using KikoGuide.UserInterface.Windows.GuideList.TableParts;
+using Sirensong.UserInterface.Windowing;
 
 namespace KikoGuide.UserInterface.Windows.GuideList
 {
@@ -20,7 +21,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList
                 MaximumSize = new(1200, 700),
             };
             this.SizeCondition = ImGuiCond.FirstUseEver;
-            this.Flags = ImGuiWindowFlags.NoScrollbar;
+            this.Flags = ImGuiWindowFlagExtras.NoScroll;
         }
 
         /// <inheritdoc/>

@@ -20,9 +20,33 @@ namespace KikoGuide.Common
         internal static class Build
         {
             internal static readonly Version Version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0, 0);
+            internal static readonly string VersionInformational = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "Unknown";
             internal static readonly string GitCommitHash = Assembly.GetExecutingAssembly().GetCustomAttribute<GitHashAttribute>()?.Value ?? "Unknown";
+            internal static readonly string GitCommitMessage = Assembly.GetExecutingAssembly().GetCustomAttribute<GitCommitMessageAttribute>()?.Value ?? "Unknown";
             internal static readonly DateTime GitCommitDate = DateTime.TryParse(Assembly.GetExecutingAssembly().GetCustomAttribute<GitCommitDateAttribute>()?.Value, out var date) ? date : DateTime.MinValue;
             internal static readonly string GitBranch = Assembly.GetExecutingAssembly().GetCustomAttribute<GitBranchAttribute>()?.Value ?? "Unknown";
+            internal static readonly string BuildConfiguration = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyConfigurationAttribute>()?.Configuration ?? "Unknown";
+
+            /// <summary>
+            /// Whether or not the build is a pre-release / development build.
+            /// </summary>
+            /// <remarks>
+            /// Checks for the following to determine if the build is a pre-release:
+            /// <list type="bullet">
+            /// <item>Does the plugin manifest indicate that this is a testing-only release?</item>
+            /// <item>Was the build configuration set to "Debug"?</item>
+            /// <item>Does the version contain "alpha"?</item>
+            /// <item>Does the version contain "beta"?</item>
+            /// <item>Does the version contain "rc"?</item>
+            /// </list>
+            /// </remarks>
+            internal static readonly bool IsPreRelease =
+                Services.PluginInterface.IsTesting ||
+                Services.PluginInterface.IsDev ||
+                BuildConfiguration.Equals("Debug", StringComparison.OrdinalIgnoreCase) ||
+                VersionInformational.Contains("alpha") ||
+                VersionInformational.Contains("beta") ||
+                VersionInformational.Contains("rc");
         }
 
         /// <summary>
@@ -95,5 +119,15 @@ namespace KikoGuide.Common
     {
         public string Value { get; set; }
         public GitBranchAttribute(string value) => this.Value = value;
+    }
+
+    /// <summary>
+    /// The Git commit message of the build.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Assembly)]
+    internal sealed class GitCommitMessageAttribute : Attribute
+    {
+        public string Value { get; set; }
+        public GitCommitMessageAttribute(string value) => this.Value = value;
     }
 }

@@ -1,4 +1,6 @@
+using System;
 using ImGuiNET;
+using KikoGuide.Common;
 using KikoGuide.Resources.Localization;
 using Sirensong.UserInterface;
 
@@ -10,9 +12,20 @@ namespace KikoGuide.UserInterface.Windows.PluginSettings.TableParts
         {
             SiGui.Heading(Strings.UserInterface_PluginSettings_Title);
 
-            if (ImGui.Selectable(Strings.UserInterface_PluginSettings_General_Heading, logic.SelectedTab == PluginSettingsLogic.ConfigurationTabs.General))
+            foreach (var tab in Enum.GetValues(typeof(PluginSettingsLogic.ConfigurationTabs)))
             {
-                logic.SelectedTab = PluginSettingsLogic.ConfigurationTabs.General;
+                if (tab is PluginSettingsLogic.ConfigurationTabs configurationTab)
+                {
+                    if (configurationTab == PluginSettingsLogic.ConfigurationTabs.Debug && !Constants.Build.IsPreRelease)
+                    {
+                        continue;
+                    }
+
+                    if (ImGui.Selectable(configurationTab.ToString(), logic.SelectedTab == configurationTab))
+                    {
+                        logic.SelectedTab = configurationTab;
+                    }
+                }
             }
         }
     }

@@ -32,6 +32,9 @@
     <Exec Command="git rev-parse --abbrev-ref HEAD" ConsoleToMSBuild="true" IgnoreExitCode="true">
       <Output TaskParameter="ConsoleOutput" PropertyName="GitBranch" />
     </Exec>
+    <Exec Command="git log -1 --pretty=%B" ConsoleToMSBuild="true" IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitCommitMessage" />
+    </Exec>
 
     <ItemGroup>
       <AssemblyAttribute Include="KikoGuide.Common.GitHash">
@@ -42,6 +45,9 @@
       </AssemblyAttribute>
       <AssemblyAttribute Include="KikoGuide.Common.GitBranch">
           <_Parameter1>$(GitBranch)</_Parameter1>
+      </AssemblyAttribute>
+      <AssemblyAttribute Include="KikoGuide.Common.GitCommitMessage">
+          <_Parameter1>$(GitCommitMessage)</_Parameter1>
       </AssemblyAttribute>
     </ItemGroup>
   </Target>

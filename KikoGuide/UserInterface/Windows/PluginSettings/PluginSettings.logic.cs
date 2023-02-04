@@ -20,7 +20,8 @@ namespace KikoGuide.UserInterface.Windows.PluginSettings
         /// </summary>
         public enum ConfigurationTabs
         {
-            General
+            General,
+            Debug,
         }
     }
 }

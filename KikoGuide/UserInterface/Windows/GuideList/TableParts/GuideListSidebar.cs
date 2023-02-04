@@ -30,7 +30,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
             DrawContributing(logic);
             ImGui.Dummy(Spacing.SidebarElementSpacing);
 
-            SiGui.Footer(Constants.PluginName.TrimWhitepace() + " v" + Constants.Build.Version + " #" + Constants.Build.GitCommitHash);
+            SiGui.Footer($"{Constants.PluginName.TrimWhitepace()} v{Constants.Build.VersionInformational} #{Constants.Build.GitCommitHash}");
         }
 
         /// <summary>
