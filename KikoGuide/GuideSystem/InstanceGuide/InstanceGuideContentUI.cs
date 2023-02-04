@@ -153,16 +153,17 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         /// The links to draw.
         /// </summary>
         /// <param name="links">The links to draw.</param>
-        private static void DrawLinks(string[] links)
+        private static void DrawLinks(InstanceGuideContent.Section.Subsection.Link[] links)
         {
             if (SiGui.CollapsingHeader(Strings.Guide_InstanceContent_Links_Heading))
             {
                 foreach (var link in links)
                 {
-                    if (ImGui.Selectable(link))
+                    if (ImGui.Selectable(link.Text.UICurrent))
                     {
-                        Util.OpenLink(link);
+                        Util.OpenLink(link.URL);
                     }
+                    SiGui.TooltipLast(link.URL);
                 }
             }
         }

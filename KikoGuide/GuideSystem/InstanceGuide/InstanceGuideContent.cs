@@ -52,15 +52,38 @@ namespace KikoGuide.GuideSystem.InstanceGuide
                 /// <summary>
                 /// The links of the subsection.
                 /// </summary>
-                public string[] Links { get; init; }
+                public Link[] Links { get; init; }
 
                 /// <summary>
                 /// Represents a mechanics table row.
                 /// </summary>
                 public readonly record struct MechanicsTableRow
                 {
+                    /// <summary>
+                    /// The name of the mechanic.
+                    /// </summary>
                     public required TranslatableString Name { get; init; }
+
+                    /// <summary>
+                    /// The description of the mechanic.
+                    /// </summary>
                     public required TranslatableString Description { get; init; }
+                }
+
+                /// <summary>
+                /// Represents a link.
+                /// </summary>
+                public readonly record struct Link
+                {
+                    /// <summary>
+                    /// The URL of the link.
+                    /// </summary>
+                    public required string URL { get; init; }
+
+                    /// <summary>
+                    /// The text of the link (e.g. "FFXIV Wiki")
+                    /// </summary>
+                    public required TranslatableString Text { get; init; }
                 }
             }
         }
