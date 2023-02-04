@@ -31,6 +31,11 @@ namespace KikoGuide.GuideSystem
         public abstract string Description { get; }
 
         /// <summary>
+        /// The authors of the guide.
+        /// </summary>
+        public abstract string[] Authors { get; }
+
+        /// <summary>
         /// The icon of the guide.
         /// </summary>
         public abstract uint Icon { get; }

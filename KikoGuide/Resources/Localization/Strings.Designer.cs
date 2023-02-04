@@ -446,5 +446,23 @@ namespace KikoGuide.Resources.Localization {
                 return ResourceManager.GetString("UserInterface_PluginSettings_Title", resourceCulture);
             }
         }
+        
+        internal static string Guide_Common_Phase {
+            get {
+                return ResourceManager.GetString("Guide_Common_Phase", resourceCulture);
+            }
+        }
+        
+        internal static string Guide_Common_Encounter {
+            get {
+                return ResourceManager.GetString("Guide_Common_Encounter", resourceCulture);
+            }
+        }
+        
+        internal static string Guide_Common_Section {
+            get {
+                return ResourceManager.GetString("Guide_Common_Section", resourceCulture);
+            }
+        }
     }
 }

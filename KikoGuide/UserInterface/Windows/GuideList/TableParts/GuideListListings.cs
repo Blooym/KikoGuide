@@ -50,7 +50,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         /// <param name="contentType"></param>
         private static void DrawContentTypeListings(GuideListLogic logic, ContentType contentType)
         {
-            // If there are no guides for this ContentType, don't draw  the tab
+            // If there are no guides for this ContentType, don't draw the tab
             if (GuideListLogic.GuidesForContentType(contentType) == 0)
             {
                 return;

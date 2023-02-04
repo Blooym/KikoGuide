@@ -19,10 +19,10 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
         /// <inheritdoc/>
         public GuideViewerWindow() : base(Constants.WindowTitles.GuideViewer)
         {
-            this.Size = new(400, 300);
+            this.Size = new(450, 450);
             this.SizeConstraints = new WindowSizeConstraints()
             {
-                MinimumSize = new(400, 300),
+                MinimumSize = new(450, 450),
                 MaximumSize = new(1920, 1080),
             };
             this.SizeCondition = ImGuiCond.FirstUseEver;
