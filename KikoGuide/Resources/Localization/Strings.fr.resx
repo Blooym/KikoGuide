@@ -118,46 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Commands_GuideViewer_Help" xml:space="preserve">
-    <value>Toggle the guide viewer window.</value>
+    <value>Activer/Désactiver la fenêtre de visualisation du guide.</value>
   </data>
   <data name="Commands_GuideList_Help" xml:space="preserve">
-    <value>Toggles the guide list window.</value>
+    <value>Activer/Désactiver la fenêtre de liste des guides.</value>
   </data>
   <data name="Windows_PluginSettings_Title" xml:space="preserve">
-    <value>[{0}] Plugin Settings</value>
+    <value>[{0}] Paramètres du plugin</value>
   </data>
   <data name="Windows_GuideList_Title" xml:space="preserve">
     <value>[{0}] - Liste des guides</value>
   </data>
   <data name="Windows_GuideViewer_Title" xml:space="preserve">
-    <value>[{0}] Guide Viewer</value>
+    <value>[{0}] Visionneur du guide</value>
   </data>
   <data name="Windows_Integrations_Title" xml:space="preserve">
     <value>[{0}] Intégrations</value>
   </data>
   <data name="Windows_GuideSettings_Title" xml:space="preserve">
-    <value>[{0}] Guide Settings</value>
+    <value>[{0}] Paramètres du guide</value>
   </data>
   <data name="Guide_NoConfig" xml:space="preserve">
-    <value>There are no configuration options for this guide type.</value>
+    <value>Il n'y a pas d'options de configuration pour ce type de guide.</value>
   </data>
   <data name="Commands_GuideViewer_NoGuide" xml:space="preserve">
-    <value>Unable to open the guide viewer window without a guide selected.</value>
+    <value>Impossible d'ouvrir la fenêtre de la visionneuse du tutoriel sans avoir sélectionné un guide.</value>
   </data>
   <data name="Guide_NotMetRequirements" xml:space="preserve">
-    <value>You do not meet the requirements to view this guide.</value>
+    <value>Vous ne remplissez pas les conditions requises pour consulter ce guide.</value>
   </data>
   <data name="Errors_DrawFailed" xml:space="preserve">
-    <value>UI draw failed due to an error! [{0}] {1}!</value>
+    <value>Échec de la définition de l'interface dû à une erreur ! [{0}] {1} !</value>
   </data>
   <data name="Guide_InstanceContent_AvailableForDuty" xml:space="preserve">
-    <value>A guide for {0} is available! Use {1} to view it.</value>
+    <value>Un guide pour {0} est disponible ! Utilisez {1} pour le voir.</value>
   </data>
   <data name="Integrations_NoConfig" xml:space="preserve">
-    <value>There are no configuration options for this integration.</value>
+    <value>Il n'y a pas d'options de configuration pour ce type d'intégration.</value>
   </data>
   <data name="Integrations_ForceDisabled" xml:space="preserve">
-    <value>An error occured with this integration. It has been automatically disabled until the next plugin reload. Please check Dalamud's logs for more information.</value>
+    <value>Une erreur s'est produite avec cette intégration. Elle a été automatiquement désactivée jusqu'au prochain rechargement du plugin. Veuillez consulter les logs de Dalamud pour plus d'informations.</value>
   </data>
   <data name="Integrations_Enabled" xml:space="preserve">
     <value>Activé</value>
@@ -166,58 +166,58 @@
     <value>Intégrations</value>
   </data>
   <data name="UserInterface_GuideSettings_Title" xml:space="preserve">
-    <value>Guide Settings</value>
+    <value>Paramètres du guide</value>
   </data>
   <data name="UserInterface_GuideList_NoneFound" xml:space="preserve">
-    <value>No guides were found for the filter criteria.</value>
+    <value>Aucun guide n'a été trouvé pour les critères du filtre.</value>
   </data>
   <data name="UserInterface_GuideList_NoneUnlocked_Heading" xml:space="preserve">
-    <value>No guides unlocked</value>
+    <value>Aucun guide déverrouillé</value>
   </data>
   <data name="UserInterface_GuideList_NoneUnlocked_Body" xml:space="preserve">
-    <value>You have not unlocked any guides yet! Try progressing through the games main scenario quests to unlock some.</value>
+    <value>Vous n'avez pas encore débloqué de guide ! Essayez de progresser à travers les quêtes principales du scénario pour en débloquer certains.</value>
   </data>
   <data name="UserInterface_GuideList_NoLogin_Title" xml:space="preserve">
-    <value>Not logged in</value>
+    <value>Déconnecté</value>
   </data>
   <data name="UserInterface_GuideList_NoLogin_Body" xml:space="preserve">
-    <value>Please log in to a character in order to view guides.</value>
+    <value>Veuillez vous connecter à un personnage afin de voir les guides.</value>
   </data>
   <data name="UserInterface_GuideList_Search_Heading" xml:space="preserve">
     <value>Rechercher</value>
   </data>
   <data name="UserInterface_GuideList_SearchHint" xml:space="preserve">
-    <value>Search for guide...</value>
+    <value>Rechercher un guide...</value>
   </data>
   <data name="UserInterface_GuideList_DifficultyFilter_Heading" xml:space="preserve">
-    <value>Difficulty</value>
+    <value>Difficulté</value>
   </data>
   <data name="UserInterface_GuideList_DifficultyFilter_Any" xml:space="preserve">
-    <value>Any</value>
+    <value>Tous</value>
   </data>
   <data name="UserInterface_GuideList_Contributing_Heading" xml:space="preserve">
-    <value>Contributing</value>
+    <value>Contribution</value>
   </data>
   <data name="UserInterface_GuideList_Contributing_Guides" xml:space="preserve">
-    <value>Create/Edit Guides</value>
+    <value>Créer/Modifier des guides</value>
   </data>
   <data name="UserInterface_GuideList_Contributing_Translate" xml:space="preserve">
-    <value>Help Translate</value>
+    <value>Contribuez à la traduction</value>
   </data>
   <data name="UserInterface_GuideList_Contributing_Donate" xml:space="preserve">
-    <value>Support the Developer</value>
+    <value>Soutenir le développeur</value>
   </data>
   <data name="UserInterface_GuideList_Configuration_Heading" xml:space="preserve">
     <value>Configuration</value>
   </data>
   <data name="UserInterface_GuideList_Configuration_Plugin" xml:space="preserve">
-    <value>Plugin Settings</value>
+    <value>Paramètres du plugin</value>
   </data>
   <data name="UserInterface_GuideList_Configuration_Integrations" xml:space="preserve">
-    <value>Manage Integrations</value>
+    <value>Gérer les intégrations</value>
   </data>
   <data name="UserInterface_GuideList_Configuration_Guide" xml:space="preserve">
-    <value>Guide Settings</value>
+    <value>Paramètres du guide</value>
   </data>
   <data name="Guide_InstanceContent_Mechanics_Name" xml:space="preserve">
     <value>Nom</value>
@@ -229,93 +229,93 @@
     <value>Mécaniques</value>
   </data>
   <data name="Guide_InstanceContent_Content_Heading" xml:space="preserve">
-    <value>Content</value>
+    <value>Contenu</value>
   </data>
   <data name="Guide_InstanceContent_Tips_Heading" xml:space="preserve">
-    <value>Tips</value>
+    <value>Astuces</value>
   </data>
   <data name="Guide_InstanceContent_Links_Heading" xml:space="preserve">
-    <value>Links</value>
+    <value>Liens</value>
   </data>
   <data name="Note_Save" xml:space="preserve">
-    <value>Save Note</value>
+    <value>Enregistrer la note</value>
   </data>
   <data name="Note_Edit" xml:space="preserve">
-    <value>Edit Note</value>
+    <value>Modifier la note</value>
   </data>
   <data name="Note_Name" xml:space="preserve">
     <value>Note</value>
   </data>
   <data name="Guide_InstanceContent_TypeName" xml:space="preserve">
-    <value>Instance Guide</value>
+    <value>Guide de l'instance</value>
   </data>
   <data name="Guide_InstanceContent_UnnamedInstance" xml:space="preserve">
-    <value>An Unnamed Instance</value>
+    <value>Une instance sans nom</value>
   </data>
   <data name="UserInterface_Integrations_About_Body" xml:space="preserve">
-    <value>Integrations provide extra functionality on top of the plugin, like working with other plugins to provide new features. Integrations can be enabled or disabled at any time safely and are controlled by the plugin developer.</value>
+    <value>Les intégrations fournissent des fonctionnalités supplémentaires en plus du plugin, comme travailler avec d'autres plugins pour fournir de nouvelles fonctionnalités. Les intégrations peuvent être activées ou désactivées à tout moment en toute sécurité et sont contrôlées par le développeur du plugin.</value>
   </data>
   <data name="UserInterface_Integrations_About_Heading" xml:space="preserve">
-    <value>Explaination</value>
+    <value>Explication</value>
   </data>
   <data name="UserInterface_GuideSettings_About_Body" xml:space="preserve">
-    <value>Guide settings allow for you to modify the behaviour of each "type" of guide. For example, you could modify "Instance" guides to automatically open when you enter a duty, or "FATE" guides to automatically show up when you enter the FATE.</value>
+    <value>Les paramètres du guide vous permettent de modifier le comportement de chaque "type" de guide. Par exemple, vous pouvez modifier les guides "Instance" pour les ouvrir automatiquement lorsque vous entrez dans une mission, ou les tutoriels "ALÉAS" qui s'affichent automatiquement lorsque vous entrez l'ALÉA.</value>
   </data>
   <data name="UserInterface_GuideSettings_About_Title" xml:space="preserve">
-    <value>Explaination</value>
+    <value>Explication</value>
   </data>
   <data name="UserInterface_Integrations_Configure_Heading" xml:space="preserve">
-    <value>Integration Configuration</value>
+    <value>Configuration d'intégration</value>
   </data>
   <data name="Integrations_Wotsit_Description" xml:space="preserve">
-    <value>Register guides with Wotsit so they can be opened via search.</value>
+    <value>Enregistrez des guides auprès de Wotsit pour qu'ils puissent être ouverts via la recherche.</value>
   </data>
   <data name="UserInterface_PluginSettings_NoConfig" xml:space="preserve">
-    <value>There are no configuration options available at the moment, please check back another time.</value>
+    <value>Il n'y a pas d'options de configuration disponibles pour le moment, veuillez vérifier ultérieurement.</value>
   </data>
   <data name="UserInterface_PluginSettings_General_Heading" xml:space="preserve">
-    <value>General</value>
+    <value>Général</value>
   </data>
   <data name="Guide_Fate_Config_AutoOpen" xml:space="preserve">
-    <value>Automatically open guides when entering FATEs</value>
+    <value>Ouvrir automatiquement les guides lors de l'entrée dans un ALÉA</value>
   </data>
   <data name="Guide_InstanceContent_Config_AutoOpen" xml:space="preserve">
-    <value>Automatically open guides when entering instances</value>
+    <value>Ouvrir automatiquement les guides lors de l'entrée dans une mission</value>
   </data>
   <data name="Guide_Fate_TypeName" xml:space="preserve">
-    <value>Fate Guide</value>
+    <value>Guide ALÉA</value>
   </data>
   <data name="Note_Create" xml:space="preserve">
-    <value>Create Note</value>
+    <value>Créer une note</value>
   </data>
   <data name="UserInterface_GuideViewer_Tooltip_LockViewer" xml:space="preserve">
-    <value>Lock the guide viewer</value>
+    <value>Verrouiller la visionneuse du guide</value>
   </data>
   <data name="UserInterface_GuideViewer_Tooltip_UnlockViewer" xml:space="preserve">
-    <value>Unlock the guide viewer</value>
+    <value>Débloquer la visionneuse du guide</value>
   </data>
   <data name="UserInterface_GuideViewer_Tooltip_ShowNote" xml:space="preserve">
-    <value>Show your note for this guide</value>
+    <value>Afficher votre note pour ce guide</value>
   </data>
   <data name="UserInterface_GuideViewer_Tooltip_ShowGuide" xml:space="preserve">
-    <value>Show the guide content</value>
+    <value>Afficher le contenu du guide</value>
   </data>
   <data name="Note_Delete" xml:space="preserve">
-    <value>Delete Note</value>
+    <value>Supprimer la note</value>
   </data>
   <data name="UserInterface_Global_TooltipHint" xml:space="preserve">
     <value>[?]</value>
   </data>
   <data name="UserInterface_GuideViewer_Tooltip_EnableDeleteNote" xml:space="preserve">
-    <value>Hold SHIFT to enable note deletion.</value>
+    <value>Maintenez la touche Maj pour activer la suppression des notes.</value>
   </data>
   <data name="UserInterface_Toast_NoteSaved" xml:space="preserve">
-    <value>Your note was saved.</value>
+    <value>Votre note a été sauvegardée.</value>
   </data>
   <data name="UserInterface_Toast_NoteDeleted" xml:space="preserve">
-    <value>Your note was deleted.</value>
+    <value>Votre note a été supprimée.</value>
   </data>
   <data name="UserInterface_PluginSettings_Title" xml:space="preserve">
-    <value>Plugin Settings</value>
+    <value>Paramètres du plugin</value>
   </data>
 </root>
