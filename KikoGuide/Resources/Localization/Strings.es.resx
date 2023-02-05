@@ -318,4 +318,13 @@
   <data name="UserInterface_PluginSettings_Title" xml:space="preserve">
     <value>Ajustes de Plugin</value>
   </data>
+  <data name="Guide_Common_Phase" xml:space="preserve">
+    <value>Phase</value>
+  </data>
+  <data name="Guide_Common_Encounter" xml:space="preserve">
+    <value>Encounter</value>
+  </data>
+  <data name="Guide_Common_Section" xml:space="preserve">
+    <value>Section</value>
+  </data>
 </root>
