@@ -1,6 +1,5 @@
 using System;
 using ImGuiNET;
-using KikoGuide.Common;
 using KikoGuide.Resources.Localization;
 using Sirensong.UserInterface;
 
@@ -16,11 +15,6 @@ namespace KikoGuide.UserInterface.Windows.PluginSettings.TableParts
             {
                 if (tab is PluginSettingsLogic.ConfigurationTabs configurationTab)
                 {
-                    if (configurationTab == PluginSettingsLogic.ConfigurationTabs.Debug && !Constants.Build.IsPreRelease)
-                    {
-                        continue;
-                    }
-
                     if (ImGui.Selectable(configurationTab.ToString(), logic.SelectedTab == configurationTab))
                     {
                         logic.SelectedTab = configurationTab;

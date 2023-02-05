@@ -31,26 +31,24 @@ namespace KikoGuide.UserInterface.Windows.PluginSettings.TableParts
 
         private static void DrawDebug(PluginSettingsLogic _)
         {
-            SiGui.Heading("Debug Information");
-            SiGui.TextWrapped("Send a screenshot of this to the developer if you're having issues.");
+
+
+            SiGui.Heading("Debug");
+            SiGui.TextWrapped("The information below should be attached alongside any bug reports/support requests to help diagnose any problems you may be having, you can see a preview of the information below before copying it to your clipboard if you wish.");
+            ImGui.Dummy(Spacing.CollapsibleHeaderSpacing);
+            if (ImGui.Button("Copy Debug Information"))
+            {
+                Services.Clipboard.Copy(Constants.Build.DebugString);
+            }
             ImGui.Dummy(Spacing.SectionSpacing);
 
-            SiGui.Heading("Git Information");
-            SiGui.Text("Branch: " + Constants.Build.GitBranch);
-            SiGui.Text("Commit Hash: #" + Constants.Build.GitCommitHash);
-            SiGui.Text("Commit Date: " + Constants.Build.GitCommitDate);
-            SiGui.Text("Commit Message: " + Constants.Build.GitCommitMessage);
-            ImGui.Dummy(Spacing.SectionSpacing);
+            SiGui.Heading("Detected Information");
 
-            SiGui.Heading("Build Information");
-            SiGui.Text("Version: " + Constants.Build.VersionInformational);
-            SiGui.Text("Build Configuration: " + Constants.Build.BuildConfiguration);
-            SiGui.Text("Is Pre-Release: " + Constants.Build.IsPreRelease);
-            ImGui.Dummy(Spacing.SectionSpacing);
-
-            SiGui.Heading("Plugin Information");
-            SiGui.Text("Source: " + Services.PluginInterface.SourceRepository);
-            SiGui.Text("Guides: " + Services.GuideManager.GetGuides().Count);
+            if (ImGui.BeginChild("DebugInformation"))
+            {
+                SiGui.TextWrapped(Constants.Build.DebugString);
+            };
+            ImGui.EndChild();
         }
     }
 }

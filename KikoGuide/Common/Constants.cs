@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using KikoGuide.Resources.Localization;
+using Sirensong;
 
 namespace KikoGuide.Common
 {
@@ -15,16 +16,43 @@ namespace KikoGuide.Common
         internal const string PluginName = "Kiko Guide";
 
         /// <summary>
-        /// Build information.
+        /// Build/Debug information.
         /// </summary>
         internal static class Build
         {
+            /// <summary>
+            /// The version of the plugin.
+            /// </summary>
             internal static readonly Version Version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0, 0);
+
+            /// <summary>
+            /// The version of the plugin as a string.
+            /// </summary>
             internal static readonly string VersionInformational = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "Unknown";
+
+            /// <summary>
+            /// The last commit hash when the plugin was compiled.
+            /// </summary>
             internal static readonly string GitCommitHash = Assembly.GetExecutingAssembly().GetCustomAttribute<GitHashAttribute>()?.Value ?? "Unknown";
+
+            /// <summary>
+            /// The last commit message when the plugin was compiled.
+            /// </summary>
             internal static readonly string GitCommitMessage = Assembly.GetExecutingAssembly().GetCustomAttribute<GitCommitMessageAttribute>()?.Value ?? "Unknown";
+
+            /// <summary>
+            /// The date of the last commit when the plugin was compiled.
+            /// </summary>
             internal static readonly DateTime GitCommitDate = DateTime.TryParse(Assembly.GetExecutingAssembly().GetCustomAttribute<GitCommitDateAttribute>()?.Value, out var date) ? date : DateTime.MinValue;
+
+            /// <summary>
+            /// The branch that was active when the plugin was compiled.
+            /// </summary>
             internal static readonly string GitBranch = Assembly.GetExecutingAssembly().GetCustomAttribute<GitBranchAttribute>()?.Value ?? "Unknown";
+
+            /// <summary>
+            /// The build configuration that was used to compile the plugin.
+            /// </summary>
             internal static readonly string BuildConfiguration = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyConfigurationAttribute>()?.Configuration ?? "Unknown";
 
             /// <summary>
@@ -47,6 +75,41 @@ namespace KikoGuide.Common
                 VersionInformational.Contains("alpha") ||
                 VersionInformational.Contains("beta") ||
                 VersionInformational.Contains("rc");
+
+            /// <summary>
+            /// The debug output string that end users can copy and send to the developer, formatted in markdown.
+            /// </summary>
+            internal static readonly string DebugString =
+                $"""
+                Git Information:
+                ```
+                Git Branch: {GitBranch}
+                Git Commit Hash: #{GitCommitHash}
+                Git Commit Date: {GitCommitDate}
+                Git Commit Message: {GitCommitMessage}
+                ```
+                
+                Build Information:
+                ```
+                Plugin Version: {VersionInformational}
+                Sirensong Version: {Assembly.GetAssembly(typeof(SirenCore))?.GetName().Version}
+                CLR/.NET Version: {Environment.Version}
+                Build Identifier: {Assembly.GetExecutingAssembly().ManifestModule.ModuleVersionId}
+                Build Configuration: {BuildConfiguration}
+                Is Pre-Release: {IsPreRelease}
+                ```
+
+                Plugin Information:
+                ```
+                Repository/Source: {Services.PluginInterface.SourceRepository}
+                ```
+
+                Environment Information:
+                ```
+                Real Operating System: {Sirensong.Utility.Common.GetOS()}
+                Reported Operating System: {Environment.OSVersion.Platform}
+                ```
+                """;
         }
 
         /// <summary>

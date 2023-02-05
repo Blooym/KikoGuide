@@ -14,6 +14,7 @@ using Lumina.Excel.GeneratedSheets;
 using Sirensong;
 using Sirensong.Caching;
 using Sirensong.IoC;
+using Sirensong.UserInterface.Services;
 
 namespace KikoGuide.Common
 {
@@ -33,6 +34,7 @@ namespace KikoGuide.Common
         [SirenService] internal static LuminaCacheService<Fate> FateCache { get; private set; } = null!;
         [SirenService] internal static LuminaCacheService<ContentFinderCondition> ContentFinderConditionCache { get; private set; } = null!;
         [SirenService] internal static LuminaCacheService<ContentFinderConditionTransient> ContentFinderConditionTransientCache { get; private set; } = null!;
+        [SirenService] internal static ClipboardService Clipboard { get; private set; } = null!;
 
         // Plugin services
         internal static WindowManager WindowManager { get; private set; } = null!;
