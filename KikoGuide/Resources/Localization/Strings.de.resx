@@ -322,9 +322,9 @@
     <value>Phase</value>
   </data>
   <data name="Guide_Common_Encounter" xml:space="preserve">
-    <value>Encounter</value>
+    <value>Begegnung</value>
   </data>
   <data name="Guide_Common_Section" xml:space="preserve">
-    <value>Section</value>
+    <value>Abschnitt</value>
   </data>
 </root>
