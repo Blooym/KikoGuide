@@ -8,7 +8,7 @@ namespace KikoGuide.UserInterface.Windows.IntegrationSettings.TableParts
     internal static class IntegrationActive
     {
         /// <summary>
-        /// Draws the selected integration.
+        ///     Draws the selected integration.
         /// </summary>
         /// <param name="logic"></param>
         public static void Draw(IntegrationsLogic logic)
@@ -23,7 +23,7 @@ namespace KikoGuide.UserInterface.Windows.IntegrationSettings.TableParts
         }
 
         /// <summary>
-        /// Draws the about integrations section.
+        ///     Draws the about integrations section.
         /// </summary>
         /// <param name="_"></param>
         private static void DrawAboutIntegrations(IntegrationsLogic _)
@@ -33,7 +33,7 @@ namespace KikoGuide.UserInterface.Windows.IntegrationSettings.TableParts
         }
 
         /// <summary>
-        /// Draws the selected integration's settings.
+        ///     Draws the selected integration's settings.
         /// </summary>
         /// <param name="_"></param>
         private static void DrawIntegrationSettings(IntegrationsLogic logic)

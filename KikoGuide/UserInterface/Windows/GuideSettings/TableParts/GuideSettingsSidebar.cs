@@ -11,13 +11,13 @@ namespace KikoGuide.UserInterface.Windows.GuideSettings.TableParts
     internal static class GuideSettingsSidebar
     {
         /// <summary>
-        /// Draws the integrations sidebar.
+        ///     Draws the integrations sidebar.
         /// </summary>
         /// <param name="logic"></param>
         public static void Draw(GuideSettingsLogic logic) => DrawGuideConfigsList(logic);
 
         /// <summary>
-        /// Draws a list of integrations.
+        ///     Draws a list of integrations.
         /// </summary>
         /// <param name="logic"></param>
         private static void DrawGuideConfigsList(GuideSettingsLogic logic)
@@ -26,7 +26,7 @@ namespace KikoGuide.UserInterface.Windows.GuideSettings.TableParts
             {
                 logic.SelectedGuideSettings = null;
             }
-            ImGui.Dummy(Spacing.SidebarElementSpacing);
+            ImGui.Dummy(Spacing.SidebarSectionSpacing);
 
             SiGui.Heading(Strings.UserInterface_GuideSettings_Title);
 

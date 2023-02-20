@@ -8,24 +8,25 @@ using Sirensong.Game.State;
 namespace KikoGuide.GuideSystem.FateGuide
 {
     /// <summary>
-    /// Manages fate guide auto-selection.
+    ///     Manages fate guide auto-selection.
     /// </summary>
     internal sealed unsafe class FateConductorService : IDisposable
     {
-        private bool disposedValue;
 
         /// <summary>
-        /// The fate configuration.
+        ///     The fate configuration.
         /// </summary>
-        private static readonly FateConfiguration Configuration = FateConfiguration.Instance;
+        private static readonly FateGuideConfiguration GuideConfiguration = FateGuideConfiguration.Instance;
 
         /// <summary>
-        /// The fate state manager.
+        ///     The fate state manager.
         /// </summary>
         private static readonly FateStateManager FateStateManager = SirenCore.GetOrCreateService<FateStateManager>();
 
+        private bool disposedValue;
+
         /// <summary>
-        /// Creates a new <see cref="FateConductorService"/>.
+        ///     Creates a new <see cref="FateConductorService" />.
         /// </summary>
         public FateConductorService()
         {
@@ -34,7 +35,7 @@ namespace KikoGuide.GuideSystem.FateGuide
         }
 
         /// <summary>
-        /// Disposes the <see cref="FateConductorService"/>.
+        ///     Disposes the <see cref="FateConductorService" />.
         /// </summary>
         public void Dispose()
         {
@@ -47,12 +48,12 @@ namespace KikoGuide.GuideSystem.FateGuide
         }
 
         /// <summary>
-        /// Handles fate joining.
+        ///     Handles fate joining.
         /// </summary>
         /// <param name="fateContext"></param>
         private void OnFateJoined(FateContext* fateContext)
         {
-            if (!Configuration.AutoOpen)
+            if (!GuideConfiguration.AutoOpen)
             {
                 return;
             }
@@ -73,22 +74,20 @@ namespace KikoGuide.GuideSystem.FateGuide
 
             // Handle opening the guide.
             Services.GuideManager.SelectedGuide = fate;
-            switch (Configuration.AutoOpen)
+            switch (GuideConfiguration.AutoOpen)
             {
                 case true:
                     Services.WindowManager.SetGuideViewerWindowVis(true);
-                    break;
-                default:
                     break;
             }
         }
 
         /// <summary>
-        /// Handles fate leaving.
+        ///     Handles fate leaving.
         /// </summary>
         private void OnFateLeft()
         {
-            if (!Configuration.AutoOpen)
+            if (!GuideConfiguration.AutoOpen)
             {
                 return;
             }

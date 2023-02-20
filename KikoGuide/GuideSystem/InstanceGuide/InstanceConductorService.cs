@@ -6,7 +6,7 @@ using KikoGuide.Common;
 using KikoGuide.Resources.Localization;
 using Sirensong.Game;
 using Sirensong.Game.Enums;
-using Sirensong.Game.Utility;
+using Sirensong.Game.Helpers;
 
 namespace KikoGuide.GuideSystem.InstanceGuide
 {
@@ -15,12 +15,12 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         private bool disposedValue;
 
         /// <summary>
-        /// Creates a new <see cref="InstanceConductorService"/>.
+        ///     Creates a new <see cref="InstanceConductorService" />.
         /// </summary>
         public InstanceConductorService() => Services.ClientState.TerritoryChanged += this.TerritoryChanged;
 
         /// <summary>
-        /// Disposes the <see cref="InstanceConductorService"/>.
+        ///     Disposes the <see cref="InstanceConductorService" />.
         /// </summary>
         public void Dispose()
         {
@@ -33,7 +33,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         }
 
         /// <summary>
-        /// Called when the territory changes, handles auto opening of instance guides.
+        ///     Called when the territory changes, handles auto opening of instance guides.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="territoryId"></param>
@@ -67,7 +67,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
                 }
 
                 // Handle content flags.
-                if (InstanceContentDirectorUtil.HasFlag(ContentFlag.ExplorerMode))
+                if (IcdHelper.HasFlag(ContentFlag.ExplorerMode))
                 {
                     return;
                 }

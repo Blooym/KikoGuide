@@ -1,12 +1,12 @@
-using KikoGuide.GuideSystem;
+using KikoGuide.GuideSystem.Interfaces;
 
 namespace KikoGuide.UserInterface.Windows.GuideSettings
 {
     internal sealed class GuideSettingsLogic
     {
         /// <summary>
-        /// The currently selected guide settings.
+        ///     The currently selected guide settings.
         /// </summary>
-        public GuideConfigurationBase? SelectedGuideSettings;
+        public IGuideConfiguration? SelectedGuideSettings;
     }
 }

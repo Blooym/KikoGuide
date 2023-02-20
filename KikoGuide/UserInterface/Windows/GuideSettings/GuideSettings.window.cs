@@ -1,3 +1,4 @@
+using System.Numerics;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using KikoGuide.Common;
@@ -7,23 +8,23 @@ namespace KikoGuide.UserInterface.Windows.GuideSettings
 {
     internal sealed class GuideSettingsWindow : Window
     {
-        /// <inheritdoc/>
-        public GuideSettingsLogic Logic { get; } = new();
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public GuideSettingsWindow() : base(Constants.WindowTitles.GuideTypeSettings)
         {
-            this.Size = new(600, 400);
-            this.SizeConstraints = new WindowSizeConstraints()
+            this.Size = new Vector2(600, 400);
+            this.SizeConstraints = new WindowSizeConstraints
             {
-                MinimumSize = new(600, 400),
-                MaximumSize = new(1200, 700),
+                MinimumSize = new Vector2(600, 400), MaximumSize = new Vector2(1200, 700),
             };
             this.SizeCondition = ImGuiCond.FirstUseEver;
             this.Flags = ImGuiWindowFlags.NoScrollbar;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
+        public GuideSettingsLogic Logic { get; } = new();
+
+        /// <inheritdoc />
         public override void Draw()
         {
             if (ImGui.BeginTable("GuideSettings", 2, ImGuiTableFlags.BordersInnerV))

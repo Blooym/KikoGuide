@@ -1,26 +1,20 @@
 using System.IO;
-using Dalamud.Plugin.Ipc;
 using KikoGuide.Common;
+using KikoGuide.Integrations.Interfaces;
 using KikoGuide.Utility;
 using Newtonsoft.Json;
 
 namespace KikoGuide.Integrations
 {
-    internal abstract class IntegrationConfigurationBase
+    internal abstract class IntegrationConfigurationBase : IIntegrationConfiguration
     {
-        /// <summary>
-        /// The version of the integration configuration.
-        /// </summary>
+        /// <inheritdoc />
         public abstract int Version { get; }
 
-        /// <summary>
-        /// Whether or not the integration is enabled and will try to find the activation <see cref="ICallGateSubscriber{TRet}"/>.
-        /// </summary>
+        /// <inheritdoc />
         public bool Enabled { get; set; }
 
-        /// <summary>
-        /// Saves the configuration to the file.
-        /// </summary>
+        /// <inheritdoc />
         public void Save()
         {
             PathUtil.CreatePath(Constants.Directory.Integrations);
@@ -29,9 +23,7 @@ namespace KikoGuide.Integrations
             File.WriteAllText(Path.Combine(Constants.Directory.Integrations, $"{this.GetType().Name}.json"), configJson);
         }
 
-        /// <summary>
-        /// Loads the configuration from the file or cretaes a new one.
-        /// </summary>
+        /// <inheritdoc />
         public static T Load<T>() where T : IntegrationConfigurationBase, new()
         {
             PathUtil.CreatePath(Constants.Directory.Integrations);

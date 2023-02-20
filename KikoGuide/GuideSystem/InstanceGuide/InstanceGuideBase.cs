@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using Dalamud;
 using Dalamud.Utility;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using KikoGuide.Common;
@@ -8,17 +9,18 @@ using KikoGuide.Resources.Localization;
 using Lumina.Excel.GeneratedSheets;
 using Sirensong.Game.Enums;
 using Sirensong.Game.Extensions;
+using ContentType = Sirensong.Game.Enums.ContentType;
 
 namespace KikoGuide.GuideSystem.InstanceGuide
 {
     /// <summary>
-    /// The base class for instance content guides.
+    ///     The base class for instance content guides.
     /// </summary>
     internal abstract class InstanceGuideBase : GuideBase
     {
         private bool disposedValue;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public InstanceGuideBase()
         {
             // Get duty and quest data and throw if they're invalid
@@ -31,9 +33,9 @@ namespace KikoGuide.GuideSystem.InstanceGuide
 
             // Assign to properties
             this.Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.LinkedDuty.CFCondition.Name.ToDalamudString().ToString());
-            this.Difficulty = Services.ContentFinderConditionCache.OfLanguage(Dalamud.ClientLanguage.English).GetRow(this.DutyId)!.GetContentDifficulty();
+            this.Difficulty = Services.ContentFinderConditionCache.OfLanguage(ClientLanguage.English).GetRow(this.DutyId)!.GetContentDifficulty();
             this.Description = this.LinkedDuty.CFConditionTransient.Description.ToDalamudString().ToString();
-            this.ContentType = this.LinkedDuty.CFCondition.GetContentType(true) ?? Sirensong.Game.Enums.ContentType.Unknown;
+            this.ContentType = this.LinkedDuty.CFCondition.GetContentType(true) ?? ContentType.Unknown;
             this.Icon = this.LinkedDuty.CFCondition.ContentType.Value?.Icon ?? 21;
             this.Note = Note.CreateOrLoad(@$"{this.ContentType}_{this.Name}");
 
@@ -48,71 +50,71 @@ namespace KikoGuide.GuideSystem.InstanceGuide
             }
 
             // Register conductor service if it's not already registered
-            Services.GetOrCreateService<InstanceConductorService>();
+            Services.Container.GetOrCreateService<InstanceConductorService>();
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override InstanceGuideConfiguration Configuration { get; } = InstanceGuideConfiguration.Instance;
 
         /// <summary>
-        /// The duty associated with this guide.
+        ///     The duty associated with this guide.
         /// </summary>
         public Duty LinkedDuty { get; }
 
         /// <summary>
-        /// The quest that unlocks this guide.
+        ///     The quest that unlocks this guide.
         /// </summary>
         public Quest UnlockQuest { get; }
 
         /// <summary>
-        /// The sheet row of the duty associated with this guide.
+        ///     The sheet row of the duty associated with this guide.
         /// </summary>
         protected abstract uint DutyId { get; }
 
         /// <summary>
-        /// The sheet row of the quest that unlocks this guide.
+        ///     The sheet row of the quest that unlocks this guide.
         /// </summary>
         protected abstract uint UnlockQuestId { get; }
 
         /// <summary>
-        /// The structured content of the guide, used for rendering.
+        ///     The structured content of the guide, used for rendering.
         /// </summary>
         public abstract InstanceGuideContent Content { get; }
 
         /// <summary>
-        /// The note associated with this guide.
+        ///     The note associated with this guide.
         /// </summary>
         public override Note Note { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override string Name { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override string Description { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override uint Icon { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override ContentDifficulty Difficulty { get; }
 
-        /// <inheritdoc/>
-        public override Sirensong.Game.Enums.ContentType ContentType { get; }
+        /// <inheritdoc />
+        public override ContentType ContentType { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override unsafe bool IsUnlocked => QuestManager.IsQuestComplete(this.UnlockQuestId) || QuestManager.Instance()->IsQuestAccepted(this.UnlockQuestId);
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         protected override void DrawAction() => InstanceGuideContentUI.Draw(this);
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         protected override void Dispose(bool disposing)
         {
             if (!this.disposedValue)
             {
                 if (disposing)
                 {
-                    Services.RemoveService<InstanceConductorService>();
+                    Services.Container.RemoveService<InstanceConductorService>();
                 }
 
                 this.disposedValue = true;

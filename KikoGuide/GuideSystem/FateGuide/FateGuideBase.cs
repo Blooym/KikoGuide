@@ -4,7 +4,7 @@ using KikoGuide.Common;
 using KikoGuide.DataModels;
 using Lumina.Excel.GeneratedSheets;
 using Sirensong.Game.Enums;
-using Enums = Sirensong.Game.Enums;
+using ContentType = Sirensong.Game.Enums.ContentType;
 
 namespace KikoGuide.GuideSystem.FateGuide
 {
@@ -23,17 +23,17 @@ namespace KikoGuide.GuideSystem.FateGuide
             this.Icon = this.Fate.IconMap;
             this.Note = Note.CreateOrLoad($"{this.ContentType}_{this.Fate.Name}");
 
-            Services.GetOrCreateService<FateConductorService>();
+            Services.Container.GetOrCreateService<FateConductorService>();
         }
 
-        public override GuideConfigurationBase Configuration => FateConfiguration.Instance;
+        public override GuideConfigurationBase Configuration => FateGuideConfiguration.Instance;
         public override string Name { get; }
-        public override Enums.ContentType ContentType { get; } = Enums.ContentType.Fates;
+        public override ContentType ContentType { get; } = ContentType.Fates;
         public override string Description { get; }
         public override uint Icon { get; }
         public override ContentDifficulty Difficulty { get; } = ContentDifficulty.Normal;
         public override bool IsUnlocked { get; } = true;
-        public Fate Fate { get; private set; }
+        public Fate Fate { get; }
         protected abstract uint FateId { get; }
         public override Note Note { get; }
 
@@ -42,7 +42,7 @@ namespace KikoGuide.GuideSystem.FateGuide
         {
             if (disposing)
             {
-                Services.RemoveService<FateConductorService>();
+                Services.Container.RemoveService<FateConductorService>();
             }
 
             base.Dispose(disposing);

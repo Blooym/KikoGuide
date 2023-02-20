@@ -1,3 +1,4 @@
+using System.Numerics;
 using Dalamud.Interface;
 using Dalamud.Interface.Components;
 using Dalamud.Interface.Windowing;
@@ -13,31 +14,31 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
 {
     internal sealed class GuideViewerWindow : Window
     {
-        /// <inheritdoc/>
-        public GuideViewerLogic Logic { get; } = new();
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public GuideViewerWindow() : base(Constants.WindowTitles.GuideViewer)
         {
-            this.Size = new(450, 450);
-            this.SizeConstraints = new WindowSizeConstraints()
+            this.Size = new Vector2(450, 450);
+            this.SizeConstraints = new WindowSizeConstraints
             {
-                MinimumSize = new(450, 450),
-                MaximumSize = new(1920, 1080),
+                MinimumSize = new Vector2(450, 450), MaximumSize = new Vector2(1920, 1080),
             };
             this.SizeCondition = ImGuiCond.FirstUseEver;
             this.Flags = ImGuiWindowFlags.NoScrollbar;
 
-            if (GuideViewerLogic.Configuration.LockGuideViewer)
+            if (GuideViewerLogic.Configuration.GuideViewer.LockWindow)
             {
-                this.Flags |= ImGuiWindowFlagExtras.LockedPosAndSize;
+                this.Flags |= ImGuiWindowFlagExtra.LockedPosAndSize;
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
+        public GuideViewerLogic Logic { get; } = new();
+
+        /// <inheritdoc />
         public override bool DrawConditions() => GuideViewerLogic.GetSelectedGuide() != null;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override void Draw()
         {
             var selectedGuide = GuideViewerLogic.GetSelectedGuide();
@@ -48,7 +49,7 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
             }
 
             // Heading shared by all guides
-            if (ImGui.BeginChild("GuideViewerHeading", new(0, 30)))
+            if (ImGui.BeginChild("GuideViewerHeading", new Vector2(0, 30)))
             {
                 this.DrawHeading(selectedGuide);
             }
@@ -65,8 +66,6 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
                     case GuideViewerLogic.SelectedTabState.Note:
                         GuideViewerNote.Draw(this.Logic, selectedGuide.Note);
                         break;
-                    default:
-                        break;
                 }
             }
             ImGui.EndChild();
@@ -74,31 +73,31 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer
 
         private void DrawHeading(GuideBase selectedGuide)
         {
-            var guideViewerLocked = GuideViewerLogic.Configuration.LockGuideViewer;
+            var guideViewerLocked = GuideViewerLogic.Configuration.GuideViewer.LockWindow;
 
             // Icon and name
-            SiGui.Icon(selectedGuide.Icon, ScalingMode.None, new(ImGuiHelpers.GlobalScale * 20));
+            SiGui.Icon(selectedGuide.Icon, ScalingMode.None, new Vector2(ImGuiHelpers.GlobalScale * 20));
             ImGui.SameLine();
             SiGui.TextDisabled(selectedGuide.Name);
             ImGui.SameLine();
 
             // Window actions
-            ImGui.SetCursorPosX(ImGui.GetWindowWidth() - (ImGuiHelpers.GlobalScale * 25 * 2));
+            ImGui.SetCursorPosX(ImGui.GetWindowWidth() - ImGuiHelpers.GlobalScale * 25 * 2);
             ImGui.BeginGroup();
             if (ImGuiComponents.IconButton(guideViewerLocked ? FontAwesomeIcon.Lock : FontAwesomeIcon.Unlock))
             {
-                this.Flags ^= ImGuiWindowFlagExtras.LockedPosAndSize;
-                GuideViewerLogic.Configuration.LockGuideViewer = !guideViewerLocked;
+                this.Flags ^= ImGuiWindowFlagExtra.LockedPosAndSize;
+                GuideViewerLogic.Configuration.GuideViewer.LockWindow = !guideViewerLocked;
                 GuideViewerLogic.Configuration.Save();
             }
-            SiGui.TooltipLast(guideViewerLocked ? Strings.UserInterface_GuideViewer_Tooltip_UnlockViewer : Strings.UserInterface_GuideViewer_Tooltip_LockViewer);
+            SiGui.AddTooltip(guideViewerLocked ? Strings.UserInterface_GuideViewer_Tooltip_UnlockViewer : Strings.UserInterface_GuideViewer_Tooltip_LockViewer);
 
             ImGui.SameLine();
             if (ImGuiComponents.IconButton(this.Logic.ActiveTab == GuideViewerLogic.SelectedTabState.Guide ? FontAwesomeIcon.StickyNote : FontAwesomeIcon.Book))
             {
                 this.Logic.ActiveTab = this.Logic.ActiveTab == GuideViewerLogic.SelectedTabState.Guide ? GuideViewerLogic.SelectedTabState.Note : GuideViewerLogic.SelectedTabState.Guide;
             }
-            SiGui.TooltipLast(this.Logic.ActiveTab == GuideViewerLogic.SelectedTabState.Guide ? Strings.UserInterface_GuideViewer_Tooltip_ShowNote : Strings.UserInterface_GuideViewer_Tooltip_ShowGuide);
+            SiGui.AddTooltip(this.Logic.ActiveTab == GuideViewerLogic.SelectedTabState.Guide ? Strings.UserInterface_GuideViewer_Tooltip_ShowNote : Strings.UserInterface_GuideViewer_Tooltip_ShowGuide);
 
             ImGui.EndGroup();
             ImGui.Separator();

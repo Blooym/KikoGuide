@@ -5,27 +5,27 @@ using KikoGuide.Common;
 namespace KikoGuide.Configuration
 {
     /// <summary>
-    /// The configuration for the plugin.
+    ///     The configuration for the plugin.
     /// </summary>
     internal sealed class PluginConfiguration : IPluginConfiguration
     {
         /// <summary>
-        /// The current version of the configuration, used for migrations.
+        ///     The current version of the configuration, used for migrations.
         /// </summary>
         private const int CurrentVersion = 1;
 
         /// <summary>
-        /// The version of the configuration.
+        ///     The configuration for the guide viewer.
+        /// </summary>
+        public GuideViewerConfiguration GuideViewer { get; set; } = new();
+
+        /// <summary>
+        ///     The version of the configuration.
         /// </summary>
         public int Version { get; set; } = CurrentVersion;
 
         /// <summary>
-        /// Whether the guide viewer window posistion and size is locked.
-        /// </summary>x
-        public bool LockGuideViewer { get; set; }
-
-        /// <summary>
-        /// Loads the configuration and migrates it if necessary.
+        ///     Loads the configuration and migrates it if necessary.
         /// </summary>
         /// <returns></returns>
         internal static PluginConfiguration Load()
@@ -42,8 +42,20 @@ namespace KikoGuide.Configuration
         }
 
         /// <summary>
-        /// Saves the configuration.
+        ///     Saves the configuration.
         /// </summary>
         internal void Save() => Services.PluginInterface.SavePluginConfig(this);
+
+        /// <summary>
+        ///     The configuration for the guide viewer.
+        /// </summary>
+        internal sealed class GuideViewerConfiguration
+        {
+            /// <summary>
+            ///     Whether the guide viewer window posistion and size is locked.
+            /// </summary>
+            /// x
+            public bool LockWindow { get; set; }
+        }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using ImGuiNET;
 using KikoGuide.Common;
+using KikoGuide.GuideSystem.Interfaces;
 using KikoGuide.Resources.Localization;
 using KikoGuide.Utility;
 using Newtonsoft.Json;
@@ -11,34 +12,17 @@ using Sirensong.UserInterface.Style;
 namespace KikoGuide.GuideSystem
 {
     /// <summary>
-    /// Represents the base class for all guide-type configurations.
+    ///     Represents the base class for all guide-type configurations.
     /// </summary>
-    internal abstract class GuideConfigurationBase
+    internal abstract class GuideConfigurationBase : IGuideConfiguration
     {
-        /// <summary>
-        /// The version of the guide configuration.
-        /// </summary>
+        /// <inheritdoc />
         public abstract int Version { get; }
 
-        /// <summary>
-        /// The user-friendly name of the guide-type to be displayed.
-        /// </summary>
-        [JsonIgnore]
-        public abstract string Name { get; }
+        /// <inheritdoc />
+        [JsonIgnore] public abstract string Name { get; }
 
-        /// <summary>
-        /// The action to run to draw the configuration, this is wrapped in a try-catch in the base class.
-        /// </summary>
-        protected virtual void DrawAction()
-        {
-            ImGui.BeginDisabled();
-            SiGui.TextWrapped(Strings.Guide_NoConfig);
-            ImGui.EndDisabled();
-        }
-
-        /// <summary>
-        /// Draws the configuration layout for the guide.
-        /// </summary>
+        /// <inheritdoc />
         public void Draw()
         {
             try
@@ -51,9 +35,7 @@ namespace KikoGuide.GuideSystem
             }
         }
 
-        /// <summary>
-        /// Saves the configuration to the file.
-        /// </summary>
+        /// <inheritdoc />
         public void Save()
         {
             PathUtil.CreatePath(Constants.Directory.Guides);
@@ -61,10 +43,16 @@ namespace KikoGuide.GuideSystem
             File.WriteAllText(Path.Combine(Constants.Directory.Guides, $"{this.GetType().Name}.json"), configJson);
         }
 
-        /// <summary>
-        /// Loads the configuration from the file or cretaes a new one.
-        /// </summary>
-        public static T Load<T>() where T : GuideConfigurationBase, new()
+        /// <inheritdoc />
+        protected virtual void DrawAction()
+        {
+            ImGui.BeginDisabled();
+            SiGui.TextWrapped(Strings.Guide_NoConfig);
+            ImGui.EndDisabled();
+        }
+
+        /// <inheritdoc />
+        internal static T Load<T>() where T : GuideConfigurationBase, new()
         {
             PathUtil.CreatePath(Constants.Directory.Guides);
 

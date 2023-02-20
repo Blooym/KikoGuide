@@ -6,13 +6,9 @@ namespace KikoGuide
 {
     internal sealed class KikoGuide : IDalamudPlugin
     {
-        /// <summary>
-        /// The plugin's name.
-        /// </summary>
-        public string Name => Constants.PluginName;
 
         /// <summary>
-        /// The plugin's main entry point.
+        ///     The plugin's main entry point.
         /// </summary>
         public KikoGuide(DalamudPluginInterface pluginInterface)
         {
@@ -21,7 +17,12 @@ namespace KikoGuide
         }
 
         /// <summary>
-        /// Disposes of the plugin.
+        ///     The plugin's name.
+        /// </summary>
+        public string Name => Constants.PluginName;
+
+        /// <summary>
+        ///     Disposes of the plugin.
         /// </summary>
         public void Dispose()
         {

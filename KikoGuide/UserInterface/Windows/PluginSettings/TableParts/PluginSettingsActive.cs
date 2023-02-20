@@ -18,8 +18,6 @@ namespace KikoGuide.UserInterface.Windows.PluginSettings.TableParts
                 case PluginSettingsLogic.ConfigurationTabs.Debug:
                     DrawDebug(logic);
                     break;
-                default:
-                    break;
             }
         }
 
@@ -31,14 +29,13 @@ namespace KikoGuide.UserInterface.Windows.PluginSettings.TableParts
 
         private static void DrawDebug(PluginSettingsLogic _)
         {
-
-
             SiGui.Heading("Debug");
-            SiGui.TextWrapped("The information below should be attached alongside any bug reports/support requests to help diagnose any problems you may be having, you can see a preview of the information below before copying it to your clipboard if you wish.");
-            ImGui.Dummy(Spacing.CollapsibleHeaderSpacing);
+            SiGui.TextWrapped(
+                "The information below should be attached alongside any bug reports/support requests to help diagnose any problems you may be having, you can see a preview of the information below before copying it to your clipboard if you wish.");
+            ImGui.Dummy(Spacing.InnerCollapsibleHeaderSpacing);
             if (ImGui.Button("Copy Debug Information"))
             {
-                Services.Clipboard.Copy(Constants.Build.DebugString);
+                ImGui.SetClipboardText(Constants.Build.DebugString);
             }
             ImGui.Dummy(Spacing.SectionSpacing);
 
@@ -47,7 +44,8 @@ namespace KikoGuide.UserInterface.Windows.PluginSettings.TableParts
             if (ImGui.BeginChild("DebugInformation"))
             {
                 SiGui.TextWrapped(Constants.Build.DebugString);
-            };
+            }
+            ;
             ImGui.EndChild();
         }
     }

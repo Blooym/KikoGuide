@@ -5,21 +5,23 @@ using KikoGuide.Common;
 
 namespace KikoGuide.CommandHandling
 {
+    /// <summary>
+    ///     Handles the lifespan and execution of all commands.
+    /// </summary>
     internal sealed class CommandManager : IDisposable
     {
+        /// <summary>
+        ///     All  commands to register with the <see cref="Dalamud.Game.Command.CommandManager" />, holds all references.
+        /// </summary>
+        private IDalamudCommand[] commands =
+        {
+            new KikoListDalamudCommand(), new KikoDalamudCommand(),
+        };
+
         private bool disposedValue;
 
         /// <summary>
-        /// The list of registered commands.
-        /// </summary>
-        private ICommand[] commands =
-        {
-            new KikoListCommand(),
-            new KikoCommand(),
-        };
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CommandManager"/> class.
+        ///     Initializes a new instance of the <see cref="CommandManager" /> class.
         /// </summary>
         private CommandManager()
         {
@@ -30,7 +32,7 @@ namespace KikoGuide.CommandHandling
         }
 
         /// <summary>
-        /// Disposes of the command manager.
+        ///     Disposes of the command manager.
         /// </summary>
         public void Dispose()
         {
@@ -40,7 +42,7 @@ namespace KikoGuide.CommandHandling
                 {
                     Services.Commands.RemoveHandler(command.Name);
                 }
-                this.commands = Array.Empty<ICommand>();
+                this.commands = Array.Empty<IDalamudCommand>();
 
                 this.disposedValue = true;
             }

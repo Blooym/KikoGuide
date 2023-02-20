@@ -13,27 +13,33 @@ namespace KikoGuide.UserInterface
 {
     internal sealed class WindowManager : IDisposable
     {
-        private bool disposedValue;
 
         /// <summary>
-        /// The windowing system.
-        /// </summary>
-        public WindowingSystem WindowingSystem { get; } = SirenCore.GetOrCreateService<WindowingSystem>();
-
-        /// <summary>
-        /// All windows to add to the windowing system.
+        ///     All windows to add to the windowing system.
         /// </summary>
         private readonly Dictionary<Window, bool> windows = new()
         {
-            { new GuideListWindow(), true },
-            { new GuideViewerWindow(), false },
-            { new IntegrationsWindow(), false},
-            { new GuideSettingsWindow(), false },
-            { new PluginSettingsWindow(), false },
+            {
+                new GuideListWindow(), true
+            },
+            {
+                new GuideViewerWindow(), false
+            },
+            {
+                new IntegrationsWindow(), false
+            },
+            {
+                new GuideSettingsWindow(), false
+            },
+            {
+                new PluginSettingsWindow(), false
+            },
         };
 
+        private bool disposedValue;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="WindowManager" /> class.
+        ///     Initializes a new instance of the <see cref="WindowManager" /> class.
         /// </summary>
         private WindowManager()
         {
@@ -44,7 +50,12 @@ namespace KikoGuide.UserInterface
         }
 
         /// <summary>
-        /// Disposes of the window manager.
+        ///     The windowing system.
+        /// </summary>
+        public WindowingSystem WindowingSystem { get; } = SirenCore.GetOrCreateService<WindowingSystem>();
+
+        /// <summary>
+        ///     Disposes of the window manager.
         /// </summary>
         public void Dispose()
         {
@@ -56,7 +67,7 @@ namespace KikoGuide.UserInterface
         }
 
         /// <summary>
-        /// Sets the guide viewer window visibility.
+        ///     Sets the guide viewer window visibility.
         /// </summary>
         /// <param name="visible">Whether or not the guide viewer window should be visible.</param>
         public void SetGuideViewerWindowVis(bool visible)
@@ -68,7 +79,7 @@ namespace KikoGuide.UserInterface
         }
 
         /// <summary>
-        /// Toggles the guide viewer window visibility.
+        ///     Toggles the guide viewer window visibility.
         /// </summary>
         public void ToggleGuideViewerWindow()
         {
@@ -79,7 +90,7 @@ namespace KikoGuide.UserInterface
         }
 
         /// <summary>
-        /// Toggles the settings window visibility.
+        ///     Toggles the settings window visibility.
         /// </summary>
         /// <param name="visible">Whether or not the settings window should be visible.</param>
         public void ToggleSettingsWindow()
@@ -91,7 +102,7 @@ namespace KikoGuide.UserInterface
         }
 
         /// <summary>
-        /// Toggles the guide viewer window visibility.
+        ///     Toggles the guide viewer window visibility.
         /// </summary>
         public void ToggleGuideListWindow()
         {
@@ -102,7 +113,7 @@ namespace KikoGuide.UserInterface
         }
 
         /// <summary>
-        /// Toggles the integration settings window visibility.
+        ///     Toggles the integration settings window visibility.
         /// </summary>
         public void ToggleIntegrationSettingsWindow()
         {
@@ -113,7 +124,7 @@ namespace KikoGuide.UserInterface
         }
 
         /// <summary>
-        /// Toggles the guide config settings window visibility.
+        ///     Toggles the guide config settings window visibility.
         /// </summary>
         public void ToggleGuideConfigSettingsWindow()
         {

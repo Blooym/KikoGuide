@@ -5,7 +5,7 @@ using KikoGuide.Resources.Localization;
 
 namespace KikoGuide.CommandHandling.Commands
 {
-    internal sealed class KikoListCommand : ICommand
+    internal sealed class KikoListDalamudCommand : IDalamudCommand
     {
         /// <inheritdoc />
         public string Name => Constants.Commands.GuideList;
@@ -13,8 +13,7 @@ namespace KikoGuide.CommandHandling.Commands
         /// <inheritdoc />
         public CommandInfo Command => new(this.OnExecute)
         {
-            HelpMessage = Strings.Commands_GuideList_Help,
-            ShowInHelp = true,
+            HelpMessage = Strings.Commands_GuideList_Help, ShowInHelp = true,
         };
 
         /// <inheritdoc />

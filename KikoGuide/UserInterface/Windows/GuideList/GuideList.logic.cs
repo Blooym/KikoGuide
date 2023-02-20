@@ -2,63 +2,64 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using KikoGuide.Common;
-using KikoGuide.Extensions;
 using KikoGuide.GuideSystem;
+using Sirensong.Extensions;
 using Sirensong.Game.Enums;
 
 namespace KikoGuide.UserInterface.Windows.GuideList
 {
     internal sealed class GuideListLogic
     {
-        /// <summary>
-        /// The search text to apply to the guide list.
-        /// </summary>
-        public string SearchText = string.Empty;
 
         /// <summary>
-        /// The difficulty filter to apply to the guide list.
+        ///     The difficulty filter to apply to the guide list.
         /// </summary>
         public ContentDifficulty? DifficultyFilter;
 
         /// <summary>
-        /// Whether or not the player is logged in.
+        ///     The search text to apply to the guide list.
+        /// </summary>
+        public string SearchText = string.Empty;
+
+        /// <summary>
+        ///     Whether or not the player is logged in.
         /// </summary>
         public static bool IsLoggedIn => Services.ClientState.IsLoggedIn;
 
         /// <summary>
-        /// The total number of guides.
+        ///     The total number of guides.
         /// </summary>
-        public static int UnlockedGuides => Services.GuideManager.GetGuides().Where(g => !g.NoShow && g.IsUnlocked).Count();
+        public static int UnlockedGuides => Services.GuideManager.GetGuides().Count(g => g is { NoShow: false, IsUnlocked: true });
 
         /// <summary>
-        /// Gets the currently selected guide.
+        ///     Gets the currently selected guide.
         /// </summary>
         public static GuideBase? CurrentGuide => Services.GuideManager.SelectedGuide;
 
         /// <summary>
-        /// Toggle the settings window.
+        ///     Toggle the settings window.
         /// </summary>
         public static void ToggleSettingsWindow() => Services.WindowManager.ToggleSettingsWindow();
 
         /// <summary>
-        /// Toggle the integrations window.
+        ///     Toggle the integrations window.
         /// </summary>
         public static void ToggleIntegrationsWindow() => Services.WindowManager.ToggleIntegrationSettingsWindow();
 
         /// <summary>
-        /// Toggle the guide settings window.
+        ///     Toggle the guide settings window.
         /// </summary>
         public static void ToggleGuideSettingsWindow() => Services.WindowManager.ToggleGuideConfigSettingsWindow();
 
         /// <summary>
-        /// Get the number of guides for a given content type.
+        ///     Get the number of guides for a given content type.
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static int GuidesForContentType(ContentType type) => Services.GuideManager.GetGuides(type).Where(g => !g.NoShow && g.IsUnlocked).Count();
+        public static int GuidesForContentType(ContentType type) => Services.GuideManager.GetGuides(type).Count(g => g is { NoShow: false, IsUnlocked: true });
 
         /// <summary>
-        /// Opens the given guide in the guide viewer.
+        ///     Opens the given guide in the guide viewer.
         /// </summary>
         /// <param name="guide">The guide to open.</param>
         public static void OpenGuide(GuideBase guide)
@@ -68,7 +69,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList
         }
 
         /// <summary>
-        /// Fetch a filtered list of guides based on configuration, duty type, and search text.
+        ///     Fetch a filtered list of guides based on configuration, duty type, and search text.
         /// </summary>
         /// <param name="type">The type of duty to filter by.</param>
         /// <returns>A filtered list of guides.</returns>

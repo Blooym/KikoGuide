@@ -9,13 +9,13 @@ namespace KikoGuide.UserInterface.Windows.IntegrationSettings.TableParts
     internal static class IntegrationsSidebar
     {
         /// <summary>
-        /// Draws the integrations sidebar.
+        ///     Draws the integrations sidebar.
         /// </summary>
         /// <param name="logic"></param>
         public static void Draw(IntegrationsLogic logic) => DrawIntegrationsList(logic);
 
         /// <summary>
-        /// Draws a list of integrations.
+        ///     Draws a list of integrations.
         /// </summary>
         /// <param name="logic"></param>
         private static void DrawIntegrationsList(IntegrationsLogic logic)
@@ -27,7 +27,7 @@ namespace KikoGuide.UserInterface.Windows.IntegrationSettings.TableParts
             {
                 logic.SelectedIntegration = null;
             }
-            ImGui.Dummy(Spacing.SidebarElementSpacing);
+            ImGui.Dummy(Spacing.SidebarSectionSpacing);
 
             // Integrations list
             SiGui.Heading(Strings.UserInterface_Integrations_Title);
@@ -46,7 +46,7 @@ namespace KikoGuide.UserInterface.Windows.IntegrationSettings.TableParts
         }
 
         /// <summary>
-        /// The content to draw when there are no integrations.
+        ///     The content to draw when there are no integrations.
         /// </summary>
         /// <param name="_"></param>
         private static void DrawNoIntegrations(IntegrationsLogic _) => SiGui.TextWrapped("No integrations are available at this time.");

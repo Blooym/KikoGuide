@@ -6,7 +6,7 @@ using Sirensong.Game;
 
 namespace KikoGuide.CommandHandling.Commands
 {
-    internal sealed class KikoCommand : ICommand
+    internal sealed class KikoDalamudCommand : IDalamudCommand
     {
         /// <inheritdoc />
         public string Name => Constants.Commands.GuideViewer;
@@ -14,8 +14,7 @@ namespace KikoGuide.CommandHandling.Commands
         /// <inheritdoc />
         public CommandInfo Command => new(this.OnExecute)
         {
-            HelpMessage = Strings.Commands_GuideViewer_Help,
-            ShowInHelp = true,
+            HelpMessage = Strings.Commands_GuideViewer_Help, ShowInHelp = true,
         };
 
         /// <inheritdoc />

@@ -6,7 +6,7 @@ namespace KikoGuide.UserInterface.Windows.GuideSettings.TableParts
     internal static class GuideSettingsActive
     {
         /// <summary>
-        /// Draws the selected integration.
+        ///     Draws the selected integration.
         /// </summary>
         /// <param name="logic"></param>
         public static void Draw(GuideSettingsLogic logic)

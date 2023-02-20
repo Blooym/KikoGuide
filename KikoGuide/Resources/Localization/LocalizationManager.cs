@@ -9,7 +9,7 @@ namespace KikoGuide.Resources.Localization
         private bool disposedValue;
 
         /// <summary>
-        /// Creates a new resource manager and sets up resources.
+        ///     Creates a new resource manager and sets up resources.
         /// </summary>
         private LocalizationManager()
         {
@@ -18,7 +18,7 @@ namespace KikoGuide.Resources.Localization
         }
 
         /// <summary>
-        /// Disposes of the <see cref="LocalizationManager" />
+        ///     Disposes of the <see cref="LocalizationManager" />
         /// </summary>
         public void Dispose()
         {
@@ -30,7 +30,7 @@ namespace KikoGuide.Resources.Localization
         }
 
         /// <summary>
-        /// Sets up localization for the given language, or uses fallbacks if not found.
+        ///     Sets up localization for the given language, or uses fallbacks if not found.
         /// </summary>
         /// <param name="language">The language to use.</param>
         private static void SetupLocalization(string language)

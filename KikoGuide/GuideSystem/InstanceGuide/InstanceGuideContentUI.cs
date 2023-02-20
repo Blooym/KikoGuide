@@ -10,7 +10,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
     internal static class InstanceGuideContentUI
     {
         /// <summary>
-        /// Draws the guide.
+        ///     Draws the guide.
         /// </summary>
         /// <param name="guide">The guide to draw.</param>
         public static void Draw(InstanceGuideBase guide)
@@ -20,7 +20,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         }
 
         /// <summary>
-        /// Draws the sections of the guide.
+        ///     Draws the sections of the guide.
         /// </summary>
         /// <param name="guide">The guide to draw.</param>
         private static void DrawSections(InstanceGuideBase guide)
@@ -36,7 +36,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         }
 
         /// <summary>
-        /// Draws a section.
+        ///     Draws a section.
         /// </summary>
         /// <param name="section">The section to draw.</param>
         private static void DrawSection(InstanceGuideContent.Section section)
@@ -67,7 +67,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         }
 
         /// <summary>
-        /// Draws a subsection.
+        ///     Draws a subsection.
         /// </summary>
         /// <param name="subsection">The subsection to draw.</param>
         private static void DrawSubsection(InstanceGuideContent.Section.Subsection subsection)
@@ -102,7 +102,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         }
 
         /// <summary>
-        /// Draws the subsection content.
+        ///     Draws the subsection content.
         /// </summary>
         /// <param name="content">The content to draw.</param>
         private static void DrawSubsectionContent(TranslatableString content)
@@ -112,7 +112,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         }
 
         /// <summary>
-        /// Draws the mechanics table.
+        ///     Draws the mechanics table.
         /// </summary>
         /// <param name="mechanics">The mechanics to draw.</param>
         private static void DrawMechanicsTable(InstanceGuideContent.Section.Subsection.MechanicsTableRow[] mechanics)
@@ -137,7 +137,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         }
 
         /// <summary>
-        /// Draws the tips.
+        ///     Draws the tips.
         /// </summary>
         /// <param name="tips">The tips to draw.</param>
         private static void DrawTips(TranslatableString[] tips)
@@ -150,7 +150,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         }
 
         /// <summary>
-        /// The links to draw.
+        ///     The links to draw.
         /// </summary>
         /// <param name="links">The links to draw.</param>
         private static void DrawLinks(InstanceGuideContent.Section.Subsection.Link[] links)
@@ -163,7 +163,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide
                     {
                         Util.OpenLink(link.URL);
                     }
-                    SiGui.TooltipLast(link.URL);
+                    SiGui.AddTooltip(link.URL);
                 }
             }
         }

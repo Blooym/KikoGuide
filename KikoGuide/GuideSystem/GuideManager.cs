@@ -7,39 +7,40 @@ using Sirensong.Game.Enums;
 namespace KikoGuide.GuideSystem
 {
     /// <summary>
-    /// The guide manager is the authoritative source for all guide management.
+    ///     The guide manager is the authoritative source for all guide management.
     /// </summary>
     internal sealed class GuideManager : IDisposable
     {
-        private bool disposedValue;
 
         /// <summary>
-        /// All loaded guides.
+        ///     All loaded guides.
         /// </summary>
         private readonly HashSet<GuideBase> guides = new();
 
         /// <summary>
-        /// All loaded guides, grouped by content type.
+        ///     All loaded guides, grouped by content type.
         /// </summary>
         private readonly Dictionary<ContentType, HashSet<GuideBase>> guidesByContentType = new();
 
         /// <summary>
-        /// All loaded guides, grouped by inheritance.
+        ///     All loaded guides, grouped by inheritance.
         /// </summary>
         private readonly Dictionary<Type, HashSet<GuideBase>> guidesByInheritance = new();
 
-        /// <summary>
-        /// The currently selected guide.
-        /// </summary>
-        public GuideBase? SelectedGuide { get; set; }
+        private bool disposedValue;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GuideManager" /> class.
+        ///     Initializes a new instance of the <see cref="GuideManager" /> class.
         /// </summary>
         private GuideManager() => this.guides = LoadGuides();
 
         /// <summary>
-        /// Disposes of all guides.
+        ///     The currently selected guide.
+        /// </summary>
+        public GuideBase? SelectedGuide { get; set; }
+
+        /// <summary>
+        ///     Disposes of all guides.
         /// </summary>
         public void Dispose()
         {
@@ -57,13 +58,13 @@ namespace KikoGuide.GuideSystem
         }
 
         /// <summary>
-        /// Gets all available guides that are loaded.
+        ///     Gets all available guides that are loaded.
         /// </summary>
         /// <returns>A <see cref="HashSet{T}" /> of all loaded guides.</returns>
         public HashSet<GuideBase> GetGuides() => this.guides;
 
         /// <summary>
-        /// Gets all available guides for a given content type.
+        ///     Gets all available guides for a given content type.
         /// </summary>
         /// <param name="contentType">The content type to get guides for.</param>
         /// <returns>A <see cref="HashSet{T}" /> of all loaded guides for the given content type.</returns>
@@ -87,7 +88,7 @@ namespace KikoGuide.GuideSystem
         }
 
         /// <summary>
-        /// Gets all available guides that inherit from a given type.
+        ///     Gets all available guides that inherit from a given type.
         /// </summary>
         /// <typeparam name="T">The type to get guides for.</typeparam>
         /// <returns>A <see cref="HashSet{T}" /> of all loaded guides that inherit from the given type.</returns>
@@ -111,7 +112,7 @@ namespace KikoGuide.GuideSystem
         }
 
         /// <summary>
-        /// Loads all guides from the assembly into a <see cref="HashSet{T}" />.
+        ///     Loads all guides from the assembly into a <see cref="HashSet{T}" />.
         /// </summary>
         private static HashSet<GuideBase> LoadGuides()
         {

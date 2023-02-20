@@ -6,67 +6,67 @@ using Sirensong;
 namespace KikoGuide.Common
 {
     /// <summary>
-    /// Constants and other static data.
+    ///     Constants and other static data.
     /// </summary>
     internal static class Constants
     {
         /// <summary>
-        /// The name of the plugin.
+        ///     The name of the plugin.
         /// </summary>
         internal const string PluginName = "Kiko Guide";
 
         /// <summary>
-        /// Build/Debug information.
+        ///     Build/Debug information.
         /// </summary>
         internal static class Build
         {
             /// <summary>
-            /// The version of the plugin.
+            ///     The version of the plugin.
             /// </summary>
             internal static readonly Version Version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0, 0);
 
             /// <summary>
-            /// The version of the plugin as a string.
+            ///     The version of the plugin as a string.
             /// </summary>
             internal static readonly string VersionInformational = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "Unknown";
 
             /// <summary>
-            /// The last commit hash when the plugin was compiled.
+            ///     The last commit hash when the plugin was compiled.
             /// </summary>
             internal static readonly string GitCommitHash = Assembly.GetExecutingAssembly().GetCustomAttribute<GitHashAttribute>()?.Value ?? "Unknown";
 
             /// <summary>
-            /// The last commit message when the plugin was compiled.
+            ///     The last commit message when the plugin was compiled.
             /// </summary>
             internal static readonly string GitCommitMessage = Assembly.GetExecutingAssembly().GetCustomAttribute<GitCommitMessageAttribute>()?.Value ?? "Unknown";
 
             /// <summary>
-            /// The date of the last commit when the plugin was compiled.
+            ///     The date of the last commit when the plugin was compiled.
             /// </summary>
             internal static readonly DateTime GitCommitDate = DateTime.TryParse(Assembly.GetExecutingAssembly().GetCustomAttribute<GitCommitDateAttribute>()?.Value, out var date) ? date : DateTime.MinValue;
 
             /// <summary>
-            /// The branch that was active when the plugin was compiled.
+            ///     The branch that was active when the plugin was compiled.
             /// </summary>
             internal static readonly string GitBranch = Assembly.GetExecutingAssembly().GetCustomAttribute<GitBranchAttribute>()?.Value ?? "Unknown";
 
             /// <summary>
-            /// The build configuration that was used to compile the plugin.
+            ///     The build configuration that was used to compile the plugin.
             /// </summary>
             internal static readonly string BuildConfiguration = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyConfigurationAttribute>()?.Configuration ?? "Unknown";
 
             /// <summary>
-            /// Whether or not the build is a pre-release / development build.
+            ///     Whether or not the build is a pre-release / development build.
             /// </summary>
             /// <remarks>
-            /// Checks for the following to determine if the build is a pre-release:
-            /// <list type="bullet">
-            /// <item>Does the plugin manifest indicate that this is a testing-only release?</item>
-            /// <item>Was the build configuration set to "Debug"?</item>
-            /// <item>Does the version contain "alpha"?</item>
-            /// <item>Does the version contain "beta"?</item>
-            /// <item>Does the version contain "rc"?</item>
-            /// </list>
+            ///     Checks for the following to determine if the build is a pre-release:
+            ///     <list type="bullet">
+            ///         <item>Does the plugin manifest indicate that this is a testing-only release?</item>
+            ///         <item>Was the build configuration set to "Debug"?</item>
+            ///         <item>Does the version contain "alpha"?</item>
+            ///         <item>Does the version contain "beta"?</item>
+            ///         <item>Does the version contain "rc"?</item>
+            ///     </list>
             /// </remarks>
             internal static readonly bool IsPreRelease =
                 Services.PluginInterface.IsTesting ||
@@ -77,7 +77,7 @@ namespace KikoGuide.Common
                 VersionInformational.Contains("rc");
 
             /// <summary>
-            /// The debug output string that end users can copy and send to the developer, formatted in markdown.
+            ///     The debug output string that end users can copy and send to the developer, formatted in markdown.
             /// </summary>
             internal static readonly string DebugString =
                 $"""
@@ -88,7 +88,7 @@ namespace KikoGuide.Common
                 Git Commit Date: {GitCommitDate}
                 Git Commit Message: {GitCommitMessage}
                 ```
-                
+
                 Build Information:
                 ```
                 Plugin Version: {VersionInformational}
@@ -106,14 +106,15 @@ namespace KikoGuide.Common
 
                 Environment Information:
                 ```
-                Real Operating System: {Sirensong.Utility.Common.GetOS()}
+                Game Language: {Services.ClientState.ClientLanguage}
+                Real Operating System: {Sirensong.Utility.Common.DetermineOS()}
                 Reported Operating System: {Environment.OSVersion.Platform}
                 ```
                 """;
         }
 
         /// <summary>
-        /// Directory paths.
+        ///     Directory paths.
         /// </summary>
         internal static class Directory
         {
@@ -123,7 +124,7 @@ namespace KikoGuide.Common
         }
 
         /// <summary>
-        /// Commands that are registered in the <see cref="CommandHandling.CommandManager"/>
+        ///     Commands that are registered in the <see cref="CommandHandling.CommandManager" />
         /// </summary>
         internal static class Commands
         {
@@ -132,7 +133,7 @@ namespace KikoGuide.Common
         }
 
         /// <summary>
-        /// Common links used in multiple places.
+        ///     Common links used in multiple places.
         /// </summary>
         internal static class Links
         {
@@ -142,7 +143,7 @@ namespace KikoGuide.Common
         }
 
         /// <summary>
-        /// Strings used in for windows.
+        ///     Strings used in for windows.
         /// </summary>
         internal static class WindowTitles
         {
@@ -155,42 +156,42 @@ namespace KikoGuide.Common
     }
 
     /// <summary>
-    /// The Git commit hash of the build.
+    ///     The Git commit hash of the build.
     /// </summary>
     [AttributeUsage(AttributeTargets.Assembly)]
     internal sealed class GitHashAttribute : Attribute
     {
-        public string Value { get; set; }
         public GitHashAttribute(string value) => this.Value = value;
+        public string Value { get; set; }
     }
 
     /// <summary>
-    /// The Git commit date of the build.
+    ///     The Git commit date of the build.
     /// </summary>
     [AttributeUsage(AttributeTargets.Assembly)]
     internal sealed class GitCommitDateAttribute : Attribute
     {
-        public string Value { get; set; }
         public GitCommitDateAttribute(string value) => this.Value = value;
+        public string Value { get; set; }
     }
 
     /// <summary>
-    /// The Git branch of the build.
+    ///     The Git branch of the build.
     /// </summary>
     [AttributeUsage(AttributeTargets.Assembly)]
     internal sealed class GitBranchAttribute : Attribute
     {
-        public string Value { get; set; }
         public GitBranchAttribute(string value) => this.Value = value;
+        public string Value { get; set; }
     }
 
     /// <summary>
-    /// The Git commit message of the build.
+    ///     The Git commit message of the build.
     /// </summary>
     [AttributeUsage(AttributeTargets.Assembly)]
     internal sealed class GitCommitMessageAttribute : Attribute
     {
-        public string Value { get; set; }
         public GitCommitMessageAttribute(string value) => this.Value = value;
+        public string Value { get; set; }
     }
 }

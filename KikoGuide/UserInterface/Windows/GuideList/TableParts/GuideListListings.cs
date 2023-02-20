@@ -12,12 +12,12 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
     internal static class GuideListListings
     {
         /// <summary>
-        /// The clipper for the guide listings.
+        ///     The clipper for the guide listings.
         /// </summary>
         private static readonly unsafe ImGuiListClipperPtr Clipper = new(ImGuiNative.ImGuiListClipper_ImGuiListClipper());
 
         /// <summary>
-        /// Draw the guide listings.
+        ///     Draw the guide listings.
         /// </summary>
         /// <param name="logic"></param>
         public static void Draw(GuideListLogic logic)
@@ -45,7 +45,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        /// Draw all guides that belong to the given content type.
+        ///     Draw all guides that belong to the given content type.
         /// </summary>
         /// <param name="contentType"></param>
         private static void DrawContentTypeListings(GuideListLogic logic, ContentType contentType)
@@ -79,7 +79,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        /// Draw a table of guides and clips it for performance.
+        ///     Draw a table of guides and clips it for performance.
         /// </summary>
         /// <param name="logic"></param>
         /// <param name="guides"></param>
@@ -105,7 +105,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        /// Draw a selectable guide.
+        ///     Draw a selectable guide.
         /// </summary>
         /// <param name="guide"></param>
         private static void DrawGuideSelectable(GuideListLogic _, GuideBase guide)
@@ -122,7 +122,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        /// Draw the "no guides unlocked" message.
+        ///     Draw the "no guides unlocked" message.
         /// </summary>
         private static void DrawNoGuidesUnlocked()
         {
@@ -131,7 +131,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        /// Draw the "not logged in" message.
+        ///     Draw the "not logged in" message.
         /// </summary>
         private static void DrawNotLoggedIn()
         {

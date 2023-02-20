@@ -13,28 +13,28 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
     internal static class GuideListSidebar
     {
         /// <summary>
-        /// Draw the sidebar.
+        ///     Draw the sidebar.
         /// </summary>
         /// <param name="logic"></param>
         public static void Draw(GuideListLogic logic)
         {
             DrawSearchbar(logic);
-            ImGui.Dummy(Spacing.SidebarElementSpacing);
+            ImGui.Dummy(Spacing.SidebarSectionSpacing);
 
             DrawDifficultyFilter(logic);
-            ImGui.Dummy(Spacing.SidebarElementSpacing);
+            ImGui.Dummy(Spacing.SidebarSectionSpacing);
 
             DrawConfiguration(logic);
-            ImGui.Dummy(Spacing.SidebarElementSpacing);
+            ImGui.Dummy(Spacing.SidebarSectionSpacing);
 
             DrawContributing(logic);
-            ImGui.Dummy(Spacing.SidebarElementSpacing);
+            ImGui.Dummy(Spacing.SidebarSectionSpacing);
 
-            SiGui.Footer($"{Constants.PluginName.TrimWhitepace()} v{Constants.Build.VersionInformational} #{Constants.Build.GitCommitHash}");
+            SiGui.Footer($"{Constants.PluginName.TrimAndSquish()} v{Constants.Build.VersionInformational} #{Constants.Build.GitCommitHash}");
         }
 
         /// <summary>
-        /// Draw the searchbar.
+        ///     Draw the searchbar.
         /// </summary>
         /// <param name="logic"></param>
         private static void DrawSearchbar(GuideListLogic logic)
@@ -46,7 +46,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        /// Draw the difficulty filter.
+        ///     Draw the difficulty filter.
         /// </summary>
         /// <param name="logic"></param>
         private static void DrawDifficultyFilter(GuideListLogic logic)
@@ -68,7 +68,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        /// Draw the contributing section.
+        ///     Draw the contributing section.
         /// </summary>
         /// <param name="logic"></param>
         private static void DrawContributing(GuideListLogic _)
@@ -93,7 +93,7 @@ namespace KikoGuide.UserInterface.Windows.GuideList.TableParts
         }
 
         /// <summary>
-        /// Draw the configuration section.
+        ///     Draw the configuration section.
         /// </summary>
         /// <param name="logic"></param>
         private static void DrawConfiguration(GuideListLogic _)

@@ -1,23 +1,23 @@
 using KikoGuide.Resources.Localization;
 using Newtonsoft.Json;
 
-namespace KikoGuide.GuideSystem.InstanceGuide
+namespace KikoGuide.GuideSystem.FateGuide
 {
     /// <summary>
     ///     The configuration for instance content guides.
     /// </summary>
-    internal sealed class InstanceGuideConfiguration : GuideConfigurationBase
+    internal sealed class FateGuideConfiguration : GuideConfigurationBase
     {
         /// <summary>
         ///     The singleton instance of the configuration.
         /// </summary>
-        public static InstanceGuideConfiguration Instance { get; } = Load<InstanceGuideConfiguration>();
+        public static FateGuideConfiguration Instance { get; } = Load<FateGuideConfiguration>();
 
         /// <inheritdoc />
         public override int Version { get; }
 
         /// <inheritdoc />
-        [JsonIgnore] public override string Name => Strings.Guide_InstanceContent_TypeName;
+        [JsonIgnore] public override string Name => Strings.Guide_Fate_TypeName;
 
         /// <summary>
         ///     Whether to automatically open the guide when entering an instance with a guide.
@@ -25,6 +25,6 @@ namespace KikoGuide.GuideSystem.InstanceGuide
         public bool AutoOpen { get; set; }
 
         /// <inheritdoc />
-        protected override void DrawAction() => InstanceGuideConfigurationUI.Draw(this);
+        protected override void DrawAction() => FateGuideConfigurationUI.Draw(this);
     }
 }

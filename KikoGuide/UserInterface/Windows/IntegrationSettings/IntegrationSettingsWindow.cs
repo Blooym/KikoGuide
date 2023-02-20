@@ -1,3 +1,4 @@
+using System.Numerics;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using KikoGuide.Common;
@@ -7,23 +8,23 @@ namespace KikoGuide.UserInterface.Windows.IntegrationSettings
 {
     internal sealed class IntegrationsWindow : Window
     {
-        /// <inheritdoc/>
-        public IntegrationsLogic Logic { get; } = new();
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IntegrationsWindow() : base(Constants.WindowTitles.IntegrationsTitle)
         {
-            this.Size = new(600, 400);
-            this.SizeConstraints = new WindowSizeConstraints()
+            this.Size = new Vector2(600, 400);
+            this.SizeConstraints = new WindowSizeConstraints
             {
-                MinimumSize = new(600, 400),
-                MaximumSize = new(1200, 700),
+                MinimumSize = new Vector2(600, 400), MaximumSize = new Vector2(1200, 700),
             };
             this.SizeCondition = ImGuiCond.FirstUseEver;
             this.Flags = ImGuiWindowFlags.NoScrollbar;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
+        public IntegrationsLogic Logic { get; } = new();
+
+        /// <inheritdoc />
         public override void Draw()
         {
             if (ImGui.BeginTable("IntegrationSettings", 2, ImGuiTableFlags.BordersInnerV))

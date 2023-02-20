@@ -1,38 +1,19 @@
 using System;
 using ImGuiNET;
 using KikoGuide.Common;
+using KikoGuide.Integrations.Interfaces;
 using KikoGuide.Resources.Localization;
 using Sirensong.UserInterface;
 using Sirensong.UserInterface.Style;
 
 namespace KikoGuide.Integrations
 {
-    internal abstract class IntegrationBase : IDisposable
+    internal abstract class IntegrationBase : IDisposable, IIntegration
     {
         private bool disposedValue;
 
         /// <summary>
-        /// The user-friendly name of the integration.
-        /// </summary>
-        public abstract string Name { get; }
-
-        /// <summary>
-        /// The user-friendly description of the integration.
-        /// </summary>
-        public abstract string Description { get; }
-
-        /// <summary>
-        /// Whether or not the integration has failed to load and has been force-disabled until the next plugin reload.
-        /// </summary>
-        public bool ForceDisabled { get; protected set; }
-
-        /// <summary>
-        /// The configuration of the integration.
-        /// </summary>
-        public abstract IntegrationConfigurationBase Configuration { get; }
-
-        /// <summary>
-        /// Creates a new instance of the <see cref="IntegrationBase" /> class.
+        ///     Creates a new instance of the <see cref="IntegrationBase" /> class.
         /// </summary>
         public IntegrationBase()
         {
@@ -42,14 +23,26 @@ namespace KikoGuide.Integrations
             }
         }
 
-        /// <summary>
-        /// The code to run when the integration is enabled, this should initialize any resources needed for the integration instead of doing it in a constructor.
-        /// </summary>
-        protected abstract void OnEnable();
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-        /// <summary>
-        /// Enables the integration.
-        /// </summary>
+        /// <inheritdoc />
+        public abstract string Name { get; }
+
+        /// <inheritdoc />
+        public abstract string Description { get; }
+
+        /// <inheritdoc />
+        public bool ForceDisabled { get; private set; }
+
+        /// <inheritdoc />
+        public abstract IIntegrationConfiguration Configuration { get; }
+
+        /// <inheritdoc />
         public void Enable()
         {
             if (this.ForceDisabled)
@@ -68,14 +61,7 @@ namespace KikoGuide.Integrations
             }
         }
 
-        /// <summary>
-        /// The code to run when the integration is disabled, this should dispose of any resources just like a normal dispose.
-        /// </summary>
-        protected abstract void OnDisable();
-
-        /// <summary>
-        /// Disables the integration.
-        /// </summary>
+        /// <inheritdoc />
         public void Disable()
         {
             if (this.ForceDisabled)
@@ -94,14 +80,7 @@ namespace KikoGuide.Integrations
             }
         }
 
-        /// <summary>
-        /// The UI to draw to configure the integration.
-        /// </summary>
-        protected virtual void DrawAction() => SiGui.TextWrapped(Strings.Integrations_NoConfig);
-
-        /// <summary>
-        /// Draw the UI to configure the integration.
-        /// </summary>
+        /// <inheritdoc />
         public void Draw()
         {
             // If the integration is force disabled, don't allow configuration.
@@ -134,16 +113,23 @@ namespace KikoGuide.Integrations
         }
 
         /// <summary>
-        /// Disposes of the integration.
+        ///     The code to run when the integration is enabled, this should initialize any resources needed for the integration
+        ///     instead of doing it in a constructor.
         /// </summary>
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        protected abstract void OnEnable();
 
         /// <summary>
-        /// Disposes of the integration.
+        ///     The code to run when the integration is disabled, this should dispose of any resources just like a normal dispose.
+        /// </summary>
+        protected abstract void OnDisable();
+
+        /// <summary>
+        ///     The UI to draw to configure the integration.
+        /// </summary>
+        protected virtual void DrawAction() => SiGui.TextWrapped(Strings.Integrations_NoConfig);
+
+        /// <summary>
+        ///     Disposes of the integration.
         /// </summary>
         /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
@@ -162,9 +148,6 @@ namespace KikoGuide.Integrations
             }
         }
 
-        ~IntegrationBase()
-        {
-            this.Dispose(false);
-        }
+        ~IntegrationBase() => this.Dispose(false);
     }
 }

@@ -24,30 +24,30 @@
   <!-- Custom Runtime Variables -->
   <Target Name="SetCustomVars" BeforeTargets="BeforeBuild">
     <Exec Command="git rev-parse --short HEAD" ConsoleToMSBuild="true" IgnoreExitCode="true">
-      <Output TaskParameter="ConsoleOutput" PropertyName="GitHash" />
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitHash"/>
     </Exec>
     <Exec Command="git show -s --format=%ci HEAD" ConsoleToMSBuild="true" IgnoreExitCode="true">
-      <Output TaskParameter="ConsoleOutput" PropertyName="BuildTime" />
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildTime"/>
     </Exec>
     <Exec Command="git rev-parse --abbrev-ref HEAD" ConsoleToMSBuild="true" IgnoreExitCode="true">
-      <Output TaskParameter="ConsoleOutput" PropertyName="GitBranch" />
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitBranch"/>
     </Exec>
     <Exec Command="git log -1 --pretty=%B" ConsoleToMSBuild="true" IgnoreExitCode="true">
-      <Output TaskParameter="ConsoleOutput" PropertyName="GitCommitMessage" />
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitCommitMessage"/>
     </Exec>
 
     <ItemGroup>
       <AssemblyAttribute Include="KikoGuide.Common.GitHash">
-          <_Parameter1>$(GitHash)</_Parameter1>
+        <_Parameter1>$(GitHash)</_Parameter1>
       </AssemblyAttribute>
       <AssemblyAttribute Include="KikoGuide.Common.GitCommitDate">
-          <_Parameter1>$(BuildTime)</_Parameter1>
+        <_Parameter1>$(BuildTime)</_Parameter1>
       </AssemblyAttribute>
       <AssemblyAttribute Include="KikoGuide.Common.GitBranch">
-          <_Parameter1>$(GitBranch)</_Parameter1>
+        <_Parameter1>$(GitBranch)</_Parameter1>
       </AssemblyAttribute>
       <AssemblyAttribute Include="KikoGuide.Common.GitCommitMessage">
-          <_Parameter1>$(GitCommitMessage)</_Parameter1>
+        <_Parameter1>$(GitCommitMessage)</_Parameter1>
       </AssemblyAttribute>
     </ItemGroup>
   </Target>
@@ -79,8 +79,8 @@
 
   <!-- Packages -->
   <ItemGroup>
-    <PackageReference Include="DalamudPackager" Version="2.1.10" />
-    <ProjectReference Include="../Sirensong/Sirensong/Sirensong.csproj" />
+    <PackageReference Include="DalamudPackager" Version="2.1.10"/>
+    <ProjectReference Include="../Sirensong/Sirensong/Sirensong.csproj"/>
   </ItemGroup>
 
   <!-- Dalamud References -->

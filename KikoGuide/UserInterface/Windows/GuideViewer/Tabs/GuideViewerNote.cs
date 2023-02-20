@@ -12,7 +12,7 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer.Tabs
         private static Vector2 NoteContentSize => new(-1, -60);
 
         /// <summary>
-        /// Draws the note tab.
+        ///     Draws the note tab.
         /// </summary>
         /// <param name="logic"></param>
         /// <param name="note"></param>
@@ -27,13 +27,11 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer.Tabs
                 case GuideViewerLogic.NoteTabState.Editing:
                     DrawNoteEditing(logic, note);
                     break;
-                default:
-                    break;
             }
         }
 
         /// <summary>
-        /// Draws the note viewing state.
+        ///     Draws the note viewing state.
         /// </summary>
         /// <param name="logic"></param>
         /// <param name="note"></param>
@@ -61,7 +59,7 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer.Tabs
         }
 
         /// <summary>
-        /// Draws the note editing state.
+        ///     Draws the note editing state.
         /// </summary>
         /// <param name="logic"></param>
         /// <param name="note"></param>
@@ -91,7 +89,7 @@ namespace KikoGuide.UserInterface.Windows.GuideViewer.Tabs
             ImGui.EndDisabled();
             ImGui.SameLine();
             SiGui.TextDisabled(Strings.UserInterface_Global_TooltipHint);
-            SiGui.TooltipLast(Strings.UserInterface_GuideViewer_Tooltip_EnableDeleteNote);
+            SiGui.AddTooltip(Strings.UserInterface_GuideViewer_Tooltip_EnableDeleteNote);
         }
 
         private static void SaveNoteWithContent(Note note, string content)

@@ -7,17 +7,17 @@ namespace KikoGuide.Integrations
     internal sealed class IntegrationManager : IDisposable
     {
         /// <summary>
-        /// All loaded integrations.
-        /// </summary>
-        public HashSet<IntegrationBase> Integrations { get; private set; } = new();
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IntegrationManager" /> class.
+        ///     Initializes a new instance of the <see cref="IntegrationManager" /> class.
         /// </summary>
         public IntegrationManager() => this.Integrations = LoadIntegrations();
 
         /// <summary>
-        /// Disposes of all integrations and the manager.
+        ///     All loaded integrations.
+        /// </summary>
+        public HashSet<IntegrationBase> Integrations { get; } = new();
+
+        /// <summary>
+        ///     Disposes of all integrations and the manager.
         /// </summary>
         public void Dispose()
         {
@@ -29,7 +29,7 @@ namespace KikoGuide.Integrations
         }
 
         /// <summary>
-        /// Loads all integrations.
+        ///     Loads all integrations.
         /// </summary>
         /// <returns></returns>
         private static HashSet<IntegrationBase> LoadIntegrations()
