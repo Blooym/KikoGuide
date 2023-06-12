@@ -137,9 +137,9 @@ namespace KikoGuide.Common
         /// </summary>
         internal static class Links
         {
-            internal const string GitHub = "https://github.com/BitsOfAByte/KikoGuide";
+            internal const string GitHub = "https://github.com/Blooym/KikoGuide";
             internal const string Crowdin = "https://crowdin.com/project/kikoguide";
-            internal const string KoFi = "https://ko-fi.com/BitsOfAByte";
+            internal const string KoFi = "https://ko-fi.com/Blooym";
         }
 
         /// <summary>

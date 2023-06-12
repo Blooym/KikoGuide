@@ -6,11 +6,11 @@
 
 A [Dalamud](https://github.com/goatcorp/Dalamud) plugin providing a powerful & accessible guide system for creating guides to in-game content. 
 
-[![Plugin download count](https://img.shields.io/endpoint?url=https://vz32sgcoal.execute-api.us-east-1.amazonaws.com/KikoGuide&color=blue&label=Plugin%20Downloads)](https://github.com/BitsOfAByte/KikoGuide) 
-[![Latest Release](https://img.shields.io/github/v/release/BitsOfAByte/KikoGuide?color=blue&label=Latest%20Release)](https://github.com/BitsOfAByte/KikoGuide/releases/latest)
+[![Plugin download count](https://img.shields.io/endpoint?url=https://vz32sgcoal.execute-api.us-east-1.amazonaws.com/KikoGuide&color=blue&label=Plugin%20Downloads)](https://github.com/Blooym/KikoGuide) 
+[![Latest Release](https://img.shields.io/github/v/release/Blooym/KikoGuide?color=blue&label=Latest%20Release)](https://github.com/Blooym/KikoGuide/releases/latest)
 
 
-**[Issues](https://github.com/BitsOfAByte/KikoGuide/issues) · [Contributing](https://github.com/BitsOfAByte/KikoGuide/blob/main/CONTRIBUTING.md) · [Translating](https://github.com/BitsOfAByte/KikoGuide/blob/main/TRANSLATING.md)**
+**[Issues](https://github.com/Blooym/KikoGuide/issues) · [Contributing](https://github.com/Blooym/KikoGuide/blob/main/CONTRIBUTING.md) · [Translating](https://github.com/Blooym/KikoGuide/blob/main/TRANSLATING.md)**
   
 </div>
 

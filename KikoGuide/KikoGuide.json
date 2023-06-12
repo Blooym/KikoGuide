@@ -1,11 +1,11 @@
 {
-  "Author": "BitsOfAByte",
+  "Author": "Blooym",
   "Name": "Kiko Guide",
   "InternalName": "KikoGuide",
   "Punchline": "The ultimate collections of guides for any in-game content! Dungeons, Trials, Raids, FATEs and more supported!",
   "Description": "Comprehensive guides for any in-game content, powered by a strong custom guide system with the ability to add your own notes. Never forget the mechanics while in a duty roulette again!\n\nAll guides are written by project contributors - please see the GitHub repository for more information on how to contribute your own content or help translate existing content.",
-  "RepoUrl": "https://github.com/BitsOfAByte/KikoGuide",
-  "IconUrl": "https://raw.githubusercontent.com/BitsOfAByte/KikoGuide/main/.assets/icon.png",
+  "RepoUrl": "https://github.com/Blooym/KikoGuide",
+  "IconUrl": "https://raw.githubusercontent.com/Blooym/KikoGuide/main/.assets/icon.png",
   "Tags": [
     "KikoGuide",
     "Duty Finder",

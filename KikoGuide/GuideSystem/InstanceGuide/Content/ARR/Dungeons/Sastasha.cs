@@ -9,7 +9,7 @@ namespace KikoGuide.GuideSystem.InstanceGuide.Content.ARR.Dungeons
 
         public override string[] Authors { get; } =
         {
-            "BitsOfAByte",
+            "Blooym",
         };
 
         public override InstanceGuideContent Content { get; } = new()

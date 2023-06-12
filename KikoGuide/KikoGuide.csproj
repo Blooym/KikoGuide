@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>KikoGuide</AssemblyName>
     <Version>2.0.0.0</Version>
-    <PackageProjectUrl>https://github.com/BitsOfAByte/KikoGuide</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Blooym/KikoGuide</PackageProjectUrl>
   </PropertyGroup>
 
   <!-- Build Configuration -->
