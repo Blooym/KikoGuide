@@ -79,7 +79,7 @@
 
   <!-- Packages -->
   <ItemGroup>
-    <PackageReference Include="DalamudPackager" Version="2.1.10"/>
+    <PackageReference Include="DalamudPackager" Version="2.1.11"/>
     <ProjectReference Include="../Sirensong/Sirensong/Sirensong.csproj"/>
   </ItemGroup>
 
